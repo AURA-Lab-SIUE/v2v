@@ -1,0 +1,53 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "From Vibes to Variables"
+  subtitle: "A Field Guide to Open Media Science"
+  author: "Alex P. Leith"
+  date: "2026"
+  license: "CC BY 4.0"
+  repo-url: https://github.com/SIM-Lab-SIUE/vibes-to-variables
+  repo-actions: [issue]
+  search: true
+  chapters:
+    - index.qmd
+    - part: "Part I: Foundations"
+      chapters:
+        - chapters/chapter01.qmd
+        - chapters/chapter02.qmd
+        - chapters/chapter03.qmd
+        - chapters/chapter04.qmd
+    - part: "Part II: Design"
+      chapters:
+        - chapters/chapter05.qmd
+        - chapters/chapter06.qmd
+        - chapters/chapter07.qmd
+    - part: "Part III: Measurement"
+      chapters:
+        - chapters/chapter08.qmd
+        - chapters/chapter09.qmd
+        - chapters/chapter10.qmd
+        - chapters/chapter11.qmd
+    - part: "Part IV: Analysis"
+      chapters:
+        - chapters/chapter12.qmd
+        - chapters/chapter13.qmd
+        - chapters/chapter14.qmd
+        - chapters/chapter15.qmd
+    - part: "Part V: Communication"
+      chapters:
+        - chapters/chapter16.qmd
+        - chapters/chapter17.qmd
+    - part: "Appendices"
+      chapters:
+        - appendices/data-dictionary.qmd
+
+format:
+  html:
+    theme: [cosmo, custom.scss]
+    toc: true
+    number-sections: true
+    code-fold: true
+    code-tools: true

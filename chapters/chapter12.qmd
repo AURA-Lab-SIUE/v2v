@@ -1,0 +1,754 @@
+---
+title: "Chapter 12: Wrangling the Chaos"
+---
+
+## Learning Objectives
+
+- Understand the data wrangling workflow: import, clean, transform
+- Apply the tidy data philosophy to structure datasets
+- Import data into R and diagnose common import problems
+- Handle messy data: missing values, inconsistent categories, duplicates
+- Use the five core dplyr verbs to manipulate data
+- Document data cleaning decisions for reproducibility
+- Recognize why scripted workflows are superior to point-and-click editing
+
+---
+
+You've completed the qualitative work. You immersed in your data, operationalized concepts, built a codebook, pilot tested it, and—after revisions—coded your full sample of 200 songs. You have data.
+
+But data, in its raw form, is rarely ready for analysis.
+
+Your coding sheet probably contains typos. Some categorical labels are inconsistent ("Positive" vs. "positive" vs. "Pos"). There are missing values where a song didn't fit your scheme cleanly. A few songs got coded twice by accident. Column names have spaces that will cause problems. The sentiment variable is stored as text when it should be a factor.
+
+This is the messy reality of real research data. And before you can run statistical tests or create visualizations, you need to clean it—systematically, transparently, and reproducibly.
+
+This is where R enters the picture.
+
+## Why R? Why Now?
+
+Up to this point, you've used Obsidian for writing and organizing. You could, in theory, clean your data in Excel with point-and-click operations. Many researchers do.
+
+But point-and-click has fatal flaws:
+
+**Problem 1: It's not reproducible**. If you manually delete rows in Excel, there's no record of *which* rows you deleted or *why*. If your advisor asks, "How did you handle missing data?" you can't show them. You can only say, "I clicked some buttons."
+
+**Problem 2: It's error-prone**. Accidentally sort one column without the others? Your data is now silently corrupted. Overwrite a cell and save? The original value is gone forever.
+
+**Problem 3: It doesn't scale**. Manually fixing 200 rows is tedious. Manually fixing 2,000 is impractical. Manually fixing 20,000 is impossible.
+
+R solves all three problems. Every operation is scripted. Every decision is documented. Every step can be audited, shared, and rerun. If your data changes (you find an error, add more cases), you don't start over—you just rerun the script.
+
+This is the philosophy of **reproducible research**: your analysis should be transparent enough that someone else could replicate it exactly.
+
+## The Data Wrangling Pipeline
+
+Think of data wrangling as a three-stage process:
+
+**Stage 1: Import** → Get data from files into R  
+**Stage 2: Clean** → Fix errors, inconsistencies, missingness  
+**Stage 3: Transform** → Reshape and create new variables for analysis  
+
+Each stage builds on the previous. You can't clean data you haven't imported. You can't analyze data you haven't cleaned.
+
+## The Tidy Data Philosophy
+
+Before you can wrangle data effectively, you need a mental model of what "clean" data looks like.
+
+**Tidy data** (Wickham, 2014) has three rules:
+
+1. **Each row is one observation** (one song, one coded message, one survey response)
+2. **Each column is one variable** (sentiment, tempo, genre, chart position)
+3. **Each cell contains one value** (not multiple values separated by commas)
+
+### Messy Data Example
+
+This is **not tidy**:
+
+| Song | Artist | Genres |
+|------|--------|--------|
+| "Blinding Lights" | The Weeknd | Pop, R&B, Synth-pop |
+| "Levitating" | Dua Lipa | Pop, Dance |
+
+**Problem**: The "Genres" column contains multiple values. You can't easily filter for "all Pop songs" or count genre frequencies.
+
+### Tidy Version
+
+This **is tidy**:
+
+| Song | Artist | Genre |
+|------|--------|-------|
+| "Blinding Lights" | The Weeknd | Pop |
+| "Blinding Lights" | The Weeknd | R&B |
+| "Blinding Lights" | The Weeknd | Synth-pop |
+| "Levitating" | Dua Lipa | Pop |
+| "Levitating" | Dua Lipa | Dance |
+
+Now each row is one song-genre pair. Each cell has one value. You can filter, count, and analyze easily.
+
+**Why this matters**: R's tidyverse tools (`dplyr`, `ggplot2`, `tidyr`) are designed for tidy data. If your data is messy, every analysis becomes complicated. If your data is tidy, most operations are straightforward.
+
+## Installing R and RStudio
+
+Before you can wrangle data, you need the tools.
+
+**R** is the programming language. Think of it as the engine.
+
+**RStudio** is the interface—the cockpit that makes R easier to use. It provides:
+- A script editor (where you write code)
+- A console (where code runs)
+- An environment panel (showing what data you've loaded)
+- A plots/files panel (showing visualizations and outputs)
+
+**Installation steps** (you only do this once):
+
+1. Download R from [CRAN](https://cran.r-project.org/) for your operating system
+2. Download RStudio Desktop (free version) from [Posit](https://posit.co/download/rstudio-desktop/)
+3. Install R first, then RStudio
+
+**After installation**, open RStudio. You'll see four panels. For now, focus on the **Console** (bottom-left). This is where you type commands and see results.
+
+## Your First R Commands
+
+Type these into the Console and press Enter:
+
+```r
+# This is a comment (R ignores it)
+2 + 2
+
+# Assign a value to a variable
+x <- 5
+x
+
+# Create a vector (list of values)
+songs <- c("Happy", "Blinding Lights", "Levitating")
+songs
+
+# Get help on a function
+?mean
+```
+
+**What just happened?**
+
+- `#` creates comments (ignored by R, used for human readers)
+- `<-` assigns values to variables (read it as "gets")
+- `c()` combines values into a vector
+- `?mean` opens the help documentation for the `mean()` function
+
+This is base R. It works, but it's not the most elegant syntax. That's where the tidyverse comes in.
+
+## The Tidyverse: R for Humans
+
+The **tidyverse** is a collection of R packages designed to make data analysis more intuitive. Instead of cryptic base R syntax, tidyverse code reads almost like English.
+
+**Install the tidyverse** (you only do this once):
+
+```r
+install.packages("tidyverse")
+```
+
+**Load the tidyverse** (you do this at the start of every R session):
+
+```r
+library(tidyverse)
+```
+
+This loads eight core packages:
+- `readr`: Import data
+- `dplyr`: Manipulate data
+- `tidyr`: Reshape data
+- `ggplot2`: Visualize data (Chapter 13)
+- `purrr`, `tibble`, `stringr`, `forcats`: Supporting tools
+
+## Importing Data with `readr`
+
+Your coded dataset is likely a CSV (comma-separated values) file exported from Excel or Google Sheets.
+
+**The unified music dataset looks like**:
+
+```
+Song,Artist,Average_Rank,Max_Rank,tempo,energy,valence,lyrics
+Happy,Pharrell Williams,45.2,1,160,0.822,0.961,"Because I'm happy..."
+Someone Like You,Adele,12.5,1,67.5,0.282,0.134,"Never mind, I'll find..."
+Good 4 U,Olivia Rodrigo,8.3,1,164,0.664,0.675,"Well, good for you..."
+```
+
+**Import it into R**:
+
+```r
+library(readr)
+
+# Import the CSV file (1,792 songs)
+music_data <- read_csv("data/final_unified_dataset.csv")
+```
+
+**What just happened?**
+
+- `read_csv()` reads the file and creates a data frame (R's version of a spreadsheet)
+- `music_data` is the name we gave the data frame (you can name it anything)
+- The file path `"data/final_unified_dataset.csv"` assumes the file is in a folder called "data" in your working directory
+
+**Inspect what you imported**:
+
+```r
+# View the first 6 rows
+head(music_data)
+
+# See the structure (column names and types)
+glimpse(music_data)
+
+# Open a spreadsheet-like view
+View(music_data)
+```
+
+**Common import problems**:
+
+**Problem 1: File not found**
+
+```r
+Error: 'data/final_unified_dataset.csv' does not exist
+```
+
+**Solution**: Check your working directory with `getwd()`. Make sure the file path is correct. Or use `file.choose()` to interactively select the file:
+
+```r
+music_data <- read_csv(file.choose())
+```
+
+**Problem 2: Column names have spaces**
+
+Base R's `read.csv()` converts spaces to dots (`Lyric Sentiment` becomes `Lyric.Sentiment`).
+
+`readr`'s `read_csv()` preserves spaces. Use backticks to reference these columns:
+
+```r
+music_data$`Lyric Sentiment`  # With backticks
+```
+
+Or rename columns to avoid spaces (better practice):
+
+```r
+music_data <- music_data %>%
+  rename(lyric_sentiment = `Lyric Sentiment`)
+```
+
+**Problem 3: Data types are wrong**
+
+R might import numbers as text or vice versa. Check with `glimpse()`:
+
+```r
+glimpse(music_data)
+
+# If Tempo is character instead of numeric:
+music_data <- music_data %>%
+  mutate(Tempo = as.numeric(Tempo))
+```
+
+## The Five Core dplyr Verbs
+
+Now comes the power: transforming data with five essential functions.
+
+### 1. `filter()`: Keep Rows That Meet Conditions
+
+**Use when**: You want to subset your data
+
+**Example**: Keep only positive sentiment songs
+
+```r
+positive_songs <- music_data %>%
+  filter(Lyric_Sentiment == "Positive")
+```
+
+**Multiple conditions** (AND logic):
+
+```r
+# Songs that are positive AND have high intensity
+positive_intense <- music_data %>%
+  filter(Lyric_Sentiment == "Positive", Emotional_Intensity == "High")
+```
+
+**OR logic**:
+
+```r
+# Songs that are positive OR mixed
+pos_or_mixed <- music_data %>%
+  filter(Lyric_Sentiment == "Positive" | Lyric_Sentiment == "Mixed")
+
+# Cleaner syntax using %in%:
+pos_or_mixed <- music_data %>%
+  filter(Lyric_Sentiment %in% c("Positive", "Mixed"))
+```
+
+**Numeric comparisons**:
+
+```r
+# Fast songs (tempo > 140 BPM)
+fast_songs <- music_data %>%
+  filter(Tempo > 140)
+
+# Songs that charted in top 10
+top10 <- music_data %>%
+  filter(Max_Rank <= 10)
+```
+
+### 2. `select()`: Choose or Drop Columns
+
+**Use when**: You want to work with a subset of variables
+
+**Keep specific columns**:
+
+```r
+minimal_data <- music_data %>%
+  select(Song_Title, Artist, Lyric_Sentiment)
+```
+
+**Drop columns**:
+
+```r
+# Remove columns you don't need
+music_data %>%
+  select(-Song_ID, -Notes)
+```
+
+**Select columns by pattern**:
+
+```r
+# All columns starting with "Lyric"
+music_data %>%
+  select(starts_with("Lyric"))
+
+# All columns containing "Sentiment"
+music_data %>%
+  select(contains("Sentiment"))
+```
+
+### 3. `mutate()`: Create or Modify Columns
+
+**Use when**: You need new variables or need to transform existing ones
+
+**Create a binary variable**:
+
+```r
+music_data <- music_data %>%
+  mutate(is_positive = if_else(Lyric_Sentiment == "Positive", 1, 0))
+```
+
+**Create categories based on conditions**:
+
+```r
+music_data <- music_data %>%
+  mutate(
+    tempo_category = case_when(
+      Tempo < 100 ~ "Slow",
+      Tempo < 140 ~ "Medium",
+      Tempo >= 140 ~ "Fast"
+    )
+  )
+```
+
+**Multiple new columns at once**:
+
+```r
+music_data <- music_data %>%
+  mutate(
+    is_positive = if_else(Lyric_Sentiment == "Positive", 1, 0),
+    is_top10 = if_else(Max_Rank <= 10, 1, 0),
+    fast_and_positive = if_else(Tempo > 140 & is_positive == 1, 1, 0)
+  )
+```
+
+### 4. `group_by()` + `summarize()`: Aggregate Data
+
+**Use when**: You want summary statistics by group
+
+**Calculate means by sentiment category**:
+
+```r
+summary_stats <- music_data %>%
+  group_by(Lyric_Sentiment) %>%
+  summarize(
+    n_songs = n(),
+    avg_tempo = mean(Tempo, na.rm = TRUE),
+    avg_chart_peak = mean(Max_Rank, na.rm = TRUE)
+  )
+```
+
+**What this does**:
+- `group_by(Lyric_Sentiment)` groups songs by sentiment category
+- `n()` counts songs in each group
+- `mean(Tempo, na.rm = TRUE)` calculates average tempo (ignoring missing values)
+- Result is a new data frame with one row per sentiment category
+
+**Multiple grouping variables**:
+
+```r
+sentiment_by_intensity <- music_data %>%
+  group_by(Lyric_Sentiment, Emotional_Intensity) %>%
+  summarize(
+    n = n(),
+    avg_tempo = mean(Tempo, na.rm = TRUE)
+  )
+```
+
+### 5. `arrange()`: Sort Rows
+
+**Use when**: You want to order your data
+
+**Sort by one variable**:
+
+```r
+# Fastest to slowest
+music_data %>%
+  arrange(desc(Tempo))
+
+# Slowest to fastest
+music_data %>%
+  arrange(Tempo)
+```
+
+**Sort by multiple variables**:
+
+```r
+# First by sentiment, then by tempo within each sentiment group
+music_data %>%
+  arrange(Lyric_Sentiment, desc(Tempo))
+```
+
+## Chaining Operations: The Power of the Pipe
+
+The real magic happens when you **chain verbs together** with the pipe operator (`%>%`).
+
+**Read the pipe as "then"**:
+
+```r
+result <- music_data %>%
+  filter(Max_Rank <= 20) %>%           # Keep top 20 songs
+  mutate(is_fast = Tempo > 130) %>%       # Create fast/slow variable
+  group_by(Lyric_Sentiment, is_fast) %>% # Group by sentiment and tempo
+  summarize(
+    n = n(),
+    avg_peak = mean(Max_Rank)
+  ) %>%
+  arrange(avg_peak)                       # Sort by average peak position
+```
+
+**Read aloud**: "Take music_data, THEN filter for top 20 songs, THEN create a fast/slow variable, THEN group by sentiment and tempo, THEN calculate summaries, THEN sort by average peak."
+
+**Without pipes, this would be**:
+
+```r
+temp1 <- filter(music_data, Max_Rank <= 20)
+temp2 <- mutate(temp1, is_fast = Tempo > 130)
+temp3 <- group_by(temp2, Lyric_Sentiment, is_fast)
+temp4 <- summarize(temp3, n = n(), avg_peak = mean(Max_Rank))
+result <- arrange(temp4, avg_peak)
+```
+
+The piped version is cleaner, easier to read, and doesn't create temporary variables.
+
+## Handling Common Data Problems
+
+### Problem 1: Missing Values
+
+**Identify missing values**:
+
+```r
+# Count missing values per column
+music_data %>%
+  summarize(across(everything(), ~sum(is.na(.))))
+```
+
+**Recode specific values as missing**:
+
+```r
+# Convert "Unknown" and empty strings to NA
+music_data <- music_data %>%
+  mutate(
+    Lyric_Sentiment = na_if(Lyric_Sentiment, "Unknown"),
+    Lyric_Sentiment = na_if(Lyric_Sentiment, "")
+  )
+```
+
+**Remove rows with missing data**:
+
+```r
+# Remove rows where Lyric_Sentiment is missing
+music_data_complete <- music_data %>%
+  filter(!is.na(Lyric_Sentiment))
+```
+
+**Document your decision**: In your analysis script, comment on why:
+
+```r
+# Excluded 8 songs with missing sentiment codes (unable to determine
+# due to language barriers or instrumental content). Final n = 192.
+music_data_complete <- music_data %>%
+  filter(!is.na(Lyric_Sentiment))
+```
+
+### Problem 2: Inconsistent Categories
+
+**The problem**: Coders entered the same category multiple ways
+
+```r
+# Sentiment might include:
+# "Positive", "positive", "POSITIVE", "Pos", "pos"
+```
+
+**Solution: Standardize**:
+
+```r
+music_data <- music_data %>%
+  mutate(
+    Lyric_Sentiment = tolower(Lyric_Sentiment),  # Convert to lowercase
+    Lyric_Sentiment = case_when(
+      Lyric_Sentiment %in% c("positive", "pos") ~ "Positive",
+      Lyric_Sentiment %in% c("negative", "neg") ~ "Negative",
+      Lyric_Sentiment %in% c("neutral", "neut") ~ "Neutral",
+      Lyric_Sentiment %in% c("mixed", "mix") ~ "Mixed",
+      TRUE ~ Lyric_Sentiment  # Keep anything else as-is
+    )
+  )
+```
+
+### Problem 3: Duplicates
+
+**Identify duplicates**:
+
+```r
+# Check for duplicate rows
+duplicates <- music_data %>%
+  filter(duplicated(.) | duplicated(., fromLast = TRUE))
+
+View(duplicates)
+```
+
+**Remove duplicates**:
+
+```r
+music_data <- music_data %>%
+  distinct()  # Keeps only unique rows
+```
+
+**BUT**: If duplicates are legitimate (e.g., two coders coded the same song), don't remove them. Instead, use them for reliability analysis, then merge:
+
+```r
+# Keep only Coder A's codes for final analysis
+music_data_final <- music_data %>%
+  filter(Coder_ID == "Coder_A")
+```
+
+### Problem 4: Wrong Data Types
+
+**Check types**:
+
+```r
+glimpse(music_data)
+```
+
+**Convert types**:
+
+```r
+music_data <- music_data %>%
+  mutate(
+    Song_ID = as.character(Song_ID),           # Numeric to character
+    Tempo = as.numeric(Tempo),                  # Character to numeric
+    Max_Rank = as.integer(Max_Rank),        # Decimal to integer
+    Lyric_Sentiment = as.factor(Lyric_Sentiment) # Character to factor
+  )
+```
+
+## Working with Factors (Categorical Data)
+
+Factors are R's way of handling categorical data with defined levels and ordering.
+
+**Convert to factor**:
+
+```r
+library(forcats)
+
+music_data <- music_data %>%
+  mutate(
+    Lyric_Sentiment = factor(Lyric_Sentiment, 
+                              levels = c("Positive", "Negative", "Neutral", "Mixed"))
+  )
+```
+
+**Why this matters**: When you plot or tabulate, R will use this order instead of alphabetical.
+
+**Reorder by frequency**:
+
+```r
+music_data <- music_data %>%
+  mutate(Lyric_Sentiment = fct_infreq(Lyric_Sentiment))
+```
+
+Now "Lyric_Sentiment" is ordered from most common to least common category.
+
+## Documenting Your Cleaning Workflow
+
+Every cleaning decision is a methodological choice. Document it.
+
+**Create a cleaning script** (`01_data_cleaning.R`):
+
+```r
+# Data Cleaning Script
+# Project: Music Sentiment and Chart Performance
+# Author: Your Name
+# Date: 2026-02-10
+
+# Load packages
+library(tidyverse)
+
+# 1. Import raw data
+music_raw <- read_csv("data_raw/final_unified_dataset.csv")
+message("Imported ", nrow(music_raw), " songs")
+
+# 2. Standardize sentiment categories
+music_clean <- music_raw %>%
+  mutate(
+    Lyric_Sentiment = tolower(Lyric_Sentiment),
+    Lyric_Sentiment = case_when(
+      Lyric_Sentiment %in% c("positive", "pos") ~ "Positive",
+      Lyric_Sentiment %in% c("negative", "neg") ~ "Negative",
+      Lyric_Sentiment %in% c("neutral", "neut") ~ "Neutral",
+      Lyric_Sentiment %in% c("mixed", "mix") ~ "Mixed",
+      TRUE ~ NA_character_
+    )
+  )
+
+# 3. Remove songs with missing sentiment (n = ?)
+n_missing <- sum(is.na(music_clean$Lyric_Sentiment))
+message("Removing ", n_missing, " songs with missing sentiment codes")
+
+music_clean <- music_clean %>%
+  filter(!is.na(Lyric_Sentiment))
+
+# 4. Convert variables to appropriate types
+music_clean <- music_clean %>%
+  mutate(
+    Lyric_Sentiment = factor(Lyric_Sentiment,
+                              levels = c("Positive", "Negative", "Neutral", "Mixed")),
+    Emotional_Intensity = factor(Emotional_Intensity,
+                                  levels = c("Low", "Medium", "High")),
+    Tempo = as.numeric(Tempo),
+    Max_Rank = as.integer(Max_Rank)
+  )
+
+# 5. Create derived variables
+music_clean <- music_clean %>%
+  mutate(
+    is_positive = if_else(Lyric_Sentiment == "Positive", 1, 0),
+    is_top10 = if_else(Max_Rank <= 10, 1, 0),
+    tempo_category = case_when(
+      Tempo < 100 ~ "Slow",
+      Tempo < 140 ~ "Medium",
+      Tempo >= 140 ~ "Fast"
+    )
+  )
+
+# 6. Final dataset summary
+message("Final dataset: ", nrow(music_clean), " songs")
+glimpse(music_clean)
+
+# 7. Save cleaned data
+write_csv(music_clean, "data_clean/music_analysis_ready.csv")
+message("Cleaned data saved to data_clean/music_analysis_ready.csv")
+```
+
+**Why this matters**: 
+
+- Anyone (including future you) can see exactly what you did
+- You can rerun the script if the raw data changes
+- You can share it with collaborators or reviewers
+- It documents your sample size at each cleaning step
+
+---
+
+## Practice: Data Wrangling
+
+### Exercise 12.1: Filtering Practice
+
+Using the music dataset:
+
+1. Keep only songs with "Negative" sentiment
+2. Keep songs that charted in the top 5 (#1-5)
+3. Keep songs that are BOTH negative sentiment AND top 5
+
+---
+
+### Exercise 12.2: Creating New Variables
+
+Create these new variables:
+
+1. `decade`: Extract decade from year (e.g., 2015 → "2010s")
+2. `extreme_tempo`: 1 if tempo is very slow (<80) or very fast (>160), 0 otherwise
+3. `sentiment_simple`: "Positive" for Positive, "Negative" for everything else
+
+---
+
+### Exercise 12.3: Aggregation
+
+Calculate:
+
+1. Average tempo by sentiment category
+2. Number of songs in each sentiment × intensity combination
+3. Percentage of songs in each tempo category that reached #1
+
+---
+
+### Exercise 12.4: Your Cleaning Script
+
+Write a cleaning script for your own coded dataset that:
+
+1. Imports the raw CSV
+2. Standardizes at least one categorical variable
+3. Handles missing values with documented decisions
+4. Converts variables to appropriate types
+5. Creates at least one derived variable
+6. Saves the cleaned dataset
+7. Includes comments explaining each step
+
+---
+
+## Reflection Questions
+
+1. **Reproducibility vs. Flexibility**: Scripted workflows are reproducible, but they require planning ahead. Point-and-click is flexible but not transparent. When might flexibility be more important than reproducibility? When is reproducibility non-negotiable?
+
+2. **Cleaning Decisions**: Every time you remove missing data or recode categories, you're making methodological choices that affect results. How transparent should you be about these decisions? What level of detail is too much?
+
+3. **The Tidy Data Trade-off**: Tidy data is easier to analyze but sometimes creates redundancy (like repeating song names for each genre). When is this trade-off worth it? When might you prefer a different structure?
+
+---
+
+## Chapter Summary
+
+This chapter introduced data wrangling with R and the tidyverse:
+
+- **Data wrangling** is the unsexy but essential work of preparing data for analysis
+- **Reproducible workflows** (scripted in R) are superior to point-and-click (Excel) because they're transparent, auditable, and rerunnable
+- **Tidy data** has three rules: each row = one observation, each column = one variable, each cell = one value
+- **The five core dplyr verbs**: `filter()` (keep rows), `select()` (choose columns), `mutate()` (create variables), `group_by() + summarize()` (aggregate), `arrange()` (sort)
+- **The pipe operator** (`%>%`) chains operations, making code readable
+- **Common data problems**: missing values, inconsistent categories, duplicates, wrong data types
+- **Factors** store categorical data with defined levels and ordering
+- **Documentation** of cleaning decisions is essential for transparency
+- **Cleaning scripts** should be heavily commented and save cleaned data separately from raw data
+
+---
+
+## Key Terms
+
+- **Data frame**: R's version of a spreadsheet (rows and columns)
+- **Data wrangling**: Importing, cleaning, and transforming data for analysis
+- **Factor**: R's data type for categorical variables with defined levels
+- **Pipe operator (`%>%`)**: Chains operations together, read as "then"
+- **Reproducible research**: Analysis transparent enough for others to replicate
+- **Tidy data**: Data structure where each row = observation, each column = variable, each cell = value
+- **Tidyverse**: Collection of R packages designed for intuitive data analysis
+- **Vector**: Ordered collection of values of the same type
+
+---
+
+## Looking Ahead
+
+Chapter 13 (Seeing Patterns) introduces data visualization with `ggplot2`. You've wrangled your data into analysis-ready format. Now you'll learn to create publication-quality visualizations that reveal patterns: bar charts showing sentiment distribution, scatterplots examining tempo-chart performance relationships, and faceted plots comparing patterns across categories. Visualization isn't just about making pretty pictures—it's about exploring data, testing assumptions, and communicating findings effectively.

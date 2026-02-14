@@ -1,0 +1,72 @@
+---
+title: "Data Dictionary"
+---
+
+# Unified Music Dataset {.unnumbered}
+
+The `unified_music` dataset contains 1,792 songs with variables from three sources: Billboard chart data, Spotify audio features, and Genius metadata.
+
+## Loading the Data
+
+```r
+library(coursepackR)
+data(unified_music)
+```
+
+## Variables
+
+### Identification
+
+| Variable | Type | Description |
+|----------|------|-------------|
+| `Song` | character | Song title |
+| `Artist` | character | Artist name |
+| `track_id` | character | Spotify track identifier |
+| `track_album_id` | character | Spotify album identifier |
+| `track_album_name` | character | Album title |
+| `track_album_release_date` | character | Album release date |
+
+### Billboard Chart Performance
+
+| Variable | Type | Description |
+|----------|------|-------------|
+| `Max_Rank` | integer | Highest chart position achieved (1 = top) |
+| `Average_Rank` | numeric | Average chart position |
+| `First_Week_on_Board` | character | Date of first chart appearance |
+| `First_Rank_on_Board` | integer | Chart position on first appearance |
+| `Last_Week_on_Board` | character | Date of last chart appearance |
+| `Last_Rank_on_Board` | integer | Chart position on last appearance |
+| `Weeks_on_Board` | integer | Total weeks on the chart |
+
+### Spotify Audio Features
+
+| Variable | Type | Range | Description |
+|----------|------|-------|-------------|
+| `danceability` | numeric | 0–1 | How suitable for dancing (tempo, rhythm stability, beat strength) |
+| `energy` | numeric | 0–1 | Perceptual measure of intensity and activity |
+| `valence` | numeric | 0–1 | Musical positivity (high = happy/cheerful, low = sad/angry) |
+| `tempo` | numeric | BPM | Estimated tempo in beats per minute |
+| `loudness` | numeric | dB | Overall loudness in decibels |
+| `speechiness` | numeric | 0–1 | Presence of spoken words |
+| `acousticness` | numeric | 0–1 | Confidence that the track is acoustic |
+| `instrumentalness` | numeric | 0–1 | Predicts whether a track contains no vocals |
+| `liveness` | numeric | 0–1 | Detects presence of an audience |
+| `duration_ms` | integer | ms | Track duration in milliseconds |
+| `key` | integer | 0–11 | Musical key (0 = C, 1 = C#, etc.) |
+| `mode` | integer | 0–1 | Modality (0 = minor, 1 = major) |
+| `track_popularity` | integer | 0–100 | Spotify popularity score |
+
+### Genre Classification
+
+| Variable | Type | Description |
+|----------|------|-------------|
+| `playlist_name` | character | Source Spotify playlist |
+| `playlist_id` | character | Spotify playlist identifier |
+| `playlist_genre` | character | Genre category |
+| `playlist_subgenre` | character | Subgenre category |
+
+### Other
+
+| Variable | Type | Description |
+|----------|------|-------------|
+| `year` | integer | Release year |

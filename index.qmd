@@ -1,0 +1,36 @@
+---
+title: "Welcome"
+---
+
+# From Vibes to Variables {.unnumbered}
+
+*A Field Guide to Open Media Science*
+
+This open educational resource (OER) guides you through the complete arc of a research project — from the first spark of curiosity to a published, reproducible study. Written for students in communication and media studies, it uses a real music industry dataset of 1,792 songs to teach research methods as a form of structured storytelling.
+
+## How This Book Works
+
+The book is organized into five parts that mirror the phases of a research project:
+
+1. **Foundations** (Chapters 1–4): Build your research identity, set up your tools, and learn to read critically.
+2. **Design** (Chapters 5–7): Choose a theoretical lens, write a research question, and plan your study.
+3. **Measurement** (Chapters 8–11): Immerse yourself in data, operationalize variables, build a codebook, and test reliability.
+4. **Analysis** (Chapters 12–15): Wrangle data in R, visualize patterns, run statistical tests, and interpret results.
+5. **Communication** (Chapters 16–17): Publish reproducible reports and share your work openly.
+
+## The Dataset
+
+Throughout this book, you'll work with a unified dataset combining Billboard chart performance, Spotify audio features, and Genius metadata for 1,792 songs. If you've installed the `coursepackR` package, load it with:
+
+```r
+library(coursepackR)
+data(unified_music)
+```
+
+## License
+
+This work is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
+
+**Author:** Alex P. Leith, Southern Illinois University Edwardsville
+
+**Course:** MC-451 Research Methods | [Course Website](https://sim-lab-siue.github.io/liaison-program/)

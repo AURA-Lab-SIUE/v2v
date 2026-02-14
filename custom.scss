@@ -1,0 +1,36 @@
+/*-- scss:defaults --*/
+
+$primary: #2c5aa0;
+$secondary: #17a2b8;
+$link-color: #2c5aa0;
+
+/*-- scss:rules --*/
+
+body {
+  line-height: 1.8;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: $primary;
+  font-weight: 600;
+}
+
+h2 {
+  border-bottom: 3px solid $secondary;
+  padding-bottom: 0.5rem;
+}
+
+code {
+  color: #d73a49;
+}
+
+blockquote {
+  border-left: 4px solid $secondary;
+  padding-left: 1rem;
+  color: #555;
+  font-style: italic;
+}
+
+.callout {
+  margin: 1.5rem 0;
+}
