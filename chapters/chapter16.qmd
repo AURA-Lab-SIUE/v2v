@@ -110,15 +110,13 @@ than songs with positive sentiment?
 
 R code embedded in special blocks:
 
-````markdown
-```{r}
+```{{r}}
 #| label: load-data
 #| message: false
 
 library(tidyverse)
 music_data <- read_csv("data_clean/final_unified_dataset.csv")
 ```
-````
 
 **Code chunk options** (after `#|`):
 - `label`: Names the chunk (useful for debugging)
@@ -211,8 +209,7 @@ songs (2015-2024). Results indicate...
 
 Create a setup chunk at the beginning:
 
-````markdown
-```{r}
+```{{r}}
 #| label: setup
 #| include: false
 
@@ -233,7 +230,6 @@ knitr::opts_chunk$set(
   fig.height = 5       # Default figure height
 )
 ```
-````
 
 `include: false` means this entire chunk is hidden—no code, no output. It just runs silently.
 
@@ -245,8 +241,9 @@ knitr::opts_chunk$set(
 # Results
 
 ## Sample Characteristics
+````
 
-```{r}
+```{{r}}
 #| label: tbl-descriptives
 #| tbl-cap: "Descriptive Statistics for Music Dataset"
 
@@ -264,7 +261,6 @@ music_data %>%
   ) %>%
   kable_styling(bootstrap_options = c("striped", "hover"))
 ```
-````
 
 **Output** (in rendered document):
 
@@ -283,8 +279,7 @@ music_data %>%
 
 ### Contingency Table
 
-````markdown
-```{r}
+```{{r}}
 #| label: tbl-contingency
 #| tbl-cap: "Sentiment by Top-10 Chart Status"
 
@@ -297,14 +292,12 @@ music_data %>%
   ) %>%
   kable_styling()
 ```
-````
 
 ## Creating Figures
 
 ### Bar Chart
 
-````markdown
-```{r}
+```{{r}}
 #| label: fig-sentiment-dist
 #| fig-cap: "Distribution of Lyric Sentiment Categories"
 #| fig-width: 6
@@ -323,7 +316,6 @@ ggplot(music_data, aes(x = Lyric_Sentiment, fill = Lyric_Sentiment)) +
   theme_minimal() +
   theme(legend.position = "none")
 ```
-````
 
 **`fig-cap`** creates the figure caption. Quarto automatically numbers figures.
 
@@ -331,8 +323,7 @@ ggplot(music_data, aes(x = Lyric_Sentiment, fill = Lyric_Sentiment)) +
 
 ### Scatterplot with Regression Line
 
-````markdown
-```{r}
+```{{r}}
 #| label: fig-tempo-chart
 #| fig-cap: "Relationship Between Tempo and Chart Performance by Sentiment"
 #| fig-width: 8
@@ -354,7 +345,6 @@ ggplot(music_data, aes(x = Tempo, y = Max_Rank, color = Lyric_Sentiment)) +
   theme_minimal() +
   theme(legend.position = "bottom")
 ```
-````
 
 ## Reporting Statistical Results
 
@@ -377,8 +367,7 @@ top-10 status, χ²(`r chisq.test(music_data$Lyric_Sentiment, music_data$top10)$
 
 Store test results once, reference multiple times:
 
-````markdown
-```{r}
+```{{r}}
 #| label: stats-tests
 #| include: false
 
@@ -394,7 +383,6 @@ chi_p <- round(chi_result$p.value, 3)
 library(rcompanion)
 cramers_v <- round(cramerV(music_data$Lyric_Sentiment, music_data$top10), 2)
 ```
-````
 
 **Then reference in text**:
 
@@ -553,8 +541,7 @@ This is what reproducible research looks like.
 
 ### Figure Panels (Subfigures)
 
-````markdown
-```{r}
+```{{r}}
 #| label: fig-panels
 #| fig-cap: "Tempo and Chart Performance by Sentiment"
 #| fig-subcap: 
@@ -573,7 +560,6 @@ ggplot(music_data, aes(x = Tempo, y = Max_Rank, color = Lyric_Sentiment)) +
   geom_smooth(method = "lm", se = FALSE) +
   theme_minimal()
 ```
-````
 
 Creates Figure 1 with panels (a) and (b).
 
@@ -592,18 +578,16 @@ Our coding procedure (see @sec-method) ensured high reliability...
 
 ### Conditional Content
 
-````markdown
-```{r}
+```{{r}}
 show_detailed_analysis <- FALSE
 ```
 
-```{r}
+```{{r}}
 #| eval: !expr show_detailed_analysis
 
 # This chunk only runs if show_detailed_analysis is TRUE
 # Useful for supplementary analyses you might want to toggle
 ```
-````
 
 ## Common Issues and Solutions
 
