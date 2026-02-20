@@ -48,7 +48,7 @@ format:
   html:
     theme: [cosmo, custom.scss]
     toc: true
-    number-sections: true
+    number-sections: false
     code-fold: true
     code-tools: true
     include-in-header:
@@ -63,7 +63,7 @@ format:
       - margin=1in
     toc: true
     toc-depth: 2
-    number-sections: true
+    number-sections: false
     colorlinks: true
     link-citations: true
     keep-tex: false
