@@ -51,3 +51,15 @@ format:
     number-sections: true
     code-fold: true
     code-tools: true
+  pdf:
+    documentclass: book
+    papersize: letter
+    fontsize: 11pt
+    geometry:
+      - margin=1in
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    colorlinks: true
+    link-citations: true
+    keep-tex: false
