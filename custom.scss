@@ -1,8 +1,21 @@
 /*-- scss:defaults --*/
 
-$primary: #2c5aa0;
-$secondary: #17a2b8;
-$link-color: #2c5aa0;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap');
+
+/* Colors — Okabe-Ito derived, WCAG AA verified */
+$primary: #0072B2;
+$secondary: #007A6D;
+$link-color: #0072B2;
+$body-color: #1a1a2e;
+$body-bg: #FFFFFF;
+
+/* Typography */
+$font-family-sans-serif: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+$font-family-monospace: 'Source Code Pro', SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+$headings-font-weight: 600;
+$headings-color: #003D66;
+$code-color: #6A3D9A;
+$code-bg: #F0F7FF;
 
 /*-- scss:rules --*/
 
@@ -11,26 +24,61 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: $primary;
-  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  color: #003D66;
+}
+
+h1 {
+  font-weight: 700;
 }
 
 h2 {
-  border-bottom: 3px solid $secondary;
+  border-bottom: 3px solid #007A6D;
   padding-bottom: 0.5rem;
 }
 
+h3, h4 {
+  color: #0072B2;
+}
+
 code {
-  color: #d73a49;
+  color: #6A3D9A;
+  background-color: #F0F7FF;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-size: 0.9em;
 }
 
 blockquote {
-  border-left: 4px solid $secondary;
+  border-left: 4px solid #007A6D;
   padding-left: 1rem;
-  color: #555;
+  color: #4a4a68;
   font-style: italic;
 }
 
 .callout {
   margin: 1.5rem 0;
+}
+
+/* Image & figure styling — photo drop-in ready */
+.quarto-figure {
+  margin: 2rem 0;
+}
+
+.quarto-figure img {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+  height: auto;
+}
+
+.quarto-figure .figure-caption,
+figcaption {
+  color: #6b6b85;
+  font-size: 0.875rem;
+  font-style: italic;
+  margin-top: 0.75rem;
+  padding: 0 0.5rem;
+  text-align: center;
+  line-height: 1.5;
 }

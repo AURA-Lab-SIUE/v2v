@@ -51,6 +51,10 @@ format:
     number-sections: true
     code-fold: true
     code-tools: true
+    include-in-header:
+      text: |
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   pdf:
     documentclass: book
     papersize: letter
