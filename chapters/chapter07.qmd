@@ -60,8 +60,6 @@ Some questions use concepts that resist operationalization—translation into co
 
 ![*To answer a research question, we must translate abstract sounds and feelings into measurable data points -* Photo by [Bret Lama](https://unsplash.com/@sepiatone) on [Unsplash](https://www.google.com/search?q=https://unsplash.com/photos/a-record-player-playing-a-record-on-a-turntable-MMX9xmcGSEg).](images/ch07/record-grooves-cropped.jpg){fig-alt="A extreme close-up of a vinyl record's surface, showing the microscopic grooves that represent physical data for sound." width="100%"}
 
-> *To answer a research question, we must translate abstract sounds and feelings into measurable data points.* **Alt Text**: A extreme close-up of a vinyl record's surface, showing the microscopic grooves that represent physical data for sound. **Attribution**: Photo by [Bret Lama](https://unsplash.com/@sepiatone) on [Unsplash](https://www.google.com/search?q=https://unsplash.com/photos/a-record-player-playing-a-record-on-a-turntable-MMX9xmcGSEg)
-
 **Weak**: "Do authentic artists create better music?"
 
 What does "authentic" mean in a measurable way? What counts as "better"? Without clear operational definitions, you can't design a study.
