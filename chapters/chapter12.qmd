@@ -1,441 +1,417 @@
 ---
-title: "Chapter 12: Music Immersion"
+title: "Chapter 12: Designing Experiments"
 ---
 
 ## Learning Objectives
 
-- Develop sustained attention to qualitative patterns before imposing categories
-- Practice systematic observation and memo-writing
-- Distinguish between surface features and interpretive patterns
-- Document emergent themes without premature quantification
-- Build intuition about the dataset that will inform later coding decisions
+- Understand the three requirements for establishing causation
+- Identify the key components of experimental design: independent variable, dependent variable, random assignment, and control group
+- Distinguish between pre-experimental, true experimental, and quasi-experimental designs
+- Recognize threats to internal and external validity
+- Evaluate published experiments for the strength of their causal claims
+- Connect the ethics of experimentation to the principles established in Chapter 8
 
 ---
 
-There's a temptation, when you first encounter a research dataset, to jump immediately to coding. You have your research question. You know you need variables. You want to start counting things.
+Here is a question that seems simple: Does listening to sad music make people sadder?
 
-Resist this impulse.
+You could ask people. Survey 500 listeners: "When you listen to sad music, does it make you feel sad?" Most would probably say yes. But self-report is unreliable here. People may not accurately perceive their own emotional shifts. They may confuse the mood they brought to the music with the mood the music produced. And the question itself primes the answer: if you ask someone whether sad music makes them sad, you've essentially told them the expected response.
 
-Before you can productively code, before you can impose categories and count frequencies, you need to *know* your data. Not as aggregated statistics, but as lived experience. You need to listen to songs, read lyrics, notice patterns, question assumptions, and develop what qualitative researchers call "thick description": a rich, nuanced understanding of context that can't be reduced to numbers alone.
+You could observe behavior. Track Spotify listening patterns and correlate them with mood data from a wearable device. If people who listen to more sad music also register lower mood scores, you might have something. But you'd also have the self-selection problem: maybe people who are already sad choose sad music to match their mood. The music didn't cause the sadness; the sadness caused the music choice. Correlation, no matter how robust, cannot untangle the direction.
 
-This chapter teaches the discipline of immersion: the practice of sustained, systematic attention to data before analysis begins. It's the qualitative foundation that makes later quantitative work meaningful.
+To answer this question with confidence, you need an experiment. You need to take a group of people, randomly split them into two conditions, play sad music for one group and neutral music for the other, and measure mood afterward. If the sad-music group is measurably sadder than the neutral-music group, and the only difference between the groups was the music they heard, you have evidence that the music caused the mood change.
 
-The principle extends well beyond music. A researcher preparing to code news coverage of immigration would immerse by reading dozens of articles before developing categories, noticing how different outlets frame the issue, which sources are quoted, and what language patterns recur. A researcher studying advertising appeals would watch scores of commercials, noting how emotional vs. rational strategies manifest in different product categories. Immersion is the practice of understanding your data from the inside before analyzing it from the outside.
+This is the logic of experimental design, and it is the only method that can establish causation. Content analysis tells you what's in the message. Surveys tell you what people think. Qualitative methods tell you what things mean. Experiments tell you what causes what.
 
-## Why Immersion Matters
+## The Three Requirements for Causation
 
-Consider two approaches to studying lyric sentiment in pop music:
+Establishing that X causes Y requires meeting three conditions. All three must hold simultaneously; meeting only one or two is insufficient.
 
-**Approach A (No Immersion)**:
+### 1. Covariation
 
-You have access to a dataset of songs. You select a sample of 200 for your study. You immediately develop a coding scheme: positive, negative, neutral. You assign two undergraduate coders. They code lyrics without listening to the songs, using only the written text. You analyze the results.
+X and Y must be related. When X changes, Y changes. If you increase the dosage, the symptoms decrease. If you change the frame, the attitude shifts. Without covariation, there is no relationship to explain.
 
-**Problem**: You've measured *something*, but what? Coders might classify a lyric like "I'm so bad" as negative, missing that in the song's context ("Bad" by Michael Jackson), it means powerful and rebellious, a positive self-assertion. Without understanding genre conventions, cultural context, or the interplay between lyrics and music, your "sentiment" variable is measuring surface features, not actual emotional valence.
+But covariation alone proves nothing about causation. Ice cream sales and drowning deaths covary across months: both increase in summer. Ice cream does not cause drowning. A third variable (hot weather) causes both.
 
-**Approach B (With Immersion)**:
+### 2. Temporal Precedence
 
-You have access to the same dataset. You select the same sample of 200. But before creating any coding scheme, you listen to 30-40 songs across different genres, eras, and chart positions. You read lyrics while listening. You take notes: What patterns emerge? How do lyrics and musical elements interact? What genre conventions shape interpretation? Do certain themes cluster together?
+The cause must precede the effect. X must happen before Y. If you want to claim that sad music causes sadness, you must show that the music came first and the sadness followed. This seems obvious, but it's precisely what cross-sectional surveys cannot establish. When a survey finds that heavy news consumers hold more fearful attitudes about crime, it cannot determine whether news consumption caused the fear or whether fearful people seek out crime news. Both happened simultaneously from the survey's perspective.
 
-After this immersion, you develop a coding scheme informed by actual patterns in the data. You train coders to consider context. You pilot-test the scheme on ambiguous cases. Your final analysis is grounded in understanding, not just counting.
+Experiments solve temporal precedence by design: the researcher introduces X (the manipulation) and then measures Y (the outcome). The sequence is built into the procedure.
 
-The second approach takes longer, but it produces better research.
+### 3. Elimination of Alternative Explanations
 
-The same logic applies to any content analysis. A researcher coding news frames for a study of climate coverage would not develop categories based solely on prior literature. She would first read 30-40 articles closely, noticing which frames appear in practice, which are absent from the theoretical literature, and which edge cases challenge clean categorization. The immersion phase ensures that coding categories reflect the actual content, not just the researcher's preconceptions.
+Even if X and Y covary and X precedes Y, some third variable might be causing both. The summer-weather variable causes both ice cream sales and drowning. A personality trait (neuroticism) might cause both heavy news consumption and fearful attitudes.
 
-## The Practice of Sustained Attention
+Experiments address this through **random assignment**: participants are assigned to conditions by chance (typically a random number generator), not by choice. When assignment is truly random, the groups are statistically equivalent on all characteristics, observed and unobserved, before the manipulation. Any difference between groups after the manipulation can therefore be attributed to the manipulation itself, because the groups started out the same.
 
-Immersion is not passive consumption. It's active, systematic observation guided by research questions but open to unexpected patterns.
+This is the decisive advantage of experimentation over every other method. Random assignment eliminates alternative explanations, not by measuring and controlling for confounds one by one (which surveys attempt through statistical controls), but by distributing all possible confounds equally across conditions.
 
-### Three Modes of Listening
+## The Anatomy of an Experiment
 
-When immersing in music data, engage with songs in multiple ways:
+Every experiment shares four core components.
 
-**1. Casual Listening (Initial Exposure)**
+### The Independent Variable (IV): What You Manipulate
 
-Goal: Get a feel for the corpus.
+The IV is the factor the researcher deliberately varies across conditions. It is the hypothesized cause.
 
-Listen to 10-15 songs randomly sampled from your dataset. Don't take notes yet. Just listen. What surprises you? What sounds familiar? What genre conventions do you notice?
+**Examples**:
 
-This is the "browsing" phase, building familiarity.
+- News frame type (episodic vs. thematic)
+- Music tempo (fast vs. slow)
+- Advertising appeal (emotional vs. rational)
+- Message source (expert vs. peer)
+- Song lyric sentiment (positive vs. negative vs. neutral)
 
-**2. Focused Listening (Thematic Attention)**
+The IV must have at least two levels (conditions). Some experiments use more. A study might compare three framing conditions (episodic, thematic, and no-frame control) to assess whether any framing differs from a baseline.
 
-Goal: Track specific dimensions relevant to your research question.
+### The Dependent Variable (DV): What You Measure
 
-Choose 5-7 songs and listen multiple times, focusing on different elements:
+The DV is the outcome the researcher measures. It is the hypothesized effect.
 
-- **First listen**: Overall emotional tone. What mood does this evoke?
-- **Second listen**: Lyric content. What themes or topics appear?
-- **Third listen**: Musical elements (tempo, key, instrumentation). How do these shape meaning?
-- **Fourth listen**: Interaction effects. How do lyrics and music reinforce or contradict each other?
+**Examples**:
 
-Take brief notes after each listen. Don't code yet; just describe what you notice.
+- Self-reported mood (measured by survey items after exposure)
+- Policy support (measured by agreement with spending proposals)
+- Information recall (measured by quiz performance)
+- Behavioral intention (measured by willingness to donate, purchase, or share)
+- Physiological response (measured by heart rate, skin conductance)
 
-**3. Analytical Listening (Pattern Recognition)**
+The DV must be measured the same way across all conditions. If one group completes a paper survey and another completes an online survey, differences in responses might reflect measurement mode rather than the experimental manipulation.
 
-Goal: Identify recurring structures, exceptions, and edge cases.
+### Random Assignment: The Engine of Causation
 
-Listen to 15-20 songs while asking:
+Each participant is assigned to a condition by chance. This ensures that the groups are comparable before the manipulation. Without random assignment, the experiment is not a true experiment; it is a quasi-experiment (discussed below), and its causal claims are weaker.
 
-- Do certain lyric themes cluster with certain musical features?
-- Are there genre-specific conventions? (e.g., Do country songs use metaphor differently than rap?)
-- What edge cases challenge simple categorization?
-- What dimensions seem important that you hadn't anticipated?
+**The logic**: If you randomly assign 200 participants to two conditions, the groups will be approximately equal in age, gender, personality, prior attitudes, media habits, and every other variable, both the ones you measured and the ones you didn't. This isn't guaranteed for any individual participant (one group might have slightly more women), but across many participants, the randomization averages out differences. When the groups differ on the DV after the manipulation, the manipulation is the most parsimonious explanation.
 
-This is where you begin to see the contours of your eventual coding scheme, but you're still documenting patterns rather than forcing categories.
+### The Control Group: The Counterfactual
 
-### Immersion Beyond Music
+The **control group** receives no manipulation (or a neutral/placebo version). It represents what would have happened without the experimental treatment.
 
-If your content analysis involves non-music content, the same three-mode structure applies, just with different engagement:
+In a study testing whether sad music decreases mood:
 
-**For news articles**: (1) Skim 10-15 articles to get a sense of how the topic is covered. (2) Read 5-7 articles closely, tracking framing, source selection, and narrative structure. (3) Read 15-20 articles analytically, asking which patterns recur, which frames dominate, and which edge cases challenge your emerging categories.
+- **Experimental group**: Listens to a sad song
+- **Control group**: Listens to a neutral song (or sits in silence)
 
-**For social media posts**: (1) Browse a feed of 50-100 posts to get a feel for tone, format, and topics. (2) Read 20-30 posts closely, tracking rhetorical strategies and visual elements. (3) Analyze 50+ posts for patterns in language, argumentation, and audience engagement.
+Comparing the experimental group's mood to the control group's mood tells you whether the sad music produced a change *relative to baseline*. Without a control group, you'd know only that the experimental group felt sad after listening, but you wouldn't know whether they felt sad before listening too.
 
-The principle is constant: familiarize, focus, then analyze. The medium changes; the discipline does not.
+## Types of Experimental Designs
 
-## Memo Writing: Documenting Emergent Understanding
+Experiments vary in rigor. Campbell and Stanley (1963) provided the foundational classification, which remains standard in social science methods training.
 
-Immersion without documentation is just listening to music (or reading articles, or scrolling a feed). Research immersion requires *memos*, brief, informal notes that capture your thinking as it evolves.
+### Pre-Experimental Designs (Weak)
 
-### Types of Memos
+These designs lack random assignment, a control group, or both. They are common in informal research but cannot support strong causal claims.
 
-**Observational Memos**: What did you notice?
+**One-shot case study**: Expose a group to the treatment, then measure the outcome. No comparison group. No pretest.
 
-> "Song: 'Blinding Lights' by The Weeknd. Fast tempo (171 BPM). Major key, but lyrics are about desperation and addiction. Interesting contrast: musically upbeat, lyrically dark. This might complicate simple 'positive vs. negative' sentiment coding. Need to decide: code based on lyrics alone, or on overall emotional impact?"
+*Example*: Show participants a public service announcement about mental health and then measure their attitudes. Did the PSA change attitudes? You can't know, because you don't know what attitudes were before exposure and you have no comparison group.
 
-**Methodological Memos**: How should this be measured?
+**One-group pretest-posttest**: Measure the outcome before and after the treatment for the same group. No comparison group.
 
-> "Problem: Some songs use irony. 'Pumped Up Kicks' has cheerful music but lyrics about a school shooting. Automated sentiment analysis would likely code the music as positive. Human coders need clear instructions: Lyrics only? Overall tone? This needs to be specified before coding begins."
+*Example*: Measure students' attitudes toward mental health, show them a documentary about depression, then measure attitudes again. If attitudes improved, was it the documentary? Or did something else happen between pretest and posttest (a news event, a class discussion, simply becoming more comfortable with the researcher)?
 
-**Theoretical Memos**: How does this connect to theory?
+### True Experimental Designs (Strong)
 
-> "Uses & Gratifications (Katz et al., 1973) predicts people seek music to fulfill emotional needs. If true, maybe 'negative' songs aren't actually experienced as negative by listeners; they might provide catharsis or validation. The theory suggests we shouldn't assume negative lyrics = negative experience. This has implications for how we operationalize 'sentiment.'"
+These designs include random assignment and at least one control group.
 
-**Comparative Memos**: How do cases differ?
+**Posttest-only control group design**: Randomly assign participants to conditions. Administer the treatment to the experimental group and nothing (or a placebo) to the control group. Measure the DV after treatment only.
 
-> "Comparing two songs with negative lyrics: 'Someone Like You' (Adele) vs. 'Lose Yourself' (Eminem). Both describe struggle, but Adele's is passive/melancholic while Eminem's is active/aggressive. Do we need subcategories within 'negative'? Sadness vs. anger vs. anxiety?"
+*Example*: Randomly assign 200 people to read either an episodically framed or a thematically framed news article about homelessness. Measure policy support afterward. Compare the two groups.
 
-### Memo Discipline
+*Strength*: Random assignment makes groups comparable. No pretest means no testing effects (see threats below).
+*Limitation*: Without a pretest, you can't verify that the groups were equivalent before manipulation (though random assignment makes this highly likely with adequate sample sizes).
 
-Set a goal: Write at least **one memo per 5 songs** (or per 5 articles, or per 20 social media posts) during immersion.
+**Pretest-posttest control group design**: Same as above, but measure the DV both before and after treatment.
 
-Memos don't need to be polished. They're thinking-on-paper, documenting observations and questions that will later inform your codebook.
+*Example*: Measure attitudes toward homelessness. Randomly assign participants to read episodic or thematic framing. Measure attitudes again. Compare change scores across groups.
 
-Create a note in Obsidian: `Immersion Memos - [Your Dataset]`
+*Strength*: You can verify group equivalence at pretest and measure individual-level change.
+*Limitation*: The pretest itself may sensitize participants to the topic, making them respond differently to the manipulation than they would have without the pretest (a "testing effect").
 
-```markdown
-# Immersion Memos: Music Dataset
+**Solomon four-group design**: Combines the two designs above. Four groups: (1) pretest + treatment + posttest, (2) pretest + no treatment + posttest, (3) no pretest + treatment + posttest, (4) no pretest + no treatment + posttest. This allows you to detect whether the pretest itself affected results.
 
-## Memo 1 - Feb 15, 2026
-**Songs listened to**: Random sample (n=10) from 2015-2017
+*Strength*: The most rigorous design, controlling for testing effects.
+*Limitation*: Requires four groups, meaning you need four times the participants. Rarely practical outside well-funded research programs.
 
-**Observation**: Noticed many songs mix positive/negative within 
-the same song. Example: "Closer" (Chainsmokers) - nostalgia 
-(bittersweet), not purely positive or negative. May need "mixed" 
-or "ambiguous" category.
+### Quasi-Experimental Designs (Moderate)
 
-**Question**: Should I code overall dominant sentiment, or code 
-verse-by-verse? If latter, how handle choruses that repeat?
+These designs approximate true experiments but lack random assignment. They are common when random assignment is impractical or unethical.
+
+**Non-equivalent control group design**: Two pre-existing groups receive different treatments. Because participants were not randomly assigned, the groups may differ in ways that confound the results.
+
+*Example*: Two sections of a communication course. One section watches a documentary about media literacy; the other does not. You compare media literacy scores afterward. But students self-selected into sections (perhaps based on schedule, instructor reputation, or interest level), so any differences might reflect pre-existing group differences rather than the documentary's effect.
+
+**Interrupted time series**: Measure an outcome repeatedly over time, introduce a treatment at a specific point, and observe whether the trend changes.
+
+*Example*: Track weekly streaming numbers for songs by an artist, then observe whether a viral TikTok moment produces a visible spike. The time series establishes a baseline trend, and the interruption tests whether the event shifted that trend.
+
+*Strength*: Works with naturally occurring events that can't be randomly assigned (policy changes, crises, media events).
+*Limitation*: Other events occurring at the same time as the treatment (history threats) could explain the change.
+
+## Threats to Internal Validity
+
+**Internal validity** is the confidence that the independent variable, and not some confound, caused the observed effect. Campbell and Stanley (1963) identified seven classic threats. Understanding them helps you design better studies and evaluate published research critically.
+
+### History
+
+Events outside the experiment affect the outcome. If you're testing whether a media literacy intervention improves critical thinking, but a major misinformation scandal dominates the news during your study period, your participants' attitudes may change because of the scandal, not your intervention.
+
+**Defense**: Use a control group measured during the same time period. Both groups experience the same history, so historical events can't explain group differences.
+
+### Maturation
+
+Participants naturally change over time through growth, fatigue, or boredom. In a longitudinal study of children's media habits, improvements in critical viewing might reflect cognitive development rather than any intervention.
+
+**Defense**: Control group, measured over the same time period.
+
+### Testing
+
+Taking a pretest can sensitize participants to the topic, changing how they respond to the posttest regardless of the manipulation. If you ask people about racial attitudes, expose them to diverse media content, and then ask about racial attitudes again, improved scores might reflect demand characteristics (knowing what the "right" answer is) rather than genuine attitude change.
+
+**Defense**: Posttest-only designs eliminate this threat. The Solomon four-group design detects it.
+
+### Instrumentation
+
+Changes in the measurement instrument between pretest and posttest. If survey items are reworded, if a different observer codes behavior, or if equipment is recalibrated, apparent changes may reflect measurement shifts rather than real effects.
+
+**Defense**: Standardize instruments across all conditions and time points.
+
+### Statistical Regression
+
+Extreme scores tend to move toward the mean on subsequent measurements. If you select participants because they scored very high on anxiety, their scores will likely decrease on a second measurement even without any intervention, simply because extreme scores are partly due to random fluctuation.
+
+**Defense**: Random assignment distributes extreme scorers equally across conditions. Avoid selecting participants based on extreme scores.
+
+### Selection
+
+Pre-existing differences between groups that are not due to random assignment. This is the fundamental problem with quasi-experiments. If your "treatment" group is a morning class and your "control" group is an evening class, differences might reflect the kinds of students who choose morning versus evening schedules.
+
+**Defense**: Random assignment. When not possible, measure and statistically control for known differences.
+
+### Mortality (Attrition)
+
+Participants drop out of the study, and dropout is not random. If the most bored or frustrated participants leave the experimental condition but stay in the control condition, the remaining experimental group is not comparable to the control group.
+
+**Defense**: Track and report attrition rates. Analyze whether dropouts differ from completers on key characteristics.
+
+## Threats to External Validity
+
+**External validity** is the extent to which findings generalize beyond the specific conditions of the study. A study can have strong internal validity (the manipulation definitely caused the effect) but weak external validity (the effect might not occur outside the laboratory).
+
+### The Lab-to-Life Problem
+
+Most experiments occur in controlled environments (computer labs, classrooms, online survey platforms) where participants focus on a single stimulus in isolation. Real media consumption is messier: people scroll while watching television, listen to music while exercising, and read news while commuting. Effects observed in a quiet lab may disappear in the noise of everyday life.
+
+### The College Sophomore Problem
+
+Most communication and psychology experiments use undergraduate students as participants because they're accessible (enrolled in research participation pools). But undergraduates are not representative of the general population. They are younger, more educated, more likely to be WEIRD (Western, Educated, Industrialized, Rich, Democratic) than the global population. Effects that hold among 19-year-old communication majors may not hold among 45-year-old factory workers or 70-year-old retirees.
+
+### Stimulus Representativeness
+
+If you test the effect of "sad music" by using one specific song, your finding is technically about the effect of *that song*, not about sad music in general. Different sad songs vary in tempo, lyrics, instrumentation, and cultural associations. Using multiple stimuli and showing that the effect holds across them strengthens external validity.
+
+### Demand Characteristics
+
+Participants who know they're in a study may try to figure out the hypothesis and behave accordingly ("cooperative subjects") or deliberately contradict it ("oppositional subjects"). Either response distorts findings. Cover stories, between-subjects designs (each participant sees only one condition), and behavioral rather than self-report DVs can reduce demand characteristics.
+
+## Experiments in Communication Research
+
+Experimental design has produced some of the most influential findings in communication research. Here are several domains where experiments are the standard method:
+
+**Framing experiments**: Does the way information is presented affect how audiences interpret it? Researchers randomly assign participants to read news stories with different frames (episodic vs. thematic, gain vs. loss, human-interest vs. statistical) and measure attitudes, attributions, or behavioral intentions. Entman's (1993) framing framework generates testable predictions that experiments are ideally suited to evaluate.
+
+**Priming experiments**: Does media exposure activate particular concepts in memory, making them more accessible for subsequent judgments? Political communication researchers test whether exposure to crime news makes viewers more likely to evaluate political candidates based on their crime policies.
+
+**Persuasion experiments**: Does message design affect attitude change? Advertising researchers manipulate message appeals (fear vs. humor, emotional vs. rational, celebrity vs. expert endorsement) and measure consumer attitudes and purchase intentions.
+
+**Media effects experiments**: Does exposure to specific media content cause changes in attitudes, beliefs, or behaviors? Researchers test whether violent video games increase aggression, whether sexualized media imagery affects body satisfaction, or whether exposure to diverse characters reduces prejudice.
+
+**Music and emotion experiments**: Does manipulating musical features (tempo, key, lyric sentiment) cause measurable changes in listener mood, behavior, or cognition? This domain is directly relevant to this course's content analysis work: if your content analysis finds that negative lyrics are more prevalent in popular songs, an experiment could test *why* audiences prefer them, whether negative lyrics increase emotional arousal, trigger nostalgic memories, or provide cathartic release.
+
+## Ethics of Experimentation
+
+Chapter 8 established the ethical principles governing all research. Experiments carry particular ethical weight because they involve deliberately manipulating participants' experiences. Several considerations deserve emphasis:
+
+**Informed consent**: Participants must know they're in a study, understand the general procedures, and be free to withdraw. In some experiments, full disclosure of the hypothesis would undermine the design (knowing you're in the "sad music condition" changes your response). In these cases, partial disclosure is acceptable: participants know they'll listen to music and complete a survey, but not which condition they're in or what the study is testing.
+
+**Deception**: When the experimental design requires deception (participants believe they're doing one thing when they're actually doing another), the Belmont Report's principle of respect for persons demands that researchers provide a thorough **debriefing** after participation. Debriefing must explain the true purpose of the study, why deception was necessary, and offer participants the option to withdraw their data.
+
+**Manipulation risk**: If your manipulation involves exposing participants to distressing content (violent media, fear-based health messages, graphic imagery), you must evaluate whether the distress is justified by the knowledge gained. Most IRBs require that the risk be "minimal," meaning no greater than what participants might encounter in everyday life. A study that exposes participants to a sad song likely qualifies. A study that exposes participants to graphic violence requires more careful justification.
+
+**Debriefing as obligation**: Debriefing is not optional. It is an ethical requirement whenever deception or potentially distressing manipulations are used. A good debriefing explains the study's purpose, addresses any misconceptions the participant may have formed, and provides resources if the manipulation involved sensitive topics.
+
+## Reading Experiments Critically
+
+When you encounter an experiment in the literature, apply this checklist:
+
+**Was there random assignment?** If not, it's a quasi-experiment, and the causal claim is weaker. Look for whether the authors acknowledge this limitation.
+
+**What was the control condition?** A "no treatment" control is different from a "placebo" control. If the experimental group listens to sad music and the control group sits in silence, any differences might reflect the effect of music in general (vs. silence) rather than the effect of sadness specifically. A better design uses a neutral-music control.
+
+**How large was the sample?** Small samples (n < 30 per condition) have low statistical power, meaning they may miss real effects or produce spurious significant findings that fail to replicate. Look for power analyses or justifications of sample size.
+
+**Was the manipulation check successful?** Did the researchers verify that their manipulation worked as intended? In a framing study, did participants actually perceive the episodic frame as episodic and the thematic frame as thematic? Without a manipulation check, you can't be sure the IV was operationalized as intended.
+
+**How was the DV measured?** Self-report, behavioral observation, or physiological measurement each have strengths and limitations. Studies relying solely on self-report are more vulnerable to demand characteristics and social desirability bias.
+
+**Are the stimuli representative?** If the study used one news article, one song, or one advertisement, the findings may be stimulus-specific rather than generalizable to the category.
+
+**Do the causal claims match the design?** A well-designed true experiment with random assignment supports causal language ("X caused Y"). A quasi-experiment supports only suggestive language ("X was associated with Y in a way consistent with a causal relationship"). Watch for quasi-experiments that use causal language without acknowledgment.
 
 ---
 
-## Memo 2 - Feb 16, 2026
-**Songs**: Focus on tempo and sentiment
+## Practice: Experimental Design Skills
 
-**Pattern**: Fast tempo songs (>140 BPM) with negative lyrics 
-feel different than slow tempo songs with same lyrics. "Shake It 
-Off" (Taylor Swift) addresses criticism/negativity but feels 
-empowering due to tempo and key. Context matters.
+### Exercise 12.1: Identifying Experimental Components
 
-**Implication**: Sentiment coding should maybe account for musical 
-features, not just lyrics in isolation.
-```
+For each study description, identify the IV, DV, and type of design (pre-experimental, true experimental, or quasi-experimental):
 
-## Surface vs. Depth: Manifest and Latent Content
+**Study A**: Researchers randomly assigned 200 participants to listen to either a major-key or minor-key version of the same melody. Afterward, participants rated their mood on a 7-point scale.
 
-A critical distinction in content analysis is between what's directly observable and what requires interpretation. Krippendorff (2018) emphasizes this distinction as central to codebook design.
+- IV: _______________
+- DV: _______________
+- Design type: _______________
 
-**Manifest content**: Surface-level, explicit features that coders can identify with high reliability.
+**Study B**: A professor showed a media literacy video to her morning class and gave a standard lecture to her afternoon class. Both classes completed a quiz on critical media evaluation.
 
-Examples:
+- IV: _______________
+- DV: _______________
+- Design type: _______________
 
-- Does the lyric contain the word "love"? (Yes/No)
-- Is the tempo faster than 120 BPM? (Measurable)
-- Is the song in a major or minor key? (Identifiable by trained listeners)
-- Does the news article mention a specific politician by name? (Yes/No)
+**Study C**: A health department launched an anti-vaping campaign and measured vaping rates among high school students before and after the campaign. There was no comparison group.
 
-**Latent content**: Underlying meanings that require interpretation.
-
-Examples:
-
-- Is the overall sentiment positive or negative? (Interpretive: what about irony?)
-- Does the song convey hope or despair? (Subjective judgment)
-- Is the tone sincere or sarcastic? (Context-dependent)
-- Does the article frame the issue as a personal problem or a systemic one? (Requires judgment about emphasis and omission)
-
-During immersion, you're building the interpretive framework that will allow you to code latent content reliably. You're learning the conventions, patterns, and contextual cues that transform subjective judgment into systematic analysis.
-
-## Building the Conceptual Framework
-
-Immersion reveals what dimensions matter for your research question. As you listen and take notes, you'll begin to see the **conceptual structure** of your eventual coding scheme.
-
-### Example: From Immersion to Framework
-
-**Research Question**: Is there a relationship between lyric sentiment and chart success?
-
-**After immersing in 40 songs, you notice**:
-
-1. **Valence isn't binary**: Songs aren't just positive or negative. Many are ambiguous, nostalgic, or mixed.
-2. **Intensity varies**: Some negative songs are mildly sad ("Someone Like You"). Others are intensely angry ("Break Stuff" by Limp Bizkit).
-3. **First-person vs. narrative**: Songs written in first person feel more intimate than third-person narratives, even with similar content.
-4. **Temporal framing**: Songs about past pain ("I survived") feel different than songs about current suffering ("I'm broken").
-
-**Emerging framework**:
-
-You might develop a **two-dimensional coding scheme**:
-
-**Dimension 1: Valence** (Positive, Negative, Neutral, Mixed)  
-**Dimension 2: Intensity** (Low, Medium, High)
-
-This is more nuanced than a simple positive/negative binary, and it emerged from actually engaging with the data rather than imposing preconceived categories.
-
-## Sampling for Immersion
-
-You don't need to listen to all 200 songs before beginning to code. But you need a systematic immersion sample that represents the diversity of your dataset.
-
-### Stratified Immersion Sampling
-
-If your dataset spans multiple genres, eras, or chart positions, ensure your immersion sample includes variety. This applies the **stratified sampling** logic from Chapter 10: just as survey researchers divide a population into meaningful subgroups before sampling, you divide your content corpus into meaningful strata before immersing.
-
-**Example strategy for 200-song dataset**:
-
-- **By time period**: 5 songs from each two-year period (2015-2016, 2017-2018, etc.)
-- **By chart position**: 5 songs that peaked #1-10, 5 from #11-20, 5 from #21-50
-- **By genre** (if coding genre): 3-5 songs per major genre
-
-**Total immersion sample**: 30-50 songs before formal coding begins
-
-This gives you broad exposure without requiring you to analyze the entire corpus before starting. The principle is the same one that governs all sampling decisions (Chapter 10): representativeness matters more than volume. Thirty songs drawn from across the full range of your dataset will reveal more than fifty songs drawn from a single genre or era.
-
-## Documenting Edge Cases
-
-During immersion, you'll encounter songs that challenge simple categorization. Document these carefully; they'll become test cases for your codebook.
-
-**Create an Edge Case Log in Obsidian**:
-
-```markdown
-# Edge Cases - Music Dataset
-
-## Case 1: "Pumped Up Kicks" (Foster the People)
-**Issue**: Cheerful melody, dark lyrics (school shooting)  
-**Question**: Code based on music or lyrics?  
-**Decision needed**: Establish priority (lyrics > music? or 
-  overall impression?)
+- IV: _______________
+- DV: _______________
+- Design type: _______________
 
 ---
 
-## Case 2: "We Are Never Getting Back Together" (Taylor Swift)
-**Issue**: Breakup song (negative content) but delivered with 
-  sass/empowerment  
-**Question**: Is this negative (breakup) or positive 
-  (empowerment)?  
-**Decision needed**: Define whether sentiment = topic or 
-  emotional tone
+### Exercise 12.2: Threat Identification
+
+For each scenario, identify which threat(s) to internal validity are present:
+
+1. A study measures media literacy before and after a semester-long course. Students improve. But students also matured intellectually over the semester. **Threat**: _______________
+
+2. Participants in the experimental condition find the task boring and drop out at higher rates than control participants. **Threat**: _______________
+
+3. A study of news framing effects is conducted during the week a major political scandal breaks. **Threat**: _______________
+
+4. Researchers select participants who scored extremely high on a fear-of-crime scale, then expose them to reassuring news coverage. Fear scores drop. **Threat**: _______________
 
 ---
 
-## Case 3: Songs with explicit profanity
-**Issue**: Some songs use profanity as intensifier ("I don't 
-  give a fuck" = defiance), others as aggression ("Fuck you" 
-  = hostility)  
-**Question**: Does profanity automatically = negative?  
-**Decision needed**: Context-sensitive coding rules for vulgarity
-```
+### Exercise 12.3: Designing an Experiment
 
-These cases become the foundation of your **decision rules** in the codebook (Chapter 14).
+Choose one of the following research questions and design a true experiment to test it:
 
-## The Transition to Operationalization
+- Does sad music decrease self-reported mood compared to neutral music?
+- Does episodic framing of poverty increase personal-responsibility attributions compared to thematic framing?
+- Does hearing a song described as "#1 on Billboard" increase listeners' ratings of the song compared to the same song with no chart information?
 
-Immersion doesn't last forever. At some point, you transition from open-ended observation to structured coding. How do you know when?
+For your chosen question, specify:
 
-**Signs you're ready to operationalize**:
-
-- You've listened to 30-50 songs and patterns are stabilizing (new songs rarely surprise you)
-- You can articulate 3-5 key dimensions that matter for your research question
-- You've documented enough edge cases to write decision rules
-- Your memos are starting to repeat themes rather than discovering new ones
-
-This is a form of the **saturation** concept from Chapter 4. In the literature review, saturation meant new searches yielded no new themes. In immersion, saturation means new data points confirm existing patterns rather than revealing new ones.
-
-**What immersion provides**:
-
-- **Conceptual clarity**: You understand what the variables actually mean in this dataset
-- **Category development**: You know what values each variable should take
-- **Decision rules**: You've encountered ambiguous cases and developed principles for handling them
-- **Contextual understanding**: You can recognize when surface features might mislead
-
-These skills are foundational not just for content analysis but for qualitative research generally. Chapter 16 (Qualitative Methods) will show how immersion serves as the basis for interviews, focus groups, and thematic analysis. The habit of sustained attention before categorization is the defining discipline of qualitative inquiry.
+1. **Independent variable** (with at least two levels): _______________
+2. **Dependent variable** (with measurement approach): _______________
+3. **Control condition**: _______________
+4. **Random assignment procedure**: _______________
+5. **Sample size and population**: _______________
+6. **One potential threat to internal validity and how you'd address it**: _______________
+7. **One potential threat to external validity and how you'd address it**: _______________
 
 ---
 
-## Practice: Systematic Immersion
+### Exercise 12.4: Evaluating a Published Experiment
 
-### Exercise 12.1: First Listening Session
+Find a published experiment in a communication or psychology journal. Apply the critical reading checklist from this chapter:
 
-**Goal**: Develop observational habits
+1. Was there random assignment?
+2. What was the control condition?
+3. How large was the sample per condition?
+4. Was there a manipulation check?
+5. How was the DV measured?
+6. Were the stimuli representative?
+7. Do the causal claims match the design?
 
-1. Randomly select 5 songs from the dataset
-2. Listen to each song fully while reading the lyrics
-3. For each song, write a brief observational memo (100-150 words) noting:
-   - Overall emotional tone
-   - Key themes or topics
-   - Any surprises or complications
-   - Questions this raises about coding
-
-**Don't code or categorize yet**; just observe and document.
-
----
-
-### Exercise 12.2: Focused Listening Protocol
-
-**Goal**: Track specific dimensions
-
-Choose one song and listen to it 4 times, focusing on different elements each time:
-
-**Listen 1**: Lyrics only (read while listening). What story is being told?  
-**Listen 2**: Musical elements (tempo, key, instrumentation). What mood do they create?  
-**Listen 3**: Interaction (how do lyrics and music work together?)  
-**Listen 4**: Synthesis (what's the overall emotional impact?)
-
-Write a comparative memo: How did your interpretation change across listens?
-
----
-
-### Exercise 12.3: Pattern Recognition
-
-**Goal**: Identify recurring structures
-
-Listen to 10 songs sampled across your dataset.
-
-After each song, answer:
-
-- What emotional category would you assign this to? Why?
-- What features led you to that judgment?
-- Would another listener agree? What might they see differently?
-
-After all 10, write a synthesis memo:
-
-- What patterns emerged?
-- What complications or exceptions did you notice?
-- What dimensions seem most important for your research question?
-
----
-
-### Exercise 12.4: Edge Case Documentation
-
-**Goal**: Identify coding challenges
-
-As you listen, maintain an **Edge Case Log**. When you encounter a song that's hard to categorize, document:
-
-- Song title and artist
-- What makes it ambiguous
-- Possible interpretations
-- How this might affect your coding scheme
-
-Aim for 5-7 documented edge cases during immersion.
-
----
-
-### Exercise 12.5: Immersion Synthesis
-
-**Goal**: Transition from observation to operationalization
-
-After listening to 30-40 songs:
-
-1. Review all your memos
-2. Identify the 3-5 most important dimensions for your research question
-3. For each dimension, list possible categories (don't finalize yet; just brainstorm)
-4. Note what questions remain unresolved
-
-Write a **synthesis memo** (500 words) summarizing:
-
-- What you learned about the dataset
-- What surprised you
-- What will be easiest vs. hardest to code
-- What decisions you need to make before creating a formal codebook
+Write a 200-word evaluation of the study's internal and external validity.
 
 ---
 
 ## Reflection Questions
 
-1. **The Value of Slowness**: Immersion requires spending time with data before analyzing it. This feels inefficient in a culture that values productivity and speed. Why might slowness be valuable here? What gets lost when you skip immersion?
+1. **The External Validity Tradeoff**: Tightly controlled experiments have high internal validity (you can be confident about causation) but often low external validity (the findings may not generalize to real life). Is it better to know with certainty that X causes Y in a lab, or to know with less certainty that X is associated with Y in the real world? How do you navigate this tradeoff?
 
-2. **Subjectivity and Patterns**: During immersion, you're using your subjective impressions to identify patterns. Later, you'll create "objective" coding rules. How do you reconcile these? Is truly objective coding possible, or does all measurement carry traces of the researcher's interpretive lens?
+2. **The Ethics of Manipulation**: Experiments require manipulating people's experiences. Is it ethical to deliberately make someone sad (even temporarily) to study the effects of sad music? Where is the line between acceptable and unacceptable manipulation? Who should draw that line?
 
-3. **Theoretical Preconceptions**: You arrived at this dataset with a research question and probably some expectations about what you'd find. How do you balance being guided by theory (deductive) while remaining open to unexpected patterns (inductive)? Did immersion change how you think about your research question?
+3. **Experiments and Content Analysis**: This course primarily uses content analysis, which describes patterns in media content. How could experimental findings complement content analysis findings? If your content analysis shows that negative lyrics are more prevalent in popular music, what experimental study would you design to explain *why*?
 
-4. **Immersion Across Domains**: If you were immersing in news coverage, corporate press releases, or Instagram posts instead of songs, what would the three modes (casual, focused, analytical) look like? What would change about the process, and what would remain the same?
+4. **The Replication Question**: Chapter 2 described the replication crisis in psychology, where many experimental findings failed to replicate (Open Science Collaboration, 2015). What features of experimental design make studies more or less likely to replicate? How does sample size relate to replicability?
 
 ---
 
 ## Chapter Summary
 
-This chapter introduced immersion as the qualitative foundation for later quantitative analysis:
+This chapter introduced experimental design as the method for establishing causation:
 
-- **Immersion** is sustained, systematic attention to data before coding begins.
-- **Three modes of engagement**: Casual (familiarity), Focused (thematic attention), Analytical (pattern recognition).
-- **Memo writing** documents emergent understanding through observational, methodological, theoretical, and comparative notes.
-- **Manifest content** is directly observable (word counts, tempo); **latent content** requires interpretation (sentiment, tone) (Krippendorff, 2018).
-- **Conceptual frameworks** emerge from immersion: discovering what dimensions matter rather than imposing them prematurely.
-- **Stratified immersion sampling** ensures exposure to dataset diversity (time periods, chart positions, genres), applying the sampling logic from Chapter 10.
-- **Edge case documentation** identifies instances that challenge simple categorization, informing later decision rules in the codebook (Chapter 14).
-- **Transition markers**: You're ready to operationalize when patterns stabilize, dimensions clarify, and memos start repeating rather than discovering.
-- Immersion is foundational not just for content analysis but for all qualitative inquiry (Chapter 16).
+- **Three requirements for causation**: covariation (X and Y are related), temporal precedence (X comes before Y), elimination of alternative explanations (nothing else explains the relationship).
+- **Random assignment** is the key to causal inference. It distributes all possible confounds equally across conditions, ensuring that post-manipulation differences reflect the manipulation itself.
+- **Four core components**: independent variable (manipulated), dependent variable (measured), random assignment, and control group.
+- **Three design categories**: Pre-experimental (weak, lacking random assignment or control), true experimental (strong, with random assignment and control), quasi-experimental (moderate, approximating true experiments when random assignment is impractical).
+- **Seven threats to internal validity** (Campbell & Stanley, 1963): history, maturation, testing, instrumentation, statistical regression, selection, and mortality.
+- **Threats to external validity**: the lab-to-life problem, the college sophomore problem, stimulus representativeness, and demand characteristics.
+- **Experiments in communication** test framing effects, priming effects, persuasion mechanisms, media effects, and music-emotion relationships.
+- **Ethical considerations** include informed consent with partial disclosure, debriefing after deception, and risk assessment for distressing manipulations.
+- **Critical reading** of experiments requires evaluating random assignment, control conditions, sample size, manipulation checks, measurement quality, stimulus representativeness, and the match between design and causal claims.
 
 ---
 
 ## Key Terms
 
-- **Edge case**: An ambiguous instance that challenges simple categorization
-- **Immersion**: Sustained engagement with data before formal analysis
-- **Latent content**: Underlying meanings requiring interpretation (Krippendorff, 2018)
-- **Manifest content**: Surface-level, directly observable features
-- **Memo**: Informal note documenting observations, questions, or theoretical connections during analysis
-- **Observational memo**: Note recording what was noticed during data engagement
-- **Saturation** (in immersion): Point where new cases confirm existing patterns rather than revealing new ones
-- **Stratified immersion sampling**: Selecting immersion cases across key dimensions to ensure diversity
-- **Thick description**: Rich, contextually grounded understanding of data
+- **Between-subjects design**: Each participant experiences only one condition
+- **Control group**: Condition receiving no treatment or a neutral/placebo treatment
+- **Demand characteristics**: Cues that lead participants to guess the hypothesis and adjust their behavior
+- **External validity**: Generalizability of findings beyond the specific study conditions
+- **Internal validity**: Confidence that the IV, not a confound, caused the observed effect (Campbell & Stanley, 1963)
+- **Manipulation check**: Verification that the experimental manipulation was perceived as intended
+- **Quasi-experiment**: Design approximating a true experiment but lacking random assignment
+- **Random assignment**: Allocating participants to conditions by chance to ensure group equivalence
+- **Solomon four-group design**: Design using four groups to detect testing effects
+- **True experiment**: Design with random assignment and at least one control group
+- **Within-subjects design**: Each participant experiences all conditions (also called repeated measures)
 
 ---
 
 ## References
 
-Katz, E., Blumler, J. G., & Gurevitch, M. (1973). Uses and gratifications research. *Public Opinion Quarterly*, *37*(4), 509-523. https://doi.org/10.1086/268109
+Babbie, E. R. (2021). *The practice of social research* (15th ed.). Cengage Learning.
 
-Krippendorff, K. (2018). *Content analysis: An introduction to its methodology* (4th ed.). Sage. https://doi.org/10.4135/9781071878781
+Campbell, D. T., & Stanley, J. C. (1963). *Experimental and quasi-experimental designs for research*. Rand McNally.
+
+Entman, R. M. (1993). Framing: Toward clarification of a fractured paradigm. *Journal of Communication*, *43*(4), 51-58. https://doi.org/10.1111/j.1460-2466.1993.tb01304.x
+
+Open Science Collaboration. (2015). Estimating the reproducibility of psychological science. *Science*, *349*(6251), aac4716. https://doi.org/10.1126/science.aac4716
+
+Wimmer, R. D., & Dominick, J. R. (2014). *Mass media research: An introduction* (10th ed.). Cengage Learning.
 
 ---
 
 ::: {.callout-note title="Graduate Extension" collapse="true"}
 
-**Required Task**: Write a 500-word reflexivity memo examining your own positionality as a researcher engaging with the dataset.
+**Required Reading**: Campbell, D. T., & Stanley, J. C. (1963). *Experimental and quasi-experimental designs for research*. Rand McNally. **Read Chapters 1-3** (approximately 40 pages).
 
-**Background**: Qualitative researchers distinguish between **emic** (insider) and **etic** (outsider) perspectives. An emic perspective comes from within the culture being studied; an etic perspective comes from outside it. Neither is inherently superior, but each produces different kinds of understanding and different blind spots.
+**Prompt**: Campbell and Stanley's 1963 monograph remains the foundational text on experimental design in the social sciences. Their contribution was not to invent experimentation but to systematize the logic of validity threats and to show that design choices are not arbitrary: each design controls for specific threats while remaining vulnerable to others.
 
-During immersion, your interpretations are shaped by who you are: your genre preferences, your cultural background, your musical training (or lack thereof), your generational position, your racial and gender identity, and your personal relationship with music. A researcher who grew up listening to hip-hop will notice different things about hip-hop lyrics than a researcher encountering the genre for the first time. A researcher who plays an instrument may attend more closely to musical features than one who doesn't.
+1. Campbell and Stanley use a notation system where **X** represents a treatment, **O** represents an observation (measurement), and **R** represents random assignment. Diagram the following designs using their notation:
+   - One-group pretest-posttest
+   - Pretest-posttest control group design
+   - Solomon four-group design
 
-**Prompt**:
+2. For each design, list which of the seven internal validity threats are controlled and which remain uncontrolled. (Campbell and Stanley provide this analysis; your task is to explain *why* each threat is or isn't controlled, not just to list them.)
 
-1. **Position yourself**: Were you an insider or outsider to the music you studied during immersion? Did this vary by genre, era, or artist? Be specific.
+3. Campbell and Stanley distinguish between "true experiments" and "quasi-experiments," arguing that quasi-experiments are not second-class methods but rather designs appropriate when random assignment is impossible. In communication research, when is random assignment genuinely impossible (not just inconvenient)? Provide two examples and explain what quasi-experimental design you would use instead.
 
-2. **Identify your interpretive biases**: What assumptions did you bring to the data? Did you expect certain genres to be more "negative" or "positive" than others? Did your expectations align with what you found, or were you surprised? When you were surprised, what does that tell you about your preconceptions?
-
-3. **Consider alternative readings**: Choose one song from your immersion sample that you found particularly easy to categorize. Now imagine a listener from a different cultural background, generation, or musical tradition encountering the same song. Might they interpret it differently? What does this suggest about the "objectivity" of your coding decisions?
-
-4. **Connect to methodology**: How will you address the positionality issues you've identified in your codebook design? Will you include explicit decision rules that account for the interpretive challenges your positionality creates? Will you seek a second coder whose positionality differs from yours?
-
-This reflexivity exercise connects to Chapter 16's treatment of qualitative research quality criteria, particularly the concept of **confirmability**: demonstrating that findings are shaped by the data rather than by researcher bias. The goal is not to eliminate subjectivity (impossible) but to make it transparent (essential).
+4. Design a hypothetical experiment testing whether the framing of song lyrics as "protest music" (vs. no label) changes listener evaluations of the same song. Diagram your design using Campbell and Stanley's notation. Identify the strongest threat to internal validity in your design and the strongest threat to external validity. How would you address each?
 
 :::
 
@@ -443,4 +419,4 @@ This reflexivity exercise connects to Chapter 16's treatment of qualitative rese
 
 ## Looking Ahead
 
-Chapter 13 (Vibes to Variables) builds directly on this immersion work. Having developed intuitions about the dataset, you'll now formalize those intuitions into operational definitions, translating the "vibes" you observed during immersion into measurable "variables." You'll learn to write conceptual and operational definitions, understand levels of measurement (NOIR), and evaluate measurement quality through reliability and validity. The immersion you've done in this chapter becomes the foundation for all coding decisions in Chapter 13.
+With Chapters 9 through 12 complete, you now have a conceptual map of the four major research methods in social science. [Chapter 13: Music Immersion](chapter13.qmd) marks the shift from conceptual understanding to hands-on execution. You'll begin the content analysis sequence that carries through Chapter 16: immersing in your dataset, translating observations into variables, building a codebook, and testing its reliability. Everything you've learned about theory (Chapter 5), research questions (Chapter 7), ethics (Chapter 8), and methods (Chapters 9-12) converges as you start doing research rather than reading about it.

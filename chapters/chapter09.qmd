@@ -59,7 +59,7 @@ Understanding methods is not a technical skill separate from intellectual work. 
 
 **Key methodological references**: Krippendorff (2018) provides the definitive theoretical treatment. Neuendorf (2017) offers practical guidance on codebook design. Riffe, Lacy, Watson, and Lovejoy (2023) focus specifically on content analysis in mass communication. Lombard, Snyder-Duch, and Bracken (2002) establish standards for intercoder reliability reporting.
 
-**This is the method you will execute this semester.** Chapters 12 through 15 walk you through the complete content analysis process: immersion, operationalization, codebook construction, and pilot testing. The remaining methods in this chapter are taught for literacy, not execution. You need to understand them well enough to read, evaluate, and critique studies that use them, and well enough to recognize when your own research question demands a method other than content analysis.
+**This is the method you will execute this semester.** Chapters 13 through 16 walk you through the complete content analysis process: immersion, operationalization, codebook construction, and pilot testing. The remaining methods in this chapter are taught for literacy, not execution. You need to understand them well enough to read, evaluate, and critique studies that use them, and well enough to recognize when your own research question demands a method other than content analysis.
 
 ## Survey Research: What Do People Think, Believe, or Do?
 
@@ -86,7 +86,7 @@ Understanding methods is not a technical skill separate from intellectual work. 
 
 **Limitations**: Self-report data are always imperfect. Response rates have declined dramatically in recent decades, raising questions about sample representativeness (Dillman, Smyth, & Christian, 2014). Question wording effects can bias results. And causation cannot be established from cross-sectional survey data alone.
 
-**Key methodological reference**: Dillman, Smyth, and Christian (2014) provide the standard guide to survey design and administration. Chapter 10 covers survey methodology in greater depth.
+**Key methodological reference**: Dillman, Smyth, and Christian (2014) provide the standard guide to survey design and administration. Chapter 11 covers survey methodology in greater depth.
 
 ## Experimental Research: Does X Cause Y?
 
@@ -112,7 +112,7 @@ Understanding methods is not a technical skill separate from intellectual work. 
 
 **Limitations**: Artificial settings threaten external validity. Ethical constraints limit what can be manipulated. Sample sizes are often small (especially compared to surveys), which can reduce statistical power. And the "demand characteristics" problem means participants may behave differently because they know they're being studied.
 
-**Key methodological reference**: Campbell and Stanley (1963) remain the foundational text on experimental and quasi-experimental design. Chapter 11 covers experimental methodology in greater depth.
+**Key methodological reference**: Campbell and Stanley (1963) remain the foundational text on experimental and quasi-experimental design. Chapter 12 covers experimental methodology in greater depth.
 
 ## Qualitative Methods: What Does It Mean?
 
@@ -139,7 +139,7 @@ Understanding methods is not a technical skill separate from intellectual work. 
 
 **Limitations**: Labor-intensive (transcription, coding, analysis). Not generalizable in the statistical sense. Researcher subjectivity is unavoidable (though it can be made transparent through reflexivity). Findings are harder to summarize concisely than a p-value or a percentage.
 
-**Key methodological references**: Braun and Clarke (2006) for thematic analysis. Brinkmann and Kvale (2015) for interviewing. Seidman (2019) for interview-based qualitative research. Chapter 16 covers qualitative methodology in greater depth.
+**Key methodological references**: Braun and Clarke (2006) for thematic analysis. Brinkmann and Kvale (2015) for interviewing. Seidman (2019) for interview-based qualitative research. Chapter 10 covers qualitative methodology in greater depth.
 
 ## Mixed Methods: Combining Approaches
 
@@ -210,15 +210,15 @@ Content analysis is an ideal method for learning the full research process becau
 
 The next seven chapters walk you through the content analysis process:
 
-- **Chapter 10**: Designing Surveys (conceptual foundations of survey method)
-- **Chapter 11**: Designing Experiments (conceptual foundations of experimental method)
-- **Chapter 12**: Music Immersion (qualitative engagement with your dataset before coding)
-- **Chapter 13**: Vibes to Variables (translating observations into measurable constructs)
-- **Chapter 14**: The Rulebook (building a codebook)
-- **Chapter 15**: The Sampling Plan and Pilot Test (sampling strategy and reliability testing)
-- **Chapter 16**: Qualitative Methods (interviews, focus groups, and thematic analysis)
+- **[Chapter 10](chapter10.qmd)**: Qualitative Methods (interviews, focus groups, and thematic analysis)
+- **[Chapter 11](chapter11.qmd)**: Designing Surveys (conceptual foundations of survey method)
+- **[Chapter 12](chapter12.qmd)**: Designing Experiments (conceptual foundations of experimental method)
+- **[Chapter 13](chapter13.qmd)**: Music Immersion (qualitative engagement with your dataset before coding)
+- **[Chapter 14](chapter14.qmd)**: Vibes to Variables (translating observations into measurable constructs)
+- **[Chapter 15](chapter15.qmd)**: The Rulebook (building a codebook)
+- **[Chapter 16](chapter16.qmd)**: The Sampling Plan and Pilot Test (sampling strategy and reliability testing)
 
-Chapters 10 and 11 teach survey and experimental design so you can read, evaluate, and critique studies using those methods. Chapter 16 teaches qualitative approaches as standalone methods with their own logic and quality criteria. Chapters 12 through 15 are the hands-on content analysis sequence you will execute from start to finish.
+Chapter 10 teaches qualitative approaches as standalone methods with their own logic and quality criteria; you will draw on these qualitative skills immediately when you begin immersion in Chapter 13. Chapters 11 and 12 teach survey and experimental design so you can read, evaluate, and critique studies using those methods. Chapters 13 through 16 are the hands-on content analysis sequence you will execute from start to finish.
 
 ---
 
@@ -373,4 +373,4 @@ Seidman, I. (2019). *Interviewing as qualitative research: A guide for researche
 
 ## Looking Ahead
 
-Chapters 10 and 11 go deeper into survey design and experimental design, respectively. These chapters teach the conceptual foundations you need to read, evaluate, and critique studies using those methods. You won't execute a survey or experiment this semester, but you will encounter them constantly in the literature you read, and you may design one in future research. Then, beginning with Chapter 12, the book shifts to execution: the hands-on content analysis sequence that takes you from qualitative immersion through codebook construction, pilot testing, data wrangling, statistical analysis, and final reporting.
+Chapter 10 goes deeper into qualitative methods, the approach you will practice first through immersion and thematic pattern recognition. Chapters 11 and 12 then cover survey design and experimental design, teaching the conceptual foundations you need to read, evaluate, and critique studies using those methods. You won't execute a survey or experiment this semester, but you will encounter them constantly in the literature you read, and you may design one in future research. Then, beginning with [Chapter 13](chapter13.qmd), the book shifts to execution: the hands-on content analysis sequence that takes you from qualitative immersion through codebook construction, pilot testing, data wrangling, statistical analysis, and final reporting.
