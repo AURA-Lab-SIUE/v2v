@@ -1,0 +1,458 @@
+---
+title: "Chapter 15: Interpreting the Call"
+---
+
+## Learning Objectives
+
+- Move beyond mechanical hypothesis testing to thoughtful interpretation
+- Calculate and contextualize effect sizes (Cohen's d, r, eta-squared)
+- Understand statistical power and its role in interpreting non-significant results
+- Handle "marginally significant" results (p ≈ 0.06) honestly
+- Distinguish exploratory from confirmatory analysis
+- Identify and consider alternative explanations for findings
+- Write honest, nuanced discussion sections that acknowledge limitations
+- Avoid common interpretation pitfalls (p-hacking, HARKing, overgeneralization)
+
+---
+
+You ran the tests. You got your p-values. Some were significant (p < 0.05), some weren't. Some confidence intervals overlapped, some didn't. The numbers are in front of you.
+
+Now comes the hard part: What do they *mean*?
+
+Statistical software doesn't interpret for you. It won't tell you whether your finding is important, whether it generalizes beyond your sample, or whether there might be alternative explanations you haven't considered. It gives you numbers. You have to turn those numbers into understanding.
+
+This is where research gets messy—and honest. The mechanical part (running tests) is straightforward. The interpretive part (deciding what the results mean) requires judgment, intellectual humility, and the courage to acknowledge when your findings are weaker than you hoped.
+
+This chapter teaches you to interpret results honestly.
+
+## Effect Sizes: How Much Does It Matter?
+
+Chapter 14 taught you that p-values tell you *whether* an effect exists. Effect sizes tell you *how much*.
+
+A statistically significant finding with a tiny effect size might not matter in practice. A non-significant finding with a large effect size might be worth paying attention to (you just didn't have enough data to detect it reliably).
+
+### Cohen's d: Standardized Mean Difference
+
+**Use when**: Comparing means between two groups
+
+**Formula**: d = (Mean₁ - Mean₂) / Pooled SD
+
+**Interpretation**:
+- d = 0.2: Small effect
+- d = 0.5: Medium effect
+- d = 0.8: Large effect
+
+**Example**: Do negative sentiment songs have higher tempo than positive sentiment songs?
+
+```r
+library(effsize)
+
+negative_tempo <- music_data %>% 
+  filter(Lyric_Sentiment == "Negative") %>% 
+  pull(Tempo)
+
+positive_tempo <- music_data %>% 
+  filter(Lyric_Sentiment == "Positive") %>% 
+  pull(Tempo)
+
+cohen.d(negative_tempo, positive_tempo)
+```
+
+**Output**:
+
+```
+Cohen's d
+
+d estimate: 0.52 (medium)
+95 percent confidence interval:
+   lower    upper 
+  0.15     0.89
+```
+
+**Interpretation**: The difference in tempo between negative and positive songs is medium-sized. Negative songs are about half a standard deviation faster. This is noticeable but not dramatic.
+
+### Pearson's r: Correlation Coefficient
+
+**Use when**: Measuring association between two numeric variables
+
+**Interpretation**:
+- r = ±0.1: Small correlation
+- r = ±0.3: Medium correlation
+- r = ±0.5: Large correlation
+
+**Example**: Relationship between tempo and chart position?
+
+```r
+cor.test(music_data$Tempo, music_data$Max_Rank)
+```
+
+**Output**: r = -0.135, p = 0.056
+
+**Interpretation**: Weak negative correlation. Faster songs chart slightly higher, but the relationship is small. Only about 1.8% of variance in chart position is explained by tempo (r² = 0.018).
+
+### Eta-Squared (η²): Variance Explained (ANOVA)
+
+**Use when**: Comparing means across multiple groups (ANOVA)
+
+**Interpretation**:
+- η² = 0.01: Small effect (1% of variance explained)
+- η² = 0.06: Medium effect (6% of variance explained)
+- η² = 0.14: Large effect (14% of variance explained)
+
+**Example**: Does sentiment category explain variation in chart performance?
+
+```r
+library(car)
+
+# Run ANOVA
+model <- aov(Max_Rank ~ Lyric_Sentiment, data = music_data)
+summary(model)
+
+# Calculate eta-squared
+library(sjstats)
+eta_sq(model)
+```
+
+**Output**: η² = 0.08 (medium effect)
+
+**Interpretation**: Sentiment category explains about 8% of the variance in chart position. That's a medium effect—meaningful but not dominant. Most variation in chart success is explained by other factors.
+
+### Putting Effect Sizes in Context
+
+Effect size benchmarks (small/medium/large) are guidelines, not rules. Context matters.
+
+**Example 1**: A drug reduces heart attack risk by 2% (small effect size). But given the prevalence of heart disease, this saves thousands of lives. Small effect, huge practical importance.
+
+**Example 2**: A teaching method improves test scores by 15 points (large effect size). But if the test is poorly designed and doesn't measure real learning, who cares? Large effect, questionable importance.
+
+**For your music study**: 
+
+A medium effect (d = 0.52 for tempo differences) means the groups overlap substantially. Many positive songs are faster than many negative songs. Sentiment doesn't *determine* tempo—it shifts the distribution modestly.
+
+This is worth reporting and discussing. But you shouldn't overstate it as "negative songs are fast-paced" when the distributions overlap considerably.
+
+## Statistical Power: Why Non-Significance Might Not Mean No Effect
+
+**Statistical power** is the probability of detecting an effect *if it truly exists*.
+
+Low power means: Even if there's a real effect, you might miss it (Type II error—false negative).
+
+**Power depends on**:
+1. **Sample size**: Larger samples = more power
+2. **Effect size**: Larger effects = easier to detect
+3. **Alpha level**: Stricter thresholds (p < 0.01) = less power than p < 0.05
+4. **Variability**: More noise in data = less power
+
+**Example**: You test whether mixed sentiment songs differ in tempo from neutral songs.
+
+- Sample: 30 mixed songs, 20 neutral songs
+- Result: p = 0.12 (not significant)
+- Effect size: d = 0.45 (medium)
+
+**Question**: Does this mean there's no difference, or did you just lack power to detect it?
+
+**Power analysis**:
+
+```r
+library(pwr)
+
+# What was your power to detect d = 0.45 with these sample sizes?
+pwr.t.test(n = 25, d = 0.45, sig.level = 0.05, type = "two.sample")
+```
+
+**Output**: Power = 0.31 (31%)
+
+**Interpretation**: You only had a 31% chance of detecting this medium effect with your sample size. The non-significant result might reflect low power, not absence of an effect.
+
+**Takeaway**: Don't conclude "no effect exists" from p > 0.05 if your power was low. Instead: "We found no significant difference, but power was limited. A larger study might detect an effect."
+
+## The "Marginally Significant" Problem (p ≈ 0.06)
+
+You test a hypothesis. Result: p = 0.06.
+
+It's *just barely* above the 0.05 threshold. What do you do?
+
+**Bad approach**: Call it "marginally significant" or "trending toward significance" and interpret it as if it were p = 0.04.
+
+**Why this is dishonest**: p = 0.06 doesn't cross the threshold. If you decided beforehand that p < 0.05 was your criterion, you can't move the goalposts after seeing the data.
+
+**Better approaches**:
+
+**Option 1: Report it as non-significant but note the effect size**
+
+"The difference in tempo between negative and positive songs was not statistically significant, t(87) = 1.93, p = .06, though the effect size was medium (d = 0.52, 95% CI [0.01, 0.96]). Given the medium effect size and the confidence interval that barely includes zero, this relationship warrants further investigation with a larger sample."
+
+**Option 2: Acknowledge uncertainty**
+
+"Results were inconclusive. The p-value (p = .06) fell just above the conventional significance threshold, and the confidence interval for the effect included both near-zero and medium-sized effects. We cannot definitively conclude whether tempo differs by sentiment."
+
+**Option 3: Pre-register your alpha level**
+
+If you decide before analyzing data that you'll use p < 0.10 for exploratory studies, then p = 0.06 counts. But you must decide this *before* seeing results, and report it transparently.
+
+**Don't do**: Cherry-pick which p-values you report, run multiple tests and only mention the significant ones, or keep collecting data until p < 0.05.
+
+## Exploratory vs. Confirmatory Analysis
+
+There are two modes of research, and they require different approaches to interpretation.
+
+### Confirmatory Analysis: Testing Pre-Registered Hypotheses
+
+**When**: You had a specific prediction before collecting data
+
+**Example**: "Based on Uses & Gratifications Theory, we hypothesized that sad songs would have lower tempo than happy songs."
+
+**Interpretation standards**:
+- p < 0.05 is meaningful evidence
+- You can make stronger causal claims (if design allows)
+- Findings are more credible because hypothesis came first
+
+### Exploratory Analysis: Discovering Patterns in Data
+
+**When**: You're exploring data without specific predictions
+
+**Example**: "We examined our music dataset to see if any variables related to chart performance."
+
+**Interpretation standards**:
+- p < 0.05 is suggestive but needs replication
+- You cannot make strong causal claims
+- Findings are hypothesis-generating, not hypothesis-testing
+
+**The problem**: Most research is exploratory but reported as confirmatory. Researchers explore data, find a pattern, then write as if they predicted it all along.
+
+This is called **HARKing** (Hypothesizing After Results are Known). It's dishonest and inflates false positives.
+
+**Honest approach**: "This was an exploratory analysis. We found [pattern], which was unexpected. This finding should be treated as preliminary and requires replication."
+
+## Alternative Explanations: The Rival Hypotheses
+
+Your data show a pattern. You have a preferred explanation. But could something else explain it?
+
+**Example finding**: Negative sentiment songs chart higher (better) than positive songs.
+
+**Your interpretation**: Audiences prefer emotional authenticity and intensity, which negative songs often provide.
+
+**Alternative explanations to consider**:
+
+1. **Selection bias**: Maybe record labels promote negative songs more heavily (more marketing dollars = higher chart position). It's not sentiment—it's marketing spend.
+
+2. **Genre confound**: Maybe negative songs are disproportionately hip-hop/rock, and *those genres* chart well for reasons unrelated to sentiment.
+
+3. **Temporal trends**: Maybe negative songs became more common in recent years, and recent songs chart better due to recency bias in your sampling.
+
+4. **Reverse causation**: Maybe songs that chart high receive more critical attention, which leads coders to interpret them as more emotionally complex (negative/mixed).
+
+5. **Third variable**: Maybe tempo is the real driver (fast songs chart well, negative songs tend to be fast), and sentiment is just correlated with tempo.
+
+**How to address alternatives**:
+
+- **Test them empirically**: Control for genre, tempo, year in your analysis
+- **Acknowledge them**: "While we found X, alternative explanations include Y and Z"
+- **Propose follow-up studies**: "Future research should examine whether [alternative] explains this pattern"
+
+**Intellectual honesty requires considering whether your preferred story is the *only* story the data support.**
+
+## Common Interpretation Pitfalls
+
+### Pitfall 1: Overgeneralizing from Limited Samples
+
+**Example**: Your 200 songs were Billboard Hot 100 hits from 2015-2024, mostly pop/hip-hop.
+
+**Overgeneralization**: "Negative sentiment songs are more commercially successful."
+
+**Problem**: Your sample is successful American pop songs. This doesn't generalize to:
+- Indie music
+- Non-English music
+- Pre-2015 music
+- Music that didn't chart at all
+
+**Honest framing**: "Among Billboard Hot 100 songs from 2015-2024, negative sentiment songs achieved higher chart positions on average."
+
+### Pitfall 2: Causal Language from Correlational Data
+
+**Your data**: Negative songs correlate with higher chart positions (r = -0.23, p = 0.03)
+
+**Overstated**: "Negative sentiment *causes* higher chart success."
+
+**Problem**: Correlation ≠ causation. You didn't manipulate sentiment experimentally. Maybe another variable causes both.
+
+**Honest framing**: "Negative sentiment was associated with higher chart positions, though we cannot determine causality from correlational data."
+
+### Pitfall 3: Ignoring Non-Significant Results
+
+You tested 10 hypotheses. Two were significant (p < 0.05), eight weren't.
+
+**Dishonest**: Report only the two significant findings.
+
+**Problem**: This is **p-hacking**—selectively reporting results to make findings look stronger. If you test 10 things, you'd expect 1 false positive by chance at p < 0.05.
+
+**Honest**: Report all tests, or clearly frame as exploratory: "We tested multiple relationships; some reached significance while others did not. Significant findings should be interpreted cautiously given multiple comparisons."
+
+### Pitfall 4: Treating p = 0.049 and p = 0.051 as Categorically Different
+
+**Reality**: These p-values are nearly identical. One barely crosses the threshold, one barely misses.
+
+**Problem**: Treating significance as binary (yes/no) ignores the continuous nature of evidence.
+
+**Better approach**: Report exact p-values and effect sizes. Discuss findings on a continuum of evidence strength rather than a cliff at p = 0.05.
+
+## Writing the Discussion Section
+
+The discussion is where you interpret findings, acknowledge limitations, and contextualize results.
+
+### Structure
+
+**1. Restate main findings** (briefly)
+
+"Negative sentiment songs achieved significantly higher chart positions than positive sentiment songs (p = .038, Cramér's V = 0.21)."
+
+**2. Interpret in context of theory**
+
+"This aligns with Uses & Gratifications Theory: listeners may seek negative-sentiment songs for emotional catharsis or validation rather than mood enhancement."
+
+**3. Acknowledge limitations**
+
+"Several limitations should be noted. First, our sample included only Billboard Hot 100 songs, limiting generalizability to non-charting music. Second, sentiment coding relied on lyrics alone, not accounting for musical elements. Third, this was a correlational design; we cannot infer causality."
+
+**4. Consider alternative explanations**
+
+"Alternative explanations include genre confounds (negative songs may cluster in genres that chart well) and marketing differences (labels may promote negative songs differently)."
+
+**5. Suggest future research**
+
+"Future studies should examine whether this relationship holds across genres, time periods, and non-English music. Experimental designs manipulating sentiment while holding musical elements constant could test causality."
+
+**6. Conclude with practical or theoretical implications**
+
+"These findings suggest that commercial success in popular music may be driven less by positive messaging than by emotional intensity and authenticity, supporting mood management theories over simple valence preferences."
+
+### Tone: Confident but Humble
+
+**Too weak**: "We found some suggestive patterns that might possibly indicate..."
+
+**Too strong**: "This study definitively proves that negative sentiment causes chart success."
+
+**Just right**: "Our findings indicate a relationship between negative sentiment and chart performance, though causality cannot be inferred from correlational data. This relationship warrants further investigation."
+
+## The Honesty Checklist
+
+Before finalizing your interpretation, ask:
+
+**1. Did I overstate certainty?**
+- Claims stronger than data support?
+- Correlation presented as causation?
+- Sample limitations ignored?
+
+**2. Did I report selectively?**
+- Non-significant results omitted?
+- Multiple comparisons unacknowledged?
+- Hypotheses invented after seeing data (HARKing)?
+
+**3. Did I consider alternatives?**
+- Other explanations for the pattern?
+- Confounds tested or acknowledged?
+- Third variables discussed?
+
+**4. Are effect sizes contextualized?**
+- Statistical significance without practical significance?
+- Medium effect presented as small (or vice versa)?
+- Overlapping distributions ignored?
+
+**5. Is power addressed for non-significant results?**
+- "No effect" vs. "insufficient power to detect effect"?
+- Sample size limitations noted?
+
+**If you can answer "no" to #1-2 and "yes" to #3-5, you're interpreting honestly.**
+
+---
+
+## Practice: Interpretation Skills
+
+### Exercise 15.1: Effect Size Calculation
+
+Using your music dataset:
+
+1. Calculate Cohen's d for tempo differences between top-10 and non-top-10 songs
+2. Calculate Pearson's r for the relationship between emotional intensity (coded 1/2/3) and chart peak
+3. Interpret both effect sizes using benchmarks and confidence intervals
+
+---
+
+### Exercise 15.2: Power Analysis
+
+You tested whether mixed sentiment songs differ from neutral songs in chart position. Results:
+- n_mixed = 25, n_neutral = 18
+- p = 0.14 (not significant)
+- d = 0.38
+
+1. Calculate power for this test
+2. Interpret: Is "no significant difference" convincing, or might you have missed an effect due to low power?
+
+---
+
+### Exercise 15.3: Alternative Explanations
+
+You find that high-intensity songs chart better than low-intensity songs (p = 0.02, η² = 0.11).
+
+Your interpretation: "Listeners prefer emotionally intense music."
+
+Generate three alternative explanations that could account for this pattern. How would you test them?
+
+---
+
+### Exercise 15.4: Writing a Discussion
+
+Choose one significant finding from your analysis. Write a brief discussion (250-300 words) that:
+- Restates the finding
+- Interprets it theoretically
+- Acknowledges at least two limitations
+- Proposes one follow-up study
+- Concludes with implications
+
+---
+
+## Reflection Questions
+
+1. **The Honesty Dilemma**: You find p = 0.07. You know reviewers/editors prefer p < 0.05. You could collect 10 more songs and retest. Is this acceptable? Where's the line between persistence and p-hacking?
+
+2. **Null Results**: You spent months coding 200 songs. All your tests came back non-significant (p > 0.10). How would you feel? Would you be tempted to keep testing different variables until something worked? How do you publish null results in a system that rewards positive findings?
+
+3. **Overstating Findings**: Researchers face pressure to make findings seem important for publication, funding, media coverage. How do you balance honest interpretation with the need to demonstrate impact? When does "framing" become "exaggeration"?
+
+---
+
+## Chapter Summary
+
+This chapter taught honest interpretation beyond mechanical testing:
+
+- **Effect sizes** (Cohen's d, r, η²) measure magnitude, complementing p-values
+- **Benchmarks**: d = 0.2/0.5/0.8, r = 0.1/0.3/0.5, η² = 0.01/0.06/0.14 (small/medium/large)
+- **Context matters**: Small effects can be important; large effects can be trivial
+- **Statistical power**: Low power means non-significant results are inconclusive, not evidence of no effect
+- **Marginally significant (p ≈ 0.06)**: Report as non-significant; note effect size if medium/large
+- **Exploratory vs. confirmatory**: Exploratory findings need replication; confirmatory findings are stronger
+- **Alternative explanations**: Consider rival hypotheses (confounds, reverse causation, third variables)
+- **Common pitfalls**: Overgeneralization, causal language from correlations, selective reporting, binary p-value thinking
+- **Discussion structure**: Findings → Theory → Limitations → Alternatives → Future research → Implications
+- **Honesty checklist**: Avoid overstating, report completely, consider alternatives, contextualize effects, address power
+
+---
+
+## Key Terms
+
+- **Cohen's d**: Standardized mean difference effect size (0.2/0.5/0.8 = small/medium/large)
+- **Confirmatory analysis**: Testing pre-specified hypotheses
+- **Eta-squared (η²)**: Proportion of variance explained (ANOVA effect size)
+- **Exploratory analysis**: Discovering patterns without prior hypotheses
+- **HARKing**: Hypothesizing After Results are Known (dishonest practice)
+- **P-hacking**: Selective reporting or analysis to achieve p < 0.05
+- **Pearson's r**: Correlation coefficient (-1 to +1)
+- **Power**: Probability of detecting an effect if it exists (typically aim for 0.80)
+- **Practical significance**: Whether an effect matters in real-world contexts
+- **Type II error**: False negative (failing to detect a true effect)
+
+---
+
+## Looking Ahead
+
+Chapter 16 (The Portfolio) begins Phase V: The Publisher. You've completed the full research cycle—planning, data collection, coding, analysis, interpretation. Now you'll learn to package everything into a professional research report using Quarto. This chapter teaches document structure, integrating R code with narrative text, creating reproducible reports that update automatically when data changes, and producing publication-ready PDFs and HTML documents. You'll transform scattered analysis scripts into a polished, comprehensive research portfolio.

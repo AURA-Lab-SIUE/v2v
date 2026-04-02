@@ -1,0 +1,600 @@
+---
+title: "Chapter 17: Going Live"
+---
+
+## Learning Objectives
+
+- Archive research data and code for long-term accessibility
+- Write effective abstracts for different audiences
+- Create plain-language summaries for public engagement
+- Build an online research portfolio
+- Understand open science principles and practices
+- Navigate ethical considerations in sharing research
+- Recognize the difference between academic and public communication
+- Identify next steps for continued research development
+
+---
+
+Your research is complete. You have a polished Quarto report with reproducible code, publication-quality figures, and honestly interpreted findings. You've learned the entire research cycle: from curiosity to conclusion, from vibes to variables, from immersion to interpretation.
+
+But research that stays on your laptop doesn't matter.
+
+Science is a collective enterprise. Knowledge advances when findings are shared, scrutinized, replicated, and built upon. Your contribution—even a semester-long undergraduate project—can inform someone else's thinking, provide data for a meta-analysis, or inspire a follow-up study.
+
+This final chapter teaches you to share your work responsibly: making it discoverable, accessible, and useful to others while respecting privacy, acknowledging limitations, and avoiding hype.
+
+## Why Share Research?
+
+**For science**: Transparency enables verification. Shared data and code allow others to check your work, replicate findings, and extend analyses.
+
+**For your career**: A public portfolio demonstrates skills to graduate programs and employers. It shows you can execute projects from start to finish.
+
+**For impact**: Your findings might inform policy, journalism, or other researchers. But only if people can find and access them.
+
+**For yourself**: Archiving ensures you don't lose your work. GitHub preserves code. OSF preserves data. You'll thank yourself when you need to reference this project in a grad school application.
+
+## Open Science Framework (OSF): Archiving Your Project
+
+The **Open Science Framework** ([osf.io](https://osf.io)) is a free platform for archiving research projects. It provides permanent storage, DOI assignment, and version control.
+
+### Setting Up an OSF Project
+
+**1. Create an account** at osf.io (free, takes 2 minutes)
+
+**2. Create a new project**:
+- Click "Create new project"
+- Title: "Lyric Sentiment and Chart Performance in Popular Music"
+- Description: Brief summary of the study
+- Make public (or keep private until ready to share)
+
+**3. Upload files**:
+
+Create a clear folder structure:
+```
+/data
+  /raw
+    coded_songs.csv
+  /clean
+    final_unified_dataset.csv
+/code
+  01_data_cleaning.R
+  02_analysis.R
+  03_visualization.R
+/output
+  final_report.pdf
+  final_report.qmd
+/materials
+  codebook.pdf
+  coding_instructions.pdf
+/documentation
+  README.md
+  CODEBOOK.md
+```
+
+**4. Write a README**:
+
+```markdown
+# Lyric Sentiment and Chart Performance
+
+**Author**: Your Name  
+**Date**: February 2026  
+**Contact**: your.email@university.edu
+
+## Project Description
+
+This study examined whether lyric sentiment relates to chart performance 
+using systematic content analysis of 200 Billboard Hot 100 songs from 
+2015-2024.
+
+## File Structure
+
+- `data/raw/`: Original coded data
+- `data/clean/`: Analysis-ready dataset
+- `code/`: R scripts for cleaning, analysis, visualization
+- `output/`: Final report (PDF and Quarto source)
+- `materials/`: Codebook and coding instructions
+
+## How to Reproduce
+
+1. Open `final_report.qmd` in RStudio
+2. Install required packages: `tidyverse`, `knitr`, `kableExtra`
+3. Click "Render"
+
+The report will regenerate all tables and figures from the cleaned data.
+
+## Citation
+
+If you use this data or code, please cite:
+[Your Name]. (2026). Lyric Sentiment and Chart Performance in Popular 
+Music. Open Science Framework. https://osf.io/xxxxx/
+```
+
+**5. Get a DOI** (Digital Object Identifier):
+
+OSF can mint a permanent DOI for your project. This creates a citable, unchanging link even if you update files later.
+
+### What to Archive
+
+**Always archive**:
+- ✓ Cleaned data (analysis-ready CSV)
+- ✓ All code (R scripts, Quarto documents)
+- ✓ Codebook
+- ✓ Final report (PDF)
+- ✓ README explaining project
+
+**Consider archiving**:
+- Raw data (if sharing doesn't violate privacy/copyright)
+- Supplementary analyses
+- Presentation slides
+- Response to reviewer comments (if published)
+
+**Never archive**:
+- Personally identifiable information (unless consented)
+- Copyrighted material (song lyrics in full)
+- Passwords or API keys
+
+## GitHub: Sharing Code
+
+**GitHub** is designed for version-controlled code sharing. While OSF is better for complete project archiving, GitHub excels at code collaboration and visibility.
+
+### Creating a GitHub Repository
+
+**1. Create account** at github.com
+
+**2. Create new repository**:
+- Name: `music-sentiment-analysis`
+- Description: "Content analysis of lyric sentiment and chart performance"
+- Add README
+- Choose license (MIT or GPL for open source)
+
+**3. Upload code**:
+
+```
+/scripts
+  01_data_cleaning.R
+  02_analysis.R
+  03_visualization.R
+/notebooks
+  final_report.qmd
+README.md
+LICENSE
+```
+
+**4. Write a technical README**:
+
+```markdown
+# Music Sentiment Analysis
+
+Analysis of 200 Billboard Hot 100 songs examining the relationship between 
+lyric sentiment and chart performance.
+
+## Requirements
+
+- R 4.0+
+- Packages: tidyverse, knitr, kableExtra, effsize
+
+## Installation
+
+```r
+install.packages(c("tidyverse", "knitr", "kableExtra", "effsize"))
+```
+
+## Usage
+
+```r
+# Load cleaned data
+music_data <- read_csv("data/final_unified_dataset.csv")
+
+# Run analysis
+source("scripts/02_analysis.R")
+```
+
+## Results
+
+- Negative sentiment songs achieved higher chart positions (p = .038)
+- Effect size was small-to-medium (Cramér's V = 0.21)
+- See full report: [link to PDF]
+
+## Citation
+
+[Citation information]
+
+## License
+
+MIT License - see LICENSE file
+```
+
+### What to Share on GitHub vs. OSF
+
+**GitHub**: Code-focused, good for collaboration
+- R scripts
+- Quarto documents
+- README and documentation
+- Code for figures/tables
+
+**OSF**: Complete project archiving
+- Data (cleaned and raw)
+- Code (copied from GitHub)
+- Materials (codebook, instruments)
+- Final reports and presentations
+
+Many researchers do both: GitHub for code development, OSF for complete project archiving with DOI.
+
+## Writing for Different Audiences
+
+The same research can be communicated in multiple ways for different audiences.
+
+### Academic Abstract (200 words)
+
+**Purpose**: Summarize for scholars
+
+**Structure**: Background → Method → Results → Implications
+
+**Example**:
+
+> **Abstract**
+>
+> This study examined the relationship between lyric sentiment and commercial success in popular music. Using systematic content analysis, we coded 200 Billboard Hot 100 songs (2015-2024) for lyric sentiment (positive, negative, neutral, mixed) and analyzed relationships with peak chart position. Two trained coders achieved acceptable inter-coder reliability (Krippendorff's α = 0.83). Chi-square analysis revealed a significant association between sentiment and top-10 chart status (χ²[3] = 8.42, p = .038, Cramér's V = 0.21), with negative sentiment songs more likely to reach top 10 (50%) than positive sentiment songs (30%). Effect sizes were small to medium, suggesting sentiment explains modest variance in chart performance. Results partially support Uses & Gratifications theory, indicating audiences may seek emotionally intense content over positively valenced messaging. Limitations include sampling only charting songs and coding lyrics in isolation from musical elements. Future research should examine genre-specific patterns and employ experimental designs to test causality.
+
+**Tone**: Formal, precise, technical
+
+**Audience**: Researchers, professors, peer reviewers
+
+### Plain-Language Summary (150 words)
+
+**Purpose**: Make research accessible to general public
+
+**Structure**: Question → Finding → What it means
+
+**Example**:
+
+> **Plain-Language Summary**
+>
+> Do sad songs succeed commercially? We studied 200 popular songs from the past decade to find out. Two researchers analyzed song lyrics and categorized them by emotional tone: positive, negative, neutral, or mixed. We then checked whether emotional tone related to how high songs charted on the Billboard Hot 100.
+>
+> We found that songs with negative emotional themes (sadness, anger, loss) were more likely to reach the top 10 than songs with positive themes (joy, love, celebration). However, the relationship was modest—many other factors also influence chart success.
+>
+> This suggests that audiences might prefer emotionally intense, authentic songs over simple feel-good messages. People might use music to process difficult emotions rather than just to feel happy. More research is needed to understand why this pattern exists.
+
+**Tone**: Conversational, jargon-free, engaging
+
+**Audience**: Educated public, journalists, policymakers
+
+### Social Media Post (280 characters)
+
+**Purpose**: Drive interest to full work
+
+**Example**:
+
+> New research: Analyzed 200 pop songs and found that tracks with sad/angry lyrics were more likely to hit top 10 than happy songs. Audiences might prefer emotional authenticity over positivity. Full study: [link] #MusicResearch #PopMusic
+
+**Tone**: Casual, punchy, hook-driven
+
+**Audience**: General public, potential readers
+
+### One-Sentence Takeaway
+
+**Purpose**: Elevator pitch
+
+**Example**:
+
+> "Songs with negative lyric themes achieve higher chart positions than positive songs, suggesting audiences prefer emotional intensity over feel-good messaging."
+
+Practice distilling your work to one sentence. If you can't explain it simply, you might not understand it clearly yourself.
+
+## Building a Research Portfolio
+
+A **research portfolio** is an online space showcasing your work. It serves as a professional calling card for graduate applications and job searches.
+
+### Platform Options
+
+**GitHub Pages** (free, code-friendly):
+- Turn GitHub repository into website
+- Good for technical portfolios
+- Requires basic HTML/Markdown
+
+**Google Sites** (free, easy):
+- Drag-and-drop interface
+- No coding required
+- Clean, professional templates
+
+**Personal website** (custom domain, ~$10/year):
+- WordPress, Wix, Squarespace
+- Most professional
+- More control over design
+
+### Portfolio Structure
+
+**Homepage**:
+- Your name
+- Brief bio (2-3 sentences)
+- Research interests
+- Contact information
+
+**Projects Page**:
+
+Each project as a case study:
+
+```markdown
+## Lyric Sentiment and Chart Performance
+
+**Date**: February 2026  
+**Type**: Content Analysis  
+**Tools**: R, Quarto, ggplot2
+
+### Summary
+Analyzed 200 Billboard Hot 100 songs to examine whether lyric sentiment 
+relates to commercial success.
+
+### Key Findings
+- Negative sentiment songs achieved higher chart positions (p = .038)
+- Small-to-medium effect size (Cramér's V = 0.21)
+- Results suggest audiences prefer emotional authenticity
+
+### Materials
+- [Full Report (PDF)](link)
+- [Code (GitHub)](link)
+- [Data (OSF)](link)
+
+### Skills Demonstrated
+- Systematic content analysis
+- Inter-coder reliability assessment
+- Statistical inference (chi-square, effect sizes)
+- Data visualization (ggplot2)
+- Reproducible reporting (Quarto)
+```
+
+**About Page**:
+- Educational background
+- Research experience
+- Technical skills
+- Career goals
+
+**CV/Resume** (optional):
+- Downloadable PDF
+
+### What to Include
+
+**Do include**:
+- Completed projects with clear descriptions
+- Links to code, data, reports
+- Skills demonstrated
+- Honest acknowledgment of limitations
+
+**Don't include**:
+- Unfinished projects
+- Work you can't explain confidently
+- Inflated claims
+- Projects without your actual contribution
+
+## Ethical Considerations in Sharing
+
+### Privacy and Consent
+
+**If your data includes**:
+- Survey responses → Ensure informed consent allowed sharing
+- Social media posts → Check platform terms of service
+- Interview transcripts → De-identify thoroughly
+
+**Best practice**: If in doubt, share only aggregated results (summary statistics, not raw data).
+
+### Copyright and Fair Use
+
+**Music lyric coding**:
+- You can share your sentiment codes (derivative data)
+- You cannot share full lyrics (copyrighted)
+- You can share brief excerpts for illustration (fair use)
+
+**Best practice**: Share your codebook and coded variables, not copyrighted source material.
+
+### Responsible Interpretation
+
+When sharing publicly, resist:
+- **Overstating findings**: "Sad songs cause chart success" → "Sad songs correlate with higher chart positions"
+- **Generalizing too broadly**: "All music" → "Billboard Hot 100 songs from 2015-2024"
+- **Ignoring limitations**: Acknowledge sample constraints, correlational design, alternative explanations
+
+**Best practice**: Share honestly. Your work's value comes from rigor, not hype.
+
+## Understanding Impact Beyond Grades
+
+Research impact isn't just about journal publications (which are rare for undergraduate projects). Impact can look like:
+
+**1. Learning**: You developed skills in systematic analysis, coding, statistics, and scientific writing. These transfer to any career requiring critical thinking and data literacy.
+
+**2. Portfolio**: Your OSF project and GitHub repository demonstrate research skills to graduate admissions committees and employers.
+
+**3. Contribution**: Even if not published, your work contributes to the collective understanding of media and communication. Other students might replicate your study, extend it, or use your methods.
+
+**4. Public engagement**: A well-written plain-language summary might reach journalists, musicians, or music industry professionals interested in audience preferences.
+
+**5. Future research**: This project might be the foundation for a thesis, a conference presentation, or a publication with further development.
+
+Don't measure success solely by whether you publish in a journal. Measure it by:
+- Did you learn?
+- Did you produce something you're proud of?
+- Can you explain your work confidently?
+- Would you do research again?
+
+If yes, you succeeded.
+
+## Next Steps: Continuing the Research Journey
+
+You've completed one research project. Here's how to continue developing:
+
+### Deepen Your Skills
+
+**Statistics**: Take advanced statistics courses covering:
+- Regression and ANOVA
+- Multilevel modeling
+- Time series analysis
+
+**Methods**: Explore methods you haven't used:
+- Experiments
+- Surveys
+- Network analysis
+- Computational text analysis
+
+**Tools**: Learn new software:
+- Python (data science)
+- SPSS or SAS (alternative statistics tools)
+- NVivo or Atlas.ti (qualitative software)
+
+### Seek Research Opportunities
+
+**Independent study**: Propose a follow-up project with a faculty mentor
+
+**Research assistantships**: Work in a professor's lab (paid or credit)
+
+**Conferences**: Submit to undergraduate research conferences
+
+**Honors thesis**: Develop this into a year-long capstone project
+
+### Read Actively
+
+**Subscribe to**:
+- Journal of Computer-Mediated Communication
+- New Media & Society
+- Communication Research
+- Journal of Broadcasting & Electronic Media
+
+**Follow researchers** on:
+- Twitter/X (many scholars share work publicly)
+- Google Scholar alerts (get notified when topics you care about are published)
+
+### Build Your Network
+
+**Connect with**:
+- Professors in your department
+- Graduate students (future colleagues)
+- Alumni working in research
+
+**Join**:
+- Professional associations (ICA, NCA, AEJMC offer student memberships)
+- Academic conferences (many have undergraduate paper sessions)
+
+## A Final Word on Research
+
+Research is messy. Data don't cooperate. Hypotheses fail. Coding reliability falls short. Reviewers reject papers. Progress is slower than you hope.
+
+But research is also discovery. It's the thrill of finding a pattern no one noticed before. It's the satisfaction of building something from scratch. It's the discipline of asking good questions and the humility of accepting uncertain answers.
+
+You've learned that research isn't about confirming what you already believe. It's about testing ideas rigorously, acknowledging when you're wrong, and refining your understanding iteratively.
+
+You've learned that good research requires:
+- **Curiosity** (asking questions worth answering)
+- **Discipline** (following systematic procedures)
+- **Honesty** (reporting what you found, not what you hoped)
+- **Humility** (acknowledging limitations)
+- **Generosity** (sharing your work so others can build on it)
+
+These values transcend methods. Whether you become a researcher, a journalist, a marketer, or a policymaker, these principles make you better at seeking truth.
+
+**You're not done learning.** This textbook is the beginning, not the end. Every research project teaches you something new—about methods, about your topic, and about yourself.
+
+Go forward with confidence. You know how to do research. Now go make knowledge.
+
+---
+
+## Practice: Going Live
+
+### Exercise 17.1: Create an OSF Project
+
+1. Create an OSF account
+2. Start a project for your music sentiment study
+3. Upload your cleaned data, code, and final report
+4. Write a comprehensive README
+5. Make the project public and get a DOI
+
+---
+
+### Exercise 17.2: Write Multiple Summaries
+
+For your research, write:
+1. Academic abstract (200 words, technical)
+2. Plain-language summary (150 words, jargon-free)
+3. Social media post (280 characters)
+4. One-sentence takeaway
+
+Compare: How does framing change across audiences?
+
+---
+
+### Exercise 17.3: Build a Portfolio Page
+
+Create a portfolio entry for your project that includes:
+- Project title and date
+- 2-3 sentence summary
+- Key findings (3-5 bullet points)
+- Links to materials (report, code, data)
+- Skills demonstrated
+
+---
+
+### Exercise 17.4: Plan Next Steps
+
+Reflect on your research journey:
+1. What did you learn about research methods?
+2. What did you learn about your topic?
+3. What would you do differently next time?
+4. What's one next step for continuing your research development?
+
+---
+
+## Reflection Questions
+
+1. **Public vs. Private**: How much of your research should be public? What are the risks and benefits of sharing code and data openly? When might privacy or proprietary concerns outweigh transparency?
+
+2. **Academic vs. Public Communication**: You wrote an academic abstract and a plain-language summary. Which was harder? Should researchers be required to communicate publicly, or is academic writing sufficient?
+
+3. **Impact and Purpose**: Why did you do this research? Was it only for a grade, or did it serve a larger purpose? How do you measure whether research "matters"? Does impact require publication, or are there other forms of contribution?
+
+---
+
+## Chapter Summary
+
+This final chapter covered research dissemination and open science:
+
+- **Open Science Framework (OSF)**: Free platform for archiving projects with permanent DOI
+- **GitHub**: Code sharing and version control, good for collaboration
+- **Archive structure**: Data (raw and clean), code, materials (codebook), output (reports), documentation (README)
+- **README files**: Explain project structure, reproduction instructions, citation information
+- **Multiple audiences**: Academic abstracts (technical), plain-language summaries (accessible), social media (engaging)
+- **Research portfolios**: Showcase completed projects with clear descriptions and links to materials
+- **Ethical sharing**: Respect privacy (de-identify), copyright (don't share full lyrics), and honesty (don't overstate)
+- **Impact beyond publication**: Learning, portfolio building, skill development, potential future research
+- **Next steps**: Deepen skills, seek opportunities, read actively, build networks
+- **Research values**: Curiosity, discipline, honesty, humility, generosity
+
+---
+
+## Key Terms
+
+- **DOI (Digital Object Identifier)**: Permanent identifier for research projects and publications
+- **Open Science Framework (OSF)**: Free platform for research archiving and sharing
+- **Plain-language summary**: Jargon-free explanation of research for general audiences
+- **README**: Documentation file explaining project structure and reproduction
+- **Repository**: Storage location for code (GitHub) or projects (OSF)
+- **Research portfolio**: Online showcase of completed research projects
+
+---
+
+## Conclusion
+
+You began this textbook learning to think like a researcher—to ask questions systematically, to translate vibes into variables, to build codebooks that transform intuition into replicable measurement.
+
+You learned the infrastructure of research: how to organize files, manage literature, document decisions. You learned that reproducibility isn't optional—it's the foundation of credible science.
+
+You learned qualitative methods: immersion, operationalization, codebook development, pilot testing, inter-coder reliability. You learned that systematic doesn't mean soulless—rigor and creativity coexist.
+
+You learned quantitative methods: data wrangling, visualization, statistical inference, honest interpretation. You learned that p-values don't tell you what matters—context, effect sizes, and limitations do.
+
+And you learned to share: to archive, to communicate across audiences, to build your work into something others can access and extend.
+
+**This is research**. Not as a distant abstraction, but as a set of practical skills you now possess.
+
+The questions you ask will evolve. The methods you use will expand. But the principles remain: curiosity guided by rigor, honesty about uncertainty, and generosity in sharing what you've learned.
+
+**Welcome to the community of researchers.** You're one of us now.
+
+Go make knowledge.

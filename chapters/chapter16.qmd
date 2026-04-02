@@ -1,712 +1,487 @@
 ---
-title: "Chapter 16: The Portfolio"
+title: "Chapter 16: Qualitative Methods"
 ---
 
 ## Learning Objectives
 
-- Understand the advantages of reproducible reports over traditional documents
-- Create Quarto documents integrating code, analysis, and narrative
-- Structure research reports following academic conventions
-- Generate tables and figures automatically from code
-- Manage citations using BibTeX
-- Render documents to multiple formats (PDF, HTML, Word)
-- Implement the "one-click report" workflow for reproducibility
-- Debug common Quarto rendering issues
+- Understand qualitative research as a distinct epistemological tradition, not a lesser version of quantitative work
+- Design and conduct in-depth interviews and focus groups
+- Apply Braun and Clarke's (2006) six-phase thematic analysis process
+- Evaluate qualitative research using appropriate quality criteria (credibility, transferability, dependability, confirmability)
+- Recognize when qualitative methods are the right tool for the question
 
 ---
 
-You've completed your research. You have:
-- A research question grounded in theory
-- 200 songs systematically coded using a pilot-tested codebook
-- Cleaned data in R
-- Visualizations showing patterns
-- Statistical tests quantifying relationships
-- Effect sizes contextualizing findings
-- An honest interpretation acknowledging limitations
+There is a moment in every content analysis project when something important gets lost. You've coded 200 songs for lyric sentiment. Your data show that 38% are negative, 31% are positive, 19% are mixed, and 12% are neutral. You run a chi-square test and find a statistically significant relationship between sentiment and chart position. You have a finding.
 
-Now you need to package it all into a research report.
+But you don't know *why*.
 
-You could, theoretically, write everything in Microsoft Word. Copy-paste tables from R. Save figures as images and insert them manually. Type your results section by hand. Update the tables every time your data changes. Re-export every figure when you adjust the color scheme.
+You don't know why listeners are drawn to negative content. You don't know what "negative" means to them, whether they experience it as cathartic, validating, aesthetically interesting, or simply familiar. You don't know whether the negativity your coders identified matches the negativity listeners perceive, or whether the coding categories you imposed captured the emotional dimensions that actually matter to audiences. You have numbers. You lack understanding.
 
-But this workflow is fragile, tedious, and error-prone.
+This is not a failure of your content analysis. It is a limitation of the method. Content analysis describes what is in the text. It does not explain what the text means to the people who create or consume it. For that, you need a different kind of inquiry, one that prioritizes depth over breadth, meaning over measurement, and the participant's perspective over the researcher's categories.
 
-**Quarto** solves this by integrating code, analysis, and narrative into a single reproducible document. Change your data? The entire report updates automatically. Adjust a visualization? It re-renders instantly. Add a citation? The bibliography updates. Everything is scripted, documented, and reproducible.
+This chapter introduces qualitative research methods: interviews, focus groups, and thematic analysis. These are not preliminary steps on the way to "real" (quantitative) research. They are complete methods with their own logic, their own quality standards, and their own forms of rigor. A well-designed interview study can produce knowledge that no survey, experiment, or content analysis could generate, just as those methods produce knowledge that interviews cannot.
 
-This chapter teaches you to create professional research reports that embody the reproducibility principles you've practiced throughout this book.
+The goal of methodological literacy, which this book has been building since Chapter 9, is the ability to recognize which questions demand which methods and to evaluate research from traditions other than your own.
 
-## What is Quarto?
+## What Qualitative Research Does Differently
 
-**Quarto** is a scientific publishing system that turns plain text files into polished documents: PDFs, HTML web pages, Word documents, presentations, even books.
+Chapter 9 (The Methodologist's Toolkit) introduced four methods and the questions each answers. Qualitative methods answer questions about *meaning, experience, and process*: How do people make sense of a phenomenon? What is the lived experience of a particular situation? How does a community construct shared understanding?
 
-**The magic**: You write in Markdown (simple formatting syntax), embed R code chunks for analysis, and Quarto combines them into a final document with:
-- Automatic table and figure numbering
-- Citations and references
-- Formatted code output
-- Professional styling
+These questions differ fundamentally from the questions quantitative methods answer. The difference is not merely technical (interviews vs. surveys, themes vs. frequencies). It reflects a different relationship between the researcher and the phenomenon under study.
 
-**The advantage over Word**:
-- **Reproducible**: Rerun the entire analysis with one click
-- **Version-controllable**: Track changes with Git
-- **Automated**: Tables and figures update when code changes
-- **Multi-format**: Same source file → PDF, HTML, or Word
+**Quantitative research** typically operates within the social scientific paradigm (Chapter 5): the researcher stands apart from the phenomenon, designs instruments to measure it, and tests hypotheses derived from theory. The goal is explanation and prediction. The researcher's subjectivity is treated as a threat to be minimized.
 
-**The learning curve**: Higher than Word initially, but pays off quickly for research projects.
+**Qualitative research** typically operates within the interpretive paradigm: the researcher engages directly with participants, enters their world, and seeks to understand how they construct meaning. The goal is understanding and interpretation. The researcher's subjectivity is treated as a resource to be made transparent, because interpretation is not a contaminant but the fundamental mode of human understanding.
 
-## Installing Quarto
+Neither approach is inherently superior. They answer different questions, and a complete understanding of any complex phenomenon usually requires both. The student who can only do quantitative work is half a scholar. The student who can only do qualitative work is the other half. This course aims to produce whole scholars.
 
-**Already have R and RStudio?** You're almost ready.
+## In-Depth Interviews
 
-**Install Quarto**:
-1. Download from [quarto.org](https://quarto.org/docs/get-started/)
-2. Install for your operating system
-3. Restart RStudio
+### What They Are
 
-**Check installation**:
+An **in-depth interview** is a purposeful conversation between a researcher and a participant, guided by the researcher's questions but shaped by the participant's responses. Unlike survey interviews, which use standardized questions and predetermined response options, qualitative interviews are flexible, exploratory, and responsive to what the participant says.
 
-Open RStudio, go to File → New File → Quarto Document. If the option appears, you're ready.
+Brinkmann and Kvale (2015) describe the qualitative interview as a conversation "with a purpose and a structure." The purpose is to understand the participant's perspective on a specific phenomenon. The structure comes from an **interview guide**, a set of questions and prompts that ensures the researcher covers key topics while leaving room for unexpected directions.
 
-## Anatomy of a Quarto Document
+### Types of Interviews
 
-A Quarto document (`.qmd` file) has three components:
+**Semi-structured interviews** use a guide with prepared questions but allow the interviewer to follow up on interesting responses, skip questions that have already been addressed, and explore topics the participant raises spontaneously. This is the most common format in communication research.
 
-### 1. YAML Header (Metadata)
+**Unstructured interviews** begin with a single broad question ("Tell me about your experience with...") and follow wherever the participant leads. These produce the richest data but are hardest to analyze systematically.
 
-At the top of the file, between `---` markers:
+**Structured interviews** use identical questions in identical order for every participant. These are essentially verbal surveys and sacrifice the depth that makes qualitative interviews valuable.
 
-```yaml
----
-title: "Lyric Sentiment and Chart Performance"
-author: "Your Name"
-date: "2026-02-10"
-format: pdf
----
-```
+For most research purposes, the semi-structured format offers the best balance: enough structure to ensure comparability across interviews, enough flexibility to capture what you didn't anticipate.
 
-This controls document properties: title, author, output format, styling.
+### Designing an Interview Guide
 
-### 2. Markdown Text (Narrative)
+The interview guide is not a script. It is a map of the territory you want to cover, with the understanding that each conversation will take a different path through that territory.
 
-Plain text with simple formatting:
+**Principles of good interview guide design**:
+
+**Start with broad, open-ended questions** before moving to specific ones. "Tell me about your relationship with music" opens more doors than "Do you prefer sad or happy music?"
+
+**Use "how" and "what" questions more than "why" questions.** "Why" can feel interrogative and put participants on the defensive. "How did you come to feel that way?" or "What was that experience like for you?" invites narrative without pressure.
+
+**Prepare follow-up probes** for each main question. Probes are short prompts that encourage elaboration without leading the participant:
+
+- "Can you tell me more about that?"
+- "What do you mean by [term the participant used]?"
+- "Can you give me an example?"
+- "How did that make you feel?"
+
+**Sequence from general to sensitive.** Build rapport with comfortable topics before asking about personal or emotionally charged material.
+
+**Example interview guide: Music and emotional coping**
 
 ```markdown
-# Introduction
+# Interview Guide: Music and Emotional Coping
 
-Popular music has increasingly embraced negative emotional themes. This study 
-examines whether lyric sentiment relates to chart performance.
+## Opening
+- Tell me a bit about yourself and your relationship 
+  with music. How does music fit into your daily life?
 
-## Research Question
+## Music Selection
+- When you're feeling stressed or upset, do you turn to 
+  music? If so, can you walk me through what that looks 
+  like?
+- How do you choose what to listen to in those moments?
+- [Probe: Is it a deliberate choice, or more automatic?]
 
-**RQ1**: Do songs with negative lyric sentiment achieve higher chart positions 
-than songs with positive sentiment?
+## The Experience
+- Can you describe a specific time when music helped you 
+  through a difficult period? What happened?
+- What was it about that particular music that felt 
+  helpful?
+- [Probe: Was it the lyrics, the sound, the memories 
+  associated with it, or something else?]
+
+## Meaning-Making
+- Some people say they listen to sad music when they're 
+  already sad. Does that resonate with your experience? 
+  Why or why not?
+- [Probe: What do you think you're getting from that 
+  experience?]
+
+## Closing
+- Is there anything about your relationship with music 
+  and emotions that I haven't asked about but you think 
+  is important?
 ```
 
-**Markdown syntax**:
-- `# Heading 1`, `## Heading 2`, `### Heading 3`
-- `**bold**`, `*italic*`
-- `- bullet point`
-- `[link text](url)`
+Notice what this guide does: it starts broad (relationship with music), moves to behavior (what do you do when stressed), then to experience (describe a specific time), then to meaning (why do you think this works). The final question invites the participant to raise topics the researcher may have missed.
 
-### 3. Code Chunks (Analysis)
+This guide works for music research. But the same structure and principles apply to any qualitative study: interviewing journalists about newsroom decision-making, patients about health information seeking, activists about social media strategy, or employees about organizational communication during a crisis. The content changes; the interview craft does not.
 
-R code embedded in special blocks:
+### Conducting the Interview
 
-```{{r}}
-#| label: load-data
-#| message: false
+**Rapport** is essential. Participants share more when they feel comfortable, respected, and genuinely listened to. This requires:
 
-library(tidyverse)
-music_data <- read_csv("data_clean/final_unified_dataset.csv")
-```
+- Active listening (nodding, brief verbal acknowledgments, maintaining appropriate eye contact)
+- Avoiding judgment (even when participants say things you disagree with)
+- Tolerating silence (pauses often produce the most thoughtful responses; resist the urge to fill every gap)
+- Following the participant's lead while gently steering back to relevant topics
 
-**Code chunk options** (after `#|`):
-- `label`: Names the chunk (useful for debugging)
-- `message: false`: Suppresses messages when loading packages
-- `echo: false`: Hides code, shows only output
-- `warning: false`: Suppresses warnings
+**Recording and transcription**: With participant permission, record interviews. Transcribe them verbatim afterward. Transcription is tedious but essential; it produces the text you'll analyze. Note pauses, laughter, and emphasis in your transcript, as these carry meaning.
 
-## Your First Quarto Report
+**Ethical obligations**: Informed consent is mandatory (Chapter 8). Participants must know the interview is for research, understand how their data will be used, and be free to decline any question or withdraw entirely. Confidentiality means using pseudonyms and removing identifying details from transcripts and published reports.
 
-**Create a new Quarto document**:
+### How Many Interviews?
 
-File → New File → Quarto Document → Fill in title and author → OK
+Qualitative research does not require large samples. The goal is depth, not breadth. Seidman (2019) suggests that most interview studies reach saturation, the point where new interviews produce no new themes, between 12 and 25 participants. For a graduate thesis, 15-20 interviews is typical. For an undergraduate project, 8-12 may be sufficient if participants are well-chosen.
 
-**Default template appears**:
+The key is **purposive sampling** (Chapter 10): selecting participants who can speak knowledgeably about the phenomenon you're studying, not random members of a population.
 
-```yaml
----
-title: "Untitled"
-format: html
----
+## Focus Groups
 
-## Quarto
+### What They Are
 
-Quarto enables you to weave together content and executable code into a 
-finished document...
-```
+A **focus group** brings together 6-10 participants for a guided discussion about a specific topic. The researcher serves as a **moderator**, posing questions and managing the conversation, but the data come primarily from the interaction among participants.
 
-**Click "Render"** (the blue arrow at the top of the editor)
+Focus groups reveal things that individual interviews cannot. When participants respond to each other's statements, they negotiate meaning collectively. Agreements emerge. Disagreements surface. Social norms become visible. A participant might say something in a group that they wouldn't say one-on-one, because another participant's comment triggered a memory or gave them permission to share.
 
-RStudio runs the code, combines it with text, and produces an HTML file that opens in a browser.
+### When Focus Groups Work Best
 
-**Congratulations**: You just created a reproducible document.
+**Social phenomena**: When the topic involves shared meaning, group norms, or collective experience. How do fans of a genre talk about authenticity when they're with other fans? How do newsroom colleagues collectively decide what counts as "newsworthy"?
 
-## Building a Research Report
+**Norm exploration**: When you want to understand what people consider acceptable, expected, or taboo in a given context. A focus group of music listeners might reveal unspoken rules about what genres are "okay" to admit liking in public.
 
-Let's create a complete research report structure.
+**Idea generation**: When you want to explore a topic broadly before designing a more focused study. Focus groups are excellent for identifying dimensions you hadn't considered.
 
-### Basic Structure
+### When Focus Groups Don't Work
 
-```yaml
----
-title: "Lyric Sentiment and Chart Performance in Popular Music"
-author: "Your Name"
-date: "2026-02-10"
-format: 
-  pdf:
-    toc: true
-    number-sections: true
-bibliography: references.bib
----
+**Sensitive topics**: Participants may not share personal experiences (mental health struggles, relationship problems, financial difficulties) in front of strangers.
 
-# Abstract
+**Power dynamics**: If the group includes people with unequal status (a supervisor and subordinates, a professor and students), lower-status participants may self-censor.
 
-This study examined the relationship between lyric sentiment and chart 
-performance using systematic content analysis of 200 Billboard Hot 100 
-songs (2015-2024). Results indicate...
+**Dominant personalities**: One or two participants can dominate the conversation, silencing others. Good moderators manage this, but it's an inherent risk.
 
-# Introduction
+### Moderator Skills
 
-[Background and context]
+The moderator's role is to facilitate, not to lead. This means:
 
-# Literature Review
+- Posing questions and then stepping back
+- Ensuring all participants contribute (gently inviting quieter members: "We haven't heard from you yet, [name]. What's your perspective?")
+- Managing dominant speakers without embarrassing them
+- Following up on interesting exchanges between participants
+- Keeping the discussion focused without being rigid
 
-[Theory and prior research]
+## Thematic Analysis
 
-# Method
+Once you have interview or focus group data (transcripts), you need a systematic method for analyzing them. **Thematic analysis**, as articulated by Virginia Braun and Victoria Clarke (2006), is the most widely used and most accessible approach.
 
-## Sample
+Thematic analysis identifies, organizes, and reports patterns (themes) across qualitative data. It is not tied to any particular theoretical framework, making it flexible enough for use across paradigms. You can use it inductively (letting themes emerge from the data) or deductively (using pre-existing theory to guide what you look for).
 
-## Coding Procedure
+### The Six Phases
 
-## Reliability
+Braun and Clarke's (2006) framework proceeds through six phases. These are not strictly linear; you will move back and forth between phases as your understanding develops.
 
-# Results
+**Phase 1: Familiarization**
 
-# Discussion
+Read and re-read your transcripts. Listen to the recordings again. Note initial impressions. This is the qualitative equivalent of the immersion you practiced in Chapter 12, but with interview data rather than media content.
 
-# References
+**Phase 2: Generating Initial Codes**
 
-::: {#refs}
-:::
-```
+Codes are labels applied to meaningful segments of text. A code captures what a segment is *about* at its most basic level.
 
-**Key YAML options**:
-- `toc: true`: Creates table of contents
-- `number-sections: true`: Automatic section numbering
-- `bibliography: references.bib`: Specifies citation file
-
-### Loading and Preparing Data
-
-Create a setup chunk at the beginning:
-
-```{{r}}
-#| label: setup
-#| include: false
-
-# Load packages
-library(tidyverse)
-library(knitr)
-library(kableExtra)
-
-# Load cleaned data
-music_data <- read_csv("data_clean/final_unified_dataset.csv")
-
-# Set global chunk options
-knitr::opts_chunk$set(
-  echo = FALSE,        # Don't show code by default
-  warning = FALSE,     # Suppress warnings
-  message = FALSE,     # Suppress messages
-  fig.width = 7,       # Default figure width
-  fig.height = 5       # Default figure height
-)
-```
-
-`include: false` means this entire chunk is hidden—no code, no output. It just runs silently.
-
-## Creating Tables
-
-### Descriptive Statistics Table
-
-````markdown
-# Results
-
-## Sample Characteristics
-````
-
-```{{r}}
-#| label: tbl-descriptives
-#| tbl-cap: "Descriptive Statistics for Music Dataset"
-
-music_data %>%
-  group_by(Lyric_Sentiment) %>%
-  summarize(
-    N = n(),
-    `Mean Tempo` = round(mean(Tempo, na.rm = TRUE), 1),
-    `SD Tempo` = round(sd(Tempo, na.rm = TRUE), 1),
-    `Mean Chart Peak` = round(mean(Max_Rank, na.rm = TRUE), 1)
-  ) %>%
-  kable(
-    col.names = c("Sentiment", "N", "Mean Tempo (BPM)", "SD", "Mean Chart Peak"),
-    align = "lcccc"
-  ) %>%
-  kable_styling(bootstrap_options = c("striped", "hover"))
-```
-
-**Output** (in rendered document):
-
-**Table 1**: Descriptive Statistics for Music Dataset
-
-| Sentiment | N | Mean Tempo (BPM) | SD | Mean Chart Peak |
-|-----------|---|------------------|-----|-----------------|
-| Positive  | 50 | 119.2 | 22.3 | 46.5 |
-| Negative  | 50 | 128.5 | 24.1 | 32.4 |
-| Neutral   | 30 | 115.8 | 20.9 | 51.2 |
-| Mixed     | 50 | 123.6 | 23.7 | 38.9 |
-
-**`tbl-cap`** creates the table caption. Quarto automatically numbers tables.
-
-**Reference the table in text**: "As shown in @tbl-descriptives, negative sentiment songs had higher average tempo..."
-
-### Contingency Table
-
-```{{r}}
-#| label: tbl-contingency
-#| tbl-cap: "Sentiment by Top-10 Chart Status"
-
-music_data %>%
-  mutate(top10 = if_else(Max_Rank <= 10, "Top 10", "Not Top 10")) %>%
-  count(Lyric_Sentiment, top10) %>%
-  pivot_wider(names_from = top10, values_from = n, values_fill = 0) %>%
-  kable(
-    col.names = c("Sentiment", "Not Top 10", "Top 10")
-  ) %>%
-  kable_styling()
-```
-
-## Creating Figures
-
-### Bar Chart
-
-```{{r}}
-#| label: fig-sentiment-dist
-#| fig-cap: "Distribution of Lyric Sentiment Categories"
-#| fig-width: 6
-#| fig-height: 4
-
-ggplot(music_data, aes(x = Lyric_Sentiment, fill = Lyric_Sentiment)) +
-  geom_bar() +
-  scale_fill_manual(values = c("Positive" = "#2E86AB", 
-                                 "Negative" = "#A23B72", 
-                                 "Neutral" = "#F18F01", 
-                                 "Mixed" = "#C73E1D")) +
-  labs(
-    x = "Lyric Sentiment",
-    y = "Count"
-  ) +
-  theme_minimal() +
-  theme(legend.position = "none")
-```
-
-**`fig-cap`** creates the figure caption. Quarto automatically numbers figures.
-
-**Reference in text**: "Figure @fig-sentiment-dist shows the distribution of sentiment categories in our sample."
-
-### Scatterplot with Regression Line
-
-```{{r}}
-#| label: fig-tempo-chart
-#| fig-cap: "Relationship Between Tempo and Chart Performance by Sentiment"
-#| fig-width: 8
-#| fig-height: 5
-
-ggplot(music_data, aes(x = Tempo, y = Max_Rank, color = Lyric_Sentiment)) +
-  geom_point(alpha = 0.6, size = 2) +
-  geom_smooth(method = "lm", se = FALSE, linewidth = 0.8) +
-  scale_y_reverse() +
-  scale_color_manual(
-    values = c("Positive" = "#2E86AB", "Negative" = "#A23B72", 
-               "Neutral" = "#F18F01", "Mixed" = "#C73E1D"),
-    name = "Lyric Sentiment"
-  ) +
-  labs(
-    x = "Tempo (BPM)",
-    y = "Peak Chart Position (lower = better)"
-  ) +
-  theme_minimal() +
-  theme(legend.position = "bottom")
-```
-
-## Reporting Statistical Results
-
-You can embed R code *inline* within sentences:
-
-````markdown
-A chi-square test revealed a significant relationship between sentiment and 
-top-10 status, χ²(`r chisq.test(music_data$Lyric_Sentiment, music_data$top10)$parameter`) 
-= `r round(chisq.test(music_data$Lyric_Sentiment, music_data$top10)$statistic, 2)`, 
-*p* = `r round(chisq.test(music_data$Lyric_Sentiment, music_data$top10)$p.value, 3)`.
-````
-
-**Renders as**:
-
-"A chi-square test revealed a significant relationship between sentiment and top-10 status, χ²(3) = 8.42, *p* = 0.038."
-
-**The advantage**: If you add more data and rerun, all statistics update automatically.
-
-### Creating a Results Code Chunk
-
-Store test results once, reference multiple times:
-
-```{{r}}
-#| label: stats-tests
-#| include: false
-
-# Run chi-square test
-chi_result <- chisq.test(music_data$Lyric_Sentiment, music_data$top10)
-
-# Extract values
-chi_stat <- round(chi_result$statistic, 2)
-chi_df <- chi_result$parameter
-chi_p <- round(chi_result$p.value, 3)
-
-# Calculate Cramér's V
-library(rcompanion)
-cramers_v <- round(cramerV(music_data$Lyric_Sentiment, music_data$top10), 2)
-```
-
-**Then reference in text**:
-
-```markdown
-χ²(`r chi_df`) = `r chi_stat`, *p* = `r chi_p`, Cramér's V = `r cramers_v`
-```
-
-## Managing Citations
-
-### Creating a Bibliography File
-
-Create `references.bib` in your project folder:
-
-```bibtex
-@article{Wickham2014,
-  author = {Wickham, Hadley},
-  title = {Tidy Data},
-  journal = {Journal of Statistical Software},
-  year = {2014},
-  volume = {59},
-  number = {10},
-  pages = {1--23}
-}
-
-@book{Cohen1988,
-  author = {Cohen, Jacob},
-  title = {Statistical Power Analysis for the Behavioral Sciences},
-  publisher = {Routledge},
-  year = {1988},
-  edition = {2nd}
-}
-```
-
-### Citing in Text
-
-```markdown
-Data were organized following tidy data principles [@Wickham2014]. 
-Effect sizes were interpreted using Cohen's benchmarks [@Cohen1988].
-
-Multiple citations can be grouped [@Wickham2014; @Cohen1988].
-```
-
-**Renders as**:
-
-"Data were organized following tidy data principles (Wickham, 2014). Effect sizes were interpreted using Cohen's benchmarks (Cohen, 1988)."
-
-### Automatic Bibliography
-
-At the end of your document:
-
-```markdown
-# References
-
-::: {#refs}
-:::
-```
+**Example**: In an interview about music and emotional coping, a participant says: "When I'm really stressed, I put on my headphones and just disappear into the music. It's like the outside world stops existing for a while."
 
-Quarto automatically generates a formatted reference list from all citations in the document.
+Possible codes: *escape*, *stress relief*, *immersion*, *headphone use as boundary*, *music as retreat from reality*.
 
-**Getting BibTeX entries**:
-- Google Scholar: Click "Cite" → "BibTeX"
-- Zotero: Right-click entry → Export → BibTeX
-
-## Rendering to Different Formats
-
-### PDF Output
-
-```yaml
----
-title: "My Report"
-format: 
-  pdf:
-    documentclass: article
-    fontsize: 12pt
-    geometry: margin=1in
-    toc: true
-    number-sections: true
----
-```
-
-**Requires**: LaTeX installed on your system
-- Mac: MacTeX
-- Windows: MiKTeX or TinyTeX
-- Linux: TeX Live
-
-**Quick LaTeX install** (from R):
-
-```r
-install.packages("tinytex")
-tinytex::install_tinytex()
-```
+Code systematically across all transcripts. Multiple codes can apply to the same segment. At this phase, code generously; you'll refine later.
 
-### HTML Output
+**Phase 3: Searching for Themes**
 
-```yaml
----
-title: "My Report"
-format: 
-  html:
-    toc: true
-    toc-location: left
-    code-fold: true
-    theme: cosmo
----
-```
+Themes are broader patterns that organize multiple codes. Review all your codes and ask: What groups together? What patterns emerge?
 
-**Advantages**:
-- No LaTeX required
-- Interactive elements possible
-- Easy to share (single HTML file)
+**Example**: The codes *escape*, *music as retreat from reality*, *shutting out the world*, and *headphone use as boundary* might cluster into a theme: **"Music as psychological escape."**
 
-`code-fold: true` lets readers click to see code if interested.
+Other themes might include **"Music as emotional mirror"** (listening to content that matches current mood) and **"Music as identity anchor"** (using music to maintain a sense of self during difficult times).
 
-### Word Output
+**Phase 4: Reviewing Themes**
 
-```yaml
----
-title: "My Report"
-format: 
-  docx:
-    toc: true
-    number-sections: true
-    reference-doc: custom-template.docx
----
-```
+Check your themes against the data. Do they accurately capture the coded segments? Are there themes that lack sufficient supporting data? Are there themes that should be split or combined?
 
-**Use when**: Collaborators need to edit in Word
+Read through each theme's coded segments and ask: Does this theme tell a coherent story? Does every coded segment genuinely belong here?
 
-**Custom template**: Create a Word document with your preferred styles, save as `custom-template.docx`, and Quarto applies those styles.
+**Phase 5: Defining and Naming Themes**
 
-## The One-Click Report Workflow
+Write a brief definition of each theme. A good theme name captures the essence of what the data reveal.
 
-The power of Quarto is **full reproducibility**:
+**Weak theme name**: "Music and feelings"
 
-1. Someone sends you new data
-2. You replace the old CSV with the new one
-3. You click "Render"
-4. Every table, every figure, every statistic updates automatically
+**Strong theme name**: "Music as psychological escape: using sound to create boundaries between self and stressor"
 
-**No manual copying. No stale numbers. No version confusion.**
+Each theme should have a clear scope: what it includes and what it doesn't. If you can't articulate the boundaries, the theme is too vague.
 
-This is what reproducible research looks like.
+**Phase 6: Writing Up**
 
-### Example Workflow
+The final phase integrates themes into a coherent narrative, supported by illustrative quotations from participants. The write-up is not a list of themes; it is an argument about what the data reveal, organized thematically and supported by evidence from participants' own words.
 
-**Monday**: Analyze 200 songs, render report  
-**Wednesday**: Advisor says "Can you add 50 more songs?"  
-**Thursday**: You code 50 songs, append to CSV  
-**Friday**: Click "Render" → entire report updates with n=250 statistics
+### Thematic Analysis vs. Content Analysis
 
-**Traditional workflow**: Manually update every table, re-export every figure, retype every statistic. Hours of tedious work. High error risk.
+Students sometimes confuse thematic analysis with content analysis. They are related but distinct:
 
-**Quarto workflow**: Click one button. 30 seconds. Perfect accuracy.
+**Content analysis** (Chapters 12-15) is typically quantitative: you develop categories in advance, train coders, code systematically, and count frequencies. The output is numerical: "42% of songs contained negative sentiment."
 
-## Advanced Features
+**Thematic analysis** (Braun & Clarke, 2006) is qualitative: you develop themes from the data itself, through iterative reading and coding. The output is interpretive: "Participants described three distinct ways of using music to cope with stress: escape, emotional mirroring, and identity anchoring."
 
-### Figure Panels (Subfigures)
+The immersion and memo-writing practices from Chapter 12 are more closely aligned with thematic analysis than with quantitative content analysis, which is why this chapter connects back to those skills. A researcher trained in both traditions recognizes that immersion, coding, and pattern recognition are shared practices; the difference lies in whether the output is numerical or interpretive.
 
-```{{r}}
-#| label: fig-panels
-#| fig-cap: "Tempo and Chart Performance by Sentiment"
-#| fig-subcap: 
-#|   - "Boxplot comparison"
-#|   - "Scatterplot with trend lines"
-#| layout-ncol: 2
+## Other Qualitative Approaches
 
-# Panel A
-ggplot(music_data, aes(x = Lyric_Sentiment, y = Tempo)) +
-  geom_boxplot() +
-  theme_minimal()
+Thematic analysis is the most common approach, but it is not the only one. Several other qualitative traditions deserve brief mention for methodological literacy.
 
-# Panel B
-ggplot(music_data, aes(x = Tempo, y = Max_Rank, color = Lyric_Sentiment)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE) +
-  theme_minimal()
-```
+### Ethnography
 
-Creates Figure 1 with panels (a) and (b).
+**Ethnography** involves prolonged immersion in a community or setting, with the researcher participating in and observing the activities of the group being studied. The researcher becomes an instrument, using sustained presence to develop deep understanding of cultural practices, norms, and meanings.
 
-### Cross-References
+**Application**: A researcher studying a hip-hop community might spend months attending open mic nights, producing tracks with local artists, and participating in online forums, gradually building the trust and understanding necessary to describe the community's values, hierarchies, and creative processes from an insider perspective.
 
-```markdown
-As shown in @tbl-descriptives, the mean tempo varied by sentiment. 
-This pattern is visualized in @fig-tempo-chart (panel b).
+**Strength**: Unparalleled depth and contextual understanding.
+**Limitation**: Time-intensive (months to years), difficult to replicate, and the researcher's presence may alter the community being studied.
 
-## Method {#sec-method}
+### Narrative Analysis
 
-Our coding procedure (see @sec-method) ensured high reliability...
-```
+**Narrative analysis** treats stories as the primary unit of analysis. Rather than breaking data into coded fragments, it examines complete narratives for structure, plot, characters, and meaning-making.
 
-**Section references**: Use `{#sec-label}` to label sections, then `@sec-label` to reference.
+**Application**: A researcher might analyze how musicians narrate their career trajectories in long-form interviews, examining how they construct identity through the stories they tell about creative breakthroughs, setbacks, and turning points.
 
-### Conditional Content
+**Strength**: Preserves the coherence of participants' meaning-making, which coding into fragments can destroy.
+**Limitation**: Labor-intensive analysis; findings are difficult to summarize without losing the narrative richness.
 
-```{{r}}
-show_detailed_analysis <- FALSE
-```
+### Discourse Analysis
 
-```{{r}}
-#| eval: !expr show_detailed_analysis
+**Discourse analysis** examines how language constructs social reality. It goes beyond what people say to analyze *how* they say it: what rhetorical strategies they use, what assumptions their language carries, and what power relations their speech reproduces or challenges.
 
-# This chunk only runs if show_detailed_analysis is TRUE
-# Useful for supplementary analyses you might want to toggle
-```
+**Application**: A researcher might analyze how music critics construct hierarchies of taste through their language, examining how words like "authentic," "accessible," "derivative," and "challenging" function to police genre boundaries and maintain cultural capital.
 
-## Common Issues and Solutions
+**Strength**: Reveals taken-for-granted assumptions and power dynamics embedded in language.
+**Limitation**: Highly interpretive; findings depend heavily on the analyst's theoretical perspective.
 
-### Issue 1: "LaTeX Error"
+## Quality Criteria for Qualitative Research
 
-**Symptom**: PDF rendering fails with LaTeX error
+Quantitative research is evaluated by reliability (consistency) and validity (accuracy). These criteria don't translate directly to qualitative research, which operates under different assumptions about the nature of knowledge.
 
-**Solution**: 
-- Install TinyTeX: `tinytex::install_tinytex()`
-- Or switch to HTML output temporarily
+The most widely used alternative framework comes from Lincoln and Guba, who proposed four criteria for evaluating qualitative research quality:
 
-### Issue 2: "Object not found"
+### Credibility (Parallel to Internal Validity)
 
-**Symptom**: Error says variable doesn't exist
+Are the findings plausible and well-supported? Strategies for establishing credibility include:
 
-**Cause**: Code chunks run in order. If you reference `music_data` before loading it, it fails.
+- **Prolonged engagement**: Spending sufficient time with the data or in the field to develop deep understanding
+- **Triangulation**: Using multiple data sources, methods, or researchers to cross-check findings
+- **Member checking**: Sharing findings with participants to verify that the researcher's interpretations resonate with their experience
+- **Peer debriefing**: Discussing emerging findings with a colleague who can challenge assumptions
 
-**Solution**: Ensure data is loaded in early chunk before any analysis chunks.
+### Transferability (Parallel to External Validity)
 
-### Issue 3: Figures don't appear
+Can the findings apply in other contexts? Qualitative research doesn't claim statistical generalizability, but it can claim **transferability**: the reader, not the researcher, decides whether the findings apply to their context. To enable this judgment, the researcher must provide **thick description**, enough contextual detail that readers can assess similarity between the study's context and their own.
 
-**Symptom**: Blank space where figure should be
+### Dependability (Parallel to Reliability)
 
-**Solutions**:
-- Check `fig-width` and `fig-height` aren't too large
-- Ensure `echo: false` is set (if you don't want code shown)
-- Verify the ggplot code actually produces a plot when run in console
+Would the findings be consistent if the study were repeated? Since qualitative research is inherently interpretive, perfect replication is impossible. But the process should be systematic and documented. An **audit trail**, detailed records of methodological decisions, coding evolution, and analytical reasoning, allows others to evaluate whether the process was rigorous.
 
-### Issue 4: Citations don't work
+### Confirmability (Parallel to Objectivity)
 
-**Symptom**: `@Author2020` appears as literal text, not formatted citation
+Are the findings shaped by the data rather than by the researcher's biases? Complete objectivity is impossible in qualitative research (and arguably in all research), but confirmability asks whether the researcher has made their assumptions and interpretive lens transparent. The reflexivity memo you practiced in Chapter 12's Graduate Extension is a confirmability strategy.
 
-**Solutions**:
-- Verify `bibliography: references.bib` in YAML
-- Check .bib file is in same folder as .qmd
-- Ensure citation keys match exactly (case-sensitive)
+## Qualitative Data Management
 
-## Practice: Building Your Report
+### Transcription
 
-### Exercise 16.1: Basic Document
+Audio recordings must be converted to text before analysis. Full verbatim transcription (including false starts, pauses, and filler words) is standard for most qualitative research. Mark significant non-verbal cues:
 
-Create a Quarto document with:
-1. YAML header (title, author, date, PDF format)
-2. Three sections: Introduction, Method, Results
-3. One code chunk that loads your music data
-4. Render to PDF
+- [laughs], [sighs], [long pause], [voice breaks]
+- Emphasis: "I was *so* angry" (italicize emphasized words)
+
+Transcription is time-consuming: expect 4-6 hours of transcription for every hour of interview. Automated transcription tools (Otter.ai, Rev, Whisper) can produce rough drafts, but human review and correction are essential for research-quality transcripts.
+
+### Organizing Qualitative Data
+
+Just as content analysis data need organized coding sheets, qualitative data need organized management:
+
+**Obsidian** can serve as a lightweight qualitative data management tool:
+
+- Create a note for each interview transcript
+- Use tags to mark preliminary codes (#escape, #identity, #catharsis)
+- Use links to connect coded segments across interviews
+- Maintain a separate "Codebook" note that tracks the evolution of your codes and themes
+
+**Dedicated qualitative analysis software** (NVivo, Atlas.ti, MAXQDA) provides more sophisticated tools: graphical coding, query functions, and visual models. These are valuable for larger projects but may be unnecessary for small interview studies.
+
+## When to Use Qualitative Methods
+
+Return to the decision framework from Chapter 9:
+
+**Use qualitative methods when your question asks about meaning, experience, or process**:
+
+- "How do fans experience parasocial breakups when their favorite artist is 'canceled'?"
+- "What is the experience of being a music journalist covering artists you personally admire?"
+- "How do listeners construct the meaning of 'authenticity' in country music?"
+- "What processes do newsroom editors use to decide which stories deserve front-page placement?"
+
+**Use qualitative methods when you're exploring a new phenomenon where theory is thin**:
+
+- If no prior research has examined your topic, qualitative methods help you map the terrain before you can design quantitative measurement.
+
+**Use qualitative methods when you want to complement quantitative findings**:
+
+- Your content analysis shows negative lyrics chart higher. Interviews with listeners could explain why.
+- Your survey shows parasocial attachment predicts purchase behavior. Focus groups could reveal the psychological mechanisms.
+
+**Don't use qualitative methods when you need to**:
+
+- Generalize to a large population (use surveys)
+- Establish causation (use experiments)
+- Describe the prevalence of content features (use content analysis)
+- Produce numerical data for statistical testing (use quantitative methods)
+
+The methods are not in competition. They answer different questions, and the strongest research programs use multiple methods across studies.
 
 ---
 
-### Exercise 16.2: Tables and Figures
+## Practice: Qualitative Research Skills
 
-Add to your document:
-1. A descriptive statistics table (mean tempo by sentiment)
-2. A bar chart showing sentiment distribution
-3. Proper captions for both
-4. Cross-references in text
+### Exercise 16.1: Designing an Interview Guide
 
----
+Choose a research topic (music-related or otherwise). Design a semi-structured interview guide with:
 
-### Exercise 16.3: Inline Statistics
+1. An opening question that builds rapport
+2. Four main questions that address your research interest
+3. At least two follow-up probes for each main question
+4. A closing question that invites the participant to add anything you missed
 
-Write a Results paragraph that:
-1. Stores a t-test result in a hidden chunk
-2. Reports the statistics inline using `` `r variable` `` syntax
-3. Includes t-statistic, df, p-value, and means
+**Goal**: Practice writing questions that are open-ended, non-leading, and sequenced from general to specific.
 
 ---
 
-### Exercise 16.4: Citations
+### Exercise 16.2: Practicing Thematic Analysis
 
-1. Create a `references.bib` file with 3 entries
-2. Cite them in your Introduction
-3. Add a References section
-4. Render and verify the bibliography appears correctly
+Read the following three interview excerpts from a hypothetical study about music and stress:
+
+**Participant A**: "When I'm really overwhelmed, I put on my headphones and just disappear. It's like the world goes away for a while. I don't even really listen to the words; it's more about the feeling of being wrapped up in sound."
+
+**Participant B**: "I always go to sad music when I'm upset. It sounds weird, but it makes me feel less alone. Like, someone else felt this too, and they made something beautiful out of it."
+
+**Participant C**: "For me it's about control. Everything in my life feels chaotic, but when I make a playlist, I'm choosing exactly what I hear. That feels powerful."
+
+**Tasks**:
+
+1. Generate 2-3 codes for each excerpt.
+2. Look across your codes. Do any cluster into a potential theme?
+3. Write a one-sentence theme statement that captures a pattern you see across two or more excerpts.
+4. Identify one follow-up question you would want to ask each participant based on what they said.
+
+---
+
+### Exercise 16.3: Evaluating Qualitative Research
+
+Find a published qualitative study in a communication journal. Evaluate it using Lincoln and Guba's four criteria:
+
+1. **Credibility**: Did the researcher use prolonged engagement, triangulation, member checking, or peer debriefing?
+2. **Transferability**: Is there enough thick description for you to judge whether findings apply to other contexts?
+3. **Dependability**: Is the analytical process documented clearly enough that you could follow the researcher's reasoning?
+4. **Confirmability**: Does the researcher acknowledge their positionality and interpretive lens?
+
+Write a 200-word evaluation.
+
+---
+
+### Exercise 16.4: Qualitative Complements to Quantitative Findings
+
+Consider the following hypothetical content analysis finding: "Songs that reference mental health topics have increased from 8% to 24% of Billboard Hot 100 hits between 2015 and 2024."
+
+Design a qualitative study that would complement this finding:
+
+1. What research question would you ask?
+2. Would you use interviews, focus groups, or both? Why?
+3. Who would your participants be? (Songwriters? Listeners? Music industry professionals?)
+4. What would qualitative data tell you that the content analysis cannot?
 
 ---
 
 ## Reflection Questions
 
-1. **Reproducibility Trade-offs**: Quarto requires more upfront learning than Word. Is the reproducibility worth it? For what kinds of projects would you choose Quarto over Word? When would Word be sufficient?
+1. **The Depth-Breadth Tradeoff**: Qualitative research sacrifices breadth (large samples, statistical generalization) for depth (rich understanding, contextualized meaning). When is this tradeoff worthwhile? When is it not?
 
-2. **The Automation Question**: When you automate table and figure generation, you lose manual control. What if you want a table formatted differently than the default? How do you balance automation's efficiency with customization needs?
+2. **Subjectivity as Resource**: This chapter argues that in qualitative research, the researcher's subjectivity is a resource rather than a threat. Do you find this persuasive? What are the risks of embracing subjectivity, and how do quality criteria (credibility, confirmability) address those risks?
 
-3. **Transparency**: Quarto makes your entire analysis visible and rerunnable. This is good for science but potentially uncomfortable for researchers (it exposes all decisions). Should all research code be shared publicly? Where's the line between transparency and privacy?
+3. **Methods and Questions**: Think about your research interest for this course. Is there a qualitative question lurking behind your quantitative project? If you could add an interview component, what would you ask, and who would you ask?
+
+4. **Paradigm Pluralism**: Chapter 5 introduced three paradigms (social scientific, interpretive, critical). This chapter operates primarily within the interpretive paradigm. Can you identify points where the critical paradigm would push qualitative research in a different direction, toward advocacy, power analysis, or social change?
 
 ---
 
 ## Chapter Summary
 
-This chapter taught reproducible document creation with Quarto:
+This chapter introduced qualitative research methods as standalone approaches to knowledge production:
 
-- **Quarto** integrates code, analysis, and narrative into reproducible documents
-- **Three components**: YAML metadata, Markdown text, R code chunks
-- **Advantages over Word**: Reproducibility, version control, automation, multi-format output
-- **Tables**: Create with `kable()`, auto-numbered with `tbl-cap`, reference with `@tbl-label`
-- **Figures**: Auto-numbered with `fig-cap`, reference with `@fig-label`
-- **Inline code**: Embed statistics in text with `` `r code` ``
-- **Citations**: Manage with BibTeX, cite with `@key`, auto-generate bibliography
-- **Multiple formats**: Same source → PDF (via LaTeX), HTML, or Word
-- **One-click reports**: Update entire document when data changes
-- **Chunk options**: Control visibility (`echo`), execution (`eval`), output (`include`)
-- **Cross-references**: Link to tables (`@tbl-`), figures (`@fig-`), sections (`@sec-`)
+- Qualitative research asks questions about **meaning, experience, and process** that quantitative methods cannot answer.
+- **In-depth interviews** use semi-structured conversation to explore participants' perspectives. Interview guides provide structure without rigidity. Rapport, active listening, and ethical sensitivity are essential skills (Brinkmann & Kvale, 2015; Seidman, 2019).
+- **Focus groups** use group interaction as data, revealing shared meanings, social norms, and collective sense-making that individual interviews may miss.
+- **Thematic analysis** (Braun & Clarke, 2006) provides a systematic six-phase process for identifying patterns in qualitative data: familiarization, coding, searching for themes, reviewing, defining, and writing up.
+- **Other approaches** (ethnography, narrative analysis, discourse analysis) offer specialized tools for specific research contexts.
+- **Quality criteria** for qualitative research (credibility, transferability, dependability, confirmability) parallel but differ from quantitative reliability and validity. They emphasize transparency, thick description, and reflexivity rather than replicability and statistical significance.
+- **Qualitative and quantitative methods are complementary**, not competing. The strongest research programs use both, and methodological literacy requires the ability to evaluate research from traditions other than your own.
 
 ---
 
 ## Key Terms
 
-- **BibTeX**: Citation format used by Quarto and LaTeX
-- **Code chunk**: Block of R code embedded in Quarto document
-- **Cross-reference**: Link to numbered table, figure, or section
-- **Inline code**: R code embedded within text (`` `r code` ``)
-- **Knit/Render**: Process of executing code and generating final document
-- **Markdown**: Lightweight markup language for formatting text
-- **Quarto**: Scientific publishing system combining code and narrative
-- **Reproducible document**: Document that can be regenerated from source code
-- **YAML**: Metadata format at top of Quarto documents (Yet Another Markup Language)
+- **Audit trail**: Documentation of methodological decisions and analytical reasoning for transparency
+- **Braun and Clarke's thematic analysis**: Six-phase qualitative analysis method for identifying patterns across data (Braun & Clarke, 2006)
+- **Confirmability**: Quality criterion asking whether findings reflect data rather than researcher bias
+- **Credibility**: Quality criterion asking whether findings are plausible and well-supported
+- **Dependability**: Quality criterion asking whether the research process is systematic and documented
+- **Discourse analysis**: Examination of how language constructs social reality and reproduces power relations
+- **Ethnography**: Prolonged immersion in a community to understand cultural practices and meanings
+- **Focus group**: Guided group discussion used to explore shared meanings and social dynamics
+- **In-depth interview**: Purposeful conversation between researcher and participant, guided by an interview guide
+- **Interview guide**: Set of questions and prompts structuring a semi-structured interview
+- **Member checking**: Sharing findings with participants to verify interpretive accuracy
+- **Narrative analysis**: Analysis of complete stories as units of meaning-making
+- **Probe**: Follow-up prompt encouraging participant elaboration
+- **Purposive sampling**: Selecting participants based on specific criteria relevant to the research question
+- **Saturation**: Point where new data produce no new themes or insights
+- **Semi-structured interview**: Interview using a guide with prepared questions but allowing flexible follow-up
+- **Thick description**: Rich contextual detail enabling readers to assess transferability
+- **Transferability**: Quality criterion asking whether findings may apply in other contexts
+- **Triangulation**: Using multiple data sources, methods, or researchers to cross-check findings
+
+---
+
+## References
+
+Braun, V., & Clarke, V. (2006). Using thematic analysis in psychology. *Qualitative Research in Psychology*, *3*(2), 77-101. https://doi.org/10.1191/1478088706qp063oa
+
+Brinkmann, S., & Kvale, S. (2015). *InterViews: Learning the craft of qualitative research interviewing* (3rd ed.). Sage.
+
+Creswell, J. W., & Creswell, J. D. (2023). *Research design: Qualitative, quantitative, and mixed methods approaches* (6th ed.). Sage.
+
+Seidman, I. (2019). *Interviewing as qualitative research: A guide for researchers in education and the social sciences* (5th ed.). Teachers College Press.
+
+---
+
+::: {.callout-note title="Graduate Extension" collapse="true"}
+
+**Required Reading**: Braun, V., & Clarke, V. (2006). Using thematic analysis in psychology. *Qualitative Research in Psychology*, *3*(2), 77-101. https://doi.org/10.1191/1478088706qp063oa
+
+**Prompt**: Braun and Clarke's 2006 article has become one of the most cited methods papers in the social sciences, in part because it provides an accessible, step-by-step guide to thematic analysis, and in part because it makes explicit what many qualitative researchers do implicitly. Their framework raises important questions about the relationship between data and theory, between description and interpretation, and between realist and constructionist epistemologies.
+
+1. Braun and Clarke distinguish between **semantic themes** (surface-level patterns in what participants say) and **latent themes** (underlying assumptions, ideologies, or conceptualizations that shape what participants say). How does this distinction parallel the manifest/latent content distinction in content analysis (Chapter 12)? When would you choose semantic over latent analysis, and vice versa?
+
+2. The authors argue that thematic analysis is "theoretically flexible," meaning it can be used within different epistemological frameworks (realist, constructionist, critical). Choose two of these frameworks and explain how the same dataset (e.g., interview transcripts about music and identity) would produce different themes depending on which framework guided the analysis.
+
+3. Conduct a mini thematic analysis. Select five songs from the course dataset. Read their lyrics as if they were interview transcripts (this is a thought experiment, not a literal claim that lyrics are equivalent to interview data). Apply Phases 1-3 of Braun and Clarke's process: familiarize yourself with the texts, generate initial codes, and search for themes. Document your process in Obsidian, including: a list of codes, the segments each code applies to, and at least two candidate themes with supporting evidence.
+
+4. Braun and Clarke have continued to develop their framework since 2006, publishing clarifications and critiques of how their work has been applied (and misapplied). One common misapplication is treating themes as pre-existing entities that "emerge" from the data, as if the researcher is a passive observer. Braun and Clarke argue instead that themes are *actively constructed* by the researcher through analytical work. What is the difference between these two positions, and why does it matter for how you report your findings?
+
+:::
 
 ---
 
 ## Looking Ahead
 
-Chapter 17 (Going Live) concludes the textbook with research dissemination and sharing. You've created a reproducible research report—now you'll learn to share it responsibly. This final chapter covers archiving data and code on the Open Science Framework and GitHub, writing abstracts and plain-language summaries for different audiences, creating online research portfolios, ethical considerations in sharing findings, and understanding open science practices. You'll learn how to make your work discoverable, reproducible, and impactful beyond the classroom.
+Part III is complete. You now have a conceptual understanding of four major research methods (content analysis, surveys, experiments, and qualitative approaches) and have executed one (content analysis) from immersion through pilot testing. Part IV shifts from method to analysis. Chapter 17 (Wrangling the Chaos) introduces R and the tidyverse, teaching you to import, clean, and transform your coded data into analysis-ready format. The skills shift from interpretive work (what do these songs mean?) to computational work (how do I organize and analyze the resulting data?).

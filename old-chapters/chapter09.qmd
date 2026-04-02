@@ -1,5 +1,5 @@
 ---
-title: "Chapter 13: Vibes to Variables"
+title: "Chapter 9: Vibes to Variables"
 ---
 
 ## Learning Objectives
@@ -12,21 +12,19 @@ title: "Chapter 13: Vibes to Variables"
 
 ---
 
-During immersion (Chapter 12), you developed what we might call "fluency" with the dataset. You listened to songs, read lyrics, noticed patterns, documented edge cases. You can now articulate observations like "this song feels empowering despite negative content" or "tempo seems to shape how sadness is experienced."
+During immersion (Chapter 8), you developed what we might call "fluency" with the dataset. You listened to songs, read lyrics, noticed patterns, documented edge cases. You can now articulate observations like "this song feels empowering despite negative content" or "tempo seems to shape how sadness is experienced."
 
 These are valuable insights. But they're not yet *measurable*.
 
-Research requires a translation step: converting intuitive impressions into concrete variables that can be coded systematically. This chapter teaches that translation, the disciplined process of moving from "vibes" (holistic, subjective observations) to "variables" (explicit, replicable measurements).
+Research requires a translation step: converting intuitive impressions into concrete variables that can be coded systematically. This chapter teaches that translation—the disciplined process of moving from "vibes" (holistic, subjective observations) to "variables" (explicit, replicable measurements).
 
-The challenge is doing this without losing the nuance you gained through immersion. Measurement always involves reduction, turning complex reality into simpler categories. The art is choosing reductions that preserve what matters while enabling systematic analysis.
-
-This challenge is not unique to music research. A political communication scholar who has immersed in news coverage of immigration must translate impressions like "this article feels sympathetic to immigrants" into a codable variable (e.g., "dominant frame: humanitarian vs. security vs. economic"). A health communication researcher who has read dozens of anti-smoking campaigns must translate "this ad feels more fear-based" into an operational category with explicit coding criteria. The translation from qualitative insight to quantitative measurement is the central methodological act of content analysis, regardless of domain.
+The challenge is doing this without losing the nuance you gained through immersion. Measurement always involves reduction—turning complex reality into simpler categories. The art is choosing reductions that preserve what matters while enabling systematic analysis.
 
 ## The Operationalization Gap
 
 Consider this observation from your immersion memos:
 
-> "Some songs are sad in a comforting way, like 'Someone Like You' by Adele. Others are sad in an uncomfortable way, like 'Hurt' by Nine Inch Nails. Both are 'negative' but they feel different."
+> "Some songs are sad in a comforting way—like 'Someone Like You' by Adele. Others are sad in an uncomfortable way—like 'Hurt' by Nine Inch Nails. Both are 'negative' but they feel different."
 
 This is a sophisticated qualitative insight. It recognizes that emotion has dimensions beyond positive/negative. But how do you turn this into a variable a coder can measure?
 
@@ -58,28 +56,19 @@ A conceptual definition draws on existing scholarship to clarify the abstract me
 
 This is still abstract. Two researchers reading this might operationalize it differently. That's where operational definitions come in.
 
-**Non-music example: News Frame**
-
-**Conceptual definition**: "The organizing principle that structures a news narrative by selecting and emphasizing certain aspects of a perceived reality while omitting others (Entman, 1993)."
-
-Again abstract. Two researchers could identify "frames" differently. Operationalization makes the identification replicable.
-
 ### Operational Definition
 
 **How exactly will I measure this in practice?**
 
 An operational definition is a precise recipe that another researcher could follow to replicate your measurement. It answers: "What counts as evidence?"
 
-**Operational definition for lyric sentiment (Option 1, Automated)**:
+**Operational definition (Option 1 - Automated)**:
 "Lyric sentiment calculated using the LIWC dictionary. Positive sentiment = percentage of words classified as 'positive emotion' by LIWC minus percentage classified as 'negative emotion.' Songs with scores > 0 are positive; scores < 0 are negative; scores = 0 are neutral."
 
-**Operational definition for lyric sentiment (Option 2, Human coding)**:
-"Two trained coders read complete lyrics while listening to the song. Coders assign an overall sentiment category (positive, negative, neutral, mixed) based on dominant emotional tone, considering lyric content, delivery, and musical context. Disagreements resolved through discussion. Inter-coder reliability (Cohen's kappa) must exceed .70."
+**Operational definition (Option 2 - Human coding)**:
+"Two trained coders read complete lyrics while listening to the song. Coders assign an overall sentiment category (positive, negative, neutral, mixed) based on dominant emotional tone, considering lyric content, delivery, and musical context. Disagreements resolved through discussion. Inter-coder reliability (Cohen's κ) must exceed .70."
 
-**Operational definition for news frame (Human coding)**:
-"Two trained coders read each article and identify the dominant frame from a predefined list (e.g., humanitarian, security, economic, legal). The dominant frame is the one that receives the most space, appears in the headline or lead paragraph, or structures the overall narrative. Disagreements resolved through discussion. Inter-coder reliability (Krippendorff's alpha) must exceed .80."
-
-Notice that all options provide step-by-step procedures. A stranger could follow these instructions and measure the same thing you measured.
+Notice both options provide step-by-step procedures. A stranger could follow these instructions and measure the same thing you measured.
 
 ### The Operationalization Table
 
@@ -94,7 +83,7 @@ Create a systematic record of all your variables in Obsidian.
 |----------|----------------------|------------------------|-------|-------|
 | **Lyric Sentiment** | Emotional valence expressed in lyrics | Human coders rate overall tone as Positive, Negative, Neutral, or Mixed after reading lyrics and listening to song | Nominal | See codebook for decision rules on mixed/ambiguous cases |
 | **Tempo** | Speed of the musical beat | Beats per minute (BPM) as reported by Spotify API or measured using audio analysis software | Ratio | True zero exists (0 BPM = no tempo) |
-| **Chart Performance** | Commercial success | Peak position on Billboard Hot 100 (1 = highest success, 100 = lowest) | Ordinal | Lower number = better performance, but intervals not equal |
+| **Chart Performance** | Commercial success | Peak position on Billboard Hot 100 (1 = highest success, 100 = lowest) | Ordinal | Lower number = better performance, but intervals not equal (difference between #1 and #2 not same as #99 and #100) |
 | **Arousal** | Intensity of emotional activation | 7-point Likert scale: "This song makes me feel energized" (1=Strongly Disagree, 7=Strongly Agree) | Ordinal | Treat as interval for analysis but technically ordinal |
 ```
 
@@ -110,22 +99,18 @@ The acronym **NOIR** helps remember the four levels: **N**ominal, **O**rdinal, *
 
 **Nominal variables** classify observations into discrete categories with no inherent ranking.
 
-**Examples in research**:
-
+**Examples in music research**:
 - Genre (pop, rock, hip-hop, country)
 - Artist gender (male, female, non-binary, group)
-- News frame type (episodic, thematic, human interest)
-- Advertising appeal (emotional, rational, fear-based)
+- Song language (English, Spanish, Korean, etc.)
 - Presence of profanity (yes, no)
 
 **What you can do**:
-
 - Count frequencies ("30% of songs are hip-hop")
 - Calculate mode (most common category)
 - Test for association (chi-square test)
 
 **What you cannot do**:
-
 - Calculate mean (average of "pop" and "rock" makes no sense)
 - Rank categories (pop isn't "higher" than rock)
 
@@ -135,22 +120,19 @@ The acronym **NOIR** helps remember the four levels: **N**ominal, **O**rdinal, *
 
 **Ordinal variables** have a meaningful order, but the distance between ranks isn't consistent.
 
-**Examples in research**:
-
+**Examples in music research**:
 - Chart position (#1, #2, #3... #100)
 - Education level (high school, bachelor's, master's, PhD)
 - Likert scales ("How much do you like this song?" 1=Not at all, 5=Very much)
 - Lyric complexity (low, medium, high)
 
 **What you can do**:
-
 - Rank observations (Song A charted higher than Song B)
 - Calculate median (middle value)
 - Use rank-based statistics (Spearman correlation)
 
 **What you cannot do (strictly)**:
-
-- Calculate meaningful means (the "average" of #1 and #100 isn't #50.5 in any meaningful sense; the interval between #1 and #2 represents a bigger competitive difference than #99 and #100)
+- Calculate meaningful means (the "average" of #1 and #100 isn't #50.5 in any meaningful sense—the interval between #1 and #2 represents a bigger competitive difference than #99 and #100)
 
 **Important note on Likert scales**: Researchers often treat multi-item Likert scales as interval-level when computing means, though technically they're ordinal. This is accepted practice when using validated scales with multiple items.
 
@@ -161,49 +143,42 @@ The acronym **NOIR** helps remember the four levels: **N**ominal, **O**rdinal, *
 **Classic example**: Temperature in Fahrenheit or Celsius. 0°F doesn't mean "no temperature exists." It's just a point on the scale.
 
 **Rare in communication research**, but examples might include:
-
 - Standardized test scores (SAT, IQ)
 - Some attitude scales with equal intervals by design
 
 **What you can do**:
-
 - Calculate mean, standard deviation
 - Use parametric statistics (t-tests, ANOVA, correlation, regression)
 
 **What you cannot do**:
-
 - Calculate ratios (60°F is not "twice as hot" as 30°F)
 
 ### Ratio: Equal Intervals Plus True Zero
 
 **Ratio variables** have all the properties of interval variables plus a meaningful zero point representing true absence.
 
-**Examples in research**:
-
+**Examples in music research**:
 - Tempo (BPM): 0 BPM = no tempo
 - Song length (seconds): 0 seconds = no song
 - Number of streams: 0 streams = no one listened
 - Word count in lyrics: 0 words = instrumental
-- Number of sources cited in a news article: 0 = no sources
 
 **What you can do**:
-
 - Everything from lower levels plus ratios
 - Say "Song A is twice as long as Song B" (meaningful because zero exists)
 
-**Most count variables are ratio-level**: followers, plays, messages, words, articles.
+**Most count variables are ratio-level**: followers, plays, messages, words.
 
 ### Why Levels Matter
 
 Higher levels of measurement enable more powerful statistical tests.
 
 **Example**: If you measure "lyric complexity" as:
-
 - **Nominal** (simple vs. complex): You can only test association (chi-square)
 - **Ordinal** (low, medium, high): You can rank and use non-parametric tests
 - **Ratio** (Flesch-Kincaid reading level score): You can calculate correlations, run regressions, test for linear relationships
 
-The measurement level you choose shapes what questions you can answer. This applies whether your variables describe songs, news articles, advertisements, or social media posts.
+The measurement level you choose shapes what questions you can answer.
 
 ## Reliability and Validity: The Quality of Measurement
 
@@ -230,17 +205,15 @@ Does the measure produce consistent results when repeated?
 When a variable is measured using multiple items (like a multi-question survey scale), do those items correlate with each other?
 
 **Example**: A "parasocial attachment" scale has 5 questions:
-
 1. "I feel like I know [artist] personally."
 2. "[Artist] is like a friend to me."
 3. "I think about [artist] even when not listening to their music."
 4. "I would be upset if [artist] retired."
 5. "I feel connected to [artist]."
 
-If all 5 questions are measuring the same underlying construct (parasocial attachment), people who score high on Q1 should also score high on Q2-Q5.
+If all 5 questions are measuring the same underlying construct (parasocial attachment), people who score high on Q1 should also score high on Q2-Q5. 
 
-**Statistic**: **Cronbach's alpha (α)** measures internal consistency.
-
+**Statistic**: **Cronbach's alpha (α)** measures internal consistency. 
 - α ≥ .80 = Good
 - α = .70-.79 = Acceptable
 - α < .70 = Questionable
@@ -252,18 +225,13 @@ When human coders apply a coding scheme, do they agree?
 **Example**: Two coders independently classify 100 song lyrics as positive, negative, or neutral. If they agree on 85 of the 100 songs, there's some reliability, but you must account for chance agreement.
 
 **Statistics**:
-
-- **Cohen's kappa (κ)** (Cohen, 1960): For two coders, corrects for chance agreement. This is the most widely used reliability statistic for two-coder designs. Kappa answers the question: "How much better is agreement than what we'd expect by random chance alone?"
-
-- **Krippendorff's alpha (α)** (Hayes & Krippendorff, 2007): For any number of coders, any level of measurement. This is the gold standard, particularly recommended for content analysis in communication research. It handles missing data, works with nominal, ordinal, interval, and ratio variables, and is more conservative than kappa.
+- **Cohen's Kappa (κ)**: For two coders, corrects for chance agreement
+- **Krippendorff's Alpha (α)**: For any number of coders, any level of measurement. Gold standard.
 
 **Benchmarks**:
-
 - κ or α ≥ .80 = Excellent
 - κ or α = .70-.79 = Acceptable
 - κ or α < .70 = Unreliable (revise codebook, retrain coders)
-
-Lombard, Snyder-Duch, and Bracken (2002) surveyed published content analyses in communication journals and found that many studies failed to report intercoder reliability at all, or reported it using metrics that don't account for chance agreement (such as simple percent agreement). Their recommendations for standardized reliability reporting have become the field's benchmark.
 
 ### Validity: Accuracy
 
@@ -285,7 +253,7 @@ Does the measure appear to assess the intended concept on the surface?
 
 Does the measure cover all relevant aspects of the concept?
 
-**Example**: If "music emotion" includes both valence (positive/negative) and arousal (high/low energy), a measure that only captures valence lacks content validity; it's incomplete. Similarly, a "media bias" coding scheme that measures only political direction (left/right) but ignores sourcing patterns, story selection, and language tone lacks content validity.
+**Example**: If "music emotion" includes both valence (positive/negative) and arousal (high/low energy), a measure that only captures valence lacks content validity—it's incomplete.
 
 **3. Criterion-Related Validity**
 
@@ -294,12 +262,10 @@ Does the measure relate to external criteria as expected?
 **Two subtypes**:
 
 **Predictive validity**: Does the measure predict future outcomes?
-
 - Example: Do songs with high "catchiness" scores achieve higher streaming numbers in the week after release?
 
 **Concurrent validity**: Does the measure correlate with an established measure of the same construct?
-
-- Example: Does your custom sentiment coding correlate with LIWC automated sentiment scores? Does your news frame coding agree with an established framing typology from the literature?
+- Example: Does your custom sentiment coding correlate with LIWC automated sentiment scores?
 
 **4. Construct Validity**
 
@@ -307,8 +273,7 @@ Does the measure behave as theory predicts across multiple studies and contexts?
 
 This is the most comprehensive form of validity. It asks: "Does this measure relate to other variables the way our theory says it should?"
 
-**Example**: If Uses & Gratifications Theory (Katz, Blumler, & Gurevitch, 1973) predicts that people with high stress seek out calming music, then:
-
+**Example**: If Uses & Gratifications Theory predicts that people with high stress seek out calming music, then:
 - Your "musical calmness" measure should correlate positively with preference for low-tempo, acoustic songs
 - It should correlate negatively with preference for high-energy, aggressive music
 - People with high stress should score higher on preference for calming music
@@ -320,7 +285,6 @@ If these predictions hold, you have construct validity evidence.
 **Critical principle**: Reliability is *necessary but not sufficient* for validity.
 
 A measure can be:
-
 - **Reliable but not valid**: A bathroom scale consistently shows 10 lbs too light. Consistent, but wrong.
 - **Valid but not reliable**: A scale shows accurate weight on average but fluctuates randomly. Right on average, but inconsistent.
 - **Neither**: A broken scale that's both inconsistent and inaccurate.
@@ -346,7 +310,7 @@ A measure can be:
 
 **Example**: "I'll measure song quality by chart position."
 
-**Issue**: Chart position reflects commercial success, which depends on marketing, radio play, playlist placement, and timing, not just intrinsic quality. Conflating commercial success with quality is theoretically problematic.
+**Issue**: Chart position reflects commercial success, which depends on marketing, radio play, playlist placement, and timing—not just intrinsic quality. Conflating commercial success with quality is theoretically problematic.
 
 **Fix**: Either defend the proxy ("Commercial success is one valid indicator of quality as judged by aggregate listener preference") or measure quality directly (expert ratings, listener evaluations).
 
@@ -372,7 +336,7 @@ A measure can be:
 
 ## From Immersion to Operationalization: A Worked Example
 
-Let's trace how immersion (Chapter 12) informs operationalization (this chapter).
+Let's trace how immersion (Chapter 8) informs operationalization (this chapter).
 
 ### Step 1: Immersion Observation
 
@@ -389,17 +353,14 @@ This leads you to conceptualize sentiment as **multi-dimensional**:
 ### Step 3: Operationalization
 
 **Variable 1: Lyric Valence**
-
 - **Operational definition**: "Coders read lyrics and assign dominant emotional tone: Positive (joy, love, hope), Negative (sadness, anger, fear), Neutral (factual, observational), Mixed (equal presence of positive and negative)."
 - **Level**: Nominal
 
 **Variable 2: Emotional Intensity**
-
 - **Operational definition**: "Coders rate on 3-point scale: Low (calm, subdued), Medium (moderate emotion), High (intense, passionate). Consider word choice, exclamation, repetition, and thematic focus."
 - **Level**: Ordinal
 
 **Decision Rules** (informed by edge cases documented during immersion):
-
 - If valence is ambiguous, default to "Mixed" rather than forcing a choice
 - Intensity based on lyric content, not musical delivery
 - Sarcasm coded based on overall tone if clear from context
@@ -415,7 +376,7 @@ This leads you to conceptualize sentiment as **multi-dimensional**:
 
 ## Practice: Building Your Operationalization Table
 
-### Exercise 13.1: Writing Definitions
+### Exercise 9.1: Writing Definitions
 
 For each concept, write both a conceptual and operational definition:
 
@@ -439,17 +400,7 @@ For each concept, write both a conceptual and operational definition:
 
 ---
 
-**Concept: News Source Diversity** (non-music)
-
-**Conceptual definition**: _______________
-
-**Operational definition**: _______________
-
-**Level of measurement**: _______________
-
----
-
-### Exercise 13.2: Identifying Measurement Levels
+### Exercise 9.2: Identifying Measurement Levels
 
 Classify each variable by its level of measurement (Nominal, Ordinal, Interval, Ratio):
 
@@ -459,12 +410,10 @@ Classify each variable by its level of measurement (Nominal, Ordinal, Interval, 
 4. Song length in seconds: _______________
 5. Billboard chart position (#1, #2, #3...): _______________
 6. Presence of explicit content warning (yes/no): _______________
-7. Number of sources quoted in a news article: _______________
-8. Dominant news frame (episodic, thematic, human interest): _______________
 
 ---
 
-### Exercise 13.3: Evaluating Reliability
+### Exercise 9.3: Evaluating Reliability
 
 A student creates a "lyric positivity" measure with these items:
 
@@ -482,7 +431,7 @@ A student creates a "lyric positivity" measure with these items:
 
 ---
 
-### Exercise 13.4: Validity Assessment
+### Exercise 9.4: Validity Assessment
 
 A researcher operationalizes "song catchiness" as "number of times the chorus repeats."
 
@@ -494,12 +443,11 @@ A researcher operationalizes "song catchiness" as "number of times the chorus re
 
 ---
 
-### Exercise 13.5: Creating Your Operationalization Table
+### Exercise 9.5: Creating Your Operationalization Table
 
 Using your research question from Chapter 7, create an operationalization table with at least 3 variables.
 
 For each variable:
-
 1. Write conceptual definition
 2. Write operational definition (specific enough for a stranger to replicate)
 3. Identify level of measurement
@@ -509,13 +457,11 @@ For each variable:
 
 ## Reflection Questions
 
-1. **The Reduction Problem**: All measurement involves reducing complexity. When you code lyric sentiment as "positive, negative, or neutral," you lose nuance: songs that are bittersweet, nostalgic, or ambiguous get forced into categories. How do you decide what's an acceptable loss? When does reduction become distortion?
+1. **The Reduction Problem**: All measurement involves reducing complexity. When you code lyric sentiment as "positive, negative, or neutral," you lose nuance—songs that are bittersweet, nostalgic, or ambiguous get forced into categories. How do you decide what's an acceptable loss? When does reduction become distortion?
 
 2. **The Proxy Dilemma**: Often we can't measure what we truly care about, so we measure proxies. "Chart position" is a proxy for "cultural impact." "Social media followers" is a proxy for "influence." When is a proxy good enough, and when does it mislead?
 
 3. **Your Variables**: Look at your operationalization table. For each variable, ask: If I measure this perfectly, will it actually tell me what I want to know? Is the operational definition capturing the conceptual definition, or have I inadvertently changed the question?
-
-4. **Operationalization Across Domains**: Take one of the variables from your operationalization table and imagine applying the same logic to a non-music study. If you operationalized "lyric sentiment," how would you operationalize "headline sentiment" or "advertising tone" for a different content analysis? What would change, and what would stay the same?
 
 ---
 
@@ -530,7 +476,6 @@ This chapter taught the translation from qualitative observation to quantitative
 - **Levels of measurement (NOIR)**: Nominal (categories), Ordinal (ranked), Interval (equal intervals, arbitrary zero), Ratio (equal intervals, true zero)
 - Higher measurement levels enable more sophisticated statistical analyses
 - **Reliability** = consistency (test-retest, internal consistency, inter-coder agreement)
-  - Cohen's kappa (Cohen, 1960) for two coders; Krippendorff's alpha (Hayes & Krippendorff, 2007) as the gold standard
 - **Validity** = accuracy (face, content, criterion-related, construct)
 - **Reliability is necessary but not sufficient** for validity
 - Common mistakes: conflating concepts, unjustified proxies, oversimplification, unmeasurable definitions
@@ -541,7 +486,6 @@ This chapter taught the translation from qualitative observation to quantitative
 ## Key Terms
 
 - **Conceptual definition**: Abstract, theoretical meaning of a variable
-- **Cohen's kappa (κ)**: Reliability statistic for two coders that corrects for chance agreement (Cohen, 1960)
 - **Construct validity**: Evidence that a measure relates to other variables as theory predicts
 - **Content validity**: Evidence that a measure covers all relevant dimensions of a concept
 - **Criterion-related validity**: Evidence that a measure relates to external criteria as expected
@@ -550,7 +494,6 @@ This chapter taught the translation from qualitative observation to quantitative
 - **Internal consistency**: Reliability assessed by correlation among multiple items measuring same construct
 - **Inter-coder reliability**: Agreement between independent coders
 - **Interval level**: Equal intervals between values, no true zero
-- **Krippendorff's alpha (α)**: Reliability statistic for any number of coders and measurement levels; gold standard for content analysis (Hayes & Krippendorff, 2007)
 - **Level of measurement**: Mathematical properties of a variable (NOIR)
 - **Nominal level**: Categories without inherent order
 - **Operational definition**: Precise, replicable procedure for measuring a variable
@@ -559,48 +502,10 @@ This chapter taught the translation from qualitative observation to quantitative
 - **Ratio level**: Equal intervals plus true zero point
 - **Reliability**: Consistency of measurement
 - **Test-retest reliability**: Consistency when measure is repeated over time
-- **Validity**: Accuracy: whether a measure captures the intended concept
-
----
-
-## References
-
-Cohen, J. (1960). A coefficient of agreement for nominal scales. *Educational and Psychological Measurement*, *20*(1), 37-46. https://doi.org/10.1177/001316446002000104
-
-Entman, R. M. (1993). Framing: Toward clarification of a fractured paradigm. *Journal of Communication*, *43*(4), 51-58. https://doi.org/10.1111/j.1460-2466.1993.tb01304.x
-
-Hayes, A. F., & Krippendorff, K. (2007). Answering the call for a standard reliability measure for coding data. *Communication Methods and Measures*, *1*(1), 77-89. https://doi.org/10.1080/19312450709336664
-
-Katz, E., Blumler, J. G., & Gurevitch, M. (1973). Uses and gratifications research. *Public Opinion Quarterly*, *37*(4), 509-523. https://doi.org/10.1086/268109
-
-Lombard, M., Snyder-Duch, J., & Bracken, C. C. (2002). Content analysis in mass communication: Assessment and reporting of intercoder reliability. *Human Communication Research*, *28*(4), 587-604. https://doi.org/10.1111/j.1468-2958.2002.tb00826.x
-
----
-
-::: {.callout-note title="Graduate Extension" collapse="true"}
-
-**Required Reading**: Lombard, M., Snyder-Duch, J., & Bracken, C. C. (2002). Content analysis in mass communication: Assessment and reporting of intercoder reliability. *Human Communication Research*, *28*(4), 587-604. https://doi.org/10.1111/j.1468-2958.2002.tb00826.x
-
-**Prompt**: Lombard, Snyder-Duch, and Bracken surveyed published content analyses in communication journals and found widespread problems in how researchers reported (or failed to report) intercoder reliability. Their article has become the field's standard reference for reliability reporting practices.
-
-1. What are the most common reliability reporting failures Lombard et al. identified? Which problems do you find most concerning, and why?
-
-2. Lombard et al. distinguish between several reliability metrics: percent agreement, Scott's pi, Cohen's kappa, and Krippendorff's alpha. Why do they argue that percent agreement alone is insufficient? What does chance agreement mean in practical terms, and why must it be accounted for?
-
-3. The authors recommend that researchers report reliability for *every variable* in their codebook, not just the primary variable of interest. Why does this matter? What could go wrong if a researcher reports reliability only for their main variable while ignoring secondary variables?
-
-4. Review three recent content analysis studies from communication journals (published within the past five years). For each, evaluate:
-   - Was intercoder reliability reported? For all variables or only some?
-   - Which metric was used? Does it account for chance agreement?
-   - Were reliability values above the recommended thresholds?
-   - Was the size and composition of the reliability subsample described?
-
-5. Based on your reading, write a 200-word "reliability reporting plan" for your own study. Specify: which metric you will use, what threshold you will require, how many cases will be double-coded, and how you will report the results in your methods section.
-
-:::
+- **Validity**: Accuracy—whether a measure captures the intended concept
 
 ---
 
 ## Looking Ahead
 
-Chapter 14 (The Rulebook) transforms your operational definitions into a complete **codebook**, the instruction manual for human coders. You'll learn to write decision rules for edge cases, ensure categories are exhaustive and mutually exclusive, and structure the codebook so that independent coders can apply it consistently. The immersion (Chapter 12) gave you understanding; operationalization (this chapter) gave you variables; the codebook (Chapter 14) will give you the systematic rules that make coding reliable and replicable.
+Chapter 10 (The Rulebook) transforms your operational definitions into a complete **codebook**—the instruction manual for human coders. You'll learn to write decision rules for edge cases, ensure categories are exhaustive and mutually exclusive, and structure the codebook so that independent coders can apply it consistently. The immersion (Chapter 8) gave you understanding; operationalization (this chapter) gave you variables; the codebook (Chapter 10) will give you the systematic rules that make coding reliable and replicable.

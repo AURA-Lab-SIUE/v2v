@@ -1,465 +1,422 @@
 ---
-title: "Chapter 11: The Pilot Test"
+title: "Chapter 11: Designing Experiments"
 ---
 
 ## Learning Objectives
 
-- Apply a codebook to a subsample of data systematically
-- Calculate and interpret inter-coder reliability statistics
-- Identify sources of disagreement between coders
-- Revise codebook rules based on pilot testing results
-- Understand when reliability is "good enough" to proceed
-- Document the iterative refinement process
+- Understand the three requirements for establishing causation
+- Identify the key components of experimental design: independent variable, dependent variable, random assignment, and control group
+- Distinguish between pre-experimental, true experimental, and quasi-experimental designs
+- Recognize threats to internal and external validity
+- Evaluate published experiments for the strength of their causal claims
+- Connect the ethics of experimentation to the principles established in Chapter 8
 
 ---
 
-You've built a codebook. It looks comprehensive. The categories are exhaustive and mutually exclusive. The decision rules address every edge case you documented during immersion. On paper, it's solid.
+Here is a question that seems simple: Does listening to sad music make people sadder?
 
-But you won't know if it actually works until you test it.
+You could ask people. Survey 500 listeners: "When you listen to sad music, does it make you feel sad?" Most would probably say yes. But self-report is unreliable here. People may not accurately perceive their own emotional shifts. They may confuse the mood they brought to the music with the mood the music produced. And the question itself primes the answer: if you ask someone whether sad music makes them sad, you've essentially told them the expected response.
 
-This is the uncomfortable truth about codebook development: the first version is never the final version. No matter how carefully you've anticipated ambiguities, real coding reveals problems you didn't foresee. Coders interpret rules differently. Categories that seemed distinct on paper overlap in practice. Decision rules that felt clear turn out to be vague.
+You could observe behavior. Track Spotify listening patterns and correlate them with mood data from a wearable device. If people who listen to more sad music also register lower mood scores, you might have something. But you'd also have the self-selection problem: maybe people who are already sad choose sad music to match their mood. The music didn't cause the sadness; the sadness caused the music choice. Correlation, no matter how robust, cannot untangle the direction.
 
-The pilot test is where theory meets reality—and where you discover what needs fixing.
+To answer this question with confidence, you need an experiment. You need to take a group of people, randomly split them into two conditions, play sad music for one group and neutral music for the other, and measure mood afterward. If the sad-music group is measurably sadder than the neutral-music group, and the only difference between the groups was the music they heard, you have evidence that the music caused the mood change.
 
-## Why Pilot Testing Matters
+This is the logic of experimental design, and it is the only method that can establish causation. Content analysis tells you what's in the message. Surveys tell you what people think. Qualitative methods tell you what things mean. Experiments tell you what causes what.
 
-Consider two scenarios:
+## The Three Requirements for Causation
 
-**Scenario A (No Pilot Test)**:
+Establishing that X causes Y requires meeting three conditions. All three must hold simultaneously; meeting only one or two is insufficient.
 
-You code all 200 songs using your codebook. Halfway through, you realize a problem: many songs don't fit your "positive/negative/neutral" scheme cleanly. You've been making inconsistent judgment calls. But you can't go back and recode everything—you're already 100 songs in. Your data is unreliable, and you don't discover this until analysis reveals nonsensical patterns.
+### 1. Covariation
 
-**Scenario B (With Pilot Test)**:
+X and Y must be related. When X changes, Y changes. If you increase the dosage, the symptoms decrease. If you change the frame, the attitude shifts. Without covariation, there is no relationship to explain.
 
-You code 30 songs. A second coder independently codes the same 30. You compare. Agreement is only 65%—below acceptable standards. You meet, discuss disagreements, and discover the problem: your definition of "mixed" sentiment is vague. You revise the codebook, adding clearer decision rules and examples. You test again on 20 new songs. Agreement rises to 82%. You proceed to full coding with confidence.
+But covariation alone proves nothing about causation. Ice cream sales and drowning deaths covary across months: both increase in summer. Ice cream does not cause drowning. A third variable (hot weather) causes both.
 
-The pilot test costs time upfront but saves far more time than it costs. It's the difference between discovering problems when they're fixable versus discovering them when they're catastrophic.
+### 2. Temporal Precedence
 
-## The Pilot Testing Process
+The cause must precede the effect. X must happen before Y. If you want to claim that sad music causes sadness, you must show that the music came first and the sadness followed. This seems obvious, but it's precisely what cross-sectional surveys cannot establish. When a survey finds that heavy news consumers hold more fearful attitudes about crime, it cannot determine whether news consumption caused the fear or whether fearful people seek out crime news. Both happened simultaneously from the survey's perspective.
 
-### Step 1: Select a Representative Subsample
+Experiments solve temporal precedence by design: the researcher introduces X (the manipulation) and then measures Y (the outcome). The sequence is built into the procedure.
 
-Don't pilot test on your easiest cases. Choose a subsample that represents the diversity and complexity of your full dataset.
+### 3. Elimination of Alternative Explanations
 
-**For a 200-song dataset**, a good pilot sample might be:
+Even if X and Y covary and X precedes Y, some third variable might be causing both. The summer-weather variable causes both ice cream sales and drowning. A personality trait (neuroticism) might cause both heavy news consumption and fearful attitudes.
 
-- **30-40 songs** total (15-20% of full dataset)
-- Stratified to include:
-  - Different time periods (if your dataset spans years)
-  - Different chart positions (top 10, middle, lower)
-  - Different genres (if coding genre)
-  - Known edge cases from your immersion phase
-  - A few "easy" prototypical examples for each category
-  - Several ambiguous cases
+Experiments address this through **random assignment**: participants are assigned to conditions by chance (typically a random number generator), not by choice. When assignment is truly random, the groups are statistically equivalent on all characteristics, observed and unobserved, before the manipulation. Any difference between groups after the manipulation can therefore be attributed to the manipulation itself, because the groups started out the same.
 
-**Why include edge cases?** Because that's where disagreements happen. If your pilot sample contains only straightforward cases, you'll get falsely high reliability and won't identify the problems lurking in ambiguous data.
+This is the decisive advantage of experimentation over every other method. Random assignment eliminates alternative explanations, not by measuring and controlling for confounds one by one (which surveys attempt through statistical controls), but by distributing all possible confounds equally across conditions.
 
-**Document your sampling**:
+## The Anatomy of an Experiment
 
-```markdown
-# Pilot Test Sample Selection
+Every experiment shares four core components.
 
-**Total pilot sample**: 30 songs
+### The Independent Variable (IV): What You Manipulate
 
-**Sampling strategy**:
-- 10 songs randomly selected from 2015-2017
-- 10 songs randomly selected from 2018-2020
-- 10 songs randomly selected from 2021-2024
+The IV is the factor the researcher deliberately varies across conditions. It is the hypothesized cause.
 
-**Includes**:
-- 5 songs from top 10 peak positions
-- 5 songs from #11-50
-- Known edge cases: "Good 4 U" (Rodrigo), "Pumped Up Kicks" (Foster the People)
+**Examples**:
 
-**Date selected**: Feb 20, 2026
-```
+- News frame type (episodic vs. thematic)
+- Music tempo (fast vs. slow)
+- Advertising appeal (emotional vs. rational)
+- Message source (expert vs. peer)
+- Song lyric sentiment (positive vs. negative vs. neutral)
 
-### Step 2: Independent Coding
+The IV must have at least two levels (conditions). Some experiments use more. A study might compare three framing conditions (episodic, thematic, and no-frame control) to assess whether any framing differs from a baseline.
 
-**Critical rule**: Coders must work independently. No discussion, no collaboration, no checking each other's work until coding is complete.
+### The Dependent Variable (DV): What You Measure
 
-Why? Because inter-coder reliability measures *agreement without coordination*. If coders discuss cases before coding, you're measuring their ability to remember what they agreed on, not whether the codebook is clear enough to guide independent judgment.
+The DV is the outcome the researcher measures. It is the hypothesized effect.
 
-**Workflow for two coders**:
+**Examples**:
 
-1. **Both coders** receive:
-   - The codebook (identical version)
-   - The list of 30 songs in the pilot sample
-   - A blank coding sheet
+- Self-reported mood (measured by survey items after exposure)
+- Policy support (measured by agreement with spending proposals)
+- Information recall (measured by quiz performance)
+- Behavioral intention (measured by willingness to donate, purchase, or share)
+- Physiological response (measured by heart rate, skin conductance)
 
-2. **Independently**, each coder:
-   - Listens to each song
-   - Reads the lyrics
-   - Applies the codebook rules
-   - Records codes in their coding sheet
+The DV must be measured the same way across all conditions. If one group completes a paper survey and another completes an online survey, differences in responses might reflect measurement mode rather than the experimental manipulation.
 
-3. **No communication** until both have finished all 30 songs
+### Random Assignment: The Engine of Causation
 
-**Coding sheet format** (simple spreadsheet or CSV):
+Each participant is assigned to a condition by chance. This ensures that the groups are comparable before the manipulation. Without random assignment, the experiment is not a true experiment; it is a quasi-experiment (discussed below), and its causal claims are weaker.
 
-```
-| Song_ID | Song_Title | Artist | Coder_ID | Lyric_Sentiment | Emotional_Intensity | Notes |
-|---------|------------|--------|----------|-----------------|---------------------|-------|
-| 001 | Happy | Pharrell | Coder_A | Positive | Medium | Clear case |
-| 001 | Happy | Pharrell | Coder_B | Positive | Medium | |
-| 002 | Someone Like You | Adele | Coder_A | Negative | Medium | |
-| 002 | Someone Like You | Adele | Coder_B | Negative | High | Intensity judgment difficult |
-```
+**The logic**: If you randomly assign 200 participants to two conditions, the groups will be approximately equal in age, gender, personality, prior attitudes, media habits, and every other variable, both the ones you measured and the ones you didn't. This isn't guaranteed for any individual participant (one group might have slightly more women), but across many participants, the randomization averages out differences. When the groups differ on the DV after the manipulation, the manipulation is the most parsimonious explanation.
 
-Notice the structure: Each song gets two rows (one per coder). This makes comparison straightforward.
+### The Control Group: The Counterfactual
 
-### Step 3: Calculate Inter-Coder Reliability
+The **control group** receives no manipulation (or a neutral/placebo version). It represents what would have happened without the experimental treatment.
 
-Once both coders have finished, compare their codes. How often did they agree?
+In a study testing whether sad music decreases mood:
 
-**Simple percent agreement** is a starting point:
+- **Experimental group**: Listens to a sad song
+- **Control group**: Listens to a neutral song (or sits in silence)
 
-```
-Agreement = (Number of cases where coders agreed) / (Total cases)
-```
+Comparing the experimental group's mood to the control group's mood tells you whether the sad music produced a change *relative to baseline*. Without a control group, you'd know only that the experimental group felt sad after listening, but you wouldn't know whether they felt sad before listening too.
 
-**Example**:
-- 30 songs coded
-- Coders agreed on Lyric Sentiment for 24 songs
-- Agreement = 24/30 = 80%
+## Types of Experimental Designs
 
-**But percent agreement is flawed**: It doesn't account for chance agreement. If you have only two categories (positive/negative), coders could agree 50% of the time by random chance alone.
+Experiments vary in rigor. Campbell and Stanley (1963) provided the foundational classification, which remains standard in social science methods training.
 
-**Better metrics correct for chance**:
+### Pre-Experimental Designs (Weak)
 
-#### Cohen's Kappa (κ)
+These designs lack random assignment, a control group, or both. They are common in informal research but cannot support strong causal claims.
 
-**Use when**: Two coders, nominal or ordinal data
+**One-shot case study**: Expose a group to the treatment, then measure the outcome. No comparison group. No pretest.
 
-**Formula** (conceptual):
-```
-κ = (Observed agreement - Expected agreement by chance) / (1 - Expected agreement by chance)
-```
+*Example*: Show participants a public service announcement about mental health and then measure their attitudes. Did the PSA change attitudes? You can't know, because you don't know what attitudes were before exposure and you have no comparison group.
 
-**Interpretation**:
-- κ = 1.0: Perfect agreement
-- κ = 0.80-1.0: Excellent agreement
-- κ = 0.70-0.79: Acceptable agreement
-- κ = 0.60-0.69: Questionable; revise codebook
-- κ < 0.60: Poor; major revisions needed
+**One-group pretest-posttest**: Measure the outcome before and after the treatment for the same group. No comparison group.
 
-**Example**:
+*Example*: Measure students' attitudes toward mental health, show them a documentary about depression, then measure attitudes again. If attitudes improved, was it the documentary? Or did something else happen between pretest and posttest (a news event, a class discussion, simply becoming more comfortable with the researcher)?
 
-For Lyric Sentiment (4 categories: Positive, Negative, Neutral, Mixed):
-- Observed agreement: 80%
-- Expected agreement by chance: ~28% (calculated based on marginal distributions)
-- κ = (0.80 - 0.28) / (1 - 0.28) = 0.52 / 0.72 = **0.72**
+### True Experimental Designs (Strong)
 
-**Interpretation**: Acceptable, but close to the threshold. Some revisions likely needed.
+These designs include random assignment and at least one control group.
 
-#### Krippendorff's Alpha (α)
+**Posttest-only control group design**: Randomly assign participants to conditions. Administer the treatment to the experimental group and nothing (or a placebo) to the control group. Measure the DV after treatment only.
 
-**Use when**: Any number of coders, any level of measurement, can handle missing data
+*Example*: Randomly assign 200 people to read either an episodically framed or a thematically framed news article about homelessness. Measure policy support afterward. Compare the two groups.
 
-**Interpretation** (same benchmarks as kappa):
-- α ≥ 0.80: Excellent
-- α = 0.70-0.79: Acceptable
-- α < 0.70: Unreliable
+*Strength*: Random assignment makes groups comparable. No pretest means no testing effects (see threats below).
+*Limitation*: Without a pretest, you can't verify that the groups were equivalent before manipulation (though random assignment makes this highly likely with adequate sample sizes).
 
-**Why prefer Krippendorff's α?**
-- Works with more than two coders
-- Handles different levels of measurement
-- Can accommodate missing data (if one coder skipped a case)
-- More conservative than Cohen's κ (stricter standard)
+**Pretest-posttest control group design**: Same as above, but measure the DV both before and after treatment.
 
-**In practice**: Use whichever metric your field prefers. Communication research often uses Krippendorff's α; psychology often uses Cohen's κ. Both serve the same purpose: quantifying agreement beyond chance.
+*Example*: Measure attitudes toward homelessness. Randomly assign participants to read episodic or thematic framing. Measure attitudes again. Compare change scores across groups.
 
-### Step 4: Identify Disagreements
+*Strength*: You can verify group equivalence at pretest and measure individual-level change.
+*Limitation*: The pretest itself may sensitize participants to the topic, making them respond differently to the manipulation than they would have without the pretest (a "testing effect").
 
-Numbers tell you *if* there's a problem. To fix it, you need to know *where* disagreements occur.
+**Solomon four-group design**: Combines the two designs above. Four groups: (1) pretest + treatment + posttest, (2) pretest + no treatment + posttest, (3) no pretest + treatment + posttest, (4) no pretest + no treatment + posttest. This allows you to detect whether the pretest itself affected results.
 
-**Create a disagreement log**:
+*Strength*: The most rigorous design, controlling for testing effects.
+*Limitation*: Requires four groups, meaning you need four times the participants. Rarely practical outside well-funded research programs.
 
-```markdown
-# Pilot Test Disagreement Log
+### Quasi-Experimental Designs (Moderate)
 
-## Variable: Lyric Sentiment
+These designs approximate true experiments but lack random assignment. They are common when random assignment is impractical or unethical.
 
-### Song 1: "Good 4 U" (Olivia Rodrigo)
-- Coder A: Mixed
-- Coder B: Negative
-- **Issue**: Coder A focused on upbeat sound; Coder B focused on bitter lyrics
-- **Resolution needed**: Clarify whether to code based on lyrics alone or overall emotional impact
+**Non-equivalent control group design**: Two pre-existing groups receive different treatments. Because participants were not randomly assigned, the groups may differ in ways that confound the results.
 
-### Song 7: "Since U Been Gone" (Kelly Clarkson)
-- Coder A: Positive (empowerment)
-- Coder B: Mixed (pain + empowerment)
-- **Issue**: Song describes breakup pain but emphasizes moving on. Balance unclear.
-- **Resolution needed**: Define threshold for "mixed" vs. dominant sentiment
+*Example*: Two sections of a communication course. One section watches a documentary about media literacy; the other does not. You compare media literacy scores afterward. But students self-selected into sections (perhaps based on schedule, instructor reputation, or interest level), so any differences might reflect pre-existing group differences rather than the documentary's effect.
 
-### Song 12: "Shake It Off" (Taylor Swift)
-- Coder A: Positive
-- Coder B: Positive
-- **Notes**: Agreement. Clear case.
+**Interrupted time series**: Measure an outcome repeatedly over time, introduce a treatment at a specific point, and observe whether the trend changes.
 
-### Song 15: "Blinding Lights" (The Weeknd)
-- Coder A: Mixed
-- Coder B: Negative
-- **Issue**: Upbeat music but dark lyrics about addiction. Conflicting signals.
-- **Resolution needed**: Add decision rule prioritizing lyrics over musical elements
-```
+*Example*: Track weekly streaming numbers for songs by an artist, then observe whether a viral TikTok moment produces a visible spike. The time series establishes a baseline trend, and the interruption tests whether the event shifted that trend.
 
-**Pattern recognition**: Are disagreements random or systematic?
+*Strength*: Works with naturally occurring events that can't be randomly assigned (policy changes, crises, media events).
+*Limitation*: Other events occurring at the same time as the treatment (history threats) could explain the change.
 
-**Random disagreements**: Different songs, no pattern. Might just be noise.
+## Threats to Internal Validity
 
-**Systematic disagreements**: All happen on songs with similar characteristics (e.g., all upbeat songs with dark lyrics). This signals a codebook weakness.
+**Internal validity** is the confidence that the independent variable, and not some confound, caused the observed effect. Campbell and Stanley (1963) identified seven classic threats. Understanding them helps you design better studies and evaluate published research critically.
 
-### Step 5: Meet and Discuss
+### History
 
-After identifying disagreements, coders meet to discuss.
+Events outside the experiment affect the outcome. If you're testing whether a media literacy intervention improves critical thinking, but a major misinformation scandal dominates the news during your study period, your participants' attitudes may change because of the scandal, not your intervention.
 
-**Purpose of the meeting**:
-- Understand *why* coders made different choices
-- Identify ambiguities in the codebook
-- Decide how to revise rules
+**Defense**: Use a control group measured during the same time period. Both groups experience the same history, so historical events can't explain group differences.
 
-**What this is NOT**:
-- A negotiation to reach agreement on past codes
-- An argument about who was "right"
-- A chance to change old codes to inflate reliability
+### Maturation
 
-**Example discussion**:
+Participants naturally change over time through growth, fatigue, or boredom. In a longitudinal study of children's media habits, improvements in critical viewing might reflect cognitive development rather than any intervention.
 
-**Disagreement**: "Good 4 U" (Rodrigo) - Coder A said Mixed, Coder B said Negative
+**Defense**: Control group, measured over the same time period.
 
-**Coder A**: "I coded it Mixed because the music is upbeat and energetic. It doesn't sound negative."
+### Testing
 
-**Coder B**: "I focused on the lyrics, which are bitter and resentful. The music felt secondary to me."
+Taking a pretest can sensitize participants to the topic, changing how they respond to the posttest regardless of the manipulation. If you ask people about racial attitudes, expose them to diverse media content, and then ask about racial attitudes again, improved scores might reflect demand characteristics (knowing what the "right" answer is) rather than genuine attitude change.
 
-**Discussion outcome**: The codebook says "code based on overall emotional tone" but doesn't specify whether to prioritize lyrics or music when they conflict.
+**Defense**: Posttest-only designs eliminate this threat. The Solomon four-group design detects it.
 
-**Solution**: Add a decision rule:
+### Instrumentation
 
-> **Rule 6: Lyric Priority**: When lyric content and musical elements convey different emotions, code based on lyric content unless the music so strongly contradicts the lyrics that listeners would likely experience the overall tone as aligned with the music (rare cases). If genuinely uncertain, code as Mixed.
+Changes in the measurement instrument between pretest and posttest. If survey items are reworded, if a different observer codes behavior, or if equipment is recalibrated, apparent changes may reflect measurement shifts rather than real effects.
 
-### Step 6: Revise the Codebook
+**Defense**: Standardize instruments across all conditions and time points.
 
-Based on the disagreement analysis and discussion, update your codebook.
+### Statistical Regression
 
-**Common revisions**:
+Extreme scores tend to move toward the mean on subsequent measurements. If you select participants because they scored very high on anxiety, their scores will likely decrease on a second measurement even without any intervention, simply because extreme scores are partly due to random fluctuation.
 
-**1. Clarify vague language**
+**Defense**: Random assignment distributes extreme scorers equally across conditions. Avoid selecting participants based on extreme scores.
 
-**Before**: "Code as Mixed if song contains both positive and negative elements."
+### Selection
 
-**After**: "Code as Mixed if positive and negative elements are roughly equal in frequency (within 60/40 split) or if one is present in lyrics and the other in musical delivery with neither clearly dominant."
+Pre-existing differences between groups that are not due to random assignment. This is the fundamental problem with quasi-experiments. If your "treatment" group is a morning class and your "control" group is an evening class, differences might reflect the kinds of students who choose morning versus evening schedules.
 
-**2. Add decision rules**
+**Defense**: Random assignment. When not possible, measure and statistically control for known differences.
 
-**New Rule**: "For songs with empowerment themes that describe negative events (breakups, hardship), code based on the stance: growth/strength = Positive; ongoing suffering = Negative."
+### Mortality (Attrition)
 
-**3. Expand examples**
+Participants drop out of the study, and dropout is not random. If the most bored or frustrated participants leave the experimental condition but stay in the control condition, the remaining experimental group is not comparable to the control group.
 
-Add songs from the pilot test that caused disagreement to the examples section, showing how they should be coded and why.
+**Defense**: Track and report attrition rates. Analyze whether dropouts differ from completers on key characteristics.
 
-**4. Refine category definitions**
+## Threats to External Validity
 
-If a category is being over- or under-used, redefine boundaries.
+**External validity** is the extent to which findings generalize beyond the specific conditions of the study. A study can have strong internal validity (the manipulation definitely caused the effect) but weak external validity (the effect might not occur outside the laboratory).
 
-### Step 7: Test Again
+### The Lab-to-Life Problem
 
-After revising, test again on a **new subsample** (not the original pilot songs).
+Most experiments occur in controlled environments (computer labs, classrooms, online survey platforms) where participants focus on a single stimulus in isolation. Real media consumption is messier: people scroll while watching television, listen to music while exercising, and read news while commuting. Effects observed in a quiet lab may disappear in the noise of everyday life.
 
-**Why new songs?** Because coders now know how the old songs "should" be coded. Testing on the same songs would inflate reliability.
+### The College Sophomore Problem
 
-**Second pilot sample**: 20-25 songs, similarly stratified
+Most communication and psychology experiments use undergraduate students as participants because they're accessible (enrolled in research participation pools). But undergraduates are not representative of the general population. They are younger, more educated, more likely to be WEIRD (Western, Educated, Industrialized, Rich, Democratic) than the global population. Effects that hold among 19-year-old communication majors may not hold among 45-year-old factory workers or 70-year-old retirees.
 
-**Process**:
-1. Independent coding with revised codebook
-2. Calculate reliability
-3. Check for remaining disagreements
+### Stimulus Representativeness
 
-**Stopping rule**:
+If you test the effect of "sad music" by using one specific song, your finding is technically about the effect of *that song*, not about sad music in general. Different sad songs vary in tempo, lyrics, instrumentation, and cultural associations. Using multiple stimuli and showing that the effect holds across them strengthens external validity.
 
-Iterate until:
-- Reliability reaches acceptable threshold (κ or α ≥ 0.70, ideally ≥ 0.80)
-- Disagreements are random rather than systematic
-- You've reached diminishing returns (revisions no longer improve reliability)
+### Demand Characteristics
 
-**Realistic expectation**: 2-3 rounds of pilot testing is typical. The first version rarely works perfectly.
+Participants who know they're in a study may try to figure out the hypothesis and behave accordingly ("cooperative subjects") or deliberately contradict it ("oppositional subjects"). Either response distorts findings. Cover stories, between-subjects designs (each participant sees only one condition), and behavioral rather than self-report DVs can reduce demand characteristics.
 
-## What "Good Enough" Looks Like
+## Experiments in Communication Research
 
-**Benchmarks**:
+Experimental design has produced some of the most influential findings in communication research. Here are several domains where experiments are the standard method:
 
-**κ or α ≥ 0.80**: Excellent. You can proceed with confidence.
+**Framing experiments**: Does the way information is presented affect how audiences interpret it? Researchers randomly assign participants to read news stories with different frames (episodic vs. thematic, gain vs. loss, human-interest vs. statistical) and measure attitudes, attributions, or behavioral intentions. Entman's (1993) framing framework generates testable predictions that experiments are ideally suited to evaluate.
 
-**κ or α = 0.70-0.79**: Acceptable. Proceed, but acknowledge this as a limitation in your methods section. Consider discussing coders to consensus on any remaining disagreements during full coding.
+**Priming experiments**: Does media exposure activate particular concepts in memory, making them more accessible for subsequent judgments? Political communication researchers test whether exposure to crime news makes viewers more likely to evaluate political candidates based on their crime policies.
 
-**κ or α < 0.70**: Unreliable. Do not proceed. More revisions needed.
+**Persuasion experiments**: Does message design affect attitude change? Advertising researchers manipulate message appeals (fear vs. humor, emotional vs. rational, celebrity vs. expert endorsement) and measure consumer attitudes and purchase intentions.
 
-**But**: Perfect agreement (κ = 1.0) is unrealistic for latent content coding. Human judgment is involved. Some variability is acceptable—that's why we calculate reliability and report it transparently.
+**Media effects experiments**: Does exposure to specific media content cause changes in attitudes, beliefs, or behaviors? Researchers test whether violent video games increase aggression, whether sexualized media imagery affects body satisfaction, or whether exposure to diverse characters reduces prejudice.
 
-## Documenting the Process
+**Music and emotion experiments**: Does manipulating musical features (tempo, key, lyric sentiment) cause measurable changes in listener mood, behavior, or cognition? This domain is directly relevant to this course's content analysis work: if your content analysis finds that negative lyrics are more prevalent in popular songs, an experiment could test *why* audiences prefer them, whether negative lyrics increase emotional arousal, trigger nostalgic memories, or provide cathartic release.
 
-Research transparency requires documenting your pilot testing.
+## Ethics of Experimentation
 
-**In your methods section, report**:
+Chapter 8 established the ethical principles governing all research. Experiments carry particular ethical weight because they involve deliberately manipulating participants' experiences. Several considerations deserve emphasis:
 
-- Number of songs in pilot sample and sampling strategy
-- Number of coders and their training
-- Reliability metric used (Cohen's κ or Krippendorff's α)
-- Reliability values for each variable
-- Major codebook revisions made after pilot testing
-- Final reliability after revisions
+**Informed consent**: Participants must know they're in a study, understand the general procedures, and be free to withdraw. In some experiments, full disclosure of the hypothesis would undermine the design (knowing you're in the "sad music condition" changes your response). In these cases, partial disclosure is acceptable: participants know they'll listen to music and complete a survey, but not which condition they're in or what the study is testing.
 
-**Example methods paragraph**:
+**Deception**: When the experimental design requires deception (participants believe they're doing one thing when they're actually doing another), the Belmont Report's principle of respect for persons demands that researchers provide a thorough **debriefing** after participation. Debriefing must explain the true purpose of the study, why deception was necessary, and offer participants the option to withdraw their data.
 
-> "Two coders independently coded a pilot sample of 30 songs stratified across time periods and chart positions. Initial inter-coder reliability for Lyric Sentiment was κ = 0.72, indicating acceptable agreement. Analysis of disagreements revealed ambiguity in handling songs with conflicting lyric and musical emotional cues. The codebook was revised to prioritize lyric content over musical elements (Decision Rule 6). A second pilot test of 20 songs yielded κ = 0.83, indicating excellent agreement. The final codebook was then applied to the full dataset."
+**Manipulation risk**: If your manipulation involves exposing participants to distressing content (violent media, fear-based health messages, graphic imagery), you must evaluate whether the distress is justified by the knowledge gained. Most IRBs require that the risk be "minimal," meaning no greater than what participants might encounter in everyday life. A study that exposes participants to a sad song likely qualifies. A study that exposes participants to graphic violence requires more careful justification.
 
-## Common Pilot Testing Mistakes
+**Debriefing as obligation**: Debriefing is not optional. It is an ethical requirement whenever deception or potentially distressing manipulations are used. A good debriefing explains the study's purpose, addresses any misconceptions the participant may have formed, and provides resources if the manipulation involved sensitive topics.
 
-### Mistake 1: Skipping Pilot Testing
+## Reading Experiments Critically
 
-**Why it's tempting**: "My codebook is clear. I'll just code everything."
+When you encounter an experiment in the literature, apply this checklist:
 
-**Why it fails**: You won't discover problems until you've already coded hundreds of cases inconsistently.
+**Was there random assignment?** If not, it's a quasi-experiment, and the causal claim is weaker. Look for whether the authors acknowledge this limitation.
 
-### Mistake 2: Using Too Few Cases
+**What was the control condition?** A "no treatment" control is different from a "placebo" control. If the experimental group listens to sad music and the control group sits in silence, any differences might reflect the effect of music in general (vs. silence) rather than the effect of sadness specifically. A better design uses a neutral-music control.
 
-**Problem**: Piloting on 5-10 songs won't reveal the range of complications in your full dataset.
+**How large was the sample?** Small samples (n < 30 per condition) have low statistical power, meaning they may miss real effects or produce spurious significant findings that fail to replicate. Look for power analyses or justifications of sample size.
 
-**Solution**: Use at least 15-20% of your full sample, minimum 20-30 cases.
+**Was the manipulation check successful?** Did the researchers verify that their manipulation worked as intended? In a framing study, did participants actually perceive the episodic frame as episodic and the thematic frame as thematic? Without a manipulation check, you can't be sure the IV was operationalized as intended.
 
-### Mistake 3: Coding Together
+**How was the DV measured?** Self-report, behavioral observation, or physiological measurement each have strengths and limitations. Studies relying solely on self-report are more vulnerable to demand characteristics and social desirability bias.
 
-**Problem**: If coders discuss cases before coding independently, you're not testing the codebook—you're testing memory of conversations.
+**Are the stimuli representative?** If the study used one news article, one song, or one advertisement, the findings may be stimulus-specific rather than generalizable to the category.
 
-**Solution**: Strict independence. No discussion until both have finished.
-
-### Mistake 4: Cherry-Picking Easy Cases
-
-**Problem**: Testing only on prototypical examples inflates reliability.
-
-**Solution**: Include edge cases and ambiguous examples from your immersion phase.
-
-### Mistake 5: Changing Old Codes After Discussion
-
-**Problem**: If you revise past codes to increase agreement, you're inflating reliability artificially.
-
-**Solution**: Accept disagreements as information. Don't retroactively "fix" them to look better.
-
-### Mistake 6: Endless Iteration
-
-**Problem**: Trying to achieve perfect reliability (κ = 1.0) leads to paralysis.
-
-**Solution**: Once you reach κ ≥ 0.80 (or 0.70 with justification), proceed. Diminishing returns set in.
+**Do the causal claims match the design?** A well-designed true experiment with random assignment supports causal language ("X caused Y"). A quasi-experiment supports only suggestive language ("X was associated with Y in a way consistent with a causal relationship"). Watch for quasi-experiments that use causal language without acknowledgment.
 
 ---
 
-## Practice: Pilot Testing Skills
+## Practice: Experimental Design Skills
 
-### Exercise 11.1: Interpreting Reliability
+### Exercise 11.1: Identifying Experimental Components
 
-You pilot test a codebook for song genre with 2 coders and 40 songs. Results:
+For each study description, identify the IV, DV, and type of design (pre-experimental, true experimental, or quasi-experimental):
 
-- Coders agreed on 32 of 40 songs
-- Cohen's κ = 0.68
+**Study A**: Researchers randomly assigned 200 participants to listen to either a major-key or minor-key version of the same melody. Afterward, participants rated their mood on a 7-point scale.
 
-**Questions**:
+- IV: _______________
+- DV: _______________
+- Design type: _______________
 
-1. What is the percent agreement?
-2. Is this reliability acceptable? Why or why not?
-3. What should you do next?
+**Study B**: A professor showed a media literacy video to her morning class and gave a standard lecture to her afternoon class. Both classes completed a quiz on critical media evaluation.
 
----
+- IV: _______________
+- DV: _______________
+- Design type: _______________
 
-### Exercise 11.2: Disagreement Analysis
+**Study C**: A health department launched an anti-vaping campaign and measured vaping rates among high school students before and after the campaign. There was no comparison group.
 
-Two coders coded 25 songs for emotional intensity (Low/Medium/High). They disagreed on 6 songs:
-
-**Disagreements**:
-- Song A: Coder 1 = Medium, Coder 2 = High
-- Song B: Coder 1 = Low, Coder 2 = Medium
-- Song C: Coder 1 = Medium, Coder 2 = High
-- Song D: Coder 1 = Medium, Coder 2 = High
-- Song E: Coder 1 = Low, Coder 2 = Medium
-- Song F: Coder 1 = Medium, Coder 2 = Low
-
-**Questions**:
-
-1. Is there a pattern in the disagreements?
-2. What might explain this pattern?
-3. How might you revise the codebook to address it?
+- IV: _______________
+- DV: _______________
+- Design type: _______________
 
 ---
 
-### Exercise 11.3: Codebook Revision
+### Exercise 11.2: Threat Identification
 
-Your codebook for "Song Topic" has this category:
+For each scenario, identify which threat(s) to internal validity are present:
 
-**Relationships**: Songs about romantic or interpersonal relationships
+1. A study measures media literacy before and after a semester-long course. Students improve. But students also matured intellectually over the semester. **Threat**: _______________
 
-During pilot testing, disagreements cluster around:
-- Songs about self-love after breakup
-- Songs about family relationships
-- Songs about friendships
+2. Participants in the experimental condition find the task boring and drop out at higher rates than control participants. **Threat**: _______________
 
-**Task**: Revise the category definition and/or add decision rules to improve clarity.
+3. A study of news framing effects is conducted during the week a major political scandal breaks. **Threat**: _______________
+
+4. Researchers select participants who scored extremely high on a fear-of-crime scale, then expose them to reassuring news coverage. Fear scores drop. **Threat**: _______________
 
 ---
 
-### Exercise 11.4: Planning Your Pilot Test
+### Exercise 11.3: Designing an Experiment
 
-For your research project:
+Choose one of the following research questions and design a true experiment to test it:
 
-1. Determine appropriate pilot sample size (15-20% of full dataset)
-2. Describe your sampling strategy (stratified? random? includes edge cases?)
-3. Identify what reliability metric you'll use (Cohen's κ or Krippendorff's α)
-4. Set your reliability threshold (0.70? 0.80?)
-5. Write a brief plan for what you'll do if initial reliability is below threshold
+- Does sad music decrease self-reported mood compared to neutral music?
+- Does episodic framing of poverty increase personal-responsibility attributions compared to thematic framing?
+- Does hearing a song described as "#1 on Billboard" increase listeners' ratings of the song compared to the same song with no chart information?
+
+For your chosen question, specify:
+
+1. **Independent variable** (with at least two levels): _______________
+2. **Dependent variable** (with measurement approach): _______________
+3. **Control condition**: _______________
+4. **Random assignment procedure**: _______________
+5. **Sample size and population**: _______________
+6. **One potential threat to internal validity and how you'd address it**: _______________
+7. **One potential threat to external validity and how you'd address it**: _______________
+
+---
+
+### Exercise 11.4: Evaluating a Published Experiment
+
+Find a published experiment in a communication or psychology journal. Apply the critical reading checklist from this chapter:
+
+1. Was there random assignment?
+2. What was the control condition?
+3. How large was the sample per condition?
+4. Was there a manipulation check?
+5. How was the DV measured?
+6. Were the stimuli representative?
+7. Do the causal claims match the design?
+
+Write a 200-word evaluation of the study's internal and external validity.
 
 ---
 
 ## Reflection Questions
 
-1. **The Reliability Threshold**: Is κ = 0.70 really "acceptable," or is it too low? What factors should determine whether you accept 0.70 or demand 0.80? How does the nature of your research question affect this decision?
+1. **The External Validity Tradeoff**: Tightly controlled experiments have high internal validity (you can be confident about causation) but often low external validity (the findings may not generalize to real life). Is it better to know with certainty that X causes Y in a lab, or to know with less certainty that X is associated with Y in the real world? How do you navigate this tradeoff?
 
-2. **Subjectivity vs. Systematicity**: Pilot testing reveals that even with clear rules, human coders disagree. Does this mean qualitative coding is unreliable, or does it mean we're measuring something inherently interpretive? How do you balance acknowledging subjectivity while claiming systematic measurement?
+2. **The Ethics of Manipulation**: Experiments require manipulating people's experiences. Is it ethical to deliberately make someone sad (even temporarily) to study the effects of sad music? Where is the line between acceptable and unacceptable manipulation? Who should draw that line?
 
-3. **Your Codebook**: Think about the codebook you developed in Chapter 10. What cases do you predict will cause disagreements? Why? What can you do now to prevent those disagreements?
+3. **Experiments and Content Analysis**: This course primarily uses content analysis, which describes patterns in media content. How could experimental findings complement content analysis findings? If your content analysis shows that negative lyrics are more prevalent in popular music, what experimental study would you design to explain *why*?
+
+4. **The Replication Question**: Chapter 2 described the replication crisis in psychology, where many experimental findings failed to replicate (Open Science Collaboration, 2015). What features of experimental design make studies more or less likely to replicate? How does sample size relate to replicability?
 
 ---
 
 ## Chapter Summary
 
-This chapter taught systematic pilot testing of codebooks:
+This chapter introduced experimental design as the method for establishing causation:
 
-- **Pilot testing** reveals problems in codebooks before full-scale coding
-- Select a **representative subsample** (15-20% of full dataset, 20-30 cases minimum) including edge cases
-- **Independent coding** is essential—no discussion until both coders finish
-- **Inter-coder reliability** measures agreement beyond chance:
-  - **Cohen's kappa (κ)**: Two coders, nominal/ordinal data
-  - **Krippendorff's alpha (α)**: Any number of coders, any measurement level
-- **Benchmarks**: κ or α ≥ 0.80 excellent, 0.70-0.79 acceptable, < 0.70 unreliable
-- **Disagreement analysis** identifies whether problems are random or systematic
-- **Codebook revision** addresses ambiguities revealed by disagreements
-- **Iterate** until reliability is acceptable (2-3 rounds typical)
-- **Document** the pilot testing process transparently in methods section
-- Perfect reliability (κ = 1.0) is unrealistic for latent content; accept some variability
+- **Three requirements for causation**: covariation (X and Y are related), temporal precedence (X comes before Y), elimination of alternative explanations (nothing else explains the relationship).
+- **Random assignment** is the key to causal inference. It distributes all possible confounds equally across conditions, ensuring that post-manipulation differences reflect the manipulation itself.
+- **Four core components**: independent variable (manipulated), dependent variable (measured), random assignment, and control group.
+- **Three design categories**: Pre-experimental (weak, lacking random assignment or control), true experimental (strong, with random assignment and control), quasi-experimental (moderate, approximating true experiments when random assignment is impractical).
+- **Seven threats to internal validity** (Campbell & Stanley, 1963): history, maturation, testing, instrumentation, statistical regression, selection, and mortality.
+- **Threats to external validity**: the lab-to-life problem, the college sophomore problem, stimulus representativeness, and demand characteristics.
+- **Experiments in communication** test framing effects, priming effects, persuasion mechanisms, media effects, and music-emotion relationships.
+- **Ethical considerations** include informed consent with partial disclosure, debriefing after deception, and risk assessment for distressing manipulations.
+- **Critical reading** of experiments requires evaluating random assignment, control conditions, sample size, manipulation checks, measurement quality, stimulus representativeness, and the match between design and causal claims.
 
 ---
 
 ## Key Terms
 
-- **Cohen's kappa (κ)**: Reliability statistic for two coders that corrects for chance agreement
-- **Disagreement log**: Systematic record of coding discrepancies and their causes
-- **Independent coding**: Coders working separately without discussion until complete
-- **Inter-coder reliability (ICR)**: Consistency of coding between independent coders
-- **Krippendorff's alpha (α)**: Reliability statistic usable with any number of coders and measurement levels
-- **Percent agreement**: Simple proportion of cases where coders agreed (doesn't account for chance)
-- **Pilot test**: Trial application of codebook to subsample before full coding
-- **Reliability threshold**: Minimum acceptable level of agreement (typically 0.70-0.80)
-- **Systematic disagreement**: Pattern of disagreements clustering around specific types of cases
+- **Between-subjects design**: Each participant experiences only one condition
+- **Control group**: Condition receiving no treatment or a neutral/placebo treatment
+- **Demand characteristics**: Cues that lead participants to guess the hypothesis and adjust their behavior
+- **External validity**: Generalizability of findings beyond the specific study conditions
+- **Internal validity**: Confidence that the IV, not a confound, caused the observed effect (Campbell & Stanley, 1963)
+- **Manipulation check**: Verification that the experimental manipulation was perceived as intended
+- **Quasi-experiment**: Design approximating a true experiment but lacking random assignment
+- **Random assignment**: Allocating participants to conditions by chance to ensure group equivalence
+- **Solomon four-group design**: Design using four groups to detect testing effects
+- **True experiment**: Design with random assignment and at least one control group
+- **Within-subjects design**: Each participant experiences all conditions (also called repeated measures)
+
+---
+
+## References
+
+Babbie, E. R. (2021). *The practice of social research* (15th ed.). Cengage Learning.
+
+Campbell, D. T., & Stanley, J. C. (1963). *Experimental and quasi-experimental designs for research*. Rand McNally.
+
+Entman, R. M. (1993). Framing: Toward clarification of a fractured paradigm. *Journal of Communication*, *43*(4), 51-58. https://doi.org/10.1111/j.1460-2466.1993.tb01304.x
+
+Open Science Collaboration. (2015). Estimating the reproducibility of psychological science. *Science*, *349*(6251), aac4716. https://doi.org/10.1126/science.aac4716
+
+Wimmer, R. D., & Dominick, J. R. (2014). *Mass media research: An introduction* (10th ed.). Cengage Learning.
+
+---
+
+::: {.callout-note title="Graduate Extension" collapse="true"}
+
+**Required Reading**: Campbell, D. T., & Stanley, J. C. (1963). *Experimental and quasi-experimental designs for research*. Rand McNally. **Read Chapters 1-3** (approximately 40 pages).
+
+**Prompt**: Campbell and Stanley's 1963 monograph remains the foundational text on experimental design in the social sciences. Their contribution was not to invent experimentation but to systematize the logic of validity threats and to show that design choices are not arbitrary: each design controls for specific threats while remaining vulnerable to others.
+
+1. Campbell and Stanley use a notation system where **X** represents a treatment, **O** represents an observation (measurement), and **R** represents random assignment. Diagram the following designs using their notation:
+   - One-group pretest-posttest
+   - Pretest-posttest control group design
+   - Solomon four-group design
+
+2. For each design, list which of the seven internal validity threats are controlled and which remain uncontrolled. (Campbell and Stanley provide this analysis; your task is to explain *why* each threat is or isn't controlled, not just to list them.)
+
+3. Campbell and Stanley distinguish between "true experiments" and "quasi-experiments," arguing that quasi-experiments are not second-class methods but rather designs appropriate when random assignment is impossible. In communication research, when is random assignment genuinely impossible (not just inconvenient)? Provide two examples and explain what quasi-experimental design you would use instead.
+
+4. Design a hypothetical experiment testing whether the framing of song lyrics as "protest music" (vs. no label) changes listener evaluations of the same song. Diagram your design using Campbell and Stanley's notation. Identify the strongest threat to internal validity in your design and the strongest threat to external validity. How would you address each?
+
+:::
 
 ---
 
 ## Looking Ahead
 
-Chapter 12 (Wrangling the Chaos) marks the transition from Phase III (The Translator) to Phase IV (The Analyst). You've completed all qualitative analysis—immersion, operationalization, codebook development, and pilot testing. Now you'll learn to wrangle your coded data into analysis-ready format using R. This chapter introduces the tidyverse, teaches data cleaning and transformation, and prepares your coded dataset for statistical analysis. The skills shift from interpretive work (what do these songs mean?) to computational work (how do I organize and analyze the resulting data?).
+With Chapters 9, 10, and 11 complete, you now have a conceptual map of the four major research methods in social science. Chapter 12 (Music Immersion) marks the shift from conceptual understanding to hands-on execution. You'll begin the content analysis sequence that carries through Chapter 15: immersing in your dataset, translating observations into variables, building a codebook, and testing its reliability. Everything you've learned about theory (Chapter 5), research questions (Chapter 7), ethics (Chapter 8), and methods (Chapters 9-11) converges as you start doing research rather than reading about it.

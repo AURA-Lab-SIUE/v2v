@@ -1,5 +1,5 @@
 ---
-title: "Chapter 17: Wrangling the Chaos"
+title: "Chapter 12: Wrangling the Chaos"
 ---
 
 ## Learning Objectives
@@ -14,13 +14,13 @@ title: "Chapter 17: Wrangling the Chaos"
 
 ---
 
-You've completed the qualitative work. You immersed in your data (Chapter 12), operationalized concepts (Chapter 13), built a codebook (Chapter 14), pilot tested it (Chapter 15), and coded your full sample of 200 songs. You have data.
+You've completed the qualitative work. You immersed in your data, operationalized concepts, built a codebook, pilot tested it, and—after revisions—coded your full sample of 200 songs. You have data.
 
 But data, in its raw form, is rarely ready for analysis.
 
 Your coding sheet probably contains typos. Some categorical labels are inconsistent ("Positive" vs. "positive" vs. "Pos"). There are missing values where a song didn't fit your scheme cleanly. A few songs got coded twice by accident. Column names have spaces that will cause problems. The sentiment variable is stored as text when it should be a factor.
 
-This is the messy reality of real research data. And before you can run statistical tests or create visualizations, you need to clean it, systematically, transparently, and reproducibly.
+This is the messy reality of real research data. And before you can run statistical tests or create visualizations, you need to clean it—systematically, transparently, and reproducibly.
 
 This is where R enters the picture.
 
@@ -36,9 +36,9 @@ But point-and-click has fatal flaws:
 
 **Problem 3: It doesn't scale**. Manually fixing 200 rows is tedious. Manually fixing 2,000 is impractical. Manually fixing 20,000 is impossible.
 
-R solves all three problems. Every operation is scripted. Every decision is documented. Every step can be audited, shared, and rerun. If your data changes (you find an error, add more cases), you don't start over; you just rerun the script.
+R solves all three problems. Every operation is scripted. Every decision is documented. Every step can be audited, shared, and rerun. If your data changes (you find an error, add more cases), you don't start over—you just rerun the script.
 
-This is the philosophy of **reproducible research**: your analysis should be transparent enough that someone else could replicate it exactly. This principle connects directly to the ethical reporting practices discussed in Chapter 8: transparency in data handling is not just good practice, it is an ethical obligation.
+This is the philosophy of **reproducible research**: your analysis should be transparent enough that someone else could replicate it exactly.
 
 ## The Data Wrangling Pipeline
 
@@ -59,8 +59,6 @@ Before you can wrangle data effectively, you need a mental model of what "clean"
 1. **Each row is one observation** (one song, one coded message, one survey response)
 2. **Each column is one variable** (sentiment, tempo, genre, chart position)
 3. **Each cell contains one value** (not multiple values separated by commas)
-
-Wickham's (2014) formalization of tidy data principles in the *Journal of Statistical Software* transformed how data scientists think about data structure. The insight is deceptively simple: if every dataset follows the same structural conventions, every analytical tool can be designed around those conventions. The entire tidyverse ecosystem is built on this foundation.
 
 ### Messy Data Example
 
@@ -89,16 +87,13 @@ Now each row is one song-genre pair. Each cell has one value. You can filter, co
 
 **Why this matters**: R's tidyverse tools (`dplyr`, `ggplot2`, `tidyr`) are designed for tidy data. If your data is messy, every analysis becomes complicated. If your data is tidy, most operations are straightforward.
 
-The tidy data principle applies to any dataset, not just music. A survey dataset should have one row per respondent, one column per question. A news content analysis dataset should have one row per article, one column per coded variable. An experimental dataset should have one row per participant-condition combination. The structure is universal.
-
 ## Installing R and RStudio
 
 Before you can wrangle data, you need the tools.
 
 **R** is the programming language. Think of it as the engine.
 
-**RStudio** is the interface, the cockpit that makes R easier to use. It provides:
-
+**RStudio** is the interface—the cockpit that makes R easier to use. It provides:
 - A script editor (where you write code)
 - A console (where code runs)
 - An environment panel (showing what data you've loaded)
@@ -158,11 +153,10 @@ library(tidyverse)
 ```
 
 This loads eight core packages:
-
 - `readr`: Import data
 - `dplyr`: Manipulate data
 - `tidyr`: Reshape data
-- `ggplot2`: Visualize data (Chapter 18)
+- `ggplot2`: Visualize data (Chapter 13)
 - `purrr`, `tibble`, `stringr`, `forcats`: Supporting tools
 
 ## Importing Data with `readr`
@@ -183,7 +177,7 @@ Good 4 U,Olivia Rodrigo,8.3,1,164,0.664,0.675,"Well, good for you..."
 ```r
 library(readr)
 
-# Import the CSV file
+# Import the CSV file (1,792 songs)
 music_data <- read_csv("data/final_unified_dataset.csv")
 ```
 
@@ -379,7 +373,6 @@ summary_stats <- music_data %>%
 ```
 
 **What this does**:
-
 - `group_by(Lyric_Sentiment)` groups songs by sentiment category
 - `n()` counts songs in each group
 - `mean(Tempo, na.rm = TRUE)` calculates average tempo (ignoring missing values)
@@ -428,14 +421,14 @@ The real magic happens when you **chain verbs together** with the pipe operator 
 
 ```r
 result <- music_data %>%
-  filter(Max_Rank <= 20) %>%             # Keep top 20 songs
-  mutate(is_fast = Tempo > 130) %>%      # Create fast/slow variable
+  filter(Max_Rank <= 20) %>%           # Keep top 20 songs
+  mutate(is_fast = Tempo > 130) %>%       # Create fast/slow variable
   group_by(Lyric_Sentiment, is_fast) %>% # Group by sentiment and tempo
   summarize(
     n = n(),
     avg_peak = mean(Max_Rank)
   ) %>%
-  arrange(avg_peak)                      # Sort by average peak position
+  arrange(avg_peak)                       # Sort by average peak position
 ```
 
 **Read aloud**: "Take music_data, THEN filter for top 20 songs, THEN create a fast/slow variable, THEN group by sentiment and tempo, THEN calculate summaries, THEN sort by average peak."
@@ -557,10 +550,10 @@ glimpse(music_data)
 ```r
 music_data <- music_data %>%
   mutate(
-    Song_ID = as.character(Song_ID),             # Numeric to character
-    Tempo = as.numeric(Tempo),                    # Character to numeric
-    Max_Rank = as.integer(Max_Rank),              # Decimal to integer
-    Lyric_Sentiment = as.factor(Lyric_Sentiment)  # Character to factor
+    Song_ID = as.character(Song_ID),           # Numeric to character
+    Tempo = as.numeric(Tempo),                  # Character to numeric
+    Max_Rank = as.integer(Max_Rank),        # Decimal to integer
+    Lyric_Sentiment = as.factor(Lyric_Sentiment) # Character to factor
   )
 ```
 
@@ -575,7 +568,7 @@ library(forcats)
 
 music_data <- music_data %>%
   mutate(
-    Lyric_Sentiment = factor(Lyric_Sentiment,
+    Lyric_Sentiment = factor(Lyric_Sentiment, 
                               levels = c("Positive", "Negative", "Neutral", "Mixed"))
   )
 ```
@@ -673,7 +666,7 @@ message("Cleaned data saved to data_clean/music_analysis_ready.csv")
 
 ## Practice: Data Wrangling
 
-### Exercise 17.1: Filtering Practice
+### Exercise 12.1: Filtering Practice
 
 Using the music dataset:
 
@@ -683,7 +676,7 @@ Using the music dataset:
 
 ---
 
-### Exercise 17.2: Creating New Variables
+### Exercise 12.2: Creating New Variables
 
 Create these new variables:
 
@@ -693,7 +686,7 @@ Create these new variables:
 
 ---
 
-### Exercise 17.3: Aggregation
+### Exercise 12.3: Aggregation
 
 Calculate:
 
@@ -703,7 +696,7 @@ Calculate:
 
 ---
 
-### Exercise 17.4: Your Cleaning Script
+### Exercise 12.4: Your Cleaning Script
 
 Write a cleaning script for your own coded dataset that:
 
@@ -725,22 +718,20 @@ Write a cleaning script for your own coded dataset that:
 
 3. **The Tidy Data Trade-off**: Tidy data is easier to analyze but sometimes creates redundancy (like repeating song names for each genre). When is this trade-off worth it? When might you prefer a different structure?
 
-4. **Generalization of Skills**: The dplyr verbs you learned in this chapter (`filter`, `select`, `mutate`, `group_by` + `summarize`, `arrange`) work on any tidy dataset, not just music data. If you were cleaning a news content analysis dataset or a survey response file, which of these operations would you use most, and for what purpose?
-
 ---
 
 ## Chapter Summary
 
 This chapter introduced data wrangling with R and the tidyverse:
 
-- **Data wrangling** is the essential work of preparing data for analysis
+- **Data wrangling** is the unsexy but essential work of preparing data for analysis
 - **Reproducible workflows** (scripted in R) are superior to point-and-click (Excel) because they're transparent, auditable, and rerunnable
-- **Tidy data** (Wickham, 2014) has three rules: each row = one observation, each column = one variable, each cell = one value
+- **Tidy data** has three rules: each row = one observation, each column = one variable, each cell = one value
 - **The five core dplyr verbs**: `filter()` (keep rows), `select()` (choose columns), `mutate()` (create variables), `group_by() + summarize()` (aggregate), `arrange()` (sort)
 - **The pipe operator** (`%>%`) chains operations, making code readable
 - **Common data problems**: missing values, inconsistent categories, duplicates, wrong data types
 - **Factors** store categorical data with defined levels and ordering
-- **Documentation** of cleaning decisions is essential for transparency and ethical reporting
+- **Documentation** of cleaning decisions is essential for transparency
 - **Cleaning scripts** should be heavily commented and save cleaned data separately from raw data
 
 ---
@@ -752,38 +743,12 @@ This chapter introduced data wrangling with R and the tidyverse:
 - **Factor**: R's data type for categorical variables with defined levels
 - **Pipe operator (`%>%`)**: Chains operations together, read as "then"
 - **Reproducible research**: Analysis transparent enough for others to replicate
-- **Tidy data**: Data structure where each row = observation, each column = variable, each cell = value (Wickham, 2014)
+- **Tidy data**: Data structure where each row = observation, each column = variable, each cell = value
 - **Tidyverse**: Collection of R packages designed for intuitive data analysis
 - **Vector**: Ordered collection of values of the same type
 
 ---
 
-## References
-
-Wickham, H. (2014). Tidy data. *Journal of Statistical Software*, *59*(10), 1-23. https://doi.org/10.18637/jss.v059.i10
-
----
-
-::: {.callout-note title="Graduate Extension" collapse="true"}
-
-**Required Reading**: Wickham, H. (2014). Tidy data. *Journal of Statistical Software*, *59*(10), 1-23. https://doi.org/10.18637/jss.v059.i10
-
-**Prompt**: Wickham's "Tidy Data" paper is one of the most cited papers in the history of statistical computing. Its influence extends far beyond R: the tidy data framework has shaped how data scientists across languages and platforms think about data structure. But the paper is also making an argument, not just describing a convention. Understanding that argument deepens your ability to make principled decisions about data organization.
-
-1. Wickham identifies five common problems that make data "messy." In your own words, describe each problem and provide an example from communication research (not from the paper) for at least three of them.
-
-2. The paper argues that tidy data is not just a matter of preference but of efficiency: tidy datasets work better with a consistent set of tools. What is the relationship between data structure and analytical capability? Can you think of a situation where a "messy" structure would actually be more efficient than a tidy one for a specific analytical task?
-
-3. Wickham draws a distinction between **variables** and **values** that seems obvious but is often violated in practice. He notes that people frequently store variable names in cell values (e.g., a column called "Metric" with values like "revenue," "profit," "cost" that are actually separate variables). Find an example of this problem in a publicly available dataset (government data portals, Kaggle, or your own coursework) and show how you would tidy it using `pivot_longer()` or `pivot_wider()`.
-
-4. The tidy data framework assumes that the unit of observation is clearly defined. But in communication research, the unit of observation can be ambiguous. Is the unit a song, a lyric line, a musical phrase, a chart appearance? Is the unit a news article, a paragraph, a sentence, a quoted source? How does the choice of unit affect tidy structure? Write a brief analysis (200 words) of how unit-of-analysis decisions interact with data structure decisions in your own research project.
-
-5. Wickham's framework was designed primarily for tabular data. How well does it extend to non-tabular qualitative data (interview transcripts, field notes, social media threads)? What adaptations would be needed to apply tidy principles to qualitative data management?
-
-:::
-
----
-
 ## Looking Ahead
 
-Chapter 18 (Seeing Patterns) introduces data visualization with `ggplot2`. You've wrangled your data into analysis-ready format. Now you'll learn to create publication-quality visualizations that reveal patterns: bar charts showing sentiment distribution, scatterplots examining tempo-chart performance relationships, and faceted plots comparing patterns across categories. Visualization isn't just about making pretty pictures; it's about exploring data, testing assumptions, and communicating findings effectively.
+Chapter 13 (Seeing Patterns) introduces data visualization with `ggplot2`. You've wrangled your data into analysis-ready format. Now you'll learn to create publication-quality visualizations that reveal patterns: bar charts showing sentiment distribution, scatterplots examining tempo-chart performance relationships, and faceted plots comparing patterns across categories. Visualization isn't just about making pretty pictures—it's about exploring data, testing assumptions, and communicating findings effectively.

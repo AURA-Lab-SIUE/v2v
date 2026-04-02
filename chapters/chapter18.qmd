@@ -1,0 +1,735 @@
+---
+title: "Chapter 18: Seeing Patterns"
+---
+
+## Learning Objectives
+
+- Understand the grammar of graphics philosophy underlying ggplot2
+- Create publication-quality bar charts, histograms, and scatterplots
+- Map variables to visual aesthetics (position, color, size, shape)
+- Use faceting to compare patterns across groups
+- Customize plots with labels, themes, and scales
+- Choose appropriate visualizations for different data types and research questions
+- Read visualizations critically, recognizing when design choices mislead
+- Export visualizations for publication and presentation
+
+---
+
+Numbers alone don't tell stories. Tables communicate precisely but demand effort from readers. A correlation coefficient of r = 0.67 is meaningful if you understand statistics, but it's abstract. Most people, including many researchers, struggle to intuit what that number means in practice.
+
+Visualization makes patterns visible.
+
+A well-designed chart can reveal relationships, outliers, and trends that would take paragraphs to describe in text. It can make a skeptical reader believe your finding. It can turn an abstract statistical claim into something concrete and comprehensible.
+
+But visualization is also dangerous. Bad charts mislead. Poorly chosen visualizations obscure rather than illuminate. A pie chart with twelve slices communicates nothing. A scatterplot with no labels is useless. A bar chart that doesn't start at zero exaggerates differences.
+
+This chapter teaches you to use visualization as both an exploratory tool (helping *you* understand your data) and a communication tool (helping *others* understand your findings). It also teaches you to read other people's visualizations critically, because the same tools that illuminate can be used, intentionally or not, to distort.
+
+## The Grammar of Graphics
+
+Most graphing tools work through point-and-click menus: "Insert → Chart → Bar Chart → Select Data Range." This is intuitive for simple plots but limiting for complex visualizations. You're constrained by whatever the menu offers.
+
+**ggplot2** (the tidyverse visualization package) works differently. It's based on a **grammar of graphics**, a framework first articulated by Wilkinson (2005) and implemented in R by Wickham (2016). The idea is that any visualization can be described by combining a small number of components, just as any sentence can be described by combining words according to grammatical rules.
+
+**The grammar has three essential components**:
+
+1. **Data**: What dataset are you visualizing?
+2. **Aesthetics**: What variables map to visual properties (x-axis, y-axis, color, size)?
+3. **Geometries**: What visual marks represent the data (points, bars, lines)?
+
+**Additional components** for refinement:
+
+- **Facets**: Split the plot into subplots by a categorical variable
+- **Scales**: Control how data values map to visual values
+- **Themes**: Customize non-data elements (fonts, backgrounds, grid lines)
+
+This might sound complicated, but it's actually more flexible and more logical than point-and-click once you understand the pattern.
+
+## Your First ggplot
+
+Let's visualize the distribution of lyric sentiment in our music dataset.
+
+**Load the package and data**:
+
+```r
+library(tidyverse)  # Includes ggplot2
+library(readr)
+
+music_data <- read_csv("data_clean/final_unified_dataset.csv")
+```
+
+**Create a bar chart**:
+
+```r
+ggplot(data = music_data, aes(x = Lyric_Sentiment)) +
+  geom_bar()
+```
+
+**What just happened?**
+
+- `ggplot()`: Initialize a plot with your data
+- `aes(x = Lyric_Sentiment)`: Map the Lyric_Sentiment variable to the x-axis
+- `geom_bar()`: Draw bars (bar chart geometry)
+- `+`: Add layers to the plot (similar to the pipe `%>%` but for plots)
+
+**The result**: A bar chart showing how many songs fall into each sentiment category.
+
+**Anatomy of the code**:
+
+```r
+ggplot(data = music_data,           # What data?
+       aes(x = Lyric_Sentiment)) +   # What variable on x-axis?
+  geom_bar()                         # What visual representation?
+```
+
+Every ggplot follows this pattern: **data + aesthetics + geometry**.
+
+## Aesthetics: Mapping Variables to Visuals
+
+**Aesthetics** (`aes()`) specify how variables map to visual properties.
+
+**Common aesthetic mappings**:
+
+- `x`: Position on x-axis
+- `y`: Position on y-axis
+- `color`: Color of points or lines
+- `fill`: Fill color of bars or areas
+- `size`: Size of points
+- `shape`: Shape of points (circle, triangle, square)
+- `alpha`: Transparency (0 = invisible, 1 = opaque)
+
+**Example: Color by sentiment**:
+
+```r
+ggplot(music_data, aes(x = Tempo, y = Max_Rank, color = Lyric_Sentiment)) +
+  geom_point()
+```
+
+Now each point's color indicates its sentiment category.
+
+**Example: Size by intensity**:
+
+```r
+ggplot(music_data, aes(x = Tempo, y = Max_Rank, 
+                       color = Lyric_Sentiment, 
+                       size = Emotional_Intensity)) +
+  geom_point()
+```
+
+Point size represents emotional intensity, though be cautious with too many aesthetic mappings, as plots can become cluttered.
+
+## Geometries: Visual Representations
+
+**Geometries** (`geom_*()`) determine how data are displayed visually.
+
+### Bar Charts: Categorical Distributions
+
+**Use when**: Showing counts or proportions of categories
+
+```r
+# Count of songs in each sentiment category
+ggplot(music_data, aes(x = Lyric_Sentiment)) +
+  geom_bar()
+```
+
+**Horizontal bars** (easier to read labels):
+
+```r
+ggplot(music_data, aes(y = Lyric_Sentiment)) +  # y instead of x
+  geom_bar()
+```
+
+**Bar chart with fill color**:
+
+```r
+ggplot(music_data, aes(x = Lyric_Sentiment, fill = Lyric_Sentiment)) +
+  geom_bar() +
+  scale_fill_manual(values = c("Positive" = "skyblue", 
+                                 "Negative" = "coral", 
+                                 "Neutral" = "gray70", 
+                                 "Mixed" = "plum"))
+```
+
+### Histograms: Continuous Distributions
+
+**Use when**: Showing the distribution of a numeric variable
+
+```r
+# Distribution of tempo
+ggplot(music_data, aes(x = Tempo)) +
+  geom_histogram(binwidth = 10, fill = "steelblue", color = "white")
+```
+
+**What's `binwidth`?** It controls how wide each bar is. Smaller binwidth = more detail, but potentially noisy. Larger binwidth = smoother, but may hide patterns.
+
+**Try different binwidths**:
+
+```r
+# Too few bins (binwidth = 50)
+ggplot(music_data, aes(x = Tempo)) +
+  geom_histogram(binwidth = 50)
+
+# Too many bins (binwidth = 2)
+ggplot(music_data, aes(x = Tempo)) +
+  geom_histogram(binwidth = 2)
+
+# Just right (binwidth = 10)
+ggplot(music_data, aes(x = Tempo)) +
+  geom_histogram(binwidth = 10)
+```
+
+### Boxplots: Comparing Distributions Across Groups
+
+**Use when**: Comparing a numeric variable across categorical groups
+
+```r
+# Tempo distribution by sentiment
+ggplot(music_data, aes(x = Lyric_Sentiment, y = Tempo)) +
+  geom_boxplot()
+```
+
+**What the boxplot shows**:
+
+- **Box**: Middle 50% of data (25th to 75th percentile)
+- **Line inside box**: Median (50th percentile)
+- **Whiskers**: Extend to most extreme points within 1.5 × IQR
+- **Dots**: Outliers beyond the whiskers
+
+**Add color**:
+
+```r
+ggplot(music_data, aes(x = Lyric_Sentiment, y = Tempo, fill = Lyric_Sentiment)) +
+  geom_boxplot()
+```
+
+### Scatterplots: Relationships Between Numeric Variables
+
+**Use when**: Exploring correlation between two numeric variables
+
+```r
+# Tempo vs. chart position
+ggplot(music_data, aes(x = Tempo, y = Max_Rank)) +
+  geom_point()
+```
+
+**Add transparency to see overlapping points**:
+
+```r
+ggplot(music_data, aes(x = Tempo, y = Max_Rank)) +
+  geom_point(alpha = 0.5)
+```
+
+**Color by sentiment**:
+
+```r
+ggplot(music_data, aes(x = Tempo, y = Max_Rank, color = Lyric_Sentiment)) +
+  geom_point(alpha = 0.6)
+```
+
+**Add a trend line**:
+
+```r
+ggplot(music_data, aes(x = Tempo, y = Max_Rank)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm", se = FALSE)  # Linear regression line
+```
+
+`geom_smooth()` adds a smoothed line. `method = "lm"` makes it a straight line (linear model). `se = FALSE` removes the confidence interval shading.
+
+### Line Charts: Trends Over Time
+
+**Use when**: Showing change over time or ordered categories
+
+```r
+# Average chart position by year
+yearly_avg <- music_data %>%
+  group_by(Year) %>%
+  summarize(avg_peak = mean(Max_Rank, na.rm = TRUE))
+
+ggplot(yearly_avg, aes(x = Year, y = avg_peak)) +
+  geom_line() +
+  geom_point()
+```
+
+## Faceting: Small Multiples
+
+**Faceting** creates multiple subplots, one for each level of a categorical variable. This is powerful for comparing patterns across groups.
+
+**Facet by one variable** (`facet_wrap()`):
+
+```r
+# Tempo distribution by sentiment (separate histogram for each)
+ggplot(music_data, aes(x = Tempo)) +
+  geom_histogram(binwidth = 10, fill = "steelblue") +
+  facet_wrap(~ Lyric_Sentiment)
+```
+
+The `~` symbol means "by" or "as a function of." Read it as "facet by Lyric_Sentiment."
+
+**Facet by two variables** (`facet_grid()`):
+
+```r
+# Tempo by sentiment AND intensity
+ggplot(music_data, aes(x = Tempo)) +
+  geom_histogram(binwidth = 10, fill = "coral") +
+  facet_grid(Emotional_Intensity ~ Lyric_Sentiment)
+```
+
+This creates a grid: rows = Emotional_Intensity, columns = Lyric_Sentiment.
+
+**Control the number of columns in facet_wrap**:
+
+```r
+ggplot(music_data, aes(x = Tempo)) +
+  geom_histogram(binwidth = 10) +
+  facet_wrap(~ Lyric_Sentiment, ncol = 2)  # Force 2 columns
+```
+
+## Customizing Plots for Publication
+
+Default ggplot2 graphs are functional but not polished. Customization makes them publication-ready.
+
+### Adding Labels
+
+```r
+ggplot(music_data, aes(x = Tempo, y = Max_Rank)) +
+  geom_point(alpha = 0.5) +
+  labs(
+    title = "Tempo and Chart Performance in Popular Music",
+    subtitle = "Analysis of 200 Billboard Hot 100 songs (2015-2024)",
+    x = "Tempo (BPM)",
+    y = "Peak Chart Position (lower = better)",
+    caption = "Data: Coded lyric sentiment study"
+  )
+```
+
+### Applying Themes
+
+**Themes** control non-data elements: background, grid lines, fonts, etc.
+
+**Built-in themes**:
+
+```r
+# Classic theme (white background, no grid)
+ggplot(music_data, aes(x = Lyric_Sentiment)) +
+  geom_bar() +
+  theme_classic()
+
+# Minimal theme (gray background, white grid)
+ggplot(music_data, aes(x = Lyric_Sentiment)) +
+  geom_bar() +
+  theme_minimal()
+
+# Black and white theme (for print)
+ggplot(music_data, aes(x = Lyric_Sentiment)) +
+  geom_bar() +
+  theme_bw()
+```
+
+**Custom theme modifications**:
+
+```r
+ggplot(music_data, aes(x = Lyric_Sentiment, fill = Lyric_Sentiment)) +
+  geom_bar() +
+  theme_minimal() +
+  theme(
+    legend.position = "none",              # Remove legend
+    axis.text.x = element_text(size = 12), # Larger x-axis labels
+    axis.title = element_text(size = 14, face = "bold"), # Bold axis titles
+    plot.title = element_text(size = 16, face = "bold")  # Bold title
+  )
+```
+
+### Adjusting Scales
+
+**Reverse y-axis** (for chart position where lower = better):
+
+```r
+ggplot(music_data, aes(x = Tempo, y = Max_Rank)) +
+  geom_point(alpha = 0.5) +
+  scale_y_reverse()  # Now top of chart is at the top visually
+```
+
+**Change axis limits**:
+
+```r
+ggplot(music_data, aes(x = Tempo, y = Max_Rank)) +
+  geom_point() +
+  xlim(60, 180) +  # Tempo from 60 to 180 BPM
+  ylim(1, 100)     # Chart positions 1 to 100
+```
+
+**Custom color scales**:
+
+```r
+ggplot(music_data, aes(x = Tempo, y = Max_Rank, color = Lyric_Sentiment)) +
+  geom_point(alpha = 0.6) +
+  scale_color_manual(
+    values = c("Positive" = "#2E86AB", 
+               "Negative" = "#A23B72", 
+               "Neutral" = "#F18F01", 
+               "Mixed" = "#C73E1D")
+  )
+```
+
+### Rotating Axis Labels
+
+When category labels are long, rotate them:
+
+```r
+ggplot(music_data, aes(x = Artist, y = Max_Rank)) +
+  geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+## Combining Multiple Layers
+
+ggplot's real power comes from layering geometries.
+
+**Boxplot with individual points overlaid**:
+
+```r
+ggplot(music_data, aes(x = Lyric_Sentiment, y = Tempo)) +
+  geom_boxplot(fill = "lightblue", alpha = 0.5) +
+  geom_jitter(width = 0.2, alpha = 0.3, color = "darkblue")
+```
+
+`geom_jitter()` adds small random noise to prevent points from stacking exactly on top of each other.
+
+**Scatterplot with regression line and confidence interval**:
+
+```r
+ggplot(music_data, aes(x = Tempo, y = Max_Rank)) +
+  geom_point(alpha = 0.4) +
+  geom_smooth(method = "lm", color = "red", fill = "pink")
+```
+
+**Multiple trend lines by group**:
+
+```r
+ggplot(music_data, aes(x = Tempo, y = Max_Rank, color = Lyric_Sentiment)) +
+  geom_point(alpha = 0.4) +
+  geom_smooth(method = "lm", se = FALSE)  # One line per sentiment
+```
+
+## Choosing the Right Visualization
+
+Not all visualizations work for all data types. Here's a guide:
+
+### One Categorical Variable
+
+**Goal**: Show distribution of categories
+
+**Best choice**: Bar chart
+
+```r
+ggplot(music_data, aes(x = Lyric_Sentiment)) +
+  geom_bar()
+```
+
+**Avoid**: Pie charts (hard to compare angles)
+
+### One Numeric Variable
+
+**Goal**: Show distribution shape
+
+**Best choice**: Histogram or density plot
+
+```r
+# Histogram
+ggplot(music_data, aes(x = Tempo)) +
+  geom_histogram(binwidth = 10)
+
+# Density plot (smooth version of histogram)
+ggplot(music_data, aes(x = Tempo)) +
+  geom_density(fill = "skyblue", alpha = 0.5)
+```
+
+### Categorical × Numeric
+
+**Goal**: Compare numeric distributions across groups
+
+**Best choice**: Boxplot or violin plot
+
+```r
+# Boxplot
+ggplot(music_data, aes(x = Lyric_Sentiment, y = Tempo)) +
+  geom_boxplot()
+
+# Violin plot (shows full distribution shape)
+ggplot(music_data, aes(x = Lyric_Sentiment, y = Tempo)) +
+  geom_violin()
+```
+
+### Two Numeric Variables
+
+**Goal**: Explore correlation or relationship
+
+**Best choice**: Scatterplot
+
+```r
+ggplot(music_data, aes(x = Tempo, y = Max_Rank)) +
+  geom_point()
+```
+
+### Time Series (Numeric over Time)
+
+**Goal**: Show trends over time
+
+**Best choice**: Line chart
+
+```r
+ggplot(yearly_data, aes(x = Year, y = avg_tempo)) +
+  geom_line() +
+  geom_point()
+```
+
+### Comparing Many Groups
+
+**Goal**: Show patterns across multiple categorical groups
+
+**Best choice**: Faceted plots
+
+```r
+ggplot(music_data, aes(x = Tempo)) +
+  geom_histogram(binwidth = 10) +
+  facet_wrap(~ Lyric_Sentiment)
+```
+
+## Reading Visualizations Critically
+
+Creating good visualizations is only half the skill. The other half is reading them critically, both your own and other people's. Edward Tufte (2001), whose work on data visualization has influenced a generation of designers and researchers, argues that the best visualizations are those that present the data honestly, without distortion, and with a high ratio of information to ink.
+
+Here are common ways visualizations mislead:
+
+**Truncated y-axes.** A bar chart that starts at 90 instead of 0 makes a difference of 3 percentage points look enormous. Bar charts should almost always start at zero, because the height of the bar is supposed to represent the magnitude of the value. When you truncate, you misrepresent magnitude.
+
+**Cherry-picked time ranges.** A line chart showing a downward trend from 2021 to 2023 might look alarming, but if you extend the chart back to 2015, you might see that 2021 was an unusual peak and the "decline" is actually a return to normal. The choice of start and end points shapes the story a visualization tells.
+
+**Misleading aspect ratios.** A very wide, short chart makes a trend look gradual. A very tall, narrow chart makes the same trend look steep. The aspect ratio is a design choice, and it shapes perception.
+
+**Dual y-axes.** Plotting two variables with different scales on the same chart using two y-axes almost always misleads. By adjusting the scale of either axis, you can make any two variables appear to correlate or diverge. If you need to show two variables, use two separate panels.
+
+**Color choices that imply meaning.** Using red for one political party and blue for another carries cultural associations. Using a red-yellow-green gradient implies "bad-medium-good." Color choices are interpretive acts, not neutral decisions.
+
+**Missing context.** A chart showing that "negative songs chart higher" means little without error bars, sample sizes, or statistical significance. A difference that looks dramatic in a bar chart might be trivially small in practical terms.
+
+As both a creator and a reader of visualizations, your obligation is the same one that governs all research reporting (Chapter 8): present the data honestly, acknowledge limitations, and make the choices you've made transparent.
+
+## Exporting Visualizations
+
+Once you've created a polished plot, save it for your report or presentation.
+
+**Save the last plot**:
+
+```r
+ggsave("figures/tempo_by_sentiment.png", width = 8, height = 6, dpi = 300)
+```
+
+- `width` and `height`: Dimensions in inches
+- `dpi`: Resolution (300 is publication quality)
+
+**Save a specific plot**:
+
+```r
+my_plot <- ggplot(music_data, aes(x = Tempo, y = Max_Rank)) +
+  geom_point() +
+  theme_minimal()
+
+ggsave("figures/tempo_chart_relationship.png", plot = my_plot, 
+       width = 8, height = 6, dpi = 300)
+```
+
+**File formats**:
+
+- `.png`: Best for web and presentations (supports transparency)
+- `.pdf`: Best for print and LaTeX documents (vector graphics, scales perfectly)
+- `.jpg`: Smaller file size but lossy compression
+
+## A Complete Visualization Workflow
+
+Here's a realistic workflow from data to polished plot:
+
+```r
+library(tidyverse)
+
+# 1. Load cleaned data
+music_data <- read_csv("data_clean/final_unified_dataset.csv")
+
+# 2. Explore with a quick plot
+ggplot(music_data, aes(x = Tempo, y = Max_Rank, color = Lyric_Sentiment)) +
+  geom_point()
+
+# 3. Refine for publication
+final_plot <- ggplot(music_data, 
+                     aes(x = Tempo, y = Max_Rank, color = Lyric_Sentiment)) +
+  geom_point(alpha = 0.6, size = 2) +
+  geom_smooth(method = "lm", se = FALSE, linewidth = 0.8) +
+  scale_y_reverse() +
+  scale_color_manual(
+    values = c("Positive" = "#2E86AB", "Negative" = "#A23B72", 
+               "Neutral" = "#F18F01", "Mixed" = "#C73E1D"),
+    name = "Lyric Sentiment"
+  ) +
+  labs(
+    title = "Tempo and Chart Performance by Lyric Sentiment",
+    subtitle = "Billboard Hot 100 songs, 2015-2024 (n = 200)",
+    x = "Tempo (BPM)",
+    y = "Peak Chart Position",
+    caption = "Data: Systematic content analysis of coded songs"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 14, face = "bold"),
+    plot.subtitle = element_text(size = 11, color = "gray30"),
+    legend.position = "bottom",
+    panel.grid.minor = element_blank()
+  )
+
+# 4. View
+final_plot
+
+# 5. Save
+ggsave("figures/tempo_chart_sentiment.png", plot = final_plot, 
+       width = 10, height = 6, dpi = 300)
+```
+
+---
+
+## Practice: Creating Visualizations
+
+### Exercise 18.1: Bar Chart Practice
+
+Create a bar chart showing the distribution of Emotional_Intensity in your dataset. Customize it with:
+
+- Fill colors (Low = green, Medium = yellow, High = red)
+- A descriptive title and axis labels
+- theme_minimal()
+
+---
+
+### Exercise 18.2: Scatterplot Exploration
+
+Create a scatterplot with Tempo on the x-axis and Max_Rank on the y-axis. Add:
+
+- Points colored by Lyric_Sentiment
+- Alpha transparency (0.5)
+- A regression line for each sentiment category
+- Descriptive labels
+
+What pattern do you notice? Is there a relationship between tempo and chart success?
+
+---
+
+### Exercise 18.3: Faceted Visualization
+
+Create a histogram of Tempo, faceted by Lyric_Sentiment. Use:
+
+- binwidth = 15
+- A consistent fill color
+- facet_wrap() with 2 columns
+- Appropriate labels
+
+How do tempo distributions differ across sentiment categories?
+
+---
+
+### Exercise 18.4: Critical Visualization Reading
+
+Find a data visualization in a news article, social media post, or research report. Evaluate it using the critical reading principles from this chapter:
+
+1. Does the y-axis start at zero (if it's a bar chart)?
+2. Is the time range representative or cherry-picked?
+3. Are error bars or sample sizes shown?
+4. Do color choices imply judgments?
+5. Could the same data be visualized in a way that tells a different story?
+
+Write a 150-word evaluation.
+
+---
+
+### Exercise 18.5: Publication-Ready Plot
+
+Choose one of your visualizations and polish it for publication:
+
+- Add a title, subtitle, and caption
+- Apply a clean theme
+- Customize colors if using color
+- Adjust text sizes for readability
+- Export as a .png at 300 dpi
+
+---
+
+## Reflection Questions
+
+1. **Exploration vs. Communication**: Some visualizations are for exploring data yourself (quick and rough). Others are for communicating findings to an audience (polished and clear). How do these goals shape design choices? When is it worth investing time in polish?
+
+2. **Simplicity vs. Information**: You can always add more information to a plot: more colors, more shapes, more facets. But clarity often requires restraint. How do you decide what to include and what to leave out?
+
+3. **Visualization and Honesty**: This chapter argues that visualization choices (axis scales, color, aspect ratios) are interpretive acts, not neutral decisions. How does this connect to the ethical reporting principles from Chapter 8? Is an "honest" visualization always the same as an "accurate" one?
+
+4. **Visualization Across Domains**: The ggplot code in this chapter uses music data, but the same syntax works for any tidy dataset. If you were visualizing news framing data (frame type by source and year), which geometries would you use? How would you structure the facets?
+
+---
+
+## Chapter Summary
+
+This chapter introduced data visualization with ggplot2:
+
+- **Grammar of graphics** (Wilkinson, 2005; Wickham, 2016): Visualizations combine data, aesthetics (variable-to-visual mappings), and geometries (visual representations)
+- **Core syntax**: `ggplot(data, aes(x, y, color)) + geom_*()`
+- **Common geometries**: `geom_bar()` (categorical counts), `geom_histogram()` (numeric distribution), `geom_boxplot()` (compare distributions), `geom_point()` (scatterplots), `geom_line()` (trends)
+- **Aesthetics**: Map variables to position (x, y), color, fill, size, shape, alpha (transparency)
+- **Faceting**: Create small multiples with `facet_wrap()` or `facet_grid()`
+- **Customization**: Add labels (`labs()`), apply themes (`theme_minimal()`), adjust scales (`scale_*()`)
+- **Layering**: Combine multiple geometries (boxplot + points, scatterplot + trend line)
+- **Choosing visualizations**: Match plot type to data type and research question
+- **Critical reading**: Evaluate visualizations for truncated axes, cherry-picked ranges, misleading scales, and missing context (Tufte, 2001)
+- **Exporting**: Use `ggsave()` with appropriate resolution (300 dpi for publication)
+- **Workflow**: Explore quickly, refine iteratively, polish for audience
+
+---
+
+## Key Terms
+
+- **Aesthetic mapping**: Connecting data variables to visual properties (color, size, position)
+- **Binwidth**: Width of histogram bars; controls granularity of distribution
+- **Faceting**: Creating multiple subplots for different groups
+- **Geometry (geom)**: Visual representation of data (points, bars, lines)
+- **ggplot2**: Tidyverse package for data visualization (Wickham, 2016)
+- **Grammar of graphics**: Systematic framework for describing visualizations as combinations of components (Wilkinson, 2005)
+- **Theme**: Non-data visual elements (background, fonts, grid lines)
+
+---
+
+## References
+
+Tufte, E. R. (2001). *The visual display of quantitative information* (2nd ed.). Graphics Press.
+
+Wickham, H. (2016). *ggplot2: Elegant graphics for data analysis* (2nd ed.). Springer. https://doi.org/10.1007/978-3-319-24277-4
+
+Wilkinson, L. (2005). *The grammar of graphics* (2nd ed.). Springer. https://doi.org/10.1007/0-387-28695-0
+
+---
+
+::: {.callout-note title="Graduate Extension" collapse="true"}
+
+**Required Reading**: Tufte, E. R. (2001). *The visual display of quantitative information* (2nd ed.). Graphics Press. **Read Chapter 2: "Graphical Integrity."**
+
+**Prompt**: Tufte's *The Visual Display of Quantitative Information* is the most influential book ever written about data visualization. His Chapter 2, "Graphical Integrity," articulates principles for honest visualization that remain the field's standard reference. Tufte introduces the concept of the **Lie Factor**, a ratio comparing the size of an effect as shown in a graphic to the size of the effect in the data. A Lie Factor of 1.0 means the graphic accurately represents the data. Lie Factors above 1.0 indicate exaggeration; below 1.0 indicate understatement.
+
+1. **Calculate the Lie Factor** for a visualization you find in a news article, textbook, or research report. Show your work. If the Lie Factor is above 1.0, explain what specific design choice produced the distortion.
+
+2. Tufte argues that "graphical excellence consists of complex ideas communicated with clarity, precision, and efficiency." He values what he calls a high **data-ink ratio**: the proportion of ink in a chart that represents actual data rather than decoration. Evaluate one of the ggplot visualizations you created in this chapter using Tufte's data-ink ratio concept. What elements could be removed without losing information? What elements are essential?
+
+3. Create two versions of the same visualization from your dataset. Version A should present the data honestly, following Tufte's principles. Version B should present the same data misleadingly, using at least two of the distortion techniques discussed in this chapter (truncated axis, cherry-picked range, misleading color, dual y-axis). Write a 200-word analysis comparing the two versions and explaining how the design choices create different impressions.
+
+4. Tufte's work has been criticized for being overly austere, for preferring minimalism even when richer visual elements might aid comprehension. Do you agree with this critique? Are there situations in communication research where "chartjunk" (Tufte's term for non-data visual elements) actually helps audiences understand findings? When does decoration become communication?
+
+:::
+
+---
+
+## Looking Ahead
+
+Chapter 19 (The Surprise Detector) introduces statistical inference. You've visualized patterns in your data; now you'll learn to test whether those patterns are statistically significant or could have occurred by chance. This chapter covers chi-square tests for categorical relationships, correlation for continuous relationships, and introduces simple linear regression. You'll learn not just *how* to run statistical tests in R, but *when* to use them and how to interpret results honestly.

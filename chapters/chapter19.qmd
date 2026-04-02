@@ -1,0 +1,655 @@
+---
+title: "Chapter 19: The Surprise Detector"
+---
+
+## Learning Objectives
+
+- Understand the logic of null hypothesis significance testing (NHST)
+- Interpret p-values correctly (and avoid common misinterpretations)
+- Conduct chi-square tests for categorical relationships in R
+- Conduct correlation analysis for continuous relationships in R
+- Conduct simple linear regression in R and interpret the output
+- Calculate and interpret confidence intervals
+- Distinguish between statistical significance and practical significance
+- Report statistical results following APA guidelines
+
+---
+
+You've visualized your data (Chapter 18). You created a scatterplot showing that songs with negative lyric sentiment tend to chart higher than songs with positive sentiment. You faceted a boxplot and noticed that high-intensity songs appear more common among top-charting hits than low-intensity songs.
+
+But here's the uncomfortable question: Could these patterns be flukes?
+
+With a dataset of 200 songs, random variation creates patterns. If you shuffle sentiment labels randomly and plot the results, you'll sometimes see apparent differences between groups, not because sentiment actually matters, but because chance produces noise that looks like signal.
+
+Statistical inference is how we distinguish signal from noise. It asks: "If nothing real were happening, if sentiment truly didn't affect chart performance, how surprised should we be to see a pattern this strong?"
+
+This chapter teaches you to quantify surprise. It covers three statistical tools: the **chi-square test** for relationships between categorical variables, **correlation** for relationships between continuous variables, and **simple linear regression** for predicting one variable from another. Each tool answers a different question, and knowing when to use which is as important as knowing how to run them.
+
+## The Logic of Hypothesis Testing
+
+Hypothesis testing feels backward at first. You don't directly prove what you believe. Instead, you assume the opposite (the **null hypothesis**), then calculate how surprising your data would be if that assumption were true.
+
+**An analogy**: Imagine you suspect a coin is unfair, weighted to land heads more often. You can't prove it's unfair directly. But you can flip it 100 times and see what happens.
+
+- **Null hypothesis (H₀)**: The coin is fair (50/50 heads/tails)
+- **Alternative hypothesis (H₁)**: The coin is unfair
+
+You flip 100 times. Result: 65 heads, 35 tails.
+
+**Question**: If the coin were truly fair, how often would random chance produce 65 or more heads out of 100 flips?
+
+**Answer** (from probability theory): About 0.3% of the time.
+
+That's rare. If the null hypothesis (fair coin) were true, you'd almost never see 65 heads. So either:
+
+1. The coin is fair, and you witnessed a very unlikely event (0.3% chance), OR
+2. The coin is unfair
+
+Most researchers conclude: The null hypothesis is probably false. The coin is likely unfair.
+
+This is the logic of **null hypothesis significance testing (NHST)**: Assume nothing's happening, calculate how surprising your data are, and reject the null if the data are sufficiently surprising.
+
+## P-Values: Quantifying Surprise
+
+The **p-value** is the probability of observing data at least as extreme as yours, assuming the null hypothesis is true.
+
+**Coin example**: p = 0.003 (0.3%)
+
+**Music example**: You test whether negative sentiment songs chart differently than positive sentiment songs.
+
+- H₀: Sentiment and chart position are unrelated
+- H₁: Sentiment and chart position are related
+
+You run a statistical test. Result: p = 0.02 (2%)
+
+**Interpretation**: If sentiment truly didn't matter (H₀ is true), you'd see a difference this large or larger only 2% of the time due to random chance.
+
+That's surprising. Most researchers would reject the null hypothesis and conclude that sentiment and chart position are related.
+
+## The 0.05 Threshold (and Why It's Arbitrary)
+
+By convention, researchers use **p < 0.05** as the threshold for "statistical significance."
+
+- p < 0.05 → "Statistically significant" → Reject null hypothesis
+- p ≥ 0.05 → "Not statistically significant" → Fail to reject null
+
+**But this threshold is arbitrary.** There's nothing magical about 5%. It's a convention that emerged historically and stuck. Some fields use stricter thresholds (p < 0.01 or p < 0.001). Others are moving away from bright-line cutoffs entirely. The American Statistical Association has explicitly warned against treating p = 0.05 as a bright-line boundary.
+
+**What p = 0.049 vs. p = 0.051 really means**: Almost nothing. The first barely crosses the threshold; the second barely misses. Yet one is declared "significant" and the other "not significant." This is why many statisticians now recommend reporting exact p-values and focusing on effect sizes rather than binary yes/no decisions.
+
+## What P-Values Do NOT Mean
+
+P-values are wildly misinterpreted. Here's what they **do not** tell you:
+
+**❌ "p = 0.03 means there's a 3% chance the null hypothesis is true"**
+
+**Wrong.** The null hypothesis is either true or false (you just don't know which). P-values tell you about the probability of *data*, not hypotheses. Correct interpretation: "If H₀ were true, we'd see data this extreme 3% of the time."
+
+**❌ "p = 0.03 means there's a 97% chance the alternative hypothesis is true"**
+
+**Wrong.** P-values say nothing about the probability of H₁ being true.
+
+**❌ "p = 0.03 means the effect is large or important"**
+
+**Wrong.** Statistical significance doesn't imply practical significance. A tiny, trivial effect can be statistically significant with a large enough sample. A large, important effect can be non-significant with a small sample.
+
+**❌ "p > 0.05 means there's no effect"**
+
+**Wrong.** Failing to find significance doesn't prove the null. It means your data aren't strong enough evidence to reject it. Absence of evidence isn't evidence of absence.
+
+**✓ Correct interpretation**: "If the null hypothesis were true, we'd observe data at least this extreme [p × 100]% of the time due to random variation."
+
+## Chi-Square Test: Categorical Relationships
+
+The **chi-square test** (χ²) tests whether two categorical variables are independent or related.
+
+**Use case**: Do lyric sentiment and chart performance category (top 10 vs. not top 10) relate to each other?
+
+### The Research Question
+
+**Hypothesis**: Negative sentiment songs are more likely to chart in the top 10 than positive sentiment songs.
+
+**Null hypothesis (H₀)**: Sentiment and top-10 status are independent (unrelated).
+
+**Alternative hypothesis (H₁)**: Sentiment and top-10 status are related.
+
+### Creating the Contingency Table
+
+First, create a binary "top 10" variable and cross-tabulate it with sentiment:
+
+```r
+library(tidyverse)
+
+music_data <- music_data %>%
+  mutate(top10 = if_else(Max_Rank <= 10, "Top 10", "Not Top 10"))
+
+# Create contingency table
+table(music_data$Lyric_Sentiment, music_data$top10)
+```
+
+**Example output**:
+
+```
+                Not Top 10  Top 10
+  Positive           35       15
+  Negative           25       25
+  Neutral            20       10
+  Mixed              30       20
+```
+
+**Observation**: Negative songs have a higher proportion in top 10 (25/50 = 50%) than Positive songs (15/50 = 30%).
+
+**Question**: Is this difference statistically significant, or could it be chance?
+
+### Running the Chi-Square Test
+
+```r
+# Chi-square test
+chisq.test(music_data$Lyric_Sentiment, music_data$top10)
+```
+
+**Output**:
+
+```
+	Pearson's Chi-squared test
+
+data:  music_data$Lyric_Sentiment and music_data$top10
+X-squared = 8.42, df = 3, p-value = 0.038
+```
+
+**Interpretation**:
+
+- **χ² = 8.42**: The test statistic (measures how much the observed frequencies differ from what we'd expect if variables were independent)
+- **df = 3**: Degrees of freedom (based on table dimensions: [rows - 1] × [columns - 1] = [4 - 1] × [2 - 1] = 3)
+- **p = 0.038**: If sentiment and chart position were unrelated, we'd see a chi-square value this large or larger about 3.8% of the time by chance
+
+**Conclusion**: p < 0.05, so we reject the null hypothesis. Lyric sentiment and top-10 chart performance appear to be related.
+
+### Assumptions and Warnings
+
+Chi-square tests have assumptions:
+
+1. **Independence**: Each observation is independent (one song can't be coded twice)
+2. **Expected frequencies**: Each cell in the contingency table should have an expected frequency ≥ 5
+
+**Check expected frequencies**:
+
+```r
+chisq.test(music_data$Lyric_Sentiment, music_data$top10)$expected
+```
+
+If any cell has expected frequency < 5, the test may be unreliable. Consider combining categories (e.g., merge "Neutral" and "Mixed") or using Fisher's exact test instead.
+
+### Effect Size: Cramér's V
+
+Statistical significance tells you whether a relationship exists. **Effect size** tells you how strong it is.
+
+**Cramér's V** measures association strength for categorical variables. Cohen (1988) provides the benchmarks used across social science:
+
+- V ≈ 0.1: Small effect
+- V ≈ 0.3: Medium effect
+- V ≈ 0.5: Large effect
+
+```r
+library(rcompanion)
+
+cramerV(music_data$Lyric_Sentiment, music_data$top10)
+```
+
+**Example output**: V = 0.21
+
+**Interpretation**: A small-to-medium effect. Sentiment and chart position are related, but the relationship isn't overwhelmingly strong.
+
+## Correlation: Continuous Relationships
+
+The chi-square test works for categorical variables. When both variables are continuous (numeric), you need **correlation**.
+
+### What Correlation Measures
+
+**Pearson's r** quantifies the strength and direction of the linear relationship between two continuous variables. It ranges from -1 to +1:
+
+- **r = +1**: Perfect positive relationship (as X increases, Y always increases)
+- **r = 0**: No linear relationship
+- **r = -1**: Perfect negative relationship (as X increases, Y always decreases)
+
+### Effect Size Benchmarks for Correlation
+
+Cohen (1988) provides benchmarks:
+
+- |r| ≈ 0.10: Small effect
+- |r| ≈ 0.30: Medium effect
+- |r| ≈ 0.50: Large effect
+
+These benchmarks are guidelines, not laws. In some research contexts, r = 0.15 is practically important. In others, r = 0.40 is unremarkable. The benchmarks help you calibrate expectations.
+
+### Running a Correlation in R
+
+**Research question**: Is there a relationship between tempo and chart peak position?
+
+```r
+cor.test(music_data$Tempo, music_data$Max_Rank)
+```
+
+**Output**:
+
+```
+	Pearson's product-moment correlation
+
+data:  music_data$Tempo and music_data$Max_Rank
+t = -1.92, df = 198, p-value = 0.056
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.267  0.003
+sample estimates:
+       cor 
+-0.135
+```
+
+**Interpretation**:
+
+- **r = -0.135**: Weak negative correlation. Faster songs tend to chart slightly higher (lower Max_Rank = better chart position).
+- **p = 0.056**: Just above the 0.05 threshold. By conventional standards, not statistically significant.
+- **95% CI [-0.267, 0.003]**: The confidence interval includes zero, meaning the true population correlation could be zero (no relationship). It could also be as strong as -0.267. The data are inconclusive.
+- **Effect size**: By Cohen's (1988) benchmarks, r = -0.135 is a small effect.
+
+### Correlation Does Not Imply Causation
+
+This bears repeating: even a strong, statistically significant correlation does not demonstrate that one variable causes the other. A correlation between tempo and chart position might reflect:
+
+- Faster songs cause higher charting (causal)
+- Higher-charting songs tend to be produced with faster tempos (reverse causation)
+- A third variable (genre, era, artist fame) causes both (confounding)
+
+Correlation establishes *association*. Causation requires an experiment (Chapter 11) or a well-designed quasi-experiment.
+
+### Multiple Correlations
+
+You can examine correlations among several variables at once:
+
+```r
+# Select numeric variables
+numeric_vars <- music_data %>%
+  select(Tempo, Max_Rank, energy, valence, danceability)
+
+# Correlation matrix
+cor(numeric_vars, use = "complete.obs")
+```
+
+This produces a matrix showing the correlation between every pair of variables. Scan for strong relationships (|r| > 0.30) that warrant further investigation.
+
+### Visualizing Correlations
+
+Always plot your data alongside the correlation coefficient. A scatterplot reveals patterns that a number alone cannot:
+
+```r
+ggplot(music_data, aes(x = Tempo, y = Max_Rank)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm", se = TRUE, color = "red") +
+  scale_y_reverse() +
+  labs(
+    title = "Tempo and Chart Performance",
+    subtitle = paste("r =", round(cor(music_data$Tempo, 
+                     music_data$Max_Rank, use = "complete.obs"), 3)),
+    x = "Tempo (BPM)",
+    y = "Peak Chart Position (lower = better)"
+  ) +
+  theme_minimal()
+```
+
+Scatterplots can reveal nonlinear relationships, outliers, and clusters that a single r value obscures. Anscombe's Quartet, a famous set of four datasets, demonstrates that dramatically different data patterns can produce identical correlation coefficients.
+
+## Simple Linear Regression: Prediction
+
+Correlation tells you whether two variables are related. **Regression** takes the next step: it models one variable as a function of another, allowing you to predict values and quantify the strength of prediction.
+
+### What Regression Does
+
+Simple linear regression fits the best straight line through your data. The equation is:
+
+**Y = a + bX**
+
+Where:
+
+- **Y** is the dependent variable (what you're predicting)
+- **X** is the independent variable (what you're predicting from)
+- **a** is the intercept (the predicted value of Y when X = 0)
+- **b** is the slope (how much Y changes for each one-unit increase in X)
+
+### Running a Regression in R
+
+**Research question**: Does tempo predict chart peak position?
+
+```r
+model <- lm(Max_Rank ~ Tempo, data = music_data)
+summary(model)
+```
+
+**Output** (simplified):
+
+```
+Coefficients:
+             Estimate  Std. Error  t value  Pr(>|t|)
+(Intercept)  55.200      10.500     5.257    0.000 ***
+Tempo        -0.145       0.076    -1.920    0.056 .
+
+Multiple R-squared:  0.0183
+Adjusted R-squared:  0.0133
+F-statistic: 3.686 on 1 and 198 DF, p-value: 0.0563
+```
+
+### Interpreting the Output
+
+**Intercept (a = 55.2)**: When tempo is 0 BPM (hypothetical), the predicted chart position is 55.2. This is mathematically necessary but practically meaningless: no song has a tempo of 0.
+
+**Slope (b = -0.145)**: For each 1 BPM increase in tempo, the predicted chart position improves (decreases) by 0.145 positions. A song that is 10 BPM faster than another would be predicted to chart about 1.45 positions higher. This is a small effect.
+
+**p-value for slope (0.056)**: The relationship between tempo and chart position is not quite statistically significant at the conventional threshold. We cannot confidently conclude that tempo predicts chart position in the population.
+
+**R² = 0.018**: Tempo explains only 1.8% of the variation in chart position. That means 98.2% of what determines chart position is *something else*. This is a very small R².
+
+**How to interpret R²**: R² ranges from 0 to 1. It tells you the proportion of variance in Y explained by X. Cohen (1988) suggests:
+
+- R² ≈ 0.01: Small effect
+- R² ≈ 0.09: Medium effect
+- R² ≈ 0.25: Large effect
+
+An R² of 0.018 means tempo is a weak predictor of chart success. This doesn't mean tempo is irrelevant; it means many other factors matter more.
+
+### Visualizing the Regression Line
+
+The `geom_smooth(method = "lm")` function you used in Chapter 18 actually draws a regression line:
+
+```r
+ggplot(music_data, aes(x = Tempo, y = Max_Rank)) +
+  geom_point(alpha = 0.4) +
+  geom_smooth(method = "lm", color = "red") +
+  scale_y_reverse() +
+  labs(
+    title = "Regression: Tempo Predicting Chart Position",
+    subtitle = expression(paste(R^2, " = 0.018, p = .056")),
+    x = "Tempo (BPM)",
+    y = "Peak Chart Position"
+  ) +
+  theme_minimal()
+```
+
+The shaded region around the line is the confidence interval for the regression line itself, showing the uncertainty in the predicted values.
+
+### Regression Assumptions
+
+Linear regression assumes:
+
+1. **Linearity**: The relationship between X and Y is approximately linear (check with a scatterplot)
+2. **Independence**: Observations are independent of each other
+3. **Homoscedasticity**: The spread of residuals is roughly constant across X values
+4. **Normality of residuals**: The residuals (prediction errors) are approximately normally distributed
+
+**Check assumptions visually**:
+
+```r
+# Diagnostic plots
+par(mfrow = c(2, 2))
+plot(model)
+```
+
+If the plots reveal severe violations (curved patterns, fanning residuals, heavy-tailed distributions), the regression results may be unreliable.
+
+### From Simple to Multiple Regression
+
+Simple regression uses one predictor. **Multiple regression** uses several predictors simultaneously:
+
+```r
+model_multi <- lm(Max_Rank ~ Tempo + energy + valence, data = music_data)
+summary(model_multi)
+```
+
+This asks: Does tempo still predict chart position after accounting for energy and valence? Multiple regression is beyond the scope of this course but is the natural extension of what you've learned here.
+
+## Confidence Intervals: Estimating Uncertainty
+
+P-values tell you whether to reject the null. **Confidence intervals** tell you the range of plausible values for an effect.
+
+**Example**: What's the average chart position for negative sentiment songs?
+
+```r
+negative_songs <- music_data %>%
+  filter(Lyric_Sentiment == "Negative")
+
+mean(negative_songs$Max_Rank)  # Point estimate
+```
+
+**Output**: Mean = 32.4
+
+But this is just one sample. The true population mean (if we coded all songs ever) is unknown. A **95% confidence interval** gives a range of plausible values.
+
+```r
+t.test(negative_songs$Max_Rank)$conf.int
+```
+
+**Output**: [28.1, 36.7]
+
+**Interpretation**: We're 95% confident that the true average chart position for negative sentiment songs lies between 28.1 and 36.7.
+
+**What "95% confident" means**: If we repeated this study 100 times with different random samples, about 95 of those confidence intervals would contain the true population mean. It does *not* mean there's a 95% probability the true mean is in this specific interval.
+
+### Comparing Groups with Confidence Intervals
+
+```r
+# Compare negative vs. positive songs
+t.test(Max_Rank ~ Lyric_Sentiment,
+       data = music_data %>% filter(Lyric_Sentiment %in% c("Negative", "Positive")))
+```
+
+If the confidence interval for the difference does not include zero, the difference is statistically significant.
+
+## Statistical Significance vs. Practical Significance
+
+A finding can be **statistically significant** (unlikely to be chance) but **practically trivial** (too small to matter).
+
+**Example**: You test whether negative songs have higher tempo. Result:
+
+- Difference: 2.1 BPM (negative songs average 121.1, positive songs average 119.0)
+- p = 0.003 (highly statistically significant)
+- Sample size: 10,000 songs
+
+**Is 2.1 BPM meaningful?** Listeners can't perceive a 2 BPM difference. DJs wouldn't care. This is statistically significant but practically trivial.
+
+**Conversely**: A difference of 30 BPM (very noticeable) might not be statistically significant if your sample is only 15 songs. Lack of significance doesn't mean the effect doesn't exist; it means you don't have enough data to detect it reliably.
+
+**Takeaway**: Always report effect sizes and confidence intervals alongside p-values. Statistical significance tells you *whether* there's an effect; effect size tells you *how much* (Cohen, 1988).
+
+## When Hypothesis Testing Isn't Appropriate
+
+Hypothesis tests work when you have:
+
+1. A clear null hypothesis
+2. Random or representative sampling
+3. Sufficient sample size
+4. Data that meet test assumptions
+
+**When NOT to use hypothesis testing**:
+
+**Exploratory analysis**: If you're exploring data without specific predictions, hypothesis tests are misleading. You're fishing for patterns, which inflates false positives.
+
+**Convenience samples**: If your 200 songs aren't a random sample of all music (they're probably not), p-values don't generalize to the population. They only describe this specific dataset.
+
+**Tiny samples**: With n = 10, even large effects may not reach significance. The test lacks power.
+
+**Multiple comparisons**: If you test 20 hypotheses at p < 0.05, you'd expect 1 false positive by chance. Adjust for multiple testing or report all tests conducted. This connects directly to the HARKing problem discussed in Chapter 8.
+
+## Reporting Statistical Results
+
+Follow **APA format** for transparency (Appelbaum et al., 2018):
+
+**Chi-square**:
+
+"A chi-square test revealed a significant relationship between lyric sentiment and top-10 chart status, χ²(3, N = 200) = 8.42, p = .038, Cramér's V = 0.21. Negative sentiment songs were more likely to chart in the top 10 (50%) than positive sentiment songs (30%)."
+
+**T-test**:
+
+"An independent samples t-test showed that negative sentiment songs (M = 128.5 BPM, SD = 24.3) had significantly higher tempo than positive sentiment songs (M = 116.5 BPM, SD = 22.1), t(87.5) = 2.13, p = .036, 95% CI [1.2, 22.8], d = 0.51."
+
+**Correlation**:
+
+"Tempo and chart peak position were weakly negatively correlated, r(198) = -.135, p = .056, 95% CI [-.267, .003], indicating that faster songs tended to chart slightly higher, though this relationship did not reach statistical significance."
+
+**Regression**:
+
+"A simple linear regression was conducted to determine whether tempo predicted chart peak position. The model was not statistically significant, F(1, 198) = 3.69, p = .056, R² = .018. Tempo did not significantly predict chart position (b = -0.145, SE = 0.076, p = .056). Tempo accounted for approximately 1.8% of the variance in chart peak position."
+
+**What to include**:
+
+- Test name
+- Test statistic and degrees of freedom
+- Exact p-value (not just "p < .05")
+- Effect size (Cramér's V, Cohen's d, r, R²)
+- Descriptive statistics (means, SDs)
+- Confidence intervals when available
+
+---
+
+## Practice: Statistical Inference
+
+### Exercise 19.1: Interpreting P-Values
+
+For each p-value, write a correct interpretation:
+
+1. p = 0.03
+2. p = 0.18
+3. p = 0.001
+
+---
+
+### Exercise 19.2: Chi-Square Test
+
+Test whether Emotional_Intensity (Low/Medium/High) relates to top-10 chart status.
+
+1. Create a contingency table
+2. Run the chi-square test
+3. Check expected frequencies
+4. Calculate Cramér's V
+5. Write an APA-formatted results sentence
+
+---
+
+### Exercise 19.3: Correlation
+
+Test the correlation between two continuous variables from your dataset (e.g., energy and danceability, or valence and chart position).
+
+1. State your research question and hypotheses
+2. Run `cor.test()` and report the results
+3. Create a scatterplot with a regression line
+4. Evaluate the effect size using Cohen's (1988) benchmarks
+5. Write an APA-formatted results sentence
+
+---
+
+### Exercise 19.4: Simple Regression
+
+Using your dataset, run a simple linear regression predicting Max_Rank from one audio feature (e.g., energy, valence, or danceability).
+
+1. State your research question
+2. Run `lm()` and examine the `summary()`
+3. Interpret the intercept, slope, R², and p-value
+4. Check at least one assumption visually
+5. Write an APA-formatted results paragraph
+
+---
+
+### Exercise 19.5: Significance vs. Importance
+
+A researcher finds a statistically significant correlation between song length and chart position: r = 0.08, p = .001, n = 5,000.
+
+1. Is this finding statistically significant? Why?
+2. Is this finding practically meaningful? Why or why not?
+3. What additional information would you need to assess its importance?
+4. How would you report this result honestly?
+
+---
+
+## Reflection Questions
+
+1. **The 0.05 Threshold**: If p = 0.048, you reject the null. If p = 0.052, you don't. Does this bright line make sense, or should we think about evidence more continuously? What are the consequences of treating 0.05 as a hard cutoff?
+
+2. **Publication Bias**: Studies with p < 0.05 are more likely to be published than studies with p > 0.05. How does this distort our understanding of what's true? If you found p = 0.08, would you report it honestly or keep testing until you got p < 0.05?
+
+3. **Choosing the Right Test**: You now know three statistical tests: chi-square (categorical × categorical), correlation (continuous × continuous), and regression (predicting one continuous variable from another). For each of the following questions, which test would you use, and why?
+   - Does genre relate to whether a song reaches #1?
+   - Is there a relationship between song length and number of streams?
+   - Does energy level predict danceability?
+
+4. **The R² Interpretation**: An R² of 0.018 means tempo explains only 1.8% of chart position variance. Some students find this disappointing. But in complex social phenomena, no single variable explains much. Is a small R² a "failure," or is it a realistic reflection of how complex the world is?
+
+---
+
+## Chapter Summary
+
+This chapter introduced statistical inference and three key analytical tools:
+
+- **Null hypothesis significance testing (NHST)**: Assume nothing is happening (H₀), calculate how surprising the data are, reject H₀ if sufficiently surprising
+- **P-value**: Probability of observing data at least this extreme if H₀ were true
+- **p < 0.05**: Conventional threshold for "statistical significance," but arbitrary
+- **Chi-square test (χ²)**: Tests independence of two categorical variables. Effect size: Cramér's V
+- **Correlation (Pearson's r)**: Measures the strength and direction of linear relationships between continuous variables. Ranges from -1 to +1. Effect size benchmarks: |r| ≈ .10 small, .30 medium, .50 large (Cohen, 1988)
+- **Simple linear regression**: Models Y as a function of X (Y = a + bX). The slope (b) quantifies how much Y changes per unit of X. R² measures the proportion of variance explained. Provides the foundation for more complex predictive models
+- **Confidence intervals**: Range of plausible values for a parameter
+- **Statistical vs. practical significance**: Statistical significance doesn't imply importance; always report effect sizes (Cohen, 1988)
+- **Common p-value misinterpretations**: P-values don't tell you the probability H₀ is true, or that H₁ is true, or that the effect is large
+- **When not to test**: Exploratory analysis, convenience samples, tiny samples, multiple comparisons without correction
+- **Reporting standards**: Include test statistic, df, exact p-value, effect size, descriptives, CIs (Appelbaum et al., 2018)
+
+---
+
+## Key Terms
+
+- **Alternative hypothesis (H₁)**: The claim that there is an effect or relationship
+- **Chi-square test (χ²)**: Statistical test for independence of categorical variables
+- **Confidence interval (CI)**: Range of plausible values for a population parameter
+- **Correlation (Pearson's r)**: Measure of strength and direction of linear association between continuous variables
+- **Cramér's V**: Effect size measure for categorical associations (0 = none, 1 = perfect)
+- **Effect size**: Magnitude of a relationship or difference, distinct from statistical significance (Cohen, 1988)
+- **Intercept (a)**: Predicted value of Y when X = 0 in a regression equation
+- **Null hypothesis (H₀)**: The claim that there is no effect or relationship
+- **Null hypothesis significance testing (NHST)**: Framework for testing whether data are surprising under H₀
+- **P-value**: Probability of observing data at least as extreme as yours if H₀ is true
+- **Practical significance**: Whether an effect is large enough to matter in real-world contexts
+- **R² (R-squared)**: Proportion of variance in the dependent variable explained by the independent variable(s)
+- **Regression coefficient (slope, b)**: How much Y changes for each one-unit increase in X
+- **Simple linear regression**: Statistical model predicting one continuous variable from another
+- **Statistical significance**: Whether a result is unlikely to have occurred by chance alone (conventionally p < 0.05)
+- **Type I error**: False positive (rejecting true H₀)
+- **Type II error**: False negative (failing to reject false H₀)
+
+---
+
+## References
+
+Appelbaum, M., Cooper, H., Kline, R. B., Mayo-Wilson, E., Nezu, A. M., & Rao, S. M. (2018). Journal article reporting standards for quantitative research in psychology: The APA Publications and Communications Board task force report. *American Psychologist*, *73*(1), 3-25. https://doi.org/10.1037/amp0000191
+
+Cohen, J. (1988). *Statistical power analysis for the behavioral sciences* (2nd ed.). Lawrence Erlbaum Associates.
+
+---
+
+::: {.callout-note title="Graduate Extension" collapse="true"}
+
+**Required Reading**: Cohen, J. (1988). *Statistical power analysis for the behavioral sciences* (2nd ed.). Lawrence Erlbaum Associates. **Read Chapter 1: "The Concepts of Power Analysis."**
+
+**Prompt**: Cohen's *Statistical Power Analysis* has shaped how social scientists think about sample size, effect size, and the relationship between them. His Chapter 1 introduces the four quantities that are mathematically linked in any hypothesis test: sample size (n), significance level (α), effect size, and statistical power (1 - β). Knowing any three determines the fourth.
+
+1. **Define power** in your own words. Why does Cohen argue that researchers should calculate power *before* collecting data, not after? What goes wrong when power analysis is conducted post hoc (after a non-significant result)?
+
+2. **Power and sample size**: Using Cohen's framework, explain why a study with n = 30 might fail to detect a real but small effect (r = 0.15), while a study with n = 500 would detect the same effect easily. What does this imply about interpreting non-significant results in small-sample studies?
+
+3. **The effect size imperative**: Cohen argues that researchers focus too much on p-values and too little on effect sizes. He provides benchmarks for "small," "medium," and "large" effects across multiple test types (d, r, f, w). Why did he choose these benchmarks? (Hint: he based them on what he observed in published social science research.) Are there situations where his benchmarks are misleading?
+
+4. **Apply power analysis**: You are planning a study testing whether negative-sentiment songs have higher chart positions than positive-sentiment songs. You expect a medium effect size (d = 0.50). Using Cohen's tables or a free power calculator (G*Power, or R's `pwr` package), determine the minimum sample size needed to detect this effect with 80% power at α = .05. Now recalculate for a small effect (d = 0.20). What does this tell you about the relationship between expected effect size and required sample size?
+
+5. **The replication connection**: Chapter 2 discussed the replication crisis in psychology (Open Science Collaboration, 2015). Many failed replications involved studies that were underpowered (too small to reliably detect the effects they claimed). Using Cohen's framework, explain why underpowered studies are both more likely to produce false positives *and* more likely to fail replication. This seems paradoxical; resolve the paradox.
+
+:::
+
+---
+
+## Looking Ahead
+
+Chapter 20 (Interpreting the Call) moves beyond mechanical hypothesis testing to the art of interpretation. You've run statistical tests; now you need to make sense of what they mean. This chapter covers what to do when results are "marginally significant" (p ≈ 0.06), how to handle unexpected findings, the difference between exploratory and confirmatory analysis, and the craft of honest, nuanced interpretation: acknowledging limitations, considering alternative explanations, and avoiding overstating findings.

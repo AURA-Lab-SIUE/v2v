@@ -12,15 +12,13 @@ title: "Chapter 5: Choosing Your Lens"
 
 ---
 
-In 2018, a team of researchers published a finding that seemed, at first, counterintuitive: songs with predominantly negative lyric sentiment—songs about heartbreak, loss, anxiety—actually charted *higher* on average than songs with positive sentiment. The pattern held across thousands of songs and multiple decades. Statistically, it was robust. But what did it *mean*?
+In 2019, a team of researchers analyzed the emotional content of 50 years of Billboard Hot 100 lyrics and found that songs with negative emotional expression, songs about loss, anger, and sadness, had become progressively more prevalent over time (Brand, Acerbi, & Mesoudi, 2019). The trend was robust across decades, and the researchers interpreted it through the lens of cultural evolution: negative content, they argued, may carry a selection advantage in musical markets because it is more emotionally arousing and therefore more memorable.
 
-You could describe the pattern—"negative lyrics correlate with chart success"—without understanding it. But description isn't explanation. To move from "what happened" to "why it happened," you need a framework for interpreting the pattern. You need theory.
+That's one interpretation. But the same empirical pattern, the correlation between negative content and commercial prevalence, generates different explanations depending on which theoretical lens you apply. A psychologist drawing on **catharsis theory** might argue that listeners seek out sad music to process their own negative emotions. A sociologist using **social identity theory** (Tajfel & Turner, 1979) might suggest that negative emotions signal authenticity in certain genre communities, and authenticity strengthens in-group bonds. A communication scholar applying **uses and gratifications theory** (Katz, Blumler, & Gurevitch, 1973) might propose that listeners actively choose negative music to fulfill specific emotional needs that positive music cannot satisfy.
 
-One researcher might interpret the finding through **catharsis theory**: listeners seek out sad music as a way to process their own negative emotions, making such songs psychologically valuable. Another might invoke **social identity theory**: perhaps negative emotions signal authenticity in certain genres (think emo, grunge, or confessional hip-hop), and authenticity strengthens in-group bonds. A third might draw on **uses and gratifications theory**: listeners actively choose music that meets specific emotional needs, and negative music fulfills those needs more effectively than cheerful background noise.
+Each theoretical lens focuses attention on different mechanisms. Catharsis emphasizes emotional release. Social identity emphasizes group membership and cultural meaning. Uses and gratifications emphasizes active audience choice. The same empirical pattern generates different explanations depending on which lens you choose.
 
-Each of these theoretical lenses focuses attention on different mechanisms. Catharsis emphasizes emotional release. Social identity emphasizes group membership and cultural meaning. Uses and gratifications emphasizes active audience choice. The same empirical pattern—the correlation between negative lyrics and chart success—generates different explanations depending on which lens you choose.
-
-This is what theory does. It's not decorative. It's not an abstract exercise you complete before getting to the "real" work of analysis. Theory is the architecture that transforms scattered observations into coherent understanding. It tells you what to look for, what to measure, and what would constitute evidence for or against your explanation.
+This is what theory does. It's not decorative. It's not an abstract exercise you complete before getting to the "real" work of analysis. Theory is the architecture that transforms scattered observations into coherent understanding. It tells you what to look for, what to measure, and what would constitute evidence for or against your explanation. And it is not specific to any one topic. The same theories that illuminate music and emotion also explain news consumption, political persuasion, brand loyalty, and health behavior. Choosing a theory is choosing a way of seeing.
 
 ## Theory Is Not Speculation
 
@@ -33,68 +31,72 @@ A **theory** is a formal, systematic explanation of relationships between concep
 - **Falsifiable**: They make predictions that could, in principle, be proven wrong.
 - **Generative**: They produce new hypotheses and research questions.
 
-Consider **Social Identity Theory**, developed by Henri Tajfel and John Turner. It proposes that people derive part of their self-concept from the groups they belong to. Group membership creates **in-group favoritism** (we like "our" people) and **out-group derogation** (we distance ourselves from "them"). When our group's status is threatened, we're motivated to protect it—often by denigrating rival groups.
+Consider **Social Identity Theory**, developed by Henri Tajfel and John Turner (1979). It proposes that people derive part of their self-concept from the groups they belong to. Group membership creates **in-group favoritism** (we like "our" people) and **out-group derogation** (we distance ourselves from "them"). When our group's status is threatened, we're motivated to protect it, often by denigrating rival groups.
 
 This isn't speculation. It's a systematic framework built from decades of experimental research. And it generates testable predictions. For instance:
 
 - **Prediction 1**: Music fans will rate their preferred genre more positively than rival genres, especially on subjective dimensions like "artistic merit."
 - **Prediction 2**: When a music genre they identify with is criticized, fans will defensively counter-attack by criticizing the source or the rival genre.
-- **Prediction 3**: In online music communities, expressions of in-group solidarity (praising the genre) will correlate with expressions of out-group hostility (disparaging other genres).
+- **Prediction 3**: Political partisans will rate news outlets aligned with their party as more credible than opposing outlets, even when the factual content is identical.
 
-Each prediction is testable. You could design a study to see if the data support it. That's what makes it theory rather than speculation.
+Notice that Predictions 1 and 2 apply the theory to music, while Prediction 3 applies the same theory to political media. The theory doesn't change; the domain does. Each prediction is testable. You could design a study to see if the data support it. That's what makes it theory rather than speculation.
 
 ## The Lens Metaphor
 
 Theory functions like a camera lens. It brings certain elements into sharp focus while leaving others blurred or outside the frame entirely.
 
-If you're studying music and emotion using **appraisal theory** (which focuses on how individuals cognitively evaluate stimuli), you'll pay attention to:
-- Individual psychological responses (does this song make *me* feel sad?)
+If you're studying media and emotion using **appraisal theory** (Scherer, 2004), which focuses on how individuals cognitively evaluate stimuli, you'll pay attention to:
+
+- Individual psychological responses (does this content make *me* feel sad?)
 - Cognitive processes (what features do I associate with sadness?)
 - Personal experiences (does this remind me of something in my life?)
 
-You'll design measures that capture individual reactions—perhaps surveys asking people to rate how songs make them feel, or experiments manipulating song features and measuring emotional responses.
+You'll design measures that capture individual reactions: surveys asking people to rate how media content makes them feel, or experiments manipulating content features and measuring emotional responses.
 
-But if you study the same phenomenon using **social identity theory**, you'll focus on different elements:
-- Group-based meanings (what does this genre represent to its community?)
-- Collective identity (how do fans use music to signal belonging?)
-- Cultural context (when and why did this genre emerge?)
+But if you study the same phenomenon using **social identity theory** (Tajfel & Turner, 1979), you'll focus on different elements:
 
-You'll design different measures—perhaps analyzing fan forums to see how listeners talk about music as identity markers, or studying how genre boundaries are policed within communities.
+- Group-based meanings (what does this genre, outlet, or platform represent to its community?)
+- Collective identity (how do fans or followers use media to signal belonging?)
+- Cultural context (when and why did this community form?)
 
-Same phenomenon (music and emotion), different lenses, different research designs. Neither approach is "wrong." They're answering different questions because they're guided by different theoretical frameworks.
+You'll design different measures: analyzing fan forums or comment sections to see how users talk about media as identity markers, or studying how community boundaries are policed.
 
-The key is choosing a lens that fits your research question and your data. You can't use every lens at once—that would produce incoherent blur. You need to commit to a perspective, knowing it will illuminate certain aspects while leaving others in shadow.
+Same phenomenon, different lenses, different research designs. Neither approach is "wrong." They're answering different questions because they're guided by different theoretical frameworks.
+
+The key is choosing a lens that fits your research question and your data. You can't use every lens at once; that would produce incoherent blur. You need to commit to a perspective, knowing it will illuminate certain aspects while leaving others in shadow.
 
 ## Three Paradigms: Different Relationships to Theory
 
-The way researchers use theory depends on their broader philosophical commitments—what's called a **paradigm**. Three major paradigms dominate communication research, and each treats theory differently.
+The way researchers use theory depends on their broader philosophical commitments, what's called a **paradigm**. Three major paradigms dominate communication research, and each treats theory differently.
 
 ### The Social Scientific Paradigm: Theory as Starting Point
 
 **Core assumption**: There's an objective reality we can observe, measure, and understand through systematic testing.
 
-**Approach to theory**: **Deductive logic**—start with theory, derive specific predictions (hypotheses), collect data to test those predictions.
+**Approach to theory**: **Deductive logic**: start with theory, derive specific predictions (hypotheses), collect data to test those predictions.
 
 **Typical question**: "Does X cause Y?"
 
-**Example**: 
+**Example**:
 
-You start with **Cultivation Theory**, which proposes that heavy media exposure cultivates perceptions consistent with media portrayals. You apply this to music:
+You start with **Cultivation Theory** (Gerbner & Gross, 1976), which proposes that heavy media exposure cultivates perceptions consistent with media portrayals. You apply this to music:
 
 - **Theory**: Repeated exposure to lyric themes shapes listeners' perceptions of social reality.
 - **Hypothesis**: Listeners who frequently consume music with materialistic lyrics will express more materialistic values than listeners who consume music with less materialistic content.
 - **Design**: Survey measuring music listening habits and materialistic attitudes.
 - **Analysis**: Statistical test (correlation or regression) to see if the predicted relationship holds.
 
+The same theory applied to television news: heavy viewers of local news, which disproportionately covers crime, may overestimate the prevalence of violent crime in their community compared to light viewers. Same theoretical logic, different medium.
+
 If the data support the hypothesis, that strengthens confidence in the theory. If not, the theory may need refinement or the hypothesis may need revision.
 
-This cycle—theory → hypothesis → data → conclusion → theory refinement—is how social science progresses. Theory is the *starting point*, the map from which you chart specific expeditions.
+This cycle, theory → hypothesis → data → conclusion → theory refinement, is how social science progresses. Theory is the *starting point*, the map from which you chart specific expeditions.
 
 ### The Interpretive Paradigm: Theory as End Point
 
 **Core assumption**: Reality is socially constructed. Meaning emerges through interaction and interpretation.
 
-**Approach to theory**: **Inductive logic**—start with detailed observations, identify patterns, build theory from the data.
+**Approach to theory**: **Inductive logic**: start with detailed observations, identify patterns, build theory from the data.
 
 **Typical question**: "What does X mean to the people who experience it?"
 
@@ -104,14 +106,17 @@ You want to understand how K-pop fans construct community identity. Instead of s
 
 - **Data collection**: Participant observation in fan forums, in-depth interviews with fans, analysis of fan-created content.
 - **Coding**: Systematically analyze transcripts and field notes to identify recurring concepts.
-- **Pattern identification**: Notice that fans frequently talk about shared interpretive labor—translating lyrics, explaining cultural references, creating elaborate theories about music videos.
+- **Pattern identification**: Notice that fans frequently talk about shared interpretive labor: translating lyrics, explaining cultural references, creating elaborate theories about music videos.
 - **Theory development**: You propose a theory that fan communities build identity through *collaborative sense-making*. The act of interpreting together creates belonging.
 
 This theory is **grounded** in your data. It emerged from the bottom up rather than being imposed from the top down. The research process produced the theory as its end point.
 
+The same approach works in non-music contexts. A researcher might conduct in-depth interviews with nurses during a pandemic to understand how they construct professional identity under extreme conditions. No hypothesis is tested; instead, theory about identity under crisis emerges from the data.
+
 Methods commonly used in this paradigm include:
+
 - **Grounded theory**: Systematic coding to build theory from qualitative data
-- **Thematic analysis**: Identifying patterns (themes) in interview transcripts or texts
+- **Thematic analysis** (Braun & Clarke, 2006): Identifying patterns (themes) in interview transcripts or texts
 - **Narrative analysis**: Treating complete stories as units of analysis to understand how people make meaning
 
 ### The Critical/Cultural Paradigm: Theory as Critical Lens
@@ -127,13 +132,16 @@ Methods commonly used in this paradigm include:
 You're studying the representation of women in rap lyrics. Instead of neutrally "describing" patterns, you use **feminist theory** as a critical lens:
 
 - **Analysis**: You examine how women are portrayed in commercially successful rap. You find patterns of objectification and stereotyping.
-- **Critique**: You argue this isn't just "what rap is"—it reflects broader patriarchal structures in the music industry. Label executives, producers, and marketing departments (overwhelmingly male) shape what gets promoted.
+- **Critique**: You argue this isn't just "what rap is"; it reflects broader patriarchal structures in the music industry. Label executives, producers, and marketing departments (overwhelmingly male) shape what gets promoted.
 - **Political economy**: You connect lyric content to industry structure, showing how corporate consolidation prioritizes formulaic, marketable stereotypes over diverse voices.
-- **Advocacy**: Your research doesn't just describe—it calls for structural change in industry practices.
+- **Advocacy**: Your research doesn't just describe; it calls for structural change in industry practices.
+
+The same critical approach applies to other domains. A researcher might use critical race theory to analyze how mainstream news coverage frames police violence, asking not just "how often is this topic covered" but "whose perspective dominates the narrative, and whose is marginalized?" The critical lens transforms description into argument.
 
 Other critical lenses include:
+
 - **Critical race theory**: Examining how race and racism structure media representation and power
-- **Political economy of media**: Analyzing how capitalist structures shape media production
+- **Political economy of media**: Analyzing how capitalist structures shape media production and distribution
 - **Discourse analysis**: Studying how language reproduces or challenges power inequalities
 
 ## Grand Theories vs. Middle-Range Theories
@@ -141,21 +149,27 @@ Other critical lenses include:
 Not all theories operate at the same level of abstraction.
 
 **Grand theories** explain fundamental aspects of human behavior across all contexts. Examples include:
+
 - **Marxism**: All social relations are shaped by economic structures and class conflict.
 - **Psychoanalysis**: Human behavior is driven by unconscious desires and childhood experiences.
 - **Structuralism**: Meaning emerges from underlying universal structures (like language).
 
 Grand theories are intellectually powerful, but they're difficult to test empirically. How would you design a study to prove or disprove Marxism? The scope is too broad, the predictions too general.
 
-**Middle-range theories** occupy a sweet spot: specific enough to generate testable hypotheses, but broad enough to generalize beyond single cases. Most communication research uses middle-range theories.
+**Middle-range theories** occupy a sweet spot: specific enough to generate testable hypotheses, but broad enough to generalize beyond single cases. Most communication research uses middle-range theories. The sociologist Robert Merton coined the term to describe frameworks that sit between grand theoretical systems and the narrow descriptions of individual studies. Every theory described below is middle-range: broad enough to apply across contexts, specific enough to test with data.
 
-Examples from communication and media studies:
+## Middle-Range Theories in Communication
+
+The theories below are presented with both music and non-music applications to reinforce that they are tools of the discipline, not tools of any particular topic.
 
 ### Parasocial Interaction (PSI)
 
-**Core idea**: Audiences develop one-sided emotional relationships with media figures—celebrities, influencers, fictional characters—that *feel* intimate but lack reciprocity.
+**Foundational citation**: Horton, D., & Wohl, R. R. (1956). Mass communication and para-social interaction: Observations on intimacy at a distance. *Psychiatry*, *19*(3), 215-229.
+
+**Core idea**: Audiences develop one-sided emotional relationships with media figures, celebrities, influencers, fictional characters, that *feel* intimate but lack reciprocity.
 
 **Key predictions**:
+
 - People who consume more content from a particular creator will report stronger feelings of connection.
 - Parasocial bonds influence real behavior (e.g., purchasing products endorsed by the figure).
 - Disruptions (scandals, cancellations) produce feelings of betrayal similar to real relationship breakups.
@@ -163,23 +177,35 @@ Examples from communication and media studies:
 **Application to music research**:
 You could study parasocial relationships with musicians by examining fan engagement on social media, analyzing parasocial language in fan forums, or surveying fans about their emotional investment.
 
+**Application beyond music**:
+PSI theory is widely used to study influencer marketing (does parasocial attachment predict purchase behavior?), political communication (do voters form parasocial bonds with candidates through television appearances?), and livestreaming (do Twitch viewers' parasocial relationships with streamers predict donation behavior?). The theory applies wherever audiences develop one-sided emotional bonds with mediated figures.
+
 ### Social Identity Theory
 
-**Core idea** (as discussed earlier): Group membership shapes self-concept and motivates in-group favoritism and out-group derogation.
+**Foundational citation**: Tajfel, H., & Turner, J. C. (1979). An integrative theory of intergroup conflict. In W. G. Austin & S. Worchel (Eds.), *The social psychology of intergroup relations* (pp. 33-47). Brooks/Cole.
+
+**Core idea**: Group membership shapes self-concept and motivates in-group favoritism and out-group derogation.
 
 **Key predictions**:
+
 - People preferentially attend to information that reflects positively on their in-group.
 - Threats to group status increase defensive behaviors.
 - Group boundaries are maintained through symbolic markers (language, aesthetics, norms).
 
 **Application to music research**:
-Genre communities provide rich contexts for studying social identity. Fans don't just like music—they identify *through* music. You could analyze how genre fans distinguish "authentic" members from "posers," how they react to genre-crossing artists, or how music taste signals identity online.
+Genre communities provide rich contexts for studying social identity. Fans don't just like music; they identify *through* music. You could analyze how genre fans distinguish "authentic" members from "posers," how they react to genre-crossing artists, or how music taste signals identity online.
+
+**Application beyond music**:
+Social identity theory is foundational in political communication (partisan media consumption as identity maintenance), sports fandom (the psychology of fan loyalty and rivalry), brand communities (Apple vs. Android as identity markers), and intergroup conflict research broadly. Any context where people define themselves through group membership is a context for this theory.
 
 ### Agenda Setting
+
+**Foundational citation**: McCombs, M. E., & Shaw, D. L. (1972). The agenda-setting function of mass media. *Public Opinion Quarterly*, *36*(2), 176-187.
 
 **Core idea**: Media don't tell people *what* to think, but they tell people *what to think about*. By emphasizing certain issues and ignoring others, media shape public priorities.
 
 **Key predictions**:
+
 - Topics receiving heavy media coverage will be perceived as more important by audiences.
 - The effect is stronger for issues people have less direct experience with.
 - Elite media (prestige newspapers) influence public discourse more than tabloids.
@@ -187,62 +213,106 @@ Genre communities provide rich contexts for studying social identity. Fans don't
 **Application to music research**:
 Music media (blogs, magazines, streaming playlists) function as agenda-setters. Which artists get coverage? Which genres are positioned as "important"? You could analyze how playlist placement on Spotify influences which artists are perceived as relevant.
 
+**Application beyond music**:
+Agenda setting was originally developed to study election coverage (McCombs & Shaw's 1972 study examined the relationship between issues emphasized in news coverage and issues voters considered most important). It has since been applied to health communication (do media campaigns about specific diseases increase public concern?), environmental communication (does coverage of climate change predict public priority for environmental policy?), and corporate communication (does media coverage of a company's practices shape consumer priorities?).
+
 ### Framing Theory
 
-**Core idea**: How information is presented—the frame—influences how it's interpreted. Same facts, different emphasis, different conclusions.
+**Foundational citations**: Goffman, E. (1974). *Frame analysis: An essay on the organization of experience*. Harvard University Press. Entman, R. M. (1993). Framing: Toward clarification of a fractured paradigm. *Journal of Communication*, *43*(4), 51-58.
+
+**Core idea**: How information is presented, the frame, influences how it's interpreted. Same facts, different emphasis, different conclusions. Entman (1993) defines framing as selecting "some aspects of a perceived reality" and making them more salient so as to "promote a particular problem definition, causal interpretation, moral evaluation, and/or treatment recommendation" (p. 52).
 
 **Key predictions**:
+
 - Episodic framing (individual stories) leads audiences to attribute problems to personal responsibility.
 - Thematic framing (systemic patterns) leads audiences to attribute problems to structural causes.
 - Frames that align with existing beliefs are more persuasive.
 
 **Application to music research**:
-Music journalism frames artists and genres in particular ways. How is hip-hop framed—as art, as social commentary, as criminal culture? How do these frames shape public perception and policy debates (e.g., lyrics as evidence in criminal trials)?
+Music journalism frames artists and genres in particular ways. How is hip-hop framed: as art, as social commentary, as criminal culture? How do these frames shape public perception and policy debates (e.g., lyrics as evidence in criminal trials)?
+
+**Application beyond music**:
+Framing theory is central to political communication (how does framing immigration as a "security issue" vs. a "humanitarian crisis" shift public opinion?), health communication (does framing a vaccine as "95% effective" vs. "5% failure rate" change uptake?), and organizational communication (how do companies frame layoffs: as "restructuring for growth" vs. "cost-cutting"?). The theory applies wherever the same information can be presented in multiple ways.
 
 ### Uses and Gratifications
 
-**Core idea**: Audiences are active, not passive. People choose media to satisfy specific needs—information, entertainment, social connection, identity construction.
+**Foundational citations**: Katz, E., Blumler, J. G., & Gurevitch, M. (1973). Uses and gratifications research. *Public Opinion Quarterly*, *37*(4), 509-523. Katz, E., Blumler, J. G., & Gurevitch, M. (1974). Utilization of mass communication by the individual. In J. G. Blumler & E. Katz (Eds.), *The uses of mass communications: Current perspectives on gratifications research* (pp. 19-32). Sage.
+
+**Core idea**: Audiences are active, not passive. People choose media to satisfy specific needs: information, entertainment, social connection, identity construction.
 
 **Key predictions**:
+
 - People will select media that fulfill their current needs.
 - Different media satisfy different gratifications.
 - When needs change, media use changes.
 
 **Application to music research**:
-Why do people listen to sad music when they're already sad? Uses and Gratifications suggests they're actively seeking it to fulfill a need—perhaps emotional validation, catharsis, or social connection with others who understand their feelings. You could survey listeners about their motivations and see which gratifications predict music choices.
+Why do people listen to sad music when they're already sad? Uses and Gratifications suggests they're actively seeking it to fulfill a need, perhaps emotional validation, catharsis, or social connection with others who understand their feelings. Sachs, Damasio, and Habibi (2015) reviewed the literature on this "paradox of sad music" and identified multiple gratifications including aesthetic appreciation, emotional regulation, and social bonding. You could survey listeners about their motivations and see which gratifications predict music choices.
+
+**Application beyond music**:
+Uses and Gratifications was originally developed for mass media generally and has been applied to every new medium from radio to social media. Why do people use TikTok? (Entertainment, social connection, self-expression.) Why do people follow news? (Surveillance, social utility, entertainment.) Why do people play video games? (Competition, escapism, social interaction.) The theory provides a framework for understanding *any* media choice as need-driven behavior.
+
+### Cultivation Theory
+
+**Foundational citations**: Gerbner, G., & Gross, L. (1976). Living with television: The violence profile. *Journal of Communication*, *26*(2), 172-199. Gerbner, G., Gross, L., Morgan, M., & Signorielli, N. (1986). Living with television: The dynamics of the cultivation process. In J. Bryant & D. Zillmann (Eds.), *Perspectives on media effects* (pp. 17-40). Lawrence Erlbaum Associates.
+
+**Core idea**: Long-term, cumulative exposure to media content shapes audiences' perceptions of social reality. Heavy consumers of media develop beliefs more consistent with media portrayals than with actual real-world conditions.
+
+**Key predictions**:
+
+- Heavy television viewers will overestimate the prevalence of violence in society compared to light viewers (the "mean world syndrome").
+- The effect is strongest for topics where audiences lack direct personal experience.
+- Cultivation is a gradual process; single exposures have minimal effect, but sustained consumption shapes worldview over time.
+
+**Application to music research**:
+If popular lyrics increasingly emphasize materialism, romantic dysfunction, or substance use, cultivation theory predicts that heavy consumers of this music may develop skewed perceptions of how common these phenomena are in everyday life. DeWall et al. (2011) found increasing narcissistic language in popular lyrics over time, which raises the cultivation question: does consuming this content shape listeners' values?
+
+**Application beyond music**:
+Cultivation theory originated in television research and remains most widely applied there. It has been used to study whether heavy crime drama viewing increases fear of victimization, whether heavy news consumption shapes perceptions of immigration, and whether social media use cultivates particular body image ideals among adolescents. The theory applies wherever sustained media exposure might cumulatively shift perceptions of what is normal, common, or expected.
 
 ## Variables: The Building Blocks of Hypotheses
 
-Theories become testable through **variables**—measurable concepts that can take on different values.
+Theories become testable through **variables**, measurable concepts that can take on different values.
 
 ### Independent Variables (IVs): The Cause
 
 The **independent variable** is what you manipulate (in experiments) or measure as the predictor (in correlational studies). It's the "cause" in a causal relationship.
 
-**Examples in music research**:
+**Examples across domains**:
+
 - Lyric sentiment (positive vs. negative)
+- News frame type (episodic vs. thematic)
+- Advertising appeal (emotional vs. rational)
+- Social media exposure level (heavy vs. light)
 - Tempo (fast vs. slow)
-- Key (major vs. minor)
-- Genre (pop vs. rap vs. country)
 
 ### Dependent Variables (DVs): The Effect
 
 The **dependent variable** is the outcome you measure. It's what you think is *influenced by* the independent variable.
 
 **Examples**:
+
 - Chart position (how high a song charted)
-- Listener mood (how the music made people feel)
-- Purchase behavior (did they buy the song?)
-- Emotional arousal (measured physiologically)
+- Public opinion (attitudes toward a policy)
+- Purchase intention (likelihood of buying a product)
+- Emotional arousal (measured by self-report or physiological response)
+- Information recall (what do audiences remember from a message?)
 
 ### A Simple Hypothesis
 
-**Hypothesis**: Songs with negative lyric sentiment will chart lower than songs with positive lyric sentiment.
+**Hypothesis**: Songs with negative lyric sentiment will chart higher than songs with positive lyric sentiment.
 
 - **IV**: Lyric sentiment (positive, negative, neutral)
 - **DV**: Chart performance (peak position on Billboard Hot 100)
 
 This is testable. You code songs for sentiment, record their chart positions, run a statistical test to see if the predicted relationship holds.
+
+**A parallel non-music hypothesis**: News stories framed around individual human interest (episodic framing) will generate more social media engagement than stories framed around systemic data (thematic framing).
+
+- **IV**: Frame type (episodic vs. thematic)
+- **DV**: Social media engagement (shares, comments)
+
+Same structure, different domain.
 
 ### Mediators: Explaining the Mechanism
 
@@ -252,9 +322,10 @@ A **mediator** explains *how* or *why* an IV affects a DV. It's the mechanism th
 
 **Research question**: Why do minor-key songs evoke sadness?
 
-**Theory**: Appraisal theory suggests we evaluate stimuli based on learned associations. Minor keys are associated with sad contexts (funerals, melancholic film scores), so we've learned to interpret them as sad.
+**Theory**: Appraisal theory (Scherer, 2004) suggests we evaluate stimuli based on learned associations. Minor keys are associated with sad contexts (funerals, melancholic film scores), so we've learned to interpret them as sad.
 
 **Mediation model**:
+
 - **IV**: Key (major vs. minor)
 - **Mediator**: Perceived sadness ("Does this sound sad?")
 - **DV**: Listener mood ("How does this make you feel?")
@@ -272,11 +343,14 @@ A **moderator** changes the strength or direction of a relationship. It answers:
 **Hypothesis**: Tempo predicts perceived energy more strongly in EDM than in acoustic folk.
 
 **Variables**:
+
 - **IV**: Tempo (BPM)
 - **DV**: Perceived energy
 - **Moderator**: Genre (EDM vs. folk)
 
 If this is true, when you plot tempo against energy separately for each genre, you'll see a steeper slope for EDM than for folk. The relationship exists in both genres, but it's stronger in one.
+
+**A non-music parallel**: The effect of fear appeals on behavioral compliance may be moderated by self-efficacy. Fear-based health messages work well when people believe they can take action, but backfire when people feel helpless. Same variable logic, different domain.
 
 ## Applying Theory to Your Research
 
@@ -284,34 +358,44 @@ Selecting a theory isn't arbitrary. It should fit your research question, your d
 
 **Step 1: Identify your research question**
 
-Be specific. "Music and emotion" is too broad. "How does lyric sentiment relate to chart performance?" is more focused.
+Be specific. "Music and emotion" is too broad. "How does lyric sentiment relate to chart performance?" is more focused. "How does news framing of climate change relate to public policy preferences?" is equally specific in a different domain.
 
 **Step 2: Map the question to a theoretical domain**
 
 What kind of explanation are you seeking?
-- Psychological mechanisms? (Appraisal theory, catharsis theory)
-- Social/group processes? (Social identity theory, uses and gratifications)
-- Industry/structural explanations? (Political economy)
-- Cultural meaning-making? (Cultural studies, narrative analysis)
+
+- Psychological mechanisms? → Appraisal theory, catharsis theory
+- Social/group processes? → Social identity theory, uses and gratifications
+- Media influence on perception? → Cultivation theory, agenda setting, framing
+- Industry/structural explanations? → Political economy of media
+- Cultural meaning-making? → Cultural studies, narrative analysis
 
 **Step 3: Review how others have studied similar questions**
 
-This is where your literature review (Chapter 4) pays off. What theories appear repeatedly in the articles you've read? If everyone studying music emotion uses appraisal theory, that signals it's a productive framework for this domain.
+This is where your literature review (Chapter 4) pays off. What theories appear repeatedly in the articles you've read? Convergence on a particular theory signals it's a productive framework for this domain.
 
 **Step 4: Derive specific hypotheses or research questions**
 
 Let the theory generate predictions. If you're using social identity theory to study genre preferences, what would the theory predict about:
+
 - How fans talk about their preferred genre?
 - How they respond to criticisms of that genre?
 - How they distinguish "real" fans from casual listeners?
 
+If you're using framing theory to study news coverage of a policy debate, what would it predict about:
+
+- How different outlets frame the same event?
+- How framing differences relate to audience interpretation?
+- Whether counter-frames emerge in response to dominant frames?
+
 **Step 5: Design measures that operationalize theoretical concepts**
 
-Theory gives you abstract concepts (identity, arousal, appraisal). You need to translate these into measurable variables.
+Theory gives you abstract concepts (identity, arousal, appraisal, salience). You need to translate these into measurable variables:
 
 - **Social identity** → measured through survey items about group belonging or coded language in fan forums
 - **Emotional arousal** → measured through self-report scales or physiological responses
-- **Appraisal** → measured by asking participants to rate songs on dimensions like sadness, energy, or pleasantness
+- **Issue salience** → measured by asking respondents to rank the importance of issues or by tracking search volume
+- **Framing** → measured by coding content for the presence of specific frame elements (Entman's four functions)
 
 ---
 
@@ -331,7 +415,7 @@ For each research article abstract below, identify the IV(s) and DV(s):
 - IV: _______________
 - DV: _______________
 
-**Article C**: "We surveyed 300 music listeners, asking about their parasocial attachment to their favorite artist and their likelihood of purchasing concert tickets. Stronger parasocial bonds predicted higher purchase intentions."
+**Article C**: "We surveyed 300 news consumers, asking about their parasocial attachment to their favorite cable news anchor and their trust in the network. Stronger parasocial bonds predicted higher network trust."
 
 - IV: _______________
 - DV: _______________
@@ -340,13 +424,9 @@ For each research article abstract below, identify the IV(s) and DV(s):
 
 ### Exercise 5.2: Choosing a Theory
 
-Select a research question related to music. For each theoretical lens below, explain what that lens would focus on and what kind of hypothesis it might generate:
+Select a research question (music-related or otherwise). For each theoretical lens below, explain what that lens would focus on and what kind of hypothesis it might generate:
 
-**Research Question**: Why do people listen to sad music when they're already sad?
-
-**Catharsis Theory** (emotional release):
-- Focus: _______________
-- Hypothesis: _______________
+**Research Question**: Why do people listen to sad music when they're already sad? *(Or substitute your own question.)*
 
 **Uses and Gratifications** (active audience seeking need fulfillment):
 - Focus: _______________
@@ -356,14 +436,18 @@ Select a research question related to music. For each theoretical lens below, ex
 - Focus: _______________
 - Hypothesis: _______________
 
+**Cultivation Theory** (cumulative media exposure shaping perceptions):
+- Focus: _______________
+- Hypothesis: _______________
+
 ---
 
 ### Exercise 5.3: Building a Hypothesis
 
-Choose one of the theories discussed in this chapter (Social Identity, Parasocial Interaction, Uses & Gratifications, Framing, or Agenda Setting).
+Choose one of the theories discussed in this chapter (Social Identity, Parasocial Interaction, Uses & Gratifications, Framing, Agenda Setting, or Cultivation).
 
 1. State the theory's core principle in one sentence.
-2. Identify a music-related phenomenon you could study using this theory.
+2. Identify a phenomenon you could study using this theory (it does not have to involve music).
 3. Formulate a testable hypothesis that derives from the theory.
 4. Specify your IV and DV.
 
@@ -379,6 +463,17 @@ Choose one of the theories discussed in this chapter (Social Identity, Parasocia
 
 ---
 
+### Exercise 5.5: Theory Transfer
+
+Choose one of the middle-range theories from this chapter. Write two hypotheses derived from that theory:
+
+1. One hypothesis applied to **music or entertainment media**
+2. One hypothesis applied to **a completely different domain** (news, health, advertising, politics, or organizational communication)
+
+For each, specify the IV, DV, and the theoretical rationale. Notice how the theory remains the same while the domain changes.
+
+---
+
 ## Reflection Questions
 
 1. **The Limits of Lenses**: Every theoretical lens illuminates some aspects while obscuring others. Can you think of an example where choosing one theory over another would lead to fundamentally different conclusions about the same phenomenon?
@@ -387,20 +482,23 @@ Choose one of the theories discussed in this chapter (Social Identity, Parasocia
 
 3. **Your Theoretical Commitments**: Based on the three paradigms (social scientific, interpretive, critical), which aligns most closely with your own approach to knowledge? Do you want to explain and predict, interpret and understand, or critique and change?
 
+4. **Theory as Discipline, Not Topic**: This chapter presents theories developed across multiple disciplines (sociology, psychology, communication). How does this challenge the idea that theories "belong" to specific fields or topics?
+
 ---
 
 ## Chapter Summary
 
 This chapter positioned theory as a precision tool for shaping research:
 
-- **Theory** is a systematic explanation of relationships between concepts—not speculation, but a formal framework that organizes knowledge and generates predictions.
+- **Theory** is a systematic explanation of relationships between concepts, not speculation, but a formal framework that organizes knowledge and generates predictions.
 - The **lens metaphor**: Theory focuses attention on specific elements while leaving others outside the frame.
 - **Three paradigms** use theory differently:
   - **Social scientific**: Deductive (theory → hypothesis → data)
   - **Interpretive**: Inductive (data → patterns → theory)
   - **Critical**: Theory as explicit tool for revealing power and advocating change
 - **Grand theories** (Marxism, psychoanalysis) explain fundamental human behavior but are hard to test.
-- **Middle-range theories** (PSI, Social Identity, Framing, Uses & Gratifications) balance testability with generalizability.
+- **Middle-range theories** (PSI, Social Identity, Framing, Uses & Gratifications, Agenda Setting, Cultivation) balance testability with generalizability.
+- Each theory applies across domains: the same theory that explains music fandom also explains political media consumption, brand loyalty, or health behavior.
 - **Variables** are measurable concepts:
   - **IV** (independent variable): the cause or predictor
   - **DV** (dependent variable): the effect or outcome
@@ -412,12 +510,13 @@ This chapter positioned theory as a precision tool for shaping research:
 
 ## Key Terms
 
-- **Agenda Setting**: Theory that media influence what audiences think *about* by determining topic salience
-- **Appraisal Theory**: Psychological framework explaining emotion as cognitive evaluation of stimuli
+- **Agenda Setting**: Theory that media influence what audiences think *about* by determining topic salience (McCombs & Shaw, 1972)
+- **Appraisal Theory**: Psychological framework explaining emotion as cognitive evaluation of stimuli (Scherer, 2004)
 - **Critical/Cultural Paradigm**: Research approach focused on critiquing power structures and promoting social change
+- **Cultivation Theory**: Theory that cumulative media exposure shapes perceptions of social reality (Gerbner & Gross, 1976)
 - **Deductive Logic**: Reasoning from general theory to specific predictions (theory as starting point)
 - **Dependent Variable (DV)**: The outcome or effect being measured
-- **Framing Theory**: How information presentation influences interpretation
+- **Framing Theory**: How information presentation influences interpretation (Goffman, 1974; Entman, 1993)
 - **Grand Theory**: Broad explanatory framework addressing fundamental human behavior (hard to test)
 - **Grounded Theory**: Systematic methodology for building theory inductively from qualitative data
 - **Hypothesis**: Testable prediction derived from theory
@@ -428,16 +527,62 @@ This chapter positioned theory as a precision tool for shaping research:
 - **Middle-Range Theory**: Theory specific enough to test but broad enough to generalize
 - **Moderator**: Variable that changes the *strength* or *direction* of an IV-DV relationship
 - **Paradigm**: Fundamental worldview guiding research inquiry
-- **Parasocial Interaction (PSI)**: One-sided emotional relationship between audience and media figure
-- **Social Identity Theory**: Group membership shapes self-concept, motivating in-group favoritism and out-group derogation
+- **Parasocial Interaction (PSI)**: One-sided emotional relationship between audience and media figure (Horton & Wohl, 1956)
+- **Social Identity Theory**: Group membership shapes self-concept, motivating in-group favoritism and out-group derogation (Tajfel & Turner, 1979)
 - **Social Scientific Paradigm**: Research approach focused on explaining and predicting through empirical testing
 - **Theory**: Formal, systematic explanation of relationships between concepts
-- **Uses and Gratifications**: Theory that audiences actively select media to satisfy specific needs
+- **Uses and Gratifications**: Theory that audiences actively select media to satisfy specific needs (Katz et al., 1973)
 - **Variable**: Measurable concept that can take on different values
+
+---
+
+## References
+
+Brand, C. O., Acerbi, A., & Mesoudi, A. (2019). Cultural evolution of emotional expression in 50 years of song lyrics. *Evolutionary Human Sciences*, *1*, e11. https://doi.org/10.1017/ehs.2019.11
+
+Braun, V., & Clarke, V. (2006). Using thematic analysis in psychology. *Qualitative Research in Psychology*, *3*(2), 77-101. https://doi.org/10.1191/1478088706qp063oa
+
+DeWall, C. N., Pond, R. S., Jr., Campbell, W. K., & Twenge, J. M. (2011). Tuning in to psychological change: Linguistic markers of psychological traits and emotions over time in popular U.S. song lyrics. *Psychology of Aesthetics, Creativity, and the Arts*, *5*(3), 200-207. https://doi.org/10.1037/a0023195
+
+Entman, R. M. (1993). Framing: Toward clarification of a fractured paradigm. *Journal of Communication*, *43*(4), 51-58. https://doi.org/10.1111/j.1460-2466.1993.tb01304.x
+
+Gerbner, G., & Gross, L. (1976). Living with television: The violence profile. *Journal of Communication*, *26*(2), 172-199. https://doi.org/10.1111/j.1460-2466.1976.tb01397.x
+
+Gerbner, G., Gross, L., Morgan, M., & Signorielli, N. (1986). Living with television: The dynamics of the cultivation process. In J. Bryant & D. Zillmann (Eds.), *Perspectives on media effects* (pp. 17-40). Lawrence Erlbaum Associates.
+
+Goffman, E. (1974). *Frame analysis: An essay on the organization of experience*. Harvard University Press.
+
+Horton, D., & Wohl, R. R. (1956). Mass communication and para-social interaction: Observations on intimacy at a distance. *Psychiatry*, *19*(3), 215-229. https://doi.org/10.1080/00332747.1956.11023049
+
+Katz, E., Blumler, J. G., & Gurevitch, M. (1973). Uses and gratifications research. *Public Opinion Quarterly*, *37*(4), 509-523. https://doi.org/10.1086/268109
+
+Katz, E., Blumler, J. G., & Gurevitch, M. (1974). Utilization of mass communication by the individual. In J. G. Blumler & E. Katz (Eds.), *The uses of mass communications: Current perspectives on gratifications research* (pp. 19-32). Sage.
+
+McCombs, M. E., & Shaw, D. L. (1972). The agenda-setting function of mass media. *Public Opinion Quarterly*, *36*(2), 176-187. https://doi.org/10.1086/267990
+
+Sachs, M. E., Damasio, A., & Habibi, A. (2015). The pleasures of sad music: A systematic review. *Frontiers in Human Neuroscience*, *9*, Article 404. https://doi.org/10.3389/fnhum.2015.00404
+
+Scherer, K. R. (2004). Which emotions can be induced by music? What are the underlying mechanisms? And how can we measure them? *Journal of New Music Research*, *33*(3), 239-251. https://doi.org/10.1080/0929821042000317822
+
+Tajfel, H., & Turner, J. C. (1979). An integrative theory of intergroup conflict. In W. G. Austin & S. Worchel (Eds.), *The social psychology of intergroup relations* (pp. 33-47). Brooks/Cole.
+
+---
+
+::: {.callout-note title="Graduate Extension" collapse="true"}
+
+**Required Reading**: Entman, R. M. (1993). Framing: Toward clarification of a fractured paradigm. *Journal of Communication*, *43*(4), 51-58. https://doi.org/10.1111/j.1460-2466.1993.tb01304.x
+
+**Prompt**: Entman's 1993 article is one of the most-cited works in communication research, yet he himself calls framing a "fractured paradigm," arguing that the concept is used so broadly across disciplines that it risks losing coherent meaning. His definition identifies four framing functions: defining problems, diagnosing causes, making moral judgments, and suggesting remedies.
+
+1. Summarize Entman's definition of framing in your own words. How does it differ from agenda setting? (Both involve media influence on audiences, but through different mechanisms. Be precise about the distinction.)
+2. Choose a current media controversy (it can involve music, politics, health, or any other domain). Apply Entman's four framing functions to analyze how at least two different media outlets frame the controversy. What do they select and make salient? What do they leave out?
+3. Entman argues that framing is a "fractured paradigm" partly because researchers use the term to mean different things in different contexts. Find two published studies that use framing theory. Do they define "frame" the same way? If not, what are the consequences of this definitional inconsistency for cumulative knowledge-building?
+4. Consider the relationship between framing and the other theories in this chapter. How might framing interact with cultivation (cumulative framing exposure shaping worldview) or social identity (audiences preferring frames that favor their in-group)? Could you design a study that integrates two theories?
+
+:::
 
 ---
 
 ## Looking Ahead
 
-Chapter 6 (The Roadmap) brings together everything from Phase II: your literature review identified a gap, your theoretical framework provides a lens for interpretation, and now you'll formalize this into a **research prospectus**—a one-page blueprint that maps your entire project. The prospectus forces clarity: What exactly are you studying? Why does it matter? How will you do it? What do you expect to find? By the end of Chapter 6, you'll have a complete roadmap that guides the rest of your research.
-
+Chapter 6 (The Roadmap) brings together everything from Part II: your literature review identified a gap, your theoretical framework provides a lens for interpretation, and now you'll formalize this into a **research prospectus**, a one-page blueprint that maps your entire project. The prospectus forces clarity: What exactly are you studying? Why does it matter? How will you do it? What do you expect to find? By the end of Chapter 6, you'll have a complete roadmap that guides the rest of your research.

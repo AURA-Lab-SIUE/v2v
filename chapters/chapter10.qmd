@@ -1,586 +1,464 @@
 ---
-title: "Chapter 10: The Rulebook"
+title: "Chapter 10: Designing Surveys"
 ---
 
 ## Learning Objectives
 
-- Construct a complete codebook that specifies all coding decisions
-- Design categories that are exhaustive and mutually exclusive
-- Write decision rules explicit enough for independent coders to replicate
-- Address edge cases documented during immersion
-- Format a codebook for maximum clarity and usability
-- Understand the relationship between codebook quality and inter-coder reliability
+- Understand when survey research is the appropriate method and when it is not
+- Design questionnaire items that minimize bias, ambiguity, and measurement error
+- Distinguish between probability and non-probability sampling strategies
+- Recognize common threats to survey validity and strategies for addressing them
+- Connect sampling theory to both survey research and content analysis
 
 ---
 
-A codebook is not optional. It's not something you create after coding is complete to satisfy a methods professor's checklist. It's the foundation of reliable qualitative research.
+In 1936, *The Literary Digest* mailed postcards to over ten million Americans, asking who they planned to vote for in the upcoming presidential election. The magazine had correctly predicted the previous five elections using the same method. With 2.4 million responses, the sample was enormous by any standard. The prediction was confident: Alf Landon would defeat Franklin Roosevelt in a landslide.
 
-Think of it this way: if your coding process were software, the codebook would be the source code. It specifies every operation, handles every conditional, and ensures that two "processors" (human coders) running the same program (codebook) on the same input (data) produce identical output (coded variables).
+Roosevelt won 46 of 48 states.
 
-Without a codebook, you're relying on memory, intuition, and inconsistent judgment calls. With a strong codebook, coding becomes systematic and replicable—the hallmarks of scientific analysis.
+The problem was not the sample size. It was the sample itself. *The Literary Digest* had drawn its mailing list from telephone directories, automobile registrations, and its own subscriber rolls. In 1936, these sources systematically overrepresented wealthy Americans, the very group most likely to oppose Roosevelt's New Deal. The magazine had surveyed millions of people, but millions of the *wrong* people. The sample was large but not representative, and no amount of additional postcards could have fixed the underlying bias.
 
-This chapter teaches you to write codebooks that work: clear, comprehensive, and unambiguous enough that a stranger could apply them correctly.
+Meanwhile, a young pollster named George Gallup surveyed only 50,000 people, but he used quota sampling to ensure his sample approximated the demographic composition of the electorate. He correctly predicted Roosevelt's victory. The lesson was clear, and it remains the foundational insight of survey methodology: **who you ask matters more than how many you ask**.
 
-## The Codebook as Algorithm
+This chapter teaches survey design as a complete method: from question formulation through sampling, administration, and analysis. You will not conduct a survey in this course. But you will encounter surveys constantly in the literature you read, and you may design one in future research. More immediately, the sampling theory introduced here applies directly to the content analysis you *are* conducting: the same logic that governs selecting survey respondents governs selecting songs, articles, or social media posts for coding.
 
-Consider how a computer program handles decisions:
+## When Surveys Work (and When They Don't)
 
-```
-IF message contains word from hate_speech_list:
-    THEN code as "toxic"
-ELSE IF message contains personal insult:
-    THEN code as "toxic"
-ELSE IF message contains threat:
-    THEN code as "toxic"
-ELSE:
-    THEN code as "neutral"
-```
+Surveys excel at answering questions about what people think, believe, feel, do, or have experienced. They capture self-reported data at scale, enabling researchers to describe populations, identify correlations, and track trends.
 
-This is algorithmic thinking: explicit rules that cover all cases and produce consistent outputs.
+**Surveys work well when you want to know**:
 
-A codebook applies the same logic to human coders:
+- What attitudes a population holds ("Do Americans believe news media are trustworthy?")
+- How frequently people engage in a behavior ("How many hours per week do college students listen to music?")
+- How variables correlate ("Is parasocial attachment to an influencer associated with purchase behavior?")
+- How attitudes or behaviors have changed over time ("Has support for marijuana legalization increased since 2010?")
 
-**IF** song lyrics contain predominantly positive emotion words (love, joy, hope) AND no negative qualifiers:  
-**THEN** code as "Positive"
+**Surveys work poorly when you want to know**:
 
-**ELSE IF** song lyrics contain predominantly negative emotion words (pain, loss, anger) AND no positive qualifiers:  
-**THEN** code as "Negative"
+- Whether X causes Y. Surveys measure correlation, not causation. If heavy news consumers hold more sympathetic attitudes toward mental illness, you cannot conclude from a survey that news consumption *caused* those attitudes. People who already hold sympathetic attitudes may simply choose to consume more news. This is the self-selection problem, and it plagues all cross-sectional survey research.
+- What is in media content. Surveys tell you about audiences, not about messages. A survey can reveal what people *think* about news coverage, but not what the coverage actually contains. That requires content analysis.
+- What experiences mean to people in their own terms. Surveys impose the researcher's categories on respondents. A Likert scale from 1 to 7 captures a number, not a story. If you want the story, you need qualitative methods.
 
-**ELSE IF** song contains roughly equal positive and negative content OR positive words with ironic/sarcastic delivery:  
-**THEN** code as "Mixed"
+The boundaries are important because researchers frequently overreach. A survey finding that "people who listen to more music report higher well-being" does not demonstrate that music improves well-being. It demonstrates a correlation. The causal claim requires an experiment.
 
-**ELSE** (factual description, no clear emotional valence):  
-**THEN** code as "Neutral"
+## Types of Surveys
 
-The more explicit your rules, the more reliably coders can apply them. Ambiguity is the enemy of reliability.
+### Cross-Sectional Surveys
 
-## The Anatomy of a Codebook
+A **cross-sectional survey** collects data from a sample at one point in time. It provides a snapshot: what does this population look like right now?
 
-A complete codebook includes five essential components:
+**Strength**: Efficient. You collect data once and analyze it.
 
-### 1. Unit of Analysis
+**Limitation**: You cannot track change over time, and you cannot establish causation because you have no temporal sequence (did media exposure come before the attitude, or after?).
 
-**What exactly are you coding?**
+**Example**: A survey administered in March 2026 asking 500 college students about their music streaming habits and mood.
 
-This must be unambiguous. If you say "code songs," do you mean:
-- The entire song (all verses, chorus, bridge)?
-- The chorus only?
-- Each verse separately?
-- The overall impression after listening?
+### Longitudinal Surveys
 
-**Example (Clear)**:
-"The unit of analysis is the complete song, defined as all lyric content from first word to last word, including verses, chorus, bridge, and any spoken interludes. Instrumental sections are excluded. Coders should read the complete lyrics while listening to the song at least twice before coding."
+A **longitudinal survey** collects data from samples at multiple points in time, allowing you to track changes.
 
-**Example (Vague)**:
-"Code each song."
+**Panel surveys** follow the *same* respondents over time. This allows you to see how individuals change. The challenge is attrition: people drop out, move, lose interest. A panel that starts with 1,000 respondents may have only 400 left after three waves.
 
-The first version eliminates ambiguity. Coders know exactly what to consider.
+**Trend surveys** ask the *same questions* of *different samples* drawn from the same population at different times. This allows you to track population-level trends without following specific individuals. The Gallup Poll uses trend methodology: each survey samples a fresh group, but the questions remain consistent across years.
 
-### 2. Variables and Categories
+**Example**: Surveying 500 college students in September and again in December to see whether parasocial attachment to a streamer increases over the semester (panel), or surveying 500 students in 2024 and a different 500 in 2026 to see whether streaming habits have changed (trend).
 
-**What are you measuring, and what values can each variable take?**
+## Questionnaire Design: The Art of Asking Questions
 
-For each variable, specify:
-- Variable name
-- Conceptual definition (what it means)
-- Operational definition (how to measure it)
-- All possible categories
-- Brief description of each category
+A survey is only as good as its questions. Poorly worded items produce unreliable data, and no amount of sophisticated analysis can rescue data corrupted at the source. Dillman, Smyth, and Christian (2014) devote hundreds of pages to this problem, and with good reason: question design is where most survey research succeeds or fails.
 
-**Example**:
+### Types of Questions
 
-**Variable: Lyric Sentiment**
+**Closed-ended questions** provide predetermined response options. They're easy to analyze statistically but constrain what respondents can say.
 
-**Conceptual definition**: The dominant emotional valence expressed in the song lyrics.
+*Example*: "How often do you listen to music? (a) Daily, (b) Several times a week, (c) Once a week, (d) Less than once a week, (e) Never"
 
-**Operational definition**: After reading complete lyrics while listening to the song twice, coders assign one category based on overall emotional tone.
+**Open-ended questions** allow respondents to answer in their own words. They capture richer data but are harder to analyze systematically.
 
-**Categories**:
-- **Positive**: Lyrics express joy, love, hope, celebration, or empowerment. Examples: "Happy" (Pharrell Williams), "Can't Stop the Feeling" (Justin Timberlake)
-- **Negative**: Lyrics express sadness, anger, fear, loss, or despair. Examples: "Someone Like You" (Adele), "Hurt" (Johnny Cash version)
-- **Neutral**: Lyrics are primarily observational, factual, or storytelling without strong emotional valence. Examples: narrative rap describing events without emotional commentary
-- **Mixed**: Lyrics contain substantial positive and negative elements in roughly equal proportion, or positive words delivered with clear ironic/sarcastic intent. Examples: "Good 4 U" (Olivia Rodrigo) - upbeat sound but bitter lyrics
+*Example*: "Describe your typical music listening experience. What do you listen to, where, and why?"
 
-### 3. Decision Rules
+**Likert-scale items** ask respondents to rate agreement with a statement on a numbered scale. They are the workhorse of attitude measurement.
 
-**How do you handle ambiguous or complicated cases?**
+*Example*: "I feel a strong emotional connection to my favorite artist." (1 = Strongly Disagree, 7 = Strongly Agree)
 
-Decision rules address edge cases you documented during immersion (Chapter 8). They tell coders what to do when the categories don't fit neatly.
+**Semantic differential items** ask respondents to rate a concept between two polar adjectives.
 
-**Example Decision Rules for Lyric Sentiment**:
+*Example*: "This song is: Sad 1 2 3 4 5 6 7 Happy"
 
-**Rule 1: Dominant Emotion Precedence**  
-When a song contains both positive and negative content, code based on which is dominant (appears more frequently, occupies chorus/main hook, receives emphasis in delivery). If truly balanced, code as "Mixed."
+### Question Wording Pitfalls
 
-**Rule 2: Sarcasm and Irony**  
-If positive words are delivered with clear sarcastic or ironic intent (evidenced by tone, context, or contradictory musical elements), code based on the *intended* meaning, not literal word valence.
+Small changes in wording can produce large changes in responses. These pitfalls are not merely technical errors; they represent threats to the validity of your entire study.
 
-Example: "Oh, what a perfect day" sung bitterly after describing betrayal = Negative, not Positive.
+**Double-barreled questions** ask about two things at once:
 
-**Rule 3: Temporal Shifts**  
-Some songs shift from negative to positive (or vice versa) across verses. Code based on the chorus/hook, which typically receives the most listener attention and repetition. If no clear chorus dominance, code as "Mixed."
+*Bad*: "Do you enjoy listening to music and attending concerts?"
 
-**Rule 4: Empowerment vs. Negativity**  
-Songs about overcoming hardship may describe negative situations but express positive resilience. Code based on the *stance* toward the situation:
-- "I survived and I'm stronger" = Positive (empowerment)
-- "I'm still suffering" = Negative (ongoing pain)
+A respondent who loves listening but dislikes concerts cannot answer accurately. The question conflates two distinct behaviors.
 
-Example: "Stronger" (Kelly Clarkson) describes a breakup (negative event) but emphasizes growth = Positive.
+*Better*: "How much do you enjoy listening to music?" (separate question) "How often do you attend concerts?" (separate question)
 
-**Rule 5: Ambiguity Default**  
-When genuinely uncertain between two categories after careful consideration, code as "Mixed" or "Neutral" (whichever is more appropriate) and note the song ID for reliability discussion.
+**Leading questions** push respondents toward a particular answer:
 
-### 4. Examples
+*Bad*: "Don't you agree that streaming services are destroying the music industry?"
 
-**Provide prototypical instances of each category.**
+The phrasing presupposes a position. Respondents feel social pressure to agree.
 
-Examples serve two purposes:
-1. They illustrate what "good" coding looks like
-2. They serve as test cases during coder training
+*Better*: "To what extent do you believe streaming services have affected the music industry?" (1 = Very negatively, 7 = Very positively)
 
-**Example Section**:
+**Loaded language** uses emotionally charged words that bias responses:
 
-**Examples of Each Category:**
+*Bad*: "Do you support censorship of explicit song lyrics?"
 
-**Positive:**
-- "Happy" (Pharrell Williams) - Explicit joy, "I'm happy" repeated, upbeat throughout
-- "Can't Stop the Feeling" (Justin Timberlake) - Celebration, dancing, positive energy
-- "Shake It Off" (Taylor Swift) - Empowerment despite criticism; positive stance
+"Censorship" carries strong negative connotations. Many respondents who might support content labeling will reject "censorship."
 
-**Negative:**
-- "Someone Like You" (Adele) - Loss, heartbreak, wishing ex well but still hurting
-- "Hurt" (Johnny Cash) - Regret, self-destruction, pain
-- "Creep" (Radiohead) - Self-loathing, alienation
+*Better*: "Do you support adding content labels to songs with explicit lyrics?"
 
-**Neutral:**
-- "Lose Yourself" (Eminem, verses only) - Narrative description of preparation and focus, minimal emotional valence in storytelling sections
+**Ambiguous terms** mean different things to different respondents:
 
-**Mixed:**
-- "Good 4 U" (Olivia Rodrigo) - Musically upbeat, lyrically bitter ("Good for you, you look happy and healthy, not me")
-- "Since U Been Gone" (Kelly Clarkson) - Pain from breakup BUT empowerment from moving on, roughly balanced
+*Bad*: "Do you frequently listen to music?"
 
-### 5. Special Cases and Exceptions
+What does "frequently" mean? Daily? Weekly? The researcher and respondent may have different thresholds.
 
-**Document recurring complications that don't fit standard rules.**
+*Better*: "In a typical week, how many hours do you spend listening to music?" (with numerical response or defined categories)
 
-These emerge during coding. The first version of your codebook won't have this section—it develops as you pilot test (Chapter 11) and discover new edge cases.
+**Response option problems** include missing categories, overlapping ranges, and unbalanced scales:
 
-**Example**:
+*Bad*: "How old are you? (a) 18-25, (b) 25-35, (c) 35-50"
 
-**Special Cases:**
+A 25-year-old doesn't know whether to choose (a) or (b). A 55-year-old has no option. The categories overlap and the list is not exhaustive.
 
-**Case 1: Instrumental songs**  
-Songs without lyrics cannot be coded for Lyric Sentiment. Code as "N/A" and exclude from sentiment analysis. Include in dataset for other variables (tempo, genre, chart performance).
+*Better*: "How old are you? (a) 18-24, (b) 25-34, (c) 35-49, (d) 50-64, (e) 65 or older"
 
-**Case 2: Non-English lyrics**  
-Use English translation if available (check Genius, artist's official translation). If no translation available, code as "Unable to Code" and exclude from sentiment analysis.
+### Order Effects
 
-**Case 3: Explicit content warnings**  
-Profanity alone does not determine sentiment. "I don't give a fuck" can be defiant (positive stance) or angry (negative stance). Code based on context.
+The sequence of questions matters. A question about "overall life satisfaction" will produce different answers depending on whether it comes before or after questions about stressful topics. A question about media trust will be colored by whether respondents just answered questions about specific media scandals.
 
-**Case 4: Duets with conflicting perspectives**  
-Some duets present different emotional perspectives (e.g., "Don't Go Breaking My Heart" - playful back-and-forth). Code based on the dominant emotional tone across both voices.
+**General guidance**: Move from general to specific, from less sensitive to more sensitive, and group related items together. Place demographic questions (age, gender, income) at the end, where they feel routine rather than intrusive.
 
-## Exhaustive and Mutually Exclusive Categories
+### Using Validated Scales
 
-Two principles govern category design in any codebook.
+For well-studied constructs (parasocial interaction, media trust, political efficacy, body image satisfaction), validated scales already exist. These scales have been tested for reliability and validity across multiple studies. Using them has two advantages: you save time on instrument development, and your results are comparable to previous research.
 
-### Exhaustive: Every Case Must Fit
+**Example**: Rather than inventing your own parasocial attachment items, you could use an established parasocial interaction scale from the communication literature. The original concept was articulated by Horton and Wohl (1956), and subsequent scholars have developed validated measurement instruments.
 
-**Every unit of analysis must be codable.** No data should fall outside your categories.
+When you do use validated scales, cite them and report reliability statistics (Cronbach's alpha) for your specific sample, because reliability can vary across populations.
 
-**How to achieve this:**
+## Sampling: Who Gets Asked?
 
-1. **Include a catch-all category**: "Other," "Unclear," or "Unable to Code"
-2. **But minimize its use**: If more than 10% of your data ends up in the catch-all, your categories are incomplete.
+The goal of most survey research is to learn about a **population** (all college students, all American adults, all Spotify users) by studying a **sample** (a subset of the population). The quality of your sample determines whether your findings generalize.
 
-**Example**:
+This section introduces sampling theory that applies to both survey respondent selection and content analysis unit selection. The same logic that governs choosing which people to survey governs choosing which songs, articles, or posts to code.
 
-**Bad Category Set** (not exhaustive):
-- High complexity
-- Low complexity
+### The Sampling Frame
 
-**Problem**: What about medium complexity? The middle is missing.
+A **sampling frame** is the list from which your sample is drawn. It should match the target population as closely as possible.
 
-**Good Category Set** (exhaustive):
-- High complexity
-- Medium complexity
-- Low complexity
+**Target population**: All Billboard Hot 100 songs from 2015-2024.
+**Sampling frame**: The complete list of songs that appeared on the Hot 100 during this period.
 
-**Better Category Set** (exhaustive with catch-all):
-- High complexity
-- Medium complexity
-- Low complexity
-- Unable to determine (e.g., instrumental, non-English without translation)
+**Target population**: All adults in the United States.
+**Sampling frame**: A list of phone numbers, addresses, or email addresses covering U.S. adults.
 
-### Mutually Exclusive: Each Case Fits One Category
+The gap between target population and sampling frame is called **coverage error**. *The Literary Digest*'s coverage error was catastrophic: its frame (phone directories, car registrations) excluded most working-class and poor Americans, who were also the most likely Roosevelt supporters.
 
-**Each unit should fit into only ONE category per variable.** Overlap creates ambiguity and destroys reliability.
+### Probability Sampling
 
-**Example**:
+In **probability sampling**, every member of the population has a known, non-zero chance of being selected. This is the gold standard because it allows statistical generalization from sample to population.
 
-**Bad Category Set** (not mutually exclusive):
+**Simple random sampling**: Every member has an equal chance of selection. Like drawing names from a hat, except you use a random number generator.
 
-Variable: Song Theme
+*Example*: Assign each of the 3,000 songs in your dataset a random number, then select the 200 with the lowest numbers.
 
-Categories:
-- Love/relationships
-- Personal growth
-- Social commentary
+*Strength*: Unbiased selection.
+*Limitation*: May produce an unrepresentative sample by chance (e.g., all 200 songs happen to be from 2015-2017, with no recent songs represented).
 
-**Problem**: A song about learning to love yourself after a breakup fits all three categories. Which do you choose?
+**Stratified random sampling**: Divide the population into subgroups (strata) based on important characteristics, then randomly sample within each stratum.
 
-**Fix Option 1: Primary Theme Rule**
+*Example*: Divide your song dataset by year (2015, 2016, ... 2024). Randomly select 20 songs from each year, ensuring equal temporal representation.
 
-"Code based on the dominant theme (most chorus time, most verses, clear emphasis). If no dominant theme, code as 'Mixed Themes.'"
+*Strength*: Guarantees representation of key subgroups.
+*Limitation*: Requires advance knowledge of which characteristics matter.
 
-**Fix Option 2: More Specific Categories**
+**Systematic sampling**: Select every *n*th case from an ordered list.
 
-- Romantic love (focus on partner relationship)
-- Self-love/personal growth (focus on individual development)
-- Social/political commentary (focus on broader societal issues)
-- Family relationships (focus on parents, siblings, children)
-- Mixed themes (no single dominant focus)
+*Example*: Sort songs by chart entry date, then select every 15th song.
 
-Now categories are distinct, and the decision rule clarifies how to handle overlap.
+*Strength*: Simple and efficient.
+*Limitation*: If the list has a periodic pattern (e.g., a seasonal release cycle), systematic sampling could produce bias.
 
-## Building Your Codebook: A Step-by-Step Process
+**Cluster sampling**: Divide the population into naturally occurring groups (clusters), randomly select some clusters, then study all members within selected clusters.
 
-### Step 1: List All Variables
+*Example*: Randomly select 10 weeks from the Billboard chart calendar, then analyze all songs that appeared on the chart during those weeks.
 
-Start with your operationalization table (Chapter 9). Every variable you defined needs codebook rules.
+*Strength*: Practical when a complete population list is unavailable.
+*Limitation*: Less precise than simple random sampling; members within clusters tend to be similar.
 
-**Example variables for music sentiment study**:
-1. Lyric Sentiment
-2. Emotional Intensity
-3. Tempo (objective measure, may not need detailed rules)
-4. Genre
-5. Chart Performance (objective, from Billboard data)
+**Constructed week sampling**: A specialized technique used primarily in content analysis of news media. Rather than selecting random days, you construct a composite "week" by randomly selecting one Monday, one Tuesday, one Wednesday, and so on from across your time period. This ensures representation of each day of the week while distributing the sample across the full time range.
 
-### Step 2: Define Categories for Each Variable
+*Example*: To sample one year of newspaper coverage, randomly select one Monday from January-March, one Tuesday from April-June, and so on, constructing a representative week from across the year.
 
-Using your immersion observations (Chapter 8) and operational definitions (Chapter 9), specify what values each variable can take.
+*Strength*: Particularly effective for content that varies by day of week (news is a prime example). Riffe, Lacy, Watson, and Lovejoy (2023) demonstrate that constructed week samples often outperform simple random samples of equal size for news content analysis.
+*Limitation*: Primarily useful for content with day-of-week variation. Less applicable to content without temporal cycles.
 
-**Example**:
+### Non-Probability Sampling
 
-**Variable: Emotional Intensity**
+In **non-probability sampling**, not every member of the population has a known chance of selection. These samples cannot formally generalize to populations, but they are sometimes the only practical option.
 
-**Categories**:
-- **Low**: Calm delivery, subdued language, minimal repetition or emphasis. Examples: "Skinny Love" (Bon Iver), "The Night We Met" (Lord Huron)
-- **Medium**: Moderate emotional expression, some emphasis but not extreme. Examples: "Someone Like You" (Adele), "Fix You" (Coldplay)
-- **High**: Intense delivery, extreme language, shouting/crying in vocals, heavy repetition of emotional words. Examples: "Before He Cheats" (Carrie Underwood), "You Oughta Know" (Alanis Morissette)
+**Convenience sampling**: Select whoever is available.
 
-### Step 3: Write Decision Rules for Edge Cases
+*Example*: Survey students in your communication class because they're accessible.
 
-Review your Edge Case Log from Chapter 8. For each documented complication, write a rule.
+*Limitation*: No basis for generalization. Your class is not representative of "college students," let alone "young adults." This is the most common sampling strategy in undergraduate research and the most limited.
 
-**Example Edge Case from Chapter 8**:
+**Snowball sampling**: Ask initial participants to recruit others.
 
-> "Case 2: 'We Are Never Getting Back Together' (Taylor Swift)  
-> Issue: Breakup song (negative content) but delivered with sass/empowerment  
-> Question: Code topic or emotional tone?"
+*Example*: Interview five K-pop fans, then ask each to introduce you to other fans.
 
-**Resulting Decision Rule**:
+*Strength*: Effective for reaching hidden or hard-to-access populations.
+*Limitation*: The sample is shaped by social networks, which may be homogeneous.
 
-"For songs about negative events (breakup, loss, hardship) delivered with empowerment or defiance, code based on the *stance* toward the event rather than the event itself. If the artist expresses strength, growth, or moving on, code as Positive. If the artist expresses ongoing pain or victimhood, code as Negative."
+**Purposive sampling**: Select participants based on specific criteria relevant to the research question.
 
-### Step 4: Add Illustrative Examples
+*Example*: Interview only music journalists with 10+ years of experience because they can speak knowledgeably about industry changes.
 
-For each category, provide 2-3 prototypical examples that coders can reference.
+*Strength*: Ensures information-rich cases.
+*Limitation*: Researcher judgment determines selection, which introduces bias.
 
-### Step 5: Format for Clarity
+**Quota sampling**: Set target numbers for key demographic groups, then fill quotas using non-random methods.
 
-Use consistent structure and formatting. Coders shouldn't have to hunt for information.
+*Example*: Recruit 100 survey respondents ensuring 50% male and 50% female, 25% from each of four age groups.
 
-**Recommended format**:
+*Strength*: Approximates population demographics without a probability sample. This is what Gallup used in 1936 to outperform *The Literary Digest*.
+*Limitation*: Within quotas, selection is non-random. And if your quotas don't capture the relevant dimensions of variation, the sample can still be biased.
 
-```markdown
-# Codebook: Lyric Sentiment in Popular Music
+### Sample Size
 
-**Project**: Music Emotion and Chart Performance Study  
-**Primary Coder**: [Your Name]  
-**Date Created**: [Date]  
-**Version**: 1.0  
-**Last Updated**: [Date]
+How large does your sample need to be? The answer depends on what you're trying to detect and how confident you want to be.
+
+For surveys, general guidelines suggest that larger samples provide more precise estimates of population parameters. A sample of 400 respondents produces a margin of error of approximately ±5% at the 95% confidence level, which is adequate for most descriptive purposes (Dillman et al., 2014). Smaller samples are acceptable for exploratory research; larger samples are needed to detect small effects or to compare subgroups.
+
+For content analysis, Riffe et al. (2023) provide sampling guidelines specific to media content. They demonstrate that for most content analysis purposes, samples of 200-400 units are sufficient, particularly when the content population is relatively homogeneous. When content varies substantially by source, time period, or genre, stratified sampling with adequate representation of each stratum is more important than raw sample size.
+
+The key principle: **a representative sample of 200 is more informative than a biased sample of 10,000**. This is the lesson of the 1936 election, and it has not changed.
+
+## Administering Surveys
+
+The mode of administration shapes response rates, response quality, and who participates.
+
+**Online surveys** (Qualtrics, Google Forms, SurveyMonkey) are fast, inexpensive, and easy to distribute. They dominate contemporary survey research. But they suffer from low response rates (often below 10% for email-distributed surveys), self-selection bias (only people who choose to click participate), and coverage problems (populations without reliable internet access are excluded).
+
+**Telephone surveys** were the gold standard from the 1970s through the 2000s. Random digit dialing reached a probability sample of households with landlines. The shift to mobile phones, caller ID, and spam filtering has dramatically reduced telephone survey feasibility and response rates.
+
+**Mail surveys** achieve higher response rates than email in many populations, particularly older adults and rural residents, but they're slow and expensive (Dillman et al., 2014).
+
+**In-person surveys** produce the highest response rates and allow complex question formats, but they're the most expensive and time-intensive option.
+
+### Response Rates and Nonresponse Bias
+
+A survey's response rate (the percentage of sampled individuals who actually participate) matters because nonrespondents may differ systematically from respondents. If people who are busy, disengaged, or distrustful of research decline to participate, the resulting sample overrepresents people who are available, engaged, and trusting. This is **nonresponse bias**, and it's one of the most serious threats to survey validity.
+
+Dillman et al. (2014) propose a "tailored design method" that addresses response rates through careful attention to questionnaire design, personalized contacts, and multiple follow-up attempts. Their framework treats survey administration as a series of social exchanges between researcher and respondent, recognizing that people respond when they perceive the survey as legitimate, manageable, and worthwhile.
+
+## Analyzing Survey Data
+
+Survey analysis typically progresses through three stages:
+
+**Descriptive statistics**: What does the sample look like? Frequencies, means, medians, and standard deviations describe the distribution of individual variables. "The average respondent reported listening to music 2.3 hours per day (SD = 1.4)."
+
+**Bivariate analysis**: Are two variables related? Cross-tabulations for categorical variables, correlations for continuous variables, and t-tests for comparing group means. "Respondents with high parasocial attachment reported significantly higher purchase intentions (M = 5.2) than those with low attachment (M = 3.1), t(298) = 4.87, p < .001."
+
+**Multivariate analysis**: What predicts the outcome when multiple factors are considered simultaneously? Regression analysis allows you to test whether an independent variable predicts a dependent variable while controlling for other variables. "Parasocial attachment predicted purchase intentions (β = .34, p < .001) even after controlling for age, gender, and overall fandom intensity."
+
+These analytical techniques are covered in depth in Chapters 19 and 20. For now, the important point is that the quality of your analysis is bounded by the quality of your questions and your sample. Sophisticated statistics cannot rescue poorly designed instruments or biased samples.
+
+## Reliability and Validity in Surveys
+
+The measurement concepts from Chapter 13 (Vibes to Variables) apply to surveys with particular urgency, because survey instruments are the primary measurement tool.
+
+**Reliability** in surveys means consistency:
+
+- **Test-retest reliability**: Do respondents give similar answers when surveyed at two time points? If your music listening scale produces wildly different scores when administered a week apart (and nothing has changed in the respondent's life), the instrument is unreliable.
+- **Internal consistency**: Do items measuring the same construct correlate with each other? If five items are supposed to measure "parasocial attachment," they should hang together statistically. Cronbach's alpha (α ≥ .70) is the standard benchmark.
+
+**Validity** in surveys means accuracy:
+
+- **Content validity**: Does the instrument cover all relevant dimensions of the construct? A "media trust" scale that asks only about television news lacks content validity if you're trying to measure trust in media generally.
+- **Criterion validity**: Does the instrument correlate with external criteria? If a "music engagement" scale doesn't predict concert attendance or streaming hours, something is wrong.
+- **Construct validity**: Does the instrument relate to other variables as theory predicts? If Uses and Gratifications Theory (Katz et al., 1973) predicts that people who seek mood regulation through music will show higher parasocial attachment to mood-congruent artists, and your measures show this predicted relationship, both measures gain construct validity.
+
+## A Worked Example: Music Listening Motivations
+
+Here is a condensed example of survey design applied to a music research question:
+
+**Research Question**: What gratifications do college students seek from music streaming, and do these gratifications differ by listening context (studying, exercising, socializing)?
+
+**Theory**: Uses and Gratifications (Katz et al., 1973) predicts that audiences actively select media to fulfill specific needs. Music streaming may fulfill different needs in different contexts.
+
+**Survey Design**:
+
+**Section 1: Listening Behavior**
+
+- "In a typical week, how many hours do you spend listening to music?" (open numerical response)
+- "Which streaming platform do you use most frequently?" (Spotify / Apple Music / YouTube Music / Other / I don't stream music)
+- "In which contexts do you typically listen to music?" (check all that apply: studying, exercising, commuting, socializing, relaxing, falling asleep, other)
+
+**Section 2: Gratifications Sought** (7-point Likert, Strongly Disagree to Strongly Agree)
+
+- "I listen to music to improve my mood." (mood regulation)
+- "I listen to music to feel connected to other people." (social bonding)
+- "I listen to music to concentrate while studying." (cognitive focus)
+- "I listen to music to express my identity." (identity construction)
+- "I listen to music because it helps me process difficult emotions." (emotional coping)
+
+**Section 3: Context-Specific Questions**
+
+- "When studying, I prefer music that is..." (instrumental / lyrical / either / I don't listen while studying)
+- "When exercising, I prefer music that is..." (high energy / moderate energy / low energy / I don't listen while exercising)
+
+**Section 4: Demographics**
+
+- Age, gender, year in school, major
+
+**Sampling**: Stratified by year in school (freshman, sophomore, junior, senior) to ensure representation across the college experience. Target n = 400.
+
+**Administration**: Online (Qualtrics), distributed via university email listserv with two follow-up reminders. Incentive: entry into drawing for gift cards.
+
+This is a conceptual design, not a finished instrument. But it illustrates the key elements: theoretically motivated questions, validated scale items where possible, clear response options, logical ordering (behavior → attitudes → demographics), and a sampling strategy that addresses representativeness.
 
 ---
 
-## 1. Unit of Analysis
+## Practice: Survey Design Skills
 
-[Precise definition of what you're coding]
+### Exercise 10.1: Identifying Question Problems
 
----
+For each survey item below, identify the problem and rewrite the question:
 
-## 2. Variables
-
-### Variable 1: [Name]
-
-**Conceptual Definition**: [What it means]
-
-**Operational Definition**: [How to measure]
-
-**Categories**:
-- **Category A**: [Definition + examples]
-- **Category B**: [Definition + examples]
-
-**Decision Rules**:
-- Rule 1: [How to handle specific edge case]
-- Rule 2: [How to handle another complication]
+1. "Do you listen to music and podcasts regularly?"
+2. "Don't you think social media has a negative effect on mental health?"
+3. "How often do you consume media? (a) Often, (b) Sometimes, (c) Rarely"
+4. "Rate your music preferences on a scale of 1-10."
+5. "How old are you? (a) 18-25, (b) 25-35, (c) 35-50"
 
 ---
 
-### Variable 2: [Name]
+### Exercise 10.2: Sampling Design
 
-[Repeat structure]
+You want to survey college students about their news consumption habits.
 
----
-
-## 3. General Coding Instructions
-
-[Any overarching guidance]
-
----
-
-## 4. Coding Workflow
-
-[Step-by-step process coders should follow]
+1. Define your **target population** precisely.
+2. What is a realistic **sampling frame**? What coverage error might it introduce?
+3. Design a **stratified sampling** strategy. What strata would you use, and why?
+4. How large should your sample be, and what is your justification?
+5. What **nonresponse bias** concerns would you anticipate, and how would you address them?
 
 ---
 
-## Appendices
+### Exercise 10.3: From Content Analysis to Survey
 
-**Appendix A**: Example Coded Songs  
-**Appendix B**: Difficult Cases and Their Resolutions
-```
+Imagine your content analysis of Billboard lyrics reveals that references to mental health have increased 300% since 2015.
 
-## A Complete Codebook Example
-
-Here's a condensed but complete codebook for a music sentiment study:
-
-```markdown
-# Codebook: Lyric Sentiment and Emotional Intensity
-
-**Project**: Popular Music Emotion Study  
-**Coder**: Alex Student  
-**Date**: February 20, 2026  
-**Version**: 2.1  
+1. Write a **survey research question** that would complement this content analysis finding.
+2. Design three **Likert-scale items** that could measure the construct in your research question.
+3. Identify the **sampling strategy** you would use and justify your choice.
+4. What could the survey tell you that the content analysis alone cannot?
 
 ---
 
-## 1. Unit of Analysis
+### Exercise 10.4: Evaluating a Published Survey
 
-Each song is the unit of analysis. A "song" is defined as the complete studio recording, including all verses, chorus repetitions, bridge, and any spoken sections. Coders should:
+Find a published survey study in a communication journal. Evaluate:
 
-1. Read the complete lyrics (accessed via Genius.com)
-2. Listen to the song in full at least twice
-3. Code based on overall impression after both reading and listening
-
----
-
-## 2. Variables
-
-### Variable 1: Lyric Sentiment
-
-**Conceptual Definition**: The dominant emotional valence expressed in song lyrics.
-
-**Operational Definition**: After reading lyrics and listening twice, assign one category based on overall emotional tone.
-
-**Categories**:
-
-- **Positive (1)**: Lyrics express joy, love, hope, celebration, or empowerment  
-  Examples: "Happy" (Pharrell), "Shake It Off" (Swift), "Uptown Funk" (Mars)
-
-- **Negative (2)**: Lyrics express sadness, anger, fear, loss, or despair  
-  Examples: "Someone Like You" (Adele), "Hurt" (Cash), "Creep" (Radiohead)
-
-- **Neutral (3)**: Lyrics are observational, factual, or narrative without strong emotional valence  
-  Example: Storytelling rap without emotional commentary
-
-- **Mixed (4)**: Substantial positive AND negative elements in roughly equal proportion, OR positive words with ironic delivery  
-  Examples: "Good 4 U" (Rodrigo), "Since U Been Gone" (Clarkson)
-
-**Decision Rules**:
-
-**Rule 1 - Dominant Emotion**: When both positive and negative present, code based on which dominates (frequency, chorus emphasis, delivery intensity). If balanced, code as Mixed.
-
-**Rule 2 - Sarcasm/Irony**: Code based on intended meaning, not literal words. "Oh what a perfect day" sung bitterly = Negative.
-
-**Rule 3 - Empowerment vs. Pain**: Songs about negative events but emphasizing growth/strength = Positive. Songs about negative events emphasizing ongoing suffering = Negative.  
-- "Stronger" (Clarkson): breakup described but empowerment emphasized = Positive  
-- "Back to Black" (Winehouse): addiction and loss without resolution = Negative
-
-**Rule 4 - Temporal Shifts**: If song shifts emotionally (sad verses, uplifting chorus), code based on chorus since it receives most repetition and emphasis.
-
-**Rule 5 - Profanity**: Profanity alone doesn't determine sentiment. Context matters.  
-- "Don't give a fuck" (defiant) = Positive  
-- "Fuck you" (hostile) = Negative
-
----
-
-### Variable 2: Emotional Intensity
-
-**Conceptual Definition**: The strength or intensity of emotion expressed in lyrics.
-
-**Operational Definition**: Rate on 3-point scale based on language extremity, repetition, and delivery.
-
-**Categories**:
-
-- **Low (1)**: Calm, subdued, minimal emotional emphasis  
-  Examples: "Skinny Love" (Bon Iver), "The Night We Met" (Lord Huron)
-
-- **Medium (2)**: Moderate expression, some emphasis but not extreme  
-  Examples: "Someone Like You" (Adele), "Fix You" (Coldplay)
-
-- **High (3)**: Intense delivery, extreme language, vocal strain (shouting/crying), heavy repetition  
-  Examples: "Before He Cheats" (Underwood), "You Oughta Know" (Morissette)
-
-**Decision Rule**:
-
-Base intensity on lyric content and delivery, NOT musical elements (tempo, volume). A quiet song can have high emotional intensity if lyrics express extreme emotion.
-
----
-
-## 3. Special Cases
-
-**Case 1 - Instrumental Songs**: Code as "N/A" for both variables. Exclude from sentiment analysis but include for other variables (tempo, chart position).
-
-**Case 2 - Non-English Lyrics**: Use official English translation if available. If unavailable, code as "Unable to Code."
-
-**Case 3 - Duets with Different Perspectives**: Code based on overall dominant tone across both voices.
-
----
-
-## 4. Coding Workflow
-
-1. Access song lyrics on Genius.com
-2. Read lyrics completely without music
-3. Listen to song while reading lyrics (first listen)
-4. Listen a second time, noting overall emotional impression
-5. Assign Lyric Sentiment category
-6. Assign Emotional Intensity rating
-7. If uncertain, consult decision rules and examples
-8. Document any truly ambiguous cases for discussion
-
----
-
-## Appendix A: Example Coded Songs
-
-| Song | Artist | Sentiment | Intensity | Notes |
-|------|--------|-----------|-----------|-------|
-| "Happy" | Pharrell | Positive | Medium | Clear joy, moderate delivery |
-| "Someone Like You" | Adele | Negative | Medium | Loss, heartbreak, restrained delivery |
-| "Good 4 U" | Rodrigo | Mixed | High | Bitter lyrics, upbeat sound, intense delivery |
-| "Shake It Off" | Swift | Positive | Medium | Empowerment despite criticism |
-
----
-
-## Version History
-
-**v1.0** (Feb 10, 2026): Initial codebook  
-**v2.0** (Feb 15, 2026): Added Rule 5 (profanity), refined Mixed category definition  
-**v2.1** (Feb 20, 2026): Added examples in Appendix A, clarified temporal shifts rule
-```
-
----
-
-## Practice: Building Your Codebook
-
-### Exercise 10.1: Testing Exhaustiveness
-
-Evaluate this category set. Is it exhaustive? If not, what's missing?
-
-**Variable: Song Length**
-
-**Categories**:
-- Short (under 3 minutes)
-- Long (over 4 minutes)
-
-**Problem**: _______________  
-**Fix**: _______________
-
----
-
-### Exercise 10.2: Ensuring Mutual Exclusivity
-
-These categories overlap. Revise them to be mutually exclusive:
-
-**Variable: Song Topic**
-
-**Categories**:
-- Relationships
-- Breakups
-- Self-empowerment
-
-**Problem**: _______________  
-**Revised categories**: _______________
-
----
-
-### Exercise 10.3: Writing Decision Rules
-
-You're coding "genre" for the music dataset. You encounter these edge cases during immersion:
-
-**Case 1**: A song blends country and rap (e.g., "Old Town Road")  
-**Case 2**: A pop song features a rap verse  
-**Case 3**: An acoustic version of an electronic dance song
-
-Write decision rules for each case.
-
----
-
-### Exercise 10.4: Creating Your Codebook
-
-Using your operationalization table from Chapter 9, create a complete codebook section for ONE variable. Include:
-
-1. Conceptual definition
-2. Operational definition
-3. All categories with examples
-4. At least 2 decision rules
-5. Special cases if applicable
-
-Format it clearly using the structure from this chapter.
+1. What was the target population, and how was the sample drawn?
+2. Were the survey items clearly worded, or do any exhibit the pitfalls from this chapter?
+3. What was the response rate, and does the study address nonresponse bias?
+4. Does the study make causal claims that its cross-sectional design cannot support?
 
 ---
 
 ## Reflection Questions
 
-1. **The Specificity Trade-off**: Very specific decision rules make coding reliable but inflexible. Vague rules allow coder judgment but reduce reliability. How specific is "specific enough"? When does precision become rigidity?
+1. **The Self-Report Problem**: Surveys depend on people accurately reporting their own attitudes and behaviors. When is self-report trustworthy, and when is it not? Can you think of a topic where the gap between what people say and what they do would be particularly large?
 
-2. **Category Boundaries**: Real phenomena exist on continua (sentiment isn't truly binary or even four-category). Categories are imposed for analysis. What's lost when you force continuous phenomena into discrete boxes? Is the loss worth the analytical clarity?
+2. **Sampling and Justice**: The Belmont Report (Chapter 8) identifies justice as a core ethical principle: the burdens and benefits of research should be distributed fairly. How does sampling relate to justice? Who is systematically overrepresented in survey research (hint: WEIRD samples), and who is systematically excluded? What are the consequences of this imbalance for the knowledge we produce?
 
-3. **Your Codebook**: Look at the codebook you're developing. Are there cases it doesn't handle well? What makes those cases difficult? Does the difficulty reveal something important about your research question, or is it just measurement noise?
+3. **Surveys and Content Analysis**: This chapter argues that the same sampling logic governs both survey respondent selection and content analysis unit selection. In what specific ways do the two applications parallel each other? Where do they diverge?
+
+4. **The Digital Disruption**: Response rates for traditional surveys have declined dramatically. Online surveys are fast and cheap but suffer from self-selection. How should survey methodology adapt to a world where reaching representative samples is increasingly difficult?
 
 ---
 
 ## Chapter Summary
 
-This chapter taught systematic codebook construction:
+This chapter introduced survey research as a method for measuring attitudes, beliefs, and behaviors at scale:
 
-- A **codebook** is the algorithm human coders follow to produce reliable data
-- Five essential components: unit of analysis, variables/categories, decision rules, examples, special cases
-- **Exhaustive categories**: Every case must fit somewhere (use catch-all categories sparingly)
-- **Mutually exclusive categories**: Each case fits only one category per variable
-- **Decision rules** address edge cases documented during immersion
-- **Examples** illustrate each category and serve as training test cases
-- **Special cases** document recurring complications
-- **Version control**: Track changes as codebook evolves through pilot testing
-- Strong codebooks produce high **inter-coder reliability** by minimizing ambiguity
-- Codebook clarity directly determines measurement quality
+- Surveys answer questions about what people **think, believe, feel, or do**. They cannot establish causation or describe media content.
+- **Cross-sectional surveys** capture a snapshot; **longitudinal surveys** (panel and trend) track change over time.
+- **Questionnaire design** requires avoiding double-barreled questions, leading questions, loaded language, ambiguous terms, and flawed response options. Question wording shapes responses.
+- **Probability sampling** (simple random, stratified, systematic, cluster, constructed week) allows generalization from sample to population. **Non-probability sampling** (convenience, snowball, purposive, quota) does not, but may be the only practical option.
+- A **representative sample of 200** is more informative than a **biased sample of 10,000**. Who you ask matters more than how many.
+- **Response rates** affect sample quality. **Nonresponse bias** occurs when nonrespondents differ systematically from respondents.
+- **Reliability** (consistency) and **validity** (accuracy) in survey instruments parallel the measurement concepts in content analysis codebooks.
+- Sampling theory applies equally to survey research and content analysis: the same principles govern selecting respondents and selecting media units for coding.
 
 ---
 
 ## Key Terms
 
-- **Catch-all category**: Safety-net category (Other, Unclear) for cases not fitting main categories
-- **Codebook**: Systematic set of rules specifying how to code each variable
-- **Decision rule**: Explicit instruction for handling ambiguous or edge cases
-- **Exhaustive categories**: Category set where every possible case fits somewhere
-- **Mutually exclusive categories**: Category set where each case fits only one category
-- **Unit of analysis**: The entity being coded (song, article, scene, message)
-- **Version control**: Tracking changes to codebook across iterations
+- **Cluster sampling**: Randomly selecting naturally occurring groups, then studying all members within selected groups
+- **Constructed week sampling**: Sampling technique for content analysis that selects one day per day-of-week across the study period (Riffe et al., 2023)
+- **Convenience sampling**: Selecting whoever is readily available (non-probability)
+- **Coverage error**: Gap between target population and sampling frame
+- **Cross-sectional survey**: Data collected at one point in time
+- **Likert scale**: Response format measuring agreement on a numbered scale
+- **Longitudinal survey**: Data collected at multiple time points (panel or trend)
+- **Nonresponse bias**: Systematic differences between respondents and nonrespondents
+- **Probability sampling**: Sampling where every population member has a known chance of selection
+- **Purposive sampling**: Selecting participants based on specific criteria (non-probability)
+- **Quota sampling**: Setting demographic targets and filling them non-randomly
+- **Response rate**: Percentage of sampled individuals who participate
+- **Sampling frame**: The list from which a sample is drawn
+- **Simple random sampling**: Every population member has an equal chance of selection
+- **Snowball sampling**: Participants recruit additional participants
+- **Stratified random sampling**: Dividing the population into subgroups and sampling randomly within each
+- **Systematic sampling**: Selecting every nth case from an ordered list
+- **Validated scale**: Survey instrument with established reliability and validity from prior research
+
+---
+
+## References
+
+Babbie, E. R. (2021). *The practice of social research* (15th ed.). Cengage Learning.
+
+Dillman, D. A., Smyth, J. D., & Christian, L. M. (2014). *Internet, phone, mail, and mixed-mode surveys: The tailored design method* (4th ed.). Wiley.
+
+Horton, D., & Wohl, R. R. (1956). Mass communication and para-social interaction: Observations on intimacy at a distance. *Psychiatry*, *19*(3), 215-229. https://doi.org/10.1080/00332747.1956.11023049
+
+Katz, E., Blumler, J. G., & Gurevitch, M. (1973). Uses and gratifications research. *Public Opinion Quarterly*, *37*(4), 509-523. https://doi.org/10.1086/268109
+
+Riffe, D., Lacy, S., Watson, B. R., & Lovejoy, J. (2023). *Analyzing media messages: Using quantitative content analysis in research* (5th ed.). Routledge. https://doi.org/10.4324/9781003288428
+
+Wimmer, R. D., & Dominick, J. R. (2014). *Mass media research: An introduction* (10th ed.). Cengage Learning.
+
+---
+
+::: {.callout-note title="Graduate Extension" collapse="true"}
+
+**Required Reading**: Dillman, D. A., Smyth, J. D., & Christian, L. M. (2014). *Internet, phone, mail, and mixed-mode surveys: The tailored design method* (4th ed.). Wiley. **Read Chapter 1: "Sample Surveys in Our Electronic World."**
+
+**Prompt**: Dillman et al. argue that survey methodology faces a crisis driven by declining response rates, proliferating modes of contact, and increasing public skepticism toward data collection. Their "tailored design method" responds by treating every element of survey administration, from the initial contact letter to the question layout to the follow-up schedule, as a social exchange between researcher and respondent.
+
+1. Dillman et al. identify four sources of survey error: **coverage error**, **sampling error**, **nonresponse error**, and **measurement error**. These four sources constitute a "total survey error" framework. Define each in your own words and provide a concrete example of how each could affect a survey about college students' music listening habits.
+
+2. For each of the four error types, identify one specific strategy Dillman et al. propose for minimizing it. Which strategies are most practical for a graduate student conducting a thesis survey with limited resources?
+
+3. Response rates for telephone surveys in the United States have fallen from approximately 36% in 1997 to under 6% in recent years. What are the implications of this decline for the validity of survey-based research? If probability sampling becomes practically impossible due to nonresponse, does survey research lose its claim to generalizability? What alternatives exist?
+
+4. Design a complete survey administration plan for a study of your choice. Specify: target population, sampling frame, sampling strategy, mode of administration, incentive structure, contact schedule (initial contact + follow-ups), and estimated response rate. Justify each decision with reference to total survey error.
+
+:::
 
 ---
 
 ## Looking Ahead
 
-Chapter 11 (The Pilot Test) puts your codebook into practice. You'll code a subset of your data, calculate inter-coder reliability, identify problems in your coding scheme, and revise based on what you learn. Pilot testing is where theoretical codebooks meet messy reality—and where you discover which decision rules work and which need refinement. No codebook emerges perfect from its first application. Chapter 11 teaches the iterative process of testing, measuring reliability, and improving until your measurement is robust enough for full-scale analysis.
+Chapter 11 (Designing Experiments) introduces the logic of causal inference through experimental design. You'll learn why random assignment is the key to establishing causation, how to distinguish true experiments from quasi-experiments, and how to evaluate the threats to validity that plague all causal claims. Like this chapter, Chapter 11 teaches the method conceptually rather than requiring you to execute one this semester. Together, Chapters 10 and 11 complete your methodological literacy across the three major quantitative approaches: content analysis (which you'll execute), surveys (which you now understand), and experiments (which you'll learn next).

@@ -9,16 +9,17 @@ title: "Chapter 3: The Reading Journal Protocol"
 - Build a research journal in Obsidian that documents thinking over time
 - Distinguish between summarization and synthesis
 - Create connections between ideas across multiple sources
+- Evaluate source quality and identify predatory or unreliable publications
 
 ---
 
 There's a particular kind of overwhelm that strikes when you begin reading research literature. You find an article that seems relevant. It cites twelve other articles that also seem relevant. Each of those cites fifteen more. Within an hour, you have forty browser tabs open and no clear sense of how these sources connect to each other or to the question you're trying to answer.
 
-The problem isn't lack of information—it's lack of system.
+The problem isn't lack of information. It's lack of system.
 
 Good researchers aren't necessarily smarter or more naturally organized than anyone else. They've simply developed habits for managing the constant influx of information: how to read strategically, what to record, how to create connections between ideas that may not become relevant until months later. These habits transform reading from a passive act of consumption into an active process of thinking.
 
-This chapter introduces the **reading journal protocol**: a structured approach to engaging with research literature that will serve you throughout this course and beyond.
+This chapter introduces the **reading journal protocol**: a structured approach to engaging with research literature that will serve you throughout this course and beyond. The specific examples here use music research, but the protocol works identically for any domain. A political communication scholar and a health communication scholar use the same reading strategies, the same citation tools, and the same synthesis skills. The content changes; the method does not.
 
 ## The Problem with Passive Reading
 
@@ -26,7 +27,7 @@ Most students, when assigned a research article, approach it like a textbook cha
 
 But a week later, when they need to write about the article or connect it to other sources, they've forgotten most of it. The highlighted passages look vaguely familiar, but they can't reconstruct the argument or explain why it mattered. They have to re-read the entire article, which feels like wasted effort.
 
-This happens because passive reading creates the *illusion* of understanding without building actual retrieval structures in memory. Highlighting feels productive—you're doing something—but it doesn't force you to process the material deeply enough to remember it.
+This happens because passive reading creates the *illusion* of understanding without building actual retrieval structures in memory. Highlighting feels productive, you're doing something, but it doesn't force you to process the material deeply enough to remember it.
 
 **Active reading**, by contrast, demands engagement. It requires you to:
 
@@ -40,7 +41,7 @@ This cognitive work is harder in the moment, but it produces understanding that 
 
 ## The Architecture of a Research Article
 
-Academic research articles follow a predictable structure. Understanding this structure helps you read more strategically—you know where to look for specific information.
+Academic research articles follow a predictable structure. Understanding this structure helps you read more strategically: you know where to look for specific information.
 
 ### The IMRAD Structure
 
@@ -79,6 +80,38 @@ Read the results section carefully, referring back to tables as needed. Can you 
 
 This approach front-loads the most important information (what the study found and why it matters) and lets you decide how deeply to engage with methodological details.
 
+## Evaluating Source Quality
+
+Not all sources are created equal. Before investing time in a full literature note, evaluate whether the source merits deep engagement. This is a skill that matters well beyond the classroom. Journalists, policy analysts, and public relations professionals all need to distinguish credible evidence from noise.
+
+### Peer Review as a Baseline
+
+**Peer-reviewed journal articles** have been evaluated by independent experts before publication. This doesn't guarantee the findings are correct (the replication crisis demonstrated that clearly), but it does mean the study passed a quality threshold. Peer-reviewed sources are the primary currency of academic argument.
+
+**How to check**: Look for the journal name. Search it in Ulrich's Periodicals Directory or simply check whether the journal is indexed in major databases (Communication & Mass Media Complete, PsycINFO, Web of Science). If you can't find it in any academic database, proceed with caution.
+
+### Predatory Journals
+
+A growing number of journals mimic the appearance of legitimate academic publications but charge authors fees to publish without meaningful peer review. These "predatory" journals publish nearly anything submitted, which means their articles carry no quality assurance. Warning signs include:
+
+- Aggressive email solicitations ("Dear Esteemed Researcher, we invite you to submit...")
+- Extremely fast review timelines (legitimate peer review typically takes weeks to months, not days)
+- Vague editorial board listings or board members who don't appear to be real scholars
+- Journal names that closely resemble established journals but aren't the same publication
+
+When in doubt, check [Beall's List](https://beallslist.net/) or ask your instructor or librarian.
+
+### Source Hierarchy
+
+As a general guide, prioritize sources in this order:
+
+1. **Peer-reviewed journal articles**: Primary evidence, directly reports research findings
+2. **Academic books from university presses**: Synthesize and extend research, often providing deeper theoretical treatment
+3. **Government and institutional reports**: Useful for statistics, demographic data, and policy context
+4. **Reputable journalism** (*The New York Times*, *The Atlantic*, *ProPublica*): Good for identifying research questions, not for answering them
+5. **Trade publications and industry reports**: Useful for applied context but often lack methodological transparency
+6. **Blogs, social media, and opinion pieces**: May generate ideas but should never serve as evidence in a research report
+
 ## Zotero: Your Research Library
 
 Before you can develop a reading protocol, you need infrastructure for managing sources. This is where **Zotero** comes in.
@@ -115,15 +148,15 @@ Create folders (called "collections" in Zotero) to organize sources by topic, pr
 
 **Suggested structure for this course**:
 ```
-MC 451 - From Vibes to Variables
-├── Music & Emotion
+Research Methods - Course Library
+├── Theory & Frameworks
 ├── Content Analysis Methods
-├── Lyric Analysis
-├── Chart Performance
-└── Project Sources
+├── Music & Media Studies
+├── Statistics & Analysis
+└── My Project Sources
 ```
 
-You can assign the same article to multiple collections. An article about content analysis of song lyrics might appear in both "Content Analysis Methods" and "Lyric Analysis."
+You can assign the same article to multiple collections. An article about content analysis of song lyrics might appear in both "Content Analysis Methods" and "Music & Media Studies."
 
 ### Adding Notes to Sources
 
@@ -141,7 +174,7 @@ Keep these notes brief and focused:
 
 Zotero manages your sources. Obsidian is where you **think** about them.
 
-The research journal is a living document that evolves as you read. It's not a static summary of what you've read—it's a record of your thinking, your questions, and your emerging understanding.
+The research journal is a living document that evolves as you read. It's not a static summary of what you've read. It's a record of your thinking, your questions, and your emerging understanding.
 
 ### Creating a Literature Note Template
 
@@ -198,84 +231,97 @@ What other sources does this relate to?
 > "Direct quote worth remembering" (p. X)
 
 ## Tags
-#literature #music-research #content-analysis [add relevant tags]
+#literature #content-analysis [add relevant tags]
 ```
 
 ### Using the Template
 
 When you read an article, create a new note from this template and fill it out **while you read**, not afterward. This forces active engagement.
 
-**Example**: Suppose you're reading an article about lyric sentiment and chart success.
+**Example**: Suppose you're reading an article about lyric sentiment trends in popular music. Here is what a completed literature note looks like using a real, published study:
 
 ```markdown
-# Ali & Perryman, 2023 - Sad Songs and Billboard Success
+# Napier & Shamir, 2018 - Quantitative Sentiment Analysis of Lyrics
 
 ## Citation
-Ali, S. O., & Perryman, N. (2023). Emotional valence in popular music: 
-Does lyric sentiment predict chart performance? *Journal of Music Research*, 
-47(2), 201-225. https://doi.org/10.xxxx
+Napier, K., & Shamir, L. (2018). Quantitative sentiment analysis of
+lyrics in popular music. *Journal of Popular Music Studies*, *30*(4),
+161-176. https://doi.org/10.1525/jpms.2018.300411
 
 ## Central Question
-Do songs with negative lyric sentiment chart lower than songs with positive sentiment?
+How has the emotional tone of popular song lyrics changed over
+several decades of Billboard Hot 100 history?
 
 ## Main Argument
-Contrary to the "cathartic hypothesis," songs with predominantly negative 
-lyrics actually chart *higher* on average than songs with neutral or positive 
-lyrics. The authors suggest that negative emotion creates more memorable, 
-emotionally intense experiences for listeners.
+Using computational sentiment analysis, the authors found that
+Billboard Hot 100 lyrics have become progressively more negative
+over time. The trend is not uniform across genres: some genres
+show steeper declines in positive sentiment than others.
 
 ## Key Evidence
-- Content analysis of 2,500 Billboard Hot 100 songs (2010-2020)
-- Lyrics coded for emotional valence using LIWC (Linguistic Inquiry and Word Count)
-- Songs in the top 20 had significantly higher negative emotion scores (M = 4.2) 
-  than songs ranked 80-100 (M = 2.1), p < .001
+- Computational sentiment analysis of Billboard Hot 100 lyrics
+  spanning multiple decades
+- Statistically significant downward trend in positive sentiment
+  over time
+- Genre-level analysis showing variation in the negativity trend
 
 ## Methods
-**Design**: Quantitative content analysis  
-**Sample**: 2,500 songs from Billboard Hot 100 (2010-2020)  
-**Measures**: LIWC software for sentiment analysis; chart position as DV  
-**Analysis**: Regression with controls for genre, artist popularity, release date
+**Design**: Quantitative content analysis (automated)
+**Sample**: Billboard Hot 100 songs across several decades
+**Measures**: Sentiment scores computed via automated text analysis
+**Analysis**: Trend analysis over time, with genre as a moderator
 
 ## Relevance to My Research
-This directly addresses my RQ about whether sad songs perform differently. 
-Challenges my initial hypothesis that positive songs would chart higher.
+Directly relevant to any RQ about whether lyric sentiment relates
+to chart success. Also raises the question of whether the trend
+toward negativity reflects audience preference or industry production
+decisions.
 
 ## Strengths
-- Large sample size (2,500 songs)
-- Validated measurement tool (LIWC)
-- Controlled for confounds (genre, artist fame)
+- Large sample spanning decades (longitudinal perspective)
+- Computational approach ensures consistency across thousands of songs
+- Genre-level breakdown adds nuance
 
 ## Limitations
-- LIWC might miss context (sarcasm, irony)
-- Didn't account for musical features (tempo, key)
-- Chart position at peak only—doesn't measure longevity
+- Automated sentiment analysis misses context (sarcasm, irony,
+  metaphor)
+- Doesn't account for musical features (tempo, key) that shape
+  how lyrics are experienced
+- Treats all chart positions equally (doesn't distinguish #1 hits
+  from #100)
 
 ## Questions This Raises
-- Would this pattern hold for specific genres? (Maybe negativity helps in rock 
-  but not pop?)
-- Does the *type* of negative emotion matter? (Anger vs. sadness vs. fear?)
-- How do listeners explain their preference for sad songs?
+- Would human coding reveal different patterns than automated
+  analysis?
+- Is the negativity trend driven by specific genres entering the
+  mainstream (e.g., rap, emo) or by all genres becoming more negative?
+- Do audiences *prefer* negative lyrics, or do negative songs chart
+  for other reasons (marketing, novelty, cultural context)?
 
 ## Connections
-- [[Scherer & Zentner, 2008]] - Theory of music and emotion
-- [[Sachs et al., 2015]] - Why people choose sad music
-- My dataset from Genius has lyric text—could replicate this with more 
-  granular analysis
+- [[Sachs et al., 2015]] - Why people enjoy sad music (psychological
+  mechanisms that might explain demand for negative content)
+- [[Brand et al., 2019]] - Cultural evolution of emotional expression
+  in lyrics (complementary finding using different methods)
+- [[DeWall et al., 2011]] - Narcissism trends in lyrics (parallel
+  content analysis tracking psychological traits over time)
 
 ## Quotable
-> "The cultural narrative that 'people want happy music' may be more 
-> prescriptive than descriptive" (p. 218)
+> (Paraphrase key finding rather than direct quote if full text
+> is not available)
 
 ## Tags
-#literature #lyric-sentiment #chart-performance #music-emotion
+#literature #lyric-sentiment #content-analysis #chart-performance
 ```
 
 Notice what this does:
 
-1. **Forces synthesis**: You can't just highlight—you have to articulate the argument in your own words.
+1. **Forces synthesis**: You can't just highlight. You have to articulate the argument in your own words.
 2. **Identifies gaps**: The "Questions This Raises" section generates future research ideas.
 3. **Creates connections**: The "Connections" section links this article to others you've read, building a knowledge network.
 4. **Records your thinking**: Months from now, you'll remember not just what the article said, but what *you* thought about it.
+
+This template works for any domain. A student studying news framing would fill in the same fields, substituting "content analysis of newspaper coverage" for "sentiment analysis of lyrics." A student studying health communication would note different theories in the Connections section. The template is domain-agnostic; the content is yours.
 
 ## The Weekly Research Log
 
@@ -289,33 +335,39 @@ In addition to literature notes on individual sources, maintain a **weekly resea
 # Research Log - Week 3
 
 ## What I Read This Week
-- [[Ali & Perryman, 2023]] - Lyric sentiment and chart success
-- [[Thompson, 2021]] - Major vs. minor keys in pop music
-- [[Davis et al., 2019]] - Tempo and emotional arousal
+- [[Napier & Shamir, 2018]] - Sentiment trends in Billboard lyrics
+- [[Juslin & Västfjäll, 2008]] - Emotional mechanisms in music
+- [[Zentner et al., 2008]] - Measuring music-evoked emotions
 
 ## Themes Emerging
-I'm noticing a pattern: the relationship between music and emotion is 
-more complex than I thought. It's not just "happy music = popular." 
-Context matters. Genre matters. And maybe what people *say* they want 
-(happy music) differs from what they actually consume (emotionally intense music).
+I'm noticing a pattern: the relationship between media content and
+emotion is more complex than I thought. It's not just "positive
+content = popular." Context matters. Genre matters. And maybe what
+people *say* they want (uplifting content) differs from what they
+actually consume (emotionally intense content). This seems like it
+could apply beyond music, to news, to social media, to any medium
+where emotional engagement drives consumption.
 
 ## Connections I'm Seeing
-Ali & Perryman's finding (negative lyrics chart higher) connects to 
-Thompson's point about minor keys evoking stronger emotional responses. 
-Maybe it's not about positive vs. negative—it's about *emotional intensity* 
-vs. blandness?
+Napier & Shamir's finding (lyrics becoming more negative over time)
+connects to Juslin & Västfjäll's point about "emotional contagion"
+as a mechanism for how music affects listeners. Maybe it's not about
+positive vs. negative but about *emotional intensity* vs. blandness.
+Zentner et al. suggest music evokes specific aesthetic emotions
+(wonder, nostalgia, power) that don't map neatly onto a simple
+positive/negative dimension.
 
 ## Questions I'm Wrestling With
 - How do I operationalize "emotional intensity" in my own coding?
-- Should I focus just on sentiment (positive/negative) or also code for 
-  intensity (mild/strong)?
-- Is there a way to combine lyric analysis with Spotify's audio features 
-  (energy, valence) to get a fuller picture?
+- Should I focus just on sentiment (positive/negative) or also code
+  for intensity (mild/strong)?
+- Is there a way to combine lyric analysis with Spotify's audio
+  features (energy, valence) to get a fuller picture?
 
 ## Gaps I'm Noticing in the Literature
-Most studies focus on Western pop music. Not much on rap or country. 
-Also, most use automated sentiment analysis (LIWC). Would human coding 
-reveal different patterns?
+Most studies focus on Western pop music. Not much on rap or country
+specifically. Also, most use automated sentiment analysis. Would
+human coding reveal different patterns?
 
 ## Next Steps
 - Find articles on coding emotional intensity (not just valence)
@@ -338,27 +390,35 @@ Students often confuse **summarization** with **synthesis**. They're not the sam
 
 ### Example of Summary (Weak)
 
-> Ali and Perryman (2023) found that songs with negative lyrics chart higher 
-> than songs with positive lyrics. Thompson (2021) found that minor keys evoke 
-> stronger emotional responses than major keys. Davis et al. (2019) found that 
-> faster tempo increases emotional arousal.
+> Napier and Shamir (2018) found that Billboard lyrics have become
+> more negative over time. Juslin and Västfjäll (2008) proposed eight
+> mechanisms through which music evokes emotion. Zentner, Grandjean,
+> and Scherer (2008) developed a scale for measuring music-evoked
+> emotions that goes beyond simple positive/negative categories.
 
 This is a list of facts. It doesn't explain how they connect or what they mean together.
 
 ### Example of Synthesis (Strong)
 
-> Three recent studies suggest that emotional *intensity* predicts music 
-> popularity better than emotional *valence* (positive vs. negative). 
-> Ali and Perryman (2023) found that negative lyrics chart higher than positive 
-> ones, Thompson (2021) showed that minor keys (typically associated with sadness) 
-> evoke stronger responses, and Davis et al. (2019) demonstrated that faster 
-> tempos increase arousal. Taken together, these findings challenge the assumption 
-> that audiences prefer cheerful music. Instead, they may prefer music that 
-> provokes strong feelings—whether positive or negative.
+> Three lines of research suggest that the relationship between music
+> and emotion is more complex than a simple positive/negative dichotomy.
+> Napier and Shamir (2018) found that popular lyrics have become
+> increasingly negative over decades of Billboard history, implying that
+> audiences are not simply selecting for cheerful content. Juslin and
+> Västfjäll (2008) proposed that music evokes emotion through multiple
+> mechanisms, including "emotional contagion" and "episodic memory,"
+> suggesting that a song's emotional impact depends on far more than
+> its surface-level sentiment. Zentner et al. (2008) reinforced this
+> point by showing that music evokes a distinct set of aesthetic emotions,
+> such as wonder, nostalgia, and power, that don't reduce to the
+> valence dimension. Taken together, these findings challenge simple
+> models of audience preference and suggest that emotional *complexity*
+> or *intensity* may matter more than whether the content is positive
+> or negative.
 
-This creates a **unifying claim** (intensity matters more than valence) and shows how the three sources **support that claim in different ways**.
+This creates a **unifying claim** (emotional complexity matters more than valence) and shows how the three sources **support that claim in different ways**.
 
-Synthesis is harder because it requires you to see patterns across sources. But it's also what literature reviews demand. You're not just reporting what others found—you're arguing for a particular interpretation of the collective evidence.
+Synthesis is harder because it requires you to see patterns across sources. But it's also what literature reviews demand. You're not just reporting what others found. You're arguing for a particular interpretation of the collective evidence. This skill transfers directly: a literature review on crisis communication framing uses the same synthesis logic, just with different sources.
 
 ## The Connection Habit: Linking Ideas
 
@@ -368,22 +428,24 @@ One of Obsidian's most powerful features is the ability to **link notes together
 
 **Example**:
 
-In your note on Ali & Perryman (2023), you wrote:
+In your note on Napier & Shamir (2018), you wrote:
 
 ```markdown
 ## Connections
-- [[Scherer & Zentner, 2008]] - Theory of music and emotion
-- [[Sachs et al., 2015]] - Why people choose sad music
+- [[Sachs et al., 2015]] - Why people enjoy sad music
+- [[Brand et al., 2019]] - Cultural evolution of emotional expression
 ```
 
-Now, when you open the Scherer & Zentner note, add a backlink:
+Now, when you open the Sachs et al. note, add a backlink:
 
 ```markdown
 ## Connections
-- [[Ali & Perryman, 2023]] - Empirical support for emotional intensity theory
+- [[Napier & Shamir, 2018]] - Empirical evidence that lyrics have
+  become more negative (raises the question of *why* audiences
+  consume negative content, which Sachs addresses psychologically)
 ```
 
-Over time, these links create a **knowledge graph**—a visual network showing how ideas relate. Obsidian can generate this graph automatically (Graph View).
+Over time, these links create a **knowledge graph**, a visual network showing how ideas relate. Obsidian can generate this graph automatically (Graph View).
 
 When you write your literature review in Chapter 4, you won't be starting from scratch. You'll already have a map of how sources connect.
 
@@ -410,8 +472,8 @@ This takes longer than passive reading, but it pays compound interest. You'll ne
 
 1. Download and install Zotero + Connector
 2. Create an account
-3. Create a collection called "MC 451 - Music Research"
-4. Find 3 articles on Google Scholar related to music, emotion, or chart performance
+3. Create a collection structure for this course (see the suggested structure above)
+4. Find 3 articles on Google Scholar related to your research interests (these can be about music, media, communication, or any social science topic)
 5. Use the Connector to add all 3 to your Zotero library
 6. Verify the PDFs downloaded correctly
 
@@ -445,9 +507,25 @@ Read the abstracts of these three hypothetical articles:
 
 **Task 2 (Synthesis)**: Write one paragraph that synthesizes all three, identifying a unifying pattern or tension.
 
+**Task 3 (Transfer)**: Now imagine three hypothetical studies about news consumption: (A) positive news stories get more "likes" on social media, (B) readers say they want more positive news but click on negative headlines more often, (C) people rate negative news as more "important" than positive news. Write a synthesis paragraph. Notice how the same pattern (stated preferences diverge from revealed behavior) operates across domains.
+
 ---
 
-### Exercise 3.4: The Weekly Research Log
+### Exercise 3.4: Evaluating Source Quality
+
+Find one article from each of the following source types:
+
+1. A **peer-reviewed journal article** from a database like Communication & Mass Media Complete
+2. A **well-reported journalistic piece** from a reputable outlet
+3. A **blog post or opinion piece** on the same general topic
+
+For each, note: Who wrote it? What evidence supports the claims? Could the findings be verified or replicated? Where does each source sit in the quality hierarchy described in this chapter?
+
+**Goal**: Develop the habit of evaluating credibility before citing.
+
+---
+
+### Exercise 3.5: The Weekly Research Log
 
 Create your first weekly research log entry.
 
@@ -482,6 +560,8 @@ Create your first weekly research log entry.
 
 3. **Synthesis as Thinking**: The chapter argues that synthesis creates new understanding, not just recaps old information. Can you think of an example where you connected two ideas and realized something neither source explicitly stated?
 
+4. **Beyond the Discipline**: The reading protocol and literature note template are designed to work for any research domain. If you were studying political communication or health messaging instead of music, what would change in the template? What would stay the same?
+
 ---
 
 ## Chapter Summary
@@ -490,19 +570,24 @@ This chapter introduced the infrastructure for systematic research reading:
 
 - **Active reading** requires engaging with sources through annotation, questioning, and connection-building, not passive consumption.
 - **Strategic reading** (abstract → conclusion → intro → methods → results) prioritizes high-value information.
+- **Source evaluation** helps you distinguish peer-reviewed research from predatory journals, opinion pieces, and unreliable sources.
 - **Zotero** manages bibliographic information and PDFs, eliminating citation drudgery.
 - **Literature notes** in Obsidian create lasting understanding by forcing synthesis and connection.
 - **Weekly research logs** document evolving thinking and identify emerging patterns.
 - **Summary** restates what one source says; **synthesis** combines multiple sources to generate new insight.
 - **Linking notes** creates a knowledge graph that mirrors the structure of ideas.
+- The reading protocol is **domain-agnostic**: the same habits serve music research, political communication, health messaging, or any other social science inquiry.
 
 ---
 
 ## Key Terms
 
 - **Active reading**: Engaging with sources through annotation, questioning, and synthesis
+- **IMRAD**: Standard structure for empirical articles (Introduction, Methods, Results, And Discussion)
 - **Knowledge graph**: A network of connected ideas created through linked notes
 - **Literature note**: A structured annotation of a research source
+- **Peer review**: Expert evaluation of research before publication
+- **Predatory journal**: A publication that charges fees without meaningful quality review
 - **Strategic reading**: Reading in non-linear order to prioritize high-value information
 - **Summary**: Restating a source's argument in different words
 - **Synthesis**: Combining insights from multiple sources to create new understanding
@@ -510,6 +595,37 @@ This chapter introduced the infrastructure for systematic research reading:
 
 ---
 
+## References
+
+Brand, C. O., Acerbi, A., & Mesoudi, A. (2019). Cultural evolution of emotional expression in 50 years of song lyrics. *Evolutionary Human Sciences*, *1*, e11. https://doi.org/10.1017/ehs.2019.11
+
+DeWall, C. N., Pond, R. S., Jr., Campbell, W. K., & Twenge, J. M. (2011). Tuning in to psychological change: Linguistic markers of psychological traits and emotions over time in popular U.S. song lyrics. *Psychology of Aesthetics, Creativity, and the Arts*, *5*(3), 200-207. https://doi.org/10.1037/a0023195
+
+Juslin, P. N., & Västfjäll, D. (2008). Emotional responses to music: The need to consider underlying mechanisms. *Behavioral and Brain Sciences*, *31*(5), 559-575. https://doi.org/10.1017/S0140525X08005293
+
+Napier, K., & Shamir, L. (2018). Quantitative sentiment analysis of lyrics in popular music. *Journal of Popular Music Studies*, *30*(4), 161-176. https://doi.org/10.1525/jpms.2018.300411
+
+Sachs, M. E., Damasio, A., & Habibi, A. (2015). The pleasures of sad music: A systematic review. *Frontiers in Human Neuroscience*, *9*, Article 404. https://doi.org/10.3389/fnhum.2015.00404
+
+Zentner, M., Grandjean, D., & Scherer, K. R. (2008). Emotions evoked by the sound of music: Characterization, classification, and measurement. *Emotion*, *8*(4), 494-521. https://doi.org/10.1037/1528-3542.8.4.494
+
+---
+
+::: {.callout-note title="Graduate Extension" collapse="true"}
+
+**Required Reading**: Juslin, P. N. (2013). From everyday emotions to aesthetic emotions: Towards a unified theory of musical emotions. *Physics of Life Reviews*, *10*(3), 235-266. https://doi.org/10.1016/j.plrev.2013.05.008
+
+**Prompt**: Juslin proposes the BRECVEMA model, identifying eight distinct psychological mechanisms through which music evokes emotion: Brain stem reflexes, Rhythmic entrainment, Evaluative conditioning, Contagion, Visual imagery, Episodic memory, Musical expectancy, and Aesthetic judgment. This framework challenges the assumption that "music makes you feel things" is a simple, unified process.
+
+1. Create a complete literature note for this article using the template from this chapter. Fill in every section, including Connections to at least three other sources.
+2. Write a 300-word synthesis paragraph connecting Juslin's BRECVEMA framework to at least two other sources you've read this week. The synthesis should make an argument, not just list what each source found.
+3. Consider the methodological implications: if music evokes emotion through eight different mechanisms, what does that mean for how we operationalize "emotional response" in research? Can a single survey item ("How did this song make you feel?") capture what's actually happening? What measurement approaches might be needed?
+4. Juslin's framework was developed for music, but the underlying mechanisms (contagion, conditioning, memory, expectancy) operate in other media contexts too. Choose one mechanism and explain how it might function in a non-music domain (e.g., emotional contagion in social media, evaluative conditioning in advertising, episodic memory in news consumption).
+
+:::
+
+---
+
 ## Looking Ahead
 
-Chapter 4 (The Archivist) builds on these habits by teaching you to conduct a **systematic literature review**. You'll learn advanced search strategies for finding relevant scholarship, criteria for evaluating source quality, and techniques for mapping the intellectual territory of a research question. The literature review transforms your collection of individual notes into a coherent argument about what is known, what is contested, and what remains to be discovered.
+Chapter 4 (The Archivist) builds on these habits by teaching you to conduct a **systematic literature review**. You'll learn advanced search strategies for finding relevant scholarship using Boolean operators and academic databases, techniques for citation chaining, criteria for recognizing when you've reached saturation, and methods for mapping the intellectual territory of a research question. The literature review transforms your collection of individual notes into a coherent argument about what is known, what is contested, and what remains to be discovered.

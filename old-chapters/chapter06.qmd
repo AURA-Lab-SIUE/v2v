@@ -1,0 +1,433 @@
+---
+title: "Chapter 6: The Roadmap"
+---
+
+## Learning Objectives
+
+- Synthesize literature review, theory, and research question into a coherent project plan
+- Recognize and avoid scope creep by narrowing focus systematically
+- Align topic, theory, and data source into a viable research design
+- Write a one-page research prospectus that defends the project's feasibility
+- Distinguish between exploratory, descriptive, and explanatory research goals
+
+---
+
+There's a particular kind of paralysis that strikes halfway through a research project. You've read thirty articles. You have notes scattered across multiple documents. You've identified three interesting theories and five possible research questions. You can see connections everywhere, and the project feels simultaneously too small (just one study?) and too large (how will I ever finish this?).
+
+The problem isn't lack of ideas—it's lack of focus. You haven't made the difficult choices that transform a cloud of possibilities into a concrete plan.
+
+This is what a research prospectus forces: clarity through constraint. By the end of this chapter, you'll distill everything you've gathered—curiosity, sources, theoretical frameworks—into a single page that answers three questions: *What are you studying? Why does it matter? How will you do it?*
+
+The prospectus isn't busywork. It's a diagnostic tool. If you can't articulate your project clearly on one page, you don't yet understand it well enough to begin.
+
+## The Enemy: Scope Creep
+
+The greatest threat to student research is what we might call the "Everything Study." It announces itself in phrases like:
+
+- "I want to study the effect of social media on society."
+- "I'm interested in how music shapes identity."
+- "I'm going to analyze streaming platforms."
+
+These aren't research projects. They're career-spanning programs that would occupy teams of scholars for decades. They're the academic equivalent of saying, "I'm going to fix climate change" when what you need is a specific, achievable intervention.
+
+**Scope creep** happens when:
+
+- You try to answer too many questions simultaneously
+- You invoke multiple theories that pull in different directions
+- You attempt to analyze datasets too large or complex for a semester timeline
+- You keep adding "just one more thing" to the study
+
+The solution is what we might call the Narrow Path: drilling down relentlessly until your project fits within the constraints of time, resources, and skill you actually have.
+
+### The Narrowing Funnel
+
+Consider this progression:
+
+**Iteration 1**: "I'm interested in music and politics."  
+*(Too broad. What aspect? What time period? What political outcomes?)*
+
+**Iteration 2**: "I want to study protest music and social movements."  
+*(Better, but still vast. Which movements? What aspect of protest music?)*
+
+**Iteration 3**: "I want to analyze how hip-hop addresses police violence."  
+*(Getting there. But all of hip-hop? All references to police?)*
+
+**Iteration 4**: "I want to examine how prominent hip-hop artists framed police violence in songs released after high-profile incidents (2014-2020)."  
+*(Much clearer. Specific genre, time frame, and trigger events.)*
+
+**Iteration 5**: "I will analyze how Billboard Hot 100 hip-hop songs released within three months of Michael Brown's death (Ferguson, 2014) and George Floyd's death (Minneapolis, 2020) framed police violence, using framing theory to categorize whether lyrics emphasize individual responsibility or systemic racism."  
+*(Now we have a doable project. Specific sample, clear timeframe, defined theoretical lens, measurable variables.)*
+
+Notice what happened: each iteration sacrificed breadth for depth. By the fifth version, you have a focused study that can be completed in a semester. It won't answer everything about music and politics, but it will answer *something* rigorously.
+
+The hard part is accepting that narrowing isn't weakness—it's discipline.
+
+## The Holy Trinity: Topic, Theory, Data
+
+A viable research project requires alignment across three elements. If any one is mismatched with the others, the study collapses.
+
+### Topic (What)
+
+What specific phenomenon are you studying?
+
+**Weak**: "Social media"  
+**Strong**: "Parasocial relationships between Twitch viewers and streamers"
+
+**Weak**: "Music and emotion"  
+**Strong**: "The relationship between lyric sentiment and chart longevity in Billboard Hot 100 pop songs (2015-2024)"
+
+The topic must be **bounded**—limited by population, time, medium, or context. You're not studying all music or all emotion. You're studying *this specific relationship* in *this specific corpus* during *this specific period*.
+
+### Theory (Why)
+
+What explanatory framework guides your interpretation?
+
+**Weak**: "I'll use whatever theories seem relevant"  
+**Strong**: "Uses and Gratifications Theory predicts that listeners actively select music to fulfill emotional needs. If true, songs that address common emotional states (sadness, anxiety, joy) should resonate more broadly, predicting chart success."
+
+The theory must **predict patterns you can observe in your data**. If your theory is about individual psychological processes but your data are aggregate chart positions, there's a mismatch. If your theory is about industry power structures but you're only analyzing lyric content, you're not equipped to test it.
+
+### Data Source (How)
+
+What evidence will you analyze?
+
+**Weak**: "I'll look at some songs"  
+**Strong**: "I will analyze a stratified random sample of 200 songs from the Billboard Hot 100 (2015-2024), coding lyric sentiment using a validated codebook and testing whether sentiment predicts chart peak position and weeks on chart."
+
+The data source must be:
+- **Accessible**: You can actually obtain it within your timeline
+- **Sufficient**: Large enough to detect patterns but small enough to manage
+- **Appropriate**: Capable of answering your research question
+
+### Alignment Example
+
+Let's see how misalignment breaks a project:
+
+**Misaligned Project**:
+- **Topic**: Parasocial relationships with musicians
+- **Theory**: Political Economy of Media (focuses on industry structure and corporate power)
+- **Data**: Survey of listeners' emotional attachment to artists
+
+**The problem**: Political Economy Theory explains structural forces (corporate consolidation, profit motives), but the data measures individual psychology. The theory can't explain the patterns you'd find in the data.
+
+**Aligned Project**:
+- **Topic**: Parasocial relationships with musicians
+- **Theory**: Parasocial Interaction Theory (focuses on one-sided emotional bonds)
+- **Data**: Survey of listeners' emotional attachment to artists, comparing heavy consumers vs. casual listeners
+
+**Why it works**: The theory predicts that exposure intensity correlates with parasocial bond strength. The survey measures both exposure and attachment. Theory, topic, and data are in conversation.
+
+## Three Research Goals: Exploration, Description, Explanation
+
+Not all research asks the same kind of question. Your goal shapes every subsequent decision.
+
+### Exploratory Research: "What's Going On Here?"
+
+**Purpose**: Understand a new or poorly understood phenomenon. Generate hypotheses rather than test them.
+
+**Approach**: Often qualitative. Open-ended questions. Looking for patterns you didn't anticipate.
+
+**Example**: "How do K-pop fans in the U.S. construct community identity online?"
+
+You're not testing a hypothesis—you're discovering what's happening. You might conduct interviews, observe fan forums, analyze fan-created content. The outcome is a rich description and perhaps a preliminary theory about fan identity formation.
+
+**Output**: Patterns, themes, preliminary frameworks. Often inductive.
+
+### Descriptive Research: "What Does the Landscape Look Like?"
+
+**Purpose**: Document the characteristics of a population or phenomenon. Map the terrain.
+
+**Approach**: Often quantitative. Surveys, content analysis. Measuring what exists.
+
+**Example**: "What percentage of Billboard Hot 100 songs (2015-2024) contain references to mental health topics?"
+
+You're not explaining *why* mental health themes appear or what effect they have. You're establishing prevalence. This is essential groundwork for later explanatory studies.
+
+**Output**: Frequencies, distributions, prevalence estimates. Often descriptive statistics.
+
+### Explanatory Research: "Why Does This Happen?"
+
+**Purpose**: Test relationships. Explain mechanisms. Establish causation (or strong correlational evidence).
+
+**Approach**: Hypothesis-driven. Deductive. Tests predictions from theory.
+
+**Example**: "Do songs with negative lyric sentiment chart higher than songs with positive sentiment, and does this relationship hold after controlling for tempo, genre, and artist fame?"
+
+This is classic hypothesis testing. You have a specific prediction, a theoretical rationale for why it might be true, and a design to test it.
+
+**Output**: Support or disconfirmation of hypotheses. Contributes to theory refinement.
+
+**Note on progression**: Research often moves through these stages. Early studies on a topic are exploratory. Once patterns emerge, descriptive studies map the landscape. Finally, explanatory studies test causal mechanisms. You don't need to do all three—but know which one you're attempting.
+
+## Research Questions vs. Hypotheses
+
+Your research goal determines whether you pose a question or a hypothesis.
+
+### Research Questions (RQs)
+
+**Use when**:
+- You're exploring or describing rather than explaining
+- Theory doesn't make a clear prediction
+- You're genuinely unsure what the data will show
+
+**Format**: Interrogative, open-ended (or bounded but not directional)
+
+**Examples**:
+- RQ1: How do hip-hop artists frame police violence in songs released after high-profile incidents?
+- RQ2: What percentage of Billboard Hot 100 songs (2015-2024) contain explicit references to mental health?
+- RQ3: How do fans of different music genres use parasocial language when discussing their favorite artists?
+
+### Hypotheses (H)
+
+**Use when**:
+- Theory makes a specific prediction
+- You're testing an explanatory claim
+- Previous research suggests a likely outcome
+
+**Format**: Declarative statement predicting a relationship
+
+**Examples**:
+- H1: Songs with negative lyric sentiment will chart higher than songs with positive sentiment.
+- H2: Listeners with stronger parasocial bonds to an artist will report higher purchase intentions for concert tickets.
+- H3: Songs in minor keys will be rated as sadder than songs in major keys.
+
+### Null Hypotheses (H₀)
+
+The **null hypothesis** predicts *no relationship* or *no difference*. It's the skeptical default position that your research aims to challenge.
+
+**Example**:
+- H₁: Songs with negative lyric sentiment will chart higher than songs with positive sentiment.
+- H₀: There is no relationship between lyric sentiment and chart position.
+
+Statistical tests evaluate the null hypothesis. If the data are inconsistent with H₀ (the p-value is low), you reject it in favor of your alternative hypothesis (H₁).
+
+## Writing the One-Page Prospectus
+
+The prospectus is a contract with yourself and your instructor. It commits you to a specific, focused project and demonstrates you've thought through its feasibility.
+
+### The Essential Components
+
+**1. Title**  
+Descriptive and specific. Should hint at the key variables or concepts.
+
+*Example*: "Lyric Sentiment and Chart Performance: A Content Analysis of Billboard Hot 100 Pop Songs (2015-2024)"
+
+**2. Research Question or Hypothesis**  
+One to three focused questions or hypotheses. Not five. Not ten.
+
+*Example*:  
+- RQ1: Is there a relationship between lyric sentiment (positive, negative, neutral) and chart peak position?
+- RQ2: Does this relationship hold after controlling for tempo and artist popularity?
+
+**3. Theoretical Framework (2-3 sentences)**  
+Name the theory and explain how it relates to your question.
+
+*Example*:  
+"Uses and Gratifications Theory suggests that audiences actively select media to fulfill emotional needs. If listeners seek music that validates or processes their emotional states, songs addressing negative emotions may resonate more deeply than neutral or positive songs, potentially predicting commercial success."
+
+**4. Gap in Literature (2-3 sentences)**  
+Cite 2-3 key sources and identify what they missed or contradicted.
+
+*Example*:  
+"Previous research shows that musical features like tempo and key predict chart success (Thompson, 2021), but lyric content remains underexamined. The few studies analyzing lyrics (Smith et al., 2020; Ali & Perryman, 2023) produced contradictory findings, possibly due to methodological differences or genre effects."
+
+**5. Method Overview (3-4 sentences)**  
+What data will you analyze? How will you code or measure variables? How many cases?
+
+*Example*:  
+"I will analyze a stratified random sample of 200 songs from the Billboard Hot 100 pop category (2015-2024), ensuring equal representation across five two-year periods. Lyric sentiment will be coded using a three-category scheme (positive, negative, neutral) with inter-coder reliability testing. Chart performance will be measured using peak position and total weeks on chart."
+
+**6. Expected Contribution (1-2 sentences)**  
+What will we learn? Why does it matter?
+
+*Example*:  
+"This study will clarify whether lyric sentiment predicts commercial success in pop music and whether this relationship is stable across time, contributing to both Uses and Gratifications scholarship and industry understanding of audience preferences."
+
+### The Full Example
+
+```markdown
+**Lyric Sentiment and Chart Performance: A Content Analysis of 
+Billboard Hot 100 Pop Songs (2015-2024)**
+
+**Research Questions**:
+RQ1: Is there a relationship between lyric sentiment (positive, negative, 
+neutral) and chart peak position?
+RQ2: Does this relationship hold after controlling for tempo and 
+artist popularity?
+
+**Theoretical Framework**: 
+Uses and Gratifications Theory suggests that audiences actively select 
+media to fulfill emotional needs. If listeners seek music that validates 
+or processes their emotional states, songs addressing negative emotions 
+may resonate more deeply, potentially predicting commercial success.
+
+**Gap in Literature**: 
+Previous research shows that musical features like tempo and key predict 
+chart success (Thompson, 2021), but lyric content remains underexamined. 
+The few studies analyzing lyrics (Smith et al., 2020; Ali & Perryman, 
+2023) produced contradictory findings, possibly due to methodological 
+differences or genre effects.
+
+**Method**: 
+I will analyze a stratified random sample of 200 songs from the Billboard 
+Hot 100 pop category (2015-2024), ensuring equal representation across 
+five two-year periods. Lyric sentiment will be coded using a three-category 
+scheme (positive, negative, neutral) with inter-coder reliability testing. 
+Chart performance will be measured using peak position and total weeks on chart.
+
+**Expected Contribution**: 
+This study will clarify whether lyric sentiment predicts commercial success 
+in pop music and whether this relationship is stable across time, contributing 
+to both Uses and Gratifications scholarship and industry understanding of 
+audience preferences.
+```
+
+**Total length**: ~200 words. Fits on one page. Every sentence carries weight.
+
+## Common Prospectus Problems
+
+### Problem 1: Multiple Unrelated Questions
+
+**Weak prospectus**:
+- RQ1: How has hip-hop evolved over time?
+- RQ2: Do tempo and key predict chart success?
+- RQ3: What role does social media play in artist popularity?
+
+**Issue**: These are three separate studies. Pick one.
+
+### Problem 2: Theory-Data Mismatch
+
+**Weak prospectus**:
+"I'll use Cultivation Theory to analyze lyric sentiment in 200 songs."
+
+**Issue**: Cultivation Theory is about cumulative media exposure shaping perceptions of reality. That doesn't predict why individual songs chart. Wrong theory for this data.
+
+### Problem 3: Vague Methods
+
+**Weak prospectus**:
+"I will look at popular songs and see what themes emerge."
+
+**Issue**: How many songs? From where? What counts as "popular"? How will you identify themes? Too vague to evaluate feasibility.
+
+### Problem 4: The Everything Study
+
+**Weak prospectus**:
+"I will analyze all music from 1950-2024 across all genres to understand how society has changed."
+
+**Issue**: This is a 74-year, multi-genre cultural history. Not a semester project.
+
+## The Feasibility Test
+
+Before finalizing your prospectus, ask:
+
+**Can I access this data?**  
+If you need lyrics from 200 songs, can you actually get them? (Yes—Genius API or manual collection.)  
+If you need neuroimaging data, can you get it? (Probably not in one semester.)
+
+**Can I analyze it in the time available?**  
+Coding 200 songs is doable. Coding 10,000 is not—not for one person in 14 weeks.
+
+**Does my method match my question?**  
+If you want to know *why* people listen to sad music, interviewing listeners makes sense. Coding lyric content doesn't directly answer that.
+
+**Have I controlled scope creep?**  
+If you keep adding variables, populations, or time periods, stop. Narrow until it hurts a little. Then narrow a bit more.
+
+---
+
+## Practice: Building Your Prospectus
+
+### Exercise 6.1: The Narrowing Funnel
+
+Start with a broad interest related to music. Go through five iterations, narrowing each time:
+
+**Iteration 1** (broad): _______________  
+**Iteration 2**: _______________  
+**Iteration 3**: _______________  
+**Iteration 4**: _______________  
+**Iteration 5** (focused, doable): _______________
+
+### Exercise 6.2: Aligning the Trinity
+
+For your narrowed topic, align the three elements:
+
+**Topic (What)**: _______________  
+**Theory (Why)**: _______________  
+**Data (How)**: _______________
+
+Check for alignment:
+- Does the theory predict patterns observable in your data? Yes / No
+- Can you actually access this data? Yes / No
+- Can you analyze it in one semester? Yes / No
+
+If any answer is "No," revise.
+
+### Exercise 6.3: RQ or Hypothesis?
+
+For each scenario, decide whether a research question or hypothesis is more appropriate:
+
+**Scenario A**: You're exploring how fans talk about artists on Reddit. You've read no prior research on this specific platform or community.  
+→ Use: _______________
+
+**Scenario B**: Social Identity Theory predicts in-group favoritism. You hypothesize that fans will rate their preferred genre higher than rival genres.  
+→ Use: _______________
+
+**Scenario C**: You want to know what percentage of top-charting songs contain political references, but you have no prediction about the number.  
+→ Use: _______________
+
+### Exercise 6.4: Draft Your Prospectus
+
+Using the template from this chapter, write a one-page prospectus for your research project. Include:
+
+1. Title
+2. Research question(s) or hypothesis/hypotheses
+3. Theoretical framework (2-3 sentences)
+4. Gap in literature (2-3 sentences, citing 2-3 sources)
+5. Method overview (3-4 sentences)
+6. Expected contribution (1-2 sentences)
+
+**Target length**: 200-250 words
+
+---
+
+## Reflection Questions
+
+1. **Scope and Ambition**: Students often resist narrowing their projects because it feels like giving up on interesting questions. How do you balance intellectual ambition with practical constraints?
+
+2. **Theory-Data Fit**: Have you ever tried to apply a theory that didn't quite fit your data? What happened? How did you recognize the mismatch?
+
+3. **The Prospectus as Commitment**: Committing to a specific project means saying no to other possibilities. What's hard about that? What's liberating?
+
+---
+
+## Chapter Summary
+
+This chapter synthesized Phase II by teaching the research prospectus:
+
+- **Scope creep** is the enemy of student research. Narrow focus through iterative refinement until the project fits within time and resource constraints.
+- The **Holy Trinity** (Topic, Theory, Data) must align. Mismatches doom the project.
+- **Three research goals**: Exploratory (what's happening?), Descriptive (what does it look like?), Explanatory (why does it happen?)
+- **Research questions** are open-ended; **hypotheses** are specific predictions from theory.
+- The **null hypothesis** (H₀) predicts no relationship; statistical tests evaluate whether data are inconsistent with it.
+- The **one-page prospectus** includes: title, RQ/hypothesis, theoretical framework, literature gap, method, and expected contribution.
+- **Feasibility test**: Can you access the data? Can you analyze it in time? Does your method match your question?
+
+---
+
+## Key Terms
+
+- **Explanatory research**: Research testing relationships and mechanisms to answer "why"
+- **Exploratory research**: Research investigating new phenomena to answer "what's happening"
+- **Descriptive research**: Research documenting characteristics to answer "what does it look like"
+- **Holy Trinity**: Alignment of topic, theory, and data in viable research design
+- **Hypothesis (H)**: Testable prediction derived from theory (directional statement)
+- **Null hypothesis (H₀)**: Prediction of no relationship or no difference
+- **Research question (RQ)**: Open-ended or bounded inquiry when theory doesn't predict specific direction
+- **Research prospectus**: One-page project blueprint defending feasibility
+- **Scope creep**: Progressive expansion of project beyond manageable boundaries
+
+---
+
+## Looking Ahead
+
+Chapter 7 (The Research Question) focuses specifically on the craft of formulating strong research questions and hypotheses. You'll learn to distinguish between weak and strong formulations, avoid common pitfalls (vague concepts, unmeasurable variables, circular reasoning), and translate theoretical concepts into operational definitions. This chapter completes Phase II by ensuring your roadmap has a precise destination. With the prospectus written, you're ready to move from planning (The Architect) to execution (The Translator).

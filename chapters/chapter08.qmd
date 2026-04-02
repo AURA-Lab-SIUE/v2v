@@ -1,377 +1,361 @@
 ---
-title: "Chapter 8: Music Immersion"
+title: "Chapter 8: The Ethics of Inquiry"
 ---
 
 ## Learning Objectives
 
-- Develop sustained attention to qualitative patterns before imposing categories
-- Practice systematic observation and memo-writing
-- Distinguish between surface features and interpretive patterns
-- Document emergent themes without premature quantification
-- Build intuition about the dataset that will inform later coding decisions
+- Understand the historical events that shaped modern research ethics protections
+- Apply the Belmont Report's three principles (respect for persons, beneficence, justice) to communication research
+- Navigate the institutional review process and distinguish exempt, expedited, and full review categories
+- Evaluate the specific ethical questions that arise in content analysis, survey research, and digital media research
+- Recognize ethical obligations in writing and reporting, including the problems of fabrication, falsification, and selective reporting
 
 ---
 
-There's a temptation, when you first encounter a research dataset, to jump immediately to coding. You have your research question. You know you need variables. You want to start counting things.
+In June 2014, researchers at Facebook and Cornell University published a study in the *Proceedings of the National Academy of Sciences* that would become one of the most debated experiments in the history of social science. For one week in January 2012, Facebook had manipulated the News Feeds of nearly 700,000 users without their knowledge. Some users saw fewer positive posts from friends; others saw fewer negative posts. The researchers then measured whether the manipulation affected what users themselves posted. It did. Users exposed to fewer positive posts produced slightly more negative content, and vice versa. The study, led by Adam Kramer, Jamie Guillory, and Jeffrey Hancock, offered evidence of "massive-scale emotional contagion through social networks" (Kramer, Guillory, & Hancock, 2014).
 
-Resist this impulse.
+The finding was interesting. The reaction was explosive.
 
-Before you can productively code—before you can impose categories and count frequencies—you need to *know* your data. Not as aggregated statistics, but as lived experience. You need to listen to songs, read lyrics, notice patterns, question assumptions, and develop what qualitative researchers call "thick description": a rich, nuanced understanding of context that can't be reduced to numbers alone.
+Critics pointed out that nearly 700,000 people had been enrolled in a psychological experiment without informed consent. No one had been told their emotional environment was being manipulated. No one had the opportunity to decline. Facebook argued that its terms of service, which users agree to upon creating an account, authorized the use of data for "internal operations, including troubleshooting, data analysis, testing, and research." The researchers argued that the manipulation was minor, the effect size was tiny, and the study produced valuable scientific knowledge.
 
-This chapter teaches the discipline of immersion: the practice of sustained, systematic attention to data before analysis begins. It's the qualitative foundation that makes later quantitative work meaningful.
+The scientific community was divided. Some defended the study as ethically comparable to A/B testing that tech companies perform routinely. Others argued that emotional manipulation, however slight, crosses a line that terms-of-service agreements cannot legitimize. PNAS, the journal that published the study, took the unusual step of appending an "editorial expression of concern" to the article, acknowledging questions about the consent process.
 
-## Why Immersion Matters
+The Facebook study crystallized every major tension in research ethics: the boundary between research and product development, the adequacy of passive consent, the obligations of researchers to participants who don't know they're participants, and the question of whether "minimal risk" justifies bypassing standard protections. It is the ideal case study for this chapter because it doesn't have a clean answer. Reasonable people disagree about whether the study was ethical. What's not debatable is that the questions it raised matter, and that every researcher must develop a framework for navigating them.
 
-Consider two approaches to studying lyric sentiment in pop music:
+## Why Ethics Isn't a Formality
 
-**Approach A (No Immersion)**:
+Students sometimes approach research ethics as a bureaucratic requirement: a form to fill out, a training module to complete, a hurdle between them and the "real" work of data collection. This is understandable. Ethics review can feel procedural, especially when your study involves publicly available song lyrics rather than vulnerable human populations.
 
-You have access to a dataset of 1,792 songs. You select a sample of 200 for your study. You immediately develop a coding scheme: positive, negative, neutral. You assign two undergraduate coders. They code lyrics without listening to the songs, using only the written text. You analyze the results.
+But ethics isn't a procedure. It's a disposition. It shapes how you think about your relationship to the people whose data, content, or behavior you study. It governs how honestly you report what you find. And it reflects the fact that the history of research includes episodes of genuine harm, episodes serious enough to justify every protection that now exists.
 
-**Problem**: You've measured *something*, but what? Coders might classify a lyric like "I'm so bad" as negative, missing that in the song's context ("Bad" by Michael Jackson), it means powerful and rebellious—a positive self-assertion. Without understanding genre conventions, cultural context, or the interplay between lyrics and music, your "sentiment" variable is measuring surface features, not actual emotional valence.
+## Historical Context: How We Got Here
 
-**Approach B (With Immersion)**:
+Modern research ethics regulations exist because researchers harmed people. Not hypothetically. Not in edge cases. Systematically and with institutional support. Understanding this history is essential, not to assign guilt to the current generation, but to appreciate why the protections exist and what they're designed to prevent.
 
-You have access to a dataset of 1,792 songs. You select a sample of 200 for your study. Before creating any coding scheme, you listen to 30-40 songs across different genres, eras, and chart positions. You read lyrics while listening. You take notes: What patterns emerge? How do lyrics and musical elements interact? What genre conventions shape interpretation? Do certain themes cluster together?
+### The Tuskegee Syphilis Study (1932-1972)
 
-After this immersion, you develop a coding scheme informed by actual patterns in the data. You train coders to consider context. You pilot-test the scheme on ambiguous cases. Your final analysis is grounded in understanding, not just counting.
+For forty years, the United States Public Health Service studied the progression of untreated syphilis in 399 Black men in Macon County, Alabama. The men were told they were receiving free treatment for "bad blood." They were not. Even after penicillin became the standard treatment for syphilis in the 1940s, the researchers withheld it. Twenty-eight men died directly of syphilis, 100 died of related complications, 40 wives were infected, and 19 children were born with congenital syphilis.
 
-The second approach takes longer, but it produces better research.
+The study was not conducted by rogue scientists. It was funded by the federal government, staffed by credentialed researchers, and published in peer-reviewed journals for decades without significant objection from the scientific community. Its exposure in 1972 by journalist Jean Heller led directly to the regulatory framework we use today.
 
-## The Practice of Sustained Attention
+### The Milgram Obedience Experiments (1961)
 
-Immersion is not passive consumption. It's active, systematic observation guided by research questions but open to unexpected patterns.
+Stanley Milgram's famous experiments at Yale examined whether ordinary people would administer what they believed were painful electric shocks to a stranger simply because an authority figure instructed them to do so. Most did. The experiments produced foundational insights about authority and obedience, but they did so by subjecting participants to extreme psychological distress. Participants believed they were causing real harm to another person. Many exhibited signs of acute anxiety, and some experienced lasting psychological effects.
 
-### Three Modes of Listening
+The ethical question was not whether the findings were important (they were) but whether the knowledge justified the deception and distress inflicted on participants.
 
-When immersing in music data, engage with songs in multiple ways:
+### Humphreys and the Tearoom Trade (1970)
 
-**1. Casual Listening (Initial Exposure)**
+Sociologist Laud Humphreys studied anonymous sexual encounters between men in public restrooms. He recorded participants' license plate numbers without their knowledge, traced their home addresses through police records, and later visited their homes in disguise to conduct "health surveys," gathering personal information the men had no idea was connected to the restroom observations.
 
-Goal: Get a feel for the corpus.
+Humphreys argued that his research revealed important truths about a hidden population. Critics argued that he violated his subjects' privacy in ways that could have destroyed their lives, marriages, and careers if the data had been exposed.
 
-Listen to 10-15 songs randomly sampled from your dataset. Don't take notes yet. Just listen. What surprises you? What sounds familiar? What genre conventions do you notice?
+### The Common Thread
 
-This is the "browsing" phase—building familiarity.
+Each case involved researchers who believed their work served a greater good. Each involved participants who were harmed, deceived, or exploited. And each contributed to the recognition that good intentions are not sufficient protection. Researchers need external accountability, formal principles, and institutional oversight.
 
-**2. Focused Listening (Thematic Attention)**
+## The Belmont Report: Three Principles
 
-Goal: Track specific dimensions relevant to your research question.
+In 1979, the National Commission for the Protection of Human Subjects of Biomedical and Behavioral Research published *The Belmont Report*, which established three foundational principles for ethical research (National Commission, 1979). These principles now govern virtually all research involving human subjects in the United States.
 
-Choose 5-7 songs and listen multiple times, focusing on different elements:
+### Principle 1: Respect for Persons
 
-- **First listen**: Overall emotional tone. What mood does this evoke?
-- **Second listen**: Lyric content. What themes or topics appear?
-- **Third listen**: Musical elements (tempo, key, instrumentation). How do these shape meaning?
-- **Fourth listen**: Interaction effects. How do lyrics and music reinforce or contradict each other?
+People must be treated as autonomous agents capable of making their own decisions. This means:
 
-Take brief notes after each listen. Don't code yet—just describe what you notice.
+- **Informed consent**: Participants must understand what the research involves, what risks it carries, and that they can withdraw at any time without penalty.
+- **Protection of vulnerable populations**: People with diminished autonomy (children, prisoners, individuals with cognitive impairments) require additional protections because their ability to provide truly voluntary consent is compromised.
 
-**3. Analytical Listening (Pattern Recognition)**
+**Applied to communication research**: If you survey listeners about their emotional responses to music, participants must know they're in a study, understand what they'll be asked to do, and be free to stop at any time. If you analyze public social media posts, the question becomes more complex: did users "consent" to being studied when they posted publicly? We'll return to this question below.
 
-Goal: Identify recurring structures, exceptions, and edge cases.
+### Principle 2: Beneficence
 
-Listen to 15-20 songs while asking:
+Researchers must maximize benefits and minimize harms. This involves two obligations:
 
-- Do certain lyric themes cluster with certain musical features?
-- Are there genre-specific conventions? (e.g., Do country songs use metaphor differently than rap?)
-- What edge cases challenge simple categorization?
-- What dimensions seem important that you hadn't anticipated?
+- **Do no harm**: The research should not cause physical, psychological, social, or economic injury to participants.
+- **Maximize the ratio of benefits to risks**: The knowledge gained must justify any risks imposed on participants.
 
-This is where you begin to see the contours of your eventual coding scheme, but you're still documenting patterns rather than forcing categories.
+**Applied to communication research**: Most content analysis carries minimal risk because you're analyzing texts, not interacting with people. But survey and experimental research can involve psychological discomfort (exposing participants to upsetting media content), social risk (collecting sensitive information that could embarrass participants if leaked), or economic risk (taking participants' time without adequate compensation).
 
-## Memo Writing: Documenting Emergent Understanding
+### Principle 3: Justice
 
-Immersion without documentation is just listening to music. Research immersion requires *memos*—brief, informal notes that capture your thinking as it evolves.
+The benefits and burdens of research must be distributed fairly. No group should bear a disproportionate share of research risks while another group receives the benefits.
 
-### Types of Memos
+**Applied to communication research**: The Tuskegee study violated justice because it imposed all the risks on a vulnerable, marginalized population while the benefits (medical knowledge) accrued to the broader society. In communication research, justice concerns arise when studies about marginalized communities are designed and conducted without input from those communities, or when research on "deviant" media behavior targets specific demographic groups while treating majority behavior as the unmarked norm.
 
-**Observational Memos**: What did you notice?
+## Institutional Review Boards (IRBs)
 
-> "Song: 'Blinding Lights' by The Weeknd. Fast tempo (171 BPM). Major key, but lyrics are about desperation and addiction. Interesting contrast—musically upbeat, lyrically dark. This might complicate simple 'positive vs. negative' sentiment coding. Need to decide: code based on lyrics alone, or on overall emotional impact?"
+The Belmont Report's principles are operationalized through **Institutional Review Boards**, committees at universities and research institutions that review proposed studies for ethical compliance before data collection begins.
 
-**Methodological Memos**: How should this be measured?
+### What IRBs Review
 
-> "Problem: Some songs use irony. 'Pumped Up Kicks' has cheerful music but lyrics about a school shooting. Automated sentiment analysis would likely code the music as positive. Human coders need clear instructions: Lyrics only? Overall tone? This needs to be specified before coding begins."
+IRBs evaluate whether your study:
 
-**Theoretical Memos**: How does this connect to theory?
+- Minimizes risks to participants
+- Ensures risks are reasonable relative to anticipated benefits
+- Selects participants equitably (not targeting vulnerable groups without justification)
+- Obtains and documents informed consent
+- Monitors data collection for safety
+- Protects participant privacy and confidentiality
 
-> "Uses & Gratifications predicts people seek music to fulfill emotional needs. If true, maybe 'negative' songs aren't actually experienced as negative by listeners—they might provide catharsis or validation. The theory suggests we shouldn't assume negative lyrics = negative experience. This has implications for how we operationalize 'sentiment.'"
+### Three Levels of Review
 
-**Comparative Memos**: How do cases differ?
+Not all studies require the same level of scrutiny.
 
-> "Comparing two songs with negative lyrics: 'Someone Like You' (Adele) vs. 'Lose Yourself' (Eminem). Both describe struggle, but Adele's is passive/melancholic while Eminem's is active/aggressive. Do we need subcategories within 'negative'? Sadness vs. anger vs. anxiety?"
+**Exempt review** applies to research that poses minimal risk and falls into specific categories defined by federal regulation. Most content analysis of publicly available materials (newspaper articles, song lyrics, television broadcasts, public social media posts) qualifies for exempt status because no human subjects are directly involved.
 
-### Memo Discipline
+**Expedited review** applies to research that involves no more than minimal risk but doesn't qualify for exemption. Many surveys and interview studies fall here, particularly those that collect non-sensitive data from adult participants.
 
-Set a goal: Write at least **one memo per 5 songs** during immersion.
+**Full board review** applies to research involving more than minimal risk, vulnerable populations, or deception. Experimental studies that manipulate participants' emotional states, research with children or prisoners, and studies involving sensitive topics (substance use, sexual behavior, criminal activity) typically require full review.
 
-Memos don't need to be polished. They're thinking-on-paper, documenting observations and questions that will later inform your codebook.
+### The Content Analysis Question
 
-Create a note in Obsidian: `Immersion Memos - Music Dataset`
+Here is where things get interesting for this course: **Does content analysis require IRB approval?**
 
-```markdown
-# Immersion Memos: Music Dataset
+The answer depends on what you're analyzing:
 
-## Memo 1 - Feb 15, 2026
-**Songs listened to**: Random sample (n=10) from 2015-2017
+**Analyzing published media content** (Billboard lyrics, newspaper articles, television broadcasts, published books): Generally exempt. These are public documents. No human subjects are involved in the analysis itself. The IRB at most institutions will classify this as not involving human subjects research.
 
-**Observation**: Noticed many songs mix positive/negative within the same song. 
-Example: "Closer" (Chainsmokers) - nostalgia (bittersweet), not purely positive 
-or negative. May need "mixed" or "ambiguous" category.
+**Analyzing public social media posts**: This is contested territory. The posts are technically public, but posters may not have anticipated being studied. The Association of Internet Researchers (AoIR) has argued that "public" does not automatically mean "fair game for research." Context matters: a tweet with 50,000 retweets has a different expectation of privacy than a post in a small support group forum, even if both are technically accessible. Many IRBs now require at minimum exempt review for social media research.
 
-**Question**: Should I code overall dominant sentiment, or code verse-by-verse? 
-If latter, how handle choruses that repeat?
+**Analyzing private communications** (private messages, closed group discussions, leaked documents): This almost always requires IRB review and raises serious consent questions.
+
+For your course project, which involves content analysis of publicly available song lyrics and chart data, you will likely qualify for exemption. But the CITI training you complete (see the course assignment) ensures you understand these distinctions for future research that may involve human participants more directly.
+
+## Informed Consent
+
+The principle of respect for persons is operationalized primarily through **informed consent**, the process by which participants voluntarily agree to participate in research after being told what the study involves.
+
+### Elements of Valid Informed Consent
+
+For consent to be genuine, participants must receive:
+
+1. **A description of the research** and the participant's role in it
+2. **A description of risks and benefits**, including any foreseeable discomfort
+3. **A statement that participation is voluntary** and that withdrawal carries no penalty
+4. **Contact information** for the researcher and the IRB
+5. **An explanation of how data will be stored** and confidentiality protected
+
+### When Consent Gets Complicated
+
+**Deception**: Some studies require that participants not know the true purpose of the research. The Milgram experiment couldn't work if participants knew the shocks weren't real. In communication research, priming and framing experiments sometimes require deception about which condition participants are in. When deception is used, **debriefing** is mandatory: researchers must explain the true purpose after participation and give participants the option to withdraw their data.
+
+**Passive consent vs. active consent**: The Facebook study relied on terms-of-service agreement as a form of passive consent. Most ethicists consider this insufficient for research purposes. Active consent requires an affirmative act (signing a form, clicking an explicit agreement to participate in research, verbally confirming participation).
+
+**Secondary data analysis**: When you analyze data someone else collected (a public dataset, archived survey responses), the original participants may not have consented to *your* specific study. This is generally acceptable if the data are de-identified, but it raises questions about whether the original consent covered this type of use.
+
+## Ethics in Specific Methods
+
+### Ethics in Content Analysis
+
+Content analysis of published media is among the lowest-risk research methods. You are analyzing texts, not interacting with people. However, ethical considerations still apply:
+
+- **Representation**: How you categorize and interpret content has consequences. A content analysis that codes hip-hop lyrics as "violent" without accounting for genre conventions, metaphorical language, or cultural context can reinforce harmful stereotypes. Your coding decisions carry moral weight.
+- **Cherry-picking**: Selecting examples that confirm your hypothesis while ignoring contradictory cases is a form of intellectual dishonesty, even if no human subjects are directly harmed.
+- **Copyright and fair use**: Reproducing extensive lyrics or content in your report may raise copyright concerns. Brief quotation for analytical purposes generally falls under fair use, but reproducing entire songs or articles does not.
+
+### Ethics in Survey Research
+
+Surveys involve direct interaction with human participants, which raises the ethical stakes:
+
+- **Voluntary participation**: Respondents must not be coerced. Offering course credit for survey participation is acceptable if an alternative assignment of equal value is available. Requiring participation without alternatives is coercive.
+- **Sensitive questions**: Questions about substance use, sexual behavior, mental health, or illegal activity require careful handling. Respondents must know they can skip any question. Data must be stored securely and de-identified.
+- **Sampling fairness**: Surveying only your friends, or only students in your major, creates samples that may not represent the population you claim to study. This is a methodological limitation, but it also raises justice concerns when findings about "college students" are generalized to broader populations.
+
+### Ethics in Experimental Research
+
+Experiments that manipulate participants' experiences carry the highest ethical burden:
+
+- **Manipulation effects**: If you expose participants to distressing media content (violent imagery, sad music, fear-based messaging), you must consider whether the exposure could cause lasting harm.
+- **Deception and debriefing**: If participants are deceived about the study's purpose, you must debrief them fully afterward and allow data withdrawal.
+- **Control group ethics**: In some contexts (health interventions, educational programs), withholding a potentially beneficial treatment from the control group raises ethical questions about fairness.
+
+### Ethics in Digital and Social Media Research
+
+Digital research occupies an evolving ethical landscape:
+
+- **The "public" problem**: Just because data are publicly accessible doesn't mean people expected to be studied. A person who tweets about their depression is sharing with their followers, not volunteering for a research study.
+- **Aggregation risk**: Individual data points may be harmless, but combining them can create identifiable profiles. De-identification is harder than it appears.
+- **Platform terms of service**: Scraping data from platforms may violate terms of service even if the data are public. This is a legal and ethical gray area.
+- **Vulnerable populations online**: Minors, people in crisis, and members of stigmatized groups may be especially vulnerable to harm from research exposure, even when their posts are public.
+
+## Ethical Writing and Reporting
+
+Ethics doesn't end when data collection is over. How you analyze and report findings carries its own ethical obligations.
+
+### Fabrication and Falsification
+
+**Fabrication** is inventing data that don't exist. **Falsification** is manipulating data or results to change the outcome. Both are forms of scientific fraud, and both are career-ending if discovered. They are also more common than the research community likes to admit: surveys of researchers consistently find that a small but meaningful percentage acknowledge engaging in questionable practices (Babbie, 2021).
+
+### Selective Reporting
+
+A more subtle form of dishonesty is **selective reporting**: running many analyses but reporting only those that produced significant results, or testing multiple hypotheses but presenting only the ones that "worked." This practice, sometimes called the "file drawer problem," distorts the literature by creating a publication record that systematically overstates the strength of effects.
+
+### HARKing
+
+**HARKing** (Hypothesizing After the Results are Known) occurs when researchers examine their data, identify patterns, and then write the paper as though they had predicted those patterns all along. This transforms exploratory analysis (which is legitimate) into confirmatory analysis (which requires pre-specification). The result looks more impressive than it is, because a "prediction" that was actually a post-hoc observation carries none of the epistemic weight of a genuine a priori hypothesis.
+
+The pre-registration practices discussed in Chapter 6 are a direct defense against HARKing. By documenting your hypotheses before analysis, you make it transparent which findings were predicted and which were discovered.
+
+### Honest Interpretation
+
+Even without outright fabrication, researchers face constant temptation to overstate their findings. "Our results suggest" becomes "our results demonstrate." A small effect size gets buried while a large p-value gets highlighted. Limitations are mentioned but minimized. The discussion section tells a cleaner story than the data support.
+
+Ethical reporting means stating what you found, acknowledging what you didn't find, and being transparent about the boundaries of your claims. It means writing a limitations section that genuinely grapples with weaknesses rather than performing humility while defending every decision. It means distinguishing between what the data show and what you wish they showed.
+
+This is harder than it sounds. But it is the core ethical obligation of every researcher.
+
+## The CITI Training
+
+As part of this course, you will complete the **Collaborative Institutional Training Initiative (CITI)** program's "IRB Social Behavioral Student" module. This is an industry-standard training that introduces the regulatory framework for human subjects research in the United States.
+
+The training covers:
+
+- The history of research ethics (Belmont Report, Tuskegee, Nuremberg Code)
+- Federal regulations governing human subjects research
+- Informed consent requirements
+- IRB review categories and procedures
+- Privacy and confidentiality protections
+- Ethical issues in specific research contexts
+
+Completing CITI certification serves two purposes. First, it satisfies the institutional requirement for anyone conducting research involving human subjects at most universities. Second, and more importantly, it provides the conceptual vocabulary for thinking about ethical questions that will arise throughout your research career.
 
 ---
 
-## Memo 2 - Feb 16, 2026
-**Songs**: Focus on tempo and sentiment
+## Practice: Ethical Decision-Making
 
-**Pattern**: Fast tempo songs (>140 BPM) with negative lyrics feel different 
-than slow tempo songs with same lyrics. "Shake It Off" (Taylor Swift) addresses 
-criticism/negativity but feels empowering due to tempo and key. Context matters.
+### Exercise 8.1: The Facebook Case
 
-**Implication**: Sentiment coding should maybe account for musical features, 
-not just lyrics in isolation.
-```
+Read the following summary of the Kramer, Guillory, and Hancock (2014) study:
 
-## Surface vs. Depth: Manifest and Latent Content
+> For one week in January 2012, Facebook manipulated the News Feeds of approximately 689,003 users. Some users saw fewer positive posts from friends; others saw fewer negative posts. The researchers then measured whether the manipulation affected users' own posting behavior. Users exposed to fewer positive posts produced slightly more negative content. The study was published in PNAS in 2014.
 
-A critical distinction in qualitative analysis is between what's directly observable and what requires interpretation.
+**Questions**:
 
-**Manifest content**: Surface-level, explicit features that coders can identify with high reliability.
-
-Examples:
-- Does the lyric contain the word "love"? (Yes/No)
-- Is the tempo faster than 120 BPM? (Measurable)
-- Is the song in a major or minor key? (Identifiable by trained listeners)
-
-**Latent content**: Underlying meanings that require interpretation.
-
-Examples:
-- Is the overall sentiment positive or negative? (Interpretive—what about irony?)
-- Does the song convey hope or despair? (Subjective judgment)
-- Is the tone sincere or sarcastic? (Context-dependent)
-
-During immersion, you're building the interpretive framework that will allow you to code latent content reliably. You're learning the conventions, patterns, and contextual cues that transform subjective judgment into systematic analysis.
-
-## Building the Conceptual Framework
-
-Immersion reveals what dimensions matter for your research question. As you listen and take notes, you'll begin to see the **conceptual structure** of your eventual coding scheme.
-
-### Example: From Immersion to Framework
-
-**Research Question**: Is there a relationship between lyric sentiment and chart success?
-
-**After immersing in 40 songs, you notice**:
-
-1. **Valence isn't binary**: Songs aren't just positive or negative. Many are ambiguous, nostalgic, or mixed.
-2. **Intensity varies**: Some negative songs are mildly sad ("Someone Like You"). Others are intensely angry ("Break Stuff" by Limp Bizkit).
-3. **First-person vs. narrative**: Songs written in first person feel more intimate than third-person narratives, even with similar content.
-4. **Temporal framing**: Songs about past pain ("I survived") feel different than songs about current suffering ("I'm broken").
-
-**Emerging framework**:
-
-You might develop a **two-dimensional coding scheme**:
-
-**Dimension 1: Valence** (Positive, Negative, Neutral, Mixed)  
-**Dimension 2: Intensity** (Low, Medium, High)
-
-This is more nuanced than a simple positive/negative binary, and it emerged from actually engaging with the data rather than imposing preconceived categories.
-
-## Sampling for Immersion
-
-You don't need to listen to all 200 songs before beginning to code. But you need a systematic immersion sample that represents the diversity of your dataset.
-
-### Stratified Immersion Sampling
-
-If your dataset spans multiple genres, eras, or chart positions, ensure your immersion sample includes variety.
-
-**Example strategy for 200-song dataset**:
-
-- **By time period**: 5 songs from each two-year period (2015-2016, 2017-2018, etc.)
-- **By chart position**: 5 songs that peaked #1-10, 5 from #11-20, 5 from #21-50
-- **By genre** (if coding genre): 3-5 songs per major genre
-
-**Total immersion sample**: 30-50 songs before formal coding begins
-
-This gives you broad exposure without requiring you to analyze the entire corpus before starting.
-
-## Documenting Edge Cases
-
-During immersion, you'll encounter songs that challenge simple categorization. Document these carefully—they'll become test cases for your codebook.
-
-**Create an Edge Case Log in Obsidian**:
-
-```markdown
-# Edge Cases - Music Dataset
-
-## Case 1: "Pumped Up Kicks" (Foster the People)
-**Issue**: Cheerful melody, dark lyrics (school shooting)  
-**Question**: Code based on music or lyrics?  
-**Decision needed**: Establish priority (lyrics > music? or overall impression?)
+1. Apply each of the Belmont Report's three principles to this study. Where does the study comply, and where does it fall short?
+2. Facebook argued that its terms of service authorized the research. Is terms-of-service agreement equivalent to informed consent? Why or why not?
+3. The researchers argued that the manipulation was "consistent with Facebook's Data Use Policy." Does the fact that a practice is legal make it ethical?
+4. If this study had been reviewed by a university IRB before data collection, what questions would the board likely have raised? What modifications might it have required?
 
 ---
 
-## Case 2: "We Are Never Getting Back Together" (Taylor Swift)
-**Issue**: Breakup song (negative content) but delivered with sass/empowerment  
-**Question**: Is this negative (breakup) or positive (empowerment)?  
-**Decision needed**: Define whether sentiment = topic or emotional tone
+### Exercise 8.2: Content Analysis Ethics
+
+You are designing a content analysis of Twitter posts about a recent mass shooting. The posts are public. You plan to code them for emotional tone, misinformation, and political framing.
+
+**Questions**:
+
+1. Does this study involve "human subjects"? Why or why not?
+2. What ethical obligations do you have to the people who posted, even if their posts are public?
+3. Should you include usernames in your published report? What about direct quotes?
+4. Some posts may be from people who were directly affected by the shooting (victims' families, witnesses). Does this change your ethical obligations?
+5. How would your analysis change if the posts were from a private Facebook grief support group rather than public Twitter?
 
 ---
 
-## Case 3: Songs with explicit profanity
-**Issue**: Some songs use "fuck" as intensifier ("I don't give a fuck" = defiance), 
-others as aggression ("Fuck you" = hostility)  
-**Question**: Does profanity automatically = negative?  
-**Decision needed**: Context-sensitive coding rules for vulgarity
-```
+### Exercise 8.3: Survey Ethics
 
-These cases become the foundation of your **decision rules** in the codebook (Chapter 10).
+You want to survey college students about their music listening habits and mental health. Your survey includes questions about anxiety, depression, and substance use.
 
-## The Transition to Operationalization
+**Questions**:
 
-Immersion doesn't last forever. At some point, you transition from open-ended observation to structured coding. How do you know when?
-
-**Signs you're ready to operationalize**:
-
-- You've listened to 30-50 songs and patterns are stabilizing (new songs rarely surprise you)
-- You can articulate 3-5 key dimensions that matter for your research question
-- You've documented enough edge cases to write decision rules
-- Your memos are starting to repeat themes rather than discovering new ones
-
-**What immersion provides**:
-
-- **Conceptual clarity**: You understand what the variables actually mean in this dataset
-- **Category development**: You know what values each variable should take
-- **Decision rules**: You've encountered ambiguous cases and developed principles for handling them
-- **Contextual understanding**: You can recognize when surface features might mislead
+1. What information must you include in your informed consent document?
+2. Should participation be anonymous, confidential, or neither? What's the difference, and which is most appropriate here?
+3. If a participant's responses suggest they may be in crisis (e.g., endorsing suicidal ideation), what is your ethical obligation?
+4. You plan to recruit participants by offering extra credit in your class. Is this coercive? How could you design the incentive structure to minimize coercion?
 
 ---
 
-## Practice: Systematic Immersion
+### Exercise 8.4: Ethical Reporting
 
-### Exercise 8.1: First Listening Session
+A researcher runs five statistical tests on a dataset. Four produce non-significant results (p > .05). One produces a significant result (p = .03). The researcher writes the paper around the one significant finding, mentioning only that one test, and frames the result as confirming a pre-existing hypothesis.
 
-**Goal**: Develop observational habits
+**Questions**:
 
-1. Randomly select 5 songs from the dataset
-2. Listen to each song fully while reading the lyrics
-3. For each song, write a brief observational memo (100-150 words) noting:
-   - Overall emotional tone
-   - Key themes or topics
-   - Any surprises or complications
-   - Questions this raises about coding
-
-**Don't code or categorize yet**—just observe and document.
-
----
-
-### Exercise 8.2: Focused Listening Protocol
-
-**Goal**: Track specific dimensions
-
-Choose one song and listen to it 4 times, focusing on different elements each time:
-
-**Listen 1**: Lyrics only (read while listening). What story is being told?  
-**Listen 2**: Musical elements (tempo, key, instrumentation). What mood do they create?  
-**Listen 3**: Interaction (how do lyrics and music work together?)  
-**Listen 4**: Synthesis (what's the overall emotional impact?)
-
-Write a comparative memo: How did your interpretation change across listens?
-
----
-
-### Exercise 8.3: Pattern Recognition
-
-**Goal**: Identify recurring structures
-
-Listen to 10 songs sampled across your dataset.
-
-After each song, answer:
-- What emotional category would you assign this to? Why?
-- What features led you to that judgment?
-- Would another listener agree? What might they see differently?
-
-After all 10, write a synthesis memo:
-- What patterns emerged?
-- What complications or exceptions did you notice?
-- What dimensions seem most important for your research question?
-
----
-
-### Exercise 8.4: Edge Case Documentation
-
-**Goal**: Identify coding challenges
-
-As you listen, maintain an **Edge Case Log**. When you encounter a song that's hard to categorize, document:
-- Song title and artist
-- What makes it ambiguous
-- Possible interpretations
-- How this might affect your coding scheme
-
-Aim for 5-7 documented edge cases during immersion.
-
----
-
-### Exercise 8.5: Immersion Synthesis
-
-**Goal**: Transition from observation to operationalization
-
-After listening to 30-40 songs:
-
-1. Review all your memos
-2. Identify the 3-5 most important dimensions for your research question
-3. For each dimension, list possible categories (don't finalize yet—just brainstorm)
-4. Note what questions remain unresolved
-
-Write a **synthesis memo** (500 words) summarizing:
-- What you learned about the dataset
-- What surprised you
-- What will be easiest vs. hardest to code
-- What decisions you need to make before creating a formal codebook
+1. What ethical problem(s) does this scenario illustrate?
+2. How does this practice distort the published literature?
+3. What should the researcher have done differently?
+4. How does pre-registration (Chapter 6) prevent this problem?
 
 ---
 
 ## Reflection Questions
 
-1. **The Value of Slowness**: Immersion requires spending time with data before analyzing it. This feels inefficient in a culture that values productivity and speed. Why might slowness be valuable here? What gets lost when you skip immersion?
+1. **The Consent Problem**: Much contemporary research involves data that people generated without knowing they would be studied (social media posts, streaming behavior, public comments). Where should the line be drawn between "public data" and "data requiring consent"? Is there a principled distinction, or is it always contextual?
 
-2. **Subjectivity and Patterns**: During immersion, you're using your subjective impressions to identify patterns. Later, you'll create "objective" coding rules. How do you reconcile these? Is truly objective coding possible, or does all measurement carry traces of the researcher's interpretive lens?
+2. **Risk and Benefit**: The Belmont Report requires that benefits justify risks. But who decides what counts as a "benefit"? The Facebook study produced knowledge about emotional contagion, but that knowledge primarily benefits Facebook's business model. Should the identity of the beneficiary affect the ethical calculus?
 
-3. **Theoretical Preconceptions**: You arrived at this dataset with a research question and probably some expectations about what you'd find. How do you balance being guided by theory (deductive) while remaining open to unexpected patterns (inductive)? Did immersion change how you think about your research question?
+3. **Your Study**: Consider the research project you're designing for this course. What ethical questions does it raise, even if it involves only publicly available data? How will you handle representation, interpretation, and honest reporting?
+
+4. **Ethics as Culture, Not Compliance**: This chapter argues that ethics is a disposition, not a procedure. What does that mean in practice? How would a research team with an ethical culture behave differently from one that merely complies with IRB requirements?
 
 ---
 
 ## Chapter Summary
 
-This chapter introduced immersion as the qualitative foundation for later quantitative analysis:
+This chapter established the ethical foundations of research inquiry:
 
-- **Immersion** is sustained, systematic attention to data before coding begins.
-- **Three modes of listening**: Casual (familiarity), Focused (thematic), Analytical (pattern recognition).
-- **Memo writing** documents emergent understanding through observational, methodological, theoretical, and comparative notes.
-- **Manifest content** is directly observable (word counts, tempo); **latent content** requires interpretation (sentiment, tone).
-- **Conceptual frameworks** emerge from immersion—discovering what dimensions matter rather than imposing them prematurely.
-- **Stratified immersion sampling** ensures exposure to dataset diversity (time periods, chart positions, genres).
-- **Edge case documentation** identifies songs that challenge simple categorization, informing later decision rules.
-- **Transition markers**: You're ready to operationalize when patterns stabilize, dimensions clarify, and memos start repeating rather than discovering.
+- **Historical cases** (Tuskegee, Milgram, Humphreys) demonstrate why external ethical oversight is necessary. Good intentions do not prevent harm.
+- The **Belmont Report** (National Commission, 1979) established three principles: respect for persons (informed consent, autonomy), beneficence (maximize benefits, minimize harms), and justice (fair distribution of research burdens and benefits).
+- **Institutional Review Boards (IRBs)** operationalize these principles through review of proposed research at three levels: exempt, expedited, and full board review.
+- **Content analysis** of published media generally qualifies for exempt status, but ethical obligations remain regarding representation, interpretation, and honest reporting.
+- **Survey and experimental research** involve direct interaction with participants and carry higher ethical obligations around consent, confidentiality, and harm prevention.
+- **Digital and social media research** occupies evolving ethical territory where "public" does not automatically mean "ethically unproblematic."
+- **Ethical writing** requires transparency in reporting: no fabrication, no falsification, no selective reporting, no HARKing. Pre-registration (Chapter 6) is a structural defense against these practices.
+- The **CITI training** provides the regulatory vocabulary for navigating human subjects research throughout your career.
 
 ---
 
 ## Key Terms
 
-- **Edge case**: An ambiguous instance that challenges simple categorization
-- **Immersion**: Sustained engagement with qualitative data before formal analysis
-- **Latent content**: Underlying meanings requiring interpretation
-- **Manifest content**: Surface-level, directly observable features
-- **Memo**: Informal note documenting observations, questions, or theoretical connections during analysis
-- **Observational memo**: Note recording what was noticed during data engagement
-- **Stratified sampling**: Selecting cases across key dimensions to ensure diversity
-- **Thick description**: Rich, contextually grounded understanding of data
+- **Belmont Report**: 1979 document establishing three foundational principles for ethical research (National Commission, 1979)
+- **Beneficence**: Ethical principle requiring researchers to maximize benefits and minimize harms
+- **CITI Program**: Collaborative Institutional Training Initiative; standardized ethics training for researchers
+- **Debriefing**: Post-study disclosure of the true purpose of research to participants who were deceived
+- **Exempt review**: IRB classification for research posing minimal risk and meeting specific federal criteria
+- **Fabrication**: Inventing data or results that do not exist
+- **Falsification**: Manipulating data, methods, or results to change outcomes
+- **Full board review**: IRB classification for research involving more than minimal risk or vulnerable populations
+- **HARKing**: Hypothesizing After the Results are Known; presenting exploratory findings as confirmatory
+- **Informed consent**: Voluntary agreement to participate in research after receiving adequate information about procedures, risks, and benefits
+- **Institutional Review Board (IRB)**: Committee that reviews proposed research for ethical compliance
+- **Justice**: Ethical principle requiring fair distribution of research burdens and benefits
+- **Respect for persons**: Ethical principle requiring treatment of individuals as autonomous agents and protection of those with diminished autonomy
+- **Selective reporting**: Reporting only analyses or results that support desired conclusions
+
+---
+
+## References
+
+Babbie, E. R. (2021). *The practice of social research* (15th ed.). Cengage Learning.
+
+Kramer, A. D. I., Guillory, J. E., & Hancock, J. T. (2014). Experimental evidence of massive-scale emotional contagion through social networks. *Proceedings of the National Academy of Sciences*, *111*(24), 8788-8790. https://doi.org/10.1073/pnas.1320040111
+
+National Commission for the Protection of Human Subjects of Biomedical and Behavioral Research. (1979). *The Belmont report: Ethical principles and guidelines for the protection of human subjects of research*. U.S. Department of Health and Human Services. https://www.hhs.gov/ohrp/regulations-and-policy/belmont-report/read-the-belmont-report/index.html
+
+Simmons, J. P., Nelson, L. D., & Simonsohn, U. (2011). False-positive psychology: Undisclosed flexibility in data collection and analysis allows presenting anything as significant. *Psychological Science*, *22*(11), 1359-1366. https://doi.org/10.1177/0956797611417632
+
+Wimmer, R. D., & Dominick, J. R. (2014). *Mass media research: An introduction* (10th ed.). Cengage Learning.
+
+---
+
+::: {.callout-note title="Graduate Extension" collapse="true"}
+
+**Required Reading**: Kramer, A. D. I., Guillory, J. E., & Hancock, J. T. (2014). Experimental evidence of massive-scale emotional contagion through social networks. *Proceedings of the National Academy of Sciences*, *111*(24), 8788-8790. https://doi.org/10.1073/pnas.1320040111
+
+Also read the PNAS editorial expression of concern appended to the article.
+
+**Prompt**: The Facebook emotional contagion study has become a landmark case in research ethics, not because the answer is clear, but because reasonable scholars disagree about where the ethical lines should fall.
+
+1. **Construct the strongest defense** of the study's ethics. What arguments support the claim that the research was ethically acceptable? Consider the minimal manipulation, the small effect size, the value of the knowledge produced, and the precedent of A/B testing in industry.
+2. **Construct the strongest critique** of the study's ethics. What arguments support the claim that the research violated ethical norms? Consider informed consent, emotional manipulation, the power asymmetry between Facebook and its users, and the absence of standard IRB review.
+3. **Evaluate the institutional failure**: The study was reviewed by Cornell's IRB, which determined that the university's involvement was limited to data analysis (not data collection, which Facebook conducted). PNAS later acknowledged that the study's "ichcollection procedures... were inconsistent with the principles of obtaining informed consent." Where did the system break down? Was this a failure of regulation, of institutional will, or of the ethical framework itself?
+4. **Propose a redesign**: How could the same research question (does emotional content in social feeds affect users' emotional expression?) be studied ethically? Design an alternative study that would satisfy IRB requirements while still producing meaningful evidence. What tradeoffs would your redesign involve?
+5. **The broader question**: Should technology companies be held to the same ethical standards as university researchers when they conduct experiments on users? Why or why not? What would a regulatory framework for industry research look like?
+
+:::
 
 ---
 
 ## Looking Ahead
 
-Chapter 9 (Vibes to Variables) builds directly on this immersion work. Having developed intuitions about the dataset, you'll now formalize those intuitions into operational definitions—translating the "vibes" you observed during immersion into measurable "variables." You'll learn to write conceptual and operational definitions, understand levels of measurement (NOIR), and evaluate measurement quality through reliability and validity. The immersion you've done in this chapter becomes the foundation for all coding decisions in Chapter 9.
+Chapter 9 (The Methodologist's Toolkit) introduces the full landscape of research methods available to social scientists: content analysis, surveys, experiments, and qualitative approaches. You'll learn when each method is appropriate, what questions each can and cannot answer, and how they complement one another. Content analysis, the method you'll execute this semester, is situated within this broader ecosystem so you understand not just how to do it, but where it fits among the alternatives.

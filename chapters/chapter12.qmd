@@ -1,754 +1,446 @@
 ---
-title: "Chapter 12: Wrangling the Chaos"
+title: "Chapter 12: Music Immersion"
 ---
 
 ## Learning Objectives
 
-- Understand the data wrangling workflow: import, clean, transform
-- Apply the tidy data philosophy to structure datasets
-- Import data into R and diagnose common import problems
-- Handle messy data: missing values, inconsistent categories, duplicates
-- Use the five core dplyr verbs to manipulate data
-- Document data cleaning decisions for reproducibility
-- Recognize why scripted workflows are superior to point-and-click editing
+- Develop sustained attention to qualitative patterns before imposing categories
+- Practice systematic observation and memo-writing
+- Distinguish between surface features and interpretive patterns
+- Document emergent themes without premature quantification
+- Build intuition about the dataset that will inform later coding decisions
 
 ---
 
-You've completed the qualitative work. You immersed in your data, operationalized concepts, built a codebook, pilot tested it, and—after revisions—coded your full sample of 200 songs. You have data.
+There's a temptation, when you first encounter a research dataset, to jump immediately to coding. You have your research question. You know you need variables. You want to start counting things.
 
-But data, in its raw form, is rarely ready for analysis.
+Resist this impulse.
 
-Your coding sheet probably contains typos. Some categorical labels are inconsistent ("Positive" vs. "positive" vs. "Pos"). There are missing values where a song didn't fit your scheme cleanly. A few songs got coded twice by accident. Column names have spaces that will cause problems. The sentiment variable is stored as text when it should be a factor.
+Before you can productively code, before you can impose categories and count frequencies, you need to *know* your data. Not as aggregated statistics, but as lived experience. You need to listen to songs, read lyrics, notice patterns, question assumptions, and develop what qualitative researchers call "thick description": a rich, nuanced understanding of context that can't be reduced to numbers alone.
 
-This is the messy reality of real research data. And before you can run statistical tests or create visualizations, you need to clean it—systematically, transparently, and reproducibly.
+This chapter teaches the discipline of immersion: the practice of sustained, systematic attention to data before analysis begins. It's the qualitative foundation that makes later quantitative work meaningful.
 
-This is where R enters the picture.
+The principle extends well beyond music. A researcher preparing to code news coverage of immigration would immerse by reading dozens of articles before developing categories, noticing how different outlets frame the issue, which sources are quoted, and what language patterns recur. A researcher studying advertising appeals would watch scores of commercials, noting how emotional vs. rational strategies manifest in different product categories. Immersion is the practice of understanding your data from the inside before analyzing it from the outside.
 
-## Why R? Why Now?
+## Why Immersion Matters
 
-Up to this point, you've used Obsidian for writing and organizing. You could, in theory, clean your data in Excel with point-and-click operations. Many researchers do.
+Consider two approaches to studying lyric sentiment in pop music:
 
-But point-and-click has fatal flaws:
+**Approach A (No Immersion)**:
 
-**Problem 1: It's not reproducible**. If you manually delete rows in Excel, there's no record of *which* rows you deleted or *why*. If your advisor asks, "How did you handle missing data?" you can't show them. You can only say, "I clicked some buttons."
+You have access to a dataset of songs. You select a sample of 200 for your study. You immediately develop a coding scheme: positive, negative, neutral. You assign two undergraduate coders. They code lyrics without listening to the songs, using only the written text. You analyze the results.
 
-**Problem 2: It's error-prone**. Accidentally sort one column without the others? Your data is now silently corrupted. Overwrite a cell and save? The original value is gone forever.
+**Problem**: You've measured *something*, but what? Coders might classify a lyric like "I'm so bad" as negative, missing that in the song's context ("Bad" by Michael Jackson), it means powerful and rebellious, a positive self-assertion. Without understanding genre conventions, cultural context, or the interplay between lyrics and music, your "sentiment" variable is measuring surface features, not actual emotional valence.
 
-**Problem 3: It doesn't scale**. Manually fixing 200 rows is tedious. Manually fixing 2,000 is impractical. Manually fixing 20,000 is impossible.
+**Approach B (With Immersion)**:
 
-R solves all three problems. Every operation is scripted. Every decision is documented. Every step can be audited, shared, and rerun. If your data changes (you find an error, add more cases), you don't start over—you just rerun the script.
+You have access to the same dataset. You select the same sample of 200. But before creating any coding scheme, you listen to 30-40 songs across different genres, eras, and chart positions. You read lyrics while listening. You take notes: What patterns emerge? How do lyrics and musical elements interact? What genre conventions shape interpretation? Do certain themes cluster together?
 
-This is the philosophy of **reproducible research**: your analysis should be transparent enough that someone else could replicate it exactly.
+After this immersion, you develop a coding scheme informed by actual patterns in the data. You train coders to consider context. You pilot-test the scheme on ambiguous cases. Your final analysis is grounded in understanding, not just counting.
 
-## The Data Wrangling Pipeline
+The second approach takes longer, but it produces better research.
 
-Think of data wrangling as a three-stage process:
+The same logic applies to any content analysis. A researcher coding news frames for a study of climate coverage would not develop categories based solely on prior literature. She would first read 30-40 articles closely, noticing which frames appear in practice, which are absent from the theoretical literature, and which edge cases challenge clean categorization. The immersion phase ensures that coding categories reflect the actual content, not just the researcher's preconceptions.
 
-**Stage 1: Import** → Get data from files into R  
-**Stage 2: Clean** → Fix errors, inconsistencies, missingness  
-**Stage 3: Transform** → Reshape and create new variables for analysis  
+## The Practice of Sustained Attention
 
-Each stage builds on the previous. You can't clean data you haven't imported. You can't analyze data you haven't cleaned.
+Immersion is not passive consumption. It's active, systematic observation guided by research questions but open to unexpected patterns.
 
-## The Tidy Data Philosophy
+### Three Modes of Listening
 
-Before you can wrangle data effectively, you need a mental model of what "clean" data looks like.
+When immersing in music data, engage with songs in multiple ways:
 
-**Tidy data** (Wickham, 2014) has three rules:
+**1. Casual Listening (Initial Exposure)**
 
-1. **Each row is one observation** (one song, one coded message, one survey response)
-2. **Each column is one variable** (sentiment, tempo, genre, chart position)
-3. **Each cell contains one value** (not multiple values separated by commas)
+Goal: Get a feel for the corpus.
 
-### Messy Data Example
+Listen to 10-15 songs randomly sampled from your dataset. Don't take notes yet. Just listen. What surprises you? What sounds familiar? What genre conventions do you notice?
 
-This is **not tidy**:
+This is the "browsing" phase, building familiarity.
 
-| Song | Artist | Genres |
-|------|--------|--------|
-| "Blinding Lights" | The Weeknd | Pop, R&B, Synth-pop |
-| "Levitating" | Dua Lipa | Pop, Dance |
+**2. Focused Listening (Thematic Attention)**
 
-**Problem**: The "Genres" column contains multiple values. You can't easily filter for "all Pop songs" or count genre frequencies.
+Goal: Track specific dimensions relevant to your research question.
 
-### Tidy Version
+Choose 5-7 songs and listen multiple times, focusing on different elements:
 
-This **is tidy**:
+- **First listen**: Overall emotional tone. What mood does this evoke?
+- **Second listen**: Lyric content. What themes or topics appear?
+- **Third listen**: Musical elements (tempo, key, instrumentation). How do these shape meaning?
+- **Fourth listen**: Interaction effects. How do lyrics and music reinforce or contradict each other?
 
-| Song | Artist | Genre |
-|------|--------|-------|
-| "Blinding Lights" | The Weeknd | Pop |
-| "Blinding Lights" | The Weeknd | R&B |
-| "Blinding Lights" | The Weeknd | Synth-pop |
-| "Levitating" | Dua Lipa | Pop |
-| "Levitating" | Dua Lipa | Dance |
+Take brief notes after each listen. Don't code yet; just describe what you notice.
 
-Now each row is one song-genre pair. Each cell has one value. You can filter, count, and analyze easily.
+**3. Analytical Listening (Pattern Recognition)**
 
-**Why this matters**: R's tidyverse tools (`dplyr`, `ggplot2`, `tidyr`) are designed for tidy data. If your data is messy, every analysis becomes complicated. If your data is tidy, most operations are straightforward.
+Goal: Identify recurring structures, exceptions, and edge cases.
 
-## Installing R and RStudio
+Listen to 15-20 songs while asking:
 
-Before you can wrangle data, you need the tools.
+- Do certain lyric themes cluster with certain musical features?
+- Are there genre-specific conventions? (e.g., Do country songs use metaphor differently than rap?)
+- What edge cases challenge simple categorization?
+- What dimensions seem important that you hadn't anticipated?
 
-**R** is the programming language. Think of it as the engine.
+This is where you begin to see the contours of your eventual coding scheme, but you're still documenting patterns rather than forcing categories.
 
-**RStudio** is the interface—the cockpit that makes R easier to use. It provides:
-- A script editor (where you write code)
-- A console (where code runs)
-- An environment panel (showing what data you've loaded)
-- A plots/files panel (showing visualizations and outputs)
+### Immersion Beyond Music
 
-**Installation steps** (you only do this once):
+If your content analysis involves non-music content, the same three-mode structure applies, just with different engagement:
 
-1. Download R from [CRAN](https://cran.r-project.org/) for your operating system
-2. Download RStudio Desktop (free version) from [Posit](https://posit.co/download/rstudio-desktop/)
-3. Install R first, then RStudio
+**For news articles**: (1) Skim 10-15 articles to get a sense of how the topic is covered. (2) Read 5-7 articles closely, tracking framing, source selection, and narrative structure. (3) Read 15-20 articles analytically, asking which patterns recur, which frames dominate, and which edge cases challenge your emerging categories.
 
-**After installation**, open RStudio. You'll see four panels. For now, focus on the **Console** (bottom-left). This is where you type commands and see results.
+**For social media posts**: (1) Browse a feed of 50-100 posts to get a feel for tone, format, and topics. (2) Read 20-30 posts closely, tracking rhetorical strategies and visual elements. (3) Analyze 50+ posts for patterns in language, argumentation, and audience engagement.
 
-## Your First R Commands
+The principle is constant: familiarize, focus, then analyze. The medium changes; the discipline does not.
 
-Type these into the Console and press Enter:
+## Memo Writing: Documenting Emergent Understanding
 
-```r
-# This is a comment (R ignores it)
-2 + 2
+Immersion without documentation is just listening to music (or reading articles, or scrolling a feed). Research immersion requires *memos*, brief, informal notes that capture your thinking as it evolves.
 
-# Assign a value to a variable
-x <- 5
-x
+### Types of Memos
 
-# Create a vector (list of values)
-songs <- c("Happy", "Blinding Lights", "Levitating")
-songs
+**Observational Memos**: What did you notice?
 
-# Get help on a function
-?mean
-```
+> "Song: 'Blinding Lights' by The Weeknd. Fast tempo (171 BPM). Major key, but lyrics are about desperation and addiction. Interesting contrast: musically upbeat, lyrically dark. This might complicate simple 'positive vs. negative' sentiment coding. Need to decide: code based on lyrics alone, or on overall emotional impact?"
 
-**What just happened?**
+**Methodological Memos**: How should this be measured?
 
-- `#` creates comments (ignored by R, used for human readers)
-- `<-` assigns values to variables (read it as "gets")
-- `c()` combines values into a vector
-- `?mean` opens the help documentation for the `mean()` function
+> "Problem: Some songs use irony. 'Pumped Up Kicks' has cheerful music but lyrics about a school shooting. Automated sentiment analysis would likely code the music as positive. Human coders need clear instructions: Lyrics only? Overall tone? This needs to be specified before coding begins."
 
-This is base R. It works, but it's not the most elegant syntax. That's where the tidyverse comes in.
+**Theoretical Memos**: How does this connect to theory?
 
-## The Tidyverse: R for Humans
+> "Uses & Gratifications (Katz et al., 1973) predicts people seek music to fulfill emotional needs. If true, maybe 'negative' songs aren't actually experienced as negative by listeners; they might provide catharsis or validation. The theory suggests we shouldn't assume negative lyrics = negative experience. This has implications for how we operationalize 'sentiment.'"
 
-The **tidyverse** is a collection of R packages designed to make data analysis more intuitive. Instead of cryptic base R syntax, tidyverse code reads almost like English.
+**Comparative Memos**: How do cases differ?
 
-**Install the tidyverse** (you only do this once):
+> "Comparing two songs with negative lyrics: 'Someone Like You' (Adele) vs. 'Lose Yourself' (Eminem). Both describe struggle, but Adele's is passive/melancholic while Eminem's is active/aggressive. Do we need subcategories within 'negative'? Sadness vs. anger vs. anxiety?"
 
-```r
-install.packages("tidyverse")
-```
+### Memo Discipline
 
-**Load the tidyverse** (you do this at the start of every R session):
+Set a goal: Write at least **one memo per 5 songs** (or per 5 articles, or per 20 social media posts) during immersion.
 
-```r
-library(tidyverse)
-```
+Memos don't need to be polished. They're thinking-on-paper, documenting observations and questions that will later inform your codebook.
 
-This loads eight core packages:
-- `readr`: Import data
-- `dplyr`: Manipulate data
-- `tidyr`: Reshape data
-- `ggplot2`: Visualize data (Chapter 13)
-- `purrr`, `tibble`, `stringr`, `forcats`: Supporting tools
+Create a note in Obsidian: `Immersion Memos - [Your Dataset]`
 
-## Importing Data with `readr`
+```markdown
+# Immersion Memos: Music Dataset
 
-Your coded dataset is likely a CSV (comma-separated values) file exported from Excel or Google Sheets.
+## Memo 1 - Feb 15, 2026
+**Songs listened to**: Random sample (n=10) from 2015-2017
 
-**The unified music dataset looks like**:
+**Observation**: Noticed many songs mix positive/negative within 
+the same song. Example: "Closer" (Chainsmokers) - nostalgia 
+(bittersweet), not purely positive or negative. May need "mixed" 
+or "ambiguous" category.
 
-```
-Song,Artist,Average_Rank,Max_Rank,tempo,energy,valence,lyrics
-Happy,Pharrell Williams,45.2,1,160,0.822,0.961,"Because I'm happy..."
-Someone Like You,Adele,12.5,1,67.5,0.282,0.134,"Never mind, I'll find..."
-Good 4 U,Olivia Rodrigo,8.3,1,164,0.664,0.675,"Well, good for you..."
-```
-
-**Import it into R**:
-
-```r
-library(readr)
-
-# Import the CSV file (1,792 songs)
-music_data <- read_csv("data/final_unified_dataset.csv")
-```
-
-**What just happened?**
-
-- `read_csv()` reads the file and creates a data frame (R's version of a spreadsheet)
-- `music_data` is the name we gave the data frame (you can name it anything)
-- The file path `"data/final_unified_dataset.csv"` assumes the file is in a folder called "data" in your working directory
-
-**Inspect what you imported**:
-
-```r
-# View the first 6 rows
-head(music_data)
-
-# See the structure (column names and types)
-glimpse(music_data)
-
-# Open a spreadsheet-like view
-View(music_data)
-```
-
-**Common import problems**:
-
-**Problem 1: File not found**
-
-```r
-Error: 'data/final_unified_dataset.csv' does not exist
-```
-
-**Solution**: Check your working directory with `getwd()`. Make sure the file path is correct. Or use `file.choose()` to interactively select the file:
-
-```r
-music_data <- read_csv(file.choose())
-```
-
-**Problem 2: Column names have spaces**
-
-Base R's `read.csv()` converts spaces to dots (`Lyric Sentiment` becomes `Lyric.Sentiment`).
-
-`readr`'s `read_csv()` preserves spaces. Use backticks to reference these columns:
-
-```r
-music_data$`Lyric Sentiment`  # With backticks
-```
-
-Or rename columns to avoid spaces (better practice):
-
-```r
-music_data <- music_data %>%
-  rename(lyric_sentiment = `Lyric Sentiment`)
-```
-
-**Problem 3: Data types are wrong**
-
-R might import numbers as text or vice versa. Check with `glimpse()`:
-
-```r
-glimpse(music_data)
-
-# If Tempo is character instead of numeric:
-music_data <- music_data %>%
-  mutate(Tempo = as.numeric(Tempo))
-```
-
-## The Five Core dplyr Verbs
-
-Now comes the power: transforming data with five essential functions.
-
-### 1. `filter()`: Keep Rows That Meet Conditions
-
-**Use when**: You want to subset your data
-
-**Example**: Keep only positive sentiment songs
-
-```r
-positive_songs <- music_data %>%
-  filter(Lyric_Sentiment == "Positive")
-```
-
-**Multiple conditions** (AND logic):
-
-```r
-# Songs that are positive AND have high intensity
-positive_intense <- music_data %>%
-  filter(Lyric_Sentiment == "Positive", Emotional_Intensity == "High")
-```
-
-**OR logic**:
-
-```r
-# Songs that are positive OR mixed
-pos_or_mixed <- music_data %>%
-  filter(Lyric_Sentiment == "Positive" | Lyric_Sentiment == "Mixed")
-
-# Cleaner syntax using %in%:
-pos_or_mixed <- music_data %>%
-  filter(Lyric_Sentiment %in% c("Positive", "Mixed"))
-```
-
-**Numeric comparisons**:
-
-```r
-# Fast songs (tempo > 140 BPM)
-fast_songs <- music_data %>%
-  filter(Tempo > 140)
-
-# Songs that charted in top 10
-top10 <- music_data %>%
-  filter(Max_Rank <= 10)
-```
-
-### 2. `select()`: Choose or Drop Columns
-
-**Use when**: You want to work with a subset of variables
-
-**Keep specific columns**:
-
-```r
-minimal_data <- music_data %>%
-  select(Song_Title, Artist, Lyric_Sentiment)
-```
-
-**Drop columns**:
-
-```r
-# Remove columns you don't need
-music_data %>%
-  select(-Song_ID, -Notes)
-```
-
-**Select columns by pattern**:
-
-```r
-# All columns starting with "Lyric"
-music_data %>%
-  select(starts_with("Lyric"))
-
-# All columns containing "Sentiment"
-music_data %>%
-  select(contains("Sentiment"))
-```
-
-### 3. `mutate()`: Create or Modify Columns
-
-**Use when**: You need new variables or need to transform existing ones
-
-**Create a binary variable**:
-
-```r
-music_data <- music_data %>%
-  mutate(is_positive = if_else(Lyric_Sentiment == "Positive", 1, 0))
-```
-
-**Create categories based on conditions**:
-
-```r
-music_data <- music_data %>%
-  mutate(
-    tempo_category = case_when(
-      Tempo < 100 ~ "Slow",
-      Tempo < 140 ~ "Medium",
-      Tempo >= 140 ~ "Fast"
-    )
-  )
-```
-
-**Multiple new columns at once**:
-
-```r
-music_data <- music_data %>%
-  mutate(
-    is_positive = if_else(Lyric_Sentiment == "Positive", 1, 0),
-    is_top10 = if_else(Max_Rank <= 10, 1, 0),
-    fast_and_positive = if_else(Tempo > 140 & is_positive == 1, 1, 0)
-  )
-```
-
-### 4. `group_by()` + `summarize()`: Aggregate Data
-
-**Use when**: You want summary statistics by group
-
-**Calculate means by sentiment category**:
-
-```r
-summary_stats <- music_data %>%
-  group_by(Lyric_Sentiment) %>%
-  summarize(
-    n_songs = n(),
-    avg_tempo = mean(Tempo, na.rm = TRUE),
-    avg_chart_peak = mean(Max_Rank, na.rm = TRUE)
-  )
-```
-
-**What this does**:
-- `group_by(Lyric_Sentiment)` groups songs by sentiment category
-- `n()` counts songs in each group
-- `mean(Tempo, na.rm = TRUE)` calculates average tempo (ignoring missing values)
-- Result is a new data frame with one row per sentiment category
-
-**Multiple grouping variables**:
-
-```r
-sentiment_by_intensity <- music_data %>%
-  group_by(Lyric_Sentiment, Emotional_Intensity) %>%
-  summarize(
-    n = n(),
-    avg_tempo = mean(Tempo, na.rm = TRUE)
-  )
-```
-
-### 5. `arrange()`: Sort Rows
-
-**Use when**: You want to order your data
-
-**Sort by one variable**:
-
-```r
-# Fastest to slowest
-music_data %>%
-  arrange(desc(Tempo))
-
-# Slowest to fastest
-music_data %>%
-  arrange(Tempo)
-```
-
-**Sort by multiple variables**:
-
-```r
-# First by sentiment, then by tempo within each sentiment group
-music_data %>%
-  arrange(Lyric_Sentiment, desc(Tempo))
-```
-
-## Chaining Operations: The Power of the Pipe
-
-The real magic happens when you **chain verbs together** with the pipe operator (`%>%`).
-
-**Read the pipe as "then"**:
-
-```r
-result <- music_data %>%
-  filter(Max_Rank <= 20) %>%           # Keep top 20 songs
-  mutate(is_fast = Tempo > 130) %>%       # Create fast/slow variable
-  group_by(Lyric_Sentiment, is_fast) %>% # Group by sentiment and tempo
-  summarize(
-    n = n(),
-    avg_peak = mean(Max_Rank)
-  ) %>%
-  arrange(avg_peak)                       # Sort by average peak position
-```
-
-**Read aloud**: "Take music_data, THEN filter for top 20 songs, THEN create a fast/slow variable, THEN group by sentiment and tempo, THEN calculate summaries, THEN sort by average peak."
-
-**Without pipes, this would be**:
-
-```r
-temp1 <- filter(music_data, Max_Rank <= 20)
-temp2 <- mutate(temp1, is_fast = Tempo > 130)
-temp3 <- group_by(temp2, Lyric_Sentiment, is_fast)
-temp4 <- summarize(temp3, n = n(), avg_peak = mean(Max_Rank))
-result <- arrange(temp4, avg_peak)
-```
-
-The piped version is cleaner, easier to read, and doesn't create temporary variables.
-
-## Handling Common Data Problems
-
-### Problem 1: Missing Values
-
-**Identify missing values**:
-
-```r
-# Count missing values per column
-music_data %>%
-  summarize(across(everything(), ~sum(is.na(.))))
-```
-
-**Recode specific values as missing**:
-
-```r
-# Convert "Unknown" and empty strings to NA
-music_data <- music_data %>%
-  mutate(
-    Lyric_Sentiment = na_if(Lyric_Sentiment, "Unknown"),
-    Lyric_Sentiment = na_if(Lyric_Sentiment, "")
-  )
-```
-
-**Remove rows with missing data**:
-
-```r
-# Remove rows where Lyric_Sentiment is missing
-music_data_complete <- music_data %>%
-  filter(!is.na(Lyric_Sentiment))
-```
-
-**Document your decision**: In your analysis script, comment on why:
-
-```r
-# Excluded 8 songs with missing sentiment codes (unable to determine
-# due to language barriers or instrumental content). Final n = 192.
-music_data_complete <- music_data %>%
-  filter(!is.na(Lyric_Sentiment))
-```
-
-### Problem 2: Inconsistent Categories
-
-**The problem**: Coders entered the same category multiple ways
-
-```r
-# Sentiment might include:
-# "Positive", "positive", "POSITIVE", "Pos", "pos"
-```
-
-**Solution: Standardize**:
-
-```r
-music_data <- music_data %>%
-  mutate(
-    Lyric_Sentiment = tolower(Lyric_Sentiment),  # Convert to lowercase
-    Lyric_Sentiment = case_when(
-      Lyric_Sentiment %in% c("positive", "pos") ~ "Positive",
-      Lyric_Sentiment %in% c("negative", "neg") ~ "Negative",
-      Lyric_Sentiment %in% c("neutral", "neut") ~ "Neutral",
-      Lyric_Sentiment %in% c("mixed", "mix") ~ "Mixed",
-      TRUE ~ Lyric_Sentiment  # Keep anything else as-is
-    )
-  )
-```
-
-### Problem 3: Duplicates
-
-**Identify duplicates**:
-
-```r
-# Check for duplicate rows
-duplicates <- music_data %>%
-  filter(duplicated(.) | duplicated(., fromLast = TRUE))
-
-View(duplicates)
-```
-
-**Remove duplicates**:
-
-```r
-music_data <- music_data %>%
-  distinct()  # Keeps only unique rows
-```
-
-**BUT**: If duplicates are legitimate (e.g., two coders coded the same song), don't remove them. Instead, use them for reliability analysis, then merge:
-
-```r
-# Keep only Coder A's codes for final analysis
-music_data_final <- music_data %>%
-  filter(Coder_ID == "Coder_A")
-```
-
-### Problem 4: Wrong Data Types
-
-**Check types**:
-
-```r
-glimpse(music_data)
-```
-
-**Convert types**:
-
-```r
-music_data <- music_data %>%
-  mutate(
-    Song_ID = as.character(Song_ID),           # Numeric to character
-    Tempo = as.numeric(Tempo),                  # Character to numeric
-    Max_Rank = as.integer(Max_Rank),        # Decimal to integer
-    Lyric_Sentiment = as.factor(Lyric_Sentiment) # Character to factor
-  )
-```
-
-## Working with Factors (Categorical Data)
-
-Factors are R's way of handling categorical data with defined levels and ordering.
-
-**Convert to factor**:
-
-```r
-library(forcats)
-
-music_data <- music_data %>%
-  mutate(
-    Lyric_Sentiment = factor(Lyric_Sentiment, 
-                              levels = c("Positive", "Negative", "Neutral", "Mixed"))
-  )
-```
-
-**Why this matters**: When you plot or tabulate, R will use this order instead of alphabetical.
-
-**Reorder by frequency**:
-
-```r
-music_data <- music_data %>%
-  mutate(Lyric_Sentiment = fct_infreq(Lyric_Sentiment))
-```
-
-Now "Lyric_Sentiment" is ordered from most common to least common category.
-
-## Documenting Your Cleaning Workflow
-
-Every cleaning decision is a methodological choice. Document it.
-
-**Create a cleaning script** (`01_data_cleaning.R`):
-
-```r
-# Data Cleaning Script
-# Project: Music Sentiment and Chart Performance
-# Author: Your Name
-# Date: 2026-02-10
-
-# Load packages
-library(tidyverse)
-
-# 1. Import raw data
-music_raw <- read_csv("data_raw/final_unified_dataset.csv")
-message("Imported ", nrow(music_raw), " songs")
-
-# 2. Standardize sentiment categories
-music_clean <- music_raw %>%
-  mutate(
-    Lyric_Sentiment = tolower(Lyric_Sentiment),
-    Lyric_Sentiment = case_when(
-      Lyric_Sentiment %in% c("positive", "pos") ~ "Positive",
-      Lyric_Sentiment %in% c("negative", "neg") ~ "Negative",
-      Lyric_Sentiment %in% c("neutral", "neut") ~ "Neutral",
-      Lyric_Sentiment %in% c("mixed", "mix") ~ "Mixed",
-      TRUE ~ NA_character_
-    )
-  )
-
-# 3. Remove songs with missing sentiment (n = ?)
-n_missing <- sum(is.na(music_clean$Lyric_Sentiment))
-message("Removing ", n_missing, " songs with missing sentiment codes")
-
-music_clean <- music_clean %>%
-  filter(!is.na(Lyric_Sentiment))
-
-# 4. Convert variables to appropriate types
-music_clean <- music_clean %>%
-  mutate(
-    Lyric_Sentiment = factor(Lyric_Sentiment,
-                              levels = c("Positive", "Negative", "Neutral", "Mixed")),
-    Emotional_Intensity = factor(Emotional_Intensity,
-                                  levels = c("Low", "Medium", "High")),
-    Tempo = as.numeric(Tempo),
-    Max_Rank = as.integer(Max_Rank)
-  )
-
-# 5. Create derived variables
-music_clean <- music_clean %>%
-  mutate(
-    is_positive = if_else(Lyric_Sentiment == "Positive", 1, 0),
-    is_top10 = if_else(Max_Rank <= 10, 1, 0),
-    tempo_category = case_when(
-      Tempo < 100 ~ "Slow",
-      Tempo < 140 ~ "Medium",
-      Tempo >= 140 ~ "Fast"
-    )
-  )
-
-# 6. Final dataset summary
-message("Final dataset: ", nrow(music_clean), " songs")
-glimpse(music_clean)
-
-# 7. Save cleaned data
-write_csv(music_clean, "data_clean/music_analysis_ready.csv")
-message("Cleaned data saved to data_clean/music_analysis_ready.csv")
-```
-
-**Why this matters**: 
-
-- Anyone (including future you) can see exactly what you did
-- You can rerun the script if the raw data changes
-- You can share it with collaborators or reviewers
-- It documents your sample size at each cleaning step
+**Question**: Should I code overall dominant sentiment, or code 
+verse-by-verse? If latter, how handle choruses that repeat?
 
 ---
 
-## Practice: Data Wrangling
+## Memo 2 - Feb 16, 2026
+**Songs**: Focus on tempo and sentiment
 
-### Exercise 12.1: Filtering Practice
+**Pattern**: Fast tempo songs (>140 BPM) with negative lyrics 
+feel different than slow tempo songs with same lyrics. "Shake It 
+Off" (Taylor Swift) addresses criticism/negativity but feels 
+empowering due to tempo and key. Context matters.
 
-Using the music dataset:
+**Implication**: Sentiment coding should maybe account for musical 
+features, not just lyrics in isolation.
+```
 
-1. Keep only songs with "Negative" sentiment
-2. Keep songs that charted in the top 5 (#1-5)
-3. Keep songs that are BOTH negative sentiment AND top 5
+## Surface vs. Depth: Manifest and Latent Content
+
+A critical distinction in content analysis is between what's directly observable and what requires interpretation. Krippendorff (2018) emphasizes this distinction as central to codebook design.
+
+**Manifest content**: Surface-level, explicit features that coders can identify with high reliability.
+
+Examples:
+
+- Does the lyric contain the word "love"? (Yes/No)
+- Is the tempo faster than 120 BPM? (Measurable)
+- Is the song in a major or minor key? (Identifiable by trained listeners)
+- Does the news article mention a specific politician by name? (Yes/No)
+
+**Latent content**: Underlying meanings that require interpretation.
+
+Examples:
+
+- Is the overall sentiment positive or negative? (Interpretive: what about irony?)
+- Does the song convey hope or despair? (Subjective judgment)
+- Is the tone sincere or sarcastic? (Context-dependent)
+- Does the article frame the issue as a personal problem or a systemic one? (Requires judgment about emphasis and omission)
+
+During immersion, you're building the interpretive framework that will allow you to code latent content reliably. You're learning the conventions, patterns, and contextual cues that transform subjective judgment into systematic analysis.
+
+## Building the Conceptual Framework
+
+Immersion reveals what dimensions matter for your research question. As you listen and take notes, you'll begin to see the **conceptual structure** of your eventual coding scheme.
+
+### Example: From Immersion to Framework
+
+**Research Question**: Is there a relationship between lyric sentiment and chart success?
+
+**After immersing in 40 songs, you notice**:
+
+1. **Valence isn't binary**: Songs aren't just positive or negative. Many are ambiguous, nostalgic, or mixed.
+2. **Intensity varies**: Some negative songs are mildly sad ("Someone Like You"). Others are intensely angry ("Break Stuff" by Limp Bizkit).
+3. **First-person vs. narrative**: Songs written in first person feel more intimate than third-person narratives, even with similar content.
+4. **Temporal framing**: Songs about past pain ("I survived") feel different than songs about current suffering ("I'm broken").
+
+**Emerging framework**:
+
+You might develop a **two-dimensional coding scheme**:
+
+**Dimension 1: Valence** (Positive, Negative, Neutral, Mixed)  
+**Dimension 2: Intensity** (Low, Medium, High)
+
+This is more nuanced than a simple positive/negative binary, and it emerged from actually engaging with the data rather than imposing preconceived categories.
+
+## Sampling for Immersion
+
+You don't need to listen to all 200 songs before beginning to code. But you need a systematic immersion sample that represents the diversity of your dataset.
+
+### Stratified Immersion Sampling
+
+If your dataset spans multiple genres, eras, or chart positions, ensure your immersion sample includes variety. This applies the **stratified sampling** logic from Chapter 10: just as survey researchers divide a population into meaningful subgroups before sampling, you divide your content corpus into meaningful strata before immersing.
+
+**Example strategy for 200-song dataset**:
+
+- **By time period**: 5 songs from each two-year period (2015-2016, 2017-2018, etc.)
+- **By chart position**: 5 songs that peaked #1-10, 5 from #11-20, 5 from #21-50
+- **By genre** (if coding genre): 3-5 songs per major genre
+
+**Total immersion sample**: 30-50 songs before formal coding begins
+
+This gives you broad exposure without requiring you to analyze the entire corpus before starting. The principle is the same one that governs all sampling decisions (Chapter 10): representativeness matters more than volume. Thirty songs drawn from across the full range of your dataset will reveal more than fifty songs drawn from a single genre or era.
+
+## Documenting Edge Cases
+
+During immersion, you'll encounter songs that challenge simple categorization. Document these carefully; they'll become test cases for your codebook.
+
+**Create an Edge Case Log in Obsidian**:
+
+```markdown
+# Edge Cases - Music Dataset
+
+## Case 1: "Pumped Up Kicks" (Foster the People)
+**Issue**: Cheerful melody, dark lyrics (school shooting)  
+**Question**: Code based on music or lyrics?  
+**Decision needed**: Establish priority (lyrics > music? or 
+  overall impression?)
 
 ---
 
-### Exercise 12.2: Creating New Variables
-
-Create these new variables:
-
-1. `decade`: Extract decade from year (e.g., 2015 → "2010s")
-2. `extreme_tempo`: 1 if tempo is very slow (<80) or very fast (>160), 0 otherwise
-3. `sentiment_simple`: "Positive" for Positive, "Negative" for everything else
-
----
-
-### Exercise 12.3: Aggregation
-
-Calculate:
-
-1. Average tempo by sentiment category
-2. Number of songs in each sentiment × intensity combination
-3. Percentage of songs in each tempo category that reached #1
+## Case 2: "We Are Never Getting Back Together" (Taylor Swift)
+**Issue**: Breakup song (negative content) but delivered with 
+  sass/empowerment  
+**Question**: Is this negative (breakup) or positive 
+  (empowerment)?  
+**Decision needed**: Define whether sentiment = topic or 
+  emotional tone
 
 ---
 
-### Exercise 12.4: Your Cleaning Script
+## Case 3: Songs with explicit profanity
+**Issue**: Some songs use profanity as intensifier ("I don't 
+  give a fuck" = defiance), others as aggression ("Fuck you" 
+  = hostility)  
+**Question**: Does profanity automatically = negative?  
+**Decision needed**: Context-sensitive coding rules for vulgarity
+```
 
-Write a cleaning script for your own coded dataset that:
+These cases become the foundation of your **decision rules** in the codebook (Chapter 14).
 
-1. Imports the raw CSV
-2. Standardizes at least one categorical variable
-3. Handles missing values with documented decisions
-4. Converts variables to appropriate types
-5. Creates at least one derived variable
-6. Saves the cleaned dataset
-7. Includes comments explaining each step
+## The Transition to Operationalization
+
+Immersion doesn't last forever. At some point, you transition from open-ended observation to structured coding. How do you know when?
+
+**Signs you're ready to operationalize**:
+
+- You've listened to 30-50 songs and patterns are stabilizing (new songs rarely surprise you)
+- You can articulate 3-5 key dimensions that matter for your research question
+- You've documented enough edge cases to write decision rules
+- Your memos are starting to repeat themes rather than discovering new ones
+
+This is a form of the **saturation** concept from Chapter 4. In the literature review, saturation meant new searches yielded no new themes. In immersion, saturation means new data points confirm existing patterns rather than revealing new ones.
+
+**What immersion provides**:
+
+- **Conceptual clarity**: You understand what the variables actually mean in this dataset
+- **Category development**: You know what values each variable should take
+- **Decision rules**: You've encountered ambiguous cases and developed principles for handling them
+- **Contextual understanding**: You can recognize when surface features might mislead
+
+These skills are foundational not just for content analysis but for qualitative research generally. Chapter 16 (Qualitative Methods) will show how immersion serves as the basis for interviews, focus groups, and thematic analysis. The habit of sustained attention before categorization is the defining discipline of qualitative inquiry.
+
+---
+
+## Practice: Systematic Immersion
+
+### Exercise 12.1: First Listening Session
+
+**Goal**: Develop observational habits
+
+1. Randomly select 5 songs from the dataset
+2. Listen to each song fully while reading the lyrics
+3. For each song, write a brief observational memo (100-150 words) noting:
+   - Overall emotional tone
+   - Key themes or topics
+   - Any surprises or complications
+   - Questions this raises about coding
+
+**Don't code or categorize yet**; just observe and document.
+
+---
+
+### Exercise 12.2: Focused Listening Protocol
+
+**Goal**: Track specific dimensions
+
+Choose one song and listen to it 4 times, focusing on different elements each time:
+
+**Listen 1**: Lyrics only (read while listening). What story is being told?  
+**Listen 2**: Musical elements (tempo, key, instrumentation). What mood do they create?  
+**Listen 3**: Interaction (how do lyrics and music work together?)  
+**Listen 4**: Synthesis (what's the overall emotional impact?)
+
+Write a comparative memo: How did your interpretation change across listens?
+
+---
+
+### Exercise 12.3: Pattern Recognition
+
+**Goal**: Identify recurring structures
+
+Listen to 10 songs sampled across your dataset.
+
+After each song, answer:
+
+- What emotional category would you assign this to? Why?
+- What features led you to that judgment?
+- Would another listener agree? What might they see differently?
+
+After all 10, write a synthesis memo:
+
+- What patterns emerged?
+- What complications or exceptions did you notice?
+- What dimensions seem most important for your research question?
+
+---
+
+### Exercise 12.4: Edge Case Documentation
+
+**Goal**: Identify coding challenges
+
+As you listen, maintain an **Edge Case Log**. When you encounter a song that's hard to categorize, document:
+
+- Song title and artist
+- What makes it ambiguous
+- Possible interpretations
+- How this might affect your coding scheme
+
+Aim for 5-7 documented edge cases during immersion.
+
+---
+
+### Exercise 12.5: Immersion Synthesis
+
+**Goal**: Transition from observation to operationalization
+
+After listening to 30-40 songs:
+
+1. Review all your memos
+2. Identify the 3-5 most important dimensions for your research question
+3. For each dimension, list possible categories (don't finalize yet; just brainstorm)
+4. Note what questions remain unresolved
+
+Write a **synthesis memo** (500 words) summarizing:
+
+- What you learned about the dataset
+- What surprised you
+- What will be easiest vs. hardest to code
+- What decisions you need to make before creating a formal codebook
 
 ---
 
 ## Reflection Questions
 
-1. **Reproducibility vs. Flexibility**: Scripted workflows are reproducible, but they require planning ahead. Point-and-click is flexible but not transparent. When might flexibility be more important than reproducibility? When is reproducibility non-negotiable?
+1. **The Value of Slowness**: Immersion requires spending time with data before analyzing it. This feels inefficient in a culture that values productivity and speed. Why might slowness be valuable here? What gets lost when you skip immersion?
 
-2. **Cleaning Decisions**: Every time you remove missing data or recode categories, you're making methodological choices that affect results. How transparent should you be about these decisions? What level of detail is too much?
+2. **Subjectivity and Patterns**: During immersion, you're using your subjective impressions to identify patterns. Later, you'll create "objective" coding rules. How do you reconcile these? Is truly objective coding possible, or does all measurement carry traces of the researcher's interpretive lens?
 
-3. **The Tidy Data Trade-off**: Tidy data is easier to analyze but sometimes creates redundancy (like repeating song names for each genre). When is this trade-off worth it? When might you prefer a different structure?
+3. **Theoretical Preconceptions**: You arrived at this dataset with a research question and probably some expectations about what you'd find. How do you balance being guided by theory (deductive) while remaining open to unexpected patterns (inductive)? Did immersion change how you think about your research question?
+
+4. **Immersion Across Domains**: If you were immersing in news coverage, corporate press releases, or Instagram posts instead of songs, what would the three modes (casual, focused, analytical) look like? What would change about the process, and what would remain the same?
 
 ---
 
 ## Chapter Summary
 
-This chapter introduced data wrangling with R and the tidyverse:
+This chapter introduced immersion as the qualitative foundation for later quantitative analysis:
 
-- **Data wrangling** is the unsexy but essential work of preparing data for analysis
-- **Reproducible workflows** (scripted in R) are superior to point-and-click (Excel) because they're transparent, auditable, and rerunnable
-- **Tidy data** has three rules: each row = one observation, each column = one variable, each cell = one value
-- **The five core dplyr verbs**: `filter()` (keep rows), `select()` (choose columns), `mutate()` (create variables), `group_by() + summarize()` (aggregate), `arrange()` (sort)
-- **The pipe operator** (`%>%`) chains operations, making code readable
-- **Common data problems**: missing values, inconsistent categories, duplicates, wrong data types
-- **Factors** store categorical data with defined levels and ordering
-- **Documentation** of cleaning decisions is essential for transparency
-- **Cleaning scripts** should be heavily commented and save cleaned data separately from raw data
+- **Immersion** is sustained, systematic attention to data before coding begins.
+- **Three modes of engagement**: Casual (familiarity), Focused (thematic attention), Analytical (pattern recognition).
+- **Memo writing** documents emergent understanding through observational, methodological, theoretical, and comparative notes.
+- **Manifest content** is directly observable (word counts, tempo); **latent content** requires interpretation (sentiment, tone) (Krippendorff, 2018).
+- **Conceptual frameworks** emerge from immersion: discovering what dimensions matter rather than imposing them prematurely.
+- **Stratified immersion sampling** ensures exposure to dataset diversity (time periods, chart positions, genres), applying the sampling logic from Chapter 10.
+- **Edge case documentation** identifies instances that challenge simple categorization, informing later decision rules in the codebook (Chapter 14).
+- **Transition markers**: You're ready to operationalize when patterns stabilize, dimensions clarify, and memos start repeating rather than discovering.
+- Immersion is foundational not just for content analysis but for all qualitative inquiry (Chapter 16).
 
 ---
 
 ## Key Terms
 
-- **Data frame**: R's version of a spreadsheet (rows and columns)
-- **Data wrangling**: Importing, cleaning, and transforming data for analysis
-- **Factor**: R's data type for categorical variables with defined levels
-- **Pipe operator (`%>%`)**: Chains operations together, read as "then"
-- **Reproducible research**: Analysis transparent enough for others to replicate
-- **Tidy data**: Data structure where each row = observation, each column = variable, each cell = value
-- **Tidyverse**: Collection of R packages designed for intuitive data analysis
-- **Vector**: Ordered collection of values of the same type
+- **Edge case**: An ambiguous instance that challenges simple categorization
+- **Immersion**: Sustained engagement with data before formal analysis
+- **Latent content**: Underlying meanings requiring interpretation (Krippendorff, 2018)
+- **Manifest content**: Surface-level, directly observable features
+- **Memo**: Informal note documenting observations, questions, or theoretical connections during analysis
+- **Observational memo**: Note recording what was noticed during data engagement
+- **Saturation** (in immersion): Point where new cases confirm existing patterns rather than revealing new ones
+- **Stratified immersion sampling**: Selecting immersion cases across key dimensions to ensure diversity
+- **Thick description**: Rich, contextually grounded understanding of data
+
+---
+
+## References
+
+Katz, E., Blumler, J. G., & Gurevitch, M. (1973). Uses and gratifications research. *Public Opinion Quarterly*, *37*(4), 509-523. https://doi.org/10.1086/268109
+
+Krippendorff, K. (2018). *Content analysis: An introduction to its methodology* (4th ed.). Sage. https://doi.org/10.4135/9781071878781
+
+---
+
+::: {.callout-note title="Graduate Extension" collapse="true"}
+
+**Required Task**: Write a 500-word reflexivity memo examining your own positionality as a researcher engaging with the dataset.
+
+**Background**: Qualitative researchers distinguish between **emic** (insider) and **etic** (outsider) perspectives. An emic perspective comes from within the culture being studied; an etic perspective comes from outside it. Neither is inherently superior, but each produces different kinds of understanding and different blind spots.
+
+During immersion, your interpretations are shaped by who you are: your genre preferences, your cultural background, your musical training (or lack thereof), your generational position, your racial and gender identity, and your personal relationship with music. A researcher who grew up listening to hip-hop will notice different things about hip-hop lyrics than a researcher encountering the genre for the first time. A researcher who plays an instrument may attend more closely to musical features than one who doesn't.
+
+**Prompt**:
+
+1. **Position yourself**: Were you an insider or outsider to the music you studied during immersion? Did this vary by genre, era, or artist? Be specific.
+
+2. **Identify your interpretive biases**: What assumptions did you bring to the data? Did you expect certain genres to be more "negative" or "positive" than others? Did your expectations align with what you found, or were you surprised? When you were surprised, what does that tell you about your preconceptions?
+
+3. **Consider alternative readings**: Choose one song from your immersion sample that you found particularly easy to categorize. Now imagine a listener from a different cultural background, generation, or musical tradition encountering the same song. Might they interpret it differently? What does this suggest about the "objectivity" of your coding decisions?
+
+4. **Connect to methodology**: How will you address the positionality issues you've identified in your codebook design? Will you include explicit decision rules that account for the interpretive challenges your positionality creates? Will you seek a second coder whose positionality differs from yours?
+
+This reflexivity exercise connects to Chapter 16's treatment of qualitative research quality criteria, particularly the concept of **confirmability**: demonstrating that findings are shaped by the data rather than by researcher bias. The goal is not to eliminate subjectivity (impossible) but to make it transparent (essential).
+
+:::
 
 ---
 
 ## Looking Ahead
 
-Chapter 13 (Seeing Patterns) introduces data visualization with `ggplot2`. You've wrangled your data into analysis-ready format. Now you'll learn to create publication-quality visualizations that reveal patterns: bar charts showing sentiment distribution, scatterplots examining tempo-chart performance relationships, and faceted plots comparing patterns across categories. Visualization isn't just about making pretty pictures—it's about exploring data, testing assumptions, and communicating findings effectively.
+Chapter 13 (Vibes to Variables) builds directly on this immersion work. Having developed intuitions about the dataset, you'll now formalize those intuitions into operational definitions, translating the "vibes" you observed during immersion into measurable "variables." You'll learn to write conceptual and operational definitions, understand levels of measurement (NOIR), and evaluate measurement quality through reliability and validity. The immersion you've done in this chapter becomes the foundation for all coding decisions in Chapter 13.

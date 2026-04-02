@@ -4,7 +4,7 @@ title: "Welcome"
 
 # From Vibes to Variables {.unnumbered}
 
-*A Field Guide to Open Media Science*
+*A Field Guide to Open Media Science — Second Edition*
 
 This open educational resource (OER) guides you through the complete arc of a research project — from the first spark of curiosity to a published, reproducible study. Written for students in communication and media studies, it uses a real music industry dataset of 1,792 songs to teach research methods as a form of structured storytelling.
 
@@ -12,11 +12,23 @@ This open educational resource (OER) guides you through the complete arc of a re
 
 The book is organized into five parts that mirror the phases of a research project:
 
-1. **Foundations** (Chapters 1–4): Build your research identity, set up your tools, and learn to read critically.
-2. **Design** (Chapters 5–7): Choose a theoretical lens, write a research question, and plan your study.
-3. **Measurement** (Chapters 8–11): Immerse yourself in data, operationalize variables, build a codebook, and test reliability.
-4. **Analysis** (Chapters 12–15): Wrangle data in R, visualize patterns, run statistical tests, and interpret results.
-5. **Communication** (Chapters 16–17): Publish reproducible reports and share your work openly.
+1. **Foundations** (Chapters 1–3): Build your research identity, set up your tools, and learn to read critically.
+2. **Design** (Chapters 4–8): Find your sources, choose a theoretical lens, write a research question, and understand research ethics.
+3. **Methods** (Chapters 9–16): Survey the methodological landscape, then dive deep into content analysis — from immersion through operationalization, codebook design, sampling, and qualitative methods.
+4. **Analysis** (Chapters 17–20): Wrangle data in R, visualize patterns, run statistical tests, and interpret results.
+5. **Publishing** (Chapters 21–22): Build reproducible reports with Quarto and share your work openly via GitHub Pages.
+
+## What's New in the Second Edition
+
+This edition expands from 17 to 22 chapters, adding substantial new coverage of:
+
+- **Research ethics** (Chapter 8) — from the Belmont Report to the ethics of analyzing public social media data
+- **The full methods landscape** (Chapter 9) — understanding where content analysis fits alongside surveys, experiments, and qualitative research
+- **Survey design** (Chapter 10) — questionnaire construction, sampling theory, and validity
+- **Experimental design** (Chapter 11) — causation, control groups, and threats to validity
+- **Qualitative methods** (Chapter 16) — interviews, focus groups, and thematic analysis as standalone approaches
+
+Every chapter now includes graduate extensions with assigned readings and advanced prompts, non-music examples from news, social media, and political communication, and verified citations throughout.
 
 ## The Dataset
 
