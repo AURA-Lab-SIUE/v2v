@@ -13,6 +13,10 @@ title: "Chapter 3: The Reading Journal Protocol"
 
 ---
 
+![Person writing in a research journal](../images/ch03-journal_2.jpg){fig-alt="Person writing in a research journal"}
+
+
+
 There's a particular kind of overwhelm that strikes when you begin reading research literature. You find an article that seems relevant. It cites twelve other articles that also seem relevant. Each of those cites fifteen more. Within an hour, you have forty browser tabs open and no clear sense of how these sources connect to each other or to the question you're trying to answer.
 
 The problem isn't lack of information. It's lack of system.

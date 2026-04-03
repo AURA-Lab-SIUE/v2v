@@ -11,6 +11,10 @@ title: "Chapter 2: The Infrastructure of Trust"
 
 ---
 
+![Programming code displayed on a computer screen](../images/ch02-code_2.jpg){fig-alt="Programming code displayed on a computer screen"}
+
+
+
 In 2015, a large collaborative team of psychologists attempted something simultaneously mundane and revolutionary: they tried to replicate 100 published studies from top-tier journals. Not to expose fraud, but to test whether the published methods were sufficient to reproduce the results. The success rate was 36 percent (Open Science Collaboration, 2015).
 
 This wasn't a scandal in the traditional sense. No one had fabricated data or p-hacked their way to significance (at least, not intentionally). The problem was more subtle and more pervasive. The original researchers had made dozens of small, reasonable decisions during analysis: how to handle outliers, which covariates to include, how to operationalize ambiguous concepts. These decisions weren't necessarily wrong, but they were undocumented, existing only in the researchers' memories or lost in the sequence of mouse clicks through statistical software.

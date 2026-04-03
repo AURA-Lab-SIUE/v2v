@@ -12,6 +12,10 @@ title: "Chapter 5: Choosing Your Lens"
 
 ---
 
+![Camera lens representing theoretical focus](../images/ch05-lens_1.jpg){fig-alt="Camera lens representing theoretical focus"}
+
+
+
 In 2019, a team of researchers analyzed the emotional content of 50 years of Billboard Hot 100 lyrics and found that songs with negative emotional expression, songs about loss, anger, and sadness, had become progressively more prevalent over time (Brand, Acerbi, & Mesoudi, 2019). The trend was robust across decades, and the researchers interpreted it through the lens of cultural evolution: negative content, they argued, may carry a selection advantage in musical markets because it is more emotionally arousing and therefore more memorable.
 
 That's one interpretation. But the same empirical pattern, the correlation between negative content and commercial prevalence, generates different explanations depending on which theoretical lens you apply. A psychologist drawing on **catharsis theory** might argue that listeners seek out sad music to process their own negative emotions. A sociologist using **social identity theory** (Tajfel & Turner, 1979) might suggest that negative emotions signal authenticity in certain genre communities, and authenticity strengthens in-group bonds. A communication scholar applying **uses and gratifications theory** (Katz, Blumler, & Gurevitch, 1973) might propose that listeners actively choose negative music to fulfill specific emotional needs that positive music cannot satisfy.

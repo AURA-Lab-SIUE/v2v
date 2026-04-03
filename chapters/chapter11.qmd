@@ -12,6 +12,10 @@ title: "Chapter 11: Designing Surveys"
 
 ---
 
+![Clipboard with checklist representing survey design](../images/ch11-checklist_2.jpg){fig-alt="Clipboard with checklist representing survey design"}
+
+
+
 In 1936, *The Literary Digest* mailed postcards to over ten million Americans, asking who they planned to vote for in the upcoming presidential election. The magazine had correctly predicted the previous five elections using the same method. With 2.4 million responses, the sample was enormous by any standard. The prediction was confident: Alf Landon would defeat Franklin Roosevelt in a landslide.
 
 Roosevelt won 46 of 48 states.

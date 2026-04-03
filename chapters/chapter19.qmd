@@ -15,6 +15,10 @@ title: "Chapter 19: The Surprise Detector"
 
 ---
 
+![Magnifying glass representing statistical detection](../images/ch19-magnifying_2.jpg){fig-alt="Magnifying glass representing statistical detection"}
+
+
+
 You've visualized your data (Chapter 18). You created a scatterplot showing that songs with negative lyric sentiment tend to chart higher than songs with positive sentiment. You faceted a boxplot and noticed that high-intensity songs appear more common among top-charting hits than low-intensity songs.
 
 But here's the uncomfortable question: Could these patterns be flukes?

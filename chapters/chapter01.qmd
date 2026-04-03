@@ -12,6 +12,10 @@ title: "Chapter 1: The Architecture of Curiosity"
 
 ---
 
+![Abstract visualization of neural networks and brain science](../images/ch01-brain_2.jpg){fig-alt="Abstract visualization of neural networks and brain science"}
+
+
+
 There's a particular kind of discomfort that settles in when you realize your intuition was wrong. It happened to me a few years ago while watching a Twitch streamer play a notoriously toxic first-person shooter. The chat was predictably chaotic: insults flying, rage-quitting threats, the usual performative aggression. And yet the viewer count kept climbing. I switched over to a cozy farming simulator stream, expecting calmer waters and comparable engagement. The chat was indeed friendlier, but the audience was a fraction of the size.
 
 The pattern seemed obvious: toxicity attracts audiences. It was the kind of observation that feels true because you've seen it enough times to build a story around it. Negativity drives engagement. Drama sells. People are terrible.

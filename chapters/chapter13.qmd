@@ -12,6 +12,10 @@ title: "Chapter 13: Music Immersion"
 
 ---
 
+![Live music concert representing media immersion](../images/ch13-concert_2.jpg){fig-alt="Live music concert representing media immersion"}
+
+
+
 There's a temptation, when you first encounter a research dataset, to jump immediately to coding. You have your research question. You know you need variables. You want to start counting things.
 
 Resist this impulse.

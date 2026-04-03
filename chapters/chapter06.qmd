@@ -12,6 +12,10 @@ title: "Chapter 6: The Roadmap"
 
 ---
 
+![Architectural blueprint representing research planning](../images/ch06-blueprint_3.jpg){fig-alt="Architectural blueprint representing research planning"}
+
+
+
 There's a particular kind of paralysis that strikes halfway through a research project. You've read thirty articles. You have notes scattered across multiple documents. You've identified three interesting theories and five possible research questions. You can see connections everywhere, and the project feels simultaneously too small (just one study?) and too large (how will I ever finish this?).
 
 The problem isn't lack of ideas. It's lack of focus. You haven't made the difficult choices that transform a cloud of possibilities into a concrete plan.

@@ -10,13 +10,16 @@ title: "Chapter 7: The Research Question"
 -   Write research questions that are specific, measurable, and answerable
 -   Understand the relationship between research questions and project scope
 
-------------------------------------------------------------------------
+---
+
+![Crossroads representing research decision points](../images/ch07-crossroads_3.jpg){fig-alt="Crossroads representing research decision points"}
+
+---------------------------------------------------------------------
 
 The hardest part of research isn't analyzing data or writing the final report. It's asking the right question.
 
 This seems counterintuitive. Students arrive at research methods courses assuming the challenge will be statistical tests or coding schemes, technical skills they haven't yet learned. But most students can learn to run a chi-square test or code qualitative data with practice. What's harder is the intellectual work that precedes analysis: formulating a question that's specific enough to answer, broad enough to matter, and grounded enough in existing knowledge to avoid reinventing the wheel.
 
-![*Research begins in the fog of curiosity; the goal of this chapter is to find the clear path forward.* - Photo by [Chris Barbalis](https://unsplash.com/@cbarbalis) on [Unsplash](https://unsplash.com/photos/green-trees-with-fog-during-daytime-QDPo00WyGXg)](images/ch07/forest-mist-cropped.jpg){fig-alt="A dense, atmospheric forest shrouded in thick morning mist, representing the initial ambiguity of the research process." width="100%"}
 
 A weak research question dooms the entire project. You can have perfect data, sophisticated methods, and rigorous analysis, but if the question itself is vague, unanswerable, or trivial, the study contributes nothing.
 
@@ -58,7 +61,6 @@ This narrows platforms (TikTok), specifies the outcome (political efficacy), and
 
 Some questions use concepts that resist operationalization, the translation into concrete, observable variables.
 
-![*To answer a research question, we must translate abstract concepts into measurable data points.* - Photo by [Bret Lama](https://unsplash.com/@sepiatone) on [Unsplash](https://www.google.com/search?q=https://unsplash.com/photos/a-record-player-playing-a-record-on-a-turntable-MMX9xmcGSEg).](images/ch07/record-grooves-cropped.jpg){fig-alt="An extreme close-up of a vinyl record's surface, showing the microscopic grooves that represent physical data for sound." width="100%"}
 
 **Weak**: "Do authentic artists create better music?"
 
@@ -74,7 +76,6 @@ Now "authentic" is operationalized as "self-written lyrics" (verifiable) and "be
 
 Some questions are good in principle but impossible given your resources, timeline, or skills.
 
-![*A perfect question is useless if it cannot be answered within the constraints of your timeline and resources.* - Photo by [Aron Visuals](https://unsplash.com/@aronvisuals) on [Unsplash](https://unsplash.com/photos/selective-focus-photo-of-brown-and-blue-hourglass-on-stones-BXOXnQ26B7o).](images/ch07/hourglass-cropped.jpg){fig-alt="An hourglass sitting on a bed of stones, with sand running through the middle, symbolizing time constraints in research." width="100%"}
 
 **Weak for a semester project**: "How has hip-hop evolved globally from 1973 to 2024?"
 
@@ -293,7 +294,6 @@ The formula works regardless of domain. Swap the variables and context; the stru
 
 Sometimes you pose research questions. Sometimes you pose hypotheses. Understanding when to use which is crucial.
 
-![*Choosing between a research question and a hypothesis depends on whether you are exploring new territory or testing an established theory.* - Photo by [Jens Lelie](#0) on [Unsplash](#0).](images/ch07/fork-road-cropped.jpg){fig-alt="A road in a forest that splits into two distinct paths, symbolizing the decision point between exploratory and predictive research." width="100%"}
 
 ### Use Research Questions (RQs) When:
 
@@ -341,7 +341,6 @@ Causal research typically uses hypotheses because you're predicting that X cause
 
 First drafts of research questions are rarely optimal. Expect to revise multiple times.
 
-![*Strong research questions are not written; they are rewritten.* - Photo by [Steve Johnson](#0) on [Unsplash](#0).](images/ch07/crumbled-paper-cropped.jpg){fig-alt="A single piece of crumpled white paper sitting on a dark wooden table, representing the trial and error of the writing process." width="100%"}
 
 ### Iteration Example: From Vague to Precise
 

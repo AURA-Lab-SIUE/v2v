@@ -13,6 +13,10 @@ title: "Chapter 4: The Archivist"
 
 ---
 
+![Research documents and archival materials](../images/ch04-archive_1.jpg){fig-alt="Research documents and archival materials"}
+
+
+
 There's a moment in every research project when you realize the literature is deeper than you thought. You find an article that seems directly relevant to your question. It cites twelve other articles. You track down three of those, and each cites fifteen more. Within an hour, you've accumulated thirty sources you "should probably read," and the prospect of making sense of them all feels paralyzing.
 
 The instinct at this point is often to retreat, to narrow the scope artificially, focus on just a handful of recent articles, and hope that's sufficient. But this instinct, understandable as it is, misunderstands what a literature review actually does. It's not a checklist where you demonstrate you've read "enough" articles. It's a map of intellectual territory. And you can't map territory by looking at three landmarks and declaring the job done.

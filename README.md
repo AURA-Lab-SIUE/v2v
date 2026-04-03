@@ -1,53 +1,72 @@
 # From Vibes to Variables
 
-*A Field Guide to Open Media Science*
+*A Field Guide to Open Media Science — Second Edition*
 
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![Quarto Book](https://img.shields.io/badge/Built_with-Quarto-blue)](https://quarto.org)
 
-An open educational resource (OER) that guides students through the complete arc of a research project — from the first spark of curiosity to a published, reproducible study. Written for undergraduates in communication and media studies, it uses a real music industry dataset of 1,792 songs to teach research methods as structured storytelling.
+An open educational resource (OER) that guides students through the complete arc of a research project — from the first spark of curiosity to a published, reproducible study. Written for undergraduates and graduate students in communication and media studies, it uses a real music industry dataset of 1,792 songs to teach research methods as structured storytelling.
 
 **Read online:** <https://sim-lab-siue.github.io/vibes-to-variables/>
 
 **Author:** Alex P. Leith, Southern Illinois University Edwardsville
 
-**Course:** MC-451 Research Methods
+**Course:** MC-451 Research Methods in Mass Media
 
 ---
 
 ## Table of Contents
 
-The book is organized into five parts that mirror the phases of a research project:
+The book is organized into five parts across 22 chapters:
 
 ### Part I: Foundations
 1. The Architecture of Curiosity
 2. The Infrastructure of Trust
 3. The Reading Journal Protocol
-4. The Archivist
 
 ### Part II: Design
+4. The Archivist
 5. Choosing Your Lens
 6. The Roadmap
 7. The Research Question
+8. The Ethics of Inquiry
 
-### Part III: Measurement
-8. The Music Immersion
-9. Vibes to Variables
-10. The Rulebook
-11. The Pilot Test
+### Part III: Methods
+9. The Methodologist's Toolkit
+10. Qualitative Methods
+11. Designing Surveys
+12. Designing Experiments
+13. Music Immersion
+14. Vibes to Variables
+15. The Rulebook
+16. The Sampling Plan and Pilot Test
 
 ### Part IV: Analysis
-12. Wrangling the Chaos
-13. Seeing Patterns
-14. The Surprise Detector
-15. Interpreting the Call
+17. Wrangling the Chaos
+18. Seeing Patterns
+19. The Surprise Detector
+20. Interpreting the Call
 
-### Part V: Communication
-16. The Portfolio
-17. Going Live
+### Part V: Publishing
+21. The Portfolio
+22. Going Live
 
 ### Appendices
 - Data Dictionary — Complete variable reference for the unified music dataset
+
+---
+
+## What's New in the Second Edition
+
+The second edition expands from 17 to 22 chapters, adding:
+
+- **Research ethics** (Ch 8) — Belmont Report, IRB, ethics of analyzing public digital content
+- **Methods landscape** (Ch 9) — where content analysis fits alongside surveys, experiments, and qualitative research
+- **Qualitative methods** (Ch 10) — interviews, focus groups, thematic analysis as standalone approaches
+- **Survey design** (Ch 11) — questionnaire construction, sampling theory, and validity
+- **Experimental design** (Ch 12) — causation, control groups, and threats to validity
+
+Every chapter now includes graduate extensions with assigned readings and advanced prompts, non-music examples from news, social media, and political communication, and verified citations throughout.
 
 ---
 
@@ -59,7 +78,7 @@ Visit <https://sim-lab-siue.github.io/vibes-to-variables/> for the full HTML boo
 
 ### Offline via coursepackR
 
-If you have the [`coursepackR`](https://github.com/SIM-Lab-SIUE/coursepackR) R package installed, all 17 chapters are bundled for offline access:
+If you have the [`coursepackR`](https://github.com/SIM-Lab-SIUE/coursepackR) R package installed, all 22 chapters are bundled for offline access:
 
 ```r
 # Path to a specific chapter
@@ -94,7 +113,7 @@ Output goes to `docs/`. Open `docs/index.html` in your browser.
 quarto render --to pdf
 ```
 
-This requires a LaTeX distribution (TinyTeX recommended: `quarto install tinytex`). The PDF is written to `docs/From-Vibes-to-Variables.pdf`.
+This requires a LaTeX distribution (TinyTeX recommended: `quarto install tinytex`).
 
 ---
 
@@ -124,8 +143,6 @@ See the [Data Dictionary appendix](https://sim-lab-siue.github.io/vibes-to-varia
 
 This work is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
 
-You are free to share and adapt this material for any purpose, including commercially, as long as you give appropriate credit.
-
 ## Citation
 
-> Leith, A. P. (2026). *From Vibes to Variables: A Field Guide to Open Media Science*. Southern Illinois University Edwardsville. <https://sim-lab-siue.github.io/vibes-to-variables/>
+> Leith, A. P. (2026). *From Vibes to Variables: A Field Guide to Open Media Science* (2nd ed.). Southern Illinois University Edwardsville. <https://sim-lab-siue.github.io/vibes-to-variables/>

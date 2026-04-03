@@ -12,6 +12,10 @@ title: "Chapter 14: Vibes to Variables"
 
 ---
 
+![Measuring tools representing operationalization](../images/ch14-measuring_2.jpg){fig-alt="Measuring tools representing operationalization"}
+
+
+
 During immersion (Chapter 13), you developed what we might call "fluency" with the dataset. You listened to songs, read lyrics, noticed patterns, documented edge cases. You can now articulate observations like "this song feels empowering despite negative content" or "tempo seems to shape how sadness is experienced."
 
 These are valuable insights. But they're not yet *measurable*.

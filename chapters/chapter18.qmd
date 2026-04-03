@@ -15,6 +15,10 @@ title: "Chapter 18: Seeing Patterns"
 
 ---
 
+![Data visualization chart on a screen](../images/ch18-chart_2.jpg){fig-alt="Data visualization chart on a screen"}
+
+
+
 Numbers alone don't tell stories. Tables communicate precisely but demand effort from readers. A correlation coefficient of r = 0.67 is meaningful if you understand statistics, but it's abstract. Most people, including many researchers, struggle to intuit what that number means in practice.
 
 Visualization makes patterns visible.

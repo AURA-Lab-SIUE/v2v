@@ -12,6 +12,10 @@ title: "Chapter 10: Qualitative Methods"
 
 ---
 
+![Group discussion representing focus group research](../images/ch10-focus-group_3.jpg){fig-alt="Group discussion representing focus group research"}
+
+
+
 There is a moment in every content analysis project when something important gets lost. You've coded 200 songs for lyric sentiment. Your data show that 38% are negative, 31% are positive, 19% are mixed, and 12% are neutral. You run a chi-square test and find a statistically significant relationship between sentiment and chart position. You have a finding.
 
 But you don't know *why*.

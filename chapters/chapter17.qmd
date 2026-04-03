@@ -14,6 +14,10 @@ title: "Chapter 17: Wrangling the Chaos"
 
 ---
 
+![Neatly organized cables representing clean data](../images/ch17-clean_4.jpg){fig-alt="Neatly organized cables representing clean data"}
+
+
+
 You've completed the qualitative work. You immersed in your data (Chapter 12), operationalized concepts (Chapter 13), built a codebook (Chapter 14), pilot tested it (Chapter 15), and coded your full sample of 200 songs. You have data.
 
 But data, in its raw form, is rarely ready for analysis.

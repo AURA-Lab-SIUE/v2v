@@ -15,6 +15,10 @@ title: "Chapter 21: The Portfolio"
 
 ---
 
+![Professional portfolio document](../images/ch21-portfolio_2.jpg){fig-alt="Professional portfolio document"}
+
+
+
 You've completed your research. You have:
 
 - A research question grounded in theory (Chapter 7)
@@ -282,7 +286,7 @@ music_data %>%
 
 **`tbl-cap`** creates the table caption. Quarto automatically numbers tables.
 
-**Reference the table in text**: "As shown in @tbl-descriptives, negative sentiment songs had higher average tempo..."
+**Reference the table in text**: "As shown in `@tbl-descriptives`, negative sentiment songs had higher average tempo..."
 
 ### Contingency Table
 
@@ -326,7 +330,7 @@ ggplot(music_data, aes(x = Lyric_Sentiment, fill = Lyric_Sentiment)) +
 
 **`fig-cap`** creates the figure caption. Quarto automatically numbers figures.
 
-**Reference in text**: "Figure @fig-sentiment-dist shows the distribution of sentiment categories in our sample."
+**Reference in text**: "Figure `@fig-sentiment-dist` shows the distribution of sentiment categories in our sample."
 
 ### Scatterplot with Regression Line
 
@@ -573,8 +577,8 @@ Creates Figure 1 with panels (a) and (b).
 ### Cross-References
 
 ```markdown
-As shown in @tbl-descriptives, the mean tempo varied by sentiment. 
-This pattern is visualized in @fig-tempo-chart (panel b).
+As shown in `@tbl-descriptives`, the mean tempo varied by sentiment. 
+This pattern is visualized in `@fig-tempo-chart` (panel b).
 
 ## Method {#sec-method}
 

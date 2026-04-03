@@ -12,6 +12,10 @@ title: "Chapter 9: The Methodologist's Toolkit"
 
 ---
 
+![Collection of tools representing research methods](../images/ch09-toolkit_1.jpg){fig-alt="Collection of tools representing research methods"}
+
+
+
 Imagine four researchers walk into a conference, each studying the same broad topic: how media coverage of mental health has changed over the past decade. They've read the same literature. They share the same curiosity. But they've chosen different methods, and as a result, they've produced four fundamentally different studies.
 
 **Researcher A** conducted a **content analysis** of 500 newspaper articles about depression, coding each for whether the coverage framed depression as a personal failing or a medical condition. She found that medical framing increased from 35% to 62% over the decade, while personal-responsibility framing declined.

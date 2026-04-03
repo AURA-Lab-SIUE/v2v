@@ -15,6 +15,10 @@ title: "Chapter 20: Interpreting the Call"
 
 ---
 
+![Judge gavel representing making a research call](../images/ch20-gavel_2.jpg){fig-alt="Judge gavel representing making a research call"}
+
+
+
 You ran the tests. You got your p-values. Some were significant (p < 0.05), some weren't. Some confidence intervals overlapped, some didn't. The numbers are in front of you.
 
 Now comes the hard part: What do they *mean*?

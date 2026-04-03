@@ -14,6 +14,10 @@ title: "Chapter 16: The Sampling Plan and Pilot Test"
 
 ---
 
+![Dice representing probability and random sampling](../images/ch16-dice_3.jpg){fig-alt="Dice representing probability and random sampling"}
+
+
+
 Before you can code your data, you need to make two critical decisions. First: *which* data will you code? This is the sampling plan. Second: *does your codebook work*? This is the pilot test.
 
 These two steps bridge the gap between design and execution. The sampling plan applies the probability theory from Chapter 11 to your specific content analysis, ensuring your selected cases represent the broader population you want to describe. The pilot test applies the codebook from Chapter 15 to a subset of that sample, verifying that your measurement instrument produces reliable results before you commit to coding the full dataset.

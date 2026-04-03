@@ -13,6 +13,10 @@ title: "Chapter 12: Designing Experiments"
 
 ---
 
+![Visual representation of cause and effect relationships](../images/ch12-cause-effect_1.jpg){fig-alt="Visual representation of cause and effect relationships"}
+
+
+
 Here is a question that seems simple: Does listening to sad music make people sadder?
 
 You could ask people. Survey 500 listeners: "When you listen to sad music, does it make you feel sad?" Most would probably say yes. But self-report is unreliable here. People may not accurately perceive their own emotional shifts. They may confuse the mood they brought to the music with the mood the music produced. And the question itself primes the answer: if you ask someone whether sad music makes them sad, you've essentially told them the expected response.

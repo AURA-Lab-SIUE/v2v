@@ -15,6 +15,10 @@ title: "Chapter 22: Going Live"
 
 ---
 
+![Rocket launch representing going live with research](../images/ch22-rocket_1.jpg){fig-alt="Rocket launch representing going live with research"}
+
+
+
 Your research is complete. You have a polished Quarto report (Chapter 21) with reproducible code, publication-quality figures, and honestly interpreted findings. You've learned the entire research cycle: from curiosity to conclusion, from vibes to variables, from immersion to interpretation.
 
 But research that stays on your laptop doesn't matter.

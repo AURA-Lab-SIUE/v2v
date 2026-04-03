@@ -13,6 +13,10 @@ title: "Chapter 15: The Rulebook"
 
 ---
 
+![Organized checklist representing codebook structure](../images/ch15-checklist_1.jpg){fig-alt="Organized checklist representing codebook structure"}
+
+
+
 A codebook is not optional. It's not something you create after coding is complete to satisfy a methods professor's checklist. It's the foundation of reliable content analysis.
 
 Think of it this way: if your coding process were software, the codebook would be the source code. It specifies every operation, handles every conditional, and ensures that two "processors" (human coders) running the same program (codebook) on the same input (data) produce identical output (coded variables).
