@@ -134,8 +134,8 @@ See the [Data Dictionary appendix](https://sim-lab-siue.github.io/vibes-to-varia
 
 | Project | Description | Link |
 |---------|-------------|------|
-| **coursepackR** | R package with helper functions, dataset, and weekly templates | [GitHub](https://github.com/SIM-Lab-SIUE/coursepackR) |
-| **liaison-program** | Course support website with syllabus, setup guides, and resources | [GitHub](https://github.com/SIM-Lab-SIUE/liaison-program) |
+| **Open Methods Hub** | Course website — syllabus, R workbook (with videos), Methods Vault, setup guides | [Visit Site](https://sim-lab-siue.github.io/liaison-program/) \| [GitHub](https://github.com/SIM-Lab-SIUE/liaison-program) |
+| **coursepackR** | R package — helper functions, `unified_music` dataset, weekly templates | [Docs](https://sim-lab-siue.github.io/coursepackR/) \| [GitHub](https://github.com/SIM-Lab-SIUE/coursepackR) |
 
 ---
 
