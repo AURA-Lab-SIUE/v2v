@@ -12,6 +12,8 @@ book:
   repo-url: https://github.com/SIM-Lab-SIUE/vibes-to-variables
   repo-actions: [issue]
   search: true
+  sidebar:
+    collapse-level: 1
   chapters:
     - index.qmd
     - part: "Part I: Foundations"
