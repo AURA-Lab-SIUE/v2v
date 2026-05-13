@@ -2,71 +2,118 @@
 title: "Data Dictionary"
 ---
 
-# Unified Music Dataset {.unnumbered}
+# The Twitch Dataset {.unnumbered}
 
-The `unified_music` dataset contains 1,792 songs with variables from three sources: Billboard chart data, Spotify audio features, and Genius metadata.
+Every example, exercise, and walkthrough in *Vibes to Variables* derives from a single dataset: a 2018-11-18 to 2018-11-24 snapshot of public Twitch IRC chat and concurrent stream metadata. One corpus, six days, two tables. Students learn one community deeply rather than four shallowly.
 
-## Loading the Data
+The full dump contains 21,964,296 chat messages and 590,876 stream snapshots across 1,695 channels and 457 games. For the book, that has been distilled to a 50-channel working corpus shipped with the `v2v` R package. Eight of those channels are **anchor channels**, referenced repeatedly in the textbook's worked examples. The other 42 are a stratified random sample by chat-volume decile from the broader population of 1,690 joinable channels, drawn so that Chapter 10's stratified-sampling lesson works against a real sample frame rather than a curated friends list.
+
+## Loading the data
 
 ```r
-library(coursepackR)
-data(unified_music)
+library(v2v)
+
+# Direct (data objects exposed by the package)
+data(twitch_chat_sample,    package = "v2v")
+data(twitch_streams_sample, package = "v2v")
+
+# Or via the loader functions introduced in Chapter 9
+chat    <- v2v::twitch_chat()
+streams <- v2v::twitch_streams()
 ```
 
-## Variables
+Both forms return tibble-compatible data frames. The loader functions accept optional filter arguments (`channels`, `games`, `n`) for the worked examples in later chapters.
 
-### Identification
+## `twitch_chat_sample`: chat-message rows
 
-| Variable | Type | Description |
-|----------|------|-------------|
-| `Song` | character | Song title |
-| `Artist` | character | Artist name |
-| `track_id` | character | Spotify track identifier |
-| `track_album_id` | character | Spotify album identifier |
-| `track_album_name` | character | Album title |
-| `track_album_release_date` | character | Album release date |
+| Column | R class | Range or values | Notes |
+|---|---|---|---|
+| `id` | integer | primary key | Surrogate identifier from the source database |
+| `channel` | character | 50 distinct values | **In the raw dump, prefixed with `#`** (IRC convention). The shipped fixture has the prefix stripped so `channel` joins cleanly to `twitch_streams_sample`. Recovering the IRC representation is a Chapter 11 exercise |
+| `sender` | character | tens of thousands distinct | Pseudonymous Twitch username; public on the IRC feed; chosen by the user |
+| `message` | character | 1 to 509 chars | UTF-8; includes Twitch emote tokens (`LULW`, `OMEGALUL`, `KEKW`, `Pog`, `Kappa`, etc.) as first-class lexical items |
+| `date` | integer (bigint) | 1542578125327 to 1543083667610 | **Unix epoch in milliseconds**, not seconds. Convert with `as.POSIXct(date / 1000, origin = "1970-01-01", tz = "UTC")`. This is the headline Chapter 11 conversion lesson |
 
-### Billboard Chart Performance
+Approximately 35,000 rows total. Per-channel sample size is `min(1000, available)`: most channels contribute the full 1,000 messages, but 19 of the 50 contribute fewer because they had fewer than 1,000 messages during the collection window. This per-channel imbalance is itself part of the population structure students should see.
 
-| Variable | Type | Description |
-|----------|------|-------------|
-| `Max_Rank` | integer | Highest chart position achieved (1 = top) |
-| `Average_Rank` | numeric | Average chart position |
-| `First_Week_on_Board` | character | Date of first chart appearance |
-| `First_Rank_on_Board` | integer | Chart position on first appearance |
-| `Last_Week_on_Board` | character | Date of last chart appearance |
-| `Last_Rank_on_Board` | integer | Chart position on last appearance |
-| `Weeks_on_Board` | integer | Total weeks on the chart |
+## The 8 anchor channels
 
-### Spotify Audio Features
+These channels appear in named-vignette worked examples throughout the textbook:
 
-| Variable | Type | Range | Description |
-|----------|------|-------|-------------|
-| `danceability` | numeric | 0–1 | How suitable for dancing (tempo, rhythm stability, beat strength) |
-| `energy` | numeric | 0–1 | Perceptual measure of intensity and activity |
-| `valence` | numeric | 0–1 | Musical positivity (high = happy/cheerful, low = sad/angry) |
-| `tempo` | numeric | BPM | Estimated tempo in beats per minute |
-| `loudness` | numeric | dB | Overall loudness in decibels |
-| `speechiness` | numeric | 0–1 | Presence of spoken words |
-| `acousticness` | numeric | 0–1 | Confidence that the track is acoustic |
-| `instrumentalness` | numeric | 0–1 | Predicts whether a track contains no vocals |
-| `liveness` | numeric | 0–1 | Detects presence of an audience |
-| `duration_ms` | integer | ms | Track duration in milliseconds |
-| `key` | integer | 0–11 | Musical key (0 = C, 1 = C#, etc.) |
-| `mode` | integer | 0–1 | Modality (0 = minor, 1 = major) |
-| `track_popularity` | integer | 0–100 | Spotify popularity score |
+| Channel | Top game in the window | Why this channel earns named-anchor status |
+|---|---|---|
+| `xqcow` | Just Chatting | Top chat volume in the entire corpus; variety streamer (Just Chatting is a non-game category) |
+| `forsen` | The Elder Scrolls V: Skyrim | RPG; concentrated repeat-audience (the lowest sender-to-message ratio in the anchor set) |
+| `sodapoppin` | Hand Simulator | Variety streamer with a long-tail game; 22,919 average viewers despite the obscure category |
+| `asmongold` | World of Warcraft | MMO; broad-audience streamer |
+| `loltyler1` | League of Legends | MOBA; peak audience in the focal set (78,340 concurrent viewers) |
+| `disguisedtoast` | Pokemon Let's Go | Pokemon Let's Go launched November 16, 2018, two days before the collection window opened |
+| `giantwaffle` | Rocket League | Esports-adjacent; highest snapshot density among the top-chat streamers |
+| `bobross` | Art | Non-gaming contrast. The late painter's PBS series, on a continuous Twitch loop since November 2015 |
 
-### Genre Classification
+## The 42 stratified additions
 
-| Variable | Type | Description |
-|----------|------|-------------|
-| `playlist_name` | character | Source Spotify playlist |
-| `playlist_id` | character | Spotify playlist identifier |
-| `playlist_genre` | character | Genre category |
-| `playlist_subgenre` | character | Subgenre category |
+The remaining 42 channels are drawn by stratified random sample: the 1,682 non-anchor channels are sorted by chat volume during the collection window, partitioned into 10 deciles, and 4 channels are drawn at random from each decile (plus 2 random fills). Seed: 20261113.
 
-### Other
+The resulting 42 channels span:
 
-| Variable | Type | Description |
-|----------|------|-------------|
-| `year` | integer | Release year |
+- The full chat-volume distribution, from channels with over 100,000 messages in the window down to channels with single-digit message counts.
+- Additional non-gaming categories beyond Bob Ross: comedy (RiffTrax), sports (NFL Redzone), variety streaming.
+- Mid-tier gaming streamers across MOBA, FPS, RPG, sports, and party-game categories.
+- Smaller communities and niche channels that round out what the long tail of Twitch actually looked like in late 2018.
+
+A full per-channel breakdown lives in the V2V data report.
+
+## `twitch_streams_sample`: stream-snapshot rows
+
+| Column | R class | Range or values | Notes |
+|---|---|---|---|
+| `id` | integer | primary key | Surrogate identifier |
+| `channel` | character | 50 distinct values | No `#` prefix; matches the normalized `chat_log.channel` in `twitch_chat_sample` |
+| `title` | character | up to 128 chars; some NULL | Current stream title at snapshot time |
+| `game` | character | 25+ distinct; some NULL | Current Twitch category. Includes both gaming categories and non-gaming categories (Just Chatting, Art, Music & Performing Arts, Sports & Fitness, Talk Shows & Podcasts) |
+| `viewers` | integer | 0 to ~78,000 | Concurrent viewer count, as reported by Twitch at snapshot time. Not de-botted |
+| `date` | integer (bigint) | 1542578200214 to 1543083621279 | Unix epoch in milliseconds; same conversion rule as `twitch_chat_sample.date` |
+
+Approximately 32,000 rows. This is the **full** focal-50 stream coverage (no sampling); the underlying snapshot count is small enough to bundle in entirety.
+
+## Joining the tables
+
+A typical analysis joins each chat message to the nearest-prior stream snapshot on the same channel. The pattern Chapter 11 develops:
+
+```r
+library(dplyr)
+library(lubridate)
+
+chat <- twitch_chat_sample |>
+  mutate(ts = as.POSIXct(date / 1000, origin = "1970-01-01", tz = "UTC"))
+
+streams <- twitch_streams_sample |>
+  mutate(ts = as.POSIXct(date / 1000, origin = "1970-01-01", tz = "UTC"))
+
+joined <- chat |>
+  arrange(channel, ts) |>
+  left_join(
+    streams |> arrange(channel, ts) |> select(channel, ts, game, viewers),
+    by = join_by(channel, closest(ts >= ts))
+  )
+```
+
+On the full focal corpus, this join produces a 99.95% match rate. The 0.05% unmatched chat messages are messages whose timestamp precedes the first stream_log snapshot for their channel during the collection window: a Chapter 11 discussion of `left_join` vs `inner_join` semantics.
+
+## What this dataset cannot answer
+
+A six-day snapshot supports a narrow class of research questions well, and rules others out:
+
+- **Supported:** within-stream dynamics (chat density vs viewer trajectory), across-channel comparisons (how does Bob Ross's audience differ from xqcow's), category-level audience structure (gaming vs non-gaming), codebook design and reliability work on real chat text, sampling design and stratification, the long-tail Twitch ecosystem.
+- **Not supported:** longitudinal cohort analysis, seasonality, holiday effects, long-term audience evolution, post-collection Twitch policy changes.
+
+Chapter 6 (The Prospectus) teaches students to align research question scope with data scope. This dataset is the standing demonstration of why that alignment matters.
+
+## Ethics framing in brief
+
+Twitch IRC chat is public by default and visible to every concurrent viewer in real time. Usernames are pseudonymous and self-chosen. The dataset contains no IP addresses, no email addresses, no Twitch internal user IDs, no payment data, no subscription status, and no whisper or private-message content. Three published manuscripts have already analyzed adjacent slices of this data infrastructure under an exempt-by-design IRB determination based on the public-channel basis. Chapter 3 walks the full ethics determination from Belmont Report principles through SIUE IRB tiers, using this dataset as the worked example.
+
+## Full data report and provenance
+
+The detailed data report (maintained in the SIM Lab research tree at `D:/hub/academic/research/sim-lab/v2v/data/report/v2v-data-report.md`) documents the full extraction pipeline, top-line statistics on the full 22-million-row corpus, the 50-channel sampling design with seed and per-channel breakdown, chapter-keyed analytical results that match every number quoted in chapter prose, and the population vs. sample distinctions students should learn to track. Students who want to know "where did this number come from" should be pointed to that report.
