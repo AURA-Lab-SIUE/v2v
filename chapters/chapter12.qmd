@@ -1,426 +1,188 @@
----
-title: "Chapter 12: Designing Experiments"
----
-
-## Learning Objectives
-
-- Understand the three requirements for establishing causation
-- Identify the key components of experimental design: independent variable, dependent variable, random assignment, and control group
-- Distinguish between pre-experimental, true experimental, and quasi-experimental designs
-- Recognize threats to internal and external validity
-- Evaluate published experiments for the strength of their causal claims
-- Connect the ethics of experimentation to the principles established in Chapter 8
-
+﻿---
+title: "Chapter 12: Visualizing the narrative"
 ---
 
-![Visual representation of cause and effect relationships](../images/ch12-cause-effect_1.jpg){fig-alt="Visual representation of cause and effect relationships"}
+![](../images/ch12-cause-effect_1.jpg){fig-alt="A stylized rendering of a scatter of dots resolving into a clear rising line."}
 
+Chapter 11 ended with a single tidy table, `analysis`, a little over thirty-five thousand rows wide. That table is a complete and faithful record of the chat study's data, and it is almost impossible to read. Nobody can scroll thirty-five thousand rows and come away knowing whether gaming chat runs longer than non-gaming chat, or when in the day the channels are busiest. The numbers are all present. The pattern is not visible.
 
+A figure is the instrument that makes the pattern visible. It takes a column of numbers too long to hold in the mind and turns it into a shape the eye can read at a glance: a line that rises, a bar that towers over its neighbors, a distribution that leans hard to one side. This chapter builds three such figures from the analysis table. Each one answers a question the study has been carrying since its prospectus, and each one is a different kind of chart, chosen to fit a different kind of question.
 
-Here is a question that seems simple: Does listening to sad music make people sadder?
+The chapter's title is a claim about what that work is for. A figure does not merely display data. A well-made figure carries an argument: it shows the reader what the analyst found and why it matters. Visualization is not decoration applied after the analysis. It is part of the analysis, and it is where the study's narrative first becomes something other people can see.
 
-You could ask people. Survey 500 listeners: "When you listen to sad music, does it make you feel sad?" Most would probably say yes. But self-report is unreliable here. People may not accurately perceive their own emotional shifts. They may confuse the mood they brought to the music with the mood the music produced. And the question itself primes the answer: if you ask someone whether sad music makes them sad, you've essentially told them the expected response.
+## The grammar of graphics
 
-You could observe behavior. Track Spotify listening patterns and correlate them with mood data from a wearable device. If people who listen to more sad music also register lower mood scores, you might have something. But you'd also have the self-selection problem: maybe people who are already sad choose sad music to match their mood. The music didn't cause the sadness; the sadness caused the music choice. Correlation, no matter how robust, cannot untangle the direction.
+The figures in this chapter are built with **ggplot2**, the R package that has become the standard tool for statistical graphics (Wickham, 2016). What makes ggplot2 worth learning is not a catalog of chart types. It is a single idea, borrowed from a book by Leland Wilkinson called _The Grammar of Graphics_ (Wilkinson, 2005): that every statistical graphic can be described as the same small set of parts, combined in different ways.
 
-To answer this question with confidence, you need an experiment. You need to take a group of people, randomly split them into two conditions, play sad music for one group and neutral music for the other, and measure mood afterward. If the sad-music group is measurably sadder than the neutral-music group, and the only difference between the groups was the music they heard, you have evidence that the music caused the mood change.
+Three parts do most of the work. The first is the **data**, the table being shown. The second is a set of **aesthetic mappings**, which say how columns of that table correspond to visual properties of the plot: this column to the horizontal position, that column to the vertical position, a third to color. The third is a **geometry**, the kind of mark used to draw the data, a line or a bar or a point. Choose the data, map the columns to aesthetics, pick a geometry, and a plot is specified.
 
-This is the logic of experimental design, and it is the only method that can establish causation. Content analysis tells you what's in the message. Surveys tell you what people think. Qualitative methods tell you what things mean. Experiments tell you what causes what.
+In code the three parts sit in a recognizable skeleton:
 
-## The Three Requirements for Causation
+```r
+ggplot(data, aes(x = ..., y = ...)) +
+  geom_line()
+```
 
-Establishing that X causes Y requires meeting three conditions. All three must hold simultaneously; meeting only one or two is insufficient.
+`ggplot()` names the data and, inside `aes()`, the aesthetic mappings. `geom_line()` is the geometry. The `+` is ggplot2's way of stacking layers: each piece is added to the plot, and a figure is assembled by composition rather than written all at once. Changing one part changes the figure without disturbing the rest. Swap `geom_line()` for `geom_col()` and the same data is drawn as bars. That is the payoff of a grammar. A handful of interchangeable parts covers an enormous range of figures, and learning the parts is learning all of them at once.
 
-### 1. Covariation
+The three figures that follow are three settings of the same grammar.
 
-X and Y must be related. When X changes, Y changes. If you increase the dosage, the symptoms decrease. If you change the frame, the attitude shifts. Without covariation, there is no relationship to explain.
+## A line for change over time
 
-But covariation alone proves nothing about causation. Ice cream sales and drowning deaths covary across months: both increase in summer. Ice cream does not cause drowning. A third variable (hot weather) causes both.
+The first question is about viewership. Across the collection week, how did the audience for these fifty channels move, and how was it split across the games being played?
 
-### 2. Temporal Precedence
+When the horizontal axis is time and the vertical axis is a quantity that rises and falls, the natural geometry is the **line chart**. A line connects one moment to the next, and the eye reads the climb and the drop as a single continuous motion. That is what makes a line right for change over time and wrong for unordered categories: it implies that the points are in sequence and that the space between them is real.
 
-The cause must precede the effect. X must happen before Y. If you want to claim that sad music causes sadness, you must show that the music came first and the sadness followed. This seems obvious, but it's precisely what cross-sectional surveys cannot establish. When a survey finds that heavy news consumers hold more fearful attitudes about crime, it cannot determine whether news consumption caused the fear or whether fearful people seek out crime news. Both happened simultaneously from the survey's perspective.
+The data needs shaping first, the kind of dplyr work Chapter 11 covered. The stream snapshots are grouped into six-hour buckets, the long tail of games is collapsed so that only the five most common categories keep their names and the rest become "Other," and the viewer counts are summed within each bucket:
 
-Experiments solve temporal precedence by design: the researcher introduces X (the manipulation) and then measures Y (the outcome). The sequence is built into the procedure.
+```r
+library(tidyverse)
 
-### 3. Elimination of Alternative Explanations
+viewers_over_time <- streams |>
+  mutate(
+    timestamp = as.POSIXct(date / 1000, origin = "1970-01-01", tz = "UTC"),
+    six_hour  = floor_date(timestamp, "6 hours"),
+    category  = fct_lump_n(game, n = 5)
+  ) |>
+  group_by(six_hour, category) |>
+  summarise(total_viewers = sum(viewers), .groups = "drop")
+```
 
-Even if X and Y covary and X precedes Y, some third variable might be causing both. The summer-weather variable causes both ice cream sales and drowning. A personality trait (neuroticism) might cause both heavy news consumption and fearful attitudes.
+With the data in shape, the figure itself is short. The aesthetic mappings send the time bucket to the x-axis, the summed viewers to the y-axis, and the game category to color, so each category gets its own line:
 
-Experiments address this through **random assignment**: participants are assigned to conditions by chance (typically a random number generator), not by choice. When assignment is truly random, the groups are statistically equivalent on all characteristics, observed and unobserved, before the manipulation. Any difference between groups after the manipulation can therefore be attributed to the manipulation itself, because the groups started out the same.
+```r
+ggplot(viewers_over_time, aes(x = six_hour, y = total_viewers, color = category)) +
+  geom_line(linewidth = 0.9) +
+  labs(
+    title = "Concurrent viewers by game category",
+    x = "Date (UTC, six-hour buckets)",
+    y = "Total viewers in bucket",
+    color = "Category"
+  ) +
+  v2v::theme_v2v()
+```
 
-This is the decisive advantage of experimentation over every other method. Random assignment eliminates alternative explanations, not by measuring and controlling for confounds one by one (which surveys attempt through statistical controls), but by distributing all possible confounds equally across conditions.
+The last line is worth a note. `v2v::theme_v2v()` applies a single consistent visual theme, the fonts, spacing, and gridlines of a publication-ready figure, in one call. Every figure in this chapter ends with it, so the three look like members of one set rather than three unrelated charts.
 
-## The Anatomy of an Experiment
+![Total concurrent viewers across the focal fifty channels, summed within six-hour UTC buckets and split by game category, over the November 2018 collection week.](../images/fig12-1-viewers-by-game.png){fig-alt="A line chart with one line per game category across November 18 to 24, 2018. The Other category towers over the rest, spiking above 20 million viewers several times, while Art, Fortnite, Hearthstone, Just Chatting, and Pokemon stay low near the axis."}
 
-Every experiment shares four core components.
+The figure has an obvious headline. The line that dominates the plot is "Other," the catch-all holding every game outside the top five, and it spikes far above any named category. That fact can be read two ways, and a careful analyst holds both. One reading is substantive: the viewership in this corpus is genuinely spread across a long tail of games, with no single title commanding the audience the way a casual observer might expect. The other reading is a caution about the chart's own choices: lumping more than fifty categories into one bucket all but guarantees that bucket will be the largest, so part of what the figure shows is an artifact of where the line between "named" and "Other" was drawn. There is also a plain design cost. Because "Other" is so large, the five named lines are pressed into the bottom of the plot, and the comparison a reader might most want, how Fortnite moved against Just Chatting across the week, is hard to make. A dominant series can crowd out the rest, and noticing that is part of reading a figure honestly.
 
-### The Independent Variable (IV): What You Manipulate
+## A bar for counts
 
-The IV is the factor the researcher deliberately varies across conditions. It is the hypothesized cause.
+The second question is about timing. The chat data spans a little under six days; across the hours of the day, when are the channels busiest?
 
-**Examples**:
+Hour of day is not a continuous sweep the way a date is. It is a set of twenty-four discrete categories, and the thing being measured for each is a simple count of messages. For counts across discrete categories, the natural geometry is the **bar chart**: one bar per category, its height the count, the bars sitting side by side so the eye can compare them.
 
-- News frame type (episodic vs. thematic)
-- Music tempo (fast vs. slow)
-- Advertising appeal (emotional vs. rational)
-- Message source (expert vs. peer)
-- Song lyric sentiment (positive vs. negative vs. neutral)
+The data is one short pipeline. The hour is pulled out of each message's timestamp, and the messages are counted within each hour:
 
-The IV must have at least two levels (conditions). Some experiments use more. A study might compare three framing conditions (episodic, thematic, and no-frame control) to assess whether any framing differs from a baseline.
+```r
+chat_by_hour <- analysis |>
+  mutate(hour = hour(timestamp)) |>
+  count(hour, name = "messages")
 
-### The Dependent Variable (DV): What You Measure
+ggplot(chat_by_hour, aes(x = hour, y = messages)) +
+  geom_col(fill = "#2f7d8a") +
+  labs(
+    title = "Chat volume by hour of day",
+    x = "Hour of day (UTC)",
+    y = "Messages in sample"
+  ) +
+  v2v::theme_v2v()
+```
 
-The DV is the outcome the researcher measures. It is the hypothesized effect.
+`geom_col()` is the geometry that draws a bar whose height is a value already computed, which is what `count()` produced.
 
-**Examples**:
+![Total chat messages in the sample by hour of day in UTC, across the collection window.](../images/fig12-2-chat-by-hour.png){fig-alt="A bar chart of message counts for each of the 24 hours of the day in UTC. Bars are tallest around 13:00, 16:00, and 17:00, reaching roughly 2,200 messages, and shortest around 03:00, near 830 messages."}
 
-- Self-reported mood (measured by survey items after exposure)
-- Policy support (measured by agreement with spending proposals)
-- Information recall (measured by quiz performance)
-- Behavioral intention (measured by willingness to donate, purchase, or share)
-- Physiological response (measured by heart rate, skin conductance)
+The figure shows a clear daily pulse. Chat is busiest through the UTC midday and afternoon, peaking at 13:00 with 2,201 messages, and quietest in the small hours, bottoming out at 03:00 with 833, a swing of well over two to one between the loudest hour and the quietest. The shape is not mysterious. Twitch's audience in 2018 was concentrated in the Americas and Europe, and the UTC midday and afternoon are the waking, screen-facing hours across that span, while 03:00 UTC is the middle of the night for most of it. The point worth taking is less the particular peak than what the bar chart does: it takes twenty-four numbers and makes a rhythm visible in one glance, which is exactly the job a bar chart is for.
 
-The DV must be measured the same way across all conditions. If one group completes a paper survey and another completes an online survey, differences in responses might reflect measurement mode rather than the experimental manipulation.
+## A histogram for shape
 
-### Random Assignment: The Engine of Causation
+The third question is the study's central one. The chat study set out to compare gaming and non-gaming channels through message length. So: how long is a chat message, and does the answer depend on the kind of channel?
 
-Each participant is assigned to a condition by chance. This ensures that the groups are comparable before the manipulation. Without random assignment, the experiment is not a true experiment; it is a quasi-experiment (discussed below), and its causal claims are weaker.
+This question is not about a total or a trend. It is about a **distribution**, the shape of how a single variable's values spread out, where they cluster and where they thin. The geometry for a distribution is the **histogram**. A histogram slices the range of a numeric variable into equal intervals, called **bins**, and draws a bar for each showing how many values fall inside it. The result is a picture of the variable's shape.
 
-**The logic**: If you randomly assign 200 participants to two conditions, the groups will be approximately equal in age, gender, personality, prior attitudes, media habits, and every other variable, both the ones you measured and the ones you didn't. This isn't guaranteed for any individual participant (one group might have slightly more women), but across many participants, the randomization averages out differences. When the groups differ on the DV after the manipulation, the manipulation is the most parsimonious explanation.
+The figure overlays two histograms, one for gaming channels and one for non-gaming, so the shapes can be compared directly. Messages with no gaming label, the unmatched rows Chapter 11 set aside, are dropped first, and message lengths are capped at 120 characters for the view:
 
-### The Control Group: The Counterfactual
+```r
+msglen <- analysis |>
+  filter(!is.na(is_gaming)) |>
+  mutate(length_shown = pmin(message_length, 120))
 
-The **control group** receives no manipulation (or a neutral/placebo version). It represents what would have happened without the experimental treatment.
+ggplot(msglen, aes(x = length_shown, fill = is_gaming)) +
+  geom_histogram(binwidth = 5, position = "identity", alpha = 0.55) +
+  labs(
+    title = "Message length, gaming versus non-gaming channels",
+    x = "Message length (characters, capped at 120)",
+    y = "Messages",
+    fill = "Gaming channel"
+  ) +
+  v2v::theme_v2v()
+```
 
-In a study testing whether sad music decreases mood:
+Two choices in that code shape the figure and both have to be disclosed. The `binwidth = 5` sets each bar to cover five characters; a wider bin smooths the shape and a narrower one roughens it, and the number is a judgment the analyst makes and reports. The `pmin(message_length, 120)` caps the displayed length at 120 characters, so every message longer than that lands in the final bar. Twitch's real message limit is far higher, 500 characters, so that last bar is a genuine pile-up of long messages compressed into one place. Capping keeps the bulk of the distribution legible instead of stretched thin by a few very long outliers, but a cap that is not announced is a quiet distortion. The axis label says "capped at 120" for exactly that reason.
 
-- **Experimental group**: Listens to a sad song
-- **Control group**: Listens to a neutral song (or sits in silence)
+![Overlaid histograms of message length for gaming and non-gaming channels, bin width five characters, lengths capped at 120.](../images/fig12-3-msglen-by-context.png){fig-alt="Two overlaid histograms of message length. Both are heavily right-skewed, with most messages short, under 20 characters, and a long thin tail toward longer messages. The gaming distribution is far taller because it has many more messages, and a small pile-up bar appears at the 120-character cap."}
 
-Comparing the experimental group's mood to the control group's mood tells you whether the sad music produced a change *relative to baseline*. Without a control group, you'd know only that the experimental group felt sad after listening, but you wouldn't know whether they felt sad before listening too.
+The figure shows, first, a shape both groups share. Each distribution is heavily **right-skewed**: a tall stack of very short messages at the left, then a long thin tail trailing off to the right. Twitch chat is mostly brief, a word or an emote, with a minority of longer messages stretching the range. This is the most important thing the histogram reveals, and it is invisible in any single summary number.
 
-## Types of Experimental Designs
+It matters because of what the summary numbers say. The descriptive statistics for the two groups, the kind of table `v2v::pretty_table()` formats cleanly, set the comparison up:
 
-Experiments vary in rigor. Campbell and Stanley (1963) provided the foundational classification, which remains standard in social science methods training.
+```r
+msglen |>
+  group_by(is_gaming) |>
+  summarise(
+    n      = n(),
+    mean   = mean(message_length),
+    median = median(message_length),
+    sd     = sd(message_length),
+    .groups = "drop"
+  ) |>
+  v2v::pretty_table()
+```
 
-### Pre-Experimental Designs (Weak)
+| is_gaming | n      | mean  | median | sd    |
+| --------- | ------ | ----- | ------ | ----- |
+| FALSE     | 3,457  | 33.70 | 16     | 60.68 |
+| TRUE      | 31,309 | 28.49 | 17     | 38.47 |
 
-These designs lack random assignment, a control group, or both. They are common in informal research but cannot support strong causal claims.
+Read the `mean` column and a story jumps out: non-gaming messages, the `FALSE` row, average 33.70 characters against 28.49 for gaming messages. Non-gaming chat looks meaningfully longer. Now read the `median` column, the length of the exactly-middle message in each group, and the story collapses: 16 characters for non-gaming, 17 for gaming, all but identical, and pointing the other way. The typical message is the same length in both kinds of channel.
 
-**One-shot case study**: Expose a group to the treatment, then measure the outcome. No comparison group. No pretest.
+The histogram explains how both things can be true at once. The mean is sensitive to a long tail in a way the median is not: a relatively small number of very long messages pulls an average upward while leaving the middle value untouched. The non-gaming group has the heavier tail, which its much larger standard deviation, 60.68 against 38.47, records directly. So the gap in means is real arithmetic, but it is the work of the tail, not of the typical message. Lean only on the mean and you would report that non-gaming chat is longer. The picture, and the median beside it, show that the everyday message is the same and the difference lives in the extremes.
 
-*Example*: Show participants a public service announcement about mental health and then measure their attitudes. Did the PSA change attitudes? You can't know, because you don't know what attitudes were before exposure and you have no comparison group.
+This is what it means to treat descriptive statistics as a visual setup rather than a verdict. A mean is one number standing in for thousands, and which thousands it stands in for is something only the distribution can show. It also leaves a precise question for the next chapter. There is a gap of about five characters between the two means. Is that gap a real difference between gaming and non-gaming channels, or the kind of wobble that any two samples would show? A figure can frame that question. It cannot answer it.
 
-**One-group pretest-posttest**: Measure the outcome before and after the treatment for the same group. No comparison group.
+## Figures other people can read
 
-*Example*: Measure students' attitudes toward mental health, show them a documentary about depression, then measure attitudes again. If attitudes improved, was it the documentary? Or did something else happen between pretest and posttest (a news event, a class discussion, simply becoming more comfortable with the researcher)?
+Three figures are built. Before they are finished, they have to be made readable, and not only by the analyst who made them.
 
-### True Experimental Designs (Strong)
+The first duty is **color**. The viewer-count figure tells its categories apart by color, and the histogram tells its two groups apart by color, and roughly one in twelve men has a form of **color-vision deficiency** that makes some color pairs, red against green most notoriously, hard or impossible to distinguish. A figure whose meaning rests on color alone is a figure that some readers cannot read. There are two defenses, and good practice uses both. Choose a colorblind-safe palette, a set of colors picked to stay distinct across the common kinds of color blindness. And do not let color carry the message by itself: separate the lines by more than hue, or split groups into their own panels, so the figure still works in grayscale.
 
-These designs include random assignment and at least one control group.
+The second duty is the **alt text**, a short written description of the figure attached to it in the document's source. A reader using a screen reader cannot see the figure at all; the alt text is what they get instead, and a figure with none is, to them, simply missing. Good alt text is not the caption repeated. It states what kind of chart the figure is, what is on each axis, and what the figure shows, the takeaway, in a sentence or two. Each figure in this chapter carries one. In a Quarto document the alt text is written into the figure's `fig-alt` attribute, and writing it is not an afterthought. Being forced to say in one sentence what a figure shows is a good test of whether the figure shows anything at all.
 
-**Posttest-only control group design**: Randomly assign participants to conditions. Administer the treatment to the experimental group and nothing (or a placebo) to the control group. Measure the DV after treatment only.
+A figure that is honest about its choices, legible without color, and described for readers who cannot see it is a figure that does its job for everyone. That is the standard a publication-quality figure is held to, and the three built here are meant to meet it.
 
-*Example*: Randomly assign 200 people to read either an episodically framed or a thematically framed news article about homelessness. Measure policy support afterward. Compare the two groups.
+## Looking ahead
 
-*Strength*: Random assignment makes groups comparable. No pretest means no testing effects (see threats below).
-*Limitation*: Without a pretest, you can't verify that the groups were equivalent before manipulation (though random assignment makes this highly likely with adequate sample sizes).
+The histogram left a precise question on the table. The means of the two groups differ by about five characters, and the distributions behind those means are skewed, overlapping, and built from very different numbers of messages. Whether that five-character gap is a real difference or only sampling noise is not something the eye can settle. Chapter 13 takes it up. It is the inference chapter, where the study moves from describing what the sample looks like to testing what the difference is likely to mean.
 
-**Pretest-posttest control group design**: Same as above, but measure the DV both before and after treatment.
 
-*Example*: Measure attitudes toward homelessness. Randomly assign participants to read episodic or thematic framing. Measure attitudes again. Compare change scores across groups.
+::: {.content-visible when-profile="grad"}
+::: {.callout-note title="Graduate Extension" collapse="true"}
+**Effect size reporting with every comparison.** The undergrad edition focuses on visualization as communication: a good figure conveys the pattern in the data without distortion. That standard holds at the graduate level. But graduate-level descriptive reporting adds a further requirement: every figure that displays a comparison must include the effect size of that comparison.
 
-*Strength*: You can verify group equivalence at pretest and measure individual-level change.
-*Limitation*: The pretest itself may sensitize participants to the topic, making them respond differently to the manipulation than they would have without the pretest (a "testing effect").
+A bar chart showing that one group scored higher than another is not a scientific claim — it is a visual impression. The effect size quantifies the magnitude of that difference in a scale-invariant unit. Cohen's *d* reports how many standard deviations apart two group means are; Cramer's *V* reports the strength of association between two categorical variables after accounting for marginal distributions. These values allow future researchers to use your descriptives as inputs for their power analyses — closing the cumulative science loop that Chapter 4 opened.
 
-**Solomon four-group design**: Combines the two designs above. Four groups: (1) pretest + treatment + posttest, (2) pretest + no treatment + posttest, (3) no pretest + treatment + posttest, (4) no pretest + no treatment + posttest. This allows you to detect whether the pretest itself affected results.
+**Reporting conventions.** For every group comparison in a visualization, report the effect size in the figure caption or a companion table. For group means: Cohen's *d* with a 95% confidence interval. For cross-tabulations: Cramer's *V*. For correlations: *r* and its CI. The `v2v::run_t_test()` and `v2v::run_chi_square()` functions compute all of these automatically and return formatted output ready for the caption.
 
-*Strength*: The most rigorous design, controlling for testing effects.
-*Limitation*: Requires four groups, meaning you need four times the participants. Rarely practical outside well-funded research programs.
+**Required reading.** Lakens, D. (2013). Calculating and reporting effect sizes to facilitate cumulative science: A practical primer for *t*-tests and ANOVAs. *Frontiers in Psychology*, *4*, 863. https://doi.org/10.3389/fpsyg.2013.00863
 
-### Quasi-Experimental Designs (Moderate)
-
-These designs approximate true experiments but lack random assignment. They are common when random assignment is impractical or unethical.
-
-**Non-equivalent control group design**: Two pre-existing groups receive different treatments. Because participants were not randomly assigned, the groups may differ in ways that confound the results.
-
-*Example*: Two sections of a communication course. One section watches a documentary about media literacy; the other does not. You compare media literacy scores afterward. But students self-selected into sections (perhaps based on schedule, instructor reputation, or interest level), so any differences might reflect pre-existing group differences rather than the documentary's effect.
-
-**Interrupted time series**: Measure an outcome repeatedly over time, introduce a treatment at a specific point, and observe whether the trend changes.
-
-*Example*: Track weekly streaming numbers for songs by an artist, then observe whether a viral TikTok moment produces a visible spike. The time series establishes a baseline trend, and the interruption tests whether the event shifted that trend.
-
-*Strength*: Works with naturally occurring events that can't be randomly assigned (policy changes, crises, media events).
-*Limitation*: Other events occurring at the same time as the treatment (history threats) could explain the change.
-
-## Threats to Internal Validity
-
-**Internal validity** is the confidence that the independent variable, and not some confound, caused the observed effect. Campbell and Stanley (1963) identified seven classic threats. Understanding them helps you design better studies and evaluate published research critically.
-
-### History
-
-Events outside the experiment affect the outcome. If you're testing whether a media literacy intervention improves critical thinking, but a major misinformation scandal dominates the news during your study period, your participants' attitudes may change because of the scandal, not your intervention.
-
-**Defense**: Use a control group measured during the same time period. Both groups experience the same history, so historical events can't explain group differences.
-
-### Maturation
-
-Participants naturally change over time through growth, fatigue, or boredom. In a longitudinal study of children's media habits, improvements in critical viewing might reflect cognitive development rather than any intervention.
-
-**Defense**: Control group, measured over the same time period.
-
-### Testing
-
-Taking a pretest can sensitize participants to the topic, changing how they respond to the posttest regardless of the manipulation. If you ask people about racial attitudes, expose them to diverse media content, and then ask about racial attitudes again, improved scores might reflect demand characteristics (knowing what the "right" answer is) rather than genuine attitude change.
-
-**Defense**: Posttest-only designs eliminate this threat. The Solomon four-group design detects it.
-
-### Instrumentation
-
-Changes in the measurement instrument between pretest and posttest. If survey items are reworded, if a different observer codes behavior, or if equipment is recalibrated, apparent changes may reflect measurement shifts rather than real effects.
-
-**Defense**: Standardize instruments across all conditions and time points.
-
-### Statistical Regression
-
-Extreme scores tend to move toward the mean on subsequent measurements. If you select participants because they scored very high on anxiety, their scores will likely decrease on a second measurement even without any intervention, simply because extreme scores are partly due to random fluctuation.
-
-**Defense**: Random assignment distributes extreme scorers equally across conditions. Avoid selecting participants based on extreme scores.
-
-### Selection
-
-Pre-existing differences between groups that are not due to random assignment. This is the fundamental problem with quasi-experiments. If your "treatment" group is a morning class and your "control" group is an evening class, differences might reflect the kinds of students who choose morning versus evening schedules.
-
-**Defense**: Random assignment. When not possible, measure and statistically control for known differences.
-
-### Mortality (Attrition)
-
-Participants drop out of the study, and dropout is not random. If the most bored or frustrated participants leave the experimental condition but stay in the control condition, the remaining experimental group is not comparable to the control group.
-
-**Defense**: Track and report attrition rates. Analyze whether dropouts differ from completers on key characteristics.
-
-## Threats to External Validity
-
-**External validity** is the extent to which findings generalize beyond the specific conditions of the study. A study can have strong internal validity (the manipulation definitely caused the effect) but weak external validity (the effect might not occur outside the laboratory).
-
-### The Lab-to-Life Problem
-
-Most experiments occur in controlled environments (computer labs, classrooms, online survey platforms) where participants focus on a single stimulus in isolation. Real media consumption is messier: people scroll while watching television, listen to music while exercising, and read news while commuting. Effects observed in a quiet lab may disappear in the noise of everyday life.
-
-### The College Sophomore Problem
-
-Most communication and psychology experiments use undergraduate students as participants because they're accessible (enrolled in research participation pools). But undergraduates are not representative of the general population. They are younger, more educated, more likely to be WEIRD (Western, Educated, Industrialized, Rich, Democratic) than the global population. Effects that hold among 19-year-old communication majors may not hold among 45-year-old factory workers or 70-year-old retirees.
-
-### Stimulus Representativeness
-
-If you test the effect of "sad music" by using one specific song, your finding is technically about the effect of *that song*, not about sad music in general. Different sad songs vary in tempo, lyrics, instrumentation, and cultural associations. Using multiple stimuli and showing that the effect holds across them strengthens external validity.
-
-### Demand Characteristics
-
-Participants who know they're in a study may try to figure out the hypothesis and behave accordingly ("cooperative subjects") or deliberately contradict it ("oppositional subjects"). Either response distorts findings. Cover stories, between-subjects designs (each participant sees only one condition), and behavioral rather than self-report DVs can reduce demand characteristics.
-
-## Experiments in Communication Research
-
-Experimental design has produced some of the most influential findings in communication research. Here are several domains where experiments are the standard method:
-
-**Framing experiments**: Does the way information is presented affect how audiences interpret it? Researchers randomly assign participants to read news stories with different frames (episodic vs. thematic, gain vs. loss, human-interest vs. statistical) and measure attitudes, attributions, or behavioral intentions. Entman's (1993) framing framework generates testable predictions that experiments are ideally suited to evaluate.
-
-**Priming experiments**: Does media exposure activate particular concepts in memory, making them more accessible for subsequent judgments? Political communication researchers test whether exposure to crime news makes viewers more likely to evaluate political candidates based on their crime policies.
-
-**Persuasion experiments**: Does message design affect attitude change? Advertising researchers manipulate message appeals (fear vs. humor, emotional vs. rational, celebrity vs. expert endorsement) and measure consumer attitudes and purchase intentions.
-
-**Media effects experiments**: Does exposure to specific media content cause changes in attitudes, beliefs, or behaviors? Researchers test whether violent video games increase aggression, whether sexualized media imagery affects body satisfaction, or whether exposure to diverse characters reduces prejudice.
-
-**Music and emotion experiments**: Does manipulating musical features (tempo, key, lyric sentiment) cause measurable changes in listener mood, behavior, or cognition? This domain is directly relevant to this course's content analysis work: if your content analysis finds that negative lyrics are more prevalent in popular songs, an experiment could test *why* audiences prefer them, whether negative lyrics increase emotional arousal, trigger nostalgic memories, or provide cathartic release.
-
-## Ethics of Experimentation
-
-Chapter 8 established the ethical principles governing all research. Experiments carry particular ethical weight because they involve deliberately manipulating participants' experiences. Several considerations deserve emphasis:
-
-**Informed consent**: Participants must know they're in a study, understand the general procedures, and be free to withdraw. In some experiments, full disclosure of the hypothesis would undermine the design (knowing you're in the "sad music condition" changes your response). In these cases, partial disclosure is acceptable: participants know they'll listen to music and complete a survey, but not which condition they're in or what the study is testing.
-
-**Deception**: When the experimental design requires deception (participants believe they're doing one thing when they're actually doing another), the Belmont Report's principle of respect for persons demands that researchers provide a thorough **debriefing** after participation. Debriefing must explain the true purpose of the study, why deception was necessary, and offer participants the option to withdraw their data.
-
-**Manipulation risk**: If your manipulation involves exposing participants to distressing content (violent media, fear-based health messages, graphic imagery), you must evaluate whether the distress is justified by the knowledge gained. Most IRBs require that the risk be "minimal," meaning no greater than what participants might encounter in everyday life. A study that exposes participants to a sad song likely qualifies. A study that exposes participants to graphic violence requires more careful justification.
-
-**Debriefing as obligation**: Debriefing is not optional. It is an ethical requirement whenever deception or potentially distressing manipulations are used. A good debriefing explains the study's purpose, addresses any misconceptions the participant may have formed, and provides resources if the manipulation involved sensitive topics.
-
-## Reading Experiments Critically
-
-When you encounter an experiment in the literature, apply this checklist:
-
-**Was there random assignment?** If not, it's a quasi-experiment, and the causal claim is weaker. Look for whether the authors acknowledge this limitation.
-
-**What was the control condition?** A "no treatment" control is different from a "placebo" control. If the experimental group listens to sad music and the control group sits in silence, any differences might reflect the effect of music in general (vs. silence) rather than the effect of sadness specifically. A better design uses a neutral-music control.
-
-**How large was the sample?** Small samples (n < 30 per condition) have low statistical power, meaning they may miss real effects or produce spurious significant findings that fail to replicate. Look for power analyses or justifications of sample size.
-
-**Was the manipulation check successful?** Did the researchers verify that their manipulation worked as intended? In a framing study, did participants actually perceive the episodic frame as episodic and the thematic frame as thematic? Without a manipulation check, you can't be sure the IV was operationalized as intended.
-
-**How was the DV measured?** Self-report, behavioral observation, or physiological measurement each have strengths and limitations. Studies relying solely on self-report are more vulnerable to demand characteristics and social desirability bias.
-
-**Are the stimuli representative?** If the study used one news article, one song, or one advertisement, the findings may be stimulus-specific rather than generalizable to the category.
-
-**Do the causal claims match the design?** A well-designed true experiment with random assignment supports causal language ("X caused Y"). A quasi-experiment supports only suggestive language ("X was associated with Y in a way consistent with a causal relationship"). Watch for quasi-experiments that use causal language without acknowledgment.
-
----
-
-## Practice: Experimental Design Skills
-
-### Exercise 12.1: Identifying Experimental Components
-
-For each study description, identify the IV, DV, and type of design (pre-experimental, true experimental, or quasi-experimental):
-
-**Study A**: Researchers randomly assigned 200 participants to listen to either a major-key or minor-key version of the same melody. Afterward, participants rated their mood on a 7-point scale.
-
-- IV: _______________
-- DV: _______________
-- Design type: _______________
-
-**Study B**: A professor showed a media literacy video to her morning class and gave a standard lecture to her afternoon class. Both classes completed a quiz on critical media evaluation.
-
-- IV: _______________
-- DV: _______________
-- Design type: _______________
-
-**Study C**: A health department launched an anti-vaping campaign and measured vaping rates among high school students before and after the campaign. There was no comparison group.
-
-- IV: _______________
-- DV: _______________
-- Design type: _______________
-
----
-
-### Exercise 12.2: Threat Identification
-
-For each scenario, identify which threat(s) to internal validity are present:
-
-1. A study measures media literacy before and after a semester-long course. Students improve. But students also matured intellectually over the semester. **Threat**: _______________
-
-2. Participants in the experimental condition find the task boring and drop out at higher rates than control participants. **Threat**: _______________
-
-3. A study of news framing effects is conducted during the week a major political scandal breaks. **Threat**: _______________
-
-4. Researchers select participants who scored extremely high on a fear-of-crime scale, then expose them to reassuring news coverage. Fear scores drop. **Threat**: _______________
-
----
-
-### Exercise 12.3: Designing an Experiment
-
-Choose one of the following research questions and design a true experiment to test it:
-
-- Does sad music decrease self-reported mood compared to neutral music?
-- Does episodic framing of poverty increase personal-responsibility attributions compared to thematic framing?
-- Does hearing a song described as "#1 on Billboard" increase listeners' ratings of the song compared to the same song with no chart information?
-
-For your chosen question, specify:
-
-1. **Independent variable** (with at least two levels): _______________
-2. **Dependent variable** (with measurement approach): _______________
-3. **Control condition**: _______________
-4. **Random assignment procedure**: _______________
-5. **Sample size and population**: _______________
-6. **One potential threat to internal validity and how you'd address it**: _______________
-7. **One potential threat to external validity and how you'd address it**: _______________
-
----
-
-### Exercise 12.4: Evaluating a Published Experiment
-
-Find a published experiment in a communication or psychology journal. Apply the critical reading checklist from this chapter:
-
-1. Was there random assignment?
-2. What was the control condition?
-3. How large was the sample per condition?
-4. Was there a manipulation check?
-5. How was the DV measured?
-6. Were the stimuli representative?
-7. Do the causal claims match the design?
-
-Write a 200-word evaluation of the study's internal and external validity.
-
----
-
-## Reflection Questions
-
-1. **The External Validity Tradeoff**: Tightly controlled experiments have high internal validity (you can be confident about causation) but often low external validity (the findings may not generalize to real life). Is it better to know with certainty that X causes Y in a lab, or to know with less certainty that X is associated with Y in the real world? How do you navigate this tradeoff?
-
-2. **The Ethics of Manipulation**: Experiments require manipulating people's experiences. Is it ethical to deliberately make someone sad (even temporarily) to study the effects of sad music? Where is the line between acceptable and unacceptable manipulation? Who should draw that line?
-
-3. **Experiments and Content Analysis**: This course primarily uses content analysis, which describes patterns in media content. How could experimental findings complement content analysis findings? If your content analysis shows that negative lyrics are more prevalent in popular music, what experimental study would you design to explain *why*?
-
-4. **The Replication Question**: Chapter 2 described the replication crisis in psychology, where many experimental findings failed to replicate (Open Science Collaboration, 2015). What features of experimental design make studies more or less likely to replicate? How does sample size relate to replicability?
-
----
-
-## Chapter Summary
-
-This chapter introduced experimental design as the method for establishing causation:
-
-- **Three requirements for causation**: covariation (X and Y are related), temporal precedence (X comes before Y), elimination of alternative explanations (nothing else explains the relationship).
-- **Random assignment** is the key to causal inference. It distributes all possible confounds equally across conditions, ensuring that post-manipulation differences reflect the manipulation itself.
-- **Four core components**: independent variable (manipulated), dependent variable (measured), random assignment, and control group.
-- **Three design categories**: Pre-experimental (weak, lacking random assignment or control), true experimental (strong, with random assignment and control), quasi-experimental (moderate, approximating true experiments when random assignment is impractical).
-- **Seven threats to internal validity** (Campbell & Stanley, 1963): history, maturation, testing, instrumentation, statistical regression, selection, and mortality.
-- **Threats to external validity**: the lab-to-life problem, the college sophomore problem, stimulus representativeness, and demand characteristics.
-- **Experiments in communication** test framing effects, priming effects, persuasion mechanisms, media effects, and music-emotion relationships.
-- **Ethical considerations** include informed consent with partial disclosure, debriefing after deception, and risk assessment for distressing manipulations.
-- **Critical reading** of experiments requires evaluating random assignment, control conditions, sample size, manipulation checks, measurement quality, stimulus representativeness, and the match between design and causal claims.
-
----
-
-## Key Terms
-
-- **Between-subjects design**: Each participant experiences only one condition
-- **Control group**: Condition receiving no treatment or a neutral/placebo treatment
-- **Demand characteristics**: Cues that lead participants to guess the hypothesis and adjust their behavior
-- **External validity**: Generalizability of findings beyond the specific study conditions
-- **Internal validity**: Confidence that the IV, not a confound, caused the observed effect (Campbell & Stanley, 1963)
-- **Manipulation check**: Verification that the experimental manipulation was perceived as intended
-- **Quasi-experiment**: Design approximating a true experiment but lacking random assignment
-- **Random assignment**: Allocating participants to conditions by chance to ensure group equivalence
-- **Solomon four-group design**: Design using four groups to detect testing effects
-- **True experiment**: Design with random assignment and at least one control group
-- **Within-subjects design**: Each participant experiences all conditions (also called repeated measures)
-
----
-
+**Reflect.** (1) For two figures in your current analysis, report the effect size you would include in the caption. If one effect is small by Cohen's (1988) conventions, what does that imply for the interpretive claim you planned to make? (2) Lakens argues that routine effect size reporting would improve meta-analyses in communication research. What are the practical barriers to adopting this convention in a field where effect sizes are rarely reported in standard write-ups?
+:::
+:::
 ## References
 
-Babbie, E. R. (2021). *The practice of social research* (15th ed.). Cengage Learning.
+Wickham, H. (2016). _ggplot2: Elegant graphics for data analysis_ (2nd ed.). Springer. https://doi.org/10.1007/978-3-319-24277-4
 
-Campbell, D. T., & Stanley, J. C. (1963). *Experimental and quasi-experimental designs for research*. Rand McNally.
-
-Entman, R. M. (1993). Framing: Toward clarification of a fractured paradigm. *Journal of Communication*, *43*(4), 51-58. https://doi.org/10.1111/j.1460-2466.1993.tb01304.x
-
-Open Science Collaboration. (2015). Estimating the reproducibility of psychological science. *Science*, *349*(6251), aac4716. https://doi.org/10.1126/science.aac4716
-
-Wimmer, R. D., & Dominick, J. R. (2014). *Mass media research: An introduction* (10th ed.). Cengage Learning.
-
----
-
-::: {.callout-note title="Graduate Extension" collapse="true"}
-
-**Required Reading**: Campbell, D. T., & Stanley, J. C. (1963). *Experimental and quasi-experimental designs for research*. Rand McNally. **Read Chapters 1-3** (approximately 40 pages).
-
-**Prompt**: Campbell and Stanley's 1963 monograph remains the foundational text on experimental design in the social sciences. Their contribution was not to invent experimentation but to systematize the logic of validity threats and to show that design choices are not arbitrary: each design controls for specific threats while remaining vulnerable to others.
-
-1. Campbell and Stanley use a notation system where **X** represents a treatment, **O** represents an observation (measurement), and **R** represents random assignment. Diagram the following designs using their notation:
-   - One-group pretest-posttest
-   - Pretest-posttest control group design
-   - Solomon four-group design
-
-2. For each design, list which of the seven internal validity threats are controlled and which remain uncontrolled. (Campbell and Stanley provide this analysis; your task is to explain *why* each threat is or isn't controlled, not just to list them.)
-
-3. Campbell and Stanley distinguish between "true experiments" and "quasi-experiments," arguing that quasi-experiments are not second-class methods but rather designs appropriate when random assignment is impossible. In communication research, when is random assignment genuinely impossible (not just inconvenient)? Provide two examples and explain what quasi-experimental design you would use instead.
-
-4. Design a hypothetical experiment testing whether the framing of song lyrics as "protest music" (vs. no label) changes listener evaluations of the same song. Diagram your design using Campbell and Stanley's notation. Identify the strongest threat to internal validity in your design and the strongest threat to external validity. How would you address each?
-
-:::
-
----
-
-## Looking Ahead
-
-With Chapters 9 through 12 complete, you now have a conceptual map of the four major research methods in social science. [Chapter 13: Music Immersion](chapter13.qmd) marks the shift from conceptual understanding to hands-on execution. You'll begin the content analysis sequence that carries through Chapter 16: immersing in your dataset, translating observations into variables, building a codebook, and testing its reliability. Everything you've learned about theory (Chapter 5), research questions (Chapter 7), ethics (Chapter 8), and methods (Chapters 9-12) converges as you start doing research rather than reading about it.
+Wilkinson, L. (2005). _The grammar of graphics_ (2nd ed.). Springer. https://doi.org/10.1007/0-387-28695-0

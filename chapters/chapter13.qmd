@@ -1,450 +1,120 @@
----
-title: "Chapter 13: Music Immersion"
----
-
-## Learning Objectives
-
-- Develop sustained attention to qualitative patterns before imposing categories
-- Practice systematic observation and memo-writing
-- Distinguish between surface features and interpretive patterns
-- Document emergent themes without premature quantification
-- Build intuition about the dataset that will inform later coding decisions
-
+﻿---
+title: "Chapter 13: Making the call"
 ---
 
-![Live music concert representing media immersion](../images/ch13-concert_2.jpg){fig-alt="Live music concert representing media immersion"}
+![](../images/ch13-vinyl_2.jpg){fig-alt="A stylized rendering of a pointer on a dial poised between two regions."}
 
+Chapter 12 ended on a number and a doubt. The number was a gap: across the sample, gaming channels averaged 28.49 characters per chat message and non-gaming channels 33.70, a difference of a little over five characters. The doubt was whether that gap means anything.
 
+The doubt is not idle. A sample almost always shows some gap. Split any group of people in two at random, measure their heights, and the two averages will differ a little, not because the halves are truly different but because no two samples come out identically. The five-character gap between gaming and non-gaming chat could be a real difference between the two kinds of channel. It could also be the ordinary wobble that any two samples produce. Looking at the histogram cannot tell the two apart, because both possibilities produce a gap.
 
-There's a temptation, when you first encounter a research dataset, to jump immediately to coding. You have your research question. You know you need variables. You want to start counting things.
+Settling that doubt is the job of **inferential statistics**, and it is the work of this chapter. The chapter's title names what is at stake. After describing a sample, a researcher eventually has to make a call: is the pattern in the data a real feature of the world, or is it noise that will not survive the next sample? Chapter 13 is where the chat study makes that call about its central finding.
 
-Resist this impulse.
+## What a test actually asks
 
-Before you can productively code, before you can impose categories and count frequencies, you need to *know* your data. Not as aggregated statistics, but as lived experience. You need to listen to songs, read lyrics, notice patterns, question assumptions, and develop what qualitative researchers call "thick description": a rich, nuanced understanding of context that can't be reduced to numbers alone.
+Start with what the question really is. The study did not measure those 34,766 messages because anyone cares about those particular messages. It measured them to learn something about gaming and non-gaming chat in general, the broad populations the sample stands in for. The sample is a means; the population is the point. And a sample, however carefully drawn, is not the population. It is a partial view, and partial views are noisy.
 
-This chapter teaches the discipline of immersion: the practice of sustained, systematic attention to data before analysis begins. It's the qualitative foundation that makes later quantitative work meaningful.
+So the honest question is not "is there a gap in the sample," because there plainly is. It is "is the gap in the sample large enough that chance alone is an unconvincing explanation for it." That is the question a **hypothesis test** answers, and it answers it through a move that feels backward the first time.
 
-The principle extends well beyond music. A researcher preparing to code news coverage of immigration would immerse by reading dozens of articles before developing categories, noticing how different outlets frame the issue, which sources are quoted, and what language patterns recur. A researcher studying advertising appeals would watch scores of commercials, noting how emotional vs. rational strategies manifest in different product categories. Immersion is the practice of understanding your data from the inside before analyzing it from the outside.
+The test does not start from the difference you suspect is real. It starts from its opposite, called the **null hypothesis**: the assumption that there is no real difference at all, that gaming and non-gaming chat have the same true mean length, and that the five-character gap is nothing but sampling noise. The test then asks a single question of the data: if the null hypothesis were true, how surprising would a gap this large be?
 
-## Why Immersion Matters
+The logic is the logic of a skeptic. Imagine testing whether a coin is weighted by flipping it a hundred times. You would not try to prove it crooked directly. You would assume it fair, the null hypothesis, work out how often a fair coin would produce a result as lopsided as the one you got, and if that turned out to be a rare event, conclude that the fair-coin assumption is hard to believe. A hypothesis test treats the chat data the same way. Assume nothing is going on, measure how surprising the data are under that assumption, and if they are surprising enough, reject the assumption.
 
-Consider two approaches to studying lyric sentiment in pop music:
+## Choosing the test
 
-**Approach A (No Immersion)**:
+There is not one hypothesis test. There are many, and which one applies depends on the kind of data in hand. This is where the measurement levels from Chapter 8, the nominal, ordinal, interval, and ratio distinctions, stop being vocabulary and start doing work.
 
-You have access to a dataset of songs. You select a sample of 200 for your study. You immediately develop a coding scheme: positive, negative, neutral. You assign two undergraduate coders. They code lyrics without listening to the songs, using only the written text. You analyze the results.
+The chat study's question pairs one continuous variable with one categorical split. Message length is a ratio variable, an exact count of characters. Gaming status is a nominal variable with two values, gaming and non-gaming. A continuous outcome compared across two groups is the textbook setting for the **t-test**, and that is the test this chapter runs.
 
-**Problem**: You've measured *something*, but what? Coders might classify a lyric like "I'm so bad" as negative, missing that in the song's context ("Bad" by Michael Jackson), it means powerful and rebellious, a positive self-assertion. Without understanding genre conventions, cultural context, or the interplay between lyrics and music, your "sentiment" variable is measuring surface features, not actual emotional valence.
+A different question would call for a different test. Suppose the study asked instead whether a channel's gaming status is associated with its audience size, pairing `is_gaming` with the `viewer_band` variable built in Chapter 11. Those are two categorical variables, and the test for an association between two categorical variables is the **chi-square test**, available as `v2v::run_chi_square()`. The study does not pursue that question here, but the point generalizes: the variables choose the test. The V2V Hub keeps a test-decision-tree that lays out the full mapping, and consulting it before running anything is the habit to build. A test applied to the wrong kind of data produces a number, and the number is meaningless.
 
-**Approach B (With Immersion)**:
+## Running the test
 
-You have access to the same dataset. You select the same sample of 200. But before creating any coding scheme, you listen to 30-40 songs across different genres, eras, and chart positions. You read lyrics while listening. You take notes: What patterns emerge? How do lyrics and musical elements interact? What genre conventions shape interpretation? Do certain themes cluster together?
+The test itself is one function call. `v2v::run_t_test()` takes the data, the variable to compare, and the variable that splits it into groups:
 
-After this immersion, you develop a coding scheme informed by actual patterns in the data. You train coders to consider context. You pilot-test the scheme on ambiguous cases. Your final analysis is grounded in understanding, not just counting.
-
-The second approach takes longer, but it produces better research.
-
-The same logic applies to any content analysis. A researcher coding news frames for a study of climate coverage would not develop categories based solely on prior literature. She would first read 30-40 articles closely, noticing which frames appear in practice, which are absent from the theoretical literature, and which edge cases challenge clean categorization. The immersion phase ensures that coding categories reflect the actual content, not just the researcher's preconceptions.
-
-## The Practice of Sustained Attention
-
-Immersion is not passive consumption. It's active, systematic observation guided by research questions but open to unexpected patterns.
-
-### Three Modes of Listening
-
-When immersing in music data, engage with songs in multiple ways:
-
-**1. Casual Listening (Initial Exposure)**
-
-Goal: Get a feel for the corpus.
-
-Listen to 10-15 songs randomly sampled from your dataset. Don't take notes yet. Just listen. What surprises you? What sounds familiar? What genre conventions do you notice?
-
-This is the "browsing" phase, building familiarity.
-
-**2. Focused Listening (Thematic Attention)**
-
-Goal: Track specific dimensions relevant to your research question.
-
-Choose 5-7 songs and listen multiple times, focusing on different elements:
-
-- **First listen**: Overall emotional tone. What mood does this evoke?
-- **Second listen**: Lyric content. What themes or topics appear?
-- **Third listen**: Musical elements (tempo, key, instrumentation). How do these shape meaning?
-- **Fourth listen**: Interaction effects. How do lyrics and music reinforce or contradict each other?
-
-Take brief notes after each listen. Don't code yet; just describe what you notice.
-
-**3. Analytical Listening (Pattern Recognition)**
-
-Goal: Identify recurring structures, exceptions, and edge cases.
-
-Listen to 15-20 songs while asking:
-
-- Do certain lyric themes cluster with certain musical features?
-- Are there genre-specific conventions? (e.g., Do country songs use metaphor differently than rap?)
-- What edge cases challenge simple categorization?
-- What dimensions seem important that you hadn't anticipated?
-
-This is where you begin to see the contours of your eventual coding scheme, but you're still documenting patterns rather than forcing categories.
-
-### Immersion Beyond Music
-
-If your content analysis involves non-music content, the same three-mode structure applies, just with different engagement:
-
-**For news articles**: (1) Skim 10-15 articles to get a sense of how the topic is covered. (2) Read 5-7 articles closely, tracking framing, source selection, and narrative structure. (3) Read 15-20 articles analytically, asking which patterns recur, which frames dominate, and which edge cases challenge your emerging categories.
-
-**For social media posts**: (1) Browse a feed of 50-100 posts to get a feel for tone, format, and topics. (2) Read 20-30 posts closely, tracking rhetorical strategies and visual elements. (3) Analyze 50+ posts for patterns in language, argumentation, and audience engagement.
-
-The principle is constant: familiarize, focus, then analyze. The medium changes; the discipline does not.
-
-## Memo Writing: Documenting Emergent Understanding
-
-Immersion without documentation is just listening to music (or reading articles, or scrolling a feed). Research immersion requires *memos*, brief, informal notes that capture your thinking as it evolves.
-
-### Types of Memos
-
-**Observational Memos**: What did you notice?
-
-> "Song: 'Blinding Lights' by The Weeknd. Fast tempo (171 BPM). Major key, but lyrics are about desperation and addiction. Interesting contrast: musically upbeat, lyrically dark. This might complicate simple 'positive vs. negative' sentiment coding. Need to decide: code based on lyrics alone, or on overall emotional impact?"
-
-**Methodological Memos**: How should this be measured?
-
-> "Problem: Some songs use irony. 'Pumped Up Kicks' has cheerful music but lyrics about a school shooting. Automated sentiment analysis would likely code the music as positive. Human coders need clear instructions: Lyrics only? Overall tone? This needs to be specified before coding begins."
-
-**Theoretical Memos**: How does this connect to theory?
-
-> "Uses & Gratifications (Katz et al., 1973) predicts people seek music to fulfill emotional needs. If true, maybe 'negative' songs aren't actually experienced as negative by listeners; they might provide catharsis or validation. The theory suggests we shouldn't assume negative lyrics = negative experience. This has implications for how we operationalize 'sentiment.'"
-
-**Comparative Memos**: How do cases differ?
-
-> "Comparing two songs with negative lyrics: 'Someone Like You' (Adele) vs. 'Lose Yourself' (Eminem). Both describe struggle, but Adele's is passive/melancholic while Eminem's is active/aggressive. Do we need subcategories within 'negative'? Sadness vs. anger vs. anxiety?"
-
-### Memo Discipline
-
-Set a goal: Write at least **one memo per 5 songs** (or per 5 articles, or per 20 social media posts) during immersion.
-
-Memos don't need to be polished. They're thinking-on-paper, documenting observations and questions that will later inform your codebook.
-
-Create a note in Obsidian: `Immersion Memos - [Your Dataset]`
-
-```markdown
-# Immersion Memos: Music Dataset
-
-## Memo 1 - Feb 15, 2026
-**Songs listened to**: Random sample (n=10) from 2015-2017
-
-**Observation**: Noticed many songs mix positive/negative within 
-the same song. Example: "Closer" (Chainsmokers) - nostalgia 
-(bittersweet), not purely positive or negative. May need "mixed" 
-or "ambiguous" category.
-
-**Question**: Should I code overall dominant sentiment, or code 
-verse-by-verse? If latter, how handle choruses that repeat?
-
----
-
-## Memo 2 - Feb 16, 2026
-**Songs**: Focus on tempo and sentiment
-
-**Pattern**: Fast tempo songs (>140 BPM) with negative lyrics 
-feel different than slow tempo songs with same lyrics. "Shake It 
-Off" (Taylor Swift) addresses criticism/negativity but feels 
-empowering due to tempo and key. Context matters.
-
-**Implication**: Sentiment coding should maybe account for musical 
-features, not just lyrics in isolation.
+```r
+v2v::run_t_test(analysis, value = message_length, group = is_gaming)
 ```
 
-## Surface vs. Depth: Manifest and Latent Content
+```
+Welch two-sample t-test
+message_length by is_gaming
 
-A critical distinction in content analysis is between what's directly observable and what requires interpretation. Krippendorff (2018) emphasizes this distinction as central to codebook design.
+  Mean, gaming         28.49 characters
+  Mean, non-gaming     33.70 characters
+  Difference           -5.22 characters
 
-**Manifest content**: Surface-level, explicit features that coders can identify with high reliability.
+  t                    -4.95
+  df                   3768.7
+  p-value              < .001
+  Cohen's d            -0.13  (negligible)
 
-Examples:
-
-- Does the lyric contain the word "love"? (Yes/No)
-- Is the tempo faster than 120 BPM? (Measurable)
-- Is the song in a major or minor key? (Identifiable by trained listeners)
-- Does the news article mention a specific politician by name? (Yes/No)
-
-**Latent content**: Underlying meanings that require interpretation.
-
-Examples:
-
-- Is the overall sentiment positive or negative? (Interpretive: what about irony?)
-- Does the song convey hope or despair? (Subjective judgment)
-- Is the tone sincere or sarcastic? (Context-dependent)
-- Does the article frame the issue as a personal problem or a systemic one? (Requires judgment about emphasis and omission)
-
-During immersion, you're building the interpretive framework that will allow you to code latent content reliably. You're learning the conventions, patterns, and contextual cues that transform subjective judgment into systematic analysis.
-
-## Building the Conceptual Framework
-
-Immersion reveals what dimensions matter for your research question. As you listen and take notes, you'll begin to see the **conceptual structure** of your eventual coding scheme.
-
-### Example: From Immersion to Framework
-
-**Research Question**: Is there a relationship between lyric sentiment and chart success?
-
-**After immersing in 40 songs, you notice**:
-
-1. **Valence isn't binary**: Songs aren't just positive or negative. Many are ambiguous, nostalgic, or mixed.
-2. **Intensity varies**: Some negative songs are mildly sad ("Someone Like You"). Others are intensely angry ("Break Stuff" by Limp Bizkit).
-3. **First-person vs. narrative**: Songs written in first person feel more intimate than third-person narratives, even with similar content.
-4. **Temporal framing**: Songs about past pain ("I survived") feel different than songs about current suffering ("I'm broken").
-
-**Emerging framework**:
-
-You might develop a **two-dimensional coding scheme**:
-
-**Dimension 1: Valence** (Positive, Negative, Neutral, Mixed)  
-**Dimension 2: Intensity** (Low, Medium, High)
-
-This is more nuanced than a simple positive/negative binary, and it emerged from actually engaging with the data rather than imposing preconceived categories.
-
-## Sampling for Immersion
-
-You don't need to listen to all 200 songs before beginning to code. But you need a systematic immersion sample that represents the diversity of your dataset.
-
-### Stratified Immersion Sampling
-
-If your dataset spans multiple genres, eras, or chart positions, ensure your immersion sample includes variety. This applies the **stratified sampling** logic from Chapter 11: just as survey researchers divide a population into meaningful subgroups before sampling, you divide your content corpus into meaningful strata before immersing.
-
-**Example strategy for 200-song dataset**:
-
-- **By time period**: 5 songs from each two-year period (2015-2016, 2017-2018, etc.)
-- **By chart position**: 5 songs that peaked #1-10, 5 from #11-20, 5 from #21-50
-- **By genre** (if coding genre): 3-5 songs per major genre
-
-**Total immersion sample**: 30-50 songs before formal coding begins
-
-This gives you broad exposure without requiring you to analyze the entire corpus before starting. The principle is the same one that governs all sampling decisions (Chapter 11): representativeness matters more than volume. Thirty songs drawn from across the full range of your dataset will reveal more than fifty songs drawn from a single genre or era.
-
-## Documenting Edge Cases
-
-During immersion, you'll encounter songs that challenge simple categorization. Document these carefully; they'll become test cases for your codebook.
-
-**Create an Edge Case Log in Obsidian**:
-
-```markdown
-# Edge Cases - Music Dataset
-
-## Case 1: "Pumped Up Kicks" (Foster the People)
-**Issue**: Cheerful melody, dark lyrics (school shooting)  
-**Question**: Code based on music or lyrics?  
-**Decision needed**: Establish priority (lyrics > music? or 
-  overall impression?)
-
----
-
-## Case 2: "We Are Never Getting Back Together" (Taylor Swift)
-**Issue**: Breakup song (negative content) but delivered with 
-  sass/empowerment  
-**Question**: Is this negative (breakup) or positive 
-  (empowerment)?  
-**Decision needed**: Define whether sentiment = topic or 
-  emotional tone
-
----
-
-## Case 3: Songs with explicit profanity
-**Issue**: Some songs use profanity as intensifier ("I don't 
-  give a fuck" = defiance), others as aggression ("Fuck you" 
-  = hostility)  
-**Question**: Does profanity automatically = negative?  
-**Decision needed**: Context-sensitive coding rules for vulgarity
+  Gaming and non-gaming channels differ in mean message length by a
+  statistically significant but negligible amount.
 ```
 
-These cases become the foundation of your **decision rules** in the codebook (Chapter 15).
+The test is named in the first line as a **Welch** two-sample t-test, and the choice of the Welch version is deliberate. The ordinary t-test assumes the two groups have the same spread, and Chapter 12 showed plainly that they do not: the non-gaming standard deviation, 60.68, is far larger than the gaming standard deviation of 38.47. Welch's t-test drops that assumption, which is why it is the safer default whenever two groups might vary by different amounts.
 
-## The Transition to Operationalization
+The rest of the output is the result, and it has three parts worth reading slowly. The `t` value, -4.95, measures the gap between the means in units of its own uncertainty: roughly, how many widths of sampling noise separate the two averages. A value near zero would mean the gap is small compared to the noise; a value of about five means it is large compared to the noise. The sign is only direction, negative because gaming, the first group, sits below non-gaming. The `df`, or degrees of freedom, is a number the test uses to turn `t` into a probability; Welch's test computes it from the two groups' sizes and spreads, which is why it is not a round number. And the `p-value` is the answer to the question the whole test was built to ask.
 
-Immersion doesn't last forever. At some point, you transition from open-ended observation to structured coding. How do you know when?
+## Reading the p-value
 
-**Signs you're ready to operationalize**:
+The **p-value** reported here is "< .001," and stating exactly what that means takes care, because the p-value is the most misread number in statistics.
 
-- You've listened to 30-50 songs and patterns are stabilizing (new songs rarely surprise you)
-- You can articulate 3-5 key dimensions that matter for your research question
-- You've documented enough edge cases to write decision rules
-- Your memos are starting to repeat themes rather than discovering new ones
+It means this: if gaming and non-gaming chat truly had the same mean message length, so that the null hypothesis were true, then drawing a sample with a gap at least as large as the observed five characters would happen less than one time in a thousand. The data are, in other words, very surprising under the assumption that nothing is going on. By the convention that researchers apply, a p-value below the threshold of .05 counts as **statistically significant**, and a p-value this small clears that bar easily. Chance alone is an unconvincing explanation for the gap.
 
-This is a form of the **saturation** concept from Chapter 4. In the literature review, saturation meant new searches yielded no new themes. In immersion, saturation means new data points confirm existing patterns rather than revealing new ones.
+That convention deserves a note of its own. The .05 threshold is exactly that, a convention, with no deep justification; a p-value of .049 and one of .051 describe almost identical evidence, and treating one as a discovery and the other as a non-event is a habit the field is right to question (Wasserstein & Lazar, 2016).
 
-**What immersion provides**:
+What matters more is being precise about what the p-value does not say. It is not the probability that the null hypothesis is true; the null is either true or false, and the p-value is a statement about data, not about hypotheses. It is not the probability that the result is a fluke. And, most important for what follows, it is not a measure of how large the difference is, or of how much the difference matters. A small p-value says the gap is probably not zero. It says nothing at all about whether the gap is big.
 
-- **Conceptual clarity**: You understand what the variables actually mean in this dataset
-- **Category development**: You know what values each variable should take
-- **Decision rules**: You've encountered ambiguous cases and developed principles for handling them
-- **Contextual understanding**: You can recognize when surface features might mislead
+## How big is the difference
 
-These skills are foundational not just for content analysis but for qualitative research generally. As [Chapter 10](chapter10.qmd) demonstrated, immersion serves as the basis for interviews, focus groups, and thematic analysis. The habit of sustained attention before categorization is the defining discipline of qualitative inquiry.
+For that, the p-value has to hand the question to a different number: an **effect size**.
 
----
+A p-value answers "is there a difference." An effect size answers "how much of one." The effect size for a gap between two means is **Cohen's d**, and it works by expressing the gap not in raw characters but in units of how much the data naturally vary. The output reports a Cohen's d of -0.13.
 
-## Practice: Systematic Immersion
+To read that number, it needs a yardstick, and the standard one comes from Jacob Cohen (1988), who proposed rough benchmarks: a d around 0.2 is a small effect, around 0.5 a medium one, and around 0.8 a large one. A d of 0.13, smaller than even the "small" benchmark, falls into the range usually called negligible. The difference between gaming and non-gaming message length is real, in the sense that the test ruled out chance, and it is also trivially small.
 
-### Exercise 13.1: First Listening Session
+This is worth dwelling on, because it sounds like a contradiction and is not. The raw gap is about five characters, roughly fifteen percent of the non-gaming average, and fifteen percent does not sound negligible. But Cohen's d measures the gap against the spread of the data, and message lengths vary enormously, with standard deviations of thirty-eight and sixty-one characters. A five-character difference set against that much variation is a ripple. The percentage sounds substantial; the effect size, which is the honest comparison, is not.
 
-**Goal**: Develop observational habits
+That leaves one question: how did a negligible difference come back statistically significant at all? The answer is the sample size. The test ran on 34,766 messages, and with a sample that large, a hypothesis test can detect a difference far too small to care about. This is the rule to carry forward: a large enough sample will make almost any difference, however tiny, statistically significant. Significance and size are different questions, and big samples pull them apart.
 
-1. Randomly select 5 songs from the dataset
-2. Listen to each song fully while reading the lyrics
-3. For each song, write a brief observational memo (100-150 words) noting:
-   - Overall emotional tone
-   - Key themes or topics
-   - Any surprises or complications
-   - Questions this raises about coding
+## Statistical significance is not practical importance
 
-**Don't code or categorize yet**; just observe and document.
+Putting the two numbers together is the call the chapter is named for, and it is a more careful call than "significant or not."
 
----
+The finding is this. Gaming and non-gaming channels do differ in their mean chat-message length; the difference is statistically significant, unlikely to be an accident of sampling. And the difference is negligible in size, about five characters, a word's worth, dwarfed by how much message lengths vary in the first place. Both halves are true, and a report that gave only the first half would mislead. A reader who heard "gaming and non-gaming chat differ significantly, p < .001" and nothing else would picture a real divide between two kinds of community. The effect size corrects the picture: there is a divide, and it is almost too small to see.
 
-### Exercise 13.2: Focused Listening Protocol
+This is the difference between **statistical significance** and **practical significance**, and it is perhaps the single most important habit this book asks for. Statistical significance asks whether an effect is distinguishable from zero. Practical significance asks whether the effect is large enough to matter. They are not the same question, large samples make them diverge, and a finding is only honestly reported when both are on the page.
 
-**Goal**: Track specific dimensions
+In practice that means a result is written up with the full set of numbers, in the compact form journals expect:
 
-Choose one song and listen to it 4 times, focusing on different elements each time:
+> Gaming channels produced shorter chat messages on average than non-gaming channels (28.49 vs. 33.70 characters), Welch's _t_(3768.7) = -4.95, _p_ < .001, Cohen's _d_ = -0.13.
 
-**Listen 1**: Lyrics only (read while listening). What story is being told?  
-**Listen 2**: Musical elements (tempo, key, instrumentation). What mood do they create?  
-**Listen 3**: Interaction (how do lyrics and music work together?)  
-**Listen 4**: Synthesis (what's the overall emotional impact?)
+And then, because a string of statistics is not an interpretation, it is written up a second time in a sentence a non-statistician can read: gaming and non-gaming channels do differ in how long their chat messages run, but the difference is so small that for most purposes the two are better thought of as alike than as different. That sentence is the call. It reports the real difference, refuses to inflate it, and tells the reader what the study actually found.
 
-Write a comparative memo: How did your interpretation change across listens?
+## Looking ahead
 
----
+The chat study now has all of its pieces. It has a question and a theory, a prospectus, a codebook tested for reliability, a sample, a clean dataset, three figures, and a tested finding interpreted honestly. What it does not yet have is a form. The pieces are scattered across scripts and outputs, and a study that cannot be read as a single coherent document is not yet finished. Chapter 14 is where it becomes one. It is the publication chapter, where everything built since Chapter 9 is assembled into a single reproducible report and put where other people can read it.
 
-### Exercise 13.3: Pattern Recognition
 
-**Goal**: Identify recurring structures
+::: {.content-visible when-profile="grad"}
+::: {.callout-note title="Graduate Extension" collapse="true"}
+**Three obligations that constrain graduate-level inference.** The undergrad edition teaches inference as a decision: given a *p*-value and a significance level, you accept or reject the null hypothesis. That logic is correct but incomplete. Graduate-level inference carries three additional obligations: (1) the inference must reflect the power of the study; (2) the significance threshold must be justified, not assumed; and (3) the pre-registration disclosure must precede the inference claim.
 
-Listen to 10 songs sampled across your dataset.
+**Power and interpretation.** A significant result from a well-powered study (≥ 80%) is a stronger evidentiary claim than the same result from an underpowered study. Underpowered studies that achieve significance do so partly through sampling variation, which inflates effect size estimates. Report the achieved power of your study alongside the *p*-value. The v2v package's `run_t_test()` returns Cohen's *d* with confidence intervals, which allows readers to assess the precision of the effect estimate independently of the significance test.
 
-After each song, answer:
+**Justify your α.** The default *α* = .05 is a convention, not a law. If you ran 10 tests on the same dataset without correction, you expect at least one false positive by chance alone. Pre-registration mitigates this by requiring you to declare the number of tests and any correction procedure in advance. Report your chosen α, state why it is appropriate for your design, and apply it consistently.
 
-- What emotional category would you assign this to? Why?
-- What features led you to that judgment?
-- Would another listener agree? What might they see differently?
+**The pre-registration disclosure statement.** Every graduate V2V paper that used pre-registration includes: "This study's hypotheses, measures, and analysis plan were pre-registered on OSF prior to data collection at [URL]." Exploratory analyses conducted beyond the pre-registration are labeled as exploratory and interpreted with corresponding caution.
 
-After all 10, write a synthesis memo:
+**Required reading.** Lakens, D., Adolfi, F. G., Albers, C. J., Anvari, F., Apps, M. A. J., Argamon, S. E., … Zwaan, R. A. (2018). Justify your alpha. *Nature Human Behaviour*, *2*, 168–171. https://doi.org/10.1038/s41562-018-0311-x
 
-- What patterns emerged?
-- What complications or exceptions did you notice?
-- What dimensions seem most important for your research question?
-
----
-
-### Exercise 13.4: Edge Case Documentation
-
-**Goal**: Identify coding challenges
-
-As you listen, maintain an **Edge Case Log**. When you encounter a song that's hard to categorize, document:
-
-- Song title and artist
-- What makes it ambiguous
-- Possible interpretations
-- How this might affect your coding scheme
-
-Aim for 5-7 documented edge cases during immersion.
-
----
-
-### Exercise 13.5: Immersion Synthesis
-
-**Goal**: Transition from observation to operationalization
-
-After listening to 30-40 songs:
-
-1. Review all your memos
-2. Identify the 3-5 most important dimensions for your research question
-3. For each dimension, list possible categories (don't finalize yet; just brainstorm)
-4. Note what questions remain unresolved
-
-Write a **synthesis memo** (500 words) summarizing:
-
-- What you learned about the dataset
-- What surprised you
-- What will be easiest vs. hardest to code
-- What decisions you need to make before creating a formal codebook
-
----
-
-## Reflection Questions
-
-1. **The Value of Slowness**: Immersion requires spending time with data before analyzing it. This feels inefficient in a culture that values productivity and speed. Why might slowness be valuable here? What gets lost when you skip immersion?
-
-2. **Subjectivity and Patterns**: During immersion, you're using your subjective impressions to identify patterns. Later, you'll create "objective" coding rules. How do you reconcile these? Is truly objective coding possible, or does all measurement carry traces of the researcher's interpretive lens?
-
-3. **Theoretical Preconceptions**: You arrived at this dataset with a research question and probably some expectations about what you'd find. How do you balance being guided by theory (deductive) while remaining open to unexpected patterns (inductive)? Did immersion change how you think about your research question?
-
-4. **Immersion Across Domains**: If you were immersing in news coverage, corporate press releases, or Instagram posts instead of songs, what would the three modes (casual, focused, analytical) look like? What would change about the process, and what would remain the same?
-
----
-
-## Chapter Summary
-
-This chapter introduced immersion as the qualitative foundation for later quantitative analysis:
-
-- **Immersion** is sustained, systematic attention to data before coding begins.
-- **Three modes of engagement**: Casual (familiarity), Focused (thematic attention), Analytical (pattern recognition).
-- **Memo writing** documents emergent understanding through observational, methodological, theoretical, and comparative notes.
-- **Manifest content** is directly observable (word counts, tempo); **latent content** requires interpretation (sentiment, tone) (Krippendorff, 2018).
-- **Conceptual frameworks** emerge from immersion: discovering what dimensions matter rather than imposing them prematurely.
-- **Stratified immersion sampling** ensures exposure to dataset diversity (time periods, chart positions, genres), applying the sampling logic from Chapter 11.
-- **Edge case documentation** identifies instances that challenge simple categorization, informing later decision rules in the codebook (Chapter 15).
-- **Transition markers**: You're ready to operationalize when patterns stabilize, dimensions clarify, and memos start repeating rather than discovering.
-- Immersion is foundational not just for content analysis but for all qualitative inquiry ([Chapter 10](chapter10.qmd)).
-
----
-
-## Key Terms
-
-- **Edge case**: An ambiguous instance that challenges simple categorization
-- **Immersion**: Sustained engagement with data before formal analysis
-- **Latent content**: Underlying meanings requiring interpretation (Krippendorff, 2018)
-- **Manifest content**: Surface-level, directly observable features
-- **Memo**: Informal note documenting observations, questions, or theoretical connections during analysis
-- **Observational memo**: Note recording what was noticed during data engagement
-- **Saturation** (in immersion): Point where new cases confirm existing patterns rather than revealing new ones
-- **Stratified immersion sampling**: Selecting immersion cases across key dimensions to ensure diversity
-- **Thick description**: Rich, contextually grounded understanding of data
-
----
-
+**Reflect.** (1) For your pre-registered study, write the disclosure statement you would include in the methods section. List any deviations from the pre-registration and how you would report them. (2) Lakens et al. propose that different research contexts justify different α levels. What would justify using *α* = .01 rather than .05 in a V2V study?
+:::
+:::
 ## References
 
-Katz, E., Blumler, J. G., & Gurevitch, M. (1973). Uses and gratifications research. *Public Opinion Quarterly*, *37*(4), 509-523. https://doi.org/10.1086/268109
+Cohen, J. (1988). _Statistical power analysis for the behavioral sciences_ (2nd ed.). Lawrence Erlbaum Associates.
 
-Krippendorff, K. (2018). *Content analysis: An introduction to its methodology* (4th ed.). Sage. https://doi.org/10.4135/9781071878781
-
----
-
-::: {.callout-note title="Graduate Extension" collapse="true"}
-
-**Required Task**: Write a 500-word reflexivity memo examining your own positionality as a researcher engaging with the dataset.
-
-**Background**: Qualitative researchers distinguish between **emic** (insider) and **etic** (outsider) perspectives. An emic perspective comes from within the culture being studied; an etic perspective comes from outside it. Neither is inherently superior, but each produces different kinds of understanding and different blind spots.
-
-During immersion, your interpretations are shaped by who you are: your genre preferences, your cultural background, your musical training (or lack thereof), your generational position, your racial and gender identity, and your personal relationship with music. A researcher who grew up listening to hip-hop will notice different things about hip-hop lyrics than a researcher encountering the genre for the first time. A researcher who plays an instrument may attend more closely to musical features than one who doesn't.
-
-**Prompt**:
-
-1. **Position yourself**: Were you an insider or outsider to the music you studied during immersion? Did this vary by genre, era, or artist? Be specific.
-
-2. **Identify your interpretive biases**: What assumptions did you bring to the data? Did you expect certain genres to be more "negative" or "positive" than others? Did your expectations align with what you found, or were you surprised? When you were surprised, what does that tell you about your preconceptions?
-
-3. **Consider alternative readings**: Choose one song from your immersion sample that you found particularly easy to categorize. Now imagine a listener from a different cultural background, generation, or musical tradition encountering the same song. Might they interpret it differently? What does this suggest about the "objectivity" of your coding decisions?
-
-4. **Connect to methodology**: How will you address the positionality issues you've identified in your codebook design? Will you include explicit decision rules that account for the interpretive challenges your positionality creates? Will you seek a second coder whose positionality differs from yours?
-
-This reflexivity exercise connects to [Chapter 10's](chapter10.qmd) treatment of qualitative research quality criteria, particularly the concept of **confirmability**: demonstrating that findings are shaped by the data rather than by researcher bias. The goal is not to eliminate subjectivity (impossible) but to make it transparent (essential).
-
-:::
-
----
-
-## Looking Ahead
-
-Chapter 14 (Vibes to Variables) builds directly on this immersion work. Having developed intuitions about the dataset, you'll now formalize those intuitions into operational definitions, translating the "vibes" you observed during immersion into measurable "variables." You'll learn to write conceptual and operational definitions, understand levels of measurement (NOIR), and evaluate measurement quality through reliability and validity. The immersion you've done in this chapter becomes the foundation for all coding decisions in Chapter 14.
+Wasserstein, R. L., & Lazar, N. A. (2016). The ASA's statement on p-values: Context, process, and purpose. _The American Statistician_, _70_(2), 129-133. https://doi.org/10.1080/00031305.2016.1154108

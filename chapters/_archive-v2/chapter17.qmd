@@ -1,21 +1,7 @@
 ---
 title: "Chapter 17: Wrangling the Chaos"
 ---
-
-## Learning Objectives
-
-- Understand the data wrangling workflow: import, clean, transform
-- Apply the tidy data philosophy to structure datasets
-- Import data into R and diagnose common import problems
-- Handle messy data: missing values, inconsistent categories, duplicates
-- Use the five core dplyr verbs to manipulate data
-- Document data cleaning decisions for reproducibility
-- Recognize why scripted workflows are superior to point-and-click editing
-
 ---
-
-![Neatly organized cables representing clean data](../images/ch17-clean_4.jpg){fig-alt="Neatly organized cables representing clean data"}
-
 
 
 You've completed the qualitative work. You immersed in your data (Chapter 12), operationalized concepts (Chapter 13), built a codebook (Chapter 14), pilot tested it (Chapter 15), and coded your full sample of 200 songs. You have data.
@@ -768,6 +754,8 @@ Wickham, H. (2014). Tidy data. *Journal of Statistical Software*, *59*(10), 1-23
 
 ---
 
+::: {.content-visible when-profile="grad"}
+
 ::: {.callout-note title="Graduate Extension" collapse="true"}
 
 **Required Reading**: Wickham, H. (2014). Tidy data. *Journal of Statistical Software*, *59*(10), 1-23. https://doi.org/10.18637/jss.v059.i10
@@ -783,6 +771,8 @@ Wickham, H. (2014). Tidy data. *Journal of Statistical Software*, *59*(10), 1-23
 4. The tidy data framework assumes that the unit of observation is clearly defined. But in communication research, the unit of observation can be ambiguous. Is the unit a song, a lyric line, a musical phrase, a chart appearance? Is the unit a news article, a paragraph, a sentence, a quoted source? How does the choice of unit affect tidy structure? Write a brief analysis (200 words) of how unit-of-analysis decisions interact with data structure decisions in your own research project.
 
 5. Wickham's framework was designed primarily for tabular data. How well does it extend to non-tabular qualitative data (interview transcripts, field notes, social media threads)? What adaptations would be needed to apply tidy principles to qualitative data management?
+
+:::
 
 :::
 

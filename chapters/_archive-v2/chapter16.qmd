@@ -646,6 +646,8 @@ Riffe, D., Lacy, S., Watson, B. R., & Lovejoy, J. (2023). *Analyzing media messa
 
 ---
 
+::: {.content-visible when-profile="grad"}
+
 ::: {.callout-note title="Graduate Extension" collapse="true"}
 
 **Required Reading**: Riffe, D., Lacy, S., Watson, B. R., & Lovejoy, J. (2023). *Analyzing media messages: Using quantitative content analysis in research* (5th ed.). Routledge. **Read Chapter 5: "Sampling."**
@@ -661,6 +663,8 @@ Riffe, D., Lacy, S., Watson, B. R., & Lovejoy, J. (2023). *Analyzing media messa
 4. Compare the sampling recommendations in Riffe et al. to the general survey sampling guidelines in Dillman et al. (2014), which you read for Chapter 11. Where do the recommendations converge? Where do they diverge? What explains the differences?
 
 5. Design an optimal sampling plan for a content analysis of **social media posts** about a political controversy. Your population is all public posts on a specific platform during a two-week period. How would you apply the principles from Riffe et al. to a domain they don't specifically address? What new sampling challenges does social media present that traditional media content analysis doesn't face?
+
+:::
 
 :::
 

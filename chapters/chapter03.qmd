@@ -1,635 +1,171 @@
 ---
-title: "Chapter 3: The Reading Journal Protocol"
+title: "Chapter 3: Knowing and Knowing Well"
 ---
 
-## Learning Objectives
+![](../images/ch03-library_2.jpg){fig-alt="A stylized rendering of overlapping balanced forms suggesting deliberation."}
 
-- Develop systematic practices for reading and annotating research
-- Use Zotero for citation management and source organization
-- Build a research journal in Obsidian that documents thinking over time
-- Distinguish between summarization and synthesis
-- Create connections between ideas across multiple sources
-- Evaluate source quality and identify predatory or unreliable publications
+In June 2014, researchers at Facebook and Cornell University published a study in the *Proceedings of the National Academy of Sciences* that became one of the most debated experiments in the history of social science. For one week in January 2012, Facebook had manipulated the News Feeds of nearly 700,000 users without their knowledge. Some users saw fewer positive posts from friends; others saw fewer negative posts. The researchers then measured whether the manipulation affected what users themselves posted. It did. Users exposed to fewer positive posts produced slightly more negative content, and vice versa. The study, led by Adam Kramer, Jamie Guillory, and Jeffrey Hancock, offered evidence of "massive-scale emotional contagion through social networks" (Kramer, Guillory, & Hancock, 2014).
 
----
+The finding was interesting. The reaction was explosive.
 
-![Person writing in a research journal](../images/ch03-journal_2.jpg){fig-alt="Person writing in a research journal"}
+Critics pointed out that nearly 700,000 people had been enrolled in a psychological experiment without informed consent. No one had been told their emotional environment was being manipulated. No one had the opportunity to decline. Facebook argued that its terms of service, which users agree to upon creating an account, authorized the use of data for "internal operations, including troubleshooting, data analysis, testing, and research." The researchers argued that the manipulation was minor, the effect size was tiny, and the study produced valuable scientific knowledge.
 
+The scientific community was divided. Some defended the study as comparable to A/B testing that tech companies perform routinely. Others argued that emotional manipulation, however slight, crosses a line that terms-of-service agreements cannot legitimize. PNAS, the journal that published the study, took the unusual step of appending an "editorial expression of concern" to the article, acknowledging questions about the consent process.
 
+The Facebook study crystallized every major tension in modern research ethics: the boundary between research and product development, the adequacy of passive consent, the obligations of researchers to participants who do not know they are participants, and the question of whether "minimal risk" justifies bypassing standard protections. The case does not have a clean answer. Reasonable people disagree about whether the study was ethical. What is not debatable is that the questions it raised matter, and that every researcher must develop a framework for navigating them.
 
-There's a particular kind of overwhelm that strikes when you begin reading research literature. You find an article that seems relevant. It cites twelve other articles that also seem relevant. Each of those cites fifteen more. Within an hour, you have forty browser tabs open and no clear sense of how these sources connect to each other or to the question you're trying to answer.
+## Why ethics is not a formality
 
-The problem isn't lack of information. It's lack of system.
+Students sometimes approach research ethics as a bureaucratic requirement: a form to fill out, a training module to complete, a hurdle between them and the "real" work of data collection. This is understandable. Ethics review can feel procedural, especially when a study involves publicly available chat messages rather than vulnerable human populations.
 
-Good researchers aren't necessarily smarter or more naturally organized than anyone else. They've simply developed habits for managing the constant influx of information: how to read strategically, what to record, how to create connections between ideas that may not become relevant until months later. These habits transform reading from a passive act of consumption into an active process of thinking.
+But ethics is not a procedure. It is a disposition. It shapes how you think about your relationship to the people whose data, content, or behavior you study. It governs how honestly you report what you find. And it reflects the fact that the history of research includes episodes of genuine harm, episodes serious enough to justify every protection that now exists.
 
-This chapter introduces the **reading journal protocol**: a structured approach to engaging with research literature that will serve you throughout this course and beyond. The specific examples here use music research, but the protocol works identically for any domain. A political communication scholar and a health communication scholar use the same reading strategies, the same citation tools, and the same synthesis skills. The content changes; the method does not.
+## How we got here
 
-## The Problem with Passive Reading
+Modern research ethics regulations exist because researchers harmed people. Not hypothetically. Not in edge cases. Systematically and with institutional support. Understanding this history matters not to assign guilt to the current generation, but to appreciate why the protections exist and what they are designed to prevent.
 
-Most students, when assigned a research article, approach it like a textbook chapter or a news article. They read from beginning to end, highlighting passages that seem important, perhaps taking a few notes. When they finish, they feel like they've "done the reading."
+### The Tuskegee syphilis study (1932 to 1972)
 
-But a week later, when they need to write about the article or connect it to other sources, they've forgotten most of it. The highlighted passages look vaguely familiar, but they can't reconstruct the argument or explain why it mattered. They have to re-read the entire article, which feels like wasted effort.
+For forty years, the United States Public Health Service studied the progression of untreated syphilis in 399 Black men in Macon County, Alabama. The men were told they were receiving free treatment for "bad blood." They were not. Even after penicillin became the standard treatment for syphilis in the 1940s, the researchers withheld it. Twenty-eight men died directly of syphilis, 100 died of related complications, 40 wives were infected, and 19 children were born with congenital syphilis.
 
-This happens because passive reading creates the *illusion* of understanding without building actual retrieval structures in memory. Highlighting feels productive, you're doing something, but it doesn't force you to process the material deeply enough to remember it.
+The study was not conducted by rogue scientists. It was funded by the federal government, staffed by credentialed researchers, and published in peer-reviewed journals for decades without significant objection from the scientific community. Its exposure in 1972, by Associated Press journalist Jean Heller, led directly to the regulatory framework the United States uses today.
 
-**Active reading**, by contrast, demands engagement. It requires you to:
+### The Milgram obedience experiments (1961)
 
-- Articulate the author's argument in your own words
-- Identify the evidence supporting that argument
-- Evaluate the strength of that evidence
-- Connect the argument to other things you know
-- Generate questions the article doesn't answer
+Stanley Milgram's experiments at Yale examined whether ordinary people would administer what they believed were painful electric shocks to a stranger simply because an authority figure instructed them to do so. Most did. The experiments produced foundational insights about authority and obedience, but they did so by subjecting participants to extreme psychological distress. Participants believed they were causing real harm to another person. Many exhibited signs of acute anxiety, and some experienced lasting psychological effects.
 
-This cognitive work is harder in the moment, but it produces understanding that lasts.
+The ethical question was not whether the findings were important. They were. The question was whether the knowledge justified the deception and distress inflicted on participants.
 
-## The Architecture of a Research Article
+### Humphreys and the tearoom trade (1970)
 
-Academic research articles follow a predictable structure. Understanding this structure helps you read more strategically: you know where to look for specific information.
+Sociologist Laud Humphreys studied anonymous sexual encounters between men in public restrooms. He recorded participants' license plate numbers without their knowledge, traced their home addresses through police records, and later visited their homes in disguise to conduct "health surveys," gathering personal information the men had no idea was connected to the restroom observations.
 
-### The IMRAD Structure
+Humphreys argued that his research revealed important truths about a hidden population. Critics argued that he violated his subjects' privacy in ways that could have destroyed their lives, marriages, and careers if the data had been exposed.
 
-Most empirical articles in communication and social science use the **IMRAD** format:
+### The common thread
 
-- **Introduction**: What's the research question and why does it matter?
-- **Methods**: How was the study conducted?
-- **Results**: What did the data show?
-- **And Discussion**: What do the findings mean?
+Each case involved researchers who believed their work served a greater good. Each involved participants who were harmed, deceived, or exploited. And each contributed to the recognition that good intentions are not sufficient protection. Researchers need external accountability, formal principles, and institutional oversight.
 
-(Some fields add a separate Literature Review section between Introduction and Methods; others integrate the review into the Introduction.)
+## The Belmont Report
 
-### Strategic Reading: Reverse Order
+In 1979, the National Commission for the Protection of Human Subjects of Biomedical and Behavioral Research published *The Belmont Report*, which established three foundational principles for ethical research (National Commission, 1979). These principles now govern virtually all research involving human subjects in the United States.
 
-Here's a counterintuitive strategy: don't read articles from beginning to end.
+### Respect for persons
 
-Instead, read in this order:
+People must be treated as autonomous agents capable of making their own decisions. This means **informed consent**: participants must understand what the research involves, what risks it carries, and that they can withdraw at any time without penalty. It also means **protection of vulnerable populations**. People with diminished autonomy (children, prisoners, individuals with cognitive impairments) require additional protections because their ability to provide truly voluntary consent is compromised.
 
-**1. Abstract** (2 minutes)  
-Skim the abstract to determine if the article is relevant. Does it address your research question? If not, stop here.
+Applied to communication research, if you survey listeners about their emotional responses to a podcast, participants must know they are in a study, understand what they will be asked to do, and be free to stop at any time. If you analyze public social media posts, the question becomes more complex. Did users "consent" to being studied when they posted publicly? The chapter returns to that question shortly.
 
-**2. Conclusion/Discussion** (5 minutes)  
-Jump to the end. What did the researchers find? What do they claim the findings mean? This tells you whether the article delivers on what the abstract promised.
+### Beneficence
 
-**3. Figures and Tables** (5 minutes)  
-Look at the visualizations. Can you understand the key finding just from the figures? Tables often contain the most important statistical results.
+Researchers must maximize benefits and minimize harms. This involves two obligations. The first is **do no harm**: the research should not cause physical, psychological, social, or economic injury to participants. The second is **maximize the ratio of benefits to risks**: the knowledge gained must justify any risks imposed on participants.
 
-**4. Introduction** (10 minutes)  
-Now go back to the beginning. What's the research question? Why does it matter? What theory or gap in literature motivated the study?
+Applied to communication research, most content analysis carries minimal risk because the analyst is interacting with texts, not people. Survey and experimental research can involve psychological discomfort (exposing participants to upsetting media content), social risk (collecting sensitive information that could embarrass participants if leaked), or economic risk (taking participants' time without adequate compensation).
 
-**5. Methods** (variable)  
-This is where you decide how much detail you need. If you're just trying to understand the findings, skim the methods. If you're planning to replicate or critique the study, read carefully. If you're designing a similar study, take detailed notes on procedures, measures, and analysis.
+### Justice
 
-**6. Results** (10 minutes)  
-Read the results section carefully, referring back to tables as needed. Can you follow the logic from raw data to conclusions?
+The benefits and burdens of research must be distributed fairly. No group should bear a disproportionate share of research risks while another group receives the benefits.
 
-This approach front-loads the most important information (what the study found and why it matters) and lets you decide how deeply to engage with methodological details.
+The Tuskegee study violated justice because it imposed all the risks on a vulnerable, marginalized population while the benefits, in the form of medical knowledge, accrued to the broader society. In communication research, justice concerns arise when studies about marginalized communities are designed and conducted without input from those communities, or when research on "deviant" media behavior targets specific demographic groups while treating majority behavior as the unmarked norm.
 
-## Evaluating Source Quality
+## Institutional review
 
-Not all sources are created equal. Before investing time in a full literature note, evaluate whether the source merits deep engagement. This is a skill that matters well beyond the classroom. Journalists, policy analysts, and public relations professionals all need to distinguish credible evidence from noise.
+The Belmont Report's principles are operationalized through **Institutional Review Boards** (IRBs), committees at universities and research institutions that review proposed studies for ethical compliance before data collection begins.
 
-### Peer Review as a Baseline
+IRBs evaluate whether a study minimizes risks to participants, ensures risks are reasonable relative to anticipated benefits, selects participants equitably, obtains and documents informed consent, monitors data collection for safety, and protects participant privacy and confidentiality.
 
-**Peer-reviewed journal articles** have been evaluated by independent experts before publication. This doesn't guarantee the findings are correct (the replication crisis demonstrated that clearly), but it does mean the study passed a quality threshold. Peer-reviewed sources are the primary currency of academic argument.
+Not all studies require the same level of scrutiny. Federal regulation distinguishes three tiers.
 
-**How to check**: Look for the journal name. Search it in Ulrich's Periodicals Directory or simply check whether the journal is indexed in major databases (Communication & Mass Media Complete, PsycINFO, Web of Science). If you can't find it in any academic database, proceed with caution.
+**Exempt review** applies to research that poses minimal risk and falls into specific categories defined by federal regulation. Most content analysis of publicly available materials (newspaper articles, song lyrics, television broadcasts, public social media posts) qualifies for exempt status because no human subjects are directly involved.
 
-### Predatory Journals
+**Expedited review** applies to research that involves no more than minimal risk but does not qualify for full exemption. Many surveys and interview studies fall here, particularly those that collect non-sensitive data from adult participants.
 
-A growing number of journals mimic the appearance of legitimate academic publications but charge authors fees to publish without meaningful peer review. These "predatory" journals publish nearly anything submitted, which means their articles carry no quality assurance. Warning signs include:
+**Full board review** applies to research involving more than minimal risk, vulnerable populations, or deception. Experimental studies that manipulate participants' emotional states, research with children or prisoners, and studies involving sensitive topics (substance use, sexual behavior, criminal activity) typically require full review.
 
-- Aggressive email solicitations ("Dear Esteemed Researcher, we invite you to submit...")
-- Extremely fast review timelines (legitimate peer review typically takes weeks to months, not days)
-- Vague editorial board listings or board members who don't appear to be real scholars
-- Journal names that closely resemble established journals but aren't the same publication
+The IRB makes the tier determination, not the researcher. Researchers submit; the board decides. Submitting a proposal you suspect should be exempt does not waste anyone's time, because the determination is the board's to make.
 
-When in doubt, check [Beall's List](https://beallslist.net/) or ask your instructor or librarian.
+## Walking the Twitch dataset through the framework
 
-### Source Hierarchy
+The Twitch corpus used in this book is a clean case for ethics review. The cleanness is itself instructive. It shows what a low-friction dataset looks like, and it sets up the contrast cases that show what makes other datasets high-friction.
 
-As a general guide, prioritize sources in this order:
+The Twitch chat log was collected from the public IRC interface that Twitch maintains for chat data. The stream log was collected from the public Twitch API. Both interfaces are public by default; any internet user can connect and read the same data without authentication. The dataset contains no IP addresses, no email addresses, no Twitch internal user IDs, no payment or subscription information, and no whisper (private message) content. Sender usernames are present, but they are **pseudonymous**: a Twitch username is a chosen handle, not a legal name, and many viewers use names that do not connect to their offline identity.
 
-1. **Peer-reviewed journal articles**: Primary evidence, directly reports research findings
-2. **Academic books from university presses**: Synthesize and extend research, often providing deeper theoretical treatment
-3. **Government and institutional reports**: Useful for statistics, demographic data, and policy context
-4. **Reputable journalism** (*The New York Times*, *The Atlantic*, *ProPublica*): Good for identifying research questions, not for answering them
-5. **Trade publications and industry reports**: Useful for applied context but often lack methodological transparency
-6. **Blogs, social media, and opinion pieces**: May generate ideas but should never serve as evidence in a research report
+Walking this through the Belmont principles:
 
-## Zotero: Your Research Library
+- **Respect for persons.** Participants were not enrolled in a study and did not give informed consent. They posted publicly to a platform whose terms of service describe chat as a public broadcast. The argument for ethical use rests on the public-broadcast nature of the data, not on consent. The Association of Internet Researchers (AoIR) has long argued that "public" does not automatically mean "fair game for research" (Markham & Buchanan, 2012), and the researcher's obligation is to handle the data in ways that respect the implicit expectations of a public chat. In practice, this means not aggregating data in ways that would re-identify individual users, not republishing entire chat logs verbatim, and not amplifying messages whose senders might have a stronger expectation of obscurity than of broadcast.
+- **Beneficence.** The risk to senders is minimal because they are pseudonymous, the data are already public, and no analytical move in this book aggregates toward offline identity. The benefit, in the form of scholarship on platform behavior, is reasonable.
+- **Justice.** The dataset is not targeting a marginalized population. It samples broadly across Twitch channels, including non-gaming categories. No group is bearing disproportionate research burden.
 
-Before you can develop a reading protocol, you need infrastructure for managing sources. This is where **Zotero** comes in.
+Most IRBs classify a study using this kind of data as **exempt** because no human subjects are directly involved. Three published manuscripts have used adjacent slices of this collection under exempt-by-design determinations.
 
-Zotero is a free, open-source reference management tool. It does three critical things:
+The cleanness is the point. Now consider three contrast cases that change the determination.
 
-1. **Stores bibliographic information** (author, title, journal, DOI) so you don't have to type citations manually
-2. **Organizes PDFs** so you can find articles months after downloading them
-3. **Generates citations** in any format (APA, MLA, Chicago) automatically
+**Same research question, but on Twitch whispers.** A whisper is a private message between two users. Even with technical access to whisper logs, the senders had a reasonable expectation of privacy. An IRB would almost certainly require expedited or full review, depending on the sensitivity of the content. The shift from public chat to private message changes the data's ethical status entirely.
 
-### Installing Zotero
+**Same research question, but on a private Discord server with the same sender population.** A private Discord is a closed group with controlled membership. Senders have a stronger expectation of privacy than they do on a public Twitch chat. Most IRBs would require expedited or full review for research on private Discord communication, even when the senders are the same people who chat publicly on Twitch.
 
-**Step 1**: Download Zotero
+**Same research question, but on an internal moderation log that included platform-side flags on individual users.** Now the data includes platform-internal classifications about people. The risk of harm to identified individuals jumps significantly. Full board review is likely.
 
-Visit [https://www.zotero.org/download/](https://www.zotero.org/download/) and download both:
-- **Zotero** (the main application)
-- **Zotero Connector** (browser extension for Chrome, Firefox, or Safari)
+The narrow slice of "publicly broadcast chat on a platform whose terms describe it as public, with no platform-internal flags attached" is what makes the dataset for this course exempt-by-design. Most data you encounter in your career will not be that narrow.
 
-Install both with default settings.
+## Informed consent in practice
 
-**Step 2**: Create an Account
+The principle of respect for persons is operationalized primarily through informed consent, the process by which participants voluntarily agree to participate in research after being told what the study involves.
 
-Open Zotero and create a free account. This enables cloud syncing, so your library is accessible across devices.
+Valid informed consent requires that participants receive a description of the research and their role in it; a description of risks and benefits, including any foreseeable discomfort; a statement that participation is voluntary and that withdrawal carries no penalty; contact information for the researcher and the IRB; and an explanation of how data will be stored and confidentiality protected.
 
-**Step 3**: Test the Browser Connector
+Consent gets complicated in three recurring ways. **Deception**, where some studies require that participants not know the true purpose of the research, is sometimes justified but always paired with mandatory **debriefing**: researchers must explain the true purpose after participation and give participants the option to withdraw their data. **Passive consent**, like the Facebook study's reliance on terms-of-service agreement, is generally considered insufficient for research purposes; ethicists prefer **active consent**, which requires an affirmative act (signing a form, clicking an explicit agreement to participate in research, verbally confirming participation). **Secondary data analysis**, where you analyze data someone else collected, raises questions about whether the original consent covered your specific use; it is generally acceptable when the data are de-identified, but it is one of the places where contemporary research ethics is still actively evolving.
 
-Navigate to any article on Google Scholar or a journal website. Click the Zotero Connector icon in your browser toolbar. Zotero should automatically capture the bibliographic information and download the PDF (if available).
+## Ethics in specific methods
 
-The article now appears in your Zotero library.
+Each major research method carries its own ethical profile.
 
-### Organizing Your Library
+**Content analysis of published media** is among the lowest-risk research methods. The analyst is interacting with texts, not with people. Ethical considerations still apply, particularly around how you categorize and interpret content (a content analysis that codes hip-hop lyrics as "violent" without accounting for genre conventions can reinforce harmful stereotypes), cherry-picking examples that confirm a hypothesis while ignoring contradictory cases, and copyright concerns when reproducing extensive content in a final report.
 
-Create folders (called "collections" in Zotero) to organize sources by topic, project, or course.
+**Survey research** involves direct interaction with participants, which raises the ethical stakes. Voluntary participation must be genuine; offering course credit is acceptable only if an alternative assignment of equal value is available. Sensitive questions about substance use, sexual behavior, mental health, or illegal activity require careful handling. Data must be stored securely and de-identified.
 
-**Suggested structure for this course**:
-```
-Research Methods - Course Library
-├── Theory & Frameworks
-├── Content Analysis Methods
-├── Music & Media Studies
-├── Statistics & Analysis
-└── My Project Sources
-```
+**Experimental research** that manipulates participants' experiences carries the highest ethical burden. Manipulation effects must be considered carefully: if you expose participants to distressing media content, you must consider whether the exposure could cause lasting harm. Deception requires debriefing. Control group ethics, particularly in interventional research, can raise fairness questions when a potentially beneficial treatment is withheld from one group.
 
-You can assign the same article to multiple collections. An article about content analysis of song lyrics might appear in both "Content Analysis Methods" and "Music & Media Studies."
+**Digital and social media research** occupies an evolving ethical landscape. The "public" problem (data is publicly accessible but the poster may not have anticipated being studied) is the central issue. Aggregation risk (combining individually harmless data points to create identifiable profiles) compounds it. Platform terms of service may prohibit scraping even of public data, which raises legal questions alongside ethical ones. And vulnerable populations online (minors, people in crisis, members of stigmatized groups) may be especially harmed by research exposure, even when their posts are public.
 
-### Adding Notes to Sources
+## Ethical writing and reporting
 
-Zotero allows you to attach notes directly to sources. This is useful for quick annotations, but for deeper engagement, you'll use Obsidian (more on this shortly).
+Ethics does not end when data collection is over. How you analyze and report findings carries its own ethical obligations.
 
-Right-click any source → **Add Note** → Type your thoughts.
+**Fabrication** is inventing data that do not exist. **Falsification** is manipulating data or results to change the outcome. Both are forms of scientific fraud, and both are career-ending if discovered. They are also more common than the research community likes to admit; surveys of researchers consistently find that a small but meaningful percentage acknowledge engaging in questionable practices (Babbie, 2021).
 
-Keep these notes brief and focused:
-- Main argument (1-2 sentences)
-- Key finding
-- Relevance to your project
-- Questions or critiques
+**Selective reporting** is a subtler form of dishonesty: running many analyses but reporting only those that produced significant results, or testing multiple hypotheses but presenting only the ones that worked. This practice, sometimes called the file drawer problem, distorts the literature by creating a publication record that systematically overstates the strength of effects. Chapter 2's discussion of researcher degrees of freedom returns here. Selective reporting is the active version of the passive friction the Open Science Collaboration documented in 2015.
 
-## The Research Journal: Active Reading in Obsidian
+**HARKing**, an acronym for Hypothesizing After the Results are Known, occurs when researchers examine their data, identify patterns, and then write the paper as though they had predicted those patterns all along. This transforms exploratory analysis (which is legitimate) into confirmatory analysis (which requires pre-specification). A "prediction" that was actually a post-hoc observation carries none of the epistemic weight of a genuine a priori hypothesis.
 
-Zotero manages your sources. Obsidian is where you **think** about them.
+Even without outright fabrication, researchers face constant temptation to overstate their findings. "Our results suggest" becomes "our results demonstrate." A small effect size gets buried while a large p-value gets highlighted. Limitations are mentioned but minimized. The discussion section tells a cleaner story than the data support.
 
-The research journal is a living document that evolves as you read. It's not a static summary of what you've read. It's a record of your thinking, your questions, and your emerging understanding.
+**Honest interpretation** means stating what you found, acknowledging what you did not find, and being transparent about the boundaries of your claims. It means writing a limitations section that genuinely grapples with weaknesses rather than performing humility while defending every decision. It means distinguishing between what the data show and what you wish they showed. This is harder than it sounds. It is the core ethical obligation of every researcher.
 
-### Creating a Literature Note Template
+## Looking ahead
 
-In Obsidian, create a template for literature notes. This ensures consistency and makes it easier to find information later.
-
-**Navigate to**: Templates folder (create it if it doesn't exist)  
-**Create**: `Literature Note Template.md`
-
-```markdown
-# [Author, Year] - [Short Title]
-
-## Citation
-[Paste full APA citation here from Zotero]
-
-## Link to Source
-[Zotero link if available]
-
-## Central Question
-What research question does this article address?
-
-## Main Argument
-In 2-3 sentences, what is the author's main claim or finding?
-
-## Key Evidence
-What data or reasoning supports the main argument?
-- Evidence 1
-- Evidence 2
-- Evidence 3
-
-## Methods
-**Design**: [Experimental, survey, content analysis, etc.]  
-**Sample**: [Size, characteristics]  
-**Measures**: [What was measured and how?]  
-**Analysis**: [Statistical tests or analytical approach]
-
-## Relevance to My Research
-How does this source connect to my research question or project?
-
-## Strengths
-What does this study do well?
-
-## Limitations
-What are the weaknesses or gaps?
-
-## Questions This Raises
-What do I still want to know after reading this?
-
-## Connections
-What other sources does this relate to?
-- [[Other Article 1]] - [How they connect]
-- [[Other Article 2]] - [How they connect]
-
-## Quotable
-> "Direct quote worth remembering" (p. X)
-
-## Tags
-#literature #content-analysis [add relevant tags]
-```
-
-### Using the Template
-
-When you read an article, create a new note from this template and fill it out **while you read**, not afterward. This forces active engagement.
-
-**Example**: Suppose you're reading an article about lyric sentiment trends in popular music. Here is what a completed literature note looks like using a real, published study:
-
-```markdown
-# Napier & Shamir, 2018 - Quantitative Sentiment Analysis of Lyrics
-
-## Citation
-Napier, K., & Shamir, L. (2018). Quantitative sentiment analysis of
-lyrics in popular music. *Journal of Popular Music Studies*, *30*(4),
-161-176. https://doi.org/10.1525/jpms.2018.300411
-
-## Central Question
-How has the emotional tone of popular song lyrics changed over
-several decades of Billboard Hot 100 history?
-
-## Main Argument
-Using computational sentiment analysis, the authors found that
-Billboard Hot 100 lyrics have become progressively more negative
-over time. The trend is not uniform across genres: some genres
-show steeper declines in positive sentiment than others.
-
-## Key Evidence
-- Computational sentiment analysis of Billboard Hot 100 lyrics
-  spanning multiple decades
-- Statistically significant downward trend in positive sentiment
-  over time
-- Genre-level analysis showing variation in the negativity trend
-
-## Methods
-**Design**: Quantitative content analysis (automated)
-**Sample**: Billboard Hot 100 songs across several decades
-**Measures**: Sentiment scores computed via automated text analysis
-**Analysis**: Trend analysis over time, with genre as a moderator
-
-## Relevance to My Research
-Directly relevant to any RQ about whether lyric sentiment relates
-to chart success. Also raises the question of whether the trend
-toward negativity reflects audience preference or industry production
-decisions.
-
-## Strengths
-- Large sample spanning decades (longitudinal perspective)
-- Computational approach ensures consistency across thousands of songs
-- Genre-level breakdown adds nuance
-
-## Limitations
-- Automated sentiment analysis misses context (sarcasm, irony,
-  metaphor)
-- Doesn't account for musical features (tempo, key) that shape
-  how lyrics are experienced
-- Treats all chart positions equally (doesn't distinguish #1 hits
-  from #100)
-
-## Questions This Raises
-- Would human coding reveal different patterns than automated
-  analysis?
-- Is the negativity trend driven by specific genres entering the
-  mainstream (e.g., rap, emo) or by all genres becoming more negative?
-- Do audiences *prefer* negative lyrics, or do negative songs chart
-  for other reasons (marketing, novelty, cultural context)?
-
-## Connections
-- [[Sachs et al., 2015]] - Why people enjoy sad music (psychological
-  mechanisms that might explain demand for negative content)
-- [[Brand et al., 2019]] - Cultural evolution of emotional expression
-  in lyrics (complementary finding using different methods)
-- [[DeWall et al., 2011]] - Narcissism trends in lyrics (parallel
-  content analysis tracking psychological traits over time)
-
-## Quotable
-> (Paraphrase key finding rather than direct quote if full text
-> is not available)
-
-## Tags
-#literature #lyric-sentiment #content-analysis #chart-performance
-```
-
-Notice what this does:
-
-1. **Forces synthesis**: You can't just highlight. You have to articulate the argument in your own words.
-2. **Identifies gaps**: The "Questions This Raises" section generates future research ideas.
-3. **Creates connections**: The "Connections" section links this article to others you've read, building a knowledge network.
-4. **Records your thinking**: Months from now, you'll remember not just what the article said, but what *you* thought about it.
-
-This template works for any domain. A student studying news framing would fill in the same fields, substituting "content analysis of newspaper coverage" for "sentiment analysis of lyrics." A student studying health communication would note different theories in the Connections section. The template is domain-agnostic; the content is yours.
-
-## The Weekly Research Log
-
-In addition to literature notes on individual sources, maintain a **weekly research log** that tracks your evolving thinking.
-
-**Create**: `Research Log - Week [N].md`
-
-**Structure**:
-
-```markdown
-# Research Log - Week 3
-
-## What I Read This Week
-- [[Napier & Shamir, 2018]] - Sentiment trends in Billboard lyrics
-- [[Juslin & Västfjäll, 2008]] - Emotional mechanisms in music
-- [[Zentner et al., 2008]] - Measuring music-evoked emotions
-
-## Themes Emerging
-I'm noticing a pattern: the relationship between media content and
-emotion is more complex than I thought. It's not just "positive
-content = popular." Context matters. Genre matters. And maybe what
-people *say* they want (uplifting content) differs from what they
-actually consume (emotionally intense content). This seems like it
-could apply beyond music, to news, to social media, to any medium
-where emotional engagement drives consumption.
-
-## Connections I'm Seeing
-Napier & Shamir's finding (lyrics becoming more negative over time)
-connects to Juslin & Västfjäll's point about "emotional contagion"
-as a mechanism for how music affects listeners. Maybe it's not about
-positive vs. negative but about *emotional intensity* vs. blandness.
-Zentner et al. suggest music evokes specific aesthetic emotions
-(wonder, nostalgia, power) that don't map neatly onto a simple
-positive/negative dimension.
-
-## Questions I'm Wrestling With
-- How do I operationalize "emotional intensity" in my own coding?
-- Should I focus just on sentiment (positive/negative) or also code
-  for intensity (mild/strong)?
-- Is there a way to combine lyric analysis with Spotify's audio
-  features (energy, valence) to get a fuller picture?
-
-## Gaps I'm Noticing in the Literature
-Most studies focus on Western pop music. Not much on rap or country
-specifically. Also, most use automated sentiment analysis. Would
-human coding reveal different patterns?
-
-## Next Steps
-- Find articles on coding emotional intensity (not just valence)
-- Look for studies that combine lyric and audio analysis
-- Start drafting my codebook structure
-```
-
-This weekly habit serves multiple purposes:
-
-- **Prevents overwhelm**: Instead of trying to synthesize everything at once, you build understanding incrementally.
-- **Identifies patterns**: Themes emerge when you force yourself to articulate connections.
-- **Documents evolution**: Your research log becomes a record of how your thinking changed, which is useful when writing your final report's introduction.
-
-## Summary vs. Synthesis: A Critical Distinction
-
-Students often confuse **summarization** with **synthesis**. They're not the same.
-
-**Summary** = Restating what one source says  
-**Synthesis** = Combining insights from multiple sources to create new understanding
-
-### Example of Summary (Weak)
-
-> Napier and Shamir (2018) found that Billboard lyrics have become
-> more negative over time. Juslin and Västfjäll (2008) proposed eight
-> mechanisms through which music evokes emotion. Zentner, Grandjean,
-> and Scherer (2008) developed a scale for measuring music-evoked
-> emotions that goes beyond simple positive/negative categories.
-
-This is a list of facts. It doesn't explain how they connect or what they mean together.
-
-### Example of Synthesis (Strong)
-
-> Three lines of research suggest that the relationship between music
-> and emotion is more complex than a simple positive/negative dichotomy.
-> Napier and Shamir (2018) found that popular lyrics have become
-> increasingly negative over decades of Billboard history, implying that
-> audiences are not simply selecting for cheerful content. Juslin and
-> Västfjäll (2008) proposed that music evokes emotion through multiple
-> mechanisms, including "emotional contagion" and "episodic memory,"
-> suggesting that a song's emotional impact depends on far more than
-> its surface-level sentiment. Zentner et al. (2008) reinforced this
-> point by showing that music evokes a distinct set of aesthetic emotions,
-> such as wonder, nostalgia, and power, that don't reduce to the
-> valence dimension. Taken together, these findings challenge simple
-> models of audience preference and suggest that emotional *complexity*
-> or *intensity* may matter more than whether the content is positive
-> or negative.
-
-This creates a **unifying claim** (emotional complexity matters more than valence) and shows how the three sources **support that claim in different ways**.
-
-Synthesis is harder because it requires you to see patterns across sources. But it's also what literature reviews demand. You're not just reporting what others found. You're arguing for a particular interpretation of the collective evidence. This skill transfers directly: a literature review on crisis communication framing uses the same synthesis logic, just with different sources.
-
-## The Connection Habit: Linking Ideas
-
-One of Obsidian's most powerful features is the ability to **link notes together**. This creates a web of connected ideas that mirrors how knowledge actually works.
-
-**Practice**: Every time you create a literature note, force yourself to link it to at least two other notes.
-
-**Example**:
-
-In your note on Napier & Shamir (2018), you wrote:
-
-```markdown
-## Connections
-- [[Sachs et al., 2015]] - Why people enjoy sad music
-- [[Brand et al., 2019]] - Cultural evolution of emotional expression
-```
-
-Now, when you open the Sachs et al. note, add a backlink:
-
-```markdown
-## Connections
-- [[Napier & Shamir, 2018]] - Empirical evidence that lyrics have
-  become more negative (raises the question of *why* audiences
-  consume negative content, which Sachs addresses psychologically)
-```
-
-Over time, these links create a **knowledge graph**, a visual network showing how ideas relate. Obsidian can generate this graph automatically (Graph View).
-
-When you write your literature review in Chapter 4, you won't be starting from scratch. You'll already have a map of how sources connect.
-
-## The Annotation Workflow
-
-Here's the complete workflow for engaging with a new source:
-
-**Step 1**: Find the article (Google Scholar, library database)  
-**Step 2**: Save to Zotero (click Connector in browser)  
-**Step 3**: Skim abstract and conclusion (decide if worth full read)  
-**Step 4**: If yes, open in Obsidian and create note from template  
-**Step 5**: Read strategically (reverse order: abstract → conclusion → intro → methods → results)  
-**Step 6**: Fill out template **while reading**, not after  
-**Step 7**: Add connections to at least 2 other notes  
-**Step 8**: Update your weekly research log with new insights
-
-This takes longer than passive reading, but it pays compound interest. You'll never have to re-read an article because you "forgot what it said."
-
----
-
-## Practice: Building Your Reading System
-
-### Exercise 3.1: Install and Configure Zotero
-
-1. Download and install Zotero + Connector
-2. Create an account
-3. Create a collection structure for this course (see the suggested structure above)
-4. Find 3 articles on Google Scholar related to your research interests (these can be about music, media, communication, or any social science topic)
-5. Use the Connector to add all 3 to your Zotero library
-6. Verify the PDFs downloaded correctly
-
----
-
-### Exercise 3.2: Create Your First Literature Note
-
-Choose one of the articles you added to Zotero.
-
-1. Create a new note in Obsidian using the Literature Note Template
-2. Read the article using the strategic reading order (abstract → conclusion → intro)
-3. Fill out the template while you read
-4. Pay special attention to "Questions This Raises" and "Connections"
-5. Add at least 2 tags
-
-**Goal**: Transform passive reading into active engagement.
-
----
-
-### Exercise 3.3: Practice Summary vs. Synthesis
-
-Read the abstracts of these three hypothetical articles:
-
-**Article A**: "We found that songs in major keys chart 15% higher on average than songs in minor keys."
-
-**Article B**: "Listeners report preferring 'upbeat' music when asked, but streaming data shows they listen to melancholic music more frequently."
-
-**Article C**: "Survey respondents rate happy songs as more 'likable,' but sad songs as more 'meaningful.'"
-
-**Task 1 (Summary)**: Write 3 sentences, one summarizing each article.
-
-**Task 2 (Synthesis)**: Write one paragraph that synthesizes all three, identifying a unifying pattern or tension.
-
-**Task 3 (Transfer)**: Now imagine three hypothetical studies about news consumption: (A) positive news stories get more "likes" on social media, (B) readers say they want more positive news but click on negative headlines more often, (C) people rate negative news as more "important" than positive news. Write a synthesis paragraph. Notice how the same pattern (stated preferences diverge from revealed behavior) operates across domains.
-
----
-
-### Exercise 3.4: Evaluating Source Quality
-
-Find one article from each of the following source types:
-
-1. A **peer-reviewed journal article** from a database like Communication & Mass Media Complete
-2. A **well-reported journalistic piece** from a reputable outlet
-3. A **blog post or opinion piece** on the same general topic
-
-For each, note: Who wrote it? What evidence supports the claims? Could the findings be verified or replicated? Where does each source sit in the quality hierarchy described in this chapter?
-
-**Goal**: Develop the habit of evaluating credibility before citing.
-
----
-
-### Exercise 3.5: The Weekly Research Log
-
-Create your first weekly research log entry.
-
-```markdown
-# Research Log - Week 3
-
-## What I Read This Week
-[List 2-3 articles or sources]
-
-## Initial Research Question
-[What am I curious about?]
-
-## Themes Emerging
-[What patterns am I noticing?]
-
-## Questions I'm Wrestling With
-[What confuses me or seems contradictory?]
-
-## Next Steps
-[What do I need to read or do next?]
-```
-
-**Goal**: Develop the habit of reflection, not just consumption.
-
----
-
-## Reflection Questions
-
-1. **Reading Habits**: How do you typically read research articles? Do you read start-to-finish, or do you skip around? After reading this chapter, what will you change?
-
-2. **The Connection Problem**: Why is it hard to remember what you read? How does active annotation solve this problem better than highlighting?
-
-3. **Synthesis as Thinking**: The chapter argues that synthesis creates new understanding, not just recaps old information. Can you think of an example where you connected two ideas and realized something neither source explicitly stated?
-
-4. **Beyond the Discipline**: The reading protocol and literature note template are designed to work for any research domain. If you were studying political communication or health messaging instead of music, what would change in the template? What would stay the same?
-
----
-
-## Chapter Summary
-
-This chapter introduced the infrastructure for systematic research reading:
-
-- **Active reading** requires engaging with sources through annotation, questioning, and connection-building, not passive consumption.
-- **Strategic reading** (abstract → conclusion → intro → methods → results) prioritizes high-value information.
-- **Source evaluation** helps you distinguish peer-reviewed research from predatory journals, opinion pieces, and unreliable sources.
-- **Zotero** manages bibliographic information and PDFs, eliminating citation drudgery.
-- **Literature notes** in Obsidian create lasting understanding by forcing synthesis and connection.
-- **Weekly research logs** document evolving thinking and identify emerging patterns.
-- **Summary** restates what one source says; **synthesis** combines multiple sources to generate new insight.
-- **Linking notes** creates a knowledge graph that mirrors the structure of ideas.
-- The reading protocol is **domain-agnostic**: the same habits serve music research, political communication, health messaging, or any other social science inquiry.
-
----
-
-## Key Terms
-
-- **Active reading**: Engaging with sources through annotation, questioning, and synthesis
-- **IMRAD**: Standard structure for empirical articles (Introduction, Methods, Results, And Discussion)
-- **Knowledge graph**: A network of connected ideas created through linked notes
-- **Literature note**: A structured annotation of a research source
-- **Peer review**: Expert evaluation of research before publication
-- **Predatory journal**: A publication that charges fees without meaningful quality review
-- **Strategic reading**: Reading in non-linear order to prioritize high-value information
-- **Summary**: Restating a source's argument in different words
-- **Synthesis**: Combining insights from multiple sources to create new understanding
-- **Zotero**: Open-source reference management software
-
----
+Chapter 4 opens Part II of the book, where the work shifts from foundations to design. The first move is a literature review: identifying what is already known about a topic and where the gaps in the field are. Literature review is the rising action of a research story. Before you confront your research question, you find out what others have already tried.
 
 ## References
 
-Brand, C. O., Acerbi, A., & Mesoudi, A. (2019). Cultural evolution of emotional expression in 50 years of song lyrics. *Evolutionary Human Sciences*, *1*, e11. https://doi.org/10.1017/ehs.2019.11
+Babbie, E. R. (2021). *The practice of social research* (15th ed.). Cengage Learning.
 
-DeWall, C. N., Pond, R. S., Jr., Campbell, W. K., & Twenge, J. M. (2011). Tuning in to psychological change: Linguistic markers of psychological traits and emotions over time in popular U.S. song lyrics. *Psychology of Aesthetics, Creativity, and the Arts*, *5*(3), 200-207. https://doi.org/10.1037/a0023195
+Kramer, A. D. I., Guillory, J. E., & Hancock, J. T. (2014). Experimental evidence of massive-scale emotional contagion through social networks. *Proceedings of the National Academy of Sciences*, *111*(24), 8788-8790. https://doi.org/10.1073/pnas.1320040111
 
-Juslin, P. N., & Västfjäll, D. (2008). Emotional responses to music: The need to consider underlying mechanisms. *Behavioral and Brain Sciences*, *31*(5), 559-575. https://doi.org/10.1017/S0140525X08005293
+Markham, A., & Buchanan, E. (2012). *Ethical decision-making and internet research: Recommendations from the AoIR Ethics Working Committee (Version 2.0)*. Association of Internet Researchers.
 
-Napier, K., & Shamir, L. (2018). Quantitative sentiment analysis of lyrics in popular music. *Journal of Popular Music Studies*, *30*(4), 161-176. https://doi.org/10.1525/jpms.2018.300411
+National Commission for the Protection of Human Subjects of Biomedical and Behavioral Research. (1979). *The Belmont Report: Ethical principles and guidelines for the protection of human subjects of research*. U.S. Department of Health, Education, and Welfare.
 
-Sachs, M. E., Damasio, A., & Habibi, A. (2015). The pleasures of sad music: A systematic review. *Frontiers in Human Neuroscience*, *9*, Article 404. https://doi.org/10.3389/fnhum.2015.00404
-
-Zentner, M., Grandjean, D., & Scherer, K. R. (2008). Emotions evoked by the sound of music: Characterization, classification, and measurement. *Emotion*, *8*(4), 494-521. https://doi.org/10.1037/1528-3542.8.4.494
-
----
-
+::: {.content-visible when-profile="grad"}
 ::: {.callout-note title="Graduate Extension" collapse="true"}
+**Paradigmatic positioning.** Every study operates from a paradigm — a set of assumptions about the nature of knowledge and how it is acquired. Post-positivist communication researchers assume an objective social reality that is incompletely knowable, that measurement error is irreducible but manageable, and that statistical inference allows probabilistic claims about that reality. If that description fits your study, the four graduate-edition commitments (power, pre-registration, reliability, audit trail) are not optional — they are logical entailments of the paradigm. If you are working from an interpretive or critical paradigm, V2V's quantitative tools occupy a different role in your methodology, and different obligations apply.
 
-**Required Reading**: Juslin, P. N. (2013). From everyday emotions to aesthetic emotions: Towards a unified theory of musical emotions. *Physics of Life Reviews*, *10*(3), 235-266. https://doi.org/10.1016/j.plrev.2013.05.008
+**Why pre-registration is a paradigmatic commitment.** Pre-registration is often framed as a statistical technique to control false-positive rates. That framing is accurate but incomplete. At the paradigmatic level, pre-registration embodies the hypothetico-deductive model: you derive predictions from theory *before* examining data, then submit those predictions to empirical test. This is the canonical post-positivist epistemological move. The OSF pre-registration form operationalizes that commitment: it requires you to state theory-derived hypotheses, specify measures, and describe the analysis before any data is collected or examined.
 
-**Prompt**: Juslin proposes the BRECVEMA model, identifying eight distinct psychological mechanisms through which music evokes emotion: Brain stem reflexes, Rhythmic entrainment, Evaluative conditioning, Contagion, Visual imagery, Episodic memory, Musical expectancy, and Aesthetic judgment. This framework challenges the assumption that "music makes you feel things" is a simple, unified process.
+**Epistemological humility and its constraints.** Claiming that reality is incompletely knowable does not license sloppy measurement. It licenses *uncertainty quantification* — confidence intervals, power statistics, effect size estimates with precision reported. The four graduate-edition commitments are the methods-level expression of epistemological humility.
 
-1. Create a complete literature note for this article using the template from this chapter. Fill in every section, including Connections to at least three other sources.
-2. Write a 300-word synthesis paragraph connecting Juslin's BRECVEMA framework to at least two other sources you've read this week. The synthesis should make an argument, not just list what each source found.
-3. Consider the methodological implications: if music evokes emotion through eight different mechanisms, what does that mean for how we operationalize "emotional response" in research? Can a single survey item ("How did this song make you feel?") capture what's actually happening? What measurement approaches might be needed?
-4. Juslin's framework was developed for music, but the underlying mechanisms (contagion, conditioning, memory, expectancy) operate in other media contexts too. Choose one mechanism and explain how it might function in a non-music domain (e.g., emotional contagion in social media, evaluative conditioning in advertising, episodic memory in news consumption).
+**Required reading.** Crotty, M. (1998). *The foundations of social research: Meaning and perspective in the research process*. SAGE Publications.
 
+**Reflect.** (1) Where would you locate your current research question on the ontology–epistemology axis Crotty describes? What methodological implications follow from that location? (2) Is pre-registration compatible with grounded theory or thematic analysis? Make the case for or against, using epistemological rather than practical reasoning.
 :::
-
----
-
-## Looking Ahead
-
-Chapter 4 (The Archivist) builds on these habits by teaching you to conduct a **systematic literature review**. You'll learn advanced search strategies for finding relevant scholarship using Boolean operators and academic databases, techniques for citation chaining, criteria for recognizing when you've reached saturation, and methods for mapping the intellectual territory of a research question. The literature review transforms your collection of individual notes into a coherent argument about what is known, what is contested, and what remains to be discovered.
+:::

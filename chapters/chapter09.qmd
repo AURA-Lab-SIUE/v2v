@@ -1,380 +1,189 @@
----
-title: "Chapter 9: The Methodologist's Toolkit"
----
-
-## Learning Objectives
-
-- Understand the four major research methods in social science: content analysis, surveys, experiments, and qualitative methods
-- Recognize what each method can and cannot tell you
-- Match research questions to appropriate methods
-- Distinguish between methods that describe content, measure attitudes, test causation, and explore meaning
-- Understand how mixed methods designs combine approaches for more complete answers
-
+﻿---
+title: "Chapter 9: The rulebook and first workspace"
 ---
 
-![Collection of tools representing research methods](../images/ch09-toolkit_1.jpg){fig-alt="Collection of tools representing research methods"}
+![](../images/ch09-toolkit_1.jpg){fig-alt="A stylized rendering of an organized desk with a single open notebook."}
 
+Here is a strange thing about the work of the last eight chapters. You have a research question, a theoretical frame, a prospectus, a field-notes document, and a draft codebook. You have, in other words, designed an entire study around the Twitch dataset. And you have never actually seen it.
 
+You have been told what it contains. Chapter 1 described a collection of nearly 1,700 channels recorded across five and a half days of November 2018, Bob Ross streaming under Art while most of the platform played games. Chapter 2 showed ten rows of it. You have taken the rest on trust. This chapter is where the trust ends and the looking begins. By the end of it you will have typed a few lines of R, and the dataset will have stopped being a description and become an object sitting in front of you, one you can inspect column by column.
 
-Imagine four researchers walk into a conference, each studying the same broad topic: how media coverage of mental health has changed over the past decade. They've read the same literature. They share the same curiosity. But they've chosen different methods, and as a result, they've produced four fundamentally different studies.
+This is also the chapter where the book changes character. For eight chapters there has been no code, on purpose. Planning a study before writing a line of it is the discipline that makes the code worth writing. But the planning is done. From here forward the work is done in R, and Chapter 9 is the gentle start: it opens a workspace, it loads the data, and it looks. It runs no analysis and computes no result. First contact is its own task, and it is worth doing slowly.
 
-**Researcher A** conducted a **content analysis** of 500 newspaper articles about depression, coding each for whether the coverage framed depression as a personal failing or a medical condition. She found that medical framing increased from 35% to 62% over the decade, while personal-responsibility framing declined.
+## The workspace
 
-**Researcher B** designed a **survey** of 1,200 adults, asking about their media consumption habits, their attitudes toward people with depression, and their willingness to support mental health funding. He found that respondents who reported heavy news consumption held more sympathetic attitudes toward depression, even after controlling for education, age, and political ideology.
+Before the data, the workspace. Chapter 2 argued that reproducible research lives or dies on traceability: a study someone else can rerun is a study built from files in known places, not from commands typed once and forgotten. A **project** is how that happens. It is a single folder that holds everything one study needs, the data, the code, the codebook, the written report, so that the whole study travels together and nothing depends on a file that lives only on your laptop.
 
-**Researcher C** ran an **experiment**. She randomly assigned 300 participants to read one of two versions of a news article about depression: one using medical framing, one using personal-responsibility framing. Participants who read the medically framed article expressed significantly higher support for public mental health funding.
+The `v2v` package scaffolds one for you. A single call does it:
 
-**Researcher D** conducted **in-depth interviews** with 25 people who had been diagnosed with depression, asking how they felt about media representations of their condition. She found that participants experienced medical framing as validating but also reductive, describing a tension between gratitude for destigmatization and frustration that coverage rarely captured the lived complexity of their experience.
+```r
+v2v::new_portfolio("twitch-portfolio")
+```
 
-Each study is rigorous. Each answers a real question. But they answer *different* questions, and they do so because the method shapes what you can see. Researcher A knows what's in the content. Researcher B knows what audiences think. Researcher C knows whether framing *causes* attitude change. Researcher D knows what the experience *means* to the people living it.
+Note the `v2v::` in front of the function name. It is not decoration. It tells R, and tells you, that `new_portfolio()` comes from the `v2v` package specifically, the set of tools this book ships. Every `v2v::` call in the chapters ahead carries that prefix for the same reason: so that the package never becomes a hidden assumption, and you always know which tools are the book's and which are R's own.
 
-No single method answers all four questions. A researcher who understands only one method is like a carpenter who owns only a hammer: every problem looks like a nail. This chapter introduces the full toolkit.
+Running `new_portfolio()` creates a folder with a structure like this:
 
-## Why Methods Matter More Than Findings
+```
+twitch-portfolio/
+├── twitch-portfolio.Rproj
+├── _quarto.yml
+├── README.md
+├── codebook.qmd
+├── analysis.qmd
+├── data/
+└── .Rprofile
+```
 
-There is a temptation, particularly among students new to research, to focus on *what* a study found and skip over *how* it found it. This is a mistake. The "how" determines the "what." A study's method constrains what claims it can legitimately make. A content analysis can describe patterns in media texts, but it cannot tell you how audiences interpreted those texts. A survey can capture what people say they believe, but it cannot establish that media exposure *caused* those beliefs. An experiment can demonstrate causation, but only in a controlled environment that may not resemble the real world. An interview can reveal rich subjective experience, but it cannot generalize to millions of people.
+You did not have to decide where files go, what to name them, or how to wire them together. That is the point. Where to put things is a real source of friction for someone opening a data project for the first time, and an hour lost to it is an hour not spent on the study. The scaffold removes the decision.
 
-Understanding methods is not a technical skill separate from intellectual work. It is the intellectual work. When you read a published study and think, "That's interesting, but does it really prove what the authors claim?", you are engaging in methodological reasoning. When you design your own study and ask, "What kind of evidence would actually answer my question?", you are choosing a method. This chapter equips you to make that choice wisely.
+One more call confirms the workspace is sound:
 
-## Content Analysis: What's in the Message?
+```r
+v2v::setup()
+```
 
-**Core question**: What patterns exist in media content?
+`setup()` checks that R, the packages this book depends on, and the project's environment are all present and the versions agree. You met it once already, in Chapter 2, as the final step of installing the stack. It returns here as a habit worth keeping: run it when you open a project, and you find out about a missing piece before it interrupts you mid-analysis.
 
-**Definition**: Content analysis is the systematic, replicable examination of symbols of communication (Krippendorff, 2018). It involves defining categories, developing coding rules, and applying those rules consistently to a sample of texts, images, or other media artifacts.
+## The rulebook becomes a document
 
-**What it can do**:
+Look again at the scaffold. One of the files is `codebook.qmd`.
 
-- Describe the prevalence of themes, frames, or features in a body of content ("42% of articles framed depression medically")
-- Track changes over time ("Medical framing increased from 35% to 62% between 2014 and 2024")
-- Compare content across sources ("Network news used episodic framing more frequently than newspaper coverage")
-- Test relationships between content features ("Songs with negative lyric sentiment charted higher than songs with positive sentiment")
+In Chapter 8 you drafted a codebook on paper: a unit of analysis, three operationalized variables, a set of decision rules. That draft was an argument about how the study would measure things. Now it becomes a document in the workspace, the project's **rulebook**, the reference every later step answers to. Move the Chapter 8 draft into `codebook.qmd`, give it a version line and a date, and render it the way Chapter 2 had you render a one-page Quarto document. Rendering a codebook is not busywork. A codebook that renders cleanly is a codebook with no broken structure, and a rendered codebook is one a second coder can actually read.
 
-**What it cannot do**:
+Calling this "finalizing" the codebook is slightly optimistic, and it is worth being honest about that. Chapter 10 will pilot the codebook, two coders applying it to the same messages, and piloting routinely sends you back to edit a category or sharpen a rule. What Chapter 9 finalizes is not the content of the rulebook but its status: it stops being a sketch in your notes and becomes the official instrument of the project, versioned, rendered, and ready to be tested. A draft you can revise is exactly what you want walking into a pilot.
 
-- Tell you how audiences interpreted the content (that requires a survey or experiment)
-- Explain *why* the patterns exist (that requires theory, and often additional methods)
-- Establish causation (correlation between content features is not evidence that one causes the other)
+## First contact with the data
 
-**When to use it**: When your research question asks about the characteristics of media content itself, rather than about the people who produce or consume it. Content analysis is ideal for questions like: "How is X represented in Y medium?" or "Has the prevalence of Z changed over time?"
+Now the data. Two lines bring it in.
 
-**Strengths**: Unobtrusive (you don't interact with human subjects), systematic (replicable coding procedures), scalable (you can analyze large corpora), and historically traceable (you can study content from any era with surviving records).
+```r
+library(tidyverse)
 
-**Limitations**: Coding decisions are interpretive, which means reliability is never perfect. Latent content (underlying meaning) is harder to code reliably than manifest content (surface features). And the method tells you what's *in* the text, not what the text *does* to audiences.
+chat <- v2v::twitch_chat()
+streams <- v2v::twitch_streams()
+```
 
-**Key methodological references**: Krippendorff (2018) provides the definitive theoretical treatment. Neuendorf (2017) offers practical guidance on codebook design. Riffe, Lacy, Watson, and Lovejoy (2023) focus specifically on content analysis in mass communication. Lombard, Snyder-Duch, and Bracken (2002) establish standards for intercoder reliability reporting.
+The first line loads the tidyverse, the collection of R packages this book uses for everything from inspecting data to drawing figures (Wickham et al., 2019). The next two lines load the dataset itself. `v2v::twitch_chat()` returns the chat data; `v2v::twitch_streams()` returns the stream data. The arrow, `<-`, is R's way of giving the result a name, so `chat` and `streams` now refer to the two tables for the rest of the session.
 
-**This is the method you will execute this semester.** Chapters 13 through 16 walk you through the complete content analysis process: immersion, operationalization, codebook construction, and pilot testing. The remaining methods in this chapter are taught for literacy, not execution. You need to understand them well enough to read, evaluate, and critique studies that use them, and well enough to recognize when your own research question demands a method other than content analysis.
+Notice that the data arrives through a function call, not as a file you opened or a spreadsheet you imported. This is deliberate. A new R user's first encounter with data is often a pile of path errors, the file is somewhere the code cannot find, the format is not what was expected. `twitch_chat()` and `twitch_streams()` are written to remove that entire category of problem: they reach into the `v2v` package, find the data that ships inside it, and hand it back, with no path for you to get wrong. Called with no arguments, as above, each returns the full working sample. They also accept arguments for later, when you want only certain channels or games, but first contact is the no-argument version. Load everything, and look.
 
-## Survey Research: What Do People Think, Believe, or Do?
+It is worth being clear about what "everything" means here. This is not the entire 2018 collection. The full dump runs to tens of millions of rows and well over a gigabyte, too much to ship inside a package or to open comfortably on a laptop. What `v2v` ships, and what you just loaded, is a working sample drawn from the fifty-channel corpus Chapter 1 described: a subset large enough to be real and small enough to be fast. Every example in the chapters ahead runs against this sample.
 
-**Core question**: What are the attitudes, beliefs, behaviors, or characteristics of a population?
+A word about what happens when this does not work. Sooner or later a line of R you type will return an error instead of a result: a misspelled function name, a package not loaded, a stray bracket. This is normal. It happens to everyone who writes code, and it is not a sign that you are unsuited to the work. The V2V Hub keeps a common-errors cheat sheet for exactly these moments, listing the errors a new R user meets most often and what each one is telling you. From this chapter forward, when a line breaks, that cheat sheet is the first place to look. An error is information, not a verdict.
 
-**Definition**: Survey research collects data from respondents through standardized questionnaires, measuring self-reported attitudes, behaviors, demographics, and experiences. Surveys can be administered online, by phone, by mail, or in person.
+## Looking at the data
 
-**What it can do**:
+The data is loaded. The first question is simply what it looks like, and the tidyverse function for that is `glimpse()`, which prints every column of a table, its type, and its first few values.
 
-- Measure attitudes and beliefs at scale ("67% of respondents believe media coverage of mental health has improved")
-- Describe population characteristics ("The median age of daily podcast listeners is 34")
-- Identify correlations between variables ("Parasocial attachment to an influencer correlates with purchase intentions")
-- Track trends over time when repeated with similar populations ("Support for marijuana legalization has increased from 31% to 68% since 2000")
+```r
+glimpse(chat)
+```
 
-**What it cannot do**:
+```
+Rows: 35,267
+Columns: 5
+$ id      <int> 89, 551, 1033, 2094, 2803, …
+$ channel <chr> "sodapoppin", "xqcow", "forsen", "sodapoppin", "xqcow", …
+$ sender  <chr> "madzee", "prometheanow", "spectre155", "itsjer", "laserfru…
+$ message <chr> "???????????????????????", "TriEasy Clap TriEasy Clap TriE…
+$ date    <dbl> 1542578127023, 1542578135562, 1542578143610, 1542578157677…
+```
 
-- Establish causation. A correlation between news consumption and sympathetic attitudes toward depression does not prove that news consumption *caused* those attitudes. People who already hold sympathetic attitudes may simply consume more news about mental health. This is the **self-selection problem**, and it haunts all correlational research.
-- Capture behavior directly. Surveys measure what people *say* they do, which is not always what they actually do. Self-report data are subject to **social desirability bias** (people present themselves favorably), **recall bias** (people misremember), and **acquiescence bias** (people tend to agree with statements regardless of content).
-- Describe media content. Surveys tell you about audiences, not about messages. If you want to know what's in the content, you need content analysis.
+Five columns, 35,267 rows, and each row is one chat message. `id` is a number that uniquely labels the message. `channel` is the channel the message was sent in. `sender` is the account that sent it. `message` is the text itself. `date` is when it was sent.
 
-**When to use it**: When your research question asks about people's attitudes, beliefs, self-reported behaviors, or demographic characteristics, and when you need to generalize from a sample to a larger population.
+Two things in that output reward a closer look. The first is `message`. The values are real, and they are not tidy. The first message is twenty-three question marks. The second is the word "TriEasy Clap" repeated over and over, a viewer pasting the same phrase many times. These are not errors in the data. They are what Twitch chat actually contains, and your codebook will have to meet them as they are. The second is `date`. It is a column of enormous numbers, marked `<dbl>`, R's label for a numeric value. Chapter 8 classified this column as interval-level and flagged the catch: the number is a count of milliseconds since 1970, not a date anyone can read. Converting it into a real timestamp is a headline lesson of Chapter 11. For now it is enough to notice that the column is there and that, as it stands, it is unreadable.
 
-**Strengths**: Can reach large, diverse samples. Standardized instruments allow comparison across populations and time periods. Validated scales exist for many psychological constructs (parasocial attachment, media trust, political efficacy). Relatively efficient in terms of cost and time.
+The stream table is the same kind of object with different columns.
 
-**Limitations**: Self-report data are always imperfect. Response rates have declined dramatically in recent decades, raising questions about sample representativeness (Dillman, Smyth, & Christian, 2014). Question wording effects can bias results. And causation cannot be established from cross-sectional survey data alone.
+```r
+glimpse(streams)
+```
 
-**Key methodological reference**: Dillman, Smyth, and Christian (2014) provide the standard guide to survey design and administration. Chapter 11 covers survey methodology in greater depth.
+```
+Rows: 32,276
+Columns: 6
+$ id      <int> 4, 10, 18, 61, 105, …
+$ channel <chr> "sodapoppin", "xqcow", "forsen", "giantwaffle", "sodapoppin…
+$ title   <chr> "Hello truckers\n44835158804929_2115841973", "…", …
+$ game    <chr> "Marble It Up!", "Just Chatting", "Artifact", "Rocket Leag…
+$ viewers <int> 27934, 19381, 15300, 4697, 28076, …
+$ date    <dbl> 1542578200214, 1542578200240, 1542578200273, 1542578200423…
+```
 
-## Experimental Research: Does X Cause Y?
+Six columns, 32,276 rows, and each row is one snapshot of one stream at one moment: its `title`, the `game` it was filed under, its `viewers` count, and the `date` of the snapshot. The first row should look familiar. It is Sodapoppin's channel, playing Marble It Up!, with 27,934 viewers, the exact row Chapter 2 used to open its discussion of reproducible data. The fifth row is the same channel a few minutes later at 28,076 viewers, the climb Chapter 2 asked you to interpret. You are now looking at the source of that example directly.
 
-**Core question**: Does manipulating one variable cause a change in another?
+The `title` column shows the same messiness as chat. The first title has a line break inside it and a long string of digits, which is not what a tidy title looks like but is what some streamers actually type. Real data is like this, and noticing it now, before any analysis, is the entire reason for first contact.
 
-**Definition**: An experiment involves deliberately manipulating an independent variable (the cause), randomly assigning participants to conditions, and measuring the effect on a dependent variable (the outcome). Random assignment is the key feature: it ensures that the groups being compared are equivalent on all characteristics except the manipulated variable, allowing causal inference.
+Beyond seeing the columns, you can count things. The tidyverse verb `count()` tallies how often each value of a column appears. Asking it about `game` shows what the streams are filed under:
 
-**What it can do**:
+```r
+streams |> count(game, sort = TRUE)
+```
 
-- Establish causation. If participants randomly assigned to read a medically framed article express more support for mental health funding than participants assigned to read a personal-responsibility article, we can conclude that framing *caused* the difference, because random assignment ruled out alternative explanations.
-- Isolate specific mechanisms. Experiments can test whether a particular feature of a message (its frame, its emotional tone, its source credibility) drives a particular outcome, holding everything else constant.
-- Test theoretical predictions with precision. If Uses and Gratifications Theory (Katz, Blumler, & Gurevitch, 1973) predicts that people seek out mood-congruent media, an experiment can test this directly by manipulating mood and measuring media choices.
+```
+# A tibble: 60 × 2
+   game                                   n
+   <chr>                              <int>
+ 1 Art                                 5298
+ 2 Fortnite                            3682
+ 3 Just Chatting                       2474
+ 4 Hearthstone                         2157
+ 5 Pokemon: Let's Go, Pikachu!/Eevee!  1967
+ 6 League of Legends                   1952
+ 7 Heroes of the Storm                 1473
+ 8 Counter-Strike: Global Offensive    1346
+ 9 Rocket League                       1321
+10 World of Warcraft                    920
+# ℹ 50 more rows
+```
 
-**What it cannot do**:
+The `|>` is R's **pipe**: it takes the thing on its left and feeds it to the function on its right, so the line reads as an instruction in order, take `streams`, then count its games. The result is itself a small table, sixty rows, one per game, sorted with the most frequent at the top. Sixty categories is more variety than a study can examine one by one, and the count makes the shape of that variety visible: a handful of games account for most of the snapshots, and a long tail of fifty more accounts for the rest. That shape will matter in Chapter 12, when you have to decide how to draw a chart that does not drown in sixty lines.
 
-- Describe what naturally occurs. Experiments create artificial conditions. The "news article" participants read was written by the researcher, not by a journalist. The laboratory setting doesn't replicate the distracted, multitasking reality of actual media consumption. This is the **external validity problem**: findings from controlled environments may not generalize to messy real-world contexts.
-- Study phenomena that cannot be ethically manipulated. You cannot randomly assign people to experience trauma, poverty, or discrimination. You cannot randomly assign children to watch violent media for years. Some causal questions are answerable only through quasi-experimental or longitudinal designs.
-- Capture long-term cumulative effects. Cultivation Theory (Gerbner & Gross, 1976) proposes that media influence accumulates over years of exposure. A one-hour experiment cannot test this.
+`count()` is also a quick way to confirm the data is the corpus you expect. Chapter 1 described a working corpus of fifty channels. A related function, `n_distinct()`, counts how many different values a column holds, and asking it about `channel` checks that claim directly:
 
-**When to use it**: When your research question asks whether X *causes* Y, and when you can ethically and practically manipulate X and randomly assign participants to conditions.
+```r
+n_distinct(chat$channel)
+```
 
-**Strengths**: The gold standard for causal inference. Random assignment eliminates confounds. Controlled conditions allow precise measurement. Results are typically clear and interpretable.
+```
+[1] 50
+```
 
-**Limitations**: Artificial settings threaten external validity. Ethical constraints limit what can be manipulated. Sample sizes are often small (especially compared to surveys), which can reduce statistical power. And the "demand characteristics" problem means participants may behave differently because they know they're being studied.
+Fifty distinct channels in the chat table, and `n_distinct(streams$channel)` returns the same fifty. The data you loaded is the corpus the book has been describing since Chapter 1, no more and no less.
 
-**Key methodological reference**: Campbell and Stanley (1963) remain the foundational text on experimental and quasi-experimental design. Chapter 12 covers experimental methodology in greater depth.
+There is one further way to look, worth knowing even though this chapter does not lean on it. Typing a table's name on its own, just `chat`, prints its first rows in a compact form. Running `View(chat)` opens the table in a spreadsheet-style viewer you can scroll. Of the options, `glimpse()` is usually the most useful for seeing a table's shape at a glance, but printing, `View()`, `glimpse()`, and `count()` are all doing the same basic thing: looking, without changing anything.
 
-## Qualitative Methods: What Does It Mean?
+None of this changed the data. Looking is the whole of what this chapter has done with it. The chat table and the stream table are exactly as they were loaded. Inspection comes before transformation, and Chapter 9 stays entirely on the inspection side of that line.
 
-**Core question**: How do people experience, interpret, and make meaning of phenomena?
+## Reading the data against the codebook
 
-**Definition**: Qualitative methods encompass a family of approaches that prioritize depth over breadth, meaning over measurement, and context over generalizability. Major qualitative methods include in-depth interviews, focus groups, ethnography (participant observation), and textual analysis (including discourse analysis and narrative analysis).
+First contact has one job left, and it is the most important one. Open the codebook next to the `glimpse()` output and ask a blunt question: does this data actually support the study the codebook describes?
 
-**What they can do**:
+Walk the three variables. **Message target** is to be coded from each message, using the message text and, for at-mentions and replies, the sender information. The chat table has a `message` column and a `sender` column. Supported. **Message length** is the character count of the message string. There is a `message` column. Supported. **Contains emote** is read from the message text. There is a `message` column. Supported. The study the codebook designed is a study this data can carry. That is not a small thing to confirm, and it is far better to confirm it now than to discover a missing column halfway through coding.
 
-- Reveal subjective experiences that quantitative methods miss. A survey can tell you that 67% of people with depression feel media coverage has improved. An interview can tell you *what that improvement means to them*, including the ambivalence, the nuance, and the contradictions that a Likert scale cannot capture.
-- Generate theory. Rather than testing pre-existing hypotheses, qualitative methods can build theory from the ground up. Braun and Clarke's (2006) thematic analysis, for instance, systematically identifies patterns in interview data that may reveal previously unrecognized phenomena.
-- Provide context for quantitative findings. A content analysis might find that medical framing of depression has increased. Interviews with journalists could explain *why*: perhaps newsroom training programs, advocacy group pressure, or generational shifts in reporter attitudes drove the change.
-- Study processes and dynamics. How does a fan community form? How does a newsroom decide which stories to cover? How does a political campaign craft its messaging? These questions require sustained observation, not surveys or experiments.
+First contact also surfaces what the codebook will have to work harder at. The messages in the `glimpse()` output are exactly the edge cases Chapter 7's observation log anticipated and Chapter 8's decision rules were written for. The message of twenty-three question marks is a message with no obvious target, the kind Rule 1 and the "unclassifiable" category exist to catch. The repeated "TriEasy Clap" is copypasta, which Rule 3 already addresses. Short tokens like the ones you can expect throughout the chat are emote-only messages, the subject of Rule 2. The codebook did not anticipate these in the abstract. It anticipated them because Chapter 7 had you watch for them, and here they are, in the first five rows.
 
-**What they cannot do**:
+One genuine wrinkle is worth carrying forward. Among the first messages is one addressed to a streamer: it begins "@xQcOW". The `channel` column for that same row reads "xqcow". The at-mention and the channel name are the same name in different casing, the display name as a viewer typed it against the lowercase login name the data stores. The message-target rule that keys on "an at-mention of the streamer's channel name" will have to account for that difference. This is precisely the kind of refinement that belongs in the codebook now, while it is still the project's living rulebook and before a single message has been coded. First contact has done its work: the study is buildable, and the codebook knows a little more than it did.
 
-- Generalize to populations. Twenty-five interviews cannot represent the experiences of millions. Qualitative research produces **transferable** insights (findings that may apply in similar contexts) rather than **generalizable** findings (statistically representative of a population).
-- Establish causation. Qualitative methods describe and interpret; they do not isolate causal mechanisms through controlled manipulation.
-- Produce replicable quantitative data. Qualitative findings are interpretive, shaped by the researcher's perspective and the specific context of data collection. Two researchers studying the same phenomenon may produce different but equally valid accounts.
+## Looking ahead
 
-**When to use them**: When your research question asks about meaning, experience, or process. When you want to understand *why* or *how* something happens from the perspective of the people involved. When quantitative data would miss the complexity of the phenomenon. And when you're exploring a new topic where existing theory is thin.
+You have a workspace, a rulebook installed in it, and the data loaded and inspected. Chapter 10 puts the rulebook to the test. It draws a sample of chat messages, the specific messages your study will actually code, and asks the question every content analysis has to answer before its results mean anything: when two coders apply the codebook independently, do they agree? Sampling and inter-coder reliability are the subject, and the codebook you finalized here is what goes on trial.
 
-**Strengths**: Depth, nuance, and context. Ability to capture complexity, contradiction, and ambiguity. Sensitivity to power dynamics and marginalized perspectives. Capacity to generate new theory rather than only testing existing theory.
 
-**Limitations**: Labor-intensive (transcription, coding, analysis). Not generalizable in the statistical sense. Researcher subjectivity is unavoidable (though it can be made transparent through reflexivity). Findings are harder to summarize concisely than a p-value or a percentage.
+::: {.content-visible when-profile="grad"}
+::: {.callout-note title="Graduate Extension" collapse="true"}
+**Data provenance as a methodological disclosure.** The undergrad edition introduces first contact with data as a moment of exploration: load, inspect, describe. The graduate edition adds a prior step — documenting the *provenance* of the data before the first line of analysis code runs.
 
-**Key methodological references**: Braun and Clarke (2006) for thematic analysis. Brinkmann and Kvale (2015) for interviewing. Seidman (2019) for interview-based qualitative research. Chapter 10 covers qualitative methodology in greater depth.
+When you publish a study, you are making a claim about specific data collected under specific conditions at a specific time. "I collected Twitch chat data" is not a methods section. "I collected 14 days of Twitch chat from the top 10 most-viewed streams in the *Just Chatting* category, using Twitch API v2, between 2024-01-15 and 2024-01-28, saving raw JSON responses to `data/raw/` before any processing" is. The difference matters because replication requires exact knowledge of what was done.
 
-## Mixed Methods: Combining Approaches
+**What the provenance record includes.** For studies using the provided v2v package dataset, provenance is embedded in the package and stable. For studies using fresh API data, the record must include: (1) data source and API version; (2) date and time range of collection; (3) any filters, keywords, or channel selectors applied; (4) format in which raw data was saved; and (5) the git commit at which raw data was frozen (tagged as immutable). Item 5 connects directly to the audit trail: never re-run data collection to overwrite a file that a downstream script already depends on.
 
-Sometimes the most honest answer to "Which method should I use?" is "More than one."
+**Required reading.** Munafo, M. R., Nosek, B. A., Bishop, D. V. M., Button, K. S., Chambers, C. D., Percie du Sert, N., Simonsohn, U., Wagenmakers, E.-J., Ware, J. J., & Ioannidis, J. P. A. (2017). A manifesto for reproducible science. *Nature Human Behaviour*, *1*, 0021. https://doi.org/10.1038/s41562-016-0021
 
-**Mixed methods research** combines quantitative and qualitative approaches within a single study or program of research. The logic is straightforward: each method has blind spots, and combining methods can compensate for individual weaknesses (Creswell & Creswell, 2023).
-
-### Common Mixed Methods Designs
-
-**Sequential explanatory**: Quantitative data collection and analysis first, followed by qualitative data to explain or contextualize the quantitative findings.
-
-*Example*: You conduct a content analysis of 500 songs, finding that songs with negative lyrics chart higher. Then you interview 20 listeners to understand *why* they're drawn to negative content. The content analysis establishes the pattern; the interviews explain the mechanism.
-
-**Sequential exploratory**: Qualitative data first, followed by quantitative data to test the patterns identified qualitatively.
-
-*Example*: You interview 15 music journalists about how they decide which albums to review. You identify themes around "authenticity," "newsworthiness," and "audience interest." Then you conduct a content analysis of 200 album reviews to test whether these themes predict review length and prominence.
-
-**Concurrent**: Quantitative and qualitative data collected simultaneously, then integrated during analysis.
-
-*Example*: You survey 500 people about their music streaming habits while simultaneously conducting focus groups with 30 of those respondents to understand the reasoning behind their choices. Survey data reveal *what* people do; focus groups reveal *why*.
-
-### Why Mixed Methods Matters
-
-Mixed methods is not always practical for a semester-long project. But understanding the logic prepares you for research beyond this course, and it helps you recognize why single-method studies always have limitations. When you read a content analysis that claims to explain audience behavior, you'll know to ask: "Where is the audience data?" When you read a survey that claims to describe media content, you'll know to ask: "Did anyone actually analyze the content?"
-
-This critical literacy, the ability to recognize what a study's method can and cannot support, is arguably the most valuable skill this chapter teaches.
-
-## Choosing a Method: A Decision Framework
-
-The method should follow the question, not the other way around. Here is a framework for matching questions to methods:
-
-**If your question asks "What is in the content?"** → Content analysis.
-
-- "How are women represented in Super Bowl advertisements?"
-- "What percentage of Billboard Hot 100 lyrics reference substance use?"
-- "How does CNN's framing of immigration differ from Fox News's framing?"
-
-**If your question asks "What do people think, believe, or do?"** → Survey.
-
-- "Do heavy news consumers hold different attitudes toward immigration than light consumers?"
-- "What gratifications do listeners report seeking from sad music?"
-- "How does parasocial attachment to a political figure relate to voting intention?"
-
-**If your question asks "Does X cause Y?"** → Experiment.
-
-- "Does exposure to violent song lyrics increase aggressive cognition?"
-- "Does medical framing of depression increase support for public funding?"
-- "Does playlist placement affect perceived song quality?"
-
-**If your question asks "What does X mean to the people who experience it?"** → Qualitative methods.
-
-- "How do fans of underground hip-hop construct authenticity?"
-- "What is the experience of journalists covering mass shootings?"
-- "How do podcast listeners integrate shows into their daily routines?"
-
-**If your question asks "What is happening, and why?"** → Consider mixed methods.
-
-- "Has media framing of climate change shifted over the past decade, and if so, how do journalists explain this shift?"
-- "Do songs with negative lyrics chart higher, and if so, why do listeners prefer them?"
-
-Notice that some questions can be studied by multiple methods, but each method will produce a different kind of answer. The choice depends on what kind of evidence you need.
-
-## The Content Analysis Path
-
-This course teaches all four methods conceptually but executes one: **content analysis**. This is a deliberate choice, not a limitation.
-
-Content analysis is an ideal method for learning the full research process because it involves every stage of research design: developing research questions grounded in theory, operationalizing abstract concepts as measurable variables, constructing a coding instrument (the codebook), testing reliability, managing and cleaning data, conducting statistical analysis, and interpreting results. Every skill you develop through content analysis transfers directly to other methods. The student who can build a reliable codebook can build a reliable survey instrument. The student who can operationalize "lyric sentiment" can operationalize "media trust" or "political framing."
-
-The next seven chapters walk you through the content analysis process:
-
-- **[Chapter 10](chapter10.qmd)**: Qualitative Methods (interviews, focus groups, and thematic analysis)
-- **[Chapter 11](chapter11.qmd)**: Designing Surveys (conceptual foundations of survey method)
-- **[Chapter 12](chapter12.qmd)**: Designing Experiments (conceptual foundations of experimental method)
-- **[Chapter 13](chapter13.qmd)**: Music Immersion (qualitative engagement with your dataset before coding)
-- **[Chapter 14](chapter14.qmd)**: Vibes to Variables (translating observations into measurable constructs)
-- **[Chapter 15](chapter15.qmd)**: The Rulebook (building a codebook)
-- **[Chapter 16](chapter16.qmd)**: The Sampling Plan and Pilot Test (sampling strategy and reliability testing)
-
-Chapter 10 teaches qualitative approaches as standalone methods with their own logic and quality criteria; you will draw on these qualitative skills immediately when you begin immersion in Chapter 13. Chapters 11 and 12 teach survey and experimental design so you can read, evaluate, and critique studies using those methods. Chapters 13 through 16 are the hands-on content analysis sequence you will execute from start to finish.
-
----
-
-## Practice: Matching Methods to Questions
-
-### Exercise 9.1: Method Identification
-
-For each research question below, identify the most appropriate method (content analysis, survey, experiment, qualitative, or mixed methods) and explain why:
-
-1. "What themes appear in TikTok videos about body positivity?"
-2. "Does exposure to anti-smoking advertisements reduce smoking intentions among teenagers?"
-3. "What percentage of front-page New York Times stories use episodic framing?"
-4. "How do first-generation college students experience imposter syndrome in STEM programs?"
-5. "Do people who follow more news accounts on Twitter report higher political knowledge?"
-6. "Has the representation of LGBTQ+ characters in prime-time television changed between 2010 and 2024, and how do LGBTQ+ viewers experience those representations?"
-
----
-
-### Exercise 9.2: Method Limitations
-
-For each of the following study designs, identify what the method *cannot* tell you and propose a complementary method that would address the gap:
-
-**Study A**: A content analysis of 300 Instagram posts by fitness influencers finds that 72% emphasize appearance over health.
-
-- What can't this study tell you? _______________
-- What complementary method would address the gap? _______________
-
-**Study B**: A survey of 1,000 college students finds that heavy social media users report lower self-esteem.
-
-- What can't this study tell you? _______________
-- What complementary method would address the gap? _______________
-
-**Study C**: An experiment shows that participants who read news with a human-interest lead recall more information than those who read news with a summary lead.
-
-- What can't this study tell you? _______________
-- What complementary method would address the gap? _______________
-
----
-
-### Exercise 9.3: Designing a Multi-Method Study
-
-Choose a topic you're interested in (music, news, social media, health communication, or any other domain). Write one research question for each of the four methods:
-
-1. A **content analysis** question about the topic: _______________
-2. A **survey** question about the topic: _______________
-3. An **experimental** question about the topic: _______________
-4. A **qualitative** question about the topic: _______________
-
-Then write one sentence explaining how combining any two of these would produce stronger evidence than either alone.
-
----
-
-### Exercise 9.4: Evaluating Published Research
-
-Find a published study in a communication journal. Identify:
-
-1. What method did the researchers use?
-2. What research question did they answer?
-3. What claims do they make in their discussion section?
-4. Are any of those claims unsupported by the method they used? (For example, does a content analysis make claims about audience effects? Does a survey make causal claims?)
-
----
-
-## Reflection Questions
-
-1. **The Hammer Problem**: This chapter argues that researchers who know only one method treat every question as if it requires that method. Can you think of an example where a researcher's method choice distorted the findings? What would a different method have revealed?
-
-2. **Content Analysis as Foundation**: The chapter positions content analysis as the method you'll execute, while surveys and experiments are taught for literacy. What are the advantages and disadvantages of this approach? What would you miss by only learning content analysis? What would you miss by learning all methods superficially?
-
-3. **The Qualitative Tension**: Quantitative researchers sometimes dismiss qualitative work as "unscientific" because it's not generalizable or replicable in the traditional sense. Qualitative researchers sometimes dismiss quantitative work as "reductive" because it strips away context. Where do you fall in this debate, and why? Is it possible to honor both traditions simultaneously?
-
-4. **Methods and Power**: Different methods produce different kinds of knowledge, and different kinds of knowledge carry different kinds of authority. A randomized controlled trial carries more causal authority than an interview study. But an interview study may capture experiences that a trial systematically excludes. How should we think about the relationship between methodological rigor and epistemic justice?
-
----
-
-## Chapter Summary
-
-This chapter introduced the four major research methods in social science:
-
-- **Content analysis** asks what's in the message. It describes patterns in media content through systematic coding. It cannot tell you about audience effects or establish causation. This is the method you will execute this semester.
-- **Survey research** asks what people think, believe, or do. It measures self-reported attitudes and behaviors at scale. It cannot establish causation or describe media content directly.
-- **Experimental research** asks whether X causes Y. It establishes causation through random assignment and controlled manipulation. It cannot describe naturally occurring phenomena or capture long-term cumulative effects.
-- **Qualitative methods** ask what things mean to the people who experience them. They prioritize depth, context, and meaning. They cannot generalize to populations or establish causation.
-- **Mixed methods** combine approaches to compensate for individual method limitations. Sequential, concurrent, and explanatory designs each serve different purposes.
-- **Method choice follows research question**: the question determines the method, not the other way around.
-- **Methodological literacy** means knowing what each method can and cannot support, both for your own research and for evaluating others'.
-
----
-
-## Key Terms
-
-- **Content analysis**: Systematic, replicable examination of communication symbols (Krippendorff, 2018)
-- **Experiment**: Research design that manipulates an independent variable and randomly assigns participants to conditions to test causation
-- **External validity**: The extent to which findings from controlled settings generalize to real-world contexts
-- **Mixed methods**: Research combining quantitative and qualitative approaches
-- **Qualitative methods**: Research approaches prioritizing depth, meaning, and context (interviews, focus groups, ethnography, textual analysis)
-- **Self-selection problem**: The difficulty of establishing causation from correlational data because people choose their own media exposure
-- **Social desirability bias**: Tendency for survey respondents to present themselves favorably
-- **Survey research**: Data collection through standardized questionnaires measuring attitudes, behaviors, and characteristics
-- **Transferability**: The degree to which qualitative findings may apply in similar contexts (qualitative parallel to generalizability)
-
----
-
+**Reflect.** (1) Write a four-sentence data provenance statement for the v2v package dataset that would satisfy a journal methods section. What information would you need that is not available in the package documentation? (2) If a journal reviewer asked you to "share the raw data," what would you share and what would you withhold for a study using the v2v package dataset?
+:::
+:::
 ## References
 
-Braun, V., & Clarke, V. (2006). Using thematic analysis in psychology. *Qualitative Research in Psychology*, *3*(2), 77-101. https://doi.org/10.1191/1478088706qp063oa
-
-Brinkmann, S., & Kvale, S. (2015). *InterViews: Learning the craft of qualitative research interviewing* (3rd ed.). Sage.
-
-Campbell, D. T., & Stanley, J. C. (1963). *Experimental and quasi-experimental designs for research*. Rand McNally.
-
-Creswell, J. W., & Creswell, J. D. (2023). *Research design: Qualitative, quantitative, and mixed methods approaches* (6th ed.). Sage.
-
-Dillman, D. A., Smyth, J. D., & Christian, L. M. (2014). *Internet, phone, mail, and mixed-mode surveys: The tailored design method* (4th ed.). Wiley.
-
-Gerbner, G., & Gross, L. (1976). Living with television: The violence profile. *Journal of Communication*, *26*(2), 172-199. https://doi.org/10.1111/j.1460-2466.1976.tb01397.x
-
-Katz, E., Blumler, J. G., & Gurevitch, M. (1973). Uses and gratifications research. *Public Opinion Quarterly*, *37*(4), 509-523. https://doi.org/10.1086/268109
-
-Krippendorff, K. (2018). *Content analysis: An introduction to its methodology* (4th ed.). Sage. https://doi.org/10.4135/9781071878781
-
-Lombard, M., Snyder-Duch, J., & Bracken, C. C. (2002). Content analysis in mass communication: Assessment and reporting of intercoder reliability. *Human Communication Research*, *28*(4), 587-604. https://doi.org/10.1111/j.1468-2958.2002.tb00826.x
-
-Neuendorf, K. A. (2017). *The content analysis guidebook* (2nd ed.). Sage. https://doi.org/10.4135/9781071802878
-
-Riffe, D., Lacy, S., Watson, B. R., & Lovejoy, J. (2023). *Analyzing media messages: Using quantitative content analysis in research* (5th ed.). Routledge. https://doi.org/10.4324/9781003288428
-
-Seidman, I. (2019). *Interviewing as qualitative research: A guide for researchers in education and the social sciences* (5th ed.). Teachers College Press.
-
----
-
-::: {.callout-note title="Graduate Extension" collapse="true"}
-
-**Required Reading**: Creswell, J. W., & Creswell, J. D. (2023). *Research design: Qualitative, quantitative, and mixed methods approaches* (6th ed.). Sage. **Read Chapter 1: "The Selection of a Research Approach."**
-
-**Prompt**: Creswell and Creswell argue that research design involves three nested levels of decision-making: the researcher's **philosophical worldview** (postpositivist, constructivist, transformative, pragmatist), the **research design** (quantitative, qualitative, mixed methods), and the **specific methods** (surveys, experiments, interviews, content analysis, etc.). The worldview shapes the design, which shapes the method.
-
-1. Identify your own philosophical worldview using Creswell and Creswell's categories. What assumptions do you make about the nature of reality (ontology), how knowledge is produced (epistemology), and the role of values in research (axiology)? How do these assumptions constrain which methods feel natural to you?
-
-2. This course operates primarily within a postpositivist worldview (there is a reality we can approximate through systematic observation) and uses a quantitative design (content analysis with statistical testing). How would a constructivist approach the same dataset differently? What questions would a constructivist ask about song lyrics that a postpositivist would not?
-
-3. Find one published mixed methods study in a communication journal. Evaluate:
-   - What worldview does it implicitly adopt?
-   - How are the quantitative and qualitative components integrated? Are they truly mixed, or merely parallel (conducted side by side without integration)?
-   - Does the mixed methods design address limitations that either component alone would have? Be specific.
-
-4. Creswell and Creswell note that pragmatism, the worldview that prioritizes "what works" over philosophical consistency, is the most common worldview underlying mixed methods research. What are the strengths and risks of pragmatism as a research philosophy? When does "what works" become an excuse for methodological incoherence?
-
-:::
-
----
-
-## Looking Ahead
-
-Chapter 10 goes deeper into qualitative methods, the approach you will practice first through immersion and thematic pattern recognition. Chapters 11 and 12 then cover survey design and experimental design, teaching the conceptual foundations you need to read, evaluate, and critique studies using those methods. You won't execute a survey or experiment this semester, but you will encounter them constantly in the literature you read, and you may design one in future research. Then, beginning with [Chapter 13](chapter13.qmd), the book shifts to execution: the hands-on content analysis sequence that takes you from qualitative immersion through codebook construction, pilot testing, data wrangling, statistical analysis, and final reporting.
+Wickham, H., Averick, M., Bryan, J., Chang, W., McGowan, L. D., François, R., Grolemund, G., Hayes, A., Henry, L., Hester, J., Kuhn, M., Pedersen, T. L., Miller, E., Bache, S. M., Müller, K., Ooms, J., Robinson, D., Seidel, D. P., Spinu, V., … Yutani, H. (2019). Welcome to the tidyverse. _Journal of Open Source Software_, _4_(43), 1686. https://doi.org/10.21105/joss.01686

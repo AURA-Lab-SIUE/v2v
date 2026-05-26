@@ -3,51 +3,44 @@ project:
   output-dir: docs
 
 book:
-  title: "From Vibes to Variables"
-  subtitle: "A Field Guide to Open Media Science"
+  title: "Vibes to Variables"
+  subtitle: "A Methods Package for Students New to Research, Stats, and Code"
   author: "Alex P. Leith"
-  date: "2026"
-  edition: "2nd"
+  date: "2026-05-18"
+  date-format: "MMMM YYYY"
+  edition: "3rd"
   license: "CC BY 4.0"
-  repo-url: https://github.com/SIM-Lab-SIUE/vibes-to-variables
+  repo-url: https://github.com/SIM-Lab-SIUE/v2v
   repo-actions: [issue]
   search: true
   sidebar:
     collapse-level: 1
   chapters:
     - index.qmd
-    - part: "Part I: Foundations"
+    - part: "Part I: Foundation"
       chapters:
         - chapters/chapter01.qmd
         - chapters/chapter02.qmd
         - chapters/chapter03.qmd
-    - part: "Part II: Design"
+    - part: "Part II: Planning"
       chapters:
         - chapters/chapter04.qmd
         - chapters/chapter05.qmd
         - chapters/chapter06.qmd
+    - part: "Part III: Operationalization"
+      chapters:
         - chapters/chapter07.qmd
         - chapters/chapter08.qmd
-    - part: "Part III: Methods"
-      chapters:
         - chapters/chapter09.qmd
+    - part: "Part IV: Execution"
+      chapters:
         - chapters/chapter10.qmd
         - chapters/chapter11.qmd
         - chapters/chapter12.qmd
+    - part: "Part V: Inference and Publication"
+      chapters:
         - chapters/chapter13.qmd
         - chapters/chapter14.qmd
-        - chapters/chapter15.qmd
-        - chapters/chapter16.qmd
-    - part: "Part IV: Analysis"
-      chapters:
-        - chapters/chapter17.qmd
-        - chapters/chapter18.qmd
-        - chapters/chapter19.qmd
-        - chapters/chapter20.qmd
-    - part: "Part V: Publishing"
-      chapters:
-        - chapters/chapter21.qmd
-        - chapters/chapter22.qmd
     - part: "Appendices"
       chapters:
         - appendices/data-dictionary.qmd

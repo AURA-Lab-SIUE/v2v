@@ -1,365 +1,144 @@
----
-title: "Chapter 8: The Ethics of Inquiry"
----
-
-## Learning Objectives
-
-- Understand the historical events that shaped modern research ethics protections
-- Apply the Belmont Report's three principles (respect for persons, beneficence, justice) to communication research
-- Navigate the institutional review process and distinguish exempt, expedited, and full review categories
-- Evaluate the specific ethical questions that arise in content analysis, survey research, and digital media research
-- Recognize ethical obligations in writing and reporting, including the problems of fabrication, falsification, and selective reporting
-
+﻿---
+title: "Chapter 8: From vibes to variables"
 ---
 
-![Scales of justice representing research ethics](../images/ch08-justice_1.jpg){fig-alt="Scales of justice representing research ethics"}
+![](../images/ch08-justice_1.jpg){fig-alt="A stylized rendering of measuring instruments and gauges."}
 
+Somewhere in the field-notes document you built in Chapter 7 is an entry like this one: "Chat in the art stream felt calmer and more conversational than chat in the gaming stream. People talked to each other, not just to the streamer." That sentence is a real observation. You earned it by watching. It is also, as written, useless to a coder.
 
+"Calmer" is not a category anyone else can apply. "More conversational" is not something you can count. If you handed that field note to two people and asked them to sort a thousand chat messages by it, they would produce two different thousand-message sortings, and you would have no way to say which was right. The observation is true and the observation is unmeasurable, and the distance between those two facts is the distance this chapter closes.
 
-In June 2014, researchers at Facebook and Cornell University published a study in the *Proceedings of the National Academy of Sciences* that would become one of the most debated experiments in the history of social science. For one week in January 2012, Facebook had manipulated the News Feeds of nearly 700,000 users without their knowledge. Some users saw fewer positive posts from friends; others saw fewer negative posts. The researchers then measured whether the manipulation affected what users themselves posted. It did. Users exposed to fewer positive posts produced slightly more negative content, and vice versa. The study, led by Adam Kramer, Jamie Guillory, and Jeffrey Hancock, offered evidence of "massive-scale emotional contagion through social networks" (Kramer, Guillory, & Hancock, 2014).
+The book is named for this chapter. **Operationalization** is the disciplined process of turning a vibe, a holistic and subjective impression, into a variable, an explicit and replicable measurement. It is the central methodological act of content analysis. Done well, it preserves what you noticed during immersion while making it something a stranger could measure the same way you did. Done badly, it produces numbers that look like findings and are actually artifacts. By the end of this chapter you will have a draft codebook: the document that turns your research question into a set of variables precise enough to code.
 
-The finding was interesting. The reaction was explosive.
+## The operationalization gap
 
-Critics pointed out that nearly 700,000 people had been enrolled in a psychological experiment without informed consent. No one had been told their emotional environment was being manipulated. No one had the opportunity to decline. Facebook argued that its terms of service, which users agree to upon creating an account, authorized the use of data for "internal operations, including troubleshooting, data analysis, testing, and research." The researchers argued that the manipulation was minor, the effect size was tiny, and the study produced valuable scientific knowledge.
+Take the variable the running example has been circling since Chapter 6: the target of a chat message, who it is aimed at. Chapter 7's observation complicated the simple two-way split, so call the categories directed at the streamer, broadcast to the room, directed at another viewer, and unclassifiable.
 
-The scientific community was divided. Some defended the study as ethically comparable to A/B testing that tech companies perform routinely. Others argued that emotional manipulation, however slight, crosses a line that terms-of-service agreements cannot legitimize. PNAS, the journal that published the study, took the unusual step of appending an "editorial expression of concern" to the article, acknowledging questions about the consent process.
+A vague attempt at operationalizing this would be: "Code each message by who it is for." The problem surfaces the moment a coder meets a real message. A viewer types "same." Who is that for? A viewer types "LULW." A viewer types "no way that just happened." Each of these could plausibly be aimed at the streamer, at the room, or at another viewer, and a coder with only "code by who it is for" to go on will simply guess. Two coders will guess differently. The variable is named but not operationalized.
 
-The Facebook study crystallized every major tension in research ethics: the boundary between research and product development, the adequacy of passive consent, the obligations of researchers to participants who don't know they're participants, and the question of whether "minimal risk" justifies bypassing standard protections. It is the ideal case study for this chapter because it doesn't have a clean answer. Reasonable people disagree about whether the study was ethical. What's not debatable is that the questions it raised matter, and that every researcher must develop a framework for navigating them.
+A better attempt specifies observable criteria. "A message is **directed at the streamer** if it contains an at-mention of the streamer's channel name, or is a second-person address ('you', 'your') that responds to something the streamer said or did in the preceding moments. It is **directed at another viewer** if it contains an at-mention of a non-streamer account, or is a reply to a specific prior message. It is **broadcast to the room** if it is a reaction or comment with no specific addressee. It is **unclassifiable** if none of these criteria settle the question." Now a coder has something to apply. The criteria are observable, the categories are defined, and two coders working from them will land in the same place far more often than two coders working from a vibe.
 
-## Why Ethics Isn't a Formality
+That is the work. Operationalization specifies, in advance and in writing, exactly what observations count as evidence for a concept. It is not unique to Twitch. A scholar coding immigration coverage must turn "this article feels sympathetic" into a defined frame variable with observable criteria. A health researcher must turn "this ad feels fear-based" into a category a coder can apply. The medium changes; the act does not.
 
-Students sometimes approach research ethics as a bureaucratic requirement: a form to fill out, a training module to complete, a hurdle between them and the "real" work of data collection. This is understandable. Ethics review can feel procedural, especially when your study involves publicly available song lyrics rather than vulnerable human populations.
+## Conceptual and operational definitions
 
-But ethics isn't a procedure. It's a disposition. It shapes how you think about your relationship to the people whose data, content, or behavior you study. It governs how honestly you report what you find. And it reflects the fact that the history of research includes episodes of genuine harm, episodes serious enough to justify every protection that now exists.
+Every variable needs two definitions, working together.
 
-## Historical Context: How We Got Here
+A **conceptual definition** says what the variable means in the abstract. It draws on your reading and your theory, and it answers one question: what is this variable meant to capture? For message target, a conceptual definition might read: "The intended addressee of a chat message, reflecting whether the message functions as participation with the streamer, with the broader chat collective, or with a specific other viewer." That is clear about the idea. It is not yet a recipe.
 
-Modern research ethics regulations exist because researchers harmed people. Not hypothetically. Not in edge cases. Systematically and with institutional support. Understanding this history is essential, not to assign guilt to the current generation, but to appreciate why the protections exist and what they're designed to prevent.
+An **operational definition** is the recipe. It says exactly what a coder does to assign a value, in enough detail that a stranger could follow it and measure the same thing you measured. The criteria in the previous section, the at-mention rule, the second-person-address rule, the reply rule, are the operational definition of message target. The conceptual definition tells you what the variable is for. The operational definition tells you what counts as evidence.
 
-### The Tuskegee Syphilis Study (1932-1972)
+You need both, and they discipline each other. A conceptual definition with no operational definition is an idea you cannot measure. An operational definition with no conceptual definition is a procedure that has lost track of why it exists, which is how a study ends up precisely measuring something nobody wanted to know. Writing the two side by side, for every variable, is the first concrete step toward a codebook.
 
-For forty years, the United States Public Health Service studied the progression of untreated syphilis in 399 Black men in Macon County, Alabama. The men were told they were receiving free treatment for "bad blood." They were not. Even after penicillin became the standard treatment for syphilis in the 1940s, the researchers withheld it. Twenty-eight men died directly of syphilis, 100 died of related complications, 40 wives were infected, and 19 children were born with congenital syphilis.
+## How operationalization goes wrong
 
-The study was not conducted by rogue scientists. It was funded by the federal government, staffed by credentialed researchers, and published in peer-reviewed journals for decades without significant objection from the scientific community. Its exposure in 1972 by journalist Jean Heller led directly to the regulatory framework we use today.
+Four failures recur often enough to be worth naming, because naming them is the fastest way to catch them in your own work.
 
-### The Milgram Obedience Experiments (1961)
+The first is **conflating concepts**: treating two related but distinct ideas as if they were one. A study that measures a streamer's community by counting chat messages has conflated community with activity. A large channel can have a fast chat that is also shallow and anonymous, thousands of strangers reacting in parallel and never to each other. Volume is real, but it is audience activity, not community, and the fix is to say so plainly: either defend message volume as a deliberate, narrow proxy or measure community more directly.
 
-Stanley Milgram's famous experiments at Yale examined whether ordinary people would administer what they believed were painful electric shocks to a stranger simply because an authority figure instructed them to do so. Most did. The experiments produced foundational insights about authority and obedience, but they did so by subjecting participants to extreme psychological distress. Participants believed they were causing real harm to another person. Many exhibited signs of acute anxiety, and some experienced lasting psychological effects.
+The second is the **unjustified proxy**: using an indirect measure without explaining why it stands in for the thing you care about. Measuring stream quality by viewer count is the standard example. Viewer count reflects discoverability, time of day, the popularity of the game being played, and a channel's existing momentum, none of which is quality. A proxy is not forbidden, but an undefended one is, and the fix is to defend it or replace it.
 
-The ethical question was not whether the findings were important (they were) but whether the knowledge justified the deception and distress inflicted on participants.
+The third is **oversimplification**: collapsing a concept with several dimensions into a single indicator that misses most of it. Chat engagement is not only how many messages appear. It is also who is talking, whether they are talking to each other, and in what spirit. A message count captures one dimension and silently discards the rest. The fix is either to measure the other dimensions too or to state honestly that the study addresses message volume specifically, not engagement in full.
 
-### Humphreys and the Tearoom Trade (1970)
+The fourth is the **unmeasurable definition**: an operational definition that cannot actually be carried out. "A message is sincere if the viewer genuinely means it" defines sincerity in terms of something no coder can observe. The fix is to operationalize through observable indicators, the surface features that, taken together, are the best available evidence for the thing you cannot see directly.
 
-Sociologist Laud Humphreys studied anonymous sexual encounters between men in public restrooms. He recorded participants' license plate numbers without their knowledge, traced their home addresses through police records, and later visited their homes in disguise to conduct "health surveys," gathering personal information the men had no idea was connected to the restroom observations.
+The thread running through all four is the same. An operational definition is a promise that someone else could follow your recipe and measure what you measured. Each mistake breaks that promise in a different way.
 
-Humphreys argued that his research revealed important truths about a hidden population. Critics argued that he violated his subjects' privacy in ways that could have destroyed their lives, marriages, and careers if the data had been exposed.
+## Levels of measurement
 
-### The Common Thread
+Once a variable is operationalized, it has a **level of measurement**, and that level determines what you are later allowed to do with it. The four levels are easy to remember as **NOIR**: nominal, ordinal, interval, ratio.
 
-Each case involved researchers who believed their work served a greater good. Each involved participants who were harmed, deceived, or exploited. And each contributed to the recognition that good intentions are not sufficient protection. Researchers need external accountability, formal principles, and institutional oversight.
+The `stream_log` table is a convenient place to see all four, because its columns happen to span the range. Recall the preview from Chapter 2: channel, title, game, viewers, date.
 
-## The Belmont Report: Three Principles
+A **nominal** variable sorts cases into categories that have no inherent order. The `game` column is nominal: Fortnite, Just Chatting, Art, Hearthstone are categories, and no arithmetic relates them. Fortnite is not greater than Art. The `channel` column is nominal too, and so, in its raw form, is `title`: a stream title is a string, and one string is not ranked above another. With a nominal variable you can count how often each category appears and identify the most common one, but you cannot average it. The average of Fortnite and Art is not a category.
 
-In 1979, the National Commission for the Protection of Human Subjects of Biomedical and Behavioral Research published *The Belmont Report*, which established three foundational principles for ethical research (National Commission, 1979). These principles now govern virtually all research involving human subjects in the United States.
+An **ordinal** variable sorts cases into categories that do have an order, but where the distance between ranks is not constant. If you took stream titles and binned them by length into short, medium, and long, length-bin would be ordinal: long outranks short, but the gap from short to medium is not guaranteed to equal the gap from medium to long. With an ordinal variable you can rank cases and find the median, but the mean is not strictly meaningful.
 
-### Principle 1: Respect for Persons
+An **interval** variable has equal, constant distances between values, but its zero point is arbitrary rather than meaning "none." The `date` column is the example, and it carries a caveat worth stating now because Chapter 11 will spend real effort on it. The dataset stores `date` as a bigint count of milliseconds since midnight on January 1, 1970. Once converted to a timestamp, it is interval-level: the distance from one minute to the next is constant across the whole column, but the zero point, 1970, does not mean "no time." It is a convention. You can meaningfully subtract two timestamps to get a duration. You cannot meaningfully say one timestamp is "twice" another.
 
-People must be treated as autonomous agents capable of making their own decisions. This means:
+A **ratio** variable has equal intervals and a true zero that genuinely means "none." The `viewers` column is ratio: zero viewers means no one is watching, and because that zero is real, a stream with 28,000 viewers genuinely has twice the audience of one with 14,000. Ratio variables permit the full range of arithmetic. Most counts are ratio-level: viewers, message length in characters, number of messages.
 
-- **Informed consent**: Participants must understand what the research involves, what risks it carries, and that they can withdraw at any time without penalty.
-- **Protection of vulnerable populations**: People with diminished autonomy (children, prisoners, individuals with cognitive impairments) require additional protections because their ability to provide truly voluntary consent is compromised.
+Notice what happened with stream title. As a raw string it is nominal. Measured as a character count it is ratio, because a title can have zero characters and a true zero exists. Binned into short, medium, and long it is ordinal. One column, three possible levels, depending entirely on how you operationalize it. Level of measurement is not a property the data hands you. It is a property of the decision you make.
 
-**Applied to communication research**: If you survey listeners about their emotional responses to music, participants must know they're in a study, understand what they'll be asked to do, and be free to stop at any time. If you analyze public social media posts, the question becomes more complex: did users "consent" to being studied when they posted publicly? We'll return to this question below.
+Levels matter because they govern the statistics available to you later. A nominal variable can be tested for association with a chi-square test. A ratio variable can be averaged, correlated, and entered into the kind of test Chapter 13 runs. If you operationalize an interesting variable at the nominal level when it could have been ratio, you have quietly narrowed what your study can conclude before you have coded a single case.
 
-### Principle 2: Beneficence
+## Two kinds of variable
 
-Researchers must maximize benefits and minimize harms. This involves two obligations:
+The `stream_log` columns make NOIR concrete, but they also illustrate something about where variables come from, and the distinction matters for what comes next.
 
-- **Do no harm**: The research should not cause physical, psychological, social, or economic injury to participants.
-- **Maximize the ratio of benefits to risks**: The knowledge gained must justify any risks imposed on participants.
+Some variables arrive in the dataset ready-made. `viewers` is already a number in a column. `game` is already a category. For variables like these, the operationalization work is mostly classification: decide the level of measurement, decide whether you will use the column raw or transform it, and move on. There is no coding to do, because the platform already did it.
 
-**Applied to communication research**: Most content analysis carries minimal risk because you're analyzing texts, not interacting with people. But survey and experimental research can involve psychological discomfort (exposing participants to upsetting media content), social risk (collecting sensitive information that could embarrass participants if leaked), or economic risk (taking participants' time without adequate compensation).
+Other variables do not exist until you build them. Message target is not a column in `chat_log`. Nothing in the dataset records whether a message was aimed at the streamer or the room. That variable exists only after a human coder reads each message and assigns a value, and a coder can only do that consistently if you have given them a precise, written set of instructions. For variables like these, the operationalization work is most of the work, and the instructions have a name. They are a codebook.
 
-### Principle 3: Justice
+The rest of this chapter is about the second kind. But first, the standard those instructions are built to meet.
 
-The benefits and burdens of research must be distributed fairly. No group should bear a disproportionate share of research risks while another group receives the benefits.
+## Reliability and validity
 
-**Applied to communication research**: The Tuskegee study violated justice because it imposed all the risks on a vulnerable, marginalized population while the benefits (medical knowledge) accrued to the broader society. In communication research, justice concerns arise when studies about marginalized communities are designed and conducted without input from those communities, or when research on "deviant" media behavior targets specific demographic groups while treating majority behavior as the unmarked norm.
+An operational definition can be perfectly precise and still be bad measurement. Two criteria tell you whether your measurement is any good: reliability and validity.
 
-## Institutional Review Boards (IRBs)
+**Reliability** is consistency. A measure is reliable if it produces the same result under the same conditions. A bathroom scale that reads 150, then 162, then 147 as you step on and off without changing is unreliable, and its readings are worthless regardless of your actual weight. For content analysis, the form of reliability that matters most is **inter-coder reliability**: if two trained coders apply your codebook to the same messages independently, do they agree? If they do not, the codebook is not yet measuring anything stable, and no amount of analysis downstream will repair that. Inter-coder reliability is quantified with statistics, Cohen's kappa and Krippendorff's alpha among them, that correct for the agreement two coders would reach by chance alone. Chapter 10 covers those statistics and how to act on them; for now, the point is conceptual. A codebook's job is to make independent coders agree.
 
-The Belmont Report's principles are operationalized through **Institutional Review Boards**, committees at universities and research institutions that review proposed studies for ethical compliance before data collection begins.
+**Validity** is accuracy. A measure is valid if it captures the thing it claims to capture. Validity and reliability are independent. A scale calibrated ten pounds light is perfectly reliable, it reads the same every time, and perfectly invalid, it is wrong every time. The reverse can also happen: a measure can be accurate on average but so inconsistent that any single reading is unusable. Validity has several forms worth knowing by name. **Face validity** asks whether the measure looks, on inspection, like it assesses the intended concept. **Content validity** asks whether it covers all of the concept and not just a convenient slice. **Construct validity**, the most demanding, asks whether the measure behaves the way theory says it should, relating to other variables as predicted.
 
-### What IRBs Review
+One principle ties the two together and is worth holding onto: reliability is necessary but not sufficient for validity. A measure that is inconsistent cannot be accurately capturing anything, so unreliability rules validity out. But a measure can be perfectly consistent and still measure the wrong thing. You need both, and you get reliability first, because a codebook is the instrument that produces it.
 
-IRBs evaluate whether your study:
+## The codebook
 
-- Minimizes risks to participants
-- Ensures risks are reasonable relative to anticipated benefits
-- Selects participants equitably (not targeting vulnerable groups without justification)
-- Obtains and documents informed consent
-- Monitors data collection for safety
-- Protects participant privacy and confidentiality
+A **codebook** is the complete set of instructions for coding your data. It is not paperwork you assemble after the fact to satisfy a methods requirement. It is the instrument itself.
 
-### Three Levels of Review
+The most useful way to think about a codebook is as source code. If your coding process were a computer program, the codebook would be the program: it specifies every operation, handles every conditional, and ensures that two processors, here two human coders, running the same program on the same input produce the same output. Without it, you are coding from memory and intuition, and memory and intuition are exactly what reliability requires you to eliminate. Neuendorf (2017) describes the codebook as the heart of a content analysis, and the description is not decorative. The clarity of the codebook is the single strongest predictor of whether your coders will agree.
 
-Not all studies require the same level of scrutiny.
+A complete codebook has five parts.
 
-**Exempt review** applies to research that poses minimal risk and falls into specific categories defined by federal regulation. Most content analysis of publicly available materials (newspaper articles, song lyrics, television broadcasts, public social media posts) qualifies for exempt status because no human subjects are directly involved.
+The **unit of analysis** states exactly what one coded case is. This must be unambiguous. "Code the chat" is not a unit of analysis. "The unit of analysis is a single chat message, defined as one row of the `chat_log` table: one sender, one message string, one timestamp" is. If the unit is vague, every count you later report is vague.
 
-**Expedited review** applies to research that involves no more than minimal risk but doesn't qualify for exemption. Many surveys and interview studies fall here, particularly those that collect non-sensitive data from adult participants.
+The **variables and their categories** list what you are measuring and what values each variable can take. For each variable you give the conceptual definition, the operational definition, every category, and a short description of each category.
 
-**Full board review** applies to research involving more than minimal risk, vulnerable populations, or deception. Experimental studies that manipulate participants' emotional states, research with children or prisoners, and studies involving sensitive topics (substance use, sexual behavior, criminal activity) typically require full review.
+The **decision rules** tell coders what to do with the cases that do not sort themselves. This is where the edge cases from your Chapter 7 observation log earn their keep. Every ambiguous case you wrote down becomes a rule.
 
-### The Content Analysis Question
+The **examples** give two or three prototypical cases for each category, so coders have a reference for what good coding looks like and a set of cases to train on.
 
-Here is where things get interesting for this course: **Does content analysis require IRB approval?**
+The **special cases** section records recurring complications. It is usually empty in a first draft and fills in as you pilot the codebook, which is Chapter 10's work.
 
-The answer depends on what you're analyzing:
+Two principles govern the categories of any variable. They must be **exhaustive**, meaning every case can be coded, which is what the "unclassifiable" or "other" catch-all guarantees. And they must be **mutually exclusive**, meaning every case fits exactly one category. If a message can honestly be placed in two categories at once, the categories overlap, and overlap destroys reliability because two coders will split on it forever. The fix is either sharper category definitions or a decision rule that assigns precedence. A catch-all is necessary, but if more than roughly one case in ten lands in it, the category scheme is incomplete and needs work.
 
-**Analyzing published media content** (Billboard lyrics, newspaper articles, television broadcasts, published books): Generally exempt. These are public documents. No human subjects are involved in the analysis itself. The IRB at most institutions will classify this as not involving human subjects research.
+## A codebook for the chat study
 
-**Analyzing public social media posts**: This is contested territory. The posts are technically public, but posters may not have anticipated being studied. The Association of Internet Researchers (AoIR) has argued that "public" does not automatically mean "fair game for research." Context matters: a tweet with 50,000 retweets has a different expectation of privacy than a post in a small support group forum, even if both are technically accessible. Many IRBs now require at minimum exempt review for social media research.
+Here is a draft codebook for the running example, the study the prospectus in Chapter 6 committed to and the observation in Chapter 7 sharpened. It has three variables, which is the floor for a workable study, and it is deliberately a draft: the special-cases section is thin because piloting has not happened yet.
 
-**Analyzing private communications** (private messages, closed group discussions, leaked documents): This almost always requires IRB review and raises serious consent questions.
+> **Codebook: chat message target and form**
+> **Unit of analysis.** A single chat message, defined as one row of `chat_log`: one sender, one message string, one timestamp. Each message is coded independently of the messages around it, except where a decision rule explicitly says otherwise.
+>
+> **Variable 1: message target.** Conceptual definition: the intended addressee of the message. Operational definition: after reading the message, the coder assigns one category. Categories: **directed at streamer** (contains an at-mention of the streamer's channel name, or is a second-person address responding to the streamer); **directed at another viewer** (contains an at-mention of a non-streamer account, or is a reply to a specific prior message); **broadcast to the room** (a reaction or comment with no specific addressee); **unclassifiable** (none of the above criteria settle the question). Level: nominal.
+>
+> **Variable 2: message length.** Conceptual definition: the verbal extent of the message. Operational definition: the count of characters in the message string, including spaces and emote tokens. This is a derived measure, computed rather than judged. Level: ratio.
+>
+> **Variable 3: contains emote.** Conceptual definition: whether the message uses Twitch's emote vocabulary. Operational definition: coded yes if the message contains at least one token from the project's emote list, no otherwise. Level: nominal.
+>
+> **Decision rules.** Rule 1, precedence: if a message both at-mentions the streamer and performs for the room, code it directed at streamer; the explicit address takes precedence. Rule 2, emote-only messages: a message consisting only of emote tokens is coded broadcast to the room for target unless it contains an at-mention. Rule 3, copypasta: a recognized copypasta block is coded by its content like any other message; its status as copypasta is not itself a category. Rule 4, non-English messages: code target if the addressee is determinable from at-mentions or structure; otherwise code unclassifiable. Rule 5, bot accounts: messages from known bot accounts are coded unclassifiable for target and noted for possible exclusion.
 
-For your course project, which involves content analysis of publicly available song lyrics and chart data, you will likely qualify for exemption. But the CITI training you complete (see the course assignment) ensures you understand these distinctions for future research that may involve human participants more directly.
+Three variables, spanning two manifest measures a coder can apply almost mechanically and one latent measure that requires real judgment, spanning nominal and ratio levels, every category exhaustive and mutually exclusive, every decision rule traceable to something observation actually turned up. That is a draft codebook. It is enough to start.
 
-## Informed Consent
+## Looking ahead
 
-The principle of respect for persons is operationalized primarily through **informed consent**, the process by which participants voluntarily agree to participate in research after being told what the study involves.
+Chapter 9 is first contact with the data inside R. You have a research question, a theoretical frame, a prospectus, a field-notes document, and now a draft codebook. What you have not yet done is open the dataset in the tool you will analyze it with. Chapter 9 is where the planning stops and the code begins: you will load `chat_log` and `stream_log`, look at their structure, and confirm that the data you have designed a study around is the data you actually have.
 
-### Elements of Valid Informed Consent
 
-For consent to be genuine, participants must receive:
+::: {.content-visible when-profile="grad"}
+::: {.callout-note title="Graduate Extension" collapse="true"}
+**The formal intercoder reliability protocol.** The codebook you write in this chapter is the operational heart of your study. But a codebook that works for one coder is not necessarily a reliable instrument. At the graduate level, the codebook is not finished until a second coder has applied it to a sample of your data and the agreement has been measured and reported.
 
-1. **A description of the research** and the participant's role in it
-2. **A description of risks and benefits**, including any foreseeable discomfort
-3. **A statement that participation is voluntary** and that withdrawal carries no penalty
-4. **Contact information** for the researcher and the IRB
-5. **An explanation of how data will be stored** and confidentiality protected
+A complete V2V reliability protocol has four steps. *First*, the second coder receives the codebook — no walk-through, no hints — and codes a training set of 20–30 units independently. *Second*, the two coders compare their coding and discuss every disagreement. No new production data is coded at this stage. *Third*, the codebook is revised to add decision rules for all identified disagreements. *Fourth*, the second coder codes a fresh reliability sample (separate from the training set) independently. The agreement on this fresh sample is the κ that gets reported.
 
-### When Consent Gets Complicated
+**The threshold and the calculation.** The standard graduate-level threshold for Cohen's κ is ≥ 0.70 (Landis & Koch, 1977). Below 0.70, the codebook requires further revision before production coding begins. The reliability sample should contain at least 50 coded units; for variables with low base rates (rare codes), 100+ units are preferred. Use `v2v::reliability()` to compute κ with interpretation labels.
 
-**Deception**: Some studies require that participants not know the true purpose of the research. The Milgram experiment couldn't work if participants knew the shocks weren't real. In communication research, priming and framing experiments sometimes require deception about which condition participants are in. When deception is used, **debriefing** is mandatory: researchers must explain the true purpose after participation and give participants the option to withdraw their data.
+**Required reading.** Lombard, M., Snyder-Duch, J., & Campanella Bracken, C. (2002). Content analysis in mass communication: Assessment and reporting of intercoder reliability. *Human Communication Research*, *28*(4), 587–604. https://doi.org/10.1111/j.1468-2958.2002.tb00826.x
 
-**Passive consent vs. active consent**: The Facebook study relied on terms-of-service agreement as a form of passive consent. Most ethicists consider this insufficient for research purposes. Active consent requires an affirmative act (signing a form, clicking an explicit agreement to participate in research, verbally confirming participation).
-
-**Secondary data analysis**: When you analyze data someone else collected (a public dataset, archived survey responses), the original participants may not have consented to *your* specific study. This is generally acceptable if the data are de-identified, but it raises questions about whether the original consent covered this type of use.
-
-## Ethics in Specific Methods
-
-### Ethics in Content Analysis
-
-Content analysis of published media is among the lowest-risk research methods. You are analyzing texts, not interacting with people. However, ethical considerations still apply:
-
-- **Representation**: How you categorize and interpret content has consequences. A content analysis that codes hip-hop lyrics as "violent" without accounting for genre conventions, metaphorical language, or cultural context can reinforce harmful stereotypes. Your coding decisions carry moral weight.
-- **Cherry-picking**: Selecting examples that confirm your hypothesis while ignoring contradictory cases is a form of intellectual dishonesty, even if no human subjects are directly harmed.
-- **Copyright and fair use**: Reproducing extensive lyrics or content in your report may raise copyright concerns. Brief quotation for analytical purposes generally falls under fair use, but reproducing entire songs or articles does not.
-
-### Ethics in Survey Research
-
-Surveys involve direct interaction with human participants, which raises the ethical stakes:
-
-- **Voluntary participation**: Respondents must not be coerced. Offering course credit for survey participation is acceptable if an alternative assignment of equal value is available. Requiring participation without alternatives is coercive.
-- **Sensitive questions**: Questions about substance use, sexual behavior, mental health, or illegal activity require careful handling. Respondents must know they can skip any question. Data must be stored securely and de-identified.
-- **Sampling fairness**: Surveying only your friends, or only students in your major, creates samples that may not represent the population you claim to study. This is a methodological limitation, but it also raises justice concerns when findings about "college students" are generalized to broader populations.
-
-### Ethics in Experimental Research
-
-Experiments that manipulate participants' experiences carry the highest ethical burden:
-
-- **Manipulation effects**: If you expose participants to distressing media content (violent imagery, sad music, fear-based messaging), you must consider whether the exposure could cause lasting harm.
-- **Deception and debriefing**: If participants are deceived about the study's purpose, you must debrief them fully afterward and allow data withdrawal.
-- **Control group ethics**: In some contexts (health interventions, educational programs), withholding a potentially beneficial treatment from the control group raises ethical questions about fairness.
-
-### Ethics in Digital and Social Media Research
-
-Digital research occupies an evolving ethical landscape:
-
-- **The "public" problem**: Just because data are publicly accessible doesn't mean people expected to be studied. A person who tweets about their depression is sharing with their followers, not volunteering for a research study.
-- **Aggregation risk**: Individual data points may be harmless, but combining them can create identifiable profiles. De-identification is harder than it appears.
-- **Platform terms of service**: Scraping data from platforms may violate terms of service even if the data are public. This is a legal and ethical gray area.
-- **Vulnerable populations online**: Minors, people in crisis, and members of stigmatized groups may be especially vulnerable to harm from research exposure, even when their posts are public.
-
-## Ethical Writing and Reporting
-
-Ethics doesn't end when data collection is over. How you analyze and report findings carries its own ethical obligations.
-
-### Fabrication and Falsification
-
-**Fabrication** is inventing data that don't exist. **Falsification** is manipulating data or results to change the outcome. Both are forms of scientific fraud, and both are career-ending if discovered. They are also more common than the research community likes to admit: surveys of researchers consistently find that a small but meaningful percentage acknowledge engaging in questionable practices (Babbie, 2021).
-
-### Selective Reporting
-
-A more subtle form of dishonesty is **selective reporting**: running many analyses but reporting only those that produced significant results, or testing multiple hypotheses but presenting only the ones that "worked." This practice, sometimes called the "file drawer problem," distorts the literature by creating a publication record that systematically overstates the strength of effects.
-
-### HARKing
-
-**HARKing** (Hypothesizing After the Results are Known) occurs when researchers examine their data, identify patterns, and then write the paper as though they had predicted those patterns all along. This transforms exploratory analysis (which is legitimate) into confirmatory analysis (which requires pre-specification). The result looks more impressive than it is, because a "prediction" that was actually a post-hoc observation carries none of the epistemic weight of a genuine a priori hypothesis.
-
-The pre-registration practices discussed in Chapter 6 are a direct defense against HARKing. By documenting your hypotheses before analysis, you make it transparent which findings were predicted and which were discovered.
-
-### Honest Interpretation
-
-Even without outright fabrication, researchers face constant temptation to overstate their findings. "Our results suggest" becomes "our results demonstrate." A small effect size gets buried while a large p-value gets highlighted. Limitations are mentioned but minimized. The discussion section tells a cleaner story than the data support.
-
-Ethical reporting means stating what you found, acknowledging what you didn't find, and being transparent about the boundaries of your claims. It means writing a limitations section that genuinely grapples with weaknesses rather than performing humility while defending every decision. It means distinguishing between what the data show and what you wish they showed.
-
-This is harder than it sounds. But it is the core ethical obligation of every researcher.
-
-## The CITI Training
-
-As part of this course, you will complete the **Collaborative Institutional Training Initiative (CITI)** program's "IRB Social Behavioral Student" module. This is an industry-standard training that introduces the regulatory framework for human subjects research in the United States.
-
-The training covers:
-
-- The history of research ethics (Belmont Report, Tuskegee, Nuremberg Code)
-- Federal regulations governing human subjects research
-- Informed consent requirements
-- IRB review categories and procedures
-- Privacy and confidentiality protections
-- Ethical issues in specific research contexts
-
-Completing CITI certification serves two purposes. First, it satisfies the institutional requirement for anyone conducting research involving human subjects at most universities. Second, and more importantly, it provides the conceptual vocabulary for thinking about ethical questions that will arise throughout your research career.
-
----
-
-## Practice: Ethical Decision-Making
-
-### Exercise 8.1: The Facebook Case
-
-Read the following summary of the Kramer, Guillory, and Hancock (2014) study:
-
-> For one week in January 2012, Facebook manipulated the News Feeds of approximately 689,003 users. Some users saw fewer positive posts from friends; others saw fewer negative posts. The researchers then measured whether the manipulation affected users' own posting behavior. Users exposed to fewer positive posts produced slightly more negative content. The study was published in PNAS in 2014.
-
-**Questions**:
-
-1. Apply each of the Belmont Report's three principles to this study. Where does the study comply, and where does it fall short?
-2. Facebook argued that its terms of service authorized the research. Is terms-of-service agreement equivalent to informed consent? Why or why not?
-3. The researchers argued that the manipulation was "consistent with Facebook's Data Use Policy." Does the fact that a practice is legal make it ethical?
-4. If this study had been reviewed by a university IRB before data collection, what questions would the board likely have raised? What modifications might it have required?
-
----
-
-### Exercise 8.2: Content Analysis Ethics
-
-You are designing a content analysis of Twitter posts about a recent mass shooting. The posts are public. You plan to code them for emotional tone, misinformation, and political framing.
-
-**Questions**:
-
-1. Does this study involve "human subjects"? Why or why not?
-2. What ethical obligations do you have to the people who posted, even if their posts are public?
-3. Should you include usernames in your published report? What about direct quotes?
-4. Some posts may be from people who were directly affected by the shooting (victims' families, witnesses). Does this change your ethical obligations?
-5. How would your analysis change if the posts were from a private Facebook grief support group rather than public Twitter?
-
----
-
-### Exercise 8.3: Survey Ethics
-
-You want to survey college students about their music listening habits and mental health. Your survey includes questions about anxiety, depression, and substance use.
-
-**Questions**:
-
-1. What information must you include in your informed consent document?
-2. Should participation be anonymous, confidential, or neither? What's the difference, and which is most appropriate here?
-3. If a participant's responses suggest they may be in crisis (e.g., endorsing suicidal ideation), what is your ethical obligation?
-4. You plan to recruit participants by offering extra credit in your class. Is this coercive? How could you design the incentive structure to minimize coercion?
-
----
-
-### Exercise 8.4: Ethical Reporting
-
-A researcher runs five statistical tests on a dataset. Four produce non-significant results (p > .05). One produces a significant result (p = .03). The researcher writes the paper around the one significant finding, mentioning only that one test, and frames the result as confirming a pre-existing hypothesis.
-
-**Questions**:
-
-1. What ethical problem(s) does this scenario illustrate?
-2. How does this practice distort the published literature?
-3. What should the researcher have done differently?
-4. How does pre-registration (Chapter 6) prevent this problem?
-
----
-
-## Reflection Questions
-
-1. **The Consent Problem**: Much contemporary research involves data that people generated without knowing they would be studied (social media posts, streaming behavior, public comments). Where should the line be drawn between "public data" and "data requiring consent"? Is there a principled distinction, or is it always contextual?
-
-2. **Risk and Benefit**: The Belmont Report requires that benefits justify risks. But who decides what counts as a "benefit"? The Facebook study produced knowledge about emotional contagion, but that knowledge primarily benefits Facebook's business model. Should the identity of the beneficiary affect the ethical calculus?
-
-3. **Your Study**: Consider the research project you're designing for this course. What ethical questions does it raise, even if it involves only publicly available data? How will you handle representation, interpretation, and honest reporting?
-
-4. **Ethics as Culture, Not Compliance**: This chapter argues that ethics is a disposition, not a procedure. What does that mean in practice? How would a research team with an ethical culture behave differently from one that merely complies with IRB requirements?
-
----
-
-## Chapter Summary
-
-This chapter established the ethical foundations of research inquiry:
-
-- **Historical cases** (Tuskegee, Milgram, Humphreys) demonstrate why external ethical oversight is necessary. Good intentions do not prevent harm.
-- The **Belmont Report** (National Commission, 1979) established three principles: respect for persons (informed consent, autonomy), beneficence (maximize benefits, minimize harms), and justice (fair distribution of research burdens and benefits).
-- **Institutional Review Boards (IRBs)** operationalize these principles through review of proposed research at three levels: exempt, expedited, and full board review.
-- **Content analysis** of published media generally qualifies for exempt status, but ethical obligations remain regarding representation, interpretation, and honest reporting.
-- **Survey and experimental research** involve direct interaction with participants and carry higher ethical obligations around consent, confidentiality, and harm prevention.
-- **Digital and social media research** occupies evolving ethical territory where "public" does not automatically mean "ethically unproblematic."
-- **Ethical writing** requires transparency in reporting: no fabrication, no falsification, no selective reporting, no HARKing. Pre-registration (Chapter 6) is a structural defense against these practices.
-- The **CITI training** provides the regulatory vocabulary for navigating human subjects research throughout your career.
-
----
-
-## Key Terms
-
-- **Belmont Report**: 1979 document establishing three foundational principles for ethical research (National Commission, 1979)
-- **Beneficence**: Ethical principle requiring researchers to maximize benefits and minimize harms
-- **CITI Program**: Collaborative Institutional Training Initiative; standardized ethics training for researchers
-- **Debriefing**: Post-study disclosure of the true purpose of research to participants who were deceived
-- **Exempt review**: IRB classification for research posing minimal risk and meeting specific federal criteria
-- **Fabrication**: Inventing data or results that do not exist
-- **Falsification**: Manipulating data, methods, or results to change outcomes
-- **Full board review**: IRB classification for research involving more than minimal risk or vulnerable populations
-- **HARKing**: Hypothesizing After the Results are Known; presenting exploratory findings as confirmatory
-- **Informed consent**: Voluntary agreement to participate in research after receiving adequate information about procedures, risks, and benefits
-- **Institutional Review Board (IRB)**: Committee that reviews proposed research for ethical compliance
-- **Justice**: Ethical principle requiring fair distribution of research burdens and benefits
-- **Respect for persons**: Ethical principle requiring treatment of individuals as autonomous agents and protection of those with diminished autonomy
-- **Selective reporting**: Reporting only analyses or results that support desired conclusions
-
----
-
+**Reflect.** (1) Simulate a reliability scenario: two coders agree on 40 of 50 units. Run `v2v::reliability()` to compute κ and its interpretation. Does this codebook clear the 0.70 threshold? What would you revise? (2) Lombard et al. recommend reporting multiple reliability statistics. Which statistic would you add alongside κ for your design, and why?
+:::
+:::
 ## References
 
-Babbie, E. R. (2021). *The practice of social research* (15th ed.). Cengage Learning.
+Krippendorff, K. (2018). _Content analysis: An introduction to its methodology_ (4th ed.). SAGE Publications.
 
-Kramer, A. D. I., Guillory, J. E., & Hancock, J. T. (2014). Experimental evidence of massive-scale emotional contagion through social networks. *Proceedings of the National Academy of Sciences*, *111*(24), 8788-8790. https://doi.org/10.1073/pnas.1320040111
-
-National Commission for the Protection of Human Subjects of Biomedical and Behavioral Research. (1979). *The Belmont report: Ethical principles and guidelines for the protection of human subjects of research*. U.S. Department of Health and Human Services. https://www.hhs.gov/ohrp/regulations-and-policy/belmont-report/read-the-belmont-report/index.html
-
-Simmons, J. P., Nelson, L. D., & Simonsohn, U. (2011). False-positive psychology: Undisclosed flexibility in data collection and analysis allows presenting anything as significant. *Psychological Science*, *22*(11), 1359-1366. https://doi.org/10.1177/0956797611417632
-
-Wimmer, R. D., & Dominick, J. R. (2014). *Mass media research: An introduction* (10th ed.). Cengage Learning.
-
----
-
-::: {.callout-note title="Graduate Extension" collapse="true"}
-
-**Required Reading**: Kramer, A. D. I., Guillory, J. E., & Hancock, J. T. (2014). Experimental evidence of massive-scale emotional contagion through social networks. *Proceedings of the National Academy of Sciences*, *111*(24), 8788-8790. https://doi.org/10.1073/pnas.1320040111
-
-Also read the PNAS editorial expression of concern appended to the article.
-
-**Prompt**: The Facebook emotional contagion study has become a landmark case in research ethics, not because the answer is clear, but because reasonable scholars disagree about where the ethical lines should fall.
-
-1. **Construct the strongest defense** of the study's ethics. What arguments support the claim that the research was ethically acceptable? Consider the minimal manipulation, the small effect size, the value of the knowledge produced, and the precedent of A/B testing in industry.
-2. **Construct the strongest critique** of the study's ethics. What arguments support the claim that the research violated ethical norms? Consider informed consent, emotional manipulation, the power asymmetry between Facebook and its users, and the absence of standard IRB review.
-3. **Evaluate the institutional failure**: The study was reviewed by Cornell's IRB, which determined that the university's involvement was limited to data analysis (not data collection, which Facebook conducted). PNAS later acknowledged that the study's "ichcollection procedures... were inconsistent with the principles of obtaining informed consent." Where did the system break down? Was this a failure of regulation, of institutional will, or of the ethical framework itself?
-4. **Propose a redesign**: How could the same research question (does emotional content in social feeds affect users' emotional expression?) be studied ethically? Design an alternative study that would satisfy IRB requirements while still producing meaningful evidence. What tradeoffs would your redesign involve?
-5. **The broader question**: Should technology companies be held to the same ethical standards as university researchers when they conduct experiments on users? Why or why not? What would a regulatory framework for industry research look like?
-
-:::
-
----
-
-## Looking Ahead
-
-Chapter 9 (The Methodologist's Toolkit) introduces the full landscape of research methods available to social scientists: content analysis, surveys, experiments, and qualitative approaches. You'll learn when each method is appropriate, what questions each can and cannot answer, and how they complement one another. Content analysis, the method you'll execute this semester, is situated within this broader ecosystem so you understand not just how to do it, but where it fits among the alternatives.
+Neuendorf, K. A. (2017). _The content analysis guidebook_ (2nd ed.). SAGE Publications.

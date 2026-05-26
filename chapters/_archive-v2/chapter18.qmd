@@ -15,7 +15,7 @@ title: "Chapter 18: Seeing Patterns"
 
 ---
 
-![Data visualization chart on a screen](../images/ch18-chart_2.jpg){fig-alt="Data visualization chart on a screen"}
+![Data visualization chart on a screen](../images/ch18-chart_2.jpg){fig-alt="Data visualization chart on a paper"}
 
 
 
@@ -716,6 +716,8 @@ Wilkinson, L. (2005). *The grammar of graphics* (2nd ed.). Springer. https://doi
 
 ---
 
+::: {.content-visible when-profile="grad"}
+
 ::: {.callout-note title="Graduate Extension" collapse="true"}
 
 **Required Reading**: Tufte, E. R. (2001). *The visual display of quantitative information* (2nd ed.). Graphics Press. **Read Chapter 2: "Graphical Integrity."**
@@ -729,6 +731,8 @@ Wilkinson, L. (2005). *The grammar of graphics* (2nd ed.). Springer. https://doi
 3. Create two versions of the same visualization from your dataset. Version A should present the data honestly, following Tufte's principles. Version B should present the same data misleadingly, using at least two of the distortion techniques discussed in this chapter (truncated axis, cherry-picked range, misleading color, dual y-axis). Write a 200-word analysis comparing the two versions and explaining how the design choices create different impressions.
 
 4. Tufte's work has been criticized for being overly austere, for preferring minimalism even when richer visual elements might aid comprehension. Do you agree with this critique? Are there situations in communication research where "chartjunk" (Tufte's term for non-data visual elements) actually helps audiences understand findings? When does decoration become communication?
+
+:::
 
 :::
 

@@ -1,468 +1,201 @@
----
-title: "Chapter 11: Designing Surveys"
----
-
-## Learning Objectives
-
-- Understand when survey research is the appropriate method and when it is not
-- Design questionnaire items that minimize bias, ambiguity, and measurement error
-- Distinguish between probability and non-probability sampling strategies
-- Recognize common threats to survey validity and strategies for addressing them
-- Connect sampling theory to both survey research and content analysis
-
+﻿---
+title: "Chapter 11: Wrangling the data"
 ---
 
-![Clipboard with checklist representing survey design](../images/ch11-checklist_2.jpg){fig-alt="Clipboard with checklist representing survey design"}
+![](../images/ch11-checklist_2.jpg){fig-alt="A stylized rendering of tangled threads on one side resolving into neat parallel lines on the other."}
 
+The chat table you loaded in Chapter 9 cannot answer your research question. Not yet. The study asks whether chat behaves differently on gaming and non-gaming channels, and it operationalizes that through message length. But look at the table. There is no column for message length. There is no column saying whether a message came from a gaming channel or a non-gaming one. The timestamps are unreadable runs of digits. And the information that would settle the gaming question is not even in the chat table; it sits in a separate stream table that the chat table has no link to.
 
+This is the ordinary situation at this stage of a study, and closing the gap is the work of this chapter. **Data wrangling** is the process of turning the data you collected into the data you can analyze: reshaping it, cleaning it, deriving the variables your codebook named, and joining separate tables into one. It is unglamorous, it is rarely mentioned in the published paper, and it is most of the work. A wrangling chapter looks like a sequence of small technical steps. What it is actually doing is building the table that every later result depends on.
 
-In 1936, *The Literary Digest* mailed postcards to over ten million Americans, asking who they planned to vote for in the upcoming presidential election. The magazine had correctly predicted the previous five elections using the same method. With 2.4 million responses, the sample was enormous by any standard. The prediction was confident: Alf Landon would defeat Franklin Roosevelt in a landslide.
+## The verbs of data wrangling
 
-Roosevelt won 46 of 48 states.
+The tidyverse handles wrangling through a small set of functions, each of which does one clear thing to a data frame. They are usually called the **dplyr** verbs, after the package they live in, and five of them carry most of the work.
 
-The problem was not the sample size. It was the sample itself. *The Literary Digest* had drawn its mailing list from telephone directories, automobile registrations, and its own subscriber rolls. In 1936, these sources systematically overrepresented wealthy Americans, the very group most likely to oppose Roosevelt's New Deal. The magazine had surveyed millions of people, but millions of the *wrong* people. The sample was large but not representative, and no amount of additional postcards could have fixed the underlying bias.
+**`filter()`** keeps rows that meet a condition and drops the rest. To look at only Bob Ross's messages:
 
-Meanwhile, a young pollster named George Gallup surveyed only 50,000 people, but he used quota sampling to ensure his sample approximated the demographic composition of the electorate. He correctly predicted Roosevelt's victory. The lesson was clear, and it remains the foundational insight of survey methodology: **who you ask matters more than how many you ask**.
+```r
+chat |> filter(channel == "bobross")
+```
 
-This chapter teaches survey design as a complete method: from question formulation through sampling, administration, and analysis. You will not conduct a survey in this course. But you will encounter surveys constantly in the literature you read, and you may design one in future research. More immediately, the sampling theory introduced here applies directly to the content analysis you *are* conducting: the same logic that governs selecting survey respondents governs selecting songs, articles, or social media posts for coding.
+**`select()`** keeps or drops columns:
 
-## When Surveys Work (and When They Don't)
+```r
+chat |> select(channel, sender, message)
+```
 
-Surveys excel at answering questions about what people think, believe, feel, do, or have experienced. They capture self-reported data at scale, enabling researchers to describe populations, identify correlations, and track trends.
+**`mutate()`** adds a new column, or changes an existing one, computed from the columns already there. **`arrange()`** reorders the rows by a column's values. And **`group_by()`** together with **`summarize()`** collapses many rows into one per group, which is how you compute a per-channel or per-game figure.
 
-**Surveys work well when you want to know**:
+The reason these verbs combine so well is a shared design: each one takes a data frame and returns a data frame. That is what lets the pipe string them into a sequence, the output of one verb flowing in as the input of the next. A wrangling pipeline is just verbs chained this way, each step a small readable transformation, the whole chain carrying the data from raw to ready. The rest of this chapter is four such transformations.
 
-- What attitudes a population holds ("Do Americans believe news media are trustworthy?")
-- How frequently people engage in a behavior ("How many hours per week do college students listen to music?")
-- How variables correlate ("Is parasocial attachment to an influencer associated with purchase behavior?")
-- How attitudes or behaviors have changed over time ("Has support for marijuana legalization increased since 2010?")
+## Making the timestamp readable
 
-**Surveys work poorly when you want to know**:
+Start with the timestamps, because Chapter 9 already flagged them. The `date` column is a column of very large numbers, and Chapter 8 classified it as interval data with a catch: the number is not a date in any form a person can read.
 
-- Whether X causes Y. Surveys measure correlation, not causation. If heavy news consumers hold more sympathetic attitudes toward mental illness, you cannot conclude from a survey that news consumption *caused* those attitudes. People who already hold sympathetic attitudes may simply choose to consume more news. This is the self-selection problem, and it plagues all cross-sectional survey research.
-- What is in media content. Surveys tell you about audiences, not about messages. A survey can reveal what people *think* about news coverage, but not what the coverage actually contains. That requires content analysis.
-- What experiences mean to people in their own terms. Surveys impose the researcher's categories on respondents. A Likert scale from 1 to 7 captures a number, not a story. If you want the story, you need qualitative methods.
+What the number actually holds is a count of milliseconds elapsed since midnight on the first of January, 1970. That reference moment is the **Unix epoch**, the zero point nearly all computers use to keep time, and counting from it is how a timestamp becomes a single integer. The integer is precise and entirely unreadable. Turning it back into a date is a conversion, and `mutate()` is the verb for it:
 
-The boundaries are important because researchers frequently overreach. A survey finding that "people who listen to more music report higher well-being" does not demonstrate that music improves well-being. It demonstrates a correlation. The causal claim requires an experiment.
+```r
+chat <- chat |>
+  mutate(timestamp = as.POSIXct(date / 1000, origin = "1970-01-01", tz = "UTC"))
+```
 
-## Types of Surveys
+Two parts of that line carry the lesson. `as.POSIXct()` is the function that turns a number into a date-time value, given the origin to count from. And `date / 1000` is the part it is easy to get wrong. `as.POSIXct()` expects a count of seconds, but the `date` column is a count of milliseconds, a thousand times finer. Hand it the raw number and it will place every message tens of thousands of years in the future. Dividing by 1,000 converts milliseconds to seconds first. It is a small arithmetic step and the single most common way this conversion fails.
 
-### Cross-Sectional Surveys
+The result is a real date-time. Setting `date` and the new `timestamp` side by side shows the transformation:
 
-A **cross-sectional survey** collects data from a sample at one point in time. It provides a snapshot: what does this population look like right now?
+```r
+chat |> select(date, timestamp) |> head(3)
+```
 
-**Strength**: Efficient. You collect data once and analyze it.
+```
+# A tibble: 3 × 2
+           date timestamp
+          <dbl> <dttm>
+1 1542578127023 2018-11-18 21:55:27
+2 1542578135562 2018-11-18 21:55:35
+3 1542578143610 2018-11-18 21:55:43
+```
 
-**Limitation**: You cannot track change over time, and you cannot establish causation because you have no temporal sequence (did media exposure come before the attitude, or after?).
+The same instant, now legible: the evening of the 18th of November, 2018. The column type has changed too, from `<dbl>`, an ordinary number, to `<dttm>`, a date-time. That new type is what makes the column useful. From a real date-time you can pull the hour of day, the day of week, the calendar date, none of which can be read off the raw integer. Chapter 12 will use exactly that to chart how chat volume rises and falls across the hours of the day.
 
-**Example**: A survey administered in March 2026 asking 500 college students about their music streaming habits and mood.
+## Measuring message length
 
-### Longitudinal Surveys
+The second transformation creates a variable the codebook named but the data does not yet contain. Message length, the character count of a message, is `mutate()` again, this time with `str_length()`, which counts the characters in a string:
 
-A **longitudinal survey** collects data from samples at multiple points in time, allowing you to track changes.
+```r
+chat <- chat |>
+  mutate(message_length = str_length(message))
+```
 
-**Panel surveys** follow the *same* respondents over time. This allows you to see how individuals change. The challenge is attrition: people drop out, move, lose interest. A panel that starts with 1,000 respondents may have only 400 left after three waves.
+```r
+chat |> select(message, message_length) |> head(3)
+```
 
-**Trend surveys** ask the *same questions* of *different samples* drawn from the same population at different times. This allows you to track population-level trends without following specific individuals. The Gallup Poll uses trend methodology: each survey samples a fresh group, but the questions remain consistent across years.
+```
+# A tibble: 3 × 2
+  message                                 message_length
+  <chr>                                             <int>
+1 "???????????????????????"                           23
+2 "TriEasy Clap TriEasy Clap TriEasy Cla…"            441
+3 "cmonBruh"                                            8
+```
 
-**Example**: Surveying 500 college students in September and again in December to see whether parasocial attachment to a streamer increases over the semester (panel), or surveying 500 students in 2024 and a different 500 in 2026 to see whether streaming habits have changed (trend).
+`message_length` is a ratio variable, in the Chapter 8 sense: a true zero, equal intervals, a count you can average and compare. The three values above also preview something. A single-word message of eight characters, a row of punctuation at twenty-three, and a block of copy-pasted text at 441 are all real Twitch chat, and the distance between them is large. That spread is the raw material of the study, and Chapter 12 will look hard at its shape.
 
-## Questionnaire Design: The Art of Asking Questions
+## Labeling gaming and non-gaming
 
-A survey is only as good as its questions. Poorly worded items produce unreliable data, and no amount of sophisticated analysis can rescue data corrupted at the source. Dillman, Smyth, and Christian (2014) devote hundreds of pages to this problem, and with good reason: question design is where most survey research succeeds or fails.
+The third transformation is the one the central research question turns on. Every message needs a label: did it come from a gaming channel or a non-gaming one? That label does not exist in the chat table, and building it takes more work than the last two, because the information lives in the other table.
 
-### Types of Questions
+Gaming or non-gaming is best understood as a property of the channel, fixed by what the channel mostly streams. Bob Ross's channel streams painting; it is a non-gaming channel, and every message in it is a non-gaming message. So the label is built in three steps: find what each channel mostly streams, decide whether that counts as gaming, and attach the decision to every message from that channel.
 
-**Closed-ended questions** provide predetermined response options. They're easy to analyze statistically but constrain what respondents can say.
+The first step reaches into the stream table. Each channel appears there many times, once per snapshot, each snapshot carrying the `game` it was streaming. The channel's dominant category is the **modal** category, the one that appears most often:
 
-*Example*: "How often do you listen to music? (a) Daily, (b) Several times a week, (c) Once a week, (d) Less than once a week, (e) Never"
+```r
+channel_type <- streams |>
+  filter(!is.na(game)) |>
+  count(channel, game) |>
+  group_by(channel) |>
+  slice_max(n, n = 1, with_ties = FALSE) |>
+  ungroup()
+```
 
-**Open-ended questions** allow respondents to answer in their own words. They capture richer data but are harder to analyze systematically.
+The pipeline reads in order. Drop snapshots with no recorded category. Count how many snapshots each channel logged in each category. Then, within each channel, keep only the single most frequent category. The result is one row per channel, naming what that channel streamed most.
 
-*Example*: "Describe your typical music listening experience. What do you listen to, where, and why?"
+The second step is a judgment, and it should be visible rather than buried. Twitch sorts streams into categories, and some of those categories are not games: painting under Art, unstructured talk under Just Chatting, and others. Listing them explicitly states the rule the study is using:
 
-**Likert-scale items** ask respondents to rate agreement with a statement on a numbered scale. They are the workhorse of attitude measurement.
+```r
+nongaming_categories <- c(
+  "Art", "ASMR", "Beauty & Body Art", "Creative", "Food & Drink",
+  "IRL", "Just Chatting", "Makers & Crafting", "Music",
+  "Music & Performing Arts", "Science & Technology",
+  "Sports & Fitness", "Talk Shows & Podcasts", "Travel & Outdoors"
+)
 
-*Example*: "I feel a strong emotional connection to my favorite artist." (1 = Strongly Disagree, 7 = Strongly Agree)
+channel_type <- channel_type |>
+  mutate(is_gaming = !(game %in% nongaming_categories)) |>
+  select(channel, is_gaming)
+```
 
-**Semantic differential items** ask respondents to rate a concept between two polar adjectives.
+`game %in% nongaming_categories` asks whether a channel's dominant category is on the non-gaming list; the `!` negates it, so `is_gaming` is `TRUE` for every channel whose main category is a game and `FALSE` otherwise. `channel_type` is now a compact lookup table: one row per channel, one column saying gaming or not.
 
-*Example*: "This song is: Sad 1 2 3 4 5 6 7 Happy"
+The third step is the **join**. A join brings columns from one table onto another by matching on a shared key, here the channel name. A `left_join()` keeps every row of the chat table and attaches the matching `is_gaming` value to it:
 
-### Question Wording Pitfalls
+```r
+chat <- chat |>
+  left_join(channel_type, by = "channel")
+```
 
-Small changes in wording can produce large changes in responses. These pitfalls are not merely technical errors; they represent threats to the validity of your entire study.
+A join is only as good as the match between its keys, and that is worth a word of warning. Twitch's chat protocol writes channel names with a leading "#", so the same channel can appear as `#bobross` in one source and `bobross` in another. Join two tables whose keys disagree like that and every row fails to match, silently. The `v2v` fixture has already normalized this, the "#" stripped before the data ever reached you, but raw Twitch data would need that cleaning step first. When a join returns nothing, mismatched keys are the first thing to check.
 
-**Double-barreled questions** ask about two things at once:
+One result of the join deserves attention. Always inspect a column you just derived:
 
-*Bad*: "Do you enjoy listening to music and attending concerts?"
+```r
+chat |> count(is_gaming)
+```
 
-A respondent who loves listening but dislikes concerts cannot answer accurately. The question conflates two distinct behaviors.
+```
+# A tibble: 3 × 2
+  is_gaming     n
+  <lgl>     <int>
+1 FALSE      3457
+2 TRUE      31309
+3 NA          501
+```
 
-*Better*: "How much do you enjoy listening to music?" (separate question) "How often do you attend concerts?" (separate question)
+Two channels in the corpus streamed without ever having a category recorded: every one of their stream snapshots had a missing `game`. With no categories at all, there is no modal category, so those channels never made it into `channel_type`, and the `left_join()` left their messages with `is_gaming` set to `NA`. That is the correct outcome, not a bug. The data genuinely does not say whether those 501 messages came from gaming channels, and an honest `NA` records that the study cannot classify them. They will sit out the gaming comparison rather than being guessed into one side of it.
 
-**Leading questions** push respondents toward a particular answer:
+## The analysis-ready table
 
-*Bad*: "Don't you agree that streaming services are destroying the music industry?"
+Four transformations, run in sequence, have rebuilt the chat table:
 
-The phrasing presupposes a position. Respondents feel social pressure to agree.
+```r
+chat <- v2v::twitch_chat() |>
+  mutate(
+    timestamp = as.POSIXct(date / 1000, origin = "1970-01-01", tz = "UTC"),
+    message_length = str_length(message)
+  ) |>
+  left_join(channel_type, by = "channel")
+```
 
-*Better*: "To what extent do you believe streaming services have affected the music industry?" (1 = Very negatively, 7 = Very positively)
+A final `glimpse()` shows what the table has become:
 
-**Loaded language** uses emotionally charged words that bias responses:
+```
+Rows: 35,267
+Columns: 8
+$ id             <int> 89, 551, 1033, 2094, 2803, …
+$ channel        <chr> "sodapoppin", "xqcow", "forsen", "sodapoppin", "xqcow…
+$ sender         <chr> "madzee", "prometheanow", "spectre155", "itsjer", "la…
+$ message        <chr> "???????????????????????", "TriEasy Clap TriEasy Cla…
+$ date           <dbl> 1542578127023, 1542578135562, 1542578143610, 1542578…
+$ timestamp      <dttm> 2018-11-18 21:55:27, 2018-11-18 21:55:35, 2018-11-18…
+$ message_length <int> 23, 441, 8, 12, 206, …
+$ is_gaming      <lgl> TRUE, FALSE, TRUE, TRUE, FALSE, …
+```
 
-*Bad*: "Do you support censorship of explicit song lyrics?"
+This is what wrangling was for. The table is now **tidy**, in the precise sense the term carries in data science (Wickham, 2014): each row is one observation, a single chat message; each column is one variable; and everything the study needs sits in this one place. The unreadable integers have become timestamps. Message length and gaming status, named in the codebook and absent from the raw data, are now columns. The chat and stream tables, once disconnected, are joined.
 
-"Censorship" carries strong negative connotations. Many respondents who might support content labeling will reject "censorship."
+None of this was analysis. Not a single result has been computed. But every result that follows, every figure in Chapter 12 and every test in Chapter 13, will be computed from this table, which is why the care spent building it is not optional. A wrangling mistake does not announce itself. It travels quietly into every chart and every statistic downstream. The reward for getting this chapter right is that nothing later has to be unwound.
 
-*Better*: "Do you support adding content labels to songs with explicit lyrics?"
+## Looking ahead
 
-**Ambiguous terms** mean different things to different respondents:
+The data is tidy and the variables exist. The next move is to look at them. Chapter 12 turns the analysis-ready table into figures: how chat volume moves across the hours of the day, how viewership splits across game categories, and how the distribution of message length compares between gaming and non-gaming channels. It is the chapter where the study's central question finally meets a picture of the answer.
 
-*Bad*: "Do you frequently listen to music?"
 
-What does "frequently" mean? Daily? Weekly? The researcher and respondent may have different thresholds.
+::: {.content-visible when-profile="grad"}
+::: {.callout-note title="Graduate Extension" collapse="true"}
+**The wrangling script as a methods section.** The undergrad edition treats wrangling as preparation: you load messy data and shape it into the form your analysis needs. The graduate edition treats wrangling as a *documented transformation chain* — a sequence of decisions, each recorded in version-controlled code, that connects raw data to analysis-ready data.
 
-*Better*: "In a typical week, how many hours do you spend listening to music?" (with numerical response or defined categories)
+Every `mutate()`, `filter()`, and `group_by()` is a methodological decision. You decided which cases to exclude and why. You decided how to handle missing values. You decided how to aggregate timestamp data into time windows. When a reviewer asks "how did you handle cases where the streamer's username appeared in the chat?", the answer is in the wrangling script — but only if the script is version-controlled and decision points are commented.
 
-**Response option problems** include missing categories, overlapping ranges, and unbalanced scales:
+**Never overwrite raw data.** `data/raw/` is read-only after the first commit. Your wrangling script reads from `data/raw/` and writes to `data/processed/`. This separation means you can reproduce the processed dataset from scratch by re-running the wrangling script against the immutable raw data. Overwriting raw data severs this guarantee.
 
-*Bad*: "How old are you? (a) 18-25, (b) 25-35, (c) 35-50"
+**Tidy data as the target state.** Wickham's tidy data principles — one observation per row, one variable per column, one value per cell — are not just a preference. They are the structural assumption that every `tidyverse` function makes about its inputs and produces about its outputs. Wrangling that produces tidy data is wrangling that can be audited: the structure itself is a transparency claim.
 
-A 25-year-old doesn't know whether to choose (a) or (b). A 55-year-old has no option. The categories overlap and the list is not exhaustive.
+**Required reading.** Wickham, H. (2014). Tidy data. *Journal of Statistical Software*, *59*(10), 1–23. https://doi.org/10.18637/jss.v059.i10
 
-*Better*: "How old are you? (a) 18-24, (b) 25-34, (c) 35-49, (d) 50-64, (e) 65 or older"
-
-### Order Effects
-
-The sequence of questions matters. A question about "overall life satisfaction" will produce different answers depending on whether it comes before or after questions about stressful topics. A question about media trust will be colored by whether respondents just answered questions about specific media scandals.
-
-**General guidance**: Move from general to specific, from less sensitive to more sensitive, and group related items together. Place demographic questions (age, gender, income) at the end, where they feel routine rather than intrusive.
-
-### Using Validated Scales
-
-For well-studied constructs (parasocial interaction, media trust, political efficacy, body image satisfaction), validated scales already exist. These scales have been tested for reliability and validity across multiple studies. Using them has two advantages: you save time on instrument development, and your results are comparable to previous research.
-
-**Example**: Rather than inventing your own parasocial attachment items, you could use an established parasocial interaction scale from the communication literature. The original concept was articulated by Horton and Wohl (1956), and subsequent scholars have developed validated measurement instruments.
-
-When you do use validated scales, cite them and report reliability statistics (Cronbach's alpha) for your specific sample, because reliability can vary across populations.
-
-## Sampling: Who Gets Asked?
-
-The goal of most survey research is to learn about a **population** (all college students, all American adults, all Spotify users) by studying a **sample** (a subset of the population). The quality of your sample determines whether your findings generalize.
-
-This section introduces sampling theory that applies to both survey respondent selection and content analysis unit selection. The same logic that governs choosing which people to survey governs choosing which songs, articles, or posts to code.
-
-### The Sampling Frame
-
-A **sampling frame** is the list from which your sample is drawn. It should match the target population as closely as possible.
-
-**Target population**: All Billboard Hot 100 songs from 2015-2024.
-**Sampling frame**: The complete list of songs that appeared on the Hot 100 during this period.
-
-**Target population**: All adults in the United States.
-**Sampling frame**: A list of phone numbers, addresses, or email addresses covering U.S. adults.
-
-The gap between target population and sampling frame is called **coverage error**. *The Literary Digest*'s coverage error was catastrophic: its frame (phone directories, car registrations) excluded most working-class and poor Americans, who were also the most likely Roosevelt supporters.
-
-### Probability Sampling
-
-In **probability sampling**, every member of the population has a known, non-zero chance of being selected. This is the gold standard because it allows statistical generalization from sample to population.
-
-**Simple random sampling**: Every member has an equal chance of selection. Like drawing names from a hat, except you use a random number generator.
-
-*Example*: Assign each of the 3,000 songs in your dataset a random number, then select the 200 with the lowest numbers.
-
-*Strength*: Unbiased selection.
-*Limitation*: May produce an unrepresentative sample by chance (e.g., all 200 songs happen to be from 2015-2017, with no recent songs represented).
-
-**Stratified random sampling**: Divide the population into subgroups (strata) based on important characteristics, then randomly sample within each stratum.
-
-*Example*: Divide your song dataset by year (2015, 2016, ... 2024). Randomly select 20 songs from each year, ensuring equal temporal representation.
-
-*Strength*: Guarantees representation of key subgroups.
-*Limitation*: Requires advance knowledge of which characteristics matter.
-
-**Systematic sampling**: Select every *n*th case from an ordered list.
-
-*Example*: Sort songs by chart entry date, then select every 15th song.
-
-*Strength*: Simple and efficient.
-*Limitation*: If the list has a periodic pattern (e.g., a seasonal release cycle), systematic sampling could produce bias.
-
-**Cluster sampling**: Divide the population into naturally occurring groups (clusters), randomly select some clusters, then study all members within selected clusters.
-
-*Example*: Randomly select 10 weeks from the Billboard chart calendar, then analyze all songs that appeared on the chart during those weeks.
-
-*Strength*: Practical when a complete population list is unavailable.
-*Limitation*: Less precise than simple random sampling; members within clusters tend to be similar.
-
-**Constructed week sampling**: A specialized technique used primarily in content analysis of news media. Rather than selecting random days, you construct a composite "week" by randomly selecting one Monday, one Tuesday, one Wednesday, and so on from across your time period. This ensures representation of each day of the week while distributing the sample across the full time range.
-
-*Example*: To sample one year of newspaper coverage, randomly select one Monday from January-March, one Tuesday from April-June, and so on, constructing a representative week from across the year.
-
-*Strength*: Particularly effective for content that varies by day of week (news is a prime example). Riffe, Lacy, Watson, and Lovejoy (2023) demonstrate that constructed week samples often outperform simple random samples of equal size for news content analysis.
-*Limitation*: Primarily useful for content with day-of-week variation. Less applicable to content without temporal cycles.
-
-### Non-Probability Sampling
-
-In **non-probability sampling**, not every member of the population has a known chance of selection. These samples cannot formally generalize to populations, but they are sometimes the only practical option.
-
-**Convenience sampling**: Select whoever is available.
-
-*Example*: Survey students in your communication class because they're accessible.
-
-*Limitation*: No basis for generalization. Your class is not representative of "college students," let alone "young adults." This is the most common sampling strategy in undergraduate research and the most limited.
-
-**Snowball sampling**: Ask initial participants to recruit others.
-
-*Example*: Interview five K-pop fans, then ask each to introduce you to other fans.
-
-*Strength*: Effective for reaching hidden or hard-to-access populations.
-*Limitation*: The sample is shaped by social networks, which may be homogeneous.
-
-**Purposive sampling**: Select participants based on specific criteria relevant to the research question.
-
-*Example*: Interview only music journalists with 10+ years of experience because they can speak knowledgeably about industry changes.
-
-*Strength*: Ensures information-rich cases.
-*Limitation*: Researcher judgment determines selection, which introduces bias.
-
-**Quota sampling**: Set target numbers for key demographic groups, then fill quotas using non-random methods.
-
-*Example*: Recruit 100 survey respondents ensuring 50% male and 50% female, 25% from each of four age groups.
-
-*Strength*: Approximates population demographics without a probability sample. This is what Gallup used in 1936 to outperform *The Literary Digest*.
-*Limitation*: Within quotas, selection is non-random. And if your quotas don't capture the relevant dimensions of variation, the sample can still be biased.
-
-### Sample Size
-
-How large does your sample need to be? The answer depends on what you're trying to detect and how confident you want to be.
-
-For surveys, general guidelines suggest that larger samples provide more precise estimates of population parameters. A sample of 400 respondents produces a margin of error of approximately ±5% at the 95% confidence level, which is adequate for most descriptive purposes (Dillman et al., 2014). Smaller samples are acceptable for exploratory research; larger samples are needed to detect small effects or to compare subgroups.
-
-For content analysis, Riffe et al. (2023) provide sampling guidelines specific to media content. They demonstrate that for most content analysis purposes, samples of 200-400 units are sufficient, particularly when the content population is relatively homogeneous. When content varies substantially by source, time period, or genre, stratified sampling with adequate representation of each stratum is more important than raw sample size.
-
-The key principle: **a representative sample of 200 is more informative than a biased sample of 10,000**. This is the lesson of the 1936 election, and it has not changed.
-
-## Administering Surveys
-
-The mode of administration shapes response rates, response quality, and who participates.
-
-**Online surveys** (Qualtrics, Google Forms, SurveyMonkey) are fast, inexpensive, and easy to distribute. They dominate contemporary survey research. But they suffer from low response rates (often below 10% for email-distributed surveys), self-selection bias (only people who choose to click participate), and coverage problems (populations without reliable internet access are excluded).
-
-**Telephone surveys** were the gold standard from the 1970s through the 2000s. Random digit dialing reached a probability sample of households with landlines. The shift to mobile phones, caller ID, and spam filtering has dramatically reduced telephone survey feasibility and response rates.
-
-**Mail surveys** achieve higher response rates than email in many populations, particularly older adults and rural residents, but they're slow and expensive (Dillman et al., 2014).
-
-**In-person surveys** produce the highest response rates and allow complex question formats, but they're the most expensive and time-intensive option.
-
-### Response Rates and Nonresponse Bias
-
-A survey's response rate (the percentage of sampled individuals who actually participate) matters because nonrespondents may differ systematically from respondents. If people who are busy, disengaged, or distrustful of research decline to participate, the resulting sample overrepresents people who are available, engaged, and trusting. This is **nonresponse bias**, and it's one of the most serious threats to survey validity.
-
-Dillman et al. (2014) propose a "tailored design method" that addresses response rates through careful attention to questionnaire design, personalized contacts, and multiple follow-up attempts. Their framework treats survey administration as a series of social exchanges between researcher and respondent, recognizing that people respond when they perceive the survey as legitimate, manageable, and worthwhile.
-
-## Analyzing Survey Data
-
-Survey analysis typically progresses through three stages:
-
-**Descriptive statistics**: What does the sample look like? Frequencies, means, medians, and standard deviations describe the distribution of individual variables. "The average respondent reported listening to music 2.3 hours per day (SD = 1.4)."
-
-**Bivariate analysis**: Are two variables related? Cross-tabulations for categorical variables, correlations for continuous variables, and t-tests for comparing group means. "Respondents with high parasocial attachment reported significantly higher purchase intentions (M = 5.2) than those with low attachment (M = 3.1), t(298) = 4.87, p < .001."
-
-**Multivariate analysis**: What predicts the outcome when multiple factors are considered simultaneously? Regression analysis allows you to test whether an independent variable predicts a dependent variable while controlling for other variables. "Parasocial attachment predicted purchase intentions (β = .34, p < .001) even after controlling for age, gender, and overall fandom intensity."
-
-These analytical techniques are covered in depth in Chapters 19 and 20. For now, the important point is that the quality of your analysis is bounded by the quality of your questions and your sample. Sophisticated statistics cannot rescue poorly designed instruments or biased samples.
-
-## Reliability and Validity in Surveys
-
-The measurement concepts from Chapter 14 (Vibes to Variables) apply to surveys with particular urgency, because survey instruments are the primary measurement tool.
-
-**Reliability** in surveys means consistency:
-
-- **Test-retest reliability**: Do respondents give similar answers when surveyed at two time points? If your music listening scale produces wildly different scores when administered a week apart (and nothing has changed in the respondent's life), the instrument is unreliable.
-- **Internal consistency**: Do items measuring the same construct correlate with each other? If five items are supposed to measure "parasocial attachment," they should hang together statistically. Cronbach's alpha (α ≥ .70) is the standard benchmark.
-
-**Validity** in surveys means accuracy:
-
-- **Content validity**: Does the instrument cover all relevant dimensions of the construct? A "media trust" scale that asks only about television news lacks content validity if you're trying to measure trust in media generally.
-- **Criterion validity**: Does the instrument correlate with external criteria? If a "music engagement" scale doesn't predict concert attendance or streaming hours, something is wrong.
-- **Construct validity**: Does the instrument relate to other variables as theory predicts? If Uses and Gratifications Theory (Katz et al., 1973) predicts that people who seek mood regulation through music will show higher parasocial attachment to mood-congruent artists, and your measures show this predicted relationship, both measures gain construct validity.
-
-## A Worked Example: Music Listening Motivations
-
-Here is a condensed example of survey design applied to a music research question:
-
-**Research Question**: What gratifications do college students seek from music streaming, and do these gratifications differ by listening context (studying, exercising, socializing)?
-
-**Theory**: Uses and Gratifications (Katz et al., 1973) predicts that audiences actively select media to fulfill specific needs. Music streaming may fulfill different needs in different contexts.
-
-**Survey Design**:
-
-**Section 1: Listening Behavior**
-
-- "In a typical week, how many hours do you spend listening to music?" (open numerical response)
-- "Which streaming platform do you use most frequently?" (Spotify / Apple Music / YouTube Music / Other / I don't stream music)
-- "In which contexts do you typically listen to music?" (check all that apply: studying, exercising, commuting, socializing, relaxing, falling asleep, other)
-
-**Section 2: Gratifications Sought** (7-point Likert, Strongly Disagree to Strongly Agree)
-
-- "I listen to music to improve my mood." (mood regulation)
-- "I listen to music to feel connected to other people." (social bonding)
-- "I listen to music to concentrate while studying." (cognitive focus)
-- "I listen to music to express my identity." (identity construction)
-- "I listen to music because it helps me process difficult emotions." (emotional coping)
-
-**Section 3: Context-Specific Questions**
-
-- "When studying, I prefer music that is..." (instrumental / lyrical / either / I don't listen while studying)
-- "When exercising, I prefer music that is..." (high energy / moderate energy / low energy / I don't listen while exercising)
-
-**Section 4: Demographics**
-
-- Age, gender, year in school, major
-
-**Sampling**: Stratified by year in school (freshman, sophomore, junior, senior) to ensure representation across the college experience. Target n = 400.
-
-**Administration**: Online (Qualtrics), distributed via university email listserv with two follow-up reminders. Incentive: entry into drawing for gift cards.
-
-This is a conceptual design, not a finished instrument. But it illustrates the key elements: theoretically motivated questions, validated scale items where possible, clear response options, logical ordering (behavior → attitudes → demographics), and a sampling strategy that addresses representativeness.
-
----
-
-## Practice: Survey Design Skills
-
-### Exercise 11.1: Identifying Question Problems
-
-For each survey item below, identify the problem and rewrite the question:
-
-1. "Do you listen to music and podcasts regularly?"
-2. "Don't you think social media has a negative effect on mental health?"
-3. "How often do you consume media? (a) Often, (b) Sometimes, (c) Rarely"
-4. "Rate your music preferences on a scale of 1-10."
-5. "How old are you? (a) 18-25, (b) 25-35, (c) 35-50"
-
----
-
-### Exercise 11.2: Sampling Design
-
-You want to survey college students about their news consumption habits.
-
-1. Define your **target population** precisely.
-2. What is a realistic **sampling frame**? What coverage error might it introduce?
-3. Design a **stratified sampling** strategy. What strata would you use, and why?
-4. How large should your sample be, and what is your justification?
-5. What **nonresponse bias** concerns would you anticipate, and how would you address them?
-
----
-
-### Exercise 11.3: From Content Analysis to Survey
-
-Imagine your content analysis of Billboard lyrics reveals that references to mental health have increased 300% since 2015.
-
-1. Write a **survey research question** that would complement this content analysis finding.
-2. Design three **Likert-scale items** that could measure the construct in your research question.
-3. Identify the **sampling strategy** you would use and justify your choice.
-4. What could the survey tell you that the content analysis alone cannot?
-
----
-
-### Exercise 11.4: Evaluating a Published Survey
-
-Find a published survey study in a communication journal. Evaluate:
-
-1. What was the target population, and how was the sample drawn?
-2. Were the survey items clearly worded, or do any exhibit the pitfalls from this chapter?
-3. What was the response rate, and does the study address nonresponse bias?
-4. Does the study make causal claims that its cross-sectional design cannot support?
-
----
-
-## Reflection Questions
-
-1. **The Self-Report Problem**: Surveys depend on people accurately reporting their own attitudes and behaviors. When is self-report trustworthy, and when is it not? Can you think of a topic where the gap between what people say and what they do would be particularly large?
-
-2. **Sampling and Justice**: The Belmont Report (Chapter 8) identifies justice as a core ethical principle: the burdens and benefits of research should be distributed fairly. How does sampling relate to justice? Who is systematically overrepresented in survey research (hint: WEIRD samples), and who is systematically excluded? What are the consequences of this imbalance for the knowledge we produce?
-
-3. **Surveys and Content Analysis**: This chapter argues that the same sampling logic governs both survey respondent selection and content analysis unit selection. In what specific ways do the two applications parallel each other? Where do they diverge?
-
-4. **The Digital Disruption**: Response rates for traditional surveys have declined dramatically. Online surveys are fast and cheap but suffer from self-selection. How should survey methodology adapt to a world where reaching representative samples is increasingly difficult?
-
----
-
-## Chapter Summary
-
-This chapter introduced survey research as a method for measuring attitudes, beliefs, and behaviors at scale:
-
-- Surveys answer questions about what people **think, believe, feel, or do**. They cannot establish causation or describe media content.
-- **Cross-sectional surveys** capture a snapshot; **longitudinal surveys** (panel and trend) track change over time.
-- **Questionnaire design** requires avoiding double-barreled questions, leading questions, loaded language, ambiguous terms, and flawed response options. Question wording shapes responses.
-- **Probability sampling** (simple random, stratified, systematic, cluster, constructed week) allows generalization from sample to population. **Non-probability sampling** (convenience, snowball, purposive, quota) does not, but may be the only practical option.
-- A **representative sample of 200** is more informative than a **biased sample of 10,000**. Who you ask matters more than how many.
-- **Response rates** affect sample quality. **Nonresponse bias** occurs when nonrespondents differ systematically from respondents.
-- **Reliability** (consistency) and **validity** (accuracy) in survey instruments parallel the measurement concepts in content analysis codebooks.
-- Sampling theory applies equally to survey research and content analysis: the same principles govern selecting respondents and selecting media units for coding.
-
----
-
-## Key Terms
-
-- **Cluster sampling**: Randomly selecting naturally occurring groups, then studying all members within selected groups
-- **Constructed week sampling**: Sampling technique for content analysis that selects one day per day-of-week across the study period (Riffe et al., 2023)
-- **Convenience sampling**: Selecting whoever is readily available (non-probability)
-- **Coverage error**: Gap between target population and sampling frame
-- **Cross-sectional survey**: Data collected at one point in time
-- **Likert scale**: Response format measuring agreement on a numbered scale
-- **Longitudinal survey**: Data collected at multiple time points (panel or trend)
-- **Nonresponse bias**: Systematic differences between respondents and nonrespondents
-- **Probability sampling**: Sampling where every population member has a known chance of selection
-- **Purposive sampling**: Selecting participants based on specific criteria (non-probability)
-- **Quota sampling**: Setting demographic targets and filling them non-randomly
-- **Response rate**: Percentage of sampled individuals who participate
-- **Sampling frame**: The list from which a sample is drawn
-- **Simple random sampling**: Every population member has an equal chance of selection
-- **Snowball sampling**: Participants recruit additional participants
-- **Stratified random sampling**: Dividing the population into subgroups and sampling randomly within each
-- **Systematic sampling**: Selecting every nth case from an ordered list
-- **Validated scale**: Survey instrument with established reliability and validity from prior research
-
----
-
+**Reflect.** (1) Identify three wrangling decisions in your script that a reviewer might challenge. For each, add a comment explaining the decision rule and its justification. (2) Re-run your wrangling script from a fresh R session against the raw data. Does it produce the same processed dataset without manual intervention? If not, what undocumented dependency did you miss?
+:::
+:::
 ## References
 
-Babbie, E. R. (2021). *The practice of social research* (15th ed.). Cengage Learning.
-
-Dillman, D. A., Smyth, J. D., & Christian, L. M. (2014). *Internet, phone, mail, and mixed-mode surveys: The tailored design method* (4th ed.). Wiley.
-
-Horton, D., & Wohl, R. R. (1956). Mass communication and para-social interaction: Observations on intimacy at a distance. *Psychiatry*, *19*(3), 215-229. https://doi.org/10.1080/00332747.1956.11023049
-
-Katz, E., Blumler, J. G., & Gurevitch, M. (1973). Uses and gratifications research. *Public Opinion Quarterly*, *37*(4), 509-523. https://doi.org/10.1086/268109
-
-Riffe, D., Lacy, S., Watson, B. R., & Lovejoy, J. (2023). *Analyzing media messages: Using quantitative content analysis in research* (5th ed.). Routledge. https://doi.org/10.4324/9781003288428
-
-Wimmer, R. D., & Dominick, J. R. (2014). *Mass media research: An introduction* (10th ed.). Cengage Learning.
-
----
-
-::: {.callout-note title="Graduate Extension" collapse="true"}
-
-**Required Reading**: Dillman, D. A., Smyth, J. D., & Christian, L. M. (2014). *Internet, phone, mail, and mixed-mode surveys: The tailored design method* (4th ed.). Wiley. **Read Chapter 1: "Sample Surveys in Our Electronic World."**
-
-**Prompt**: Dillman et al. argue that survey methodology faces a crisis driven by declining response rates, proliferating modes of contact, and increasing public skepticism toward data collection. Their "tailored design method" responds by treating every element of survey administration, from the initial contact letter to the question layout to the follow-up schedule, as a social exchange between researcher and respondent.
-
-1. Dillman et al. identify four sources of survey error: **coverage error**, **sampling error**, **nonresponse error**, and **measurement error**. These four sources constitute a "total survey error" framework. Define each in your own words and provide a concrete example of how each could affect a survey about college students' music listening habits.
-
-2. For each of the four error types, identify one specific strategy Dillman et al. propose for minimizing it. Which strategies are most practical for a graduate student conducting a thesis survey with limited resources?
-
-3. Response rates for telephone surveys in the United States have fallen from approximately 36% in 1997 to under 6% in recent years. What are the implications of this decline for the validity of survey-based research? If probability sampling becomes practically impossible due to nonresponse, does survey research lose its claim to generalizability? What alternatives exist?
-
-4. Design a complete survey administration plan for a study of your choice. Specify: target population, sampling frame, sampling strategy, mode of administration, incentive structure, contact schedule (initial contact + follow-ups), and estimated response rate. Justify each decision with reference to total survey error.
-
-:::
-
----
-
-## Looking Ahead
-
-[Chapter 12: Designing Experiments](chapter12.qmd) introduces the logic of causal inference through experimental design. You'll learn why random assignment is the key to establishing causation, how to distinguish true experiments from quasi-experiments, and how to evaluate the threats to validity that plague all causal claims. Like this chapter, Chapter 12 teaches the method conceptually rather than requiring you to execute one this semester. Together, Chapters 11 and 12 complete your methodological literacy across the two major quantitative approaches you won't execute this semester: surveys (which you now understand) and experiments (which you'll learn next). Then, beginning with [Chapter 13](chapter13.qmd), the book shifts to the hands-on content analysis sequence.
+Wickham, H. (2014). Tidy data. _Journal of Statistical Software_, _59_(10), 1-23. https://doi.org/10.18637/jss.v059.i10

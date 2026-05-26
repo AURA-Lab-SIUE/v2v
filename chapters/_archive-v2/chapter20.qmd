@@ -500,6 +500,8 @@ Simmons, J. P., Nelson, L. D., & Simonsohn, U. (2011). False-positive psychology
 
 ---
 
+::: {.content-visible when-profile="grad"}
+
 ::: {.callout-note title="Graduate Extension" collapse="true"}
 
 **Required Reading**: Simmons, J. P., Nelson, L. D., & Simonsohn, U. (2011). False-positive psychology: Undisclosed flexibility in data collection and analysis allows presenting anything as significant. *Psychological Science*, *22*(11), 1359-1366. https://doi.org/10.1177/0956797611417632
@@ -517,6 +519,8 @@ Also read: Ioannidis, J. P. A. (2005). Why most published research findings are 
 4. **Apply to your own work**: Audit your analysis for this course. How many "researcher degrees of freedom" did you exercise? (Did you exclude outliers? Choose between tests? Add or remove variables?) Document each decision you made and explain why it was justified or, if it wasn't fully justified, how it could have affected your results. This exercise is not about finding fault but about practicing the transparency these authors advocate.
 
 5. **The tension between exploration and honesty**: Simmons et al. and Ioannidis both argue for pre-registration and confirmatory testing. But much of the most interesting science is exploratory. How do you preserve the value of exploration (discovering unexpected patterns) while preventing the problems these papers identify (presenting exploration as confirmation)? Is there a framework that honors both?
+
+:::
 
 :::
 

@@ -1,72 +1,69 @@
-# From Vibes to Variables
+# V2V (Vibes to Variables)
 
-*A Field Guide to Open Media Science — Second Edition*
+*A Methods Package for Students New to Research, Stats, and Code. Third Edition.*
 
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![Quarto Book](https://img.shields.io/badge/Built_with-Quarto-blue)](https://quarto.org)
 
-An open educational resource (OER) that guides students through the complete arc of a research project — from the first spark of curiosity to a published, reproducible study. Written for undergraduates and graduate students in communication and media studies, it uses a real music industry dataset of 1,792 songs to teach research methods as structured storytelling.
+V2V is an open educational resource that teaches communication and media research methods as a complete arc, from the first spark of curiosity to a published, reproducible study. V2V is a methods package, not a textbook with bonuses: the book in this repository is one of several co-equal components alongside the V2V Hub (course site), the `v2v` R package (friction-reducing helpers), and the *Beyond Vibes* graduate supplement.
 
-**Read online:** <https://sim-lab-siue.github.io/vibes-to-variables/>
+**Read online:** <https://sim-lab-siue.github.io/v2v/>
 
 **Author:** Alex P. Leith, Southern Illinois University Edwardsville
 
-**Course:** MC-451 Research Methods in Mass Media
+**Courses:** MC 451 Social Media Analytics (undergraduate); MC 500 + MC 501 Research Methods (graduate, via *Beyond Vibes*)
 
 ---
 
 ## Table of Contents
 
-The book is organized into five parts across 22 chapters:
+The 3rd Edition is organized into 14 chapters across five parts. (Chapters 1 through 6 are drafted; chapters 7 through 14 are stubs at this release and land progressively through Summer and Fall 2026.)
 
-### Part I: Foundations
-1. The Architecture of Curiosity
-2. The Infrastructure of Trust
-3. The Reading Journal Protocol
+### Part I: Foundation
+1. The Science of Storytelling
+2. The Open Workspace
+3. Knowing and Knowing Well
 
-### Part II: Design
-4. The Archivist
-5. Choosing Your Lens
-6. The Roadmap
-7. The Research Question
-8. The Ethics of Inquiry
+### Part II: Planning
+4. Intelligence Gathering
+5. Theory as a Lens
+6. The Prospectus
 
-### Part III: Methods
-9. The Methodologist's Toolkit
-10. Qualitative Methods
-11. Designing Surveys
-12. Designing Experiments
-13. Music Immersion
-14. Vibes to Variables
-15. The Rulebook
-16. The Sampling Plan and Pilot Test
+### Part III: Operationalization
+7. Structured Listening *(in development)*
+8. From Vibes to Variables *(in development)*
+9. The Rulebook and First Workspace *(in development)*
 
-### Part IV: Analysis
-17. Wrangling the Chaos
-18. Seeing Patterns
-19. The Surprise Detector
-20. Interpreting the Call
+### Part IV: Execution
+10. The Sample *(in development)*
+11. Wrangling the Data *(in development)*
+12. Visualizing the Narrative *(in development)*
 
-### Part V: Publishing
-21. The Portfolio
-22. Going Live
+### Part V: Inference and Publication
+13. Making the Call *(in development)*
+14. The One-Click Report *(in development)*
 
 ### Appendices
-- Data Dictionary — Complete variable reference for the unified music dataset
+- Data Dictionary — Variable reference for the V2V working datasets
+
+### V2V 2nd Edition (archived)
+
+The 2nd Edition's 22-chapter structure (music dataset, R introduced in Chapter 2) is preserved in `chapters/_archive-v2/` as a transitional reference and remains available for instructors transitioning from the 2nd Edition.
 
 ---
 
-## What's New in the Second Edition
+## What's New in the Third Edition (V2V)
 
-The second edition expands from 17 to 22 chapters, adding:
+The third edition consolidates the prior *From Vibes to Variables* textbook with the surrounding course infrastructure under one unified V2V brand. Major v2 to v3 changes:
 
-- **Research ethics** (Ch 8) — Belmont Report, IRB, ethics of analyzing public digital content
-- **Methods landscape** (Ch 9) — where content analysis fits alongside surveys, experiments, and qualitative research
-- **Qualitative methods** (Ch 10) — interviews, focus groups, thematic analysis as standalone approaches
-- **Survey design** (Ch 11) — questionnaire construction, sampling theory, and validity
-- **Experimental design** (Ch 12) — causation, control groups, and threats to validity
+- **V2V umbrella branding** across the book, course site, R package, and graduate supplement. The textbook is one co-equal component of a methods package, not a textbook with bonuses.
+- **Dual-profile build** producing distinct undergraduate and graduate editions from one source. Render with `quarto render --profile undergrad` or `--profile grad`; outputs land in `docs/undergrad/` and `docs/grad/` respectively. Audience-level profile names keep V2V adoptable as an OER outside SIUE.
+- **Beyond Vibes graduate supplement** (in progress): the MC 501 edition adds power analysis, pre-registration discipline, two-coder reliability planning, and an audit-trail layer on top of the undergraduate foundation, satisfying the SIUE 33 percent cross-listing differential.
+- **`coursepackR` rebrand to `v2v`** (in progress): the R package is being renamed to match the umbrella brand.
+- **Open Methods Hub fold-in to V2V Hub** (in progress): the prior `liaison-program` course site is being consolidated under the V2V Hub identifier.
+- **Planned dataset migration**: chapter examples will move from the music dataset to a Twitch chat and stream-metadata corpus, better serving the MC 451 Social Media Analytics course. The migration ships chapter by chapter; the music dataset remains canonical until each chapter is updated.
 
-Every chapter now includes graduate extensions with assigned readings and advanced prompts, non-music examples from news, social media, and political communication, and verified citations throughout.
+The 2nd Edition's 22-chapter content (research ethics, the methods landscape, qualitative methods, survey design, experimental design, the music dataset throughout) is preserved at `chapters/_archive-v2/` as a transitional reference. Pedagogical material from the 2nd Edition's expansion will be re-integrated into the 3rd Edition's 14-chapter structure as chapters 7 through 14 are drafted through Summer and Fall 2026.
 
 ---
 
@@ -74,15 +71,15 @@ Every chapter now includes graduate extensions with assigned readings and advanc
 
 ### Online (recommended)
 
-Visit <https://sim-lab-siue.github.io/vibes-to-variables/> for the full HTML book with search, navigation, and interactive code examples.
+Visit <https://sim-lab-siue.github.io/v2v/> for the full HTML book with search, navigation, and interactive code examples.
 
-### Offline via coursepackR
+### Offline via the v2v R package
 
-If you have the [`coursepackR`](https://github.com/SIM-Lab-SIUE/coursepackR) R package installed, all 22 chapters are bundled for offline access:
+If you have the [`v2v`](https://github.com/SIM-Lab-SIUE/v2v-r) R package installed, the bundled chapters (3rd Edition drafted + 2nd Edition archive) are available for offline access:
 
 ```r
 # Path to a specific chapter
-system.file("textbook", "chapter01.md", package = "coursepackR")
+system.file("textbook", "chapter01.md", package = "v2v")
 ```
 
 ### PDF
@@ -119,23 +116,28 @@ This requires a LaTeX distribution (TinyTeX recommended: `quarto install tinytex
 
 ## The Dataset
 
-Throughout the book, examples use the `unified_music` dataset — 1,792 songs combining Billboard chart performance, Spotify audio features, and Genius metadata. The dataset is bundled in the [coursepackR](https://github.com/SIM-Lab-SIUE/coursepackR) package:
+Throughout the book, examples currently use the `unified_music` dataset, 1,792 songs combining Billboard chart performance, Spotify audio features, and Genius metadata. The dataset is bundled in the [v2v](https://github.com/SIM-Lab-SIUE/v2v) R package:
 
 ```r
-library(coursepackR)
+library(v2v)
 data(unified_music)
 ```
 
-See the [Data Dictionary appendix](https://sim-lab-siue.github.io/vibes-to-variables/appendices/data-dictionary.html) for the full variable reference.
+See the [Data Dictionary appendix](https://sim-lab-siue.github.io/v2v/appendices/data-dictionary.html) for the full variable reference.
+
+The third-edition migration will move chapter examples to a Twitch chat and stream-metadata corpus to better serve the MC 451 Social Media Analytics course. That migration ships chapter by chapter through Summer and Fall 2026; the music dataset remains canonical until each chapter is updated.
 
 ---
 
-## Related Projects
+## V2V Package Components
 
-| Project | Description | Link |
+V2V is a methods package; the book is one of several co-equal components.
+
+| Component | Description | Link |
 |---------|-------------|------|
-| **Open Methods Hub** | Course website — syllabus, R workbook (with videos), Methods Vault, setup guides | [Visit Site](https://sim-lab-siue.github.io/liaison-program/) \| [GitHub](https://github.com/SIM-Lab-SIUE/liaison-program) |
-| **coursepackR** | R package — helper functions, `unified_music` dataset, weekly templates | [Docs](https://sim-lab-siue.github.io/coursepackR/) \| [GitHub](https://github.com/SIM-Lab-SIUE/coursepackR) |
+| **V2V Hub** | Course site wrapping the book: syllabus, R workbook (with videos), Methods Vault, setup guides, cheat sheets, datasets, references, instructor materials. Currently hosted under the legacy `liaison-program` identifier; consolidation under the V2V Hub identifier is in progress. | [Visit Site](https://sim-lab-siue.github.io/liaison-program/) \| [GitHub](https://github.com/SIM-Lab-SIUE/liaison-program) |
+| **`v2v` R package** | R helpers, the `unified_music` dataset, weekly templates, and the planned Twitch corpus. Rebrand from `coursepackR` is in progress. | [Docs](https://sim-lab-siue.github.io/coursepackR/) \| [GitHub](https://github.com/SIM-Lab-SIUE/coursepackR) |
+| **Beyond Vibes** (in progress) | Graduate supplement; produces a publishable white paper and conference poster. SIUE deployment pairs it with MC 500 in the MC 501 cohort. | Renders from this repository via `quarto render --profile grad`. |
 
 ---
 
@@ -145,4 +147,4 @@ This work is licensed under a [Creative Commons Attribution 4.0 International Li
 
 ## Citation
 
-> Leith, A. P. (2026). *From Vibes to Variables: A Field Guide to Open Media Science* (2nd ed.). Southern Illinois University Edwardsville. <https://sim-lab-siue.github.io/vibes-to-variables/>
+> Leith, A. P. (2026). *Vibes to Variables: A Methods Package for Students New to Research, Stats, and Code* (3rd ed.). Southern Illinois University Edwardsville. <https://sim-lab-siue.github.io/v2v/>

@@ -634,6 +634,8 @@ Cohen, J. (1988). *Statistical power analysis for the behavioral sciences* (2nd 
 
 ---
 
+::: {.content-visible when-profile="grad"}
+
 ::: {.callout-note title="Graduate Extension" collapse="true"}
 
 **Required Reading**: Cohen, J. (1988). *Statistical power analysis for the behavioral sciences* (2nd ed.). Lawrence Erlbaum Associates. **Read Chapter 1: "The Concepts of Power Analysis."**
@@ -649,6 +651,8 @@ Cohen, J. (1988). *Statistical power analysis for the behavioral sciences* (2nd 
 4. **Apply power analysis**: You are planning a study testing whether negative-sentiment songs have higher chart positions than positive-sentiment songs. You expect a medium effect size (d = 0.50). Using Cohen's tables or a free power calculator (G*Power, or R's `pwr` package), determine the minimum sample size needed to detect this effect with 80% power at α = .05. Now recalculate for a small effect (d = 0.20). What does this tell you about the relationship between expected effect size and required sample size?
 
 5. **The replication connection**: Chapter 2 discussed the replication crisis in psychology (Open Science Collaboration, 2015). Many failed replications involved studies that were underpowered (too small to reliably detect the effects they claimed). Using Cohen's framework, explain why underpowered studies are both more likely to produce false positives *and* more likely to fail replication. This seems paradoxical; resolve the paradox.
+
+:::
 
 :::
 

@@ -588,6 +588,8 @@ This final chapter covered research dissemination and open science:
 
 ---
 
+::: {.content-visible when-profile="grad"}
+
 ::: {.callout-note title="Graduate Extension" collapse="true"}
 
 **Required Task**: Design a follow-up research program that extends your content analysis findings using a different method.
@@ -619,6 +621,8 @@ This final chapter covered research dissemination and open science:
 **Part 4: Pre-register Study 2 or Study 3** on OSF. Create an actual pre-registration (osf.io offers templates) documenting your hypotheses, method, and analysis plan before any data collection would begin. This exercise makes the pre-registration practice from Chapter 6 concrete: you are committing to a plan in advance, exactly as the open science movement recommends.
 
 This exercise demonstrates the methodological literacy that graduate programs expect: the ability to think across methods, design complementary studies, and articulate how different kinds of evidence combine to build knowledge.
+
+:::
 
 :::
 

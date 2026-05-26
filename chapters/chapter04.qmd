@@ -1,512 +1,182 @@
 ---
-title: "Chapter 4: The Archivist"
+title: "Chapter 4: Intelligence Gathering"
 ---
 
-## Learning Objectives
+![](../images/ch04-archive_1.jpg){fig-alt="A stylized rendering of layered document forms suggesting an archive."}
 
-- Understand literature review as argument, not summary
-- Identify research gaps that justify new inquiry
-- Conduct systematic searches using academic databases
-- Use citation chaining to map scholarly conversations
-- Recognize when you've reached saturation
-- Synthesize sources thematically rather than chronologically
+There is a moment in every research project when you realize the literature is deeper than you thought. You find an article that seems directly relevant to your question. It cites twelve other articles. You track down three of those, and each cites fifteen more. Within an hour you have accumulated thirty sources you should probably read, and the prospect of making sense of them all feels paralyzing.
 
----
+The instinct at this point is to retreat: narrow the scope, focus on a handful of recent articles, and hope that is sufficient. The instinct is understandable and it is wrong. It misunderstands what a **literature review** actually does. A literature review is not a checklist where you demonstrate you have read enough articles. It is a map of intellectual territory, and you cannot map territory by looking at three landmarks and declaring the job done.
 
-![Research documents and archival materials](../images/ch04-archive_1.jpg){fig-alt="Research documents and archival materials"}
+The challenge is not just finding sources but finding them systematically, documenting the search so that someone else could repeat it, and knowing when you have read enough to claim with confidence that you understand the landscape. This chapter introduces the **archivist mindset**: the discipline of searching, organizing, and synthesizing scholarship as active cartography rather than passive consumption.
 
+These skills are not specific to any one topic. Whether you are mapping the literature on livestream viewer motivation, news framing and public opinion, health communication campaigns, or algorithmic bias in social media, the process is identical. Search, organize, synthesize, identify the gap.
 
+## The conversation metaphor
 
-There's a moment in every research project when you realize the literature is deeper than you thought. You find an article that seems directly relevant to your question. It cites twelve other articles. You track down three of those, and each cites fifteen more. Within an hour, you've accumulated thirty sources you "should probably read," and the prospect of making sense of them all feels paralyzing.
+Imagine walking into a room where a complex debate has been unfolding for years. The participants are knowledgeable, passionate, and deeply invested. They have built on each other's arguments, challenged assumptions, introduced new evidence, and staked out positions. You have something you want to contribute, an observation you think matters.
 
-The instinct at this point is often to retreat, to narrow the scope artificially, focus on just a handful of recent articles, and hope that's sufficient. But this instinct, understandable as it is, misunderstands what a literature review actually does. It's not a checklist where you demonstrate you've read "enough" articles. It's a map of intellectual territory. And you can't map territory by looking at three landmarks and declaring the job done.
-
-The challenge, then, is not just finding sources but finding them *systematically*, documenting the search process so others could replicate it, and knowing when you've read enough to confidently claim you understand the landscape. This chapter introduces the archivist mindset: the discipline of searching, organizing, and synthesizing scholarship not as passive consumption but as active cartography.
-
-These skills are not specific to any one topic. Whether you're mapping the literature on music and emotion, news framing and public opinion, health communication campaigns, or algorithmic bias in social media, the process is identical: search, organize, synthesize, identify the gap.
-
-## The Conversation Metaphor
-
-Imagine walking into a room where a complex debate has been unfolding for years. The participants are knowledgeable, passionate, and deeply invested. They've built on each other's arguments, challenged assumptions, introduced new evidence, and staked out positions. You have something you want to contribute, an observation you think matters.
-
-If you simply blurt it out without first listening to what's already been said, your contribution will likely be ignored or dismissed as naive. You might be repeating a point made a decade ago. You might be unaware that someone already tested your idea and found it wanting. Or you might be using terminology in ways that signal you haven't done the intellectual work of understanding the debate's history.
+If you simply blurt it out without first listening to what has already been said, your contribution will likely be ignored or dismissed as naive. You might be repeating a point made a decade ago. You might be unaware that someone already tested your idea and found it wanting. You might be using terminology in ways that signal you have not done the intellectual work of understanding the debate's history.
 
 To contribute meaningfully, you must first listen. You must understand who the key voices are, what the major points of contention are, where consensus exists, and what questions remain unresolved.
 
-This is what a literature review does. It's the disciplined act of listening to the scholarly conversation before adding your voice to it. And it's not optional. No research project exists in a vacuum. Every study is part of an ongoing dialogue that has been unfolding in journals, books, and conference presentations for years, sometimes decades.
+This is what a literature review does. It is the disciplined act of listening to the scholarly conversation before adding your voice to it. And it is not optional. No research project exists in a vacuum. Every study is part of an ongoing dialogue that has been unfolding in journals, books, and conference presentations for years, sometimes decades. The literature review is how you earn the right to ask your question.
 
-The literature review is how you earn the right to ask your question.
+## What a literature review accomplishes
 
-## What a Literature Review Accomplishes
+A strong literature review does several things at once.
 
-A strong literature review achieves several goals simultaneously, each of which strengthens the foundation for your study.
+**It situates your work.** The review demonstrates that you are aware of the broader context and not working in isolation. By connecting your research to established theories and previous findings, you show how your study fits into, and extends, the collective knowledge of the field. This is partly defensive: reviewers and instructors want to know you have done your homework. It is also generative, because seeing how your question connects to existing work often reveals angles you had not considered.
 
-### 1. It Situates Your Work
+**It identifies a gap.** Perhaps the most critical function of the review is justifying why your study is necessary, which requires identifying a gap in existing scholarship. By demonstrating a gap, the review answers the "so what?" question. It persuades the reader that your study is not redundant.
 
-The review demonstrates that you're aware of the broader context and not working in isolation. By connecting your research to established theories and previous findings, you show how your study fits into, and extends, the collective knowledge of the field.
+**It prevents reinventing the wheel.** A thorough review ensures you are not proposing a study that has already been done. It is frustrating to develop what feels like an original idea only to discover it was the subject of a dissertation five years ago.
 
-This is partly defensive. Peer reviewers and instructors want to know you've done your homework. But it's also generative. Seeing how your question connects to existing work often reveals angles you hadn't considered or refinements that make the study stronger.
+**It provides methodological guidance.** Beyond findings, the literature offers a wealth of methodological knowledge: validated measurement tools, successful sampling strategies, analytical techniques. You can also learn from others' limitations. Content analysis handbooks such as Krippendorff (2018) and Neuendorf (2017) are particularly valuable here, because they compile decades of best practice for coding, sampling, and reliability.
 
-### 2. It Identifies a Gap
+**It refines your research question.** Engaging with the literature sharpens a broad interest into a precise, researchable question. You might start with a vague curiosity about "Twitch chat" and, through reading, discover a specific debate about whether viewer engagement is driven by the content on the screen or the social environment around it. The literature provides the concepts, terminology, and frameworks that let you ask a question that is not just interesting but empirically tractable.
 
-Perhaps the most critical function of the literature review is justifying *why your study is necessary*. This requires identifying a gap in existing scholarship. Gaps take several forms:
+## The search process
 
-**A Topical Void**: No one has studied this specific phenomenon, population, or context. For example, while there's substantial research on music and emotion, there may be little work specifically examining how lyric sentiment in rap music relates to chart longevity. Similarly, a student interested in crisis communication might find extensive research on corporate apologies but very little on how nonprofits manage reputational crises on social media.
+Searching for literature happens in phases. Early on you are exploring, trying to get a sense of the terrain. Later you are systematizing, making sure you have found the relevant work and can defend your search strategy to a skeptic.
 
-**A Contradiction**: Previous studies have produced conflicting findings, and your study aims to resolve the inconsistency. For instance, automated sentiment analysis of lyrics might identify trends that diverge from what human coders find (Napier & Shamir, 2018), raising the question of whether the measurement approach itself shapes the results.
+### Phase one: exploratory searching
 
-**An Alternative Explanation**: Existing theories provide one explanation, but you believe an alternative perspective could be more insightful. Perhaps most research attributes chart success to audio features, but you suspect lyric content plays an underexplored role. Or perhaps most studies of news consumption focus on individual psychology, but a cultural-level explanation might be more illuminating.
+Start broad. You are trying to answer basic questions. What terms do scholars use to discuss this topic? Who are the key researchers? What journals publish this kind of work? What theories are commonly invoked?
 
-By demonstrating a gap, the literature review answers the "so what?" question. It persuades the reader that your study isn't redundant; it's addressing something genuinely unknown or contested.
+Google Scholar is the place to start. It is less comprehensive than specialized databases, but it is fast, free, and good for getting oriented. Wikipedia, despite not being a citable source, is useful for finding terminology and key concepts; scroll to the references section of a relevant article and follow the citations to actual scholarship. And the reference list of any good article you find is itself a map: the sources an author cites repeatedly are likely foundational works.
 
-### 3. It Prevents Reinventing the Wheel
+At this stage, do not worry about perfect organization. Collect promising sources in **Zotero**, the open-source reference manager this course uses, and tag them liberally.
 
-A thorough review ensures you're not inadvertently proposing a study that's already been done. It's frustrating to develop what feels like a brilliant, original idea only to discover through a literature search that it was the subject of a dissertation five years ago. The review is due diligence that saves time and preserves credibility.
+### Phase two: systematic searching
 
-### 4. It Provides Methodological Guidance
+Once you have a sense of the landscape, shift to systematic searching. The goal now is comprehensiveness.
 
-Beyond findings, the literature offers a wealth of methodological knowledge. You can learn about established measurement tools (validated scales, coding schemes), successful sampling strategies, and analytical techniques. You can also learn from others' limitations. If previous studies have been criticized for using automated sentiment analysis without validation against human coding, you can design your study to address that weakness.
+Use academic databases. Communication & Mass Media Complete is the primary database for communication research. PsycINFO is essential if your question touches psychology: emotion, persuasion, cognition, attitudes. Web of Science and Scopus are multidisciplinary databases useful for citation tracking.
 
-Content analysis handbooks such as Krippendorff (2018) and Neuendorf (2017) are particularly valuable for methodological guidance, as they compile decades of best practices for coding, sampling, and reliability testing.
+Inside those databases, use **Boolean operators** to build precise search strings. AND narrows results, because both terms must appear. OR expands them, because either term can appear. NOT excludes unwanted results. An asterisk is a wildcard that captures variations: `stream*` finds stream, streams, streaming, and streamer.
 
-### 5. It Refines Your Research Question
+A search string for livestreaming viewer research might look like this:
 
-The process of engaging with the literature often sharpens a broad interest into a precise, researchable question. You might start with a vague curiosity about "music and politics," but through reading, you might discover a specific debate about whether protest songs influence political attitudes differently than songs that simply reference political themes without advocating positions. Similarly, a broad interest in "social media and mental health" might narrow into a study of how parasocial relationships with influencers (Horton & Wohl, 1956) relate to body image among adolescent Instagram users. The literature provides the concepts, terminology, and frameworks that allow you to ask a question that's not just interesting but empirically tractable.
-
-## The Search Process: From Exploration to Systematization
-
-Searching for literature happens in phases. Early on, you're exploring, trying to get a sense of the terrain. Later, you're systematizing, ensuring you've found all the relevant work and can defend your search strategy to skeptics.
-
-### Phase 1: Exploratory Searching
-
-Start broad. You're trying to answer basic questions:
-
-- What terms do scholars use to discuss this topic?
-- Who are the key researchers in this area?
-- What journals publish this kind of work?
-- What theories are commonly invoked?
-
-**Where to search**:
-
-- **Google Scholar**: Start here. It's less comprehensive than specialized databases, but it's fast, free, and good for getting oriented. Search for obvious keywords related to your topic ("lyric sentiment music," "news framing immigration," "parasocial relationships social media").
-
-- **Wikipedia**: Yes, really. Wikipedia isn't a citable source, but it's excellent for finding terminology, key concepts, and references to academic work. Look for articles related to your topic, scroll to the "References" section, and follow citations to actual scholarship.
-
-- **Cited references in key articles**: Once you find one good article, look at its reference list. What sources does the author cite repeatedly? Those are likely foundational works you should read.
-
-**What to capture**: At this stage, don't worry about perfect organization. Just collect promising sources in Zotero. Use tags liberally: `#exploratory`, `#key-article`, `#theory`, `#methods`.
-
-### Phase 2: Systematic Searching
-
-Once you have a sense of the landscape, shift to systematic searching. The goal now is comprehensiveness, making sure you haven't missed major contributions.
-
-**Use academic databases**:
-
-- **Communication & Mass Media Complete (CMMC)**: The primary database for communication research. Contains full-text articles from major journals including *Journal of Communication*, *Communication Research*, *Journalism & Mass Communication Quarterly*, and dozens of others. If your research question lives in communication studies, this is your home database.
-
-- **PsycINFO**: If your research touches on psychology (emotion, persuasion, cognition, attitudes), this database is essential. It indexes over 2,500 journals and is particularly strong on experimental and survey-based research.
-
-- **Nexis Uni**: For news coverage, legal documents, and industry reports. Useful if your research involves media coverage of events, public discourse analysis, or content analysis of news.
-
-- **Web of Science / Scopus**: Multidisciplinary databases useful for citation tracking and identifying the most-cited articles on a topic.
-
-**Develop search strings**:
-
-Instead of simple keyword searches, use **Boolean operators** to create precise search strings:
-
-- **AND**: Narrows results (both terms must appear)
-  - `lyric sentiment AND chart performance`
-
-- **OR**: Expands results (either term can appear)
-  - `lyrics OR songwriting OR "lyric content"`
-
-- **NOT**: Excludes unwanted results
-  - `music emotion NOT therapy` (if you want to exclude music therapy literature)
-
-**Example search string**:
 ```
-(lyrics OR "lyric content" OR songwriting) AND (sentiment OR emotion OR affect) 
-AND (chart* OR popular* OR "commercial success")
+(livestream* OR "live streaming" OR Twitch) AND
+(motivation* OR gratification* OR engagement) AND
+(viewer* OR audience* OR chat)
 ```
 
-The asterisk (*) is a **wildcard** that captures variations: `chart*` finds "chart," "charts," "charted," "charting."
+Document every search in a plain-text search log: the date, the database, the exact search string, the limiters you applied, the number of results, and how many you kept. The log serves two purposes. It lets you defend your search strategy later, and it helps you refine searches by showing what worked and what did not.
 
-**A non-music example**: If you were studying news framing of immigration:
-```
-(immigration OR immigrant* OR "undocumented") AND (fram* OR "media coverage") 
-AND (newspaper* OR "news media" OR television)
-```
+### Phase three: citation chaining
 
-The same Boolean logic works regardless of topic.
+Once you have identified a few highly relevant articles, the keystone articles, use **citation chaining** to map the scholarly network.
 
-**Document your searches**:
+**Backward chaining** means looking at the references cited in a keystone article. These are the foundational works the author built on. **Forward chaining** means using Google Scholar's "Cited by" feature to see which newer articles have cited the keystone. This reveals how the conversation has evolved since the keystone was published.
 
-Create a **search log** in Obsidian:
+The process creates a snowball effect. One key article leads to ten more, which lead to twenty more. But the growth is strategic, not random. You are following the citation network outward from the work that matters most.
 
-```markdown
-# Literature Search Log
+## Recognizing saturation
 
-## Search 1 - Communication & Mass Media Complete
-**Date**: 2026-02-10  
-**Database**: CMMC  
-**Search String**: (lyrics OR "lyric content") AND (sentiment OR 
-  emotion) AND (chart* OR popular*)  
-**Limiters**: Peer-reviewed, 2010-2025  
-**Results**: 47 articles  
-**Relevant**: 12 added to Zotero  
-**Notes**: Most focus on emotion in music generally, not 
-  lyric-specific sentiment. Need to refine.
+At some point, new searches yield diminishing returns. You are finding articles that cite the same foundational works you have already read. The arguments sound familiar. The methods are variations on approaches you have seen.
 
-## Search 2 - PsycINFO
-**Date**: 2026-02-10  
-**Database**: PsycINFO  
-**Search String**: "music emotion" AND lyrics AND preference  
-**Limiters**: English, peer-reviewed, 2015-2025  
-**Results**: 83 articles  
-**Relevant**: 8 added to Zotero  
-**Notes**: Strong on psychological mechanisms but less on chart 
-  performance.
-```
+This is **saturation**, the point where additional searching is unlikely to change your understanding of the literature. Saturation does not mean you have read everything, which is impossible. It means you have read enough to identify the major theories, recognize the key debates, understand the common methodological approaches, and articulate what is known and what is still uncertain.
 
-This documentation serves two purposes:
+Practically, saturation looks like three consecutive database searches turning up zero new relevant articles, new articles citing the same eight to ten foundational sources you have already read, and an ability to predict what an article will say from its title and abstract. When you reach that point, stop searching and start synthesizing.
 
-1. It allows you to defend your search strategy ("I searched X databases using Y terms on Z dates").
-2. It helps you refine searches by showing what worked and what didn't.
+## Identifying research gaps
 
-Riffe, Lacy, Watson, and Lovejoy (2023) provide detailed guidance on search documentation in their treatment of content analysis sampling, and their standards apply equally to any literature search process.
+A research gap is not just "something no one has studied." It is a space where inquiry is justified, where the absence of knowledge creates a problem or where contradictions demand resolution. Gaps come in several forms.
 
-### Phase 3: Citation Chaining
+A **topical void** is a phenomenon, population, or context no one has studied. There is substantial research on why people watch livestreams, for example, but less that examines how chat behavior itself differs between gaming and non-gaming streams. Be cautious here: what seems novel to you might be covered under different terminology, and thorough searching is the guard against claiming novelty where none exists.
 
-Once you've identified a few highly relevant articles, what we might call **keystone articles**, use citation chaining to map the scholarly network.
+A **methodological gap** exists when a phenomenon has been studied, but with methods that have important limitations. Most livestreaming motivation research relies on self-report surveys, which capture what viewers say motivates them. Behavioral trace data, like the contents of a chat log, could reveal whether what viewers do matches what they say.
 
-**Backward chaining**: Look at the references cited in a key article. These are the foundational works the author built on. Follow the most-cited ones.
+A **contradiction** exists when previous studies have produced conflicting findings and your study aims to resolve the inconsistency. Two well-designed studies reaching opposite conclusions is not something to be embarrassed about reporting. It is an opening.
 
-**Forward chaining**: Use Google Scholar's "Cited by" feature. Search for the keystone article, click "Cited by," and see which *newer* articles have cited it. This reveals how the conversation has evolved since the original article was published.
+A **theoretical gap** exists when existing work explains a phenomenon through one lens and you believe another lens would be more illuminating. If most research on livestream engagement uses uses-and-gratifications theory, a parasocial-interaction framework (Horton & Wohl, 1956) might explain a part of the picture the dominant lens leaves dark.
 
-**Example workflow**:
+## Articulating the gap
 
-You find the Zentner, Grandjean, and Scherer (2008) article on emotions evoked by music. It's highly relevant to your research on music and emotion.
+When you write the literature review, the gap becomes the hinge of the argument. The structure is consistent regardless of topic:
 
-1. **Backward chain**: Look at Zentner et al.'s reference list. They cite Juslin and Västfjäll (2008) on emotional mechanisms in music. You add that to your reading list. They also cite Scherer's (2004) earlier work on which emotions music can induce. That goes on the list too.
+1. **Establish what is known.** Summarize existing research to show you understand the conversation.
+2. **Identify the limitation.** Point out what is missing, contradictory, or inadequately explained.
+3. **Argue for your study.** Show how your research addresses that gap.
 
-2. **Forward chain**: Check "Cited by" on Google Scholar. You find that the Zentner et al. article has been cited hundreds of times. You skim titles and abstracts, filtering for articles about lyric content specifically. You discover Napier and Shamir (2018) on sentiment analysis of Billboard lyrics. You add it to Zotero.
+Known, then limitation, then what this study does. A student studying livestreaming would use different citations than a student studying news framing, but both follow the same logic: research has established X, however most studies share limitation Y, this study addresses that gap by doing Z.
 
-This process creates a snowball effect. One key article leads to ten more, which lead to twenty more. But the growth is strategic, not random.
+## Organizing sources: the literature map
 
-## Recognizing Saturation
+By now you have dozens of sources in Zotero. The challenge is making sense of them, not as individual articles but as a coherent body of knowledge.
 
-At some point, you'll notice that new searches yield diminishing returns. You're finding articles that cite the same foundational works you've already read. The arguments sound familiar. The methods are variations on approaches you've seen. The findings echo patterns you've already identified.
+A **literature map** is a document that organizes sources by theme rather than chronologically or alphabetically. Create it as a markdown file in your project, with a heading for each theme and the relevant sources listed beneath it. A literature map for livestreaming research might have a theme for viewer motivations, a theme for community and social dynamics, a theme for the streamer's labor and performance, a theme for content analysis methods, and a running section for the gaps you have identified.
 
-This is **saturation**, the point where additional searching is unlikely to change your understanding of the literature.
+The map does three things. It shows you at a glance which themes are well covered and which are sparse. It forces you to think about how sources relate, which is the beginning of synthesis. And its structure often becomes the structure of your written literature review.
 
-Saturation doesn't mean you've read *everything*. That's impossible. It means you've read enough to:
+## Synthesis, not summary
 
-- Identify the major theories used in this area
-- Recognize the key debates and points of contention
-- Understand the common methodological approaches
-- Articulate what's known and what's still uncertain
+A weak literature review reads like a list:
 
-Practically, saturation often looks like this:
+> Hamilton, Garretson, and Kerne (2014) studied Twitch as a participatory community. Sjöblom and Hamari (2017) examined viewer motivations. Hilvert-Bruce and colleagues (2018) studied social motivations for engagement.
 
-- Three consecutive database searches turn up zero new relevant articles
-- New articles cite the same 8-10 foundational sources you've already read
-- You can predict what an article will say based on its title and abstract
-- You've identified clear patterns in findings
+Three disconnected summaries. The reader learns what each study was about but not how the studies fit together.
 
-When you reach this point, stop searching and start synthesizing.
+A strong literature review reads like an argument:
 
-## Identifying Research Gaps
+> Researchers have converged on a counterintuitive finding: livestream viewing is motivated less by the content on the screen than by the social experience around it. Hamilton, Garretson, and Kerne (2014), in an ethnographic study, characterized Twitch streams as virtual third places, venues where informal communities form and socialize rather than broadcasts to be passively consumed. Sjöblom and Hamari (2017) put this to a survey test: studying Twitch users through a uses-and-gratifications framework, they found that social and tension-release motivations were central to why people watched. Hilvert-Bruce, Neill, Sjöblom, and Hamari (2018) extended the finding to engagement specifically, showing that social interaction and a sense of community predicted not just watching but chatting, subscribing, and returning. They also found something this course can investigate directly: viewers of smaller channels were more socially motivated than viewers of large ones. Taken together, this body of work suggests that the chat box, not the gameplay, may be where the most important activity on a livestream happens. However, these studies rely almost entirely on self-report surveys, which capture what viewers say motivates them rather than what they actually do. Whether the behavioral traces left in a chat log would corroborate the survey findings remains largely unexamined.
 
-A research gap isn't just "something no one has studied." It's a space where inquiry is justified, where the absence of knowledge creates a problem or where contradictions demand resolution.
+The second version groups sources by theme, identifies the convergence among them, adds nuance, names a methodological limitation they share, and points toward a gap. That is what a literature review demands: not reporting what others found, but constructing an interpretation of the collective evidence. Notice, too, where the gap in that example points. It points directly at the kind of study this course has you do, a content analysis of a real chat log.
 
-### Types of Gaps
+## A minimum viable literature review
 
-**Topical Voids**:
+If the synthesis above feels intimidating, start smaller. A defensible first pass needs only three sources and four sentences.
 
-"No one has examined how lyric sentiment in protest music relates to chart success during election years."
+1. Source A, one sentence. What did this study find?
+2. Source B, one sentence. What did this study find?
+3. Source C, one sentence. What did this study find?
+4. The gap, one sentence. What do these three sources, together, leave unexplored that your study could address?
 
-This works if the topic is genuinely unstudied. But be cautious: what seems novel to you might be covered under different terminology. Thorough searching guards against claiming novelty where none exists.
+A worked example using three livestreaming sources:
 
-**Methodological Gaps**:
+> Hamilton, Garretson, and Kerne (2014) characterized Twitch streams as virtual third places where informal communities form. Sjöblom and Hamari (2017) found that social and tension-release motivations were central to why people watch on Twitch. Hilvert-Bruce, Neill, Sjöblom, and Hamari (2018) extended this to show that social interaction predicted not just watching but chatting and subscribing. All three studies rely on self-report surveys, leaving the question of whether the same patterns are visible in behavioral chat-log data largely unexamined.
 
-"Previous research on lyric sentiment relies primarily on automated tools like LIWC (Napier & Shamir, 2018), which may miss context-dependent meanings like irony or metaphor. Human coding could reveal more nuanced patterns."
+Four sentences, three citations, one gap. That is enough to anchor a prospectus. The synthesis paragraph in the previous section is what this minimum version grows into after another round of reading. It is not the starting point.
 
-This argues that the phenomenon has been studied, but with methods that have important limitations.
+## The ethics of citation
 
-**Contradictory Findings**:
+Citation is not bureaucratic. It is ethical. When you use someone else's idea, method, or finding, you credit them. This holds even when you are paraphrasing rather than quoting directly.
 
-"Studies using automated sentiment analysis suggest that popular lyrics have become increasingly negative over decades (Brand et al., 2019; Napier & Shamir, 2018), while research on audience preferences finds that listeners report wanting positive content (Sachs et al., 2015, note the 'paradox of sad music'). This discrepancy between what people consume and what they say they prefer remains unresolved."
+Specific empirical findings require citation. Theoretical concepts require citation. Methodological approaches require citation. Direct quotes always require citation. Paraphrased ideas require citation unless they are common knowledge in the field. What does not require citation is genuine common knowledge ("Twitch is a livestreaming platform"), your own original interpretations, and your own data and analysis.
 
-This positions your study as exploring a genuine tension in the literature.
+When in doubt, cite. Over-citation is rarely criticized. Under-citation damages credibility, and in its more serious forms it is plagiarism, which Chapter 3's discussion of research integrity treats as the breach of trust that it is.
 
-**Theoretical Gaps**:
+## Looking ahead
 
-"Most research on music emotion draws on individual-level psychological models like the BRECVEMA framework (Juslin & Västfjäll, 2008). Social identity theory (Tajfel & Turner, 1979), which emphasizes group-based emotion and shared meaning, might explain why certain emotional themes resonate during specific cultural moments, as Pettijohn and Sacco (2009) suggest when they connect musical preferences to social and economic conditions."
-
-This argues for applying a different theoretical lens to an existing question.
-
-### Articulating the Gap
-
-When you write your literature review, the gap becomes the hinge of your argument. The structure typically looks like this:
-
-1. **Establish what's known**: Summarize existing research to show you understand the conversation.
-
-2. **Identify the limitation**: Point out what's missing, contradictory, or inadequately explained.
-
-3. **Argue for your study**: Show how your research addresses that gap.
-
-**Example**:
-
-> Research has established that lyric content in popular music has shifted over time, with studies documenting increases in both negative emotional expression (Brand et al., 2019) and self-focused language (DeWall et al., 2011). However, most of this work relies on automated text analysis, which struggles with figurative language, sarcasm, and context-dependent meanings (Napier & Shamir, 2018). This leaves an important question unresolved: would human coders, who can account for metaphor and irony, identify different patterns in the relationship between lyric sentiment and commercial success? This study addresses that gap by applying systematic human coding to a sample of 200 songs from the Billboard Hot 100.
-
-Notice the structure: known → limitation → what this study does. This pattern works regardless of topic. A student studying news framing would substitute different citations but follow the same logic: "Research has established X. However, most studies have limitation Y. This study addresses that gap by doing Z."
-
-## Organizing Sources: From Collection to Synthesis
-
-By now, you have dozens of sources in Zotero. The challenge is making sense of them, not just as individual articles but as a coherent body of knowledge.
-
-### The Literature Map
-
-A **literature map** is a visual tool for organizing sources by theme, not chronologically or alphabetically.
-
-Create a new note in Obsidian: `Literature Map - [Your Topic]`
-
-Here is an example for music and emotion research, using only verified, published sources:
-
-```markdown
-# Literature Map: Music and Emotion Research
-
-## Theme 1: Theories of Music Emotion
-- [[Juslin & Västfjäll, 2008]] - BRECVEMA model (8 mechanisms
-  for how music evokes emotion)
-- [[Scherer, 2004]] - Which emotions can music induce?
-- [[Zentner et al., 2008]] - Music-specific emotion scale
-  (GEMS: wonder, nostalgia, power, tenderness)
-
-## Theme 2: Lyric Content Over Time
-- [[Brand et al., 2019]] - Cultural evolution: lyrics becoming
-  more negative over 50 years
-- [[Napier & Shamir, 2018]] - Sentiment analysis of Billboard
-  lyrics (automated approach)
-- [[DeWall et al., 2011]] - Narcissism and self-focus increasing
-  in popular lyrics
-- [[Pettijohn & Sacco, 2009]] - Lyric themes reflect social and
-  economic conditions
-
-## Theme 3: Why People Enjoy Negative Content
-- [[Sachs et al., 2015]] - Systematic review: pleasures of sad
-  music (catharsis, aesthetic appreciation, social bonding)
-
-## Theme 4: Content Analysis Methods
-- [[Krippendorff, 2018]] - Content analysis methodology (4th ed.)
-- [[Neuendorf, 2017]] - Content analysis guidebook (2nd ed.)
-- [[Lombard et al., 2002]] - Intercoder reliability standards
-
-## Gaps I've Identified
-- Most lyric studies use automated sentiment analysis; human
-  coding might reveal different patterns
-- Few studies examine genre-specific trends (is negativity
-  increasing in all genres or driven by specific ones?)
-- Limited research connecting lyric sentiment to individual
-  song chart performance (most studies examine aggregate trends)
-- The "paradox of sad music" (why do people consume content
-  they describe as negative?) remains theoretically underdeveloped
-```
-
-This map serves multiple purposes:
-
-- **Visual organization**: You can see at a glance which themes are well-covered and which are sparse.
-- **Synthesis aid**: Grouping sources thematically forces you to think about how they relate.
-- **Writing scaffold**: The map's structure often becomes the structure of your written literature review.
-
-### Writing the Literature Review: Synthesis, Not Summary
-
-A weak literature review reads like this:
-
-> Napier and Shamir (2018) used sentiment analysis to study Billboard lyrics and found negativity increasing over time. DeWall et al. (2011) examined narcissism in lyrics and found self-focused language increasing. Pettijohn and Sacco (2009) studied how economic conditions relate to musical preferences.
-
-This is a **list**. It's a series of disconnected summaries.
-
-A strong literature review reads like this:
-
-> Researchers have documented a broad shift in the emotional landscape of popular music over the past several decades. Napier and Shamir (2018) used automated sentiment analysis to show that Billboard lyrics have become progressively more negative, a finding reinforced by Brand, Acerbi, and Mesoudi (2019), whose evolutionary analysis of 50 years of lyrics identified a similar trend and interpreted it through the lens of cultural selection. In parallel, DeWall et al. (2011) found that lyrics have become increasingly self-focused, with rising use of first-person singular pronouns and words associated with antisocial behavior. Pettijohn and Sacco (2009) add an important contextual dimension: they demonstrated that musical preferences shift with social and economic conditions, with listeners favoring more "meaningful" and "mature" music during periods of threat. Taken together, these studies suggest that lyric content both reflects and responds to broader cultural currents. However, most of this work relies on automated text analysis or aggregate trend data, leaving open the question of whether human coders attending to context, irony, and genre conventions would identify the same patterns at the level of individual songs.
-
-This is **synthesis**. It weaves sources together to make an argument.
-
-Notice what it does:
-
-- **Groups sources by theme** (the emotional shift in lyrics)
-- **Identifies convergence** (multiple studies confirm the negativity trend)
-- **Adds nuance** (Pettijohn & Sacco introduce a contextual moderator)
-- **Highlights a methodological limitation** (automated analysis vs. human coding)
-- **Points toward a gap** (individual-song analysis is missing)
-
-This is what literature reviews demand: not just reporting what others found, but constructing an interpretation of the collective evidence.
-
-## The Ethics of Citation
-
-Citation isn't just bureaucratic; it's ethical. When you use someone else's idea, method, or finding, you must credit them. This applies even when you're paraphrasing rather than quoting directly.
-
-**What requires citation**:
-
-- Specific empirical findings ("Napier and Shamir (2018) found that...")
-- Theoretical concepts ("According to Social Identity Theory (Tajfel & Turner, 1979)...")
-- Methodological approaches ("Following the reliability standards outlined by Lombard et al. (2002)...")
-- Direct quotes (always)
-- Paraphrased ideas (unless they're common knowledge)
-
-**What doesn't require citation**:
-
-- Common knowledge in the field (e.g., "The Billboard Hot 100 ranks songs by popularity")
-- Your own original ideas or interpretations
-- Your own data or analysis
-
-When in doubt, cite. Over-citation is rarely criticized; under-citation damages credibility.
-
----
-
-## Practice: Mapping the Literature
-
-### Exercise 4.1: Developing Search Strings
-
-Choose a research topic (it can involve music or any other communication domain). Create three Boolean search strings of increasing specificity:
-
-**Broad**:
-`music AND emotion`
-
-**Medium**:
-`(music OR songs) AND (emotion OR affect OR sentiment) AND (lyrics OR "lyric content")`
-
-**Narrow**:
-`(lyrics OR songwriting) AND (sentiment OR valence) AND (chart* OR popular* OR "commercial success") NOT therapy`
-
-Test these in Google Scholar. How many results does each return? Which feels most useful?
-
-Now create a parallel set of three search strings for a non-music topic of your choice (e.g., news framing, health campaigns, social media effects). Notice how the Boolean logic transfers.
-
----
-
-### Exercise 4.2: Citation Chaining
-
-Find one highly relevant article for your topic (use Google Scholar).
-
-1. **Backward chain**: Identify 3 frequently cited sources from the reference list. Add them to Zotero.
-2. **Forward chain**: Click "Cited by" and identify 3 recent articles that cite your keystone article. Add them to Zotero.
-3. **Reflect**: How did this process reveal connections you wouldn't have found through keyword searching alone?
-
----
-
-### Exercise 4.3: Creating a Literature Map
-
-Using the sources you've collected, create a literature map in Obsidian with at least three thematic categories. For each theme, list 2-3 relevant sources.
-
-Then add a section called "Gaps I've Identified" and list at least two types of gaps (topical void, contradiction, methodological limitation, or alternative explanation).
-
----
-
-### Exercise 4.4: Summary vs. Synthesis
-
-Take three sources on a related topic. Write two versions:
-
-**Version 1 (Summary)**: Three paragraphs, one per source, each summarizing what that source found.
-
-**Version 2 (Synthesis)**: One paragraph that weaves all three sources together, identifying patterns, contradictions, or complementary findings.
-
-Compare them. Which is more intellectually demanding to write? Which is more persuasive to read?
-
----
-
-## Reflection Questions
-
-1. **The Anxiety of Incompleteness**: Many students worry they haven't read "enough." How do you know when you've done sufficient reading? What are the signs of saturation?
-
-2. **Contradictions as Opportunities**: When you encounter contradictory findings in the literature, how should you respond? Should you side with one study over another, or is the contradiction itself valuable?
-
-3. **Your Gap**: Based on preliminary reading, what gap do you think your research project might address? Is it a topical void, a methodological gap, or a contradiction?
-
-4. **The Transferable Skill**: Literature review is often taught as a component of academic writing. But the underlying skills, systematic search, source evaluation, synthesis of complex evidence, are used by journalists, policy analysts, consultants, and strategists. Can you think of a professional context outside academia where the ability to map an evidence landscape would matter?
-
----
-
-## Chapter Summary
-
-This chapter established the literature review as systematic cartography:
-
-- The **conversation metaphor**: Research is an ongoing dialogue; the literature review is listening before speaking.
-- **Five goals** of a literature review: situate your work, identify a gap, avoid redundancy, learn methodologically, refine your question.
-- **Three search phases**: exploratory (getting oriented), systematic (comprehensive searching), citation chaining (mapping networks).
-- **Boolean operators** and search strings create precise, replicable searches that work identically across topic domains.
-- **Saturation** is the point where new searches yield diminishing returns, when patterns stabilize and new sources repeat familiar arguments.
-- **Research gaps** justify inquiry: topical voids, contradictions, methodological limitations, alternative explanations.
-- **Literature maps** organize sources thematically, revealing patterns and gaps visually.
-- **Synthesis** weaves sources together to make arguments; **summary** just recaps individual sources.
-- **Citation** is an ethical obligation: credit ideas, methods, and findings to their originators.
-
----
-
-## Key Terms
-
-- **Backward chaining**: Following references cited in a key article to find foundational studies
-- **Boolean operators**: Logical connectors (AND, OR, NOT) used to refine searches
-- **Citation chaining**: Following references backward and citations forward to map scholarly networks
-- **Forward chaining**: Using "Cited by" to find recent work citing a key article
-- **Gap (research gap)**: An absence, contradiction, or unexplored perspective that justifies new research
-- **Keystone article**: Foundational, highly relevant study used as entry point for citation chaining
-- **Literature map**: Visual organization of sources by theme
-- **Saturation**: The point where new searches yield no new themes or patterns
-- **Search log**: Documented record of search strategies for transparency
-- **Synthesis**: Weaving sources together to create integrated understanding (not just summary)
-- **Topical void**: Type of gap where a specific topic, population, or context hasn't been studied
-
----
+Chapter 5 takes up theory. A literature review tells you what the scholarly conversation has established. A theoretical framework gives you the lens you will use to interpret your own findings. Chapter 5 also addresses how the choice of theory shapes the choice of method, and introduces the major social-science methods as a coherent set, so that committing to content analysis for this course is a decision made with the alternatives in view.
 
 ## References
 
-Brand, C. O., Acerbi, A., & Mesoudi, A. (2019). Cultural evolution of emotional expression in 50 years of song lyrics. *Evolutionary Human Sciences*, *1*, e11. https://doi.org/10.1017/ehs.2019.11
+Hamilton, W. A., Garretson, O., & Kerne, A. (2014). Streaming on Twitch: Fostering participatory communities of play within live mixed media. In *Proceedings of the 32nd ACM SIGCHI Conference on Human Factors in Computing Systems* (pp. 1315-1324). Association for Computing Machinery. https://doi.org/10.1145/2556288.2557048
 
-DeWall, C. N., Pond, R. S., Jr., Campbell, W. K., & Twenge, J. M. (2011). Tuning in to psychological change: Linguistic markers of psychological traits and emotions over time in popular U.S. song lyrics. *Psychology of Aesthetics, Creativity, and the Arts*, *5*(3), 200-207. https://doi.org/10.1037/a0023195
+Hilvert-Bruce, Z., Neill, J. T., Sjöblom, M., & Hamari, J. (2018). Social motivations of live-streaming viewer engagement on Twitch. *Computers in Human Behavior*, *84*, 58-67. https://doi.org/10.1016/j.chb.2018.02.013
 
 Horton, D., & Wohl, R. R. (1956). Mass communication and para-social interaction: Observations on intimacy at a distance. *Psychiatry*, *19*(3), 215-229. https://doi.org/10.1080/00332747.1956.11023049
 
-Juslin, P. N., & Västfjäll, D. (2008). Emotional responses to music: The need to consider underlying mechanisms. *Behavioral and Brain Sciences*, *31*(5), 559-575. https://doi.org/10.1017/S0140525X08005293
+Krippendorff, K. (2018). *Content analysis: An introduction to its methodology* (4th ed.). SAGE Publications.
 
-Krippendorff, K. (2018). *Content analysis: An introduction to its methodology* (4th ed.). Sage. https://doi.org/10.4135/9781071878781
+Neuendorf, K. A. (2017). *The content analysis guidebook* (2nd ed.). SAGE Publications.
 
-Lombard, M., Snyder-Duch, J., & Bracken, C. C. (2002). Content analysis in mass communication: Assessment and reporting of intercoder reliability. *Human Communication Research*, *28*(4), 587-604. https://doi.org/10.1111/j.1468-2958.2002.tb00826.x
+Sjöblom, M., & Hamari, J. (2017). Why do people watch others play video games? An empirical study on the motivations of Twitch users. *Computers in Human Behavior*, *75*, 985-996. https://doi.org/10.1016/j.chb.2016.10.019
 
-Napier, K., & Shamir, L. (2018). Quantitative sentiment analysis of lyrics in popular music. *Journal of Popular Music Studies*, *30*(4), 161-176. https://doi.org/10.1525/jpms.2018.300411
-
-Neuendorf, K. A. (2017). *The content analysis guidebook* (2nd ed.). Sage. https://doi.org/10.4135/9781071802878
-
-Pettijohn, T. F., II, & Sacco, D. F., Jr. (2009). Tough times, meaningful music, mature performers: Popular Billboard songs and performer preferences across social and economic conditions in the USA. *Psychology of Music*, *37*(2), 155-179. https://doi.org/10.1177/0305735608094512
-
-Riffe, D., Lacy, S., Watson, B. R., & Lovejoy, J. (2023). *Analyzing media messages: Using quantitative content analysis in research* (5th ed.). Routledge. https://doi.org/10.4324/9781003288428
-
-Sachs, M. E., Damasio, A., & Habibi, A. (2015). The pleasures of sad music: A systematic review. *Frontiers in Human Neuroscience*, *9*, Article 404. https://doi.org/10.3389/fnhum.2015.00404
-
-Scherer, K. R. (2004). Which emotions can be induced by music? What are the underlying mechanisms? And how can we measure them? *Journal of New Music Research*, *33*(3), 239-251. https://doi.org/10.1080/0929821042000317822
-
-Tajfel, H., & Turner, J. C. (1979). An integrative theory of intergroup conflict. In W. G. Austin & S. Worchel (Eds.), *The social psychology of intergroup relations* (pp. 33-47). Brooks/Cole.
-
-Zentner, M., Grandjean, D., & Scherer, K. R. (2008). Emotions evoked by the sound of music: Characterization, classification, and measurement. *Emotion*, *8*(4), 494-521. https://doi.org/10.1037/1528-3542.8.4.494
-
----
-
+::: {.content-visible when-profile="grad"}
 ::: {.callout-note title="Graduate Extension" collapse="true"}
+**The quantitative function of the literature review.** The undergrad edition treats the literature review as reconnaissance: you survey what is known to identify a gap your study can fill. That framing is correct. But it omits a critical additional function at the graduate level: *effect size extraction*.
 
-**Required Reading**: Krippendorff, K. (2018). *Content analysis: An introduction to its methodology* (4th ed.). Sage. **Read Chapter 1: "History."**
+Before you can calculate the sample size you need (Chapter 6), you need a defensible estimate of the effect size you expect to find. The most defensible source is prior published research. When you read a study using a similar design, extract its effect size (Cohen's *d*, Cramer's *V*, correlation *r*) and note the sample size the authors used. These numbers become the inputs for your power analysis. A literature review that cannot supply effect size estimates has not done its graduate-level job.
 
-**Prompt**: Krippendorff traces the intellectual history of content analysis from its origins in early 20th-century propaganda analysis through its evolution into a general-purpose social science method. His historical account reveals how the method's relationship to theory has shifted over time: early content analysts simply counted words and themes, while contemporary practitioners increasingly anchor coding decisions in theoretical frameworks.
+**Systematic search over ad hoc search.** Ad hoc searches — "I Googled it and found relevant papers" — cannot support power analysis inputs, because you do not know whether the studies you found are representative of the literature. A systematic search uses predefined databases (Communication Abstracts, Web of Science, PsycINFO), predefined search strings, and documented inclusion/exclusion criteria. The search process is itself a methods disclosure: you report it alongside the analysis so that a future researcher can reproduce and update your review.
 
-1. According to Krippendorff, what distinguishes content analysis from other forms of textual interpretation (e.g., literary criticism, rhetorical analysis)? What makes it "scientific" rather than "humanistic"?
-2. Krippendorff argues that content analysis must be "validatable in principle," meaning that its inferences about the relationship between texts and their contexts must be testable. How does this requirement connect to the reproducibility principles from Chapter 2?
-3. Conduct a mini-literature review: find three published content analysis studies from the past five years in a communication journal. For each, evaluate whether the study's coding decisions are grounded in theory or are primarily descriptive. How does theoretical grounding (or its absence) affect the study's contribution?
-4. Krippendorff distinguishes between content analysis that makes inferences about the *source* of a message, the *message* itself, and the *audience*. Which type of inference does your planned study involve? What are the validity challenges specific to that inference type?
+**Required reading.** Cooper, H., Hedges, L. V., & Valentine, J. C. (Eds.). (2019). *The handbook of research synthesis and meta-analysis* (3rd ed.). Russell Sage Foundation.
 
+**Reflect.** (1) Choose a published V2V-style study. Extract its primary effect size, determine whether the authors provided a power analysis, and use the `pwr` package to calculate the sample size required to detect that effect at 80% power. Report your work. (2) What do you do when no prior studies report an effect size for your specific research question? Describe two defensible strategies for justifying a sample size in that scenario.
 :::
-
----
-
-## Looking Ahead
-
-Chapter 5 (Choosing Your Lens) explores how theoretical frameworks shape research. You'll learn to distinguish between grand theories and middle-range theories, identify independent and dependent variables in published research, and apply a theoretical lens to your own research question. Theory isn't abstract philosophy; it's a precision tool that focuses attention, generates predictions, and transforms observation into explanation.
+:::

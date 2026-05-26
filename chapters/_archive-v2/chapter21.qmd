@@ -727,6 +727,8 @@ This chapter taught reproducible document creation with Quarto:
 
 ---
 
+::: {.content-visible when-profile="grad"}
+
 ::: {.callout-note title="Graduate Extension" collapse="true"}
 
 **Required Task**: Produce a conference-quality version of your research report.
@@ -754,6 +756,8 @@ format:
 4. **Write a plain-language summary** (200 words) of your findings for a non-academic audience (e.g., a music industry blog, a university press release, or a social media thread). How does the language, framing, and level of detail change when you write for a general audience rather than an academic one? What do you gain and lose in translation?
 
 5. **Reflect on the gap**: Compare your conference manuscript to your course portfolio. What did you add, cut, or restructure? What does this tell you about the difference between a course deliverable and a professional research product?
+
+:::
 
 :::
 

@@ -1,26 +1,32 @@
 /*-- scss:defaults --*/
 
 /* V2V 3rd Edition: editorial design system.
-   Maroon palette + Source Serif 4 / Source Sans 3 / JetBrains Mono.
-   Designed against Tidy Modeling with R + Real World Data Science as register
-   exemplars (editorial polish without ornament).
-   Locked 2026-05-13 per v2v-decisions.md. */
+   AURA Lab v2 palette (light variant) + Fraunces / Instrument Sans / JetBrains Mono.
+   Token-swapped 2026-05-18 from the prior Source Serif 4 + maroon scheme to align
+   with AURA Lab v2 branding (banned-word-checker site is the canonical exemplar).
+   Body inverts from serif to sans (Instrument Sans); headings invert from sans to
+   serif display (Fraunces). Light variant only; dark toggle deferred.
+   Locked 2026-05-18 per v2v-decisions.md. Token names retained from the prior
+   scheme for minimal-edit downstream compatibility. */
 
 // Explicit font loading: defensive against _brand.yml not being supported.
-@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800;9..144,900&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
-// ===== Color tokens =====
-$paper:         #fafaf7;
-$ink:           #1a1a1a;
-$maroon:        #8b1a1a;
-$maroon-dark:   #6e1414;
-$maroon-tint:   rgba(139, 26, 26, 0.08);
-$code-bg:       #f3f1eb;
-$callout-blue:  #5a7a8b;
-$callout-green: #1f4d3a;
-$callout-amber: #a86b2c;
-$muted:         #6b6b6b;
-$rule:          #e6e3da;
+// ===== Color tokens (AURA Lab v2 light variant) =====
+// Token names preserved from the prior maroon scheme so downstream
+// references (e.g. $maroon used 30+ times below) continue to resolve.
+// Values are swapped to the AURA Lab violet + amber palette on chalk paper.
+$paper:         #F4F0EB;            // AURA chalk (warm paper)
+$ink:           #18181B;            // AURA text-dark
+$maroon:        #7C3AED;            // AURA violet (the new primary; alias retained)
+$maroon-dark:   #6D28D9;            // AURA violet-dark
+$maroon-tint:   rgba(124, 58, 237, 0.08);
+$code-bg:       #ECE7E0;            // Lifted chalk for code surface
+$callout-blue:  #5a7a8b;            // Preserved subtle blue for note callouts
+$callout-green: #1f4d3a;            // Preserved muted green for tip callouts
+$callout-amber: #F59E0B;            // AURA amber (secondary accent)
+$muted:         #71717A;            // AURA muted (zinc-500)
+$rule:          #E5DFD6;            // Faint warm grey
 
 // ===== Bootstrap variable overrides =====
 $body-bg:        $paper;
@@ -28,16 +34,21 @@ $body-color:     $ink;
 $link-color:     $maroon;
 $link-hover-color: $maroon-dark;
 
-$font-family-serif:      'Source Serif 4', Georgia, 'Times New Roman', serif;
-$font-family-sans-serif: 'Source Sans 3', system-ui, -apple-system, sans-serif;
+// Font roles INVERTED from prior scheme to match AURA Lab v2:
+// - serif token now holds Fraunces (display serif, used on headings)
+// - sans-serif token now holds Instrument Sans (used on body)
+// - Body font reassigned from serif to sans-serif.
+// - Headings reassigned from sans-serif to serif.
+$font-family-serif:      'Fraunces', Georgia, 'Times New Roman', serif;
+$font-family-sans-serif: 'Instrument Sans', system-ui, -apple-system, sans-serif;
 $font-family-monospace:  'JetBrains Mono', 'Source Code Pro', Consolas, monospace;
-$font-family-base:       $font-family-serif;
+$font-family-base:       $font-family-sans-serif;
 
 $font-size-base:    1.0625rem;
-$line-height-base:  1.65;
+$line-height-base:  1.6;
 
-$headings-font-family: $font-family-sans-serif;
-$headings-font-weight: 600;
+$headings-font-family: $font-family-serif;
+$headings-font-weight: 700;
 $headings-color:       $ink;
 
 $code-block-bg: $code-bg;

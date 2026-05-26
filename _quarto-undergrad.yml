@@ -1,0 +1,21 @@
+# Undergraduate profile.
+# Invoke: quarto render --profile undergrad
+# Merges with _quarto.yml; only fields below are overridden or added.
+# Profile is audience-level (not course-code-specific) so V2V remains
+# adoptable as an OER outside SIUE.
+
+project:
+  output-dir: docs/undergrad
+
+book:
+  title: "Vibes to Variables"
+  subtitle: "Undergraduate Edition"
+  site-url: https://undergrad.v2vhub.com
+  description: "Undergraduate edition of V2V (Vibes to Variables). Aligned to a one-semester content analysis study delivered as a feature article with a paired methodology appendix. Designed for undergraduate research-methods courses in communication and media studies; adoptable by any institution as an open educational resource (CC BY 4.0)."
+
+format:
+  html:
+    metadata:
+      profile-label: "Undergraduate"
+      final-piece-label: "Feature Article + Methodology Appendix"
+      final-piece-word-target: "2,500 to 4,000 words (feature), 800 to 1,500 words (appendix)"

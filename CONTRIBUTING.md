@@ -1,4 +1,4 @@
-# Contributing to From Vibes to Variables
+# Contributing to V2V (Vibes to Variables)
 
 Thank you for helping improve this open textbook! This document explains
 how to report errors, suggest improvements, and contribute content.
@@ -6,7 +6,7 @@ how to report errors, suggest improvements, and contribute content.
 ## Reporting Typos and Errors
 
 If you spot a typo, broken link, or factual error, please
-[open an issue](https://github.com/SIM-Lab-SIUE/vibes-to-variables/issues/new)
+[open an issue](https://github.com/SIM-Lab-SIUE/v2v/issues/new)
 on GitHub. Include:
 
 - The chapter number and section where you found the error
@@ -17,7 +17,7 @@ on GitHub. Include:
 
 Ideas for new examples, better explanations, or additional exercises
 are welcome. Open a
-[GitHub issue](https://github.com/SIM-Lab-SIUE/vibes-to-variables/issues/new)
+[GitHub issue](https://github.com/SIM-Lab-SIUE/v2v/issues/new)
 describing your suggestion and which chapter it relates to.
 
 ## Contributing Edits
@@ -28,8 +28,8 @@ To preview your changes before submitting:
 
 1. **Clone** the repository:
    ```bash
-   git clone https://github.com/SIM-Lab-SIUE/vibes-to-variables.git
-   cd vibes-to-variables
+   git clone https://github.com/SIM-Lab-SIUE/v2v.git
+   cd v2v
    ```
 
 2. **Install prerequisites**:

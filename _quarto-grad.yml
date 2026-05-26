@@ -1,0 +1,21 @@
+# Graduate profile.
+# Invoke: quarto render --profile grad
+# Merges with _quarto.yml; only fields below are overridden or added.
+# Profile is audience-level (not course-code-specific) so V2V remains
+# adoptable as an OER outside SIUE.
+
+project:
+  output-dir: docs/grad
+
+book:
+  title: "Beyond Vibes"
+  subtitle: "From Vibes to Variables, Graduate Supplement"
+  site-url: https://grad.v2vhub.com
+  description: "Graduate edition of V2V (Vibes to Variables). Adds power analysis, pre-registration discipline, two-coder reliability planning, and an audit-trail layer on top of the undergraduate foundation, supporting a publishable white paper and a 36 by 24 inch academic conference poster. Designed for graduate research-methods courses; adoptable by any institution as an open educational resource (CC BY 4.0)."
+
+format:
+  html:
+    metadata:
+      profile-label: "Graduate"
+      final-piece-label: "White Paper + Academic Conference Poster"
+      final-piece-word-target: "3,000 to 5,000 words (white paper), poster rendered via quarto-ext/typst-templates/poster"

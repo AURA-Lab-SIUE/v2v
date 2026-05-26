@@ -1,491 +1,152 @@
----
-title: "Chapter 10: Qualitative Methods"
----
-
-## Learning Objectives
-
-- Understand qualitative research as a distinct epistemological tradition, not a lesser version of quantitative work
-- Design and conduct in-depth interviews and focus groups
-- Apply Braun and Clarke's (2006) six-phase thematic analysis process
-- Evaluate qualitative research using appropriate quality criteria (credibility, transferability, dependability, confirmability)
-- Recognize when qualitative methods are the right tool for the question
-
+﻿---
+title: "Chapter 10: The sample"
 ---
 
-![Group discussion representing focus group research](../images/ch10-focus-group_3.jpg){fig-alt="Group discussion representing focus group research"}
+![](../images/ch10-interview_1.jpg){fig-alt="A stylized rendering of a large field of dots with a small, evenly spaced subset highlighted."}
 
+Suppose you sat down to code the chat fixture by hand, one message at a time, the codebook open beside you. Read the message, decide who it is aimed at, record the code, move to the next. At a brisk and probably unsustainable pace of one message every ten seconds, the 35,267 messages in the fixture would take just under a hundred hours. The full 2018 collection, all twenty-two million messages, would outlast your degree.
 
+So you will not code all of it. You will code a **sample**: a smaller set of messages, drawn carefully enough that what you learn from coding it holds for the larger collection it came from. Drawing that sample well is the first half of this chapter.
 
-There is a moment in every content analysis project when something important gets lost. You've coded 200 songs for lyric sentiment. Your data show that 38% are negative, 31% are positive, 19% are mixed, and 12% are neutral. You run a chi-square test and find a statistically significant relationship between sentiment and chart position. You have a finding.
+The second half is a test. The codebook you finalized in Chapter 9 is an argument about how messages should be classified, but an argument on paper is not yet a working instrument. A codebook earns that status only when a second person can pick it up, apply it to the same messages you would, and reach the same codes. Whether your codebook clears that bar is not something you can know by reading it. You have to test it. This chapter draws the sample and runs the test, and the test is the part that can send you back to Chapter 8.
 
-But you don't know *why*.
+## Why you sample
 
-You don't know why listeners are drawn to negative content. You don't know what "negative" means to them, whether they experience it as cathartic, validating, aesthetically interesting, or simply familiar. You don't know whether the negativity your coders identified matches the negativity listeners perceive, or whether the coding categories you imposed captured the emotional dimensions that actually matter to audiences. You have numbers. You lack understanding.
+Chapter 1 drew a distinction between a population and a sample, and it is worth recovering here because the rest of the chapter rests on it. The **population** is the full set of cases you want your conclusions to be about. For the chat study, that is something like all chat messages sent in the fifty-channel corpus during the collection week. The sample is the subset you actually examine.
 
-This is not a failure of your content analysis. It is a limitation of the method. Content analysis describes what is in the text. It does not explain what the text means to the people who create or consume it. For that, you need a different kind of inquiry, one that prioritizes depth over breadth, meaning over measurement, and the participant's perspective over the researcher's categories.
+Sometimes you do not need a sample. Coding every case is called a **census**, and it is the right move when the population is small enough to handle whole. The stream fixture is close to this: at roughly 32,000 snapshots it ships in its entirety, no sampling involved, because the snapshot count for fifty channels is small enough to keep all of it.
 
-This chapter introduces qualitative research methods: interviews, focus groups, and thematic analysis. These are not preliminary steps on the way to "real" (quantitative) research. They are complete methods with their own logic, their own quality standards, and their own forms of rigor. A well-designed interview study can produce knowledge that no survey, experiment, or content analysis could generate, just as those methods produce knowledge that interviews cannot.
+Chat is the opposite situation. There is far too much of it to code by hand, and so a census is off the table. This is the ordinary condition of content analysis. The point of a sample is to make the work finite without making the conclusions worthless, and that depends entirely on how the sample is drawn. A sample of 1,500 messages can support a sound study or a misleading one. The difference is method.
 
-The goal of methodological literacy, which this book has been building since Chapter 9, is the ability to recognize which questions demand which methods and to evaluate research from traditions other than your own.
+## Why a simple random sample is not enough
 
-## What Qualitative Research Does Differently
+The most familiar way to draw a sample is **simple random sampling**: give every message in the population an equal chance of selection and draw the number you need. It has one large virtue. It is unbiased, in the precise sense that no message is favored over any other, so the sample carries no systematic tilt built in by the researcher.
 
-Chapter 9 (The Methodologist's Toolkit) introduced four methods and the questions each answers. Qualitative methods answer questions about *meaning, experience, and process*: How do people make sense of a phenomenon? What is the lived experience of a particular situation? How does a community construct shared understanding?
+For Twitch chat, that virtue is not enough, and the reason is the shape of the data. Chat volume is not spread evenly across channels. It is severely concentrated. In the full population the busiest channel logged more than a million messages during the collection week; the median channel logged around 1,440; the quietest logged one. A distribution like that is called **right-skewed**, a small number of enormous values and a long tail of small ones, and it has a hard consequence for sampling. Draw messages at random from that population and the overwhelming majority will come from the handful of giant channels, because that is where the overwhelming majority of messages are. The small and middling channels, which is to say most of Twitch, would barely appear in the sample at all.
 
-These questions differ fundamentally from the questions quantitative methods answer. The difference is not merely technical (interviews vs. surveys, themes vs. frequencies). It reflects a different relationship between the researcher and the phenomenon under study.
+The same problem shows up along a second dimension. Forty-three of the fifty channels in the corpus are gaming channels. Only a handful are not: Bob Ross's painting channel is the clearest case. A simple random sample of messages would be drawn almost entirely from gaming chat, simply because that is where almost all the messages are. For a study whose central comparison is gaming against non-gaming chat, that is close to fatal. The sample would have plenty of one side of the comparison and almost nothing of the other.
 
-**Quantitative research** typically operates within the social scientific paradigm (Chapter 5): the researcher stands apart from the phenomenon, designs instruments to measure it, and tests hypotheses derived from theory. The goal is explanation and prediction. The researcher's subjectivity is treated as a threat to be minimized.
+This is the trap of simple random sampling on skewed data. It is unbiased and still unrepresentative of the things you care about. It faithfully reproduces the population's imbalance at sample size, when what the study needs is enough of every group to compare them.
 
-**Qualitative research** typically operates within the interpretive paradigm: the researcher engages directly with participants, enters their world, and seeks to understand how they construct meaning. The goal is understanding and interpretation. The researcher's subjectivity is treated as a resource to be made transparent, because interpretation is not a contaminant but the fundamental mode of human understanding.
+## Stratified sampling
 
-Neither approach is inherently superior. They answer different questions, and a complete understanding of any complex phenomenon usually requires both. The student who can only do quantitative work is half a scholar. The student who can only do qualitative work is the other half. This course aims to produce whole scholars.
+The fix is **stratified sampling**. Instead of drawing from the population as one undifferentiated pool, you first divide it into meaningful subgroups, called **strata**, and then draw a sample from within each stratum separately. Every stratum is guaranteed a place in the final sample, in whatever proportion you decide, rather than in whatever proportion the population happens to hand you.
 
-## In-Depth Interviews
+The strata have to be chosen to matter for the research question. For the chat study the natural stratifying variable is the channel. Dividing the population by channel and drawing a fixed number of messages from each guarantees that the small channels appear in the sample at the same strength as the giant ones, which is exactly what a simple random draw would not do. Because gaming and non-gaming status is a property of the channel, stratifying by channel also rescues the study's central comparison: every non-gaming channel is in the sample by construction, not by luck.
 
-### What They Are
+It is worth knowing that the fixture you loaded in Chapter 9 is itself the product of a stratified design. Its fifty channels were not the fifty busiest. Eight were chosen as fixed anchors for pedagogical variety, Bob Ross among them as the deliberate non-gaming case. The other forty-two were drawn by sorting the rest of the population into ten bands by chat volume and sampling from every band, so that the corpus spans the full range from the busiest channels to the quietest rather than just the head of the distribution. The skew did not get sampled away. It got sampled across, on purpose.
 
-An **in-depth interview** is a purposeful conversation between a researcher and a participant, guided by the researcher's questions but shaped by the participant's responses. Unlike survey interviews, which use standardized questions and predetermined response options, qualitative interviews are flexible, exploratory, and responsive to what the participant says.
+One feature of stratified sampling matters when the strata are uneven in size. If you ask for thirty messages per channel but a channel only ever produced nine, there is no way to draw thirty. The sensible rule, and the one the tools here follow, is to take everything that channel has. In the fixture, nineteen of the fifty channels hold fewer than a thousand messages, and a few hold only a handful. For those small strata, a request for a fixed number simply returns all of it. That is the right floor: a stratum contributes its full weight or, if it is too small, its full self.
 
-Brinkmann and Kvale (2015) describe the qualitative interview as a conversation "with a purpose and a structure." The purpose is to understand the participant's perspective on a specific phenomenon. The structure comes from an **interview guide**, a set of questions and prompts that ensures the researcher covers key topics while leaving room for unexpected directions.
+## Drawing the sample
 
-### Types of Interviews
+With the logic settled, the draw itself is one function call. `v2v::sample_messages()` takes the data, the variable to stratify by, and the number to draw from each stratum.
 
-**Semi-structured interviews** use a guide with prepared questions but allow the interviewer to follow up on interesting responses, skip questions that have already been addressed, and explore topics the participant raises spontaneously. This is the most common format in communication research.
+```r
+set.seed(409)
 
-**Unstructured interviews** begin with a single broad question ("Tell me about your experience with...") and follow wherever the participant leads. These produce the richest data but are hardest to analyze systematically.
-
-**Structured interviews** use identical questions in identical order for every participant. These are essentially verbal surveys and sacrifice the depth that makes qualitative interviews valuable.
-
-For most research purposes, the semi-structured format offers the best balance: enough structure to ensure comparability across interviews, enough flexibility to capture what you didn't anticipate.
-
-### Designing an Interview Guide
-
-The interview guide is not a script. It is a map of the territory you want to cover, with the understanding that each conversation will take a different path through that territory.
-
-**Principles of good interview guide design**:
-
-**Start with broad, open-ended questions** before moving to specific ones. "Tell me about your relationship with music" opens more doors than "Do you prefer sad or happy music?"
-
-**Use "how" and "what" questions more than "why" questions.** "Why" can feel interrogative and put participants on the defensive. "How did you come to feel that way?" or "What was that experience like for you?" invites narrative without pressure.
-
-**Prepare follow-up probes** for each main question. Probes are short prompts that encourage elaboration without leading the participant:
-
-- "Can you tell me more about that?"
-- "What do you mean by [term the participant used]?"
-- "Can you give me an example?"
-- "How did that make you feel?"
-
-**Sequence from general to sensitive.** Build rapport with comfortable topics before asking about personal or emotionally charged material.
-
-**Example interview guide: Music and emotional coping**
-
-```markdown
-# Interview Guide: Music and Emotional Coping
-
-## Opening
-- Tell me a bit about yourself and your relationship 
-  with music. How does music fit into your daily life?
-
-## Music Selection
-- When you're feeling stressed or upset, do you turn to 
-  music? If so, can you walk me through what that looks 
-  like?
-- How do you choose what to listen to in those moments?
-- [Probe: Is it a deliberate choice, or more automatic?]
-
-## The Experience
-- Can you describe a specific time when music helped you 
-  through a difficult period? What happened?
-- What was it about that particular music that felt 
-  helpful?
-- [Probe: Was it the lyrics, the sound, the memories 
-  associated with it, or something else?]
-
-## Meaning-Making
-- Some people say they listen to sad music when they're 
-  already sad. Does that resonate with your experience? 
-  Why or why not?
-- [Probe: What do you think you're getting from that 
-  experience?]
-
-## Closing
-- Is there anything about your relationship with music 
-  and emotions that I haven't asked about but you think 
-  is important?
+coding_sample <- v2v::sample_messages(chat, by = channel, n = 30)
 ```
 
-Notice what this guide does: it starts broad (relationship with music), moves to behavior (what do you do when stressed), then to experience (describe a specific time), then to meaning (why do you think this works). The final question invites the participant to raise topics the researcher may have missed.
+The `by = channel` argument makes each channel a stratum. The `n = 30` argument asks for thirty messages from each. With fifty channels that aims at roughly 1,500 messages, a sample large enough to support the study and small enough to code by hand, with the small channels contributing all they have where thirty is more than they hold.
 
-This guide works for music research. But the same structure and principles apply to any qualitative study: interviewing journalists about newsroom decision-making, patients about health information seeking, activists about social media strategy, or employees about organizational communication during a crisis. The content changes; the interview craft does not.
+The first line, `set.seed()`, is not optional, and it is worth being clear about why. Drawing a sample is a random process: run it twice and you get two different samples. `set.seed()` fixes the starting point of R's random number generator, so that the "random" draw comes out identically every time the code is run. Without it, your sample is unreproducible, and an unreproducible sample undermines everything Chapter 2 argued for. Anyone who reruns your analysis, including you in six months, would be working with different messages and could not check your results against the originals. The specific number is arbitrary; 409 has no meaning. What matters is that a number is set and recorded, so the draw is frozen.
 
-### Conducting the Interview
+`coding_sample` now holds the messages the study will code. The sampling half of the chapter is done. The harder question is whether the codebook is ready to code them.
 
-**Rapport** is essential. Participants share more when they feel comfortable, respected, and genuinely listened to. This requires:
+## The pilot test
 
-- Active listening (nodding, brief verbal acknowledgments, maintaining appropriate eye contact)
-- Avoiding judgment (even when participants say things you disagree with)
-- Tolerating silence (pauses often produce the most thoughtful responses; resist the urge to fill every gap)
-- Following the participant's lead while gently steering back to relevant topics
+You finalized the codebook in Chapter 9, and Chapter 9 was careful about the word. It finalized the codebook's status, not its content. The reason for that hedge is the **pilot test**, and this is where it comes due.
 
-**Recording and transcription**: With participant permission, record interviews. Transcribe them verbatim afterward. Transcription is tedious but essential; it produces the text you'll analyze. Note pauses, laughter, and emphasis in your transcript, as these carry meaning.
+A pilot test is a trial run of the codebook before the real coding begins. A subset of the sample, a hundred messages is a reasonable size, is coded not by one person but by two, working from the same codebook. Then their codes are compared. The question the comparison answers is the one that decides whether the codebook is an instrument or just a document: when two people apply these rules independently, do they produce the same classifications?
 
-**Ethical obligations**: Informed consent is mandatory (Chapter 8). Participants must know the interview is for research, understand how their data will be used, and be free to decline any question or withdraw entirely. Confidentiality means using pseudonyms and removing identifying details from transcripts and published reports.
+That word, independently, carries the whole logic. The two coders must work in genuine isolation, no conferring, no comparing notes, no checking each other as they go. The reason is not suspicion. It is that the pilot is measuring the codebook, not the coders. If the two of them discuss a hard message and agree on how to code it, their later agreement on similar messages measures their memory of that conversation, not the clarity of the codebook. Only independent coding tests what the study actually needs to know, which is whether the written rules are clear enough to carry a classification on their own, without their author standing beside the coder to interpret them.
 
-### How Many Interviews?
+Chapter 8 introduced the idea of **reliability** and promised that the way to measure it would come later. This is later. Reliability is consistency, the property that the codebook produces the same answer regardless of who is holding it, and the pilot test is how reliability stops being a hope and becomes a number.
 
-Qualitative research does not require large samples. The goal is depth, not breadth. Seidman (2019) suggests that most interview studies reach saturation, the point where new interviews produce no new themes, between 12 and 25 participants. For a graduate thesis, 15-20 interviews is typical. For an undergraduate project, 8-12 may be sufficient if participants are well-chosen.
+## Why raw agreement is not enough
 
-The key is **purposive sampling** (Chapter 11): selecting participants who can speak knowledgeably about the phenomenon you're studying, not random members of a population.
+The obvious way to turn the pilot into a number is to count how often the two coders matched. If they agreed on the code for 74 of the 100 pilot messages, that is 74 percent agreement, and 74 percent sounds respectable.
 
-## Focus Groups
+It is also misleading, and seeing why is the key idea of the chapter. Some agreement between two coders happens for no good reason at all. It happens by luck.
 
-### What They Are
+Cohen's 1960 paper that introduced the standard fix made the point with a sharp example. Imagine two clinicians independently sorting patients into two categories, and suppose each one, rather than examining anyone, simply assigns the categories blindly at the rates the categories happen to occur. The two of them, coordinating on nothing, would still agree a large share of the time, purely because there are only so many categories to land on. Agreement produced that way is worth nothing. It reflects the number of categories and how often each is used, not the soundness of any judgment.
 
-A **focus group** brings together 6-10 participants for a guided discussion about a specific topic. The researcher serves as a **moderator**, posing questions and managing the conversation, but the data come primarily from the interaction among participants.
+Raw agreement cannot tell that empty agreement apart from the real kind. It counts every match the same, the ones that reflect a clear shared rule and the ones that are coincidence. When the categories are few, or one category is far more common than the others, the coincidental matches pile up fast, and raw agreement drifts upward on their strength. A figure of 74 percent might reflect a genuinely clear codebook. It might also be mostly luck. The number alone does not say.
 
-Focus groups reveal things that individual interviews cannot. When participants respond to each other's statements, they negotiate meaning collectively. Agreements emerge. Disagreements surface. Social norms become visible. A participant might say something in a group that they wouldn't say one-on-one, because another participant's comment triggered a memory or gave them permission to share.
+What you need is a measure that starts from the agreement actually observed, estimates how much agreement chance alone would have produced, and credits the codebook only with the difference. That is what a reliability statistic does.
 
-### When Focus Groups Work Best
+## Cohen's kappa and Krippendorff's alpha
 
-**Social phenomena**: When the topic involves shared meaning, group norms, or collective experience. How do fans of a genre talk about authenticity when they're with other fans? How do newsroom colleagues collectively decide what counts as "newsworthy"?
+Two such statistics cover most of content analysis, and the `v2v::reliability()` function computes either one, selected by its `method` argument.
 
-**Norm exploration**: When you want to understand what people consider acceptable, expected, or taboo in a given context. A focus group of music listeners might reveal unspoken rules about what genres are "okay" to admit liking in public.
+**Cohen's kappa** is the first, introduced in the 1960 paper just mentioned (Cohen, 1960). It is built for the common case: two coders, applying a nominal codebook. Its logic is exactly the correction described above. Conceptually, kappa is the observed agreement minus the agreement expected by chance, divided by the room for improvement that chance left on the table:
 
-**Idea generation**: When you want to explore a topic broadly before designing a more focused study. Focus groups are excellent for identifying dimensions you hadn't considered.
+```
+kappa = (observed agreement - expected agreement) / (1 - expected agreement)
+```
 
-### When Focus Groups Don't Work
+When the coders do no better than chance, the numerator is zero and kappa is zero, whatever the raw agreement looked like. When they agree perfectly, kappa is one. A codebook is credited only for the agreement it produced beyond luck.
 
-**Sensitive topics**: Participants may not share personal experiences (mental health struggles, relationship problems, financial difficulties) in front of strangers.
+**Krippendorff's alpha** is the second, and it is the more general instrument (Krippendorff, 2018). Where Cohen's kappa assumes exactly two coders and nominal categories, alpha accommodates any number of coders, any level of measurement from nominal to ratio, and datasets with missing codes. For a study with three coders, or one whose central variable is ordinal, alpha is the appropriate choice; for the standard two-coder nominal pilot, kappa and alpha will tell much the same story, and kappa is the more familiar choice for that case. `v2v::reliability(coder_a, coder_b, method = "alpha")` computes alpha; `method = "kappa"` computes kappa.
 
-**Power dynamics**: If the group includes people with unequal status (a supervisor and subordinates, a professor and students), lower-status participants may self-censor.
+Either way the result is a number between roughly zero and one, and a number needs a standard to be read against. The most cited one comes from Landis and Koch (1977), who attached descriptive labels to ranges of agreement: values around 0.0 to 0.2 they called slight, 0.2 to 0.4 fair, 0.4 to 0.6 moderate, 0.6 to 0.8 substantial, and above 0.8 almost perfect. Those labels are a vocabulary, not a law, and published content analysis tends to apply a stricter working rule: a reliability coefficient below about 0.70 is generally treated as too low to proceed on, with 0.80 a more comfortable floor. The exact threshold is a judgment call that depends on the stakes of the study. The principle is not: a codebook that cannot clear a defensible threshold is not ready to be used.
 
-**Dominant personalities**: One or two participants can dominate the conversation, silencing others. Good moderators manage this, but it's an inherent risk.
+## A worked reliability check
 
-### Moderator Skills
+To see what a failed check looks like, and why codebooks fail it, consider a deliberately stark example.
 
-The moderator's role is to facilitate, not to lead. This means:
+Imagine the codebook included a loosely worded variable. It asked coders to flag the pilot's "high-energy" messages, the pure expressive reactions, but it never pinned down what that meant in operational terms. Two conscientious coders, each trying to apply the instruction, each settle on a concrete rule of their own. Coder A decides a high-energy message is one carrying a Twitch emote, a token like LULW or KEKW, and flags messages on that basis. Coder B decides a high-energy message is one that shouts, and flags every message containing a word in all capitals. Both rules are reasonable readings of "high-energy." Both coders believe they are coding the same variable.
 
-- Posing questions and then stepping back
-- Ensuring all participants contribute (gently inviting quieter members: "We haven't heard from you yet, [name]. What's your perspective?")
-- Managing dominant speakers without embarrassing them
-- Following up on interesting exchanges between participants
-- Keeping the discussion focused without being rigid
+They code the first hundred messages of the sample independently, and their codes go into `v2v::reliability()`:
 
-## Thematic Analysis
+```r
+v2v::reliability(pilot$coder_a, pilot$coder_b, method = "kappa")
+```
 
-Once you have interview or focus group data (transcripts), you need a systematic method for analyzing them. **Thematic analysis**, as articulated by Virginia Braun and Victoria Clarke (2006), is the most widely used and most accessible approach.
+```
+Inter-coder reliability: Cohen's kappa
 
-Thematic analysis identifies, organizes, and reports patterns (themes) across qualitative data. It is not tied to any particular theoretical framework, making it flexible enough for use across paradigms. You can use it inductively (letting themes emerge from the data) or deductively (using pre-existing theory to guide what you look for).
+  Messages coded   100
+  Cohen's kappa    0.236
+```
 
-### The Six Phases
+The two coders agreed on 74 of the 100 messages, the same 74 percent that looked respectable a few pages ago. But chance alone, given how often each coder flagged a message, would have produced agreement on about two-thirds of them. Run that through the formula, observed agreement of 0.74 against expected agreement of about 0.66, and the result is roughly 0.24. The function reports it as 0.236.
 
-Braun and Clarke's (2006) framework proceeds through six phases. These are not strictly linear; you will move back and forth between phases as your understanding develops.
+By the Landis and Koch labels, 0.236 is fair agreement. By any working threshold for publishable content analysis, it is a failure, far below 0.70. And the diagnosis is exact. The raw agreement of 74 percent was almost all coincidence. Emote-bearing messages and all-caps messages overlap a fair amount in Twitch chat, enough that two coders keying on those different features would land on the same answer often, without ever coding the same concept. The loose codebook let two careful people measure two different things while believing they measured one. That is what kappa exposed and raw agreement concealed.
 
-**Phase 1: Familiarization**
+## When reliability fails: revising the codebook
 
-Read and re-read your transcripts. Listen to the recordings again. Note initial impressions. This is the qualitative equivalent of the immersion you will practice in [Chapter 13](chapter13.qmd), but with interview data rather than media content.
+A kappa of 0.236 is not a result to report. It is an instruction, and the instruction is to stop and fix the codebook before any real coding happens.
 
-**Phase 2: Generating Initial Codes**
+The fix begins with diagnosis. The two coders, who until now have worked in isolation, finally meet and go through the messages they classified differently, one by one. The disagreements are the data. They show precisely where the codebook ran out of guidance: a category whose boundary is fuzzy, a kind of message the rules never anticipated, a term that two readers can take two ways. In the worked example the diagnosis is plain, because the variable was never operationally defined at all. The repair is to define it: state in the codebook exactly what counts as a high-energy message, with the kind of explicit decision rules Chapter 8 built for the message-target variable, so that two coders are no longer free to invent their own.
 
-Codes are labels applied to meaningful segments of text. A code captures what a segment is *about* at its most basic level.
+Then the codebook, now revised, is piloted again. New coders or the same coders, a fresh subset of messages, another independent coding, another reliability coefficient. The cycle, pilot, diagnose, revise, repeat, continues until the coefficient clears the threshold. Only then does full coding of the sample begin.
 
-**Example**: In an interview about music and emotional coping, a participant says: "When I'm really stressed, I put on my headphones and just disappear into the music. It's like the outside world stops existing for a while."
+This is why Chapter 9 finalized only the codebook's status and not its content. A codebook is a living instrument right up until a pilot test certifies it, and a pilot test has the standing to send it back for revision however many times that takes. The discipline is to treat a low reliability coefficient as useful news rather than an obstacle. It has told you, before you invested weeks in coding, that the instrument was not yet sound. That is the pilot test working exactly as intended.
 
-Possible codes: *escape*, *stress relief*, *immersion*, *headphone use as boundary*, *music as retreat from reality*.
+## Looking ahead
 
-Code systematically across all transcripts. Multiple codes can apply to the same segment. At this phase, code generously; you'll refine later.
+You now have a sample drawn and, once it has cleared its pilot, a codebook trusted to classify it. What you do not yet have is data in a form ready for analysis. The chat and stream tables are still separate, the timestamps are still unreadable integers, and the variables the study needs, message length and the gaming context of each message, do not yet exist as columns. Chapter 11 takes that on. It is the wrangling chapter: the one where the raw tables are reshaped, joined, and cleaned into the single tidy dataset every later analysis depends on.
 
-**Phase 3: Searching for Themes**
 
-Themes are broader patterns that organize multiple codes. Review all your codes and ask: What groups together? What patterns emerge?
+::: {.content-visible when-profile="grad"}
+::: {.callout-note title="Graduate Extension" collapse="true"}
+**The conversation between your prospectus and your sample.** The undergrad edition teaches sampling as a practical tradeoff: you cannot code everything, so you apply stratified sampling rules that capture the variation in your dataset. The graduate edition adds a second constraint: your sample must also be large enough to detect the effect you expect with adequate power.
 
-**Example**: The codes *escape*, *music as retreat from reality*, *shutting out the world*, and *headphone use as boundary* might cluster into a theme: **"Music as psychological escape."**
+Your prospectus power analysis (Chapter 6) specified a minimum *n* at your chosen effect size and power level. Chapter 10 is where that number meets the realities of your dataset. If your power analysis requires 128 coded units and your platform generates 10,000 units in your collection window, stratified sampling solves the problem. If your platform generates only 80 units, you face a constraint: the study is underpowered, and you must either change the design (longer collection window, multiple platforms, or a revised research question targeting a larger expected effect) or explicitly justify the limitation in the prospectus.
 
-Other themes might include **"Music as emotional mirror"** (listening to content that matches current mood) and **"Music as identity anchor"** (using music to maintain a sense of self during difficult times).
+**Purposive sampling does not fix inadequate power.** A common misconception is that purposive sampling — selecting "most relevant" units — compensates for a small *n*. It does not. Purposive sampling improves construct validity; it has no effect on statistical power. The two concerns address different inferential problems, and conflating them produces a study that is internally coherent but statistically indefensible.
 
-**Phase 4: Reviewing Themes**
+**Required reading.** Lakens, D. (2022). Sample size justification. *Collabra: Psychology*, *8*(1), 33267. https://doi.org/10.1525/collabra.33267
 
-Check your themes against the data. Do they accurately capture the coded segments? Are there themes that lack sufficient supporting data? Are there themes that should be split or combined?
-
-Read through each theme's coded segments and ask: Does this theme tell a coherent story? Does every coded segment genuinely belong here?
-
-**Phase 5: Defining and Naming Themes**
-
-Write a brief definition of each theme. A good theme name captures the essence of what the data reveal.
-
-**Weak theme name**: "Music and feelings"
-
-**Strong theme name**: "Music as psychological escape: using sound to create boundaries between self and stressor"
-
-Each theme should have a clear scope: what it includes and what it doesn't. If you can't articulate the boundaries, the theme is too vague.
-
-**Phase 6: Writing Up**
-
-The final phase integrates themes into a coherent narrative, supported by illustrative quotations from participants. The write-up is not a list of themes; it is an argument about what the data reveal, organized thematically and supported by evidence from participants' own words.
-
-### Thematic Analysis vs. Content Analysis
-
-Students sometimes confuse thematic analysis with content analysis. They are related but distinct:
-
-**Content analysis** (Chapters 13-16) is typically quantitative: you develop categories in advance, train coders, code systematically, and count frequencies. The output is numerical: "42% of songs contained negative sentiment."
-
-**Thematic analysis** (Braun & Clarke, 2006) is qualitative: you develop themes from the data itself, through iterative reading and coding. The output is interpretive: "Participants described three distinct ways of using music to cope with stress: escape, emotional mirroring, and identity anchoring."
-
-The immersion and memo-writing practices you will learn in [Chapter 13](chapter13.qmd) are more closely aligned with thematic analysis than with quantitative content analysis, which is one reason this chapter precedes the immersion chapter. A researcher trained in both traditions recognizes that immersion, coding, and pattern recognition are shared practices; the difference lies in whether the output is numerical or interpretive.
-
-## Other Qualitative Approaches
-
-Thematic analysis is the most common approach, but it is not the only one. Several other qualitative traditions deserve brief mention for methodological literacy.
-
-### Ethnography
-
-**Ethnography** involves prolonged immersion in a community or setting, with the researcher participating in and observing the activities of the group being studied. The researcher becomes an instrument, using sustained presence to develop deep understanding of cultural practices, norms, and meanings.
-
-**Application**: A researcher studying a hip-hop community might spend months attending open mic nights, producing tracks with local artists, and participating in online forums, gradually building the trust and understanding necessary to describe the community's values, hierarchies, and creative processes from an insider perspective.
-
-**Strength**: Unparalleled depth and contextual understanding.
-**Limitation**: Time-intensive (months to years), difficult to replicate, and the researcher's presence may alter the community being studied.
-
-### Narrative Analysis
-
-**Narrative analysis** treats stories as the primary unit of analysis. Rather than breaking data into coded fragments, it examines complete narratives for structure, plot, characters, and meaning-making.
-
-**Application**: A researcher might analyze how musicians narrate their career trajectories in long-form interviews, examining how they construct identity through the stories they tell about creative breakthroughs, setbacks, and turning points.
-
-**Strength**: Preserves the coherence of participants' meaning-making, which coding into fragments can destroy.
-**Limitation**: Labor-intensive analysis; findings are difficult to summarize without losing the narrative richness.
-
-### Discourse Analysis
-
-**Discourse analysis** examines how language constructs social reality. It goes beyond what people say to analyze *how* they say it: what rhetorical strategies they use, what assumptions their language carries, and what power relations their speech reproduces or challenges.
-
-**Application**: A researcher might analyze how music critics construct hierarchies of taste through their language, examining how words like "authentic," "accessible," "derivative," and "challenging" function to police genre boundaries and maintain cultural capital.
-
-**Strength**: Reveals taken-for-granted assumptions and power dynamics embedded in language.
-**Limitation**: Highly interpretive; findings depend heavily on the analyst's theoretical perspective.
-
-## Quality Criteria for Qualitative Research
-
-Quantitative research is evaluated by reliability (consistency) and validity (accuracy). These criteria don't translate directly to qualitative research, which operates under different assumptions about the nature of knowledge.
-
-The most widely used alternative framework comes from Lincoln and Guba, who proposed four criteria for evaluating qualitative research quality:
-
-### Credibility (Parallel to Internal Validity)
-
-Are the findings plausible and well-supported? Strategies for establishing credibility include:
-
-- **Prolonged engagement**: Spending sufficient time with the data or in the field to develop deep understanding
-- **Triangulation**: Using multiple data sources, methods, or researchers to cross-check findings
-- **Member checking**: Sharing findings with participants to verify that the researcher's interpretations resonate with their experience
-- **Peer debriefing**: Discussing emerging findings with a colleague who can challenge assumptions
-
-### Transferability (Parallel to External Validity)
-
-Can the findings apply in other contexts? Qualitative research doesn't claim statistical generalizability, but it can claim **transferability**: the reader, not the researcher, decides whether the findings apply to their context. To enable this judgment, the researcher must provide **thick description**, enough contextual detail that readers can assess similarity between the study's context and their own.
-
-### Dependability (Parallel to Reliability)
-
-Would the findings be consistent if the study were repeated? Since qualitative research is inherently interpretive, perfect replication is impossible. But the process should be systematic and documented. An **audit trail**, detailed records of methodological decisions, coding evolution, and analytical reasoning, allows others to evaluate whether the process was rigorous.
-
-### Confirmability (Parallel to Objectivity)
-
-Are the findings shaped by the data rather than by the researcher's biases? Complete objectivity is impossible in qualitative research (and arguably in all research), but confirmability asks whether the researcher has made their assumptions and interpretive lens transparent. The reflexivity memo in [Chapter 13's](chapter13.qmd) Graduate Extension provides a structured exercise for developing this transparency.
-
-## Qualitative Data Management
-
-### Transcription
-
-Audio recordings must be converted to text before analysis. Full verbatim transcription (including false starts, pauses, and filler words) is standard for most qualitative research. Mark significant non-verbal cues:
-
-- [laughs], [sighs], [long pause], [voice breaks]
-- Emphasis: "I was *so* angry" (italicize emphasized words)
-
-Transcription is time-consuming: expect 4-6 hours of transcription for every hour of interview. Automated transcription tools (Otter.ai, Rev, Whisper) can produce rough drafts, but human review and correction are essential for research-quality transcripts.
-
-### Organizing Qualitative Data
-
-Just as content analysis data need organized coding sheets, qualitative data need organized management:
-
-**Obsidian** can serve as a lightweight qualitative data management tool:
-
-- Create a note for each interview transcript
-- Use tags to mark preliminary codes (#escape, #identity, #catharsis)
-- Use links to connect coded segments across interviews
-- Maintain a separate "Codebook" note that tracks the evolution of your codes and themes
-
-**Dedicated qualitative analysis software** (NVivo, Atlas.ti, MAXQDA) provides more sophisticated tools: graphical coding, query functions, and visual models. These are valuable for larger projects but may be unnecessary for small interview studies.
-
-## When to Use Qualitative Methods
-
-Return to the decision framework from Chapter 9:
-
-**Use qualitative methods when your question asks about meaning, experience, or process**:
-
-- "How do fans experience parasocial breakups when their favorite artist is 'canceled'?"
-- "What is the experience of being a music journalist covering artists you personally admire?"
-- "How do listeners construct the meaning of 'authenticity' in country music?"
-- "What processes do newsroom editors use to decide which stories deserve front-page placement?"
-
-**Use qualitative methods when you're exploring a new phenomenon where theory is thin**:
-
-- If no prior research has examined your topic, qualitative methods help you map the terrain before you can design quantitative measurement.
-
-**Use qualitative methods when you want to complement quantitative findings**:
-
-- Your content analysis shows negative lyrics chart higher. Interviews with listeners could explain why.
-- Your survey shows parasocial attachment predicts purchase behavior. Focus groups could reveal the psychological mechanisms.
-
-**Don't use qualitative methods when you need to**:
-
-- Generalize to a large population (use surveys)
-- Establish causation (use experiments)
-- Describe the prevalence of content features (use content analysis)
-- Produce numerical data for statistical testing (use quantitative methods)
-
-The methods are not in competition. They answer different questions, and the strongest research programs use multiple methods across studies.
-
----
-
-## Practice: Qualitative Research Skills
-
-### Exercise 10.1: Designing an Interview Guide
-
-Choose a research topic (music-related or otherwise). Design a semi-structured interview guide with:
-
-1. An opening question that builds rapport
-2. Four main questions that address your research interest
-3. At least two follow-up probes for each main question
-4. A closing question that invites the participant to add anything you missed
-
-**Goal**: Practice writing questions that are open-ended, non-leading, and sequenced from general to specific.
-
----
-
-### Exercise 10.2: Practicing Thematic Analysis
-
-Read the following three interview excerpts from a hypothetical study about music and stress:
-
-**Participant A**: "When I'm really overwhelmed, I put on my headphones and just disappear. It's like the world goes away for a while. I don't even really listen to the words; it's more about the feeling of being wrapped up in sound."
-
-**Participant B**: "I always go to sad music when I'm upset. It sounds weird, but it makes me feel less alone. Like, someone else felt this too, and they made something beautiful out of it."
-
-**Participant C**: "For me it's about control. Everything in my life feels chaotic, but when I make a playlist, I'm choosing exactly what I hear. That feels powerful."
-
-**Tasks**:
-
-1. Generate 2-3 codes for each excerpt.
-2. Look across your codes. Do any cluster into a potential theme?
-3. Write a one-sentence theme statement that captures a pattern you see across two or more excerpts.
-4. Identify one follow-up question you would want to ask each participant based on what they said.
-
----
-
-### Exercise 10.3: Evaluating Qualitative Research
-
-Find a published qualitative study in a communication journal. Evaluate it using Lincoln and Guba's four criteria:
-
-1. **Credibility**: Did the researcher use prolonged engagement, triangulation, member checking, or peer debriefing?
-2. **Transferability**: Is there enough thick description for you to judge whether findings apply to other contexts?
-3. **Dependability**: Is the analytical process documented clearly enough that you could follow the researcher's reasoning?
-4. **Confirmability**: Does the researcher acknowledge their positionality and interpretive lens?
-
-Write a 200-word evaluation.
-
----
-
-### Exercise 10.4: Qualitative Complements to Quantitative Findings
-
-Consider the following hypothetical content analysis finding: "Songs that reference mental health topics have increased from 8% to 24% of Billboard Hot 100 hits between 2015 and 2024."
-
-Design a qualitative study that would complement this finding:
-
-1. What research question would you ask?
-2. Would you use interviews, focus groups, or both? Why?
-3. Who would your participants be? (Songwriters? Listeners? Music industry professionals?)
-4. What would qualitative data tell you that the content analysis cannot?
-
----
-
-## Reflection Questions
-
-1. **The Depth-Breadth Tradeoff**: Qualitative research sacrifices breadth (large samples, statistical generalization) for depth (rich understanding, contextualized meaning). When is this tradeoff worthwhile? When is it not?
-
-2. **Subjectivity as Resource**: This chapter argues that in qualitative research, the researcher's subjectivity is a resource rather than a threat. Do you find this persuasive? What are the risks of embracing subjectivity, and how do quality criteria (credibility, confirmability) address those risks?
-
-3. **Methods and Questions**: Think about your research interest for this course. Is there a qualitative question lurking behind your quantitative project? If you could add an interview component, what would you ask, and who would you ask?
-
-4. **Paradigm Pluralism**: Chapter 5 introduced three paradigms (social scientific, interpretive, critical). This chapter operates primarily within the interpretive paradigm. Can you identify points where the critical paradigm would push qualitative research in a different direction, toward advocacy, power analysis, or social change?
-
----
-
-## Chapter Summary
-
-This chapter introduced qualitative research methods as standalone approaches to knowledge production:
-
-- Qualitative research asks questions about **meaning, experience, and process** that quantitative methods cannot answer.
-- **In-depth interviews** use semi-structured conversation to explore participants' perspectives. Interview guides provide structure without rigidity. Rapport, active listening, and ethical sensitivity are essential skills (Brinkmann & Kvale, 2015; Seidman, 2019).
-- **Focus groups** use group interaction as data, revealing shared meanings, social norms, and collective sense-making that individual interviews may miss.
-- **Thematic analysis** (Braun & Clarke, 2006) provides a systematic six-phase process for identifying patterns in qualitative data: familiarization, coding, searching for themes, reviewing, defining, and writing up.
-- **Other approaches** (ethnography, narrative analysis, discourse analysis) offer specialized tools for specific research contexts.
-- **Quality criteria** for qualitative research (credibility, transferability, dependability, confirmability) parallel but differ from quantitative reliability and validity. They emphasize transparency, thick description, and reflexivity rather than replicability and statistical significance.
-- **Qualitative and quantitative methods are complementary**, not competing. The strongest research programs use both, and methodological literacy requires the ability to evaluate research from traditions other than your own.
-
----
-
-## Key Terms
-
-- **Audit trail**: Documentation of methodological decisions and analytical reasoning for transparency
-- **Braun and Clarke's thematic analysis**: Six-phase qualitative analysis method for identifying patterns across data (Braun & Clarke, 2006)
-- **Confirmability**: Quality criterion asking whether findings reflect data rather than researcher bias
-- **Credibility**: Quality criterion asking whether findings are plausible and well-supported
-- **Dependability**: Quality criterion asking whether the research process is systematic and documented
-- **Discourse analysis**: Examination of how language constructs social reality and reproduces power relations
-- **Ethnography**: Prolonged immersion in a community to understand cultural practices and meanings
-- **Focus group**: Guided group discussion used to explore shared meanings and social dynamics
-- **In-depth interview**: Purposeful conversation between researcher and participant, guided by an interview guide
-- **Interview guide**: Set of questions and prompts structuring a semi-structured interview
-- **Member checking**: Sharing findings with participants to verify interpretive accuracy
-- **Narrative analysis**: Analysis of complete stories as units of meaning-making
-- **Probe**: Follow-up prompt encouraging participant elaboration
-- **Purposive sampling**: Selecting participants based on specific criteria relevant to the research question
-- **Saturation**: Point where new data produce no new themes or insights
-- **Semi-structured interview**: Interview using a guide with prepared questions but allowing flexible follow-up
-- **Thick description**: Rich contextual detail enabling readers to assess transferability
-- **Transferability**: Quality criterion asking whether findings may apply in other contexts
-- **Triangulation**: Using multiple data sources, methods, or researchers to cross-check findings
-
----
-
+**Reflect.** (1) For your study, identify the minimum *n* from your Chapter 6 power analysis and the maximum *n* available from your dataset. If they conflict, document the conflict and propose one design modification that resolves it. (2) What is the ethical implication of publishing a study you know is underpowered because adequate data were unavailable? How should the limitations section handle this?
+:::
+:::
 ## References
 
-Braun, V., & Clarke, V. (2006). Using thematic analysis in psychology. *Qualitative Research in Psychology*, *3*(2), 77-101. https://doi.org/10.1191/1478088706qp063oa
+Cohen, J. (1960). A coefficient of agreement for nominal scales. _Educational and Psychological Measurement_, _20_(1), 37-46. https://doi.org/10.1177/001316446002000104
 
-Brinkmann, S., & Kvale, S. (2015). *InterViews: Learning the craft of qualitative research interviewing* (3rd ed.). Sage.
+Krippendorff, K. (2018). _Content analysis: An introduction to its methodology_ (4th ed.). SAGE Publications.
 
-Creswell, J. W., & Creswell, J. D. (2023). *Research design: Qualitative, quantitative, and mixed methods approaches* (6th ed.). Sage.
-
-Seidman, I. (2019). *Interviewing as qualitative research: A guide for researchers in education and the social sciences* (5th ed.). Teachers College Press.
-
----
-
-::: {.callout-note title="Graduate Extension" collapse="true"}
-
-**Required Reading**: Braun, V., & Clarke, V. (2006). Using thematic analysis in psychology. *Qualitative Research in Psychology*, *3*(2), 77-101. https://doi.org/10.1191/1478088706qp063oa
-
-**Prompt**: Braun and Clarke's 2006 article has become one of the most cited methods papers in the social sciences, in part because it provides an accessible, step-by-step guide to thematic analysis, and in part because it makes explicit what many qualitative researchers do implicitly. Their framework raises important questions about the relationship between data and theory, between description and interpretation, and between realist and constructionist epistemologies.
-
-1. Braun and Clarke distinguish between **semantic themes** (surface-level patterns in what participants say) and **latent themes** (underlying assumptions, ideologies, or conceptualizations that shape what participants say). How does this distinction parallel the manifest/latent content distinction in content analysis (Chapter 13)? When would you choose semantic over latent analysis, and vice versa?
-
-2. The authors argue that thematic analysis is "theoretically flexible," meaning it can be used within different epistemological frameworks (realist, constructionist, critical). Choose two of these frameworks and explain how the same dataset (e.g., interview transcripts about music and identity) would produce different themes depending on which framework guided the analysis.
-
-3. Conduct a mini thematic analysis. Select five songs from the course dataset. Read their lyrics as if they were interview transcripts (this is a thought experiment, not a literal claim that lyrics are equivalent to interview data). Apply Phases 1-3 of Braun and Clarke's process: familiarize yourself with the texts, generate initial codes, and search for themes. Document your process in Obsidian, including: a list of codes, the segments each code applies to, and at least two candidate themes with supporting evidence.
-
-4. Braun and Clarke have continued to develop their framework since 2006, publishing clarifications and critiques of how their work has been applied (and misapplied). One common misapplication is treating themes as pre-existing entities that "emerge" from the data, as if the researcher is a passive observer. Braun and Clarke argue instead that themes are *actively constructed* by the researcher through analytical work. What is the difference between these two positions, and why does it matter for how you report your findings?
-
-:::
-
----
-
-## Looking Ahead
-
-[Chapter 11: Designing Surveys](chapter11.qmd) introduces survey research as a method for measuring attitudes, beliefs, and behaviors at scale. You'll learn questionnaire design, sampling theory (which applies directly to the content analysis sampling you'll do later in [Chapter 16](chapter16.qmd)), and how to evaluate published survey research. Then [Chapter 12: Designing Experiments](chapter12.qmd) covers the logic of causal inference. Together, Chapters 10, 11, and 12 complete your methodological literacy across the four major approaches. Beginning with [Chapter 13: Music Immersion](chapter13.qmd), the book shifts to execution: the hands-on content analysis sequence where the qualitative skills you learned in this chapter, especially immersion, memo-writing, and thematic pattern recognition, become the foundation for systematic coding.
+Landis, J. R., & Koch, G. G. (1977). The measurement of observer agreement for categorical data. _Biometrics_, _33_(1), 159-174. https://doi.org/10.2307/2529310

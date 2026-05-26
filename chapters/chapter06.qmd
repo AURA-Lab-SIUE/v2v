@@ -1,547 +1,199 @@
 ---
-title: "Chapter 6: The Roadmap"
+title: "Chapter 6: The Prospectus"
 ---
 
-## Learning Objectives
+![](../images/ch06-blueprint_3.jpg){fig-alt="A stylized rendering of an architectural blueprint."}
 
-- Synthesize literature review, theory, and research question into a coherent project plan
-- Recognize and avoid scope creep by narrowing focus systematically
-- Align topic, theory, and data source into a viable research design
-- Write a one-page research prospectus that defends the project's feasibility
-- Distinguish between exploratory, descriptive, and explanatory research goals
+There is a particular kind of paralysis that strikes partway through a research project. You have read thirty articles. You have notes scattered across several documents. You have identified a few interesting theories and several possible research questions. You can see connections everywhere, and the project feels simultaneously too small, just one study, and too large, impossible to finish.
 
----
+The problem is not a lack of ideas. It is a lack of focus. The difficult choices that turn a cloud of possibilities into a concrete plan have not been made yet.
 
-![Architectural blueprint representing research planning](../images/ch06-blueprint_3.jpg){fig-alt="Architectural blueprint representing research planning"}
+A **research prospectus** forces those choices. It is a short document, roughly one page, that states what you are studying, why it matters, and how you will do it. By the end of this chapter you will be able to write one. The prospectus is not busywork. It is a diagnostic. If you cannot articulate your project clearly on a single page, you do not yet understand it well enough to begin. And the single hardest element to get right, the element the rest of the prospectus is built around, is the research question.
 
+## The research question
 
+The hardest part of research is not analyzing data or writing the final report. It is asking the right question. Most students can learn to run a statistical test or code content systematically with practice. What is harder is the intellectual work that precedes analysis: formulating a question that is specific enough to answer, broad enough to matter, and grounded enough in existing knowledge to avoid reinventing the wheel.
 
-There's a particular kind of paralysis that strikes halfway through a research project. You've read thirty articles. You have notes scattered across multiple documents. You've identified three interesting theories and five possible research questions. You can see connections everywhere, and the project feels simultaneously too small (just one study?) and too large (how will I ever finish this?).
+Consider two questions. Question A: "How does livestreaming affect people?" Question B: "Does the rate of chat messages per viewer differ between gaming and non-gaming streams?" Question A is a career-spanning research program disguised as a single question. It is so broad that it is essentially unanswerable within any realistic scope. Question B is researchable. It specifies what will be measured, what will be compared, and what evidence would answer it. You can design a study around it, and you can know when you are done. The craft of research question formulation is the craft of getting from A to B.
 
-The problem isn't lack of ideas. It's lack of focus. You haven't made the difficult choices that transform a cloud of possibilities into a concrete plan.
+A strong research question meets five criteria.
 
-This is what a research prospectus forces: clarity through constraint. By the end of this chapter, you'll distill everything you've gathered, curiosity, sources, theoretical frameworks, into a single page that answers three questions: *What are you studying? Why does it matter? How will you do it?*
+**It is specific.** Weak questions use vague language that could mean different things to different people. "How does social media influence politics?" leaves "influence," "social media," and "politics" all undefined. A stronger version names the platform, specifies the outcome, and bounds the population.
 
-The prospectus isn't busywork. It's a diagnostic tool. If you can't articulate your project clearly on one page, you don't yet understand it well enough to begin.
+**It is measurable.** Some questions use concepts that resist **operationalization**, the translation of an abstract idea into a concrete, observable variable. "Do authentic streamers build better communities?" cannot be studied until "authentic" and "better" are operationalized into something you can actually observe and record.
 
-## The Enemy: Scope Creep
+**It is answerable within your constraints.** Some questions are sound in principle but impossible given your resources, timeline, or skills. A study requiring decades of data, or interviews with hundreds of participants, is not a semester project no matter how good the question.
 
-The greatest threat to student research is what we might call the "Everything Study." It announces itself in phrases like:
+**It is not already definitively answered.** Your literature review from Chapter 4 should reveal whether your question is genuinely open. If a relationship has been tested dozens of times with consistent results, asking it again without a new angle, a new population, a new moderator, contributes little.
 
-- "I want to study the effect of social media on society."
-- "I'm interested in how music shapes identity."
-- "I'm going to analyze streaming platforms."
+**It matters.** The question should have intellectual or practical significance: it should contribute to theory, resolve a contradiction, or have applied value. "Do streams that start on Tuesdays draw more viewers than streams that start on Thursdays?" might be answerable, but even a clear answer would be trivia rather than insight.
 
-These aren't research projects. They're career-spanning programs that would occupy teams of scholars for decades. They're the academic equivalent of saying, "I'm going to fix climate change" when what you need is a specific, achievable intervention.
+A template helps produce questions that meet these criteria: some combination of *does there exist*, plus a *specific variable or concept*, plus a *relationship, pattern, or difference*, plus a *bounded population or context*, plus, where relevant, the *confounds being accounted for*. "Is there a relationship between stream category and chat message rate among channels in the Twitch working corpus?" is built from exactly those parts.
 
-**Scope creep** happens when:
+## Narrowing: scope creep and the funnel
 
-- You try to answer too many questions simultaneously
-- You invoke multiple theories that pull in different directions
-- You attempt to analyze datasets too large or complex for a semester timeline
-- You keep adding "just one more thing" to the study
+The greatest threat to student research is the Everything Study. It announces itself in phrases like "I want to study the effect of social media on society" or "I am going to analyze streaming platforms." These are not research projects. They are career-spanning programs that would occupy teams of scholars for decades.
 
-The solution is what we might call the Narrow Path: drilling down relentlessly until your project fits within the constraints of time, resources, and skill you actually have.
+**Scope creep** happens when you try to answer too many questions at once, invoke multiple theories that pull in different directions, attempt to analyze data too large or complex for the timeline, or keep adding one more thing to the study. The solution is relentless narrowing: drilling down until the project fits the constraints of time, resources, and skill you actually have.
 
-### The Narrowing Funnel
+Narrowing is a process, and it looks like a funnel:
 
-Consider this progression:
+- Iteration 1: "I am interested in Twitch chat." Too broad. What aspect? Which streams?
+- Iteration 2: "I want to study how viewers participate in chat." Better, but still vast.
+- Iteration 3: "I want to analyze whether chat participation differs across kinds of streams." Getting there. Which kinds? Measured how?
+- Iteration 4: "I want to examine whether chat message volume differs between gaming and non-gaming streams." Much clearer.
+- Iteration 5: "I will draw a stratified sample of chat messages from the 50-channel Twitch working corpus, code each message as directed at the streamer or broadcast to the room, and test whether the proportion of directed messages differs between gaming and non-gaming streams, framing chat as a site of social gratification."
 
-**Iteration 1**: "I'm interested in music and politics."  
-*(Too broad. What aspect? What time period? What political outcomes?)*
+Each iteration sacrifices breadth for depth. By the fifth version, the project can be completed in a semester. It will not answer everything about Twitch chat, but it will answer something rigorously. The hard part is accepting that narrowing is not weakness. It is discipline. And the logic is domain-general: a study of news framing or health campaigns or organizational communication runs through the same funnel, swapping the topic while keeping the narrowing logic intact.
 
-**Iteration 2**: "I want to study protest music and social movements."  
-*(Better, but still vast. Which movements? What aspect of protest music?)*
+Certain narrowing mistakes recur often enough to name. The **impossible comparison** asks a question confounded by self-selection: "are people who watch Twitch lonelier than people who do not?" compares groups that differ in many ways besides the one being studied. The **circular question** is tautological: "do popular streamers attract large audiences because people want to watch them?" defines its terms in a loop. The **false binary** forces a choice the data does not require: "is it the streamer or the game that matters?" assumes you must pick one, when the better question asks how much each contributes and whether they interact.
 
-**Iteration 3**: "I want to analyze how hip-hop addresses police violence."  
-*(Getting there. But all of hip-hop? All references to police?)*
+## From concepts to operational definitions
 
-**Iteration 4**: "I want to examine how prominent hip-hop artists framed police violence in songs released after high-profile incidents (2014-2020)."  
-*(Much clearer. Specific genre, time frame, and trigger events.)*
+Theory gives you abstract concepts. Research requires concrete variables. The bridge is operationalization, and it usually involves a choice among imperfect options.
 
-**Iteration 5**: "I will analyze how Billboard Hot 100 hip-hop songs released within three months of Michael Brown's death (Ferguson, 2014) and George Floyd's death (Minneapolis, 2020) framed police violence, using framing theory (Entman, 1993) to categorize whether lyrics emphasize individual responsibility or systemic racism."  
-*(Now we have a doable project. Specific sample, clear timeframe, defined theoretical lens, measurable variables.)*
+Consider **parasocial relationship**, the one-sided emotional bond between a viewer and a media figure (Horton & Wohl, 1956). It is not directly observable. You could operationalize it three ways. A self-report scale asks viewers to rate agreement with statements like "I feel like this streamer understands me"; it captures subjective experience directly but is subject to social desirability bias. Behavioral indicators count observable actions like donations, subscription length, or hours watched; behavioral data can be more reliable than self-report, but a behavior does not always reflect the bond you think it does. Language analysis codes viewer-created content, like chat messages, for parasocial markers: expressions of intimacy, emotional disclosure, direct address to the streamer. It uses naturalistic data and reveals how viewers actually talk, but it is labor-intensive and misses viewers who feel strongly without posting.
 
-Notice what happened: each iteration sacrificed breadth for depth. By the fifth version, you have a focused study that can be completed in a semester. It won't answer everything about music and politics, but it will answer *something* rigorously.
+Consider **chat sentiment**, the emotional valence of chat content. Automated sentiment analysis scores messages with software: fast and replicable, but blind to sarcasm, irony, and the heavily coded vocabulary of Twitch emotes. Human coding trains coders to categorize sentiment holistically: it captures context and nuance, but it is labor-intensive and requires inter-coder reliability testing. Dimensional coding scores several dimensions at once, such as valence and arousal: it captures emotional complexity better, but it demands a more careful codebook.
 
-The hard part is accepting that narrowing isn't weakness. It's discipline.
+In each case there is no single right answer. You choose the operationalization that fits your research question, your data access, and your resources, and you defend why the proxy you chose is valid. That logic is identical for any abstract construct, whether it is media trust, political polarization, or brand loyalty.
 
-### The Narrowing Funnel Works in Any Domain
+## Question types: goals, questions, and hypotheses
 
-Here is the same process applied to a non-music topic:
+Not all research asks the same kind of question, and the goal shapes every later decision.
 
-**Iteration 1**: "I'm interested in social media and mental health."  
-*(Too broad. Which platform? Which population? What aspect of mental health?)*
+**Exploratory research** asks "what is going on here?" It investigates a new or poorly understood phenomenon and generates hypotheses rather than testing them. It is often qualitative and inductive, and its output is patterns, themes, and preliminary frameworks. **Descriptive research** asks "what does the landscape look like?" It documents the characteristics of a population or phenomenon, often quantitatively, and its output is frequencies, distributions, and prevalence estimates. **Explanatory research** asks "why does this happen?" It tests relationships and mechanisms, it is hypothesis-driven and deductive, and its output is support or disconfirmation of predictions. Research on a topic often moves through these stages in order, from exploratory to descriptive to explanatory, and you do not need to do all three, but you should know which one you are attempting.
 
-**Iteration 2**: "I want to study how Instagram affects body image."  
-*(Better, but still vast. Whose body image? What aspect of Instagram?)*
+The goal determines whether you pose a research question or a hypothesis. A **research question** is interrogative and open-ended. Use one when you are exploring or describing, when theory does not make a clear prediction, or when the literature is too contradictory to predict confidently. A **hypothesis** is a declarative statement predicting a relationship. Use one when theory makes a specific prediction, when previous research suggests a likely outcome, or when you are testing a causal claim.
 
-**Iteration 3**: "I want to analyze how fitness influencers on Instagram frame body image."  
-*(Getting there. But all fitness influencers? All posts?)*
+Behind every hypothesis sits a **null hypothesis**, which predicts no relationship or no difference. The null is the skeptical default position, and it is what statistical tests actually evaluate. If the data are sufficiently inconsistent with the null, you reject it in favor of your alternative hypothesis. This is the same logic Chapter 1 introduced as the sacred flaw: the question is not whether you can tell a story with your data, but whether the data could have come from a world where your effect does not exist.
 
-**Iteration 4**: "I want to examine how the top 20 fitness influencers on Instagram frame body image in posts from 2023."  
-*(Much clearer. Specific population, timeframe, platform.)*
+## Topic, theory, and data
 
-**Iteration 5**: "I will conduct a content analysis of 200 Instagram posts from the top 20 fitness influencers (by follower count) in 2023, using framing theory (Entman, 1993) to categorize whether posts frame fitness as health-oriented or appearance-oriented, and whether framing differs by influencer gender."  
-*(Doable. Specific sample, clear theoretical lens, measurable variables, a comparison.)*
+A viable research project requires alignment across three elements: the topic, the theory, and the data. If any one is mismatched with the others, the study collapses.
 
-The process is identical. The topic changes; the narrowing logic does not.
+The topic is what you are studying, and it must be bounded by population, time, medium, or context. "Livestreaming" is not a topic. "Chat participation in the 50-channel Twitch working corpus" is. The theory is the explanatory framework that guides interpretation, and it must predict patterns you can actually observe in your data. The data source is the evidence you will analyze, and it must be accessible within your timeline, sufficient to detect the patterns you are looking for, and appropriate to the question.
 
-## The Holy Trinity: Topic, Theory, Data
+Misalignment is easiest to see in an example. Suppose the topic is parasocial relationships between viewers and streamers, the theory is the political economy of media, which explains structural forces like corporate consolidation and platform incentives, and the data is a content analysis of chat messages. The theory and the data are not in conversation. Political economy explains industry structure; chat messages are individual expression. The theory cannot explain the patterns the data would show. Now realign: keep the topic, but switch the theory to parasocial interaction (Horton & Wohl, 1956), which is about one-sided emotional bonds, and the pieces fit. The theory predicts that viewers expressing stronger bonds will behave differently in chat, the data captures that expression, and topic, theory, and data are finally talking to each other.
 
-A viable research project requires alignment across three elements. If any one is mismatched with the others, the study collapses.
+## Writing the prospectus
 
-### Topic (What)
+The prospectus is a contract with yourself and your instructor. It commits you to a specific, focused project and demonstrates that you have thought through its feasibility. It has six components: a descriptive title that hints at the key variables; one to three focused research questions or hypotheses, not five and not ten; a two-to-three-sentence theoretical framework that names the theory and explains how it relates to the question; a two-to-three-sentence statement of the gap in the literature, citing a few key sources; a three-to-four-sentence method overview covering the data, the coding or measurement, and the number of cases; and a one-to-two-sentence statement of the expected contribution.
 
-What specific phenomenon are you studying?
+Assembled, a model prospectus for this course might read like this:
 
-**Weak**: "Social media"  
-**Strong**: "Parasocial relationships between Twitch viewers and streamers"
+> **Title.** Directed and broadcast chat in gaming and non-gaming streams: A content analysis of the Twitch working corpus.
+>
+> **Research question.** Does the proportion of chat messages directed at the streamer differ between streams in gaming categories and streams in non-gaming categories, among the 50 channels in the Twitch working corpus?
+>
+> **Theoretical framework.** Uses and gratifications theory (Katz, Blumler, & Gurevitch, 1973) holds that audiences actively select media to satisfy specific needs, including social ones. If a substantial part of livestream viewing is socially motivated, the form of that participation, whether viewers address the streamer directly or talk to other viewers in the room, is one observable trace of the gratification being sought, and stream type may shape which form predominates.
+>
+> **Gap in the literature.** Research on livestreaming viewer motivation is dominated by self-report surveys (Sjöblom & Hamari, 2017; Hilvert-Bruce et al., 2018), which capture what viewers say motivates them rather than what they do. Whether the behavioral traces in a chat log corroborate the survey findings, and specifically whether directed and broadcast forms of participation vary with stream type, is largely unexamined.
+>
+> **Method.** This study will draw a stratified sample of 1,500 chat messages from the 50-channel Twitch working corpus shipped with the course, balanced across gaming and non-gaming streams. Each message is the unit of analysis. Messages will be coded into three mutually exclusive categories: directed at the streamer, broadcast to the room, or unclassifiable. The codebook will be tested for intercoder reliability against a second coder on a 10 percent subsample, using Krippendorff's alpha as the reliability metric. The proportion of directed messages will then be compared between the two stream-type groups.
+>
+> **Expected contribution.** The study tests whether a finding established in survey research, that livestream viewing is more socially motivated than content motivated, leaves a visible trace in coded chat behavior, contributing to uses-and-gratifications scholarship on livestreaming.
 
-**Weak**: "Music and emotion"  
-**Strong**: "The relationship between lyric sentiment and chart longevity in Billboard Hot 100 pop songs (2015-2024)"
+That is roughly two hundred and fifty words. It fits on one page, every sentence carries weight, and every component of the method (the sample, the unit of analysis, the coding scheme, the reliability check, the comparison) is named.
 
-**Weak**: "News coverage"  
-**Strong**: "Episodic vs. thematic framing of immigration in New York Times front-page stories (2020-2024)"
+A different theory points the same student to a different prospectus. Here is the same dataset framed through parasocial interaction:
 
-The topic must be **bounded**, limited by population, time, medium, or context. You're not studying all music or all emotion or all news. You're studying *this specific relationship* in *this specific corpus* during *this specific period*.
+> **Title.** Markers of parasocial bond in viewer chat: A content analysis of large-audience and small-audience streams in the Twitch working corpus.
+>
+> **Research question.** Do chat messages on streams with smaller audiences show a higher rate of parasocial language than chat messages on streams with larger audiences?
+>
+> **Theoretical framework.** Parasocial interaction theory (Horton & Wohl, 1956) proposes that audiences develop one-sided emotional bonds with media figures that feel intimate despite the absence of reciprocity. Hilvert-Bruce and colleagues (2018) found that viewers of smaller channels reported being more socially motivated than viewers of larger ones, which predicts that observable parasocial markers should appear more frequently in the chat of smaller streams.
+>
+> **Gap in the literature.** Parasocial interaction has been studied primarily through self-report scales completed by audience members (Hilvert-Bruce et al., 2018). Whether parasocial markers are visible in the unprompted language audiences produce in real time, and whether they vary with stream audience size, has not been examined in a chat-log corpus.
+>
+> **Method.** This study will draw a stratified sample of 1,000 chat messages from the 50-channel working corpus, split between channels in the top quartile of average viewer count and channels in the bottom quartile. Each message is the unit of analysis. Three parasocial markers will be coded as present or absent in each message: direct second-person address to the streamer, expressions of familiarity (use of the streamer's first name or known nicknames), and emotional disclosure. Intercoder reliability will be tested on a 10 percent subsample using Krippendorff's alpha. The rate of each marker will be compared between the two audience-size groups.
+>
+> **Expected contribution.** The study extends parasocial-interaction research from self-report measures to behavioral trace data, testing whether Hilvert-Bruce and colleagues' (2018) finding about smaller-audience viewers leaves a measurable trace in coded chat behavior.
 
-### Theory (Why)
+Two prospectuses, same dataset, different theory, different unit-of-analysis choices in the codebook, different comparison structure. Neither is "more correct." Each is a defensible plan, and each demonstrates the same underlying discipline: a question, a lens, a gap, a method that can be executed in a semester, a contribution scoped to what the study can deliver.
 
-What explanatory framework guides your interpretation?
+If both prospectuses feel within reach, read the method paragraphs once more before you commit. The first codes one variable. The second codes three. Three variables means three codebook decisions to defend, three reliability checks to run, and three results to write up, which is the better study to read and the heavier semester to execute. Pick the one your curiosity actually points to, and then check that you also picked the workload you can carry. The point of the prospectus is to make that trade-off visible to you before week 7 rather than after week 11.
 
-**Weak**: "I'll use whatever theories seem relevant"  
-**Strong**: "Uses and Gratifications Theory (Katz, Blumler, & Gurevitch, 1973) predicts that listeners actively select music to fulfill emotional needs. If true, songs that address common emotional states (sadness, anxiety, joy) should resonate more broadly, predicting chart success."
+### A note before you write yours
 
-The theory must **predict patterns you can observe in your data**. If your theory is about individual psychological processes but your data are aggregate chart positions, there's a mismatch. If your theory is about industry power structures but you're only analyzing lyric content, you're not equipped to test it.
+The prospectus is pre-statistics work. You do not yet need to know which test you will run, what your p-value will be, or what R code will execute the comparison. Chapters 10 through 13 cover the analysis side. What the prospectus asks you to commit to is the structure of the study: a research question, a theory, a unit of analysis, a coding scheme, and the structure of the comparison you will make. The phrase "will be compared" in the method paragraph is genuinely all you need at this stage. The hard work in the prospectus is conceptual, not computational. If the stats half of the course is what you are dreading, the prospectus is not where that dread should land yet.
 
-### Data Source (How)
+Certain prospectus problems recur. Multiple unrelated questions are really several separate studies; pick one. A theory-data mismatch pairs a framework with evidence it cannot explain. Vague methods ("I will look at some streams and see what emerges") cannot be evaluated for feasibility. And the Everything Study returns here in prospectus form, promising to analyze all of Twitch across all of its history.
 
-What evidence will you analyze?
+It is easier to see those problems in a draft than in a list. A common first attempt looks something like this:
 
-**Weak**: "I'll look at some songs"  
-**Strong**: "I will analyze a stratified random sample of 200 songs from the Billboard Hot 100 (2015-2024), coding lyric sentiment using a validated codebook and testing whether sentiment predicts chart peak position and weeks on chart."
+> **Title.** Twitch and Society.
+>
+> **Research question.** How does Twitch chat affect viewers' sense of community, and what is the role of parasocial relationships and social identity in shaping their behavior across different streams and genres? Also, are streamers becoming more popular over time?
+>
+> **Theoretical framework.** I will use parasocial interaction theory, social identity theory, and the political economy of media to understand how Twitch shapes its audience.
+>
+> **Method.** I will look at some chat logs and see what patterns emerge.
+>
+> **Expected contribution.** This will contribute to our understanding of streaming.
 
-The data source must be:
+Every recurring problem is present. The title names no variables. The research question is actually three or four questions stacked on top of each other. The framework piles up three theories that pull in different directions and that cannot all be operationalized on the same data. The method is vague. The contribution is generic. A reader cannot tell what the study is, what it would measure, or how to know when it is done.
 
-- **Accessible**: You can actually obtain it within your timeline
-- **Sufficient**: Large enough to detect patterns but small enough to manage
-- **Appropriate**: Capable of answering your research question
+The same student, after one narrowing pass, might revise to this:
 
-### Alignment Example
+> **Title.** Direct-address language in gaming and non-gaming Twitch streams: A content analysis of the working corpus.
+>
+> **Research question.** Does the rate of chat messages that directly address the streamer differ between gaming-category and non-gaming-category streams in the Twitch working corpus?
+>
+> **Theoretical framework.** Uses and gratifications theory (Katz, Blumler, & Gurevitch, 1973) holds that audiences select media to satisfy specific needs, including the need for social interaction. If a stream's category shapes whether the social experience on offer centers on the streamer or on the group of fellow viewers, direct address to the streamer is one observable trace of which gratification audiences are pursuing.
+>
+> **Gap in the literature.** Uses and gratifications research on livestreaming has relied primarily on self-report (Sjöblom & Hamari, 2017; Hilvert-Bruce et al., 2018), capturing what viewers say they want from the medium rather than what behavior the medium elicits. Whether direct-address rates in real-time chat vary systematically with stream type, as a behavioral test of the gratification proposition, has not been examined.
+>
+> **Method.** A stratified sample of 1,000 chat messages from the 50-channel working corpus will be drawn, balanced across gaming and non-gaming streams. Each message is the unit of analysis and will be coded as direct-address or not, with intercoder reliability tested on a 10 percent subsample using Krippendorff's alpha. The rate of direct-address messages will be compared between the two categories.
+>
+> **Expected contribution.** The study tests one observable prediction of uses-and-gratifications theory in behavioral chat data, complementing the self-report tradition with a directly observed alternative.
 
-Let's see how misalignment breaks a project:
+The revised version picks a single question, a single theory that the data can speak to, a method that can actually be executed in a semester, and a contribution scoped to what the study can deliver. The weak version was not lazy. It was trying to do too much. Narrowing is the move that converts ambition into a defensible plan.
 
-**Misaligned Project**:
+Before finalizing, run the prospectus through a feasibility test. Can you access the data? For this course, yes: the working corpus ships with the `v2v` package. Can you analyze it in the time available? Fifty channels is manageable; the full population of 1,690 is not, for one person in a semester. Does your method match your question? Content analysis answers questions about what is in the content; it does not directly answer questions about why viewers feel what they feel. And have you controlled scope creep? If you keep adding variables, populations, or time periods, narrow until it hurts a little, then narrow a bit more.
 
-- **Topic**: Parasocial relationships with musicians
-- **Theory**: Political Economy of Media (focuses on industry structure and corporate power)
-- **Data**: Survey of listeners' emotional attachment to artists
+## The prospectus as pre-registration
 
-**The problem**: Political Economy Theory explains structural forces (corporate consolidation, profit motives), but the data measures individual psychology. The theory can't explain the patterns you'd find in the data.
+The prospectus serves a function that extends well beyond this course. In professional research, a practice called **pre-registration** involves publicly committing to your hypotheses, methods, and analysis plan before collecting or analyzing data. Services like the Open Science Framework let researchers timestamp these commitments, which makes it possible to verify that a study was designed before its results were known.
 
-**Aligned Project**:
+Why this matters connects directly to Chapter 2. Simmons, Nelson, and Simonsohn (2011) demonstrated that researchers who do not commit to an analysis plan in advance can, consciously or not, adjust their hypotheses, variables, and analytical decisions until a result reaches significance. Their paper is the source of the term Chapter 2 introduced: researcher degrees of freedom. Pre-registration closes those degrees of freedom by making the plan inspectable. If the final paper reports different hypotheses than the pre-registration, that discrepancy is visible, and it raises questions worth raising.
 
-- **Topic**: Parasocial relationships with musicians
-- **Theory**: Parasocial Interaction Theory (Horton & Wohl, 1956; focuses on one-sided emotional bonds)
-- **Data**: Survey of listeners' emotional attachment to artists, comparing heavy consumers vs. casual listeners
+Your prospectus functions as an informal pre-registration. It documents what you planned to study and how you planned to study it, before you began coding and analyzing. When you are later tempted to add variables, chase an unexpected finding, or quietly reframe the study after seeing the data, the prospectus is the record of what you originally set out to do.
 
-**Why it works**: The theory predicts that exposure intensity correlates with parasocial bond strength. The survey measures both exposure and attachment. Theory, topic, and data are in conversation.
+## Looking ahead
 
-## Three Research Goals: Exploration, Description, Explanation
-
-Not all research asks the same kind of question. Your goal shapes every subsequent decision.
-
-### Exploratory Research: "What's Going On Here?"
-
-**Purpose**: Understand a new or poorly understood phenomenon. Generate hypotheses rather than test them.
-
-**Approach**: Often qualitative. Open-ended questions. Looking for patterns you didn't anticipate.
-
-**Music example**: "How do K-pop fans in the U.S. construct community identity online?"
-
-**Non-music example**: "How do local journalists describe the impact of newsroom layoffs on their professional identity?"
-
-You're not testing a hypothesis; you're discovering what's happening. You might conduct interviews, observe fan forums or professional communities, and analyze participant-created content. The outcome is a rich description and perhaps a preliminary theory.
-
-**Output**: Patterns, themes, preliminary frameworks. Often inductive.
-
-### Descriptive Research: "What Does the Landscape Look Like?"
-
-**Purpose**: Document the characteristics of a population or phenomenon. Map the terrain.
-
-**Approach**: Often quantitative. Surveys, content analysis. Measuring what exists.
-
-**Music example**: "What percentage of Billboard Hot 100 songs (2015-2024) contain references to mental health topics?"
-
-**Non-music example**: "How frequently do local television newscasts lead with crime stories compared to health, education, or policy stories?"
-
-You're not explaining *why* these patterns exist or what effect they have. You're establishing prevalence. This is essential groundwork for later explanatory studies.
-
-**Output**: Frequencies, distributions, prevalence estimates. Often descriptive statistics.
-
-### Explanatory Research: "Why Does This Happen?"
-
-**Purpose**: Test relationships. Explain mechanisms. Establish causation (or strong correlational evidence).
-
-**Approach**: Hypothesis-driven. Deductive. Tests predictions from theory.
-
-**Music example**: "Do songs with negative lyric sentiment chart higher than songs with positive sentiment, and does this relationship hold after controlling for tempo, genre, and artist fame?"
-
-**Non-music example**: "Does episodic framing of poverty in news coverage reduce support for structural antipoverty programs compared to thematic framing, as framing theory (Entman, 1993) predicts?"
-
-This is classic hypothesis testing. You have a specific prediction, a theoretical rationale for why it might be true, and a design to test it.
-
-**Output**: Support or disconfirmation of hypotheses. Contributes to theory refinement.
-
-**Note on progression**: Research often moves through these stages. Early studies on a topic are exploratory. Once patterns emerge, descriptive studies map the landscape. Finally, explanatory studies test causal mechanisms. You don't need to do all three, but know which one you're attempting.
-
-## Research Questions vs. Hypotheses
-
-Your research goal determines whether you pose a question or a hypothesis.
-
-### Research Questions (RQs)
-
-**Use when**:
-
-- You're exploring or describing rather than explaining
-- Theory doesn't make a clear prediction
-- You're genuinely unsure what the data will show
-
-**Format**: Interrogative, open-ended (or bounded but not directional)
-
-**Examples**:
-
-- RQ1: How do hip-hop artists frame police violence in songs released after high-profile incidents?
-- RQ2: What percentage of Billboard Hot 100 songs (2015-2024) contain explicit references to mental health?
-- RQ3: How do nonprofit organizations use emotional appeals in fundraising emails compared to for-profit companies?
-
-### Hypotheses (H)
-
-**Use when**:
-
-- Theory makes a specific prediction
-- You're testing an explanatory claim
-- Previous research suggests a likely outcome
-
-**Format**: Declarative statement predicting a relationship
-
-**Examples**:
-
-- H1: Songs with negative lyric sentiment will chart higher than songs with positive sentiment.
-- H2: Listeners with stronger parasocial bonds to an artist will report higher purchase intentions for concert tickets (derived from PSI theory; Horton & Wohl, 1956).
-- H3: News stories using episodic framing will generate more social media engagement than stories using thematic framing.
-
-### Null Hypotheses (H₀)
-
-The **null hypothesis** predicts *no relationship* or *no difference*. It's the skeptical default position that your research aims to challenge.
-
-**Example**:
-
-- H₁: Songs with negative lyric sentiment will chart higher than songs with positive sentiment.
-- H₀: There is no relationship between lyric sentiment and chart position.
-
-Statistical tests evaluate the null hypothesis. If the data are inconsistent with H₀ (the p-value is low), you reject it in favor of your alternative hypothesis (H₁).
-
-## Writing the One-Page Prospectus
-
-The prospectus is a contract with yourself and your instructor. It commits you to a specific, focused project and demonstrates you've thought through its feasibility.
-
-### The Essential Components
-
-**1. Title**  
-Descriptive and specific. Should hint at the key variables or concepts.
-
-*Example*: "Lyric Sentiment and Chart Performance: A Content Analysis of Billboard Hot 100 Pop Songs (2015-2024)"
-
-**2. Research Question or Hypothesis**  
-One to three focused questions or hypotheses. Not five. Not ten.
-
-*Example*:  
-
-- RQ1: Is there a relationship between lyric sentiment (positive, negative, neutral) and chart peak position?
-- RQ2: Does this relationship hold after controlling for tempo and artist popularity?
-
-**3. Theoretical Framework (2-3 sentences)**  
-Name the theory and explain how it relates to your question.
-
-*Example*:  
-"Uses and Gratifications Theory (Katz et al., 1973) suggests that audiences actively select media to fulfill emotional needs. If listeners seek music that validates or processes their emotional states, songs addressing negative emotions may resonate more deeply than neutral or positive songs, potentially predicting commercial success."
-
-**4. Gap in Literature (2-3 sentences)**  
-Cite 2-3 key sources and identify what they missed or contradicted.
-
-*Example*:  
-"Research has documented that popular song lyrics have become increasingly negative over time (Brand et al., 2019; Napier & Shamir, 2018), but most of this work tracks aggregate trends rather than testing whether sentiment predicts individual song success. Furthermore, existing studies rely on automated sentiment analysis, which struggles with figurative language and context (Napier & Shamir, 2018). Human coding could reveal different patterns."
-
-**5. Method Overview (3-4 sentences)**  
-What data will you analyze? How will you code or measure variables? How many cases?
-
-*Example*:  
-"I will analyze a stratified random sample of 200 songs from the Billboard Hot 100 pop category (2015-2024), ensuring equal representation across five two-year periods. Lyric sentiment will be coded using a three-category scheme (positive, negative, neutral) with inter-coder reliability testing. Chart performance will be measured using peak position and total weeks on chart."
-
-**6. Expected Contribution (1-2 sentences)**  
-What will we learn? Why does it matter?
-
-*Example*:  
-"This study will clarify whether lyric sentiment predicts commercial success at the individual song level, contributing to both Uses and Gratifications scholarship and industry understanding of audience preferences."
-
-### The Full Example
-
-```markdown
-**Lyric Sentiment and Chart Performance: A Content Analysis of 
-Billboard Hot 100 Pop Songs (2015-2024)**
-
-**Research Questions**:
-RQ1: Is there a relationship between lyric sentiment (positive, 
-negative, neutral) and chart peak position?
-RQ2: Does this relationship hold after controlling for tempo and 
-artist popularity?
-
-**Theoretical Framework**: 
-Uses and Gratifications Theory (Katz et al., 1973) suggests that 
-audiences actively select media to fulfill emotional needs. If 
-listeners seek music that validates or processes their emotional 
-states, songs addressing negative emotions may resonate more 
-deeply, potentially predicting commercial success.
-
-**Gap in Literature**: 
-Research has documented that popular lyrics have become increasingly 
-negative over time (Brand et al., 2019; Napier & Shamir, 2018), but 
-most of this work tracks aggregate trends rather than testing 
-whether sentiment predicts individual song success. Furthermore, 
-existing studies rely on automated sentiment analysis, which 
-struggles with figurative language (Napier & Shamir, 2018). Human 
-coding could reveal different patterns.
-
-**Method**: 
-I will analyze a stratified random sample of 200 songs from the 
-Billboard Hot 100 pop category (2015-2024), ensuring equal 
-representation across five two-year periods. Lyric sentiment will 
-be coded using a three-category scheme (positive, negative, neutral) 
-with inter-coder reliability testing (targeting Krippendorff's 
-alpha >= 0.80). Chart performance will be measured using peak 
-position and total weeks on chart.
-
-**Expected Contribution**: 
-This study will clarify whether lyric sentiment predicts commercial 
-success at the individual song level, contributing to both Uses and 
-Gratifications scholarship and industry understanding of audience 
-preferences.
-```
-
-**Total length**: ~200 words. Fits on one page. Every sentence carries weight.
-
-## Common Prospectus Problems
-
-### Problem 1: Multiple Unrelated Questions
-
-**Weak prospectus**:
-
-- RQ1: How has hip-hop evolved over time?
-- RQ2: Do tempo and key predict chart success?
-- RQ3: What role does social media play in artist popularity?
-
-**Issue**: These are three separate studies. Pick one.
-
-### Problem 2: Theory-Data Mismatch
-
-**Weak prospectus**:
-"I'll use Cultivation Theory (Gerbner & Gross, 1976) to analyze lyric sentiment in 200 songs."
-
-**Issue**: Cultivation Theory is about cumulative media exposure shaping perceptions of reality. It predicts how heavy media consumption affects audiences, not why individual songs chart. The theory would work if your data measured listener perceptions (via survey), but not if your data are song lyrics and chart positions. Wrong theory for this data.
-
-### Problem 3: Vague Methods
-
-**Weak prospectus**:
-"I will look at popular songs and see what themes emerge."
-
-**Issue**: How many songs? From where? What counts as "popular"? How will you identify themes? Too vague to evaluate feasibility.
-
-### Problem 4: The Everything Study
-
-**Weak prospectus**:
-"I will analyze all music from 1950-2024 across all genres to understand how society has changed."
-
-**Issue**: This is a 74-year, multi-genre cultural history. Not a semester project.
-
-## The Feasibility Test
-
-Before finalizing your prospectus, ask:
-
-**Can I access this data?**  
-If you need lyrics from 200 songs, can you actually get them? (Yes: the course dataset includes lyrics from Genius.)  
-If you need neuroimaging data, can you get it? (Probably not in one semester.)  
-If you need interview transcripts from 30 musicians, can you recruit them? (Unlikely in 14 weeks.)
-
-**Can I analyze it in the time available?**  
-Coding 200 songs is doable. Coding 10,000 is not, not for one person in 14 weeks.
-
-**Does my method match my question?**  
-If you want to know *why* people listen to sad music, interviewing listeners makes sense. Coding lyric content doesn't directly answer that. If you want to know *what* lyric themes are present, content analysis works. A survey does not.
-
-**Have I controlled scope creep?**  
-If you keep adding variables, populations, or time periods, stop. Narrow until it hurts a little. Then narrow a bit more.
-
-## The Prospectus as Pre-Registration
-
-The prospectus serves a function that extends beyond this course. In professional research, a growing practice called **pre-registration** involves publicly committing to your hypotheses, methods, and analysis plan *before* collecting or analyzing data. Organizations like the Open Science Framework (osf.io) allow researchers to timestamp these commitments, ensuring that the study was designed before results were known.
-
-Why does this matter? Because, as Simmons, Nelson, and Simonsohn (2011) demonstrated, researchers who don't commit to an analysis plan in advance can unconsciously (or consciously) adjust their hypotheses, variables, or analytical decisions to produce significant results. Pre-registration prevents this by making the plan inspectable: if the final paper reports different hypotheses than the pre-registration, that raises questions.
-
-Your prospectus functions as an informal pre-registration. It documents what you planned to study and how you planned to study it, before you began coding and analyzing. This is good scientific practice, and it's also good self-discipline. When you're tempted to add variables, chase unexpected findings, or reframe your study after seeing the data, the prospectus reminds you what you originally set out to do.
-
-This doesn't mean you can't adjust. Discoveries during immersion and pilot testing (Chapters 12-15) often reveal legitimate reasons to refine variables or add decision rules. But any changes should be documented and justified, not smuggled in silently.
-
----
-
-## Practice: Building Your Prospectus
-
-### Exercise 6.1: The Narrowing Funnel
-
-Start with a broad interest (it can be related to music or any other communication domain). Go through five iterations, narrowing each time:
-
-**Iteration 1** (broad): _______________  
-**Iteration 2**: _______________  
-**Iteration 3**: _______________  
-**Iteration 4**: _______________  
-**Iteration 5** (focused, doable): _______________
-
-### Exercise 6.2: Aligning the Trinity
-
-For your narrowed topic, align the three elements:
-
-**Topic (What)**: _______________  
-**Theory (Why)**: _______________  
-**Data (How)**: _______________
-
-Check for alignment:
-
-- Does the theory predict patterns observable in your data? Yes / No
-- Can you actually access this data? Yes / No
-- Can you analyze it in one semester? Yes / No
-
-If any answer is "No," revise.
-
-### Exercise 6.3: RQ or Hypothesis?
-
-For each scenario, decide whether a research question or hypothesis is more appropriate:
-
-**Scenario A**: You're exploring how fans talk about artists on Reddit. You've read no prior research on this specific platform or community.  
-→ Use: _______________
-
-**Scenario B**: Social Identity Theory (Tajfel & Turner, 1979) predicts in-group favoritism. You hypothesize that fans will rate their preferred genre higher than rival genres.  
-→ Use: _______________
-
-**Scenario C**: You want to know what percentage of top-charting songs contain political references, but you have no prediction about the number.  
-→ Use: _______________
-
-**Scenario D**: Framing theory (Entman, 1993) predicts that episodic framing of social problems reduces support for structural solutions. You want to test whether this holds for news coverage of homelessness.  
-→ Use: _______________
-
-### Exercise 6.4: Draft Your Prospectus
-
-Using the template from this chapter, write a one-page prospectus for your research project. Include:
-
-1. Title
-2. Research question(s) or hypothesis/hypotheses
-3. Theoretical framework (2-3 sentences, citing the theory's foundational source)
-4. Gap in literature (2-3 sentences, citing 2-3 real sources)
-5. Method overview (3-4 sentences)
-6. Expected contribution (1-2 sentences)
-
-**Target length**: 200-250 words
-
----
-
-## Reflection Questions
-
-1. **Scope and Ambition**: Students often resist narrowing their projects because it feels like giving up on interesting questions. How do you balance intellectual ambition with practical constraints?
-
-2. **Theory-Data Fit**: Have you ever tried to apply a framework that didn't quite fit your evidence? What happened? How did you recognize the mismatch?
-
-3. **The Prospectus as Commitment**: Committing to a specific project means saying no to other possibilities. What's hard about that? What's liberating?
-
-4. **Pre-Registration and Honesty**: The chapter describes the prospectus as an informal pre-registration. How does committing to a plan in advance protect against bias? Are there situations where deviating from the plan is legitimate, or should the original plan always govern?
-
----
-
-## Chapter Summary
-
-This chapter synthesized Part II by teaching the research prospectus:
-
-- **Scope creep** is the enemy of student research. Narrow focus through iterative refinement until the project fits within time and resource constraints.
-- The **Holy Trinity** (Topic, Theory, Data) must align. Mismatches doom the project.
-- **Three research goals**: Exploratory (what's happening?), Descriptive (what does it look like?), Explanatory (why does it happen?)
-- **Research questions** are open-ended; **hypotheses** are specific predictions from theory.
-- The **null hypothesis** (H₀) predicts no relationship; statistical tests evaluate whether data are inconsistent with it.
-- The **one-page prospectus** includes: title, RQ/hypothesis, theoretical framework, literature gap, method, and expected contribution.
-- **Feasibility test**: Can you access the data? Can you analyze it in time? Does your method match your question?
-- The prospectus functions as an informal **pre-registration**, committing you to a plan before results are known.
-
----
-
-## Key Terms
-
-- **Descriptive research**: Research documenting characteristics to answer "what does it look like"
-- **Explanatory research**: Research testing relationships and mechanisms to answer "why"
-- **Exploratory research**: Research investigating new phenomena to answer "what's happening"
-- **Holy Trinity**: Alignment of topic, theory, and data in viable research design
-- **Hypothesis (H)**: Testable prediction derived from theory (directional statement)
-- **Null hypothesis (H₀)**: Prediction of no relationship or no difference
-- **Pre-registration**: Publicly committing to hypotheses, methods, and analysis plan before data collection
-- **Research question (RQ)**: Open-ended or bounded inquiry when theory doesn't predict specific direction
-- **Research prospectus**: One-page project blueprint defending feasibility
-- **Scope creep**: Progressive expansion of project beyond manageable boundaries
-
----
+Chapter 7 begins Part III, where planning becomes practice. Before you can code a single chat message, you have to know the data the way a researcher knows it: not as an abstraction described in a prospectus, but as a texture you have spent real time inside. Chapter 7 is about that immersion, the structured listening that turns a dataset into something you understand well enough to operationalize.
 
 ## References
 
-Brand, C. O., Acerbi, A., & Mesoudi, A. (2019). Cultural evolution of emotional expression in 50 years of song lyrics. *Evolutionary Human Sciences*, *1*, e11. https://doi.org/10.1017/ehs.2019.11
-
-Entman, R. M. (1993). Framing: Toward clarification of a fractured paradigm. *Journal of Communication*, *43*(4), 51-58. https://doi.org/10.1111/j.1460-2466.1993.tb01304.x
-
-Gerbner, G., & Gross, L. (1976). Living with television: The violence profile. *Journal of Communication*, *26*(2), 172-199. https://doi.org/10.1111/j.1460-2466.1976.tb01397.x
+Hilvert-Bruce, Z., Neill, J. T., Sjöblom, M., & Hamari, J. (2018). Social motivations of live-streaming viewer engagement on Twitch. *Computers in Human Behavior*, *84*, 58-67. https://doi.org/10.1016/j.chb.2018.02.013
 
 Horton, D., & Wohl, R. R. (1956). Mass communication and para-social interaction: Observations on intimacy at a distance. *Psychiatry*, *19*(3), 215-229. https://doi.org/10.1080/00332747.1956.11023049
 
 Katz, E., Blumler, J. G., & Gurevitch, M. (1973). Uses and gratifications research. *Public Opinion Quarterly*, *37*(4), 509-523. https://doi.org/10.1086/268109
 
-Napier, K., & Shamir, L. (2018). Quantitative sentiment analysis of lyrics in popular music. *Journal of Popular Music Studies*, *30*(4), 161-176. https://doi.org/10.1525/jpms.2018.300411
-
 Simmons, J. P., Nelson, L. D., & Simonsohn, U. (2011). False-positive psychology: Undisclosed flexibility in data collection and analysis allows presenting anything as significant. *Psychological Science*, *22*(11), 1359-1366. https://doi.org/10.1177/0956797611417632
 
-Tajfel, H., & Turner, J. C. (1979). An integrative theory of intergroup conflict. In W. G. Austin & S. Worchel (Eds.), *The social psychology of intergroup relations* (pp. 33-47). Brooks/Cole.
+Sjöblom, M., & Hamari, J. (2017). Why do people watch others play video games? An empirical study on the motivations of Twitch users. *Computers in Human Behavior*, *75*, 985-996. https://doi.org/10.1016/j.chb.2016.10.019
 
----
-
+::: {.content-visible when-profile="grad"}
 ::: {.callout-note title="Graduate Extension" collapse="true"}
+**Power analysis belongs in the prospectus.** The undergrad prospectus documents what you plan to study and how you plan to study it. The graduate prospectus does all of that — and also commits to a specific sample size with a quantitative justification. That justification is the a priori power analysis.
 
-**Required Task**: Find a published empirical study in a communication journal (content analysis, survey, or experiment). Reverse-engineer it into a one-page prospectus using the template from this chapter.
+**What power analysis is and why it matters.** Statistical power is the probability that your study will detect an effect of a given size, assuming that effect is real. A study with 50% power has a coin-flip chance of detecting the effect even if it exists. The conventional minimum threshold is 80% power. Below that threshold, a significant result is less credible, because underpowered studies have inflated false-positive rates and overestimated effect sizes.
 
-Your reverse-engineered prospectus should include:
+**Running the analysis.** Once you have an effect size estimate from the literature (Chapter 4) and a significance level (*α* = .05), the `pwr` package computes the required *n*:
 
-1. **Title**: Use the study's actual title or create a descriptive one
-2. **Research questions/hypotheses**: Extract the stated RQs or hypotheses from the paper
-3. **Theoretical framework**: Identify the theory the authors used and explain how it connects to the research question (2-3 sentences)
-4. **Gap in literature**: Identify the gap the authors claim to address. What prior work do they cite, and what do they argue is missing? (2-3 sentences)
-5. **Method**: Summarize the sample, measures, and analytical approach (3-4 sentences)
-6. **Expected contribution**: What did the authors claim they would contribute?
+```r
+library(pwr)
+# Two-group t-test, medium effect (d = 0.5), 80% power
+pwr.t.test(d = 0.5, sig.level = 0.05, power = 0.80, type = "two.sample")
+```
 
-After completing the reverse-engineered prospectus, write a 200-word critical evaluation:
+This output — *n* = 64 per group — becomes the sampling plan justification in your prospectus. If you cannot feasibly collect that many observations, the research question must be revised, the design changed for greater power, or the limitation explicitly justified in writing.
 
-- Is the Holy Trinity (Topic, Theory, Data) aligned? If not, where does alignment break down?
-- Is the scope appropriate, or does the study attempt too much?
-- Could you replicate this study from the prospectus alone, or is critical information missing?
-- If you were reviewing this prospectus before the study was conducted, what concerns would you raise?
+**Required reading.** Lakens, D. (2022). Sample size justification. *Collabra: Psychology*, *8*(1), 33267. https://doi.org/10.1525/collabra.33267
 
-This exercise develops the ability to read published research structurally, not just for findings, but for the logic of the design. It also prepares you for graduate-level tasks like writing research proposals, reviewing manuscripts, and evaluating grant applications.
-
+**Reflect.** (1) Run a `pwr` analysis for your prospectus using the effect size you extracted in Chapter 4. Report required *n* at 80% and 90% power. How does the 10-point power increase change the sample size requirement? (2) Lakens describes "justification by resource constraints" as a last resort. Is it ethically defensible to run a study you know is underpowered? Under what conditions?
 :::
-
----
-
-## Looking Ahead
-
-Chapter 7 (The Research Question) focuses specifically on the craft of formulating strong research questions and hypotheses. You'll learn to distinguish between weak and strong formulations, avoid common pitfalls (vague concepts, unmeasurable variables, circular reasoning), and translate theoretical concepts into operational definitions. This chapter completes Part II by ensuring your roadmap has a precise destination. With the prospectus written, you're ready to move from design to ethics (Chapter 8) and then into methods.
+:::

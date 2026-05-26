@@ -1,0 +1,430 @@
+---
+title: "Chapter 12: Designing Experiments"
+---
+
+## Learning Objectives
+
+- Understand the three requirements for establishing causation
+- Identify the key components of experimental design: independent variable, dependent variable, random assignment, and control group
+- Distinguish between pre-experimental, true experimental, and quasi-experimental designs
+- Recognize threats to internal and external validity
+- Evaluate published experiments for the strength of their causal claims
+- Connect the ethics of experimentation to the principles established in Chapter 8
+
+---
+
+![Visual representation of cause and effect relationships](../images/ch12-cause-effect_1.jpg){fig-alt="Visual representation of cause and effect relationships"}
+
+
+
+Here is a question that seems simple: Does listening to sad music make people sadder?
+
+You could ask people. Survey 500 listeners: "When you listen to sad music, does it make you feel sad?" Most would probably say yes. But self-report is unreliable here. People may not accurately perceive their own emotional shifts. They may confuse the mood they brought to the music with the mood the music produced. And the question itself primes the answer: if you ask someone whether sad music makes them sad, you've essentially told them the expected response.
+
+You could observe behavior. Track Spotify listening patterns and correlate them with mood data from a wearable device. If people who listen to more sad music also register lower mood scores, you might have something. But you'd also have the self-selection problem: maybe people who are already sad choose sad music to match their mood. The music didn't cause the sadness; the sadness caused the music choice. Correlation, no matter how robust, cannot untangle the direction.
+
+To answer this question with confidence, you need an experiment. You need to take a group of people, randomly split them into two conditions, play sad music for one group and neutral music for the other, and measure mood afterward. If the sad-music group is measurably sadder than the neutral-music group, and the only difference between the groups was the music they heard, you have evidence that the music caused the mood change.
+
+This is the logic of experimental design, and it is the only method that can establish causation. Content analysis tells you what's in the message. Surveys tell you what people think. Qualitative methods tell you what things mean. Experiments tell you what causes what.
+
+## The Three Requirements for Causation
+
+Establishing that X causes Y requires meeting three conditions. All three must hold simultaneously; meeting only one or two is insufficient.
+
+### 1. Covariation
+
+X and Y must be related. When X changes, Y changes. If you increase the dosage, the symptoms decrease. If you change the frame, the attitude shifts. Without covariation, there is no relationship to explain.
+
+But covariation alone proves nothing about causation. Ice cream sales and drowning deaths covary across months: both increase in summer. Ice cream does not cause drowning. A third variable (hot weather) causes both.
+
+### 2. Temporal Precedence
+
+The cause must precede the effect. X must happen before Y. If you want to claim that sad music causes sadness, you must show that the music came first and the sadness followed. This seems obvious, but it's precisely what cross-sectional surveys cannot establish. When a survey finds that heavy news consumers hold more fearful attitudes about crime, it cannot determine whether news consumption caused the fear or whether fearful people seek out crime news. Both happened simultaneously from the survey's perspective.
+
+Experiments solve temporal precedence by design: the researcher introduces X (the manipulation) and then measures Y (the outcome). The sequence is built into the procedure.
+
+### 3. Elimination of Alternative Explanations
+
+Even if X and Y covary and X precedes Y, some third variable might be causing both. The summer-weather variable causes both ice cream sales and drowning. A personality trait (neuroticism) might cause both heavy news consumption and fearful attitudes.
+
+Experiments address this through **random assignment**: participants are assigned to conditions by chance (typically a random number generator), not by choice. When assignment is truly random, the groups are statistically equivalent on all characteristics, observed and unobserved, before the manipulation. Any difference between groups after the manipulation can therefore be attributed to the manipulation itself, because the groups started out the same.
+
+This is the decisive advantage of experimentation over every other method. Random assignment eliminates alternative explanations, not by measuring and controlling for confounds one by one (which surveys attempt through statistical controls), but by distributing all possible confounds equally across conditions.
+
+## The Anatomy of an Experiment
+
+Every experiment shares four core components.
+
+### The Independent Variable (IV): What You Manipulate
+
+The IV is the factor the researcher deliberately varies across conditions. It is the hypothesized cause.
+
+**Examples**:
+
+- News frame type (episodic vs. thematic)
+- Music tempo (fast vs. slow)
+- Advertising appeal (emotional vs. rational)
+- Message source (expert vs. peer)
+- Song lyric sentiment (positive vs. negative vs. neutral)
+
+The IV must have at least two levels (conditions). Some experiments use more. A study might compare three framing conditions (episodic, thematic, and no-frame control) to assess whether any framing differs from a baseline.
+
+### The Dependent Variable (DV): What You Measure
+
+The DV is the outcome the researcher measures. It is the hypothesized effect.
+
+**Examples**:
+
+- Self-reported mood (measured by survey items after exposure)
+- Policy support (measured by agreement with spending proposals)
+- Information recall (measured by quiz performance)
+- Behavioral intention (measured by willingness to donate, purchase, or share)
+- Physiological response (measured by heart rate, skin conductance)
+
+The DV must be measured the same way across all conditions. If one group completes a paper survey and another completes an online survey, differences in responses might reflect measurement mode rather than the experimental manipulation.
+
+### Random Assignment: The Engine of Causation
+
+Each participant is assigned to a condition by chance. This ensures that the groups are comparable before the manipulation. Without random assignment, the experiment is not a true experiment; it is a quasi-experiment (discussed below), and its causal claims are weaker.
+
+**The logic**: If you randomly assign 200 participants to two conditions, the groups will be approximately equal in age, gender, personality, prior attitudes, media habits, and every other variable, both the ones you measured and the ones you didn't. This isn't guaranteed for any individual participant (one group might have slightly more women), but across many participants, the randomization averages out differences. When the groups differ on the DV after the manipulation, the manipulation is the most parsimonious explanation.
+
+### The Control Group: The Counterfactual
+
+The **control group** receives no manipulation (or a neutral/placebo version). It represents what would have happened without the experimental treatment.
+
+In a study testing whether sad music decreases mood:
+
+- **Experimental group**: Listens to a sad song
+- **Control group**: Listens to a neutral song (or sits in silence)
+
+Comparing the experimental group's mood to the control group's mood tells you whether the sad music produced a change *relative to baseline*. Without a control group, you'd know only that the experimental group felt sad after listening, but you wouldn't know whether they felt sad before listening too.
+
+## Types of Experimental Designs
+
+Experiments vary in rigor. Campbell and Stanley (1963) provided the foundational classification, which remains standard in social science methods training.
+
+### Pre-Experimental Designs (Weak)
+
+These designs lack random assignment, a control group, or both. They are common in informal research but cannot support strong causal claims.
+
+**One-shot case study**: Expose a group to the treatment, then measure the outcome. No comparison group. No pretest.
+
+*Example*: Show participants a public service announcement about mental health and then measure their attitudes. Did the PSA change attitudes? You can't know, because you don't know what attitudes were before exposure and you have no comparison group.
+
+**One-group pretest-posttest**: Measure the outcome before and after the treatment for the same group. No comparison group.
+
+*Example*: Measure students' attitudes toward mental health, show them a documentary about depression, then measure attitudes again. If attitudes improved, was it the documentary? Or did something else happen between pretest and posttest (a news event, a class discussion, simply becoming more comfortable with the researcher)?
+
+### True Experimental Designs (Strong)
+
+These designs include random assignment and at least one control group.
+
+**Posttest-only control group design**: Randomly assign participants to conditions. Administer the treatment to the experimental group and nothing (or a placebo) to the control group. Measure the DV after treatment only.
+
+*Example*: Randomly assign 200 people to read either an episodically framed or a thematically framed news article about homelessness. Measure policy support afterward. Compare the two groups.
+
+*Strength*: Random assignment makes groups comparable. No pretest means no testing effects (see threats below).
+*Limitation*: Without a pretest, you can't verify that the groups were equivalent before manipulation (though random assignment makes this highly likely with adequate sample sizes).
+
+**Pretest-posttest control group design**: Same as above, but measure the DV both before and after treatment.
+
+*Example*: Measure attitudes toward homelessness. Randomly assign participants to read episodic or thematic framing. Measure attitudes again. Compare change scores across groups.
+
+*Strength*: You can verify group equivalence at pretest and measure individual-level change.
+*Limitation*: The pretest itself may sensitize participants to the topic, making them respond differently to the manipulation than they would have without the pretest (a "testing effect").
+
+**Solomon four-group design**: Combines the two designs above. Four groups: (1) pretest + treatment + posttest, (2) pretest + no treatment + posttest, (3) no pretest + treatment + posttest, (4) no pretest + no treatment + posttest. This allows you to detect whether the pretest itself affected results.
+
+*Strength*: The most rigorous design, controlling for testing effects.
+*Limitation*: Requires four groups, meaning you need four times the participants. Rarely practical outside well-funded research programs.
+
+### Quasi-Experimental Designs (Moderate)
+
+These designs approximate true experiments but lack random assignment. They are common when random assignment is impractical or unethical.
+
+**Non-equivalent control group design**: Two pre-existing groups receive different treatments. Because participants were not randomly assigned, the groups may differ in ways that confound the results.
+
+*Example*: Two sections of a communication course. One section watches a documentary about media literacy; the other does not. You compare media literacy scores afterward. But students self-selected into sections (perhaps based on schedule, instructor reputation, or interest level), so any differences might reflect pre-existing group differences rather than the documentary's effect.
+
+**Interrupted time series**: Measure an outcome repeatedly over time, introduce a treatment at a specific point, and observe whether the trend changes.
+
+*Example*: Track weekly streaming numbers for songs by an artist, then observe whether a viral TikTok moment produces a visible spike. The time series establishes a baseline trend, and the interruption tests whether the event shifted that trend.
+
+*Strength*: Works with naturally occurring events that can't be randomly assigned (policy changes, crises, media events).
+*Limitation*: Other events occurring at the same time as the treatment (history threats) could explain the change.
+
+## Threats to Internal Validity
+
+**Internal validity** is the confidence that the independent variable, and not some confound, caused the observed effect. Campbell and Stanley (1963) identified seven classic threats. Understanding them helps you design better studies and evaluate published research critically.
+
+### History
+
+Events outside the experiment affect the outcome. If you're testing whether a media literacy intervention improves critical thinking, but a major misinformation scandal dominates the news during your study period, your participants' attitudes may change because of the scandal, not your intervention.
+
+**Defense**: Use a control group measured during the same time period. Both groups experience the same history, so historical events can't explain group differences.
+
+### Maturation
+
+Participants naturally change over time through growth, fatigue, or boredom. In a longitudinal study of children's media habits, improvements in critical viewing might reflect cognitive development rather than any intervention.
+
+**Defense**: Control group, measured over the same time period.
+
+### Testing
+
+Taking a pretest can sensitize participants to the topic, changing how they respond to the posttest regardless of the manipulation. If you ask people about racial attitudes, expose them to diverse media content, and then ask about racial attitudes again, improved scores might reflect demand characteristics (knowing what the "right" answer is) rather than genuine attitude change.
+
+**Defense**: Posttest-only designs eliminate this threat. The Solomon four-group design detects it.
+
+### Instrumentation
+
+Changes in the measurement instrument between pretest and posttest. If survey items are reworded, if a different observer codes behavior, or if equipment is recalibrated, apparent changes may reflect measurement shifts rather than real effects.
+
+**Defense**: Standardize instruments across all conditions and time points.
+
+### Statistical Regression
+
+Extreme scores tend to move toward the mean on subsequent measurements. If you select participants because they scored very high on anxiety, their scores will likely decrease on a second measurement even without any intervention, simply because extreme scores are partly due to random fluctuation.
+
+**Defense**: Random assignment distributes extreme scorers equally across conditions. Avoid selecting participants based on extreme scores.
+
+### Selection
+
+Pre-existing differences between groups that are not due to random assignment. This is the fundamental problem with quasi-experiments. If your "treatment" group is a morning class and your "control" group is an evening class, differences might reflect the kinds of students who choose morning versus evening schedules.
+
+**Defense**: Random assignment. When not possible, measure and statistically control for known differences.
+
+### Mortality (Attrition)
+
+Participants drop out of the study, and dropout is not random. If the most bored or frustrated participants leave the experimental condition but stay in the control condition, the remaining experimental group is not comparable to the control group.
+
+**Defense**: Track and report attrition rates. Analyze whether dropouts differ from completers on key characteristics.
+
+## Threats to External Validity
+
+**External validity** is the extent to which findings generalize beyond the specific conditions of the study. A study can have strong internal validity (the manipulation definitely caused the effect) but weak external validity (the effect might not occur outside the laboratory).
+
+### The Lab-to-Life Problem
+
+Most experiments occur in controlled environments (computer labs, classrooms, online survey platforms) where participants focus on a single stimulus in isolation. Real media consumption is messier: people scroll while watching television, listen to music while exercising, and read news while commuting. Effects observed in a quiet lab may disappear in the noise of everyday life.
+
+### The College Sophomore Problem
+
+Most communication and psychology experiments use undergraduate students as participants because they're accessible (enrolled in research participation pools). But undergraduates are not representative of the general population. They are younger, more educated, more likely to be WEIRD (Western, Educated, Industrialized, Rich, Democratic) than the global population. Effects that hold among 19-year-old communication majors may not hold among 45-year-old factory workers or 70-year-old retirees.
+
+### Stimulus Representativeness
+
+If you test the effect of "sad music" by using one specific song, your finding is technically about the effect of *that song*, not about sad music in general. Different sad songs vary in tempo, lyrics, instrumentation, and cultural associations. Using multiple stimuli and showing that the effect holds across them strengthens external validity.
+
+### Demand Characteristics
+
+Participants who know they're in a study may try to figure out the hypothesis and behave accordingly ("cooperative subjects") or deliberately contradict it ("oppositional subjects"). Either response distorts findings. Cover stories, between-subjects designs (each participant sees only one condition), and behavioral rather than self-report DVs can reduce demand characteristics.
+
+## Experiments in Communication Research
+
+Experimental design has produced some of the most influential findings in communication research. Here are several domains where experiments are the standard method:
+
+**Framing experiments**: Does the way information is presented affect how audiences interpret it? Researchers randomly assign participants to read news stories with different frames (episodic vs. thematic, gain vs. loss, human-interest vs. statistical) and measure attitudes, attributions, or behavioral intentions. Entman's (1993) framing framework generates testable predictions that experiments are ideally suited to evaluate.
+
+**Priming experiments**: Does media exposure activate particular concepts in memory, making them more accessible for subsequent judgments? Political communication researchers test whether exposure to crime news makes viewers more likely to evaluate political candidates based on their crime policies.
+
+**Persuasion experiments**: Does message design affect attitude change? Advertising researchers manipulate message appeals (fear vs. humor, emotional vs. rational, celebrity vs. expert endorsement) and measure consumer attitudes and purchase intentions.
+
+**Media effects experiments**: Does exposure to specific media content cause changes in attitudes, beliefs, or behaviors? Researchers test whether violent video games increase aggression, whether sexualized media imagery affects body satisfaction, or whether exposure to diverse characters reduces prejudice.
+
+**Music and emotion experiments**: Does manipulating musical features (tempo, key, lyric sentiment) cause measurable changes in listener mood, behavior, or cognition? This domain is directly relevant to this course's content analysis work: if your content analysis finds that negative lyrics are more prevalent in popular songs, an experiment could test *why* audiences prefer them, whether negative lyrics increase emotional arousal, trigger nostalgic memories, or provide cathartic release.
+
+## Ethics of Experimentation
+
+Chapter 8 established the ethical principles governing all research. Experiments carry particular ethical weight because they involve deliberately manipulating participants' experiences. Several considerations deserve emphasis:
+
+**Informed consent**: Participants must know they're in a study, understand the general procedures, and be free to withdraw. In some experiments, full disclosure of the hypothesis would undermine the design (knowing you're in the "sad music condition" changes your response). In these cases, partial disclosure is acceptable: participants know they'll listen to music and complete a survey, but not which condition they're in or what the study is testing.
+
+**Deception**: When the experimental design requires deception (participants believe they're doing one thing when they're actually doing another), the Belmont Report's principle of respect for persons demands that researchers provide a thorough **debriefing** after participation. Debriefing must explain the true purpose of the study, why deception was necessary, and offer participants the option to withdraw their data.
+
+**Manipulation risk**: If your manipulation involves exposing participants to distressing content (violent media, fear-based health messages, graphic imagery), you must evaluate whether the distress is justified by the knowledge gained. Most IRBs require that the risk be "minimal," meaning no greater than what participants might encounter in everyday life. A study that exposes participants to a sad song likely qualifies. A study that exposes participants to graphic violence requires more careful justification.
+
+**Debriefing as obligation**: Debriefing is not optional. It is an ethical requirement whenever deception or potentially distressing manipulations are used. A good debriefing explains the study's purpose, addresses any misconceptions the participant may have formed, and provides resources if the manipulation involved sensitive topics.
+
+## Reading Experiments Critically
+
+When you encounter an experiment in the literature, apply this checklist:
+
+**Was there random assignment?** If not, it's a quasi-experiment, and the causal claim is weaker. Look for whether the authors acknowledge this limitation.
+
+**What was the control condition?** A "no treatment" control is different from a "placebo" control. If the experimental group listens to sad music and the control group sits in silence, any differences might reflect the effect of music in general (vs. silence) rather than the effect of sadness specifically. A better design uses a neutral-music control.
+
+**How large was the sample?** Small samples (n < 30 per condition) have low statistical power, meaning they may miss real effects or produce spurious significant findings that fail to replicate. Look for power analyses or justifications of sample size.
+
+**Was the manipulation check successful?** Did the researchers verify that their manipulation worked as intended? In a framing study, did participants actually perceive the episodic frame as episodic and the thematic frame as thematic? Without a manipulation check, you can't be sure the IV was operationalized as intended.
+
+**How was the DV measured?** Self-report, behavioral observation, or physiological measurement each have strengths and limitations. Studies relying solely on self-report are more vulnerable to demand characteristics and social desirability bias.
+
+**Are the stimuli representative?** If the study used one news article, one song, or one advertisement, the findings may be stimulus-specific rather than generalizable to the category.
+
+**Do the causal claims match the design?** A well-designed true experiment with random assignment supports causal language ("X caused Y"). A quasi-experiment supports only suggestive language ("X was associated with Y in a way consistent with a causal relationship"). Watch for quasi-experiments that use causal language without acknowledgment.
+
+---
+
+## Practice: Experimental Design Skills
+
+### Exercise 12.1: Identifying Experimental Components
+
+For each study description, identify the IV, DV, and type of design (pre-experimental, true experimental, or quasi-experimental):
+
+**Study A**: Researchers randomly assigned 200 participants to listen to either a major-key or minor-key version of the same melody. Afterward, participants rated their mood on a 7-point scale.
+
+- IV: _______________
+- DV: _______________
+- Design type: _______________
+
+**Study B**: A professor showed a media literacy video to her morning class and gave a standard lecture to her afternoon class. Both classes completed a quiz on critical media evaluation.
+
+- IV: _______________
+- DV: _______________
+- Design type: _______________
+
+**Study C**: A health department launched an anti-vaping campaign and measured vaping rates among high school students before and after the campaign. There was no comparison group.
+
+- IV: _______________
+- DV: _______________
+- Design type: _______________
+
+---
+
+### Exercise 12.2: Threat Identification
+
+For each scenario, identify which threat(s) to internal validity are present:
+
+1. A study measures media literacy before and after a semester-long course. Students improve. But students also matured intellectually over the semester. **Threat**: _______________
+
+2. Participants in the experimental condition find the task boring and drop out at higher rates than control participants. **Threat**: _______________
+
+3. A study of news framing effects is conducted during the week a major political scandal breaks. **Threat**: _______________
+
+4. Researchers select participants who scored extremely high on a fear-of-crime scale, then expose them to reassuring news coverage. Fear scores drop. **Threat**: _______________
+
+---
+
+### Exercise 12.3: Designing an Experiment
+
+Choose one of the following research questions and design a true experiment to test it:
+
+- Does sad music decrease self-reported mood compared to neutral music?
+- Does episodic framing of poverty increase personal-responsibility attributions compared to thematic framing?
+- Does hearing a song described as "#1 on Billboard" increase listeners' ratings of the song compared to the same song with no chart information?
+
+For your chosen question, specify:
+
+1. **Independent variable** (with at least two levels): _______________
+2. **Dependent variable** (with measurement approach): _______________
+3. **Control condition**: _______________
+4. **Random assignment procedure**: _______________
+5. **Sample size and population**: _______________
+6. **One potential threat to internal validity and how you'd address it**: _______________
+7. **One potential threat to external validity and how you'd address it**: _______________
+
+---
+
+### Exercise 12.4: Evaluating a Published Experiment
+
+Find a published experiment in a communication or psychology journal. Apply the critical reading checklist from this chapter:
+
+1. Was there random assignment?
+2. What was the control condition?
+3. How large was the sample per condition?
+4. Was there a manipulation check?
+5. How was the DV measured?
+6. Were the stimuli representative?
+7. Do the causal claims match the design?
+
+Write a 200-word evaluation of the study's internal and external validity.
+
+---
+
+## Reflection Questions
+
+1. **The External Validity Tradeoff**: Tightly controlled experiments have high internal validity (you can be confident about causation) but often low external validity (the findings may not generalize to real life). Is it better to know with certainty that X causes Y in a lab, or to know with less certainty that X is associated with Y in the real world? How do you navigate this tradeoff?
+
+2. **The Ethics of Manipulation**: Experiments require manipulating people's experiences. Is it ethical to deliberately make someone sad (even temporarily) to study the effects of sad music? Where is the line between acceptable and unacceptable manipulation? Who should draw that line?
+
+3. **Experiments and Content Analysis**: This course primarily uses content analysis, which describes patterns in media content. How could experimental findings complement content analysis findings? If your content analysis shows that negative lyrics are more prevalent in popular music, what experimental study would you design to explain *why*?
+
+4. **The Replication Question**: Chapter 2 described the replication crisis in psychology, where many experimental findings failed to replicate (Open Science Collaboration, 2015). What features of experimental design make studies more or less likely to replicate? How does sample size relate to replicability?
+
+---
+
+## Chapter Summary
+
+This chapter introduced experimental design as the method for establishing causation:
+
+- **Three requirements for causation**: covariation (X and Y are related), temporal precedence (X comes before Y), elimination of alternative explanations (nothing else explains the relationship).
+- **Random assignment** is the key to causal inference. It distributes all possible confounds equally across conditions, ensuring that post-manipulation differences reflect the manipulation itself.
+- **Four core components**: independent variable (manipulated), dependent variable (measured), random assignment, and control group.
+- **Three design categories**: Pre-experimental (weak, lacking random assignment or control), true experimental (strong, with random assignment and control), quasi-experimental (moderate, approximating true experiments when random assignment is impractical).
+- **Seven threats to internal validity** (Campbell & Stanley, 1963): history, maturation, testing, instrumentation, statistical regression, selection, and mortality.
+- **Threats to external validity**: the lab-to-life problem, the college sophomore problem, stimulus representativeness, and demand characteristics.
+- **Experiments in communication** test framing effects, priming effects, persuasion mechanisms, media effects, and music-emotion relationships.
+- **Ethical considerations** include informed consent with partial disclosure, debriefing after deception, and risk assessment for distressing manipulations.
+- **Critical reading** of experiments requires evaluating random assignment, control conditions, sample size, manipulation checks, measurement quality, stimulus representativeness, and the match between design and causal claims.
+
+---
+
+## Key Terms
+
+- **Between-subjects design**: Each participant experiences only one condition
+- **Control group**: Condition receiving no treatment or a neutral/placebo treatment
+- **Demand characteristics**: Cues that lead participants to guess the hypothesis and adjust their behavior
+- **External validity**: Generalizability of findings beyond the specific study conditions
+- **Internal validity**: Confidence that the IV, not a confound, caused the observed effect (Campbell & Stanley, 1963)
+- **Manipulation check**: Verification that the experimental manipulation was perceived as intended
+- **Quasi-experiment**: Design approximating a true experiment but lacking random assignment
+- **Random assignment**: Allocating participants to conditions by chance to ensure group equivalence
+- **Solomon four-group design**: Design using four groups to detect testing effects
+- **True experiment**: Design with random assignment and at least one control group
+- **Within-subjects design**: Each participant experiences all conditions (also called repeated measures)
+
+---
+
+## References
+
+Babbie, E. R. (2021). *The practice of social research* (15th ed.). Cengage Learning.
+
+Campbell, D. T., & Stanley, J. C. (1963). *Experimental and quasi-experimental designs for research*. Rand McNally.
+
+Entman, R. M. (1993). Framing: Toward clarification of a fractured paradigm. *Journal of Communication*, *43*(4), 51-58. https://doi.org/10.1111/j.1460-2466.1993.tb01304.x
+
+Open Science Collaboration. (2015). Estimating the reproducibility of psychological science. *Science*, *349*(6251), aac4716. https://doi.org/10.1126/science.aac4716
+
+Wimmer, R. D., & Dominick, J. R. (2014). *Mass media research: An introduction* (10th ed.). Cengage Learning.
+
+---
+
+::: {.content-visible when-profile="grad"}
+
+::: {.callout-note title="Graduate Extension" collapse="true"}
+
+**Required Reading**: Campbell, D. T., & Stanley, J. C. (1963). *Experimental and quasi-experimental designs for research*. Rand McNally. **Read Chapters 1-3** (approximately 40 pages).
+
+**Prompt**: Campbell and Stanley's 1963 monograph remains the foundational text on experimental design in the social sciences. Their contribution was not to invent experimentation but to systematize the logic of validity threats and to show that design choices are not arbitrary: each design controls for specific threats while remaining vulnerable to others.
+
+1. Campbell and Stanley use a notation system where **X** represents a treatment, **O** represents an observation (measurement), and **R** represents random assignment. Diagram the following designs using their notation:
+   - One-group pretest-posttest
+   - Pretest-posttest control group design
+   - Solomon four-group design
+
+2. For each design, list which of the seven internal validity threats are controlled and which remain uncontrolled. (Campbell and Stanley provide this analysis; your task is to explain *why* each threat is or isn't controlled, not just to list them.)
+
+3. Campbell and Stanley distinguish between "true experiments" and "quasi-experiments," arguing that quasi-experiments are not second-class methods but rather designs appropriate when random assignment is impossible. In communication research, when is random assignment genuinely impossible (not just inconvenient)? Provide two examples and explain what quasi-experimental design you would use instead.
+
+4. Design a hypothetical experiment testing whether the framing of song lyrics as "protest music" (vs. no label) changes listener evaluations of the same song. Diagram your design using Campbell and Stanley's notation. Identify the strongest threat to internal validity in your design and the strongest threat to external validity. How would you address each?
+
+:::
+
+:::
+
+---
+
+## Looking Ahead
+
+With Chapters 9 through 12 complete, you now have a conceptual map of the four major research methods in social science. [Chapter 13: Music Immersion](chapter13.qmd) marks the shift from conceptual understanding to hands-on execution. You'll begin the content analysis sequence that carries through Chapter 16: immersing in your dataset, translating observations into variables, building a codebook, and testing its reliability. Everything you've learned about theory (Chapter 5), research questions (Chapter 7), ethics (Chapter 8), and methods (Chapters 9-12) converges as you start doing research rather than reading about it.
