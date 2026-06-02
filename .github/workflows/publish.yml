@@ -32,6 +32,7 @@ jobs:
             any::tidyverse
             any::kableExtra
             any::rcompanion
+            github::AURA-Lab-SIUE/v2v-r
 
       - uses: quarto-dev/quarto-actions/setup@v2
 
