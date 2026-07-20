@@ -39,6 +39,7 @@ The data needs shaping first, the kind of dplyr work Chapter 11 covered. The str
 library(tidyverse)
 
 viewers_over_time <- streams |>
+  filter(!is.na(game)) |>
   mutate(
     timestamp = as.POSIXct(date / 1000, origin = "1970-01-01", tz = "UTC"),
     six_hour  = floor_date(timestamp, "6 hours"),
@@ -59,6 +60,7 @@ ggplot(viewers_over_time, aes(x = six_hour, y = total_viewers, color = category)
     y = "Total viewers in bucket",
     color = "Category"
   ) +
+  v2v::scale_colour_v2v() +
   v2v::theme_v2v()
 ```
 
@@ -118,6 +120,7 @@ ggplot(msglen, aes(x = length_shown, fill = is_gaming)) +
     y = "Messages",
     fill = "Gaming channel"
   ) +
+  v2v::scale_fill_v2v() +
   v2v::theme_v2v()
 ```
 
@@ -134,9 +137,9 @@ msglen |>
   group_by(is_gaming) |>
   summarise(
     n      = n(),
-    mean   = mean(message_length),
-    median = median(message_length),
-    sd     = sd(message_length),
+    mean   = mean(message_length, na.rm = TRUE),
+    median = median(message_length, na.rm = TRUE),
+    sd     = sd(message_length, na.rm = TRUE),
     .groups = "drop"
   ) |>
   v2v::pretty_table()
