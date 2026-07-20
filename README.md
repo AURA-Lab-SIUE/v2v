@@ -7,7 +7,7 @@
 
 V2V is an open educational resource that teaches communication and media research methods as a complete arc, from the first spark of curiosity to a published, reproducible study. V2V is a methods package, not a textbook with bonuses: the book in this repository is one of several co-equal components alongside the V2V Hub (course site), the `v2v` R package (friction-reducing helpers), and the *Beyond Vibes* graduate supplement.
 
-**Read online:** <https://sim-lab-siue.github.io/v2v/>
+**Read online:** <https://aura-lab-siue.github.io/v2v/>
 
 **Author:** Alex P. Leith, Southern Illinois University Edwardsville
 
@@ -71,11 +71,11 @@ The 2nd Edition's 22-chapter content (research ethics, the methods landscape, qu
 
 ### Online (recommended)
 
-Visit <https://sim-lab-siue.github.io/v2v/> for the full HTML book with search, navigation, and interactive code examples.
+Visit <https://aura-lab-siue.github.io/v2v/> for the full HTML book with search, navigation, and interactive code examples.
 
 ### Offline via the v2v R package
 
-If you have the [`v2v`](https://github.com/SIM-Lab-SIUE/v2v-r) R package installed, the bundled chapters (3rd Edition drafted + 2nd Edition archive) are available for offline access:
+If you have the [`v2v`](https://github.com/AURA-Lab-SIUE/v2v-r) R package installed, the bundled chapters (3rd Edition drafted + 2nd Edition archive) are available for offline access:
 
 ```r
 # Path to a specific chapter
@@ -116,14 +116,14 @@ This requires a LaTeX distribution (TinyTeX recommended: `quarto install tinytex
 
 ## The Dataset
 
-Throughout the book, examples currently use the `unified_music` dataset, 1,792 songs combining Billboard chart performance, Spotify audio features, and Genius metadata. The dataset is bundled in the [v2v](https://github.com/SIM-Lab-SIUE/v2v) R package:
+Throughout the book, examples currently use the `unified_music` dataset, 1,792 songs combining Billboard chart performance, Spotify audio features, and Genius metadata. The dataset is bundled in the [v2v](https://github.com/AURA-Lab-SIUE/v2v) R package:
 
 ```r
 library(v2v)
 data(unified_music)
 ```
 
-See the [Data Dictionary appendix](https://sim-lab-siue.github.io/v2v/appendices/data-dictionary.html) for the full variable reference.
+See the [Data Dictionary appendix](https://aura-lab-siue.github.io/v2v/appendices/data-dictionary.html) for the full variable reference.
 
 The third-edition migration will move chapter examples to a Twitch chat and stream-metadata corpus to better serve the MC 451 Social Media Analytics course. That migration ships chapter by chapter through Summer and Fall 2026; the music dataset remains canonical until each chapter is updated.
 
@@ -135,8 +135,8 @@ V2V is a methods package; the book is one of several co-equal components.
 
 | Component | Description | Link |
 |---------|-------------|------|
-| **V2V Hub** | Course site wrapping the book: syllabus, R workbook (with videos), Methods Vault, setup guides, cheat sheets, datasets, references, instructor materials. Currently hosted under the legacy `liaison-program` identifier; consolidation under the V2V Hub identifier is in progress. | [Visit Site](https://sim-lab-siue.github.io/liaison-program/) \| [GitHub](https://github.com/SIM-Lab-SIUE/liaison-program) |
-| **`v2v` R package** | R helpers, the `unified_music` dataset, weekly templates, and the planned Twitch corpus. Rebrand from `coursepackR` is in progress. | [Docs](https://sim-lab-siue.github.io/coursepackR/) \| [GitHub](https://github.com/SIM-Lab-SIUE/coursepackR) |
+| **V2V Hub** | Course site wrapping the book: syllabus, R workbook (with videos), course workspace, setup guides, cheat sheets, datasets, references, instructor materials. Currently hosted under the legacy `liaison-program` identifier; consolidation under the V2V Hub identifier is in progress. | [Visit Site](https://aura-lab-siue.github.io/v2v-hub/) \| [GitHub](https://github.com/AURA-Lab-SIUE/v2v-hub) |
+| **`v2v` R package** | R helpers, the `unified_music` dataset, weekly templates, and the planned Twitch corpus. Rebrand from `coursepackR` is in progress. | [Docs](https://github.com/AURA-Lab-SIUE/v2v-r/) \| [GitHub](https://github.com/AURA-Lab-SIUE/v2v-r) |
 | **Beyond Vibes** (in progress) | Graduate supplement; produces a publishable white paper and conference poster. SIUE deployment pairs it with MC 500 in the MC 501 cohort. | Renders from this repository via `quarto render --profile grad`. |
 
 ---
@@ -147,4 +147,4 @@ This work is licensed under a [Creative Commons Attribution 4.0 International Li
 
 ## Citation
 
-> Leith, A. P. (2026). *Vibes to Variables: A Methods Package for Students New to Research, Stats, and Code* (3rd ed.). Southern Illinois University Edwardsville. <https://sim-lab-siue.github.io/v2v/>
+> Leith, A. P. (2026). *Vibes to Variables: A Methods Package for Students New to Research, Stats, and Code* (3rd ed.). Southern Illinois University Edwardsville. <https://aura-lab-siue.github.io/v2v/>

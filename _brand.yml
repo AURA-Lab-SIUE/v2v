@@ -1,6 +1,6 @@
 meta:
   name: V2V (Vibes to Variables)
-  link: https://github.com/SIM-Lab-SIUE/v2v
+  link: https://github.com/AURA-Lab-SIUE/v2v
 
 color:
   palette:
@@ -8,7 +8,7 @@ color:
     surface:      "#ECE7E0"
     ink:          "#18181B"
     text:         "#27272A"
-    muted:        "#71717A"
+    muted:        "#52525B"   # AA-safe on chalk (6.8:1); shared with v2v-hub
     violet:       "#7C3AED"
     violet-dark:  "#6D28D9"
     amber:        "#F59E0B"
