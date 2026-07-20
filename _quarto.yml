@@ -2,6 +2,8 @@ project:
   type: book
   output-dir: docs
 
+lang: en
+
 book:
   title: "Vibes to Variables"
   subtitle: "A Methods Package for Students New to Research, Stats, and Code"
@@ -10,7 +12,7 @@ book:
   date-format: "MMMM YYYY"
   edition: "3rd"
   license: "CC BY 4.0"
-  repo-url: https://github.com/SIM-Lab-SIUE/v2v
+  repo-url: https://github.com/AURA-Lab-SIUE/v2v
   repo-actions: [issue]
   search: true
   sidebar:
