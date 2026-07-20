@@ -79,6 +79,39 @@ This is worth dwelling on, because it sounds like a contradiction and is not. Th
 
 That leaves one question: how did a negligible difference come back statistically significant at all? The answer is the sample size. The test ran on 34,766 messages, and with a sample that large, a hypothesis test can detect a difference far too small to care about. This is the rule to carry forward: a large enough sample will make almost any difference, however tiny, statistically significant. Significance and size are different questions, and big samples pull them apart.
 
+## Seeing the difference
+
+The two facts, a real gap and a negligible one, are easier to hold together as a picture. Plotting each group's mean with its ninety-five percent confidence interval, a band that reflects how precisely the mean is estimated, puts both on the same axis:
+
+```r
+means_ci <- analysis |>
+  filter(!is.na(is_gaming)) |>
+  group_by(is_gaming) |>
+  summarise(
+    mean = mean(message_length, na.rm = TRUE),
+    se   = sd(message_length, na.rm = TRUE) / sqrt(n()),
+    .groups = "drop"
+  ) |>
+  mutate(
+    lower = mean - 1.96 * se,
+    upper = mean + 1.96 * se,
+    group = if_else(is_gaming, "Gaming", "Non-gaming")
+  )
+
+ggplot(means_ci, aes(group, mean, colour = group)) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.14, linewidth = 0.9) +
+  geom_point(size = 3.4) +
+  v2v::scale_colour_v2v() +
+  scale_y_continuous(limits = c(0, NA)) +
+  labs(x = NULL, y = "Mean message length (characters)") +
+  v2v::theme_v2v() +
+  theme(legend.position = "none")
+```
+
+![Mean chat-message length for non-gaming and gaming channels, each with a ninety-five percent confidence interval, on an axis that starts at zero.](../images/ch13-means-ci.png){fig-alt="A dot-and-interval chart comparing two group means on a vertical axis of message length in characters that runs from zero to about thirty-six. Non-gaming channels average 33.7 characters and gaming channels 28.5, a gap of about five characters. Both confidence intervals are very short, and the two intervals do not overlap. But both means sit close together high on the axis, far above zero, showing how small the five-character gap is next to the message lengths themselves."}
+
+The intervals are so short they nearly vanish behind the points, a direct consequence of the large sample: with tens of thousands of messages, each group's mean is pinned down precisely. That the two intervals do not overlap is the visual signature of a statistically significant difference. And yet the two points sit close together near the top of the axis, both far above zero, so the eye reads them as almost the same height. That is the negligible effect size made visible. The gap is real enough that the intervals clear each other, and small enough that against the scale of the data it barely shows.
+
 ## Statistical significance is not practical importance
 
 Putting the two numbers together is the call the chapter is named for, and it is a more careful call than "significant or not."
