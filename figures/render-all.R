@@ -35,12 +35,19 @@ suppressMessages({
   library(stringr); library(lubridate); library(forcats)
 })
 
-BOOK   <- normalizePath(file.path(dirname(sys.frame(1)$ofile %||% "."), ".."), mustWork = FALSE)
-if (!dir.exists(file.path(BOOK, "images"))) BOOK <- normalizePath(".", mustWork = FALSE)
+# Locate the book root: run from the book dir OR from figures/. Identify it by
+# its own marker files rather than by script path, which Rscript does not expose.
+find_book <- function() {
+  for (cand in c(".", "..", "../..")) {
+    p <- normalizePath(cand, mustWork = FALSE)
+    if (dir.exists(file.path(p, "images")) && file.exists(file.path(p, "_quarto.yml"))) return(p)
+  }
+  stop("Cannot locate the v2v-book root (looked for images/ + _quarto.yml in . .. ../..)")
+}
+
+BOOK   <- find_book()
 IMAGES <- file.path(BOOK, "images")
 PKGDIR <- file.path(dirname(BOOK), "v2v")   # sibling AURA-Lab repo
-
-`%||%` <- function(a, b) if (is.null(a)) b else a
 
 # --- load v2v: installed package preferred, sibling source as fallback ---
 if (requireNamespace("v2v", quietly = TRUE)) {
@@ -98,14 +105,23 @@ build_analysis <- function() {
 # --- validation gate: the prose quotes these numbers, so assert them ---
 validate <- function(d) {
   counts <- d$analysis |> count(is_gaming)
-  got <- setNames(counts$n, as.character(counts$is_gaming))
+  # NA must be keyed as the literal string "NA": as.character(NA) is NA, not "NA",
+  # which silently produced an unmatchable key and a false "DIVERGED" warning.
+  keys <- ifelse(is.na(counts$is_gaming), "NA", as.character(counts$is_gaming))
+  got  <- setNames(as.numeric(counts$n), keys)
   expected <- c("FALSE" = 3457, "TRUE" = 31309, "NA" = 501)
+  bad <- 0L
   for (k in names(expected)) {
-    if (!identical(unname(got[k]), unname(expected[k])))
-      warning(sprintf("is_gaming[%s] = %s but the prose says %s — figures and text have DIVERGED",
-                      k, got[k], expected[k]), call. = FALSE)
+    # compare as plain numerics: integer-vs-double made identical() always FALSE,
+    # so this validator used to warn even when the counts matched exactly.
+    if (!(k %in% names(got)) || !isTRUE(all.equal(got[[k]], expected[[k]]))) {
+      bad <- bad + 1L
+      warning(sprintf("is_gaming[%s] = %s but the prose says %s - figures and text have DIVERGED",
+                      k, if (k %in% names(got)) got[[k]] else "absent", expected[[k]]),
+              call. = FALSE)
+    }
   }
-  message("validation: is_gaming counts checked against the prose")
+  if (bad == 0L) message("validation: is_gaming counts match the prose (3457 / 31309 / 501). PASS")
 }
 
 # =====================================================================

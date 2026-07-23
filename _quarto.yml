@@ -4,6 +4,14 @@ project:
 
 lang: en
 
+# Twitch @mentions in the sample chat data (@xqcow, @forsen, @GiantWaffle ...) are
+# parsed by Pandoc as CITATION KEYS and compiled to #cite(<xqcow>) in Typst, which
+# aborts the build: "the document does not contain a bibliography". The book has no
+# real Pandoc citations - references are written literally as "(Wickham, 2016)" - so
+# the citation extension is pure downside here. Turning it off makes the data render
+# as the literal text it is, in every output format.
+from: markdown-citations
+
 book:
   title: "Vibes to Variables"
   subtitle: "A Methods Package for Students New to Research, Stats, and Code"
