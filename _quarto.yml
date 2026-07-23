@@ -15,6 +15,8 @@ book:
   repo-url: https://github.com/AURA-Lab-SIUE/v2v
   repo-actions: [issue]
   search: true
+  # The site is the deliverable; the tagged PDF is downloadable FROM it.
+  downloads: [pdf]
   sidebar:
     collapse-level: 1
   chapters:
@@ -58,15 +60,18 @@ format:
       text: |
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  pdf:
-    documentclass: book
-    papersize: letter
+  # Typst, NOT LaTeX. A LaTeX PDF is UNTAGGED - no /StructTreeRoot, no /Alt -
+  # so every fig-alt in this book would be silently discarded in the PDF and
+  # Ally would score it red no matter how clean the source is. Typst emits a
+  # tagged PDF, which is what makes the downloadable copy actually accessible.
+  # Verify after any toolchain change by probing the built PDF for
+  # /StructTreeRoot and a non-zero /Alt count.
+  typst:
+    papersize: us-letter
     fontsize: 11pt
-    geometry:
-      - margin=1in
+    margin:
+      x: 1in
+      y: 1in
     toc: true
     toc-depth: 2
-    number-sections: false
-    colorlinks: true
-    link-citations: true
-    keep-tex: false
+    section-numbering: none
