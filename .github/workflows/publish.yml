@@ -36,9 +36,6 @@ jobs:
 
       - uses: quarto-dev/quarto-actions/setup@v2
 
-      - name: Install TinyTeX
-        run: quarto install tinytex
-
       # Order matters: the default render owns docs/ and CLEANS it (it wiped
       # docs/grad when it ran second). Default fills the root first; the grad
       # profile then writes into docs/grad, which only it owns.
