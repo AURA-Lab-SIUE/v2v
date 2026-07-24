@@ -670,3 +670,17 @@ aside {
   font-size: 0.85rem;
   color: $muted;
 }
+
+// ============================================================
+// Disable coding-font ligatures  (2026-07-24)
+// The body sets font-feature-settings including "liga", which is inherited into
+// code. JetBrains Mono then renders "<-" as a left arrow and "|>" as a triangle.
+// Students new to R must be able to READ and TYPE the literal characters, so
+// ligatures are wrong on every code surface. Force them off.
+// ============================================================
+code, pre, kbd, samp,
+pre code, pre.sourceCode, div.sourceCode, div.sourceCode pre,
+div.sourceCode code, .sourceCode span {
+  font-variant-ligatures: none !important;
+  font-feature-settings: "liga" 0, "clig" 0, "calt" 0 !important;
+}
