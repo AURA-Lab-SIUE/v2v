@@ -82,6 +82,8 @@ chat |> select(message, message_length) |> head(3)
 
 `message_length` is a ratio variable, in the Chapter 8 sense: a true zero, equal intervals, a count you can average and compare. The three values above also preview something. A single-word message of eight characters, a row of punctuation at twenty-three, and a block of copy-pasted text at 441 are all real Twitch chat, and the distance between them is large. That spread is the raw material of the study, and Chapter 12 will look hard at its shape.
 
+![](../images/fig11-1-rawlen-uncapped.png){fig-alt="A histogram of all 35,263 message lengths with nothing capped, on a square-root count axis. The distribution peaks below 20 characters and falls away steeply; a dashed line at 120 characters marks where Chapter 12 will cap its axis. Only 1,047 messages, three percent, lie beyond that line, stretched thinly all the way out to 501 characters, which is why the cap costs almost nothing."}
+
 ## Labeling gaming and non-gaming
 
 The third transformation is the one the central research question turns on. Every message needs a label: did it come from a gaming channel or a non-gaming one? That label does not exist in the chat table, and building it takes more work than the last two, because the information lives in the other table.

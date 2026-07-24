@@ -299,11 +299,71 @@ fig_ch10_sampling <- function(d) {
   save_fig(p, "fig10-1-stratified-coverage.png")
 }
 
+fig_ch11_rawlen <- function(d) {
+  # G7 — the UNCAPPED message-length distribution. Ch12's histogram caps the
+  # axis at 120 characters; this is the figure that shows why that cap is
+  # honest: the tail is long but nearly empty. Single hue + labeled cap line,
+  # so colour carries no information (SC 1.4.1 by construction).
+  lens <- d$analysis |> filter(!is.na(message_length))
+  n_all    <- nrow(lens)
+  n_beyond <- sum(lens$message_length > 120)
+  max_len  <- max(lens$message_length)
+
+  p <- ggplot(lens, aes(message_length)) +
+    geom_histogram(binwidth = 10, fill = unname(v2v_colours["blue"]),
+                   colour = "grey20", linewidth = 0.15) +
+    geom_vline(xintercept = 120, linetype = "dashed", colour = "grey20") +
+    annotate("text", x = 130, y = Inf, hjust = 0, vjust = 1.5, size = 3.3, colour = "grey20",
+             label = sprintf("Chapter 12 caps its axis here.
+%s of %s messages (%.1f%%) lie beyond 120 characters,
+stretched thinly all the way out to %d.",
+                             format(n_beyond, big.mark = ","), format(n_all, big.mark = ","),
+                             100 * n_beyond / n_all, max_len)) +
+    scale_y_sqrt(labels = scales::comma) +
+    scale_x_continuous(labels = scales::comma) +
+    labs(title = "The raw message-length distribution, nothing capped",
+         subtitle = "Square-root count axis so the near-empty tail stays visible at all",
+         x = "Message length (characters)", y = "Messages (square-root scale)") +
+    theme_v2v()
+  save_fig(p, "fig11-1-rawlen-uncapped.png")
+}
+
+fig_ch13_overlap <- function(d) {
+  # G8 — the negligible effect size made visible: two nearly coincident
+  # densities whose means sit five characters apart against SDs of 38 and 61.
+  # Redundant encoding: colour + linetype + direct mean labels.
+  lens <- d$analysis |> filter(!is.na(is_gaming), !is.na(message_length)) |>
+    mutate(group = ifelse(is_gaming, "Gaming", "Non-gaming"))
+  means <- lens |> group_by(group) |> summarise(m = mean(message_length), .groups = "drop")
+
+  # Densities are estimated on the FULL length range and only the view is
+  # cropped: pmin-style capping would fold the tail into a false bump at 150.
+  p <- ggplot(lens, aes(message_length, colour = group, linetype = group)) +
+    geom_density(linewidth = 0.9, adjust = 1.6) +
+    coord_cartesian(xlim = c(0, 150)) +
+    geom_vline(data = means, aes(xintercept = m, colour = group, linetype = group),
+               linewidth = 0.7, show.legend = FALSE) +
+    annotate("text", x = max(means$m) + 6, y = Inf, hjust = 0, vjust = 1.6, size = 3.3,
+             colour = "grey20",
+             label = sprintf("Means: %.1f vs %.1f characters.
+A five-character gap against SDs of 38 and 61
+is Cohen's d = 0.13: the distributions all but coincide.",
+                             min(means$m), max(means$m))) +
+    scale_colour_v2v() +
+    labs(title = "Statistically significant, and almost too small to see",
+         subtitle = "Message-length densities for gaming and non-gaming channels (axis shown to 150 characters)",
+         x = "Message length (characters)", y = "Density",
+         colour = "Channel type", linetype = "Channel type") +
+    theme_v2v()
+  save_fig(p, "fig13-1-overlap-effect-size.png")
+}
+
 REGISTRY <- list(
   ch08 = list(fig_ch08_levels),
   ch10 = list(fig_ch10_sampling),
+  ch11 = list(fig_ch11_rawlen),
   ch12 = list(fig_ch12_1, fig_ch12_2, fig_ch12_3),
-  ch13 = list(fig_ch13_means)
+  ch13 = list(fig_ch13_means, fig_ch13_overlap)
 )
 
 # =====================================================================

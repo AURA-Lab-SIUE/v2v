@@ -46,9 +46,9 @@ Every figure must satisfy all four, and the render script is written to enforce 
 | 8 | From vibes to variables | 1 | G3 closed 2026-07-24 (`fig08-1-levels-of-measurement`). **Gap — see G4.** |
 | 9 | The rulebook and first workspace | 0 | **Gap — see G5.** |
 | 10 | The sample | 1 | G6 closed 2026-07-24 (`fig10-1-stratified-coverage`). Complete. |
-| 11 | Wrangling the data | 0 | **Gap — see G7.** |
+| 11 | Wrangling the data | 1 | G7 closed 2026-07-24 (`fig11-1-rawlen-uncapped`). Complete. |
 | 12 | Visualizing the narrative | 3 | Complete. |
-| 13 | Making the call | 1 | **Gap — see G8.** |
+| 13 | Making the call | 2 | G8 closed 2026-07-24 (`fig13-1-overlap-effect-size`). Complete. |
 | 14 | The one-click report | 0 | Workflow. None warranted. |
 
 Four data figures across fourteen chapters, all in the last three. Parts I to III carry
@@ -76,12 +76,12 @@ The four-quadrant target diagram is canonical for a reason. It is a schematic ra
 data figure, so it does not belong in `render-all.R`; author it as a tagged SVG or a
 ggplot-drawn schematic and register it separately.
 
-**G7 — Ch11, raw message-length distribution.**
+**G7 — Ch11, raw message-length distribution. (CLOSED 2026-07-24 → `fig11-1-rawlen-uncapped.png`)**
 Ch12's histogram caps length at 120 characters. Nothing shows the reader *why*. The
 uncapped distribution makes the long tail obvious and justifies the capping decision
 instead of asserting it. Cheap to build: the data is already in `build_analysis()`.
 
-**G8 — Ch13, effect size and overlap.**
+**G8 — Ch13, effect size and overlap. (CLOSED 2026-07-24 → `fig13-1-overlap-effect-size.png`)**
 The chapter has means with confidence intervals but stops there. "How big is the
 difference" deserves a figure showing the overlap between the two distributions, since a
 significant difference between heavily overlapping distributions is the single most

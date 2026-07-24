@@ -77,6 +77,8 @@ To read that number, it needs a yardstick, and the standard one comes from Jacob
 
 This is worth dwelling on, because it sounds like a contradiction and is not. The raw gap is about five characters, roughly fifteen percent of the non-gaming average, and fifteen percent does not sound negligible. But Cohen's d measures the gap against the spread of the data, and message lengths vary enormously, with standard deviations of thirty-eight and sixty-one characters. A five-character difference set against that much variation is a ripple. The percentage sounds substantial; the effect size, which is the honest comparison, is not.
 
+![](../images/fig13-1-overlap-effect-size.png){fig-alt="Two message-length density curves, one for gaming channels and one for non-gaming channels, drawn over an axis from zero to 150 characters. The curves rise to nearly the same peak below 20 characters and decay along nearly the same path; two vertical lines mark the group means at 28.5 and 33.7 characters, visibly close together. The five-character gap between the means, set against standard deviations of 38 and 61, is Cohen's d of 0.13: the distributions all but coincide."}
+
 That leaves one question: how did a negligible difference come back statistically significant at all? The answer is the sample size. The test ran on 34,766 messages, and with a sample that large, a hypothesis test can detect a difference far too small to care about. This is the rule to carry forward: a large enough sample will make almost any difference, however tiny, statistically significant. Significance and size are different questions, and big samples pull them apart.
 
 ## Seeing the difference
