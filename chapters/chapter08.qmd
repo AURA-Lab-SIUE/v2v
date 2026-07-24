@@ -84,6 +84,8 @@ An operational definition can be perfectly precise and still be bad measurement.
 
 One principle ties the two together and is worth holding onto: reliability is necessary but not sufficient for validity. A measure that is inconsistent cannot be accurately capturing anything, so unreliability rules validity out. But a measure can be perfectly consistent and still measure the wrong thing. You need both, and you get reliability first, because a codebook is the instrument that produces it.
 
+![](../images/fig08-2-reliability-validity.png){fig-alt="Four target diagrams, each with a cross at the bullseye standing for the concept being measured and dots standing for repeated measurements. Reliable and valid: dots cluster tightly on the bullseye. Reliable but not valid: dots cluster just as tightly but well off-centre, consistent and consistently wrong. Valid on average but not reliable: dots scatter widely around the centre, right on average and unusable one at a time. Neither: dots scatter widely and off-centre. A schematic illustration, not data."}
+
 ## The codebook
 
 A **codebook** is the complete set of instructions for coding your data. It is not paperwork you assemble after the fact to satisfy a methods requirement. It is the instrument itself.

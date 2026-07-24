@@ -80,6 +80,8 @@ Watching ten streams that are all large competitive-gaming channels will teach y
 
 The goal is not volume but coverage. Twenty streams chosen to span the variety of the platform will teach you more than fifty streams that are all the same kind. This is the same principle that governed the literature search in Chapter 4, where the point of a wide search was to be sure you had seen the shape of the whole conversation, and it is the same principle that will govern statistical sampling in Chapter 10. Representativeness is a discipline that shows up at every stage of a study, and observation is the first stage it shows up in.
 
+![](../images/fig07-1-observation-windows.png){fig-alt="A weekly timeline for eight Twitch channels chosen to span the viewership distribution, largest at top, with blue bars marking when each channel was actually live during the November 18 to 24 collection week. The large channels are live daily for long stretches; the small channels near the bottom appear once or twice all week. Three shaded vertical bands mark example two-hour structured observation windows at different days and hours; the windows are illustrative, and together they intersect the big channels easily but catch the small ones only by deliberate placement."}
+
 ## Documenting edge cases
 
 Some of what you observe will resist every category you are tempted to draw. Those moments are not annoyances. They are the most useful thing observation produces, and they deserve their own record: an **edge-case log**, kept alongside your field notes.

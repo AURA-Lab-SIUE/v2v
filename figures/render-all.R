@@ -358,8 +358,108 @@ is Cohen's d = 0.13: the distributions all but coincide.",
   save_fig(p, "fig13-1-overlap-effect-size.png")
 }
 
+fig_ch04_saturation <- function(d) {
+  # G1 — the saturation curve. ILLUSTRATIVE data (the book has no literature-
+  # search log); the caption and fig-alt say so plainly, per FIGURES.md.
+  # Deterministic: a fixed diminishing-returns sequence, no rng.
+  reads <- 1:60
+  found <- cumsum(c(1,1,1,1,0,1,1,0,1,1, 0,1,0,1,1,0,0,1,0,1,
+                    0,0,1,0,0,1,0,0,0,1, 0,0,0,1,0,0,0,0,1,0,
+                    0,0,0,0,0,1,0,0,0,0, 0,0,0,0,0,0,0,0,0,0))
+  sat <- data.frame(reads, found)
+  flat_from <- 47  # last new source at 46; the plateau the chapter describes
+
+  p <- ggplot(sat, aes(reads, found)) +
+    annotate("rect", xmin = flat_from, xmax = 60, ymin = -Inf, ymax = Inf,
+             fill = "grey85", alpha = 0.5) +
+    geom_step(colour = unname(v2v_colours["blue"]), linewidth = 1) +
+    annotate("text", x = flat_from + 6.5, y = 6, size = 3.3, colour = "grey20",
+             label = "The flat stretch:
+searches keep running,
+nothing new turns up.
+Stop searching,
+start synthesizing.") +
+    scale_y_continuous(limits = c(0, NA), expand = expansion(mult = c(0, 0.08))) +
+    labs(title = "What saturation looks like",
+         subtitle = "Illustrative search log: distinct relevant sources found as the search proceeds",
+         x = "Sources examined, in the order the search surfaced them",
+         y = "Distinct relevant sources found") +
+    theme_v2v()
+  save_fig(p, "fig04-1-saturation.png")
+}
+
+fig_ch07_windows <- function(d) {
+  # G2 — what a structured observation actually covers. Channel liveness is
+  # REAL (stream snapshots); the three observation windows are ILLUSTRATIVE
+  # examples of a structured plan, and the fig-alt says so. Channels are picked
+  # to span the volume distribution (every 7th rank), echoing the section's
+  # "big and small, gaming and not, different hours" instruction.
+  # Rank by REAL viewership from the stream snapshots — chat counts are capped
+  # at 1,000/channel in the fixture, which ties the entire head of the
+  # distribution and makes them useless for ranking.
+  vol_rank <- d$streams |>
+    group_by(channel) |> summarise(v = mean(viewers), .groups = "drop") |>
+    arrange(desc(v)) |> mutate(rank = row_number())
+  picks <- vol_rank |> filter(rank %in% c(1, 8, 15, 22, 29, 36, 43, 50))
+  live <- d$streams |>
+    filter(channel %in% picks$channel) |>
+    mutate(t = as.POSIXct(date / 1000, origin = "1970-01-01", tz = "UTC"),
+           slot = floor_date(t, "30 minutes")) |>
+    distinct(channel, slot) |>
+    left_join(picks, by = "channel") |>
+    mutate(chan_f = fct_reorder(channel, rank, .desc = TRUE))
+
+  win <- data.frame(
+    xmin = as.POSIXct(c("2018-11-19 19:00", "2018-11-21 02:00", "2018-11-24 14:00"), tz = "UTC"),
+    xmax = as.POSIXct(c("2018-11-19 21:00", "2018-11-21 04:00", "2018-11-24 16:00"), tz = "UTC"))
+
+  p <- ggplot(live, aes(slot, chan_f)) +
+    geom_rect(data = win, aes(xmin = xmin, xmax = xmax, ymin = -Inf, ymax = Inf),
+              inherit.aes = FALSE, fill = unname(v2v_colours["orange"]), alpha = 0.25) +
+    geom_tile(width = 1800, height = 0.55, fill = unname(v2v_colours["blue"])) +
+    labs(title = "One week of liveness, and what a structured observation samples of it",
+         subtitle = "Eight channels spanning the viewership distribution, largest at top; blue marks when each was live",
+         caption = "Shaded bands: three example two-hour observation windows (illustrative)",
+         x = "Collection week (UTC), Nov 18–24, 2018", y = NULL) +
+    theme_v2v()
+  save_fig(p, "fig07-1-observation-windows.png")
+}
+
+fig_ch09_shape <- function(d) {
+  # G5 — the shape of the two raw tables: every column, its type, and how much
+  # of it is actually there. Missingness computed live from the shipped data.
+  col_profile <- function(tbl, tbl_name) {
+    data.frame(table = tbl_name,
+               column = names(tbl),
+               type = vapply(tbl, function(x) class(x)[1], character(1)),
+               n = nrow(tbl),
+               missing = vapply(tbl, function(x) sum(is.na(x)), numeric(1)))
+  }
+  prof <- rbind(col_profile(d$chat, sprintf("chat (%s rows)", format(nrow(d$chat), big.mark = ","))),
+                col_profile(d$streams, sprintf("streams (%s rows)", format(nrow(d$streams), big.mark = ",")))) |>
+    mutate(present = 100 * (n - missing) / n,
+           lab = ifelse(missing == 0, "complete",
+                        sprintf("%s missing", format(missing, big.mark = ","))),
+           col_f = paste0(column, "  (", type, ")"))
+  prof$col_f <- factor(prof$col_f, levels = rev(unique(prof$col_f)))
+
+  p <- ggplot(prof, aes(present, col_f)) +
+    geom_col(fill = unname(v2v_colours["blue"]), colour = "grey20", linewidth = 0.2, width = 0.65) +
+    geom_text(aes(label = lab), hjust = 1.05, size = 3, colour = "white", fontface = "bold") +
+    facet_wrap(~ table, ncol = 1, scales = "free_y") +
+    scale_x_continuous(limits = c(0, 100), expand = expansion(mult = c(0, 0.02))) +
+    labs(title = "Two tables at first contact: every column, its type, its completeness",
+         subtitle = "Computed from the shipped v2v sample data",
+         x = "Values present (%)", y = NULL) +
+    theme_v2v()
+  save_fig(p, "fig09-1-table-shape.png")
+}
+
 REGISTRY <- list(
+  ch04 = list(fig_ch04_saturation),
+  ch07 = list(fig_ch07_windows),
   ch08 = list(fig_ch08_levels),
+  ch09 = list(fig_ch09_shape),
   ch10 = list(fig_ch10_sampling),
   ch11 = list(fig_ch11_rawlen),
   ch12 = list(fig_ch12_1, fig_ch12_2, fig_ch12_3),

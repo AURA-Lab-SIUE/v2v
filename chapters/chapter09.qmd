@@ -154,6 +154,8 @@ Fifty distinct channels in the chat table, and `n_distinct(streams$channel)` ret
 
 There is one further way to look, worth knowing even though this chapter does not lean on it. Typing a table's name on its own, just `chat`, prints its first rows in a compact form. Running `View(chat)` opens the table in a spreadsheet-style viewer you can scroll. Of the options, `glimpse()` is usually the most useful for seeing a table's shape at a glance, but printing, `View()`, `glimpse()`, and `count()` are all doing the same basic thing: looking, without changing anything.
 
+![](../images/fig09-1-table-shape.png){fig-alt="Two horizontal bar panels profile the chat table of 35,267 rows and the streams table of 32,276 rows, one bar per column showing the percentage of values present, with each column's type in parentheses. Nearly every column is complete. The exceptions are labeled directly: four chat messages are missing their text, and ninety-six stream snapshots are missing both title and game. Computed from the shipped sample data."}
+
 None of this changed the data. Looking is the whole of what this chapter has done with it. The chat table and the stream table are exactly as they were loaded. Inspection comes before transformation, and Chapter 9 stays entirely on the inspection side of that line.
 
 ## Reading the data against the codebook

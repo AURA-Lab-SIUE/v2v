@@ -11,7 +11,8 @@ Rscript figures/render-all.R          # every figure
 Rscript figures/render-all.R ch12     # one chapter
 ```
 
-`figures/render-all.R` is the single source of every data figure. It builds the ch11
+`figures/render-all.R` is the single source of every data figure. Schematic (non-data)
+figures live in `figures/schematics.R` (currently the ch8 reliability/validity target diagram). It builds the ch11
 `analysis` table once, asserts the counts the prose quotes (`is_gaming` FALSE 3457 /
 TRUE 31309 / NA 501) so figures and text cannot silently diverge, renders from the
 registry, and finishes with an alt-text coverage check.
@@ -39,21 +40,20 @@ Every figure must satisfy all four, and the render script is written to enforce 
 | 1 | The Science of Storytelling | 0 | Conceptual. No data figure warranted. |
 | 2 | The Open Workspace | 0 | Tooling walkthrough. None warranted. |
 | 3 | Knowing and Knowing Well | 0 | Ethics. None warranted. |
-| 4 | Intelligence Gathering | 0 | **Gap — see G1.** |
+| 4 | Intelligence Gathering | 1 | G1 closed 2026-07-24 (`fig04-1-saturation`, illustrative). Complete. |
 | 5 | Theory as a Lens | 0 | Conceptual. None warranted. |
 | 6 | The Prospectus | 0 | Conceptual. None warranted. |
-| 7 | Structured listening | 0 | **Gap — see G2.** |
-| 8 | From vibes to variables | 1 | G3 closed 2026-07-24 (`fig08-1-levels-of-measurement`). **Gap — see G4.** |
-| 9 | The rulebook and first workspace | 0 | **Gap — see G5.** |
+| 7 | Observation | 1 | G2 closed 2026-07-24 (`fig07-1-observation-windows`). Complete. |
+| 8 | From vibes to variables | 2 | G3 + G4 closed 2026-07-24 (`fig08-1`, `fig08-2` schematic). Complete. |
+| 9 | The rulebook and first workspace | 1 | G5 closed 2026-07-24 (`fig09-1-table-shape`). Complete. |
 | 10 | The sample | 1 | G6 closed 2026-07-24 (`fig10-1-stratified-coverage`). Complete. |
 | 11 | Wrangling the data | 1 | G7 closed 2026-07-24 (`fig11-1-rawlen-uncapped`). Complete. |
 | 12 | Visualizing the narrative | 3 | Complete. |
 | 13 | Making the call | 2 | G8 closed 2026-07-24 (`fig13-1-overlap-effect-size`). Complete. |
 | 14 | The one-click report | 0 | Workflow. None warranted. |
 
-Four data figures across fourteen chapters, all in the last three. Parts I to III carry
-none, which is exactly where students are being asked to absorb the most abstract
-material.
+As of 2026-07-24 every identified gap is closed: eleven figures across chapters 4–13,
+including the conceptual Parts I–III chapters that previously carried none.
 
 ## Identified gaps, in priority order
 
@@ -71,7 +71,7 @@ Nominal/ordinal/interval/ratio is the chapter's core and the most commonly muddl
 the course. Take one Twitch variable and show it rendered at each level, so the reader sees
 what information each level keeps and discards. This is a small-multiple, not a chart type.
 
-**G4 — Ch8, reliability vs validity.**
+**G4 — Ch8, reliability vs validity. (CLOSED 2026-07-24 → `fig08-2-reliability-validity.png`, via `figures/schematics.R`)**
 The four-quadrant target diagram is canonical for a reason. It is a schematic rather than a
 data figure, so it does not belong in `render-all.R`; author it as a tagged SVG or a
 ggplot-drawn schematic and register it separately.
@@ -87,16 +87,16 @@ difference" deserves a figure showing the overlap between the two distributions,
 significant difference between heavily overlapping distributions is the single most
 misread result in student work.
 
-**G1 — Ch4, saturation curve.**
+**G1 — Ch4, saturation curve. (CLOSED 2026-07-24 → `fig04-1-saturation.png`, illustrative)**
 "Recognizing saturation" is described narratively. A curve of new-sources-found against
 sources-read makes the flattening concrete. Illustrative data is acceptable here provided
 the alt text and caption say so plainly.
 
-**G2 — Ch7, sampling your observation.**
+**G2 — Ch7, sampling your observation. (CLOSED 2026-07-24 → `fig07-1-observation-windows.png`)**
 A timeline strip showing which windows a structured observation actually covers versus the
 full collection week. Low cost, moderate payoff.
 
-**G5 — Ch9, the shape of the data.**
+**G5 — Ch9, the shape of the data. (CLOSED 2026-07-24 → `fig09-1-table-shape.png`)**
 "Looking at the data" would benefit from a compact view of the table's structure: rows,
 columns, types, missingness. Missingness in particular pays off later, since the 501 NA
 rows in `is_gaming` are a live teaching point.

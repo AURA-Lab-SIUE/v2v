@@ -82,6 +82,8 @@ This is **saturation**, the point where additional searching is unlikely to chan
 
 Practically, saturation looks like three consecutive database searches turning up zero new relevant articles, new articles citing the same eight to ten foundational sources you have already read, and an ability to predict what an article will say from its title and abstract. When you reach that point, stop searching and start synthesizing.
 
+![](../images/fig04-1-saturation.png){fig-alt="A step curve of distinct relevant sources found as a search examines sixty sources in order, built from an illustrative search log rather than real data. The curve climbs quickly through the first twenty sources, slows through the thirties, and goes completely flat after source forty-six: a shaded band marks the flat stretch where searches keep running but nothing new turns up, which is the point to stop searching and start synthesizing."}
+
 ## Identifying research gaps
 
 A research gap is not just "something no one has studied." It is a space where inquiry is justified, where the absence of knowledge creates a problem or where contradictions demand resolution. Gaps come in several forms.
