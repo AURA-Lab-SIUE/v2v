@@ -196,7 +196,112 @@ fig_ch13_means <- function(d) {
   save_fig(p, "ch13-means-ci.png")
 }
 
+fig_ch08_levels <- function(d) {
+  # G3 — one column, measured at different levels (ch8 "Notice what happened
+  # with stream title"). Three panels re-measure the SAME column (title);
+  # the fourth shows the level a string cannot reach — interval — using the
+  # chapter's own example, the timestamp. Single-hue fills with direct labels:
+  # colour never carries information here, so SC 1.4.1 is satisfied by design.
+  library(patchwork)
+  blue <- unname(v2v_colours["blue"])
+
+  titles <- d$streams |> filter(!is.na(title), title != "") |>
+    distinct(channel, title) |>
+    mutate(nchar_title = str_length(title))
+
+  n_titles <- nrow(titles)
+  n_unique <- n_distinct(titles$title)
+  ex5 <- titles |> count(title, sort = TRUE) |> slice_head(n = 5) |>
+    mutate(title_short = str_trunc(title, 18))
+  pA <- ggplot(ex5, aes(n, fct_reorder(title_short, n))) +
+    geom_col(fill = blue, colour = "grey20", linewidth = 0.2, width = 0.7) +
+    scale_x_continuous(breaks = c(0, 1), expand = expansion(mult = c(0, 0.12))) +
+    labs(title = "Nominal: the raw string",
+         subtitle = sprintf("Counting is all you can do, and %d of %d
+titles are unique: it tells you nothing", n_unique, n_titles),
+         x = "Streams using this exact title", y = NULL) +
+    theme_v2v()
+
+  bins <- titles |>
+    mutate(bin = cut(nchar_title, c(-Inf, 20, 60, Inf),
+                     labels = c("≤20", "21–60", ">60"))) |>
+    count(bin)
+  med_bin <- bins$bin[which(cumsum(bins$n) >= sum(bins$n) / 2)[1]]
+  pB <- ggplot(bins, aes(bin, n)) +
+    geom_col(fill = blue, colour = "grey20", linewidth = 0.2) +
+    geom_text(aes(label = ifelse(bin == med_bin, paste0(n, " (median bin)"), n)),
+              vjust = -0.35, size = 3.2, colour = "grey20") +
+    scale_y_continuous(expand = expansion(mult = c(0, 0.14))) +
+    labs(title = "Ordinal: binned by length",
+         subtitle = "Ranks and medians, but unequal gaps",
+         x = "Title length (characters)", y = "Stream titles") +
+    theme_v2v()
+
+  mean_len <- mean(titles$nchar_title)
+  pC <- ggplot(titles, aes(nchar_title)) +
+    geom_histogram(binwidth = 5, fill = blue, colour = "grey20", linewidth = 0.15) +
+    geom_vline(xintercept = mean_len, linetype = "dashed", colour = "grey20") +
+    annotate("text", x = mean_len, y = Inf, hjust = -0.08, vjust = 1.6, size = 3.2,
+             colour = "grey20", label = sprintf("mean = %.0f chars", mean_len)) +
+    labs(title = "Ratio: length in characters",
+         subtitle = "True zero; every statistic is available",
+         x = "Title length (characters)", y = "Stream titles") +
+    theme_v2v()
+
+  per_day <- d$analysis |> mutate(day = as.Date(timestamp)) |> count(day)
+  pD <- ggplot(per_day, aes(day, n)) +
+    geom_col(fill = blue, colour = "grey20", linewidth = 0.2) +
+    labs(title = "Interval: the timestamp",
+         subtitle = "Equal spacing; zero (1970) is arbitrary",
+         x = "Date (UTC)", y = "Chat messages") +
+    theme_v2v()
+
+  p <- (pA | pB) / (pC | pD) +
+    plot_annotation(
+      title = "Level of measurement is a decision, not a property of the data",
+      subtitle = "The stream-title column measured three ways, plus the one level a string can never take",
+      theme = theme_v2v())
+  path <- file.path(IMAGES, "fig08-1-levels-of-measurement.png")
+  ggsave(path, p, width = W, height = 6.4, dpi = DPI, bg = "white")
+  message(sprintf("  wrote %-34s %6.0f KB", basename(path), file.size(path) / 1024))
+}
+
+fig_ch10_sampling <- function(d) {
+  # G6 — the fixture's own stratified design as the argument for stratification.
+  # Redundant encoding per the accessibility contract: anchor vs stratified is
+  # carried by BOTH shape and colour, and the SRS-miss region by a labeled line.
+  anchors <- c("xqcow", "forsen", "sodapoppin", "asmongold", "loltyler1",
+               "disguisedtoast", "giantwaffle", "bobross")
+  by_channel <- d$chat |>
+    count(channel, name = "messages") |>
+    arrange(desc(messages)) |>
+    mutate(rank   = row_number(),
+           design = ifelse(channel %in% anchors, "Anchor (fixed)", "Stratified draw"))
+  srs_n     <- 1000
+  threshold <- sum(by_channel$messages) / srs_n
+  n_missed  <- sum(by_channel$messages < threshold)
+
+  p <- ggplot(by_channel, aes(rank, messages, colour = design, shape = design)) +
+    geom_hline(yintercept = threshold, linetype = "dashed", colour = "grey40") +
+    geom_point(size = 2.6, stroke = 0.7) +
+    annotate("text", x = 1, y = threshold, hjust = 0, vjust = -0.7, size = 3.3, colour = "grey20",
+             label = sprintf(
+               "Below the dashed line, a 1,000-message simple random sample expects under one message per channel:\n%d of the 50 channels would likely vanish. The stratified design keeps every one.",
+               n_missed)) +
+    scale_y_log10(labels = scales::comma) +
+    scale_colour_v2v() +
+    scale_shape_manual(values = c("Anchor (fixed)" = 17, "Stratified draw" = 16)) +
+    labs(title = "The skew got sampled across, not sampled away",
+         subtitle = "All 50 fixture channels; the flat top is the 1,000-message-per-channel cap",
+         x = "Channel, ranked by chat volume", y = "Messages in the window (log scale)",
+         colour = "Sampling design", shape = "Sampling design") +
+    theme_v2v()
+  save_fig(p, "fig10-1-stratified-coverage.png")
+}
+
 REGISTRY <- list(
+  ch08 = list(fig_ch08_levels),
+  ch10 = list(fig_ch10_sampling),
   ch12 = list(fig_ch12_1, fig_ch12_2, fig_ch12_3),
   ch13 = list(fig_ch13_means)
 )

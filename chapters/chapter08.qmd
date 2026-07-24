@@ -60,6 +60,8 @@ A **ratio** variable has equal intervals and a true zero that genuinely means "n
 
 Notice what happened with stream title. As a raw string it is nominal. Measured as a character count it is ratio, because a title can have zero characters and a true zero exists. Binned into short, medium, and long it is ordinal. One column, three possible levels, depending entirely on how you operationalize it. Level of measurement is not a property the data hands you. It is a property of the decision you make.
 
+![](../images/fig08-1-levels-of-measurement.png){fig-alt="Four panels measure stream titles at different levels. Nominal: five example titles each used exactly once, because all 152 titles in the fixture are unique, so counting categories reveals nothing. Ordinal: titles binned by length into 22 short, 71 medium, and 59 long, with the medium bin holding the median. Ratio: a histogram of title length in characters with a mean of 54, where a true zero makes every statistic available. Interval: daily chat-message counts across the week, standing in for the timestamp, which has equal spacing but an arbitrary zero; a raw string can never be measured at the interval level."}
+
 Levels matter because they govern the statistics available to you later. A nominal variable can be tested for association with a chi-square test. A ratio variable can be averaged, correlated, and entered into the kind of test Chapter 13 runs. If you operationalize an interesting variable at the nominal level when it could have been ratio, you have quietly narrowed what your study can conclude before you have coded a single case.
 
 ## Two kinds of variable

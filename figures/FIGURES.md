@@ -43,9 +43,9 @@ Every figure must satisfy all four, and the render script is written to enforce 
 | 5 | Theory as a Lens | 0 | Conceptual. None warranted. |
 | 6 | The Prospectus | 0 | Conceptual. None warranted. |
 | 7 | Structured listening | 0 | **Gap — see G2.** |
-| 8 | From vibes to variables | 0 | **Gap — see G3, G4. Highest priority.** |
+| 8 | From vibes to variables | 1 | G3 closed 2026-07-24 (`fig08-1-levels-of-measurement`). **Gap — see G4.** |
 | 9 | The rulebook and first workspace | 0 | **Gap — see G5.** |
-| 10 | The sample | 0 | **Gap — see G6. Highest priority.** |
+| 10 | The sample | 1 | G6 closed 2026-07-24 (`fig10-1-stratified-coverage`). Complete. |
 | 11 | Wrangling the data | 0 | **Gap — see G7.** |
 | 12 | Visualizing the narrative | 3 | Complete. |
 | 13 | Making the call | 1 | **Gap — see G8.** |
@@ -59,14 +59,14 @@ material.
 
 Priority reflects teaching value: how much the figure does work that the prose cannot.
 
-**G6 — Ch10, stratified vs simple random coverage. (highest)**
+**G6 — Ch10, stratified vs simple random coverage. (CLOSED 2026-07-24 → `fig10-1-stratified-coverage.png`)**
 The chapter argues a simple random sample is not enough and that stratification fixes it,
 then asks the reader to take it on faith. The dataset's own design is the proof: 8 anchor
 channels plus 42 stratified additions. Plot channel viewership on a log axis, mark which
 channels an SRS would likely miss, and the argument becomes visible in one glance.
 Redundant encoding: shape for anchor vs stratified, not colour alone.
 
-**G3 — Ch8, levels of measurement on one real variable. (highest)**
+**G3 — Ch8, levels of measurement on one real variable. (CLOSED 2026-07-24 → `fig08-1-levels-of-measurement.png`)**
 Nominal/ordinal/interval/ratio is the chapter's core and the most commonly muddled idea in
 the course. Take one Twitch variable and show it rendered at each level, so the reader sees
 what information each level keeps and discards. This is a small-multiple, not a chart type.
