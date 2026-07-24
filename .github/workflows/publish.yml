@@ -47,8 +47,6 @@ jobs:
 
       - name: Render grad edition
         uses: quarto-dev/quarto-actions/render@v2
-        with:
-          to: html
         env:
           QUARTO_PROFILE: grad
 
