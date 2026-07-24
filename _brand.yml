@@ -2,43 +2,47 @@ meta:
   name: V2V (Vibes to Variables)
   link: https://github.com/AURA-Lab-SIUE/v2v
 
+# AURA Lab identity (aura-lab.siue.edu): Archivo / Newsreader / Spline Sans Mono,
+# red on warm paper. Kept in sync with custom.scss (rebuilt 2026-07-24). The book
+# is the long-reading surface, so base body is serif (Newsreader); headings are
+# the Archivo grotesque display.
 color:
   palette:
-    chalk:        "#F4F0EB"
-    surface:      "#ECE7E0"
-    ink:          "#18181B"
-    text:         "#27272A"
-    muted:        "#52525B"   # AA-safe on chalk (6.8:1); shared with v2v-hub
-    violet:       "#7C3AED"
-    violet-dark:  "#6D28D9"
-    amber:        "#F59E0B"
-    rule:         "#E5DFD6"
-  background: chalk
+    paper:        "#FCFBF7"   # AURA warm paper (light canvas)
+    surface:      "#F1EDE4"   # tinted paper (code/cards)
+    ink:          "#191B1E"   # warm near-black
+    text:         "#2B2A28"
+    muted:        "#6B6357"   # AA-safe on paper (5.2:1); shared with v2v-hub
+    red:          "#C41425"   # AA-safe red for TEXT/links (5.9:1)
+    red-mark:     "#E5182D"   # bright AURA mark hue
+    red-dark:     "#9E1019"
+    rule:         "#E0DACE"
+  background: paper
   foreground: ink
-  primary: violet
-  secondary: amber
-  link: violet
+  primary: red
+  secondary: red-mark
+  link: red
 
 typography:
   fonts:
-    - family: Fraunces
+    - family: Archivo
       source: google
-    - family: Instrument Sans
+    - family: Newsreader
       source: google
-    - family: JetBrains Mono
+    - family: Spline Sans Mono
       source: google
   base:
-    family: Instrument Sans
+    family: Newsreader
     size: 1.0625em
-    line-height: 1.6
+    line-height: 1.62
     weight: 400
   headings:
-    family: Fraunces
-    weight: 700
+    family: Archivo
+    weight: 800
     color: ink
   monospace:
-    family: JetBrains Mono
+    family: Spline Sans Mono
     size: 0.92em
   link:
-    color: violet
+    color: red
     decoration: underline

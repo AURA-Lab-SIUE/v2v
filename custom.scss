@@ -1,32 +1,33 @@
 /*-- scss:defaults --*/
 
 /* V2V 3rd Edition: editorial design system.
-   AURA Lab v2 palette (light variant) + Fraunces / Instrument Sans / JetBrains Mono.
-   Token-swapped 2026-05-18 from the prior Source Serif 4 + maroon scheme to align
-   with AURA Lab v2 branding (banned-word-checker site is the canonical exemplar).
-   Body inverts from serif to sans (Instrument Sans); headings invert from sans to
-   serif display (Fraunces). Light variant only; dark toggle deferred.
-   Locked 2026-05-18 per v2v-decisions.md. Token names retained from the prior
-   scheme for minimal-edit downstream compatibility. */
+   AURA Lab identity (aura-lab.siue.edu) — Archivo / Newsreader / Spline Sans Mono,
+   red #e5182d accent on warm paper. Rebuilt 2026-07-24 from the prior violet +
+   Fraunces scheme to MATCH the live AURA Lab site: the book is the long-reading
+   surface, so body stays serif (Newsreader) for comfort while headings take the
+   Archivo grotesque display and the red accent + mono labels carry the brand.
+   Light variant only (this is the reading skin); token names retained from the
+   prior scheme for minimal-edit downstream compatibility ($maroon = AURA red). */
 
 // Explicit font loading: defensive against _brand.yml not being supported.
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800;9..144,900&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Spline+Sans+Mono:wght@400;500;600&display=swap');
 
-// ===== Color tokens (AURA Lab v2 light variant) =====
-// Token names preserved from the prior maroon scheme so downstream
-// references (e.g. $maroon used 30+ times below) continue to resolve.
-// Values are swapped to the AURA Lab violet + amber palette on chalk paper.
-$paper:         #F4F0EB;            // AURA chalk (warm paper)
-$ink:           #18181B;            // AURA text-dark
-$maroon:        #7C3AED;            // AURA violet (the new primary; alias retained)
-$maroon-dark:   #6D28D9;            // AURA violet-dark
-$maroon-tint:   rgba(124, 58, 237, 0.08);
-$code-bg:       #ECE7E0;            // Lifted chalk for code surface
-$callout-blue:  #5a7a8b;            // Preserved subtle blue for note callouts
-$callout-green: #1f4d3a;            // Preserved muted green for tip callouts
-$callout-amber: #F59E0B;            // AURA amber (secondary accent)
-$muted:         #52525B;            // AURA muted (zinc-500)
-$rule:          #E5DFD6;            // Faint warm grey
+// ===== Color tokens (AURA Lab identity — red on warm paper) =====
+// Token names preserved from the prior scheme so downstream references
+// (e.g. $maroon used 30+ times below) continue to resolve. $maroon now holds
+// the AA-safe AURA red used for TEXT + borders; $red is the bright mark hue.
+$paper:         #FCFBF7;            // AURA warm paper (light canvas)
+$ink:           #191B1E;            // AURA warm near-black
+$red:           #E5182D;            // bright AURA mark — title bar, ornaments (non-text)
+$maroon:        #C41425;            // primary red: TEXT + borders, 5.9:1 on paper (alias retained)
+$maroon-dark:   #9E1019;            // hover / deeper red
+$maroon-tint:   rgba(229, 24, 45, 0.08);
+$code-bg:       #F1EDE4;            // tinted warm paper for code surface
+$callout-blue:  #2563A8;            // note callouts (AA on paper)
+$callout-green: #1F6F4F;            // tip callouts (AA on paper)
+$callout-amber: #8A5300;            // warning callouts — bronze, distinct from red (AA)
+$muted:         #6B6357;            // AURA warm grey, 5.2:1 on paper
+$rule:          #E0DACE;            // faint warm hairline
 
 // ===== Bootstrap variable overrides =====
 $body-bg:        $paper;
@@ -34,21 +35,21 @@ $body-color:     $ink;
 $link-color:     $maroon;
 $link-hover-color: $maroon-dark;
 
-// Font roles INVERTED from prior scheme to match AURA Lab v2:
-// - serif token now holds Fraunces (display serif, used on headings)
-// - sans-serif token now holds Instrument Sans (used on body)
-// - Body font reassigned from serif to sans-serif.
-// - Headings reassigned from sans-serif to serif.
-$font-family-serif:      'Fraunces', Georgia, 'Times New Roman', serif;
-$font-family-sans-serif: 'Instrument Sans', system-ui, -apple-system, sans-serif;
-$font-family-monospace:  'JetBrains Mono', 'Source Code Pro', Consolas, monospace;
-$font-family-base:       $font-family-sans-serif;
+// Font roles (AURA Lab): serif = Newsreader (long-reading body + editorial
+// italics); sans-serif = Archivo (grotesque display headings + UI/labels);
+// mono = Spline Sans Mono (code + the "FIG." annotation voice).
+// - Body stays serif (Newsreader) for reading comfort.
+// - Headings are sans-serif (Archivo), heavy, matching the AURA display voice.
+$font-family-serif:      'Newsreader', Georgia, 'Times New Roman', serif;
+$font-family-sans-serif: 'Archivo', system-ui, -apple-system, sans-serif;
+$font-family-monospace:  'Spline Sans Mono', ui-monospace, 'SFMono-Regular', Consolas, monospace;
+$font-family-base:       $font-family-serif;
 
 $font-size-base:    1.0625rem;
-$line-height-base:  1.6;
+$line-height-base:  1.62;
 
-$headings-font-family: $font-family-serif;
-$headings-font-weight: 700;
+$headings-font-family: $font-family-sans-serif;
+$headings-font-weight: 800;
 $headings-color:       $ink;
 
 $code-block-bg: $code-bg;
@@ -99,8 +100,8 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: 2.5rem;
-  font-weight: 700;
-  line-height: 1.1;
+  font-weight: 800;
+  line-height: 1.08;
   margin-top: 4rem;
   margin-bottom: 1.25rem;
   letter-spacing: -0.022em;
@@ -150,20 +151,20 @@ h5, h6 {
 
   .quarto-title h1.title {
     font-size: 3.25rem;
-    font-weight: 800;
-    line-height: 1.05;
-    letter-spacing: -0.028em;
+    font-weight: 900;
+    line-height: 1.03;
+    letter-spacing: -0.03em;
     margin-top: 1rem;
     margin-bottom: 0.75rem;
     color: $ink;
 
-    // Maroon accent bar above title
+    // Bright AURA red accent bar above title (the brand mark moment)
     &::before {
       content: '';
       display: block;
       width: 3.5rem;
       height: 4px;
-      background: $maroon;
+      background: $red;
       margin-bottom: 1.5rem;
     }
   }
@@ -352,9 +353,9 @@ hr {
   position: relative;
 
   &::after {
-    content: '\2022   \2022   \2022';
-    color: $maroon;
-    font-size: 0.95rem;
+    content: '\25C6   \25C6   \25C6';
+    color: $red;
+    font-size: 0.7rem;
     letter-spacing: 0.6rem;
   }
 }
