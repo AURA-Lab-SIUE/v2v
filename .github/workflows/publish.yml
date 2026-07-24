@@ -39,6 +39,15 @@ jobs:
       - name: Install TinyTeX
         run: quarto install tinytex
 
+      # The grad edition first: its profile writes to docs/grad. The default
+      # (undergrad) render then fills the docs root, preserving existing URLs.
+      - name: Render grad edition
+        uses: quarto-dev/quarto-actions/render@v2
+        with:
+          to: html
+        env:
+          QUARTO_PROFILE: grad
+
       - name: Render book
         uses: quarto-dev/quarto-actions/render@v2
 
