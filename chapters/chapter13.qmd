@@ -128,6 +128,58 @@ In practice that means a result is written up with the full set of numbers, in t
 
 And then, because a string of statistics is not an interpretation, it is written up a second time in a sentence a non-statistician can read: gaming and non-gaming channels do differ in how long their chat messages run, but the difference is so small that for most purposes the two are better thought of as alike than as different. That sentence is the call. It reports the real difference, refuses to inflate it, and tells the reader what the study actually found.
 
+## More than two groups: ANOVA
+
+The t-test settled a question with exactly two sides: gaming versus non-gaming. Many questions have more. Suppose the study asked not whether gaming and non-gaming chat differ, but whether chat length differs across the specific games being played. Keep each channel's game category, the modal category built in Chapter 11, alongside `is_gaming`, restrict the data to its four largest categories, and four means appear rather than two:
+
+```
+game category       n     mean length
+Fortnite          4000       33.23
+Hearthstone       3004       36.82
+Just Chatting     2429       39.03
+League of Legends 4000       22.63
+```
+
+A t-test cannot settle this, because a t-test compares two means and there are four. Comparing them two at a time, Fortnite against Hearthstone, Hearthstone against Just Chatting, and so on, is worse than useless: it takes six separate tests, each carrying its own chance of a false positive, and those chances pile up. The test built for the whole comparison at once is the **analysis of variance**, or **ANOVA**. It asks a single question of all the groups together: is any of these means different enough from the rest that chance is an unconvincing explanation? `aov()` fits it and `summary()` reports it:
+
+```r
+four_games <- analysis |>
+  filter(game %in% c("Fortnite", "Hearthstone",
+                     "Just Chatting", "League of Legends"))
+
+summary(aov(message_length ~ game, data = four_games))
+```
+
+```
+              Df    Sum Sq  Mean Sq  F value  Pr(>F)
+game           3    547281   182427    92.26  < 2e-16 ***
+Residuals  13429  26552407     1977
+```
+
+The logic is the t-test's logic, widened. Where the t-test produced a `t`, ANOVA produces an **F**, and F compares two kinds of variation: the variation *between* the group means against the variation *within* the groups. If the four categories truly shared a mean, the spread between them would be no larger than the ordinary noise inside each, and F would sit near one. Here F is 92.26, far above one, and the p-value is minuscule: the categories do not all share a mean. League of Legends chat, at 22.63 characters, runs visibly shorter than Just Chatting at 39.03.
+
+And, exactly as with the t-test, significance is not size. The effect size for ANOVA is **eta-squared** (η²), the share of the total variation in message length that the game category accounts for. Here it is 0.02: category explains about two percent of the variation in how long messages run. The categories differ, the difference is real, and it is small, the same honest pair of facts the t-test forced.
+
+## From difference to model: regression
+
+The t-test and ANOVA both compare group means. A third tool asks a subtly different question: not "do the groups differ" but "can one variable predict another." That tool is **linear regression**, and its reach is wide enough to contain the other two.
+
+Return to the original two-group question, but fit it as a regression, an `lm()`, a linear model of message length on gaming status:
+
+```r
+summary(lm(message_length ~ is_gaming, data = analysis))
+```
+
+```
+              Estimate  Std. Error  t value  Pr(>|t|)
+(Intercept)     33.70       0.70      48.16   < .001
+is_gamingTRUE   -5.22       0.74      -7.08   < .001
+```
+
+Read the two numbers. The intercept, 33.70, is the mean message length of the reference group, non-gaming channels. The coefficient on `is_gamingTRUE`, -5.22, is exactly the gap the t-test found: gaming channels average 5.22 characters fewer. The regression has re-derived the t-test's result and cast it in a new form, a baseline plus an adjustment. (Its `t` of -7.08 differs a little from the Welch test's -4.95 because a plain regression pools the two groups' spread rather than letting them differ; the coefficient, the difference itself, is identical.)
+
+That the regression reproduces the t-test is not a coincidence. A t-test is a regression with a single two-level predictor; an ANOVA is a regression with a single many-level predictor. All three belong to one framework, the **general linear model**, and once a study is written as a regression it can grow in ways a t-test cannot: a second predictor added, a continuous predictor rather than a categorical one, several influences weighed at once. This chapter's study needs only the two-group comparison, so the t-test is enough. But regression is where inference stops being a menu of separate tests and becomes one extensible way of modeling how one thing depends on another. Its effect size here tells the same story a third time: the model's R², the share of variance it explains, is about 0.001, so gaming status accounts for almost none of the variation in message length.
+
 ## Looking ahead
 
 The chat study now has all of its pieces. It has a question and a theory, a prospectus, a codebook tested for reliability, a sample, a clean dataset, three figures, and a tested finding interpreted honestly. What it does not yet have is a form. The pieces are scattered across scripts and outputs, and a study that cannot be read as a single coherent document is not yet finished. Chapter 14 is where it becomes one. It is the publication chapter, where everything built since Chapter 9 is assembled into a single reproducible report and put where other people can read it.
@@ -143,9 +195,11 @@ The chat study now has all of its pieces. It has a question and a theory, a pros
 
 **The pre-registration disclosure statement.** Every graduate V2V paper that used pre-registration includes: "This study's hypotheses, measures, and analysis plan were pre-registered on OSF prior to data collection at [URL]." Exploratory analyses conducted beyond the pre-registration are labeled as exploratory and interpreted with corresponding caution.
 
+**The assumptions the tests rest on.** The undergraduate treatment runs `aov()` and `lm()` and reads the output. Graduate use checks the assumptions those numbers depend on before trusting them. ANOVA and ordinary regression assume the groups share a common variance (homoscedasticity); Chapter 12 showed the chat groups plainly do not, which is why the two-group test used Welch's correction, and the same heterogeneity argues for `oneway.test()` (Welch's ANOVA) over the pooled `aov()` used above. A significant ANOVA says only that *some* pair of means differs, not which; naming the pairs requires post-hoc comparisons (Tukey's HSD via `TukeyHSD()`) that correct for the multiple looks. A regression's credibility rests on its residuals: `plot(model)` produces the diagnostic quartet, residuals-versus-fitted for linearity and equal spread, a Q–Q plot for normal residuals, and leverage for influential points, and reading them is part of reporting a model, not an optional add-on. And when a model gains a predictor, whether the addition earns its place is a question of model comparison, adjusted R² and AIC across competing models or a nested *F*-test, not raw R², which never falls when a predictor is added.
+
 **Required reading.** Lakens, D., Adolfi, F. G., Albers, C. J., Anvari, F., Apps, M. A. J., Argamon, S. E., … Zwaan, R. A. (2018). Justify your alpha. *Nature Human Behaviour*, *2*, 168–171. https://doi.org/10.1038/s41562-018-0311-x
 
-**Reflect.** (1) For your pre-registered study, write the disclosure statement you would include in the methods section. List any deviations from the pre-registration and how you would report them. (2) Lakens et al. propose that different research contexts justify different α levels. What would justify using *α* = .01 rather than .05 in a V2V study?
+**Reflect.** (1) For your pre-registered study, write the disclosure statement you would include in the methods section. List any deviations from the pre-registration and how you would report them. (2) Lakens et al. propose that different research contexts justify different α levels. What would justify using *α* = .01 rather than .05 in a V2V study? (3) Name the test your own design calls for (t-test, ANOVA, or regression), the assumption most at risk in your data, and the diagnostic or robust alternative you would use to check or handle it.
 :::
 :::
 ## References
