@@ -40,6 +40,10 @@ It is worth knowing that the fixture you loaded in Chapter 9 is itself the produ
 
 One feature of stratified sampling matters when the strata are uneven in size. If you ask for thirty messages per channel but a channel only ever produced nine, there is no way to draw thirty. The sensible rule, and the one the tools here follow, is to take everything that channel has. In the fixture, nineteen of the fifty channels hold fewer than a thousand messages, and a few hold only a handful. For those small strata, a request for a fixed number simply returns all of it. That is the right floor: a stratum contributes its full weight or, if it is too small, its full self.
 
+::: {.graduate-extension}
+**Purposive sampling does not fix inadequate power.** A common misconception is that purposive sampling — selecting "most relevant" units — compensates for a small *n*. It does not. Purposive sampling improves construct validity; it has no effect on statistical power. The two concerns address different inferential problems, and conflating them produces a study that is internally coherent but statistically indefensible.
+:::
+
 ## Drawing the sample
 
 With the logic settled, the draw itself is one function call. `v2v::sample_messages()` takes the data, the variable to stratify by, and the number to draw from each stratum.
@@ -55,6 +59,10 @@ The `by = channel` argument makes each channel a stratum. The `n = 30` argument 
 The first line, `set.seed()`, is not optional, and it is worth being clear about why. Drawing a sample is a random process: run it twice and you get two different samples. `set.seed()` fixes the starting point of R's random number generator, so that the "random" draw comes out identically every time the code is run. Without it, your sample is unreproducible, and an unreproducible sample undermines everything Chapter 2 argued for. Anyone who reruns your analysis, including you in six months, would be working with different messages and could not check your results against the originals. The specific number is arbitrary; 409 has no meaning. What matters is that a number is set and recorded, so the draw is frozen.
 
 `coding_sample` now holds the messages the study will code. The sampling half of the chapter is done. The harder question is whether the codebook is ready to code them.
+
+::: {.graduate-extension}
+**The conversation between your prospectus and your sample.** Sampling is not only a practical tradeoff about capturing the variation in your dataset. Your sample must also be large enough to detect the effect you expect with adequate power. Your prospectus power analysis (Chapter 6) specified a minimum *n* at your chosen effect size and power level, and Chapter 10 is where that number meets the realities of your dataset. If your power analysis requires 128 coded units and your platform generates 10,000 units in your collection window, stratified sampling solves the problem. If your platform generates only 80 units, you face a constraint: the study is underpowered, and you must either change the design (longer collection window, multiple platforms, or a revised research question targeting a larger expected effect) or explicitly justify the limitation in the prospectus. For your own study, identify the minimum *n* from your Chapter 6 power analysis and the maximum *n* available from your dataset; if they conflict, document the conflict and propose one design modification that resolves it, and weigh the ethical implication of publishing a study you know is underpowered because adequate data were unavailable, along with how the limitations section should handle it.
+:::
 
 ## The pilot test
 
@@ -127,20 +135,6 @@ Then the codebook, now revised, is piloted again. New coders or the same coders,
 
 This is why Chapter 9 finalized only the codebook's status and not its content. A codebook is a living instrument right up until a pilot test certifies it, and a pilot test has the standing to send it back for revision however many times that takes. The discipline is to treat a low reliability coefficient as useful news rather than an obstacle. It has told you, before you invested weeks in coding, that the instrument was not yet sound. That is the pilot test working exactly as intended.
 
-::: {.graduate-extension}
-::: {.callout-note title="Graduate Extension"}
-**The conversation between your prospectus and your sample.** The undergrad edition teaches sampling as a practical tradeoff: you cannot code everything, so you apply stratified sampling rules that capture the variation in your dataset. The graduate edition adds a second constraint: your sample must also be large enough to detect the effect you expect with adequate power.
-
-Your prospectus power analysis (Chapter 6) specified a minimum *n* at your chosen effect size and power level. Chapter 10 is where that number meets the realities of your dataset. If your power analysis requires 128 coded units and your platform generates 10,000 units in your collection window, stratified sampling solves the problem. If your platform generates only 80 units, you face a constraint: the study is underpowered, and you must either change the design (longer collection window, multiple platforms, or a revised research question targeting a larger expected effect) or explicitly justify the limitation in the prospectus.
-
-**Purposive sampling does not fix inadequate power.** A common misconception is that purposive sampling — selecting "most relevant" units — compensates for a small *n*. It does not. Purposive sampling improves construct validity; it has no effect on statistical power. The two concerns address different inferential problems, and conflating them produces a study that is internally coherent but statistically indefensible.
-
-**Required reading.** Lakens, D. (2022). Sample size justification. *Collabra: Psychology*, *8*(1), 33267. https://doi.org/10.1525/collabra.33267
-
-**Reflect.** (1) For your study, identify the minimum *n* from your Chapter 6 power analysis and the maximum *n* available from your dataset. If they conflict, document the conflict and propose one design modification that resolves it. (2) What is the ethical implication of publishing a study you know is underpowered because adequate data were unavailable? How should the limitations section handle this?
-:::
-:::
-
 ## Looking ahead
 
 You now have a sample drawn and, once it has cleared its pilot, a codebook trusted to classify it. What you do not yet have is data in a form ready for analysis. The chat and stream tables are still separate, the timestamps are still unreadable integers, and the variables the study needs, message length and the gaming context of each message, do not yet exist as columns. Chapter 11 takes that on. It is the wrangling chapter: the one where the raw tables are reshaped, joined, and cleaned into the single tidy dataset every later analysis depends on.
@@ -152,3 +146,9 @@ Cohen, J. (1960). A coefficient of agreement for nominal scales. _Educational an
 Krippendorff, K. (2018). _Content analysis: An introduction to its methodology_ (4th ed.). SAGE Publications.
 
 Landis, J. R., & Koch, G. G. (1977). The measurement of observer agreement for categorical data. _Biometrics_, _33_(1), 159-174. https://doi.org/10.2307/2529310
+
+::: {.graduate-extension}
+### Graduate readings
+
+Lakens, D. (2022). Sample size justification. *Collabra: Psychology*, *8*(1), 33267. https://doi.org/10.1525/collabra.33267
+:::

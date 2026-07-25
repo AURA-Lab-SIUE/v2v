@@ -36,6 +36,10 @@ A strong literature review does several things at once.
 
 **It refines your research question.** Engaging with the literature sharpens a broad interest into a precise, researchable question. You might start with a vague curiosity about "Twitch chat" and, through reading, discover a specific debate about whether viewer engagement is driven by the content on the screen or the social environment around it. The literature provides the concepts, terminology, and frameworks that let you ask a question that is not just interesting but empirically tractable.
 
+::: {.graduate-extension}
+**The quantitative function of the literature review.** Beyond surveying what is known to identify a gap, the literature review has a further function: *effect size extraction*. Before you can calculate the sample size you need (Chapter 6), you need a defensible estimate of the effect size you expect to find. The most defensible source is prior published research. When you read a study using a similar design, extract its effect size (Cohen's *d*, Cramer's *V*, correlation *r*) and note the sample size the authors used. These numbers become the inputs for your power analysis. A literature review that cannot supply effect size estimates has not finished its job. To practice, choose a published V2V-style study, extract its primary effect size, determine whether the authors provided a power analysis, and use the `pwr` package to calculate the sample size required to detect that effect at 80% power; then work out what you would do when no prior studies report an effect size for your specific research question, describing two defensible strategies for justifying a sample size in that case.
+:::
+
 ## The search process
 
 Searching for literature happens in phases. Early on you are exploring, trying to get a sense of the terrain. Later you are systematizing, making sure you have found the relevant work and can defend your search strategy to a skeptic.
@@ -65,6 +69,10 @@ A search string for livestreaming viewer research might look like this:
 ```
 
 Document every search in a plain-text search log: the date, the database, the exact search string, the limiters you applied, the number of results, and how many you kept. The log serves two purposes. It lets you defend your search strategy later, and it helps you refine searches by showing what worked and what did not.
+
+::: {.graduate-extension}
+**Systematic search over ad hoc search.** Ad hoc searches — "I Googled it and found relevant papers" — cannot support power analysis inputs, because you do not know whether the studies you found are representative of the literature. A systematic search uses predefined databases (Communication Abstracts, Web of Science, PsycINFO), predefined search strings, and documented inclusion/exclusion criteria. The search process is itself a methods disclosure: you report it alongside the analysis so that a future researcher can reproduce and update your review.
+:::
 
 ### Phase three: citation chaining
 
@@ -151,20 +159,6 @@ Specific empirical findings require citation. Theoretical concepts require citat
 
 When in doubt, cite. Over-citation is rarely criticized. Under-citation damages credibility, and in its more serious forms it is plagiarism, which Chapter 3's discussion of research integrity treats as the breach of trust that it is.
 
-::: {.graduate-extension}
-::: {.callout-note title="Graduate Extension"}
-**The quantitative function of the literature review.** The undergrad edition treats the literature review as reconnaissance: you survey what is known to identify a gap your study can fill. That framing is correct. But it omits a critical additional function at the graduate level: *effect size extraction*.
-
-Before you can calculate the sample size you need (Chapter 6), you need a defensible estimate of the effect size you expect to find. The most defensible source is prior published research. When you read a study using a similar design, extract its effect size (Cohen's *d*, Cramer's *V*, correlation *r*) and note the sample size the authors used. These numbers become the inputs for your power analysis. A literature review that cannot supply effect size estimates has not done its graduate-level job.
-
-**Systematic search over ad hoc search.** Ad hoc searches — "I Googled it and found relevant papers" — cannot support power analysis inputs, because you do not know whether the studies you found are representative of the literature. A systematic search uses predefined databases (Communication Abstracts, Web of Science, PsycINFO), predefined search strings, and documented inclusion/exclusion criteria. The search process is itself a methods disclosure: you report it alongside the analysis so that a future researcher can reproduce and update your review.
-
-**Required reading.** Cooper, H., Hedges, L. V., & Valentine, J. C. (Eds.). (2019). *The handbook of research synthesis and meta-analysis* (3rd ed.). Russell Sage Foundation.
-
-**Reflect.** (1) Choose a published V2V-style study. Extract its primary effect size, determine whether the authors provided a power analysis, and use the `pwr` package to calculate the sample size required to detect that effect at 80% power. Report your work. (2) What do you do when no prior studies report an effect size for your specific research question? Describe two defensible strategies for justifying a sample size in that scenario.
-:::
-:::
-
 ## Looking ahead
 
 Chapter 5 takes up theory. A literature review tells you what the scholarly conversation has established. A theoretical framework gives you the lens you will use to interpret your own findings. Chapter 5 also addresses how the choice of theory shapes the choice of method, and introduces the major social-science methods as a coherent set, so that committing to content analysis for this course is a decision made with the alternatives in view.
@@ -182,4 +176,10 @@ Krippendorff, K. (2018). *Content analysis: An introduction to its methodology* 
 Neuendorf, K. A. (2017). *The content analysis guidebook* (2nd ed.). SAGE Publications.
 
 Sjöblom, M., & Hamari, J. (2017). Why do people watch others play video games? An empirical study on the motivations of Twitch users. *Computers in Human Behavior*, *75*, 985-996. https://doi.org/10.1016/j.chb.2016.10.019
+
+::: {.graduate-extension}
+### Graduate readings
+
+Cooper, H., Hedges, L. V., & Valentine, J. C. (Eds.). (2019). *The handbook of research synthesis and meta-analysis* (3rd ed.). Russell Sage Foundation.
+:::
 

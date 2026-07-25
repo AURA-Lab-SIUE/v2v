@@ -10,6 +10,10 @@ And yet the study is not finished, because all of that lives in pieces. The code
 
 This last chapter gives the work a form. It assembles every piece into one report, makes that report reproducible, gathers it with the study's other documents into a single site, and publishes that site where anyone can find it. The chapter's title names the goal. By the time the study has been built the right way, producing the finished, public report is close to a single action: one click.
 
+::: {.graduate-extension}
+**Two additional deliverables.** Beyond the reproducible portfolio, the graduate study produces two further deliverables: a *white paper* structured for academic publication and a *conference poster* formatted for a communication research conference.
+:::
+
 ## A report that rebuilds itself
 
 Begin with the report, and with the ordinary way of writing one. Run the analysis in R. Copy the numbers into a word processor. Take screenshots of the figures and paste them in. Write the prose around them. This works, and it is quietly fragile. The instant the analysis changes, and analyses always change, a coding rule corrected, a few hundred messages added, every pasted number and every pasted figure is silently out of date, and nothing in the document says so. The write-up and the analysis drift apart, and only luck reveals it.
@@ -43,9 +47,17 @@ This is **reproducible publication**, and it has two payoffs that matter. The re
 
 A document that rebuilds itself still needs a structure, and empirical research has a standard one, settled enough to have an acronym: **IMRaD**, for Introduction, Methods, Results, and Discussion. Four sections, in that fixed order, and the order is itself a small argument, carrying the reader from why the study was done to what it found to what that means.
 
+::: {.graduate-extension}
+**The white paper.** The white paper follows IMRaD format (Introduction, Methods, Results, Discussion), uses APA 7th edition throughout, reports effect sizes and power statistics, and includes a pre-registration disclosure statement in the methods section. Its discussion situates the findings within the theoretical literature from Chapter 5. For your own study, convert the key results and discussion into IMRaD structure, and ask what is lost in the move and what must be added to meet white paper standards.
+:::
+
 The **Introduction** states the question and why it is worth asking. For the chat study this is the work of the prospectus from Chapter 6: the question of whether gaming and non-gaming Twitch chat differ in message length, and the uses-and-gratifications lens that framed talk on a stream as behavior an audience chooses for its own reasons.
 
 The **Methods** section says exactly what was done, in enough detail that another researcher could repeat it. This is the home of the codebook from Chapter 8, the sampling procedure and the inter-coder reliability check from Chapter 10, and the wrangling steps from Chapter 11. Methods is the section that earns the reader's trust, and it is the section a reproducible document supports best, because the code that did the work is right there to be read.
+
+::: {.graduate-extension}
+**Methods section requirements.** A graduate methods section includes three elements: (1) a data provenance statement (Chapter 9); (2) an intercoder reliability report — the κ value, training protocol, and threshold applied (Chapter 8); and (3) the pre-registration disclosure with OSF URL (Chapter 5). Each element is a transparency marker that signals to reviewers that the study meets graduate-level evidentiary standards.
+:::
 
 The **Results** section reports what was found, plainly and without interpretation. The three figures from Chapter 12 and the t-test from Chapter 13 belong here. Results states the facts: the distributions, the group means, the test statistic with its degrees of freedom, its p-value, and its effect size. It does not yet say what they mean.
 
@@ -103,27 +115,15 @@ Before it publishes anything, the function runs three **pre-flight checks**. It 
 
 The checks are not red tape. Each one heads off a specific and demoralizing failure: a site that renders on its author's machine and nowhere else, a published page that does not match the work that was actually done, a deployment that collapses at eleven at night the evening a portfolio is due. The function exists so that the last step of a long study is the calm one. What it produces is a URL. The chat study is now a public, reproducible website, one that anyone can read and anyone can rebuild from its source.
 
+::: {.graduate-extension}
+**The conference poster.** A standard academic communication conference poster is 36 × 24 inches, landscape orientation, structured as: title/authors/institution; abstract (~100 words); background and hypotheses; condensed methods; key results with one or two `theme_v2v()` figures; discussion and implications; QR code linking to the OSF pre-registration and/or Quarto portfolio. The poster is your 90-second pitch. Design the layout of your own 36 × 24 poster, and decide which single figure from your analysis best communicates your main finding in 30 seconds.
+:::
+
 ## The reflection
 
 One short piece remains, and the portfolio is not complete without it: a one-paragraph **reflection**. It is not part of IMRaD and it is not a result. It is the researcher's own brief, candid account of what the study taught them and what a second attempt would do differently.
 
 A good reflection is specific. It names what turned out harder than expected, where a coding rule proved ambiguous in practice, what the dataset could not answer because of how it was collected, what a future version of the study would change. It resists the two easy failures, the bland report that everything went well and the anxious confession that everything went wrong. A reflection is not an apology. It is evidence of judgment: a researcher who can say precisely where their study is weak is a researcher who genuinely understands it. It is kept to a paragraph on purpose. One honest paragraph is worth more than a page of hedging.
-
-::: {.graduate-extension}
-::: {.callout-note title="Graduate Extension"}
-**Two additional deliverables.** The undergrad edition produces a Quarto-rendered portfolio demonstrating the full V2V workflow in one reproducible document. The graduate edition produces two further deliverables: a *white paper* structured for academic publication and a *conference poster* formatted for a communication research conference.
-
-**The white paper vs. the portfolio.** The undergraduate portfolio is structured as a feature-style explainer for an educated general audience. A white paper follows IMRaD format (Introduction, Methods, Results, Discussion), uses APA 7th edition throughout, reports effect sizes and power statistics, and includes a pre-registration disclosure statement in the methods section. The discussion situates findings within the theoretical literature from Chapter 5 rather than narrating them for general readers.
-
-**Methods section requirements for the white paper.** Graduate V2V methods sections include three elements the portfolio does not: (1) a data provenance statement (Chapter 9); (2) an intercoder reliability report — the κ value, training protocol, and threshold applied (Chapter 8); and (3) the pre-registration disclosure with OSF URL (Chapter 5). Each element is a transparency marker that signals to reviewers that the study meets graduate-level evidentiary standards.
-
-**The conference poster.** A standard academic communication conference poster is 36 × 24 inches, landscape orientation, structured as: title/authors/institution; abstract (~100 words); background and hypotheses; condensed methods; key results with one or two `theme_v2v()` figures; discussion and implications; QR code linking to the OSF pre-registration and/or Quarto portfolio. The poster is your 90-second pitch.
-
-**Required reading.** Nosek, B. A., Ebersole, C. R., DeHaven, A. C., & Mellor, D. T. (2018). The preregistration revolution. *Proceedings of the National Academy of Sciences*, *115*(11), 2600–2606. https://doi.org/10.1073/pnas.1708274114
-
-**Reflect.** (1) Convert the key results and discussion from your undergraduate portfolio into IMRaD structure. What is lost? What must be added to meet white paper standards? (2) Design the layout of your 36 × 24 conference poster. Which single figure from your analysis best communicates your main finding in 30 seconds?
-:::
-:::
 
 ## Looking ahead
 
@@ -138,3 +138,9 @@ That sequence is what the book's title has been describing all along. **Vibes** 
 Knuth, D. E. (1984). Literate programming. _The Computer Journal_, _27_(2), 97-111. https://doi.org/10.1093/comjnl/27.2.97
 
 Peng, R. D. (2011). Reproducible research in computational science. _Science_, _334_(6060), 1226-1227. https://doi.org/10.1126/science.1213847
+
+::: {.graduate-extension}
+### Graduate readings
+
+Nosek, B. A., Ebersole, C. R., DeHaven, A. C., & Mellor, D. T. (2018). The preregistration revolution. *Proceedings of the National Academy of Sciences*, *115*(11), 2600–2606. https://doi.org/10.1073/pnas.1708274114
+:::

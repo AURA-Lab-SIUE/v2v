@@ -62,6 +62,10 @@ In the Twitch data, the inciting incident might be the Bob Ross puzzle. It might
 
 Inciting incidents work the same way across the social sciences. A political scientist notices that voter turnout rose in a district despite reduced campaign spending. A public relations scholar observes that a corporate apology went viral and made the brand worse. An advertising researcher finds that a product placement in a low-budget show outperformed one in a prestige drama. Each anomaly opens a gap between observation and explanation, and that gap is where the research lives.
 
+::: {.graduate-extension}
+**What distinguishes a scholarly contribution.** Research methods can be understood as disciplined storytelling: you have a claim, you gather evidence, you tell the story the data supports. Graduate-level work adds a second obligation, that your story must be reproducible, falsifiable, and positioned within a cumulative scholarly conversation. A scholarly contribution in communication research does one of four things: (1) tests a theory in a new context; (2) replicates a finding using new data; (3) resolves a conflicting finding in the literature; or (4) introduces a testable theoretical construct. Before beginning any V2V study at the graduate level, identify which of these your project accomplishes. If you cannot answer precisely, the research question is not yet graduate-level. For your own study, ask which of the four contribution types your current research question best fits, and what you would need to change for it to fit more precisely.
+:::
+
 ### Protagonist: the researcher as detective
 
 In detective fiction, the detective gathers clues, formulates theories, and tests them against evidence. The researcher does the same work. The parallel is not accidental. Both are doing **abductive reasoning**, working backward from observation to the most plausible explanation. Like a detective, the researcher must stay skeptical of convenient narratives and willing to revise theories when the evidence pushes back. The integrity of the investigation depends on this.
@@ -140,17 +144,7 @@ This chapter has presented research through a social scientific lens: formulate 
 Chapter 5 explores these paradigms in more depth. For now, the thing to recognize is that the social scientific approach is a choice. A productive and powerful one. But one of several. The ability to understand and evaluate research from all three paradigms is what separates a methodologically literate scholar from a technician who can run statistical tests but cannot think critically about what those tests mean.
 
 ::: {.graduate-extension}
-::: {.callout-note title="Graduate Extension"}
-**What distinguishes a scholarly contribution.** The undergrad edition frames research methods as disciplined storytelling — you have a claim, you gather evidence, you tell the story the data supports. Graduate-level work adds a second obligation: your story must be reproducible, falsifiable, and positioned within a cumulative scholarly conversation.
-
-A scholarly contribution in communication research does one of four things: (1) tests a theory in a new context; (2) replicates a finding using new data; (3) resolves a conflicting finding in the literature; or (4) introduces a testable theoretical construct. Before beginning any V2V study at the graduate level, identify which of these your project accomplishes. If you cannot answer precisely, the research question is not yet graduate-level.
-
-**The four pillars of the graduate edition.** The rest of this book introduces four practices that separate graduate-level V2V work from competent undergraduate work: (1) *a priori power analysis* — committing to a sample size before data collection; (2) *pre-registration* — committing to hypotheses, measures, and analysis plan before collection; (3) *two-coder reliability* — verifying that your codebook produces consistent results regardless of who applies it; and (4) *audit trail* — keeping a version-controlled record of every transformation from raw data to published figure. These are not optional add-ons. They are entailments of a post-positivist epistemological commitment.
-
-**Required reading.** Munafo, M. R., Nosek, B. A., Bishop, D. V. M., Button, K. S., Chambers, C. D., Percie du Sert, N., Simonsohn, U., Wagenmakers, E.-J., Ware, J. J., & Ioannidis, J. P. A. (2017). A manifesto for reproducible science. *Nature Human Behaviour*, *1*, 0021. https://doi.org/10.1038/s41562-016-0021
-
-**Reflect.** (1) Which of the four contribution types does your current research question best fit? What would you need to change for it to fit more precisely? (2) Munafo et al. describe a "garden of forking paths" in which researcher degrees of freedom inflate false-positive rates. Where in the V2V workflow does this risk appear first, and how does pre-registration address it?
-:::
+**The four pillars of graduate-level practice.** The rest of this book introduces four practices central to graduate-level V2V work: (1) *a priori power analysis* — committing to a sample size before data collection; (2) *pre-registration* — committing to hypotheses, measures, and analysis plan before collection; (3) *two-coder reliability* — verifying that your codebook produces consistent results regardless of who applies it; and (4) *audit trail* — keeping a version-controlled record of every transformation from raw data to published figure. These are not optional add-ons. They are entailments of a post-positivist epistemological commitment. Munafo et al. (2017) describe a "garden of forking paths" in which researcher degrees of freedom inflate false-positive rates; for your own study, ask where in the V2V workflow this risk appears first, and how pre-registration addresses it.
 :::
 
 ## Looking ahead
@@ -172,4 +166,10 @@ Katz, E., Blumler, J. G., & Gurevitch, M. (1973). Uses and gratifications resear
 Reinhart, C. M., & Rogoff, K. S. (2010). Growth in a time of debt. *American Economic Review*, *100*(2), 573-578. https://doi.org/10.1257/aer.100.2.573
 
 Storr, W. (2019). *The science of storytelling: Why stories make us human, and how to tell them better*. William Collins.
+
+::: {.graduate-extension}
+### Graduate readings
+
+Munafo, M. R., Nosek, B. A., Bishop, D. V. M., Button, K. S., Chambers, C. D., Percie du Sert, N., Simonsohn, U., Wagenmakers, E.-J., Ware, J. J., & Ioannidis, J. P. A. (2017). A manifesto for reproducible science. *Nature Human Behaviour*, *1*, 0021. https://doi.org/10.1038/s41562-016-0021
+:::
 

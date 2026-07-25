@@ -72,6 +72,10 @@ It is worth being clear about what "everything" means here. This is not the enti
 
 A word about what happens when this does not work. Sooner or later a line of R you type will return an error instead of a result: a misspelled function name, a package not loaded, a stray bracket. This is normal. It happens to everyone who writes code, and it is not a sign that you are unsuited to the work. The V2V Hub keeps a common-errors cheat sheet for exactly these moments, listing the errors a new R user meets most often and what each one is telling you. From this chapter forward, when a line breaks, that cheat sheet is the first place to look. An error is information, not a verdict.
 
+::: {.graduate-extension}
+**Data provenance as a methodological disclosure.** First contact is a moment of exploration — load, inspect, describe — but it rests on a prior step: documenting the *provenance* of the data before the first line of analysis code runs. When you publish a study, you are making a claim about specific data collected under specific conditions at a specific time. "I collected Twitch chat data" is not a methods section. "I collected 14 days of Twitch chat from the top 10 most-viewed streams in the *Just Chatting* category, using Twitch API v2, between 2024-01-15 and 2024-01-28, saving raw JSON responses to `data/raw/` before any processing" is. The difference matters because replication requires exact knowledge of what was done. For the v2v package dataset, write a four-sentence data provenance statement that would satisfy a journal methods section, and note what information you would need that the package documentation does not provide.
+:::
+
 ## Looking at the data
 
 The data is loaded. The first question is simply what it looks like, and the tidyverse function for that is `glimpse()`, which prints every column of a table, its type, and its first few values.
@@ -169,17 +173,7 @@ First contact also surfaces what the codebook will have to work harder at. The m
 One genuine wrinkle is worth carrying forward. Among the first messages is one addressed to a streamer: it begins "@xQcOW". The `channel` column for that same row reads "xqcow". The at-mention and the channel name are the same name in different casing, the display name as a viewer typed it against the lowercase login name the data stores. The message-target rule that keys on "an at-mention of the streamer's channel name" will have to account for that difference. This is precisely the kind of refinement that belongs in the codebook now, while it is still the project's living rulebook and before a single message has been coded. First contact has done its work: the study is buildable, and the codebook knows a little more than it did.
 
 ::: {.graduate-extension}
-::: {.callout-note title="Graduate Extension"}
-**Data provenance as a methodological disclosure.** The undergrad edition introduces first contact with data as a moment of exploration: load, inspect, describe. The graduate edition adds a prior step — documenting the *provenance* of the data before the first line of analysis code runs.
-
-When you publish a study, you are making a claim about specific data collected under specific conditions at a specific time. "I collected Twitch chat data" is not a methods section. "I collected 14 days of Twitch chat from the top 10 most-viewed streams in the *Just Chatting* category, using Twitch API v2, between 2024-01-15 and 2024-01-28, saving raw JSON responses to `data/raw/` before any processing" is. The difference matters because replication requires exact knowledge of what was done.
-
-**What the provenance record includes.** For studies using the provided v2v package dataset, provenance is embedded in the package and stable. For studies using fresh API data, the record must include: (1) data source and API version; (2) date and time range of collection; (3) any filters, keywords, or channel selectors applied; (4) format in which raw data was saved; and (5) the git commit at which raw data was frozen (tagged as immutable). Item 5 connects directly to the audit trail: never re-run data collection to overwrite a file that a downstream script already depends on.
-
-**Required reading.** Munafo, M. R., Nosek, B. A., Bishop, D. V. M., Button, K. S., Chambers, C. D., Percie du Sert, N., Simonsohn, U., Wagenmakers, E.-J., Ware, J. J., & Ioannidis, J. P. A. (2017). A manifesto for reproducible science. *Nature Human Behaviour*, *1*, 0021. https://doi.org/10.1038/s41562-016-0021
-
-**Reflect.** (1) Write a four-sentence data provenance statement for the v2v package dataset that would satisfy a journal methods section. What information would you need that is not available in the package documentation? (2) If a journal reviewer asked you to "share the raw data," what would you share and what would you withhold for a study using the v2v package dataset?
-:::
+**What the provenance record includes.** For studies using the provided v2v package dataset, provenance is embedded in the package and stable. For studies using fresh API data, the record must include: (1) data source and API version; (2) date and time range of collection; (3) any filters, keywords, or channel selectors applied; (4) format in which raw data was saved; and (5) the git commit at which raw data was frozen (tagged as immutable). Item 5 connects directly to the audit trail: never re-run data collection to overwrite a file that a downstream script already depends on. If a journal reviewer asked you to share the raw data for a study using the v2v package dataset, consider what you would share and what you would withhold.
 :::
 
 ## Looking ahead
@@ -189,3 +183,9 @@ You have a workspace, a rulebook installed in it, and the data loaded and inspec
 ## References
 
 Wickham, H., Averick, M., Bryan, J., Chang, W., McGowan, L. D., François, R., Grolemund, G., Hayes, A., Henry, L., Hester, J., Kuhn, M., Pedersen, T. L., Miller, E., Bache, S. M., Müller, K., Ooms, J., Robinson, D., Seidel, D. P., Spinu, V., … Yutani, H. (2019). Welcome to the tidyverse. _Journal of Open Source Software_, _4_(43), 1686. https://doi.org/10.21105/joss.01686
+
+::: {.graduate-extension}
+### Graduate readings
+
+Munafo, M. R., Nosek, B. A., Bishop, D. V. M., Button, K. S., Chambers, C. D., Percie du Sert, N., Simonsohn, U., Wagenmakers, E.-J., Ware, J. J., & Ioannidis, J. P. A. (2017). A manifesto for reproducible science. *Nature Human Behaviour*, *1*, 0021. https://doi.org/10.1038/s41562-016-0021
+:::

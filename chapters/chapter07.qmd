@@ -52,6 +52,10 @@ A **comparative note** records how cases differ. "Two streams, same hour. The ga
 
 Keep the notes in a single plain-text document, dated, one entry per observation session. The V2V Hub provides a field-notes template that gives the four note types a consistent structure. Set yourself a rhythm, a note every fifteen or twenty minutes of observation, so the record keeps pace with the watching. The notes do not need to be good. They need to exist, because the codebook you build in the next chapter will be assembled almost entirely from what they contain.
 
+::: {.graduate-extension}
+**Two-coder reliability planning begins here.** As you take field notes, identify candidate categories, and notice edge cases, you are doing something else at the same time: identifying *where two coders will disagree*. Structured immersion is not only preparation for a codebook. It is the first pass at the reliability problem, and field notes that mark your own uncertainty are its earliest record.
+:::
+
 ## Manifest and latent content
 
 Structured listening trains a particular kind of judgment, and naming it now will make the next chapter easier. Content analysis distinguishes between two layers of meaning in any message, a distinction Krippendorff (2018) places at the center of codebook design.
@@ -61,6 +65,10 @@ Structured listening trains a particular kind of judgment, and naming it now wil
 **Latent content** is the underlying meaning, the part that requires interpretation. Is a message friendly or hostile? Is it directed at the streamer or performing for the room? Is "first" a genuine claim or a running joke? Is the mood of chat, taken as a whole, celebratory or restless? Latent features cannot be read off the surface. Two careful coders can disagree about them in good faith.
 
 This is the precise reason structured listening comes before coding. You cannot code latent content reliably until you have built the interpretive framework that turns a subjective impression into a defensible judgment, and that framework is built by watching. The coder who has spent twenty hours on live Twitch knows that a wall of one emote after a big play is celebration, not noise. They learned it the way you are about to learn it: by watching it happen, again and again, until the pattern was obvious. Immersion is how latent content becomes codeable.
+
+::: {.graduate-extension}
+**Why disagreement identification matters before the codebook.** Most content-analytic codebook failures come not from poorly defined categories but from underspecified decision rules for boundary cases. Watch a Twitch stream and code a comment as "hostile," and another coder watching the same stream might code it as "sarcastic," because the category boundary was not drawn precisely enough. Structured immersion is when that ambiguity first becomes visible. Field notes should document not just *what* you observe but *where* you are uncertain, because those locations are exactly where a second coder will need explicit guidance. After completing your immersion log, identify three categories where you anticipate the most disagreement with a second coder, and for each write one candidate decision rule that would resolve the ambiguity.
+:::
 
 ## From observation to sharper questions
 
@@ -90,6 +98,10 @@ An edge case on Twitch might be a message made entirely of emotes, with no words
 
 These cases are not exceptions to be ignored. They are the raw material of the **decision rules** that make a codebook work. The model prospectus in Chapter 6 included an "unclassifiable" category; the edge-case log is where you find out what actually lands in it. A codebook written without an edge-case log will meet these messages for the first time during coding, when it is expensive to handle them. A codebook written with one has already decided.
 
+::: {.graduate-extension}
+**Planning for the reliability pilot.** The formal intercoder reliability protocol (Chapter 8) requires a training phase and a reliability test on a separate data subset. The training phase has two coders apply the codebook independently to the same units, then reconcile their disagreements, and effective training requires the genuinely ambiguous cases you identified during immersion. Your field notes double as a training-set seed: the hardest-to-categorize observations become the calibration material. Krippendorff argues that unitizing — deciding what counts as a single unit of analysis — is a prior reliability problem most researchers underestimate; as you log edge cases, ask what your unit of analysis is and what makes consistent unitizing difficult.
+:::
+
 ## Knowing when to stop
 
 Immersion does not last forever. At some point structured listening gives way to structured coding, and the signs that you have reached that point are recognizable.
@@ -97,20 +109,6 @@ Immersion does not last forever. At some point structured listening gives way to
 New streams stop surprising you. You can name three to five dimensions that clearly matter for your research question. Your edge-case log has enough entries to write decision rules from. Your field notes have begun to repeat themselves, confirming patterns rather than turning up new ones. This is the same idea Chapter 4 called **saturation**. There it meant that new literature searches stopped yielding new sources. Here it means that new observation stops yielding new patterns. In both cases saturation is not the claim that you have seen everything. It is the more modest, more useful claim that you have seen enough for the next step to rest on solid ground.
 
 What structured listening leaves you with is four things: conceptual clarity about what your variables actually mean in this medium, a set of candidate categories for each one, the beginnings of the decision rules that will resolve ambiguous cases, and the contextual knowledge to recognize when a surface feature is about to mislead you. Those four things are precisely the raw material of a codebook. Assembling them into one is the next chapter's work.
-
-::: {.graduate-extension}
-::: {.callout-note title="Graduate Extension"}
-**Two-coder reliability planning begins here.** The undergrad edition describes structured immersion as the process of watching or listening to media with focused attention before building a codebook: you take field notes, identify candidate categories, and notice edge cases. The graduate edition adds a second lens — you are simultaneously identifying *where two coders will disagree*.
-
-**Why disagreement identification matters before the codebook.** Most content-analytic codebook failures occur not from poorly defined categories but from underspecified decision rules for boundary cases. When you watch a Twitch stream and code a comment as "hostile," another coder watching the same stream might code it as "sarcastic" — because the category boundary was not drawn precisely enough. Structured immersion is when this ambiguity first becomes visible. The graduate-level field notes document not just *what* you observe, but *where* you are uncertain, because those locations are exactly where a second coder will need explicit guidance.
-
-**Planning for the reliability pilot.** The formal intercoder reliability protocol (Chapter 8) requires a training phase and a reliability test on a separate data subset. The training phase consists of two coders applying the codebook independently to the same units, then reconciling disagreements. Effective training requires the genuinely ambiguous cases you identified during immersion. Your graduate-level field notes double as a training-set seed: the hardest-to-categorize observations become the calibration material.
-
-**Required reading.** Krippendorff, K. (2018). *Content analysis: An introduction to its methodology* (4th ed.). SAGE Publications.
-
-**Reflect.** (1) After completing your immersion log, identify three categories where you anticipate the most disagreement with a second coder. For each, write one candidate decision rule that would resolve the ambiguity. (2) Krippendorff argues that unitizing — deciding what counts as a single unit of analysis — is a prior reliability problem most researchers underestimate. What is your unit of analysis, and what edge cases make consistent unitizing difficult?
-:::
-:::
 
 ## Looking ahead
 

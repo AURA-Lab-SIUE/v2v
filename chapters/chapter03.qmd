@@ -20,6 +20,10 @@ Students sometimes approach research ethics as a bureaucratic requirement: a for
 
 But ethics is not a procedure. It is a disposition. It shapes how you think about your relationship to the people whose data, content, or behavior you study. It governs how honestly you report what you find. And it reflects the fact that the history of research includes episodes of genuine harm, episodes serious enough to justify every protection that now exists.
 
+::: {.graduate-extension}
+**Paradigmatic positioning.** Every study operates from a paradigm — a set of assumptions about the nature of knowledge and how it is acquired. Post-positivist communication researchers assume an objective social reality that is incompletely knowable, that measurement error is irreducible but manageable, and that statistical inference allows probabilistic claims about that reality. If that description fits your study, the four methodological commitments — power, pre-registration, reliability, and an audit trail — are not optional; they are logical entailments of the paradigm. If you are working from an interpretive or critical paradigm, V2V's quantitative tools occupy a different role in your methodology, and different obligations apply. Where would you locate your current research question on the ontology–epistemology axis Crotty (1998) describes, and what methodological implications follow from that location?
+:::
+
 ## How we got here
 
 Modern research ethics regulations exist because researchers harmed people. Not hypothetically. Not in edge cases. Systematically and with institutional support. Understanding this history matters not to assign guilt to the current generation, but to appreciate why the protections exist and what they are designed to prevent.
@@ -138,22 +142,16 @@ Ethics does not end when data collection is over. How you analyze and report fin
 
 **HARKing**, an acronym for Hypothesizing After the Results are Known, occurs when researchers examine their data, identify patterns, and then write the paper as though they had predicted those patterns all along. This transforms exploratory analysis (which is legitimate) into confirmatory analysis (which requires pre-specification). A "prediction" that was actually a post-hoc observation carries none of the epistemic weight of a genuine a priori hypothesis.
 
+::: {.graduate-extension}
+**Why pre-registration is a paradigmatic commitment.** Pre-registration is often framed as a statistical technique to control false-positive rates. That framing is accurate but incomplete. At the paradigmatic level, pre-registration embodies the hypothetico-deductive model: you derive predictions from theory *before* examining data, then submit those predictions to empirical test. This is the canonical post-positivist epistemological move. The OSF pre-registration form operationalizes that commitment: it requires you to state theory-derived hypotheses, specify measures, and describe the analysis before any data is collected or examined. Is pre-registration compatible with grounded theory or thematic analysis? Make the case for or against, using epistemological rather than practical reasoning.
+:::
+
 Even without outright fabrication, researchers face constant temptation to overstate their findings. "Our results suggest" becomes "our results demonstrate." A small effect size gets buried while a large p-value gets highlighted. Limitations are mentioned but minimized. The discussion section tells a cleaner story than the data support.
 
 **Honest interpretation** means stating what you found, acknowledging what you did not find, and being transparent about the boundaries of your claims. It means writing a limitations section that genuinely grapples with weaknesses rather than performing humility while defending every decision. It means distinguishing between what the data show and what you wish they showed. This is harder than it sounds. It is the core ethical obligation of every researcher.
 
 ::: {.graduate-extension}
-::: {.callout-note title="Graduate Extension"}
-**Paradigmatic positioning.** Every study operates from a paradigm — a set of assumptions about the nature of knowledge and how it is acquired. Post-positivist communication researchers assume an objective social reality that is incompletely knowable, that measurement error is irreducible but manageable, and that statistical inference allows probabilistic claims about that reality. If that description fits your study, the four graduate-edition commitments (power, pre-registration, reliability, audit trail) are not optional — they are logical entailments of the paradigm. If you are working from an interpretive or critical paradigm, V2V's quantitative tools occupy a different role in your methodology, and different obligations apply.
-
-**Why pre-registration is a paradigmatic commitment.** Pre-registration is often framed as a statistical technique to control false-positive rates. That framing is accurate but incomplete. At the paradigmatic level, pre-registration embodies the hypothetico-deductive model: you derive predictions from theory *before* examining data, then submit those predictions to empirical test. This is the canonical post-positivist epistemological move. The OSF pre-registration form operationalizes that commitment: it requires you to state theory-derived hypotheses, specify measures, and describe the analysis before any data is collected or examined.
-
-**Epistemological humility and its constraints.** Claiming that reality is incompletely knowable does not license sloppy measurement. It licenses *uncertainty quantification* — confidence intervals, power statistics, effect size estimates with precision reported. The four graduate-edition commitments are the methods-level expression of epistemological humility.
-
-**Required reading.** Crotty, M. (1998). *The foundations of social research: Meaning and perspective in the research process*. SAGE Publications.
-
-**Reflect.** (1) Where would you locate your current research question on the ontology–epistemology axis Crotty describes? What methodological implications follow from that location? (2) Is pre-registration compatible with grounded theory or thematic analysis? Make the case for or against, using epistemological rather than practical reasoning.
-:::
+**Epistemological humility and its constraints.** Claiming that reality is incompletely knowable does not license sloppy measurement. It licenses *uncertainty quantification* — confidence intervals, power statistics, effect size estimates with precision reported. The four methodological commitments are the methods-level expression of epistemological humility.
 :::
 
 ## Looking ahead
@@ -169,4 +167,10 @@ Kramer, A. D. I., Guillory, J. E., & Hancock, J. T. (2014). Experimental evidenc
 Markham, A., & Buchanan, E. (2012). *Ethical decision-making and internet research: Recommendations from the AoIR Ethics Working Committee (Version 2.0)*. Association of Internet Researchers.
 
 National Commission for the Protection of Human Subjects of Biomedical and Behavioral Research. (1979). *The Belmont Report: Ethical principles and guidelines for the protection of human subjects of research*. U.S. Department of Health, Education, and Welfare.
+
+::: {.graduate-extension}
+### Graduate readings
+
+Crotty, M. (1998). *The foundations of social research: Meaning and perspective in the research process*. SAGE Publications.
+:::
 

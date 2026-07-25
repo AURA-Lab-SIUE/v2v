@@ -38,6 +38,10 @@ Four pieces of infrastructure cover the work you will do in this course. Each is
 
 Each tool is independently useful. The point of teaching them together is that the combination produces a research workflow where every move you make is documented, every output is reproducible, and every change is recoverable. This is not the standard workflow in most undergraduate methods courses. It is the standard workflow in research-active labs and in industry data science teams, and getting it into your hands now is one of the most durable skills this book can give you.
 
+::: {.graduate-extension}
+**The audit trail begins at setup.** It is tempting to read the setup steps as mere tool choices: install R, create a GitHub repo, connect it. Each is better understood as a *methodological commitment*. Configuring the workspace is the first act of the study, and the decisions made here are what determine whether the analysis can be reconstructed months later.
+:::
+
 ## Installing the stack
 
 The click-by-click instructions for installing each tool, with screenshots for both Windows and macOS, live on the V2V Hub. The Hub is the place to go when you need moment-to-moment guidance. This section gives you the conceptual map: what gets installed, in what order, and why.
@@ -76,6 +80,10 @@ v2v::setup()
 ```
 
 Click Quarto's Preview button, or run `quarto preview setup-check.qmd` in the terminal. The `v2v::setup()` function checks that R, Quarto, Git, and the v2v package are all present at acceptable versions. It prints "V2V setup complete" when everything is in place and a diagnostic message when something is missing. If you see anything other than the success message, the Hub has a troubleshooting page that addresses the common failure modes.
+
+::: {.graduate-extension}
+**Git as epistemological infrastructure.** Every `git commit` is a time-stamped record of your analysis at a specific moment. Your entire analytical history is reproducible: another researcher can check out any commit and see exactly what your code did at that point. This is not a convenience feature — it is a standard of evidence. Graduate work in V2V treats `git log` as a portion of the methods section. The first commit — before any analysis code is written — should include your data, your codebook, and a `README` that describes the study. For your own study, run `git log --oneline` on a project you completed before learning version control, and ask what a reviewer would want to see that you can no longer reconstruct.
+:::
 
 ## First contact with the data
 
@@ -121,17 +129,7 @@ The third is the **setup validator** you ran a few pages ago: `v2v::setup()`. Ru
 The full documentation for the package is available with `?v2v` in R or at the package website, which is linked from the V2V Hub. Treat the documentation as reference material rather than required reading.
 
 ::: {.graduate-extension}
-::: {.callout-note title="Graduate Extension"}
-**The audit trail begins at setup.** The undergrad edition configures the workspace to make coding accessible: install R, create a GitHub repo, connect it. The graduate edition reframes each of those steps as a *methodological commitment* rather than a tool choice.
-
-**Git as epistemological infrastructure.** Every `git commit` is a time-stamped record of your analysis at a specific moment. Your entire analytical history is reproducible: another researcher can check out any commit and see exactly what your code did at that point. This is not a convenience feature — it is a standard of evidence. Graduate work in V2V treats `git log` as a portion of the methods section. The first commit — before any analysis code is written — should include your data, your codebook, and a `README` that describes the study.
-
-**The renv.lock as a methods citation.** The `renv.lock` file records the exact version of every R package your analysis depends on. When you publish a white paper, the `renv.lock` is the citation for your computational environment. Without it, a reader attempting replication may get different results because a package updated between your run and theirs. Run `renv::init()` before your first line of analysis code and commit the resulting lock file before you collect your first data point.
-
-**Required reading.** Wilson, G., Bryan, J., Cranston, K., Kitzes, J., Nederbragt, L., & Teal, T. K. (2017). Good enough practices in scientific computing. *PLOS Computational Biology*, *13*(6), e1005510. https://doi.org/10.1371/journal.pcbi.1005510
-
-**Reflect.** (1) Run `git log --oneline` in a project you completed before learning version control. What would a reviewer want to see that you cannot now reconstruct? (2) Wilson et al. distinguish "good enough" practices from "best" practices. What is the practical cost of skipping `renv::init()` in a project you intend to publish?
-:::
+**The renv.lock as a methods citation.** The `renv.lock` file records the exact version of every R package your analysis depends on. When you publish a white paper, the `renv.lock` is the citation for your computational environment. Without it, a reader attempting replication may get different results because a package updated between your run and theirs. Run `renv::init()` before your first line of analysis code and commit the resulting lock file before you collect your first data point. For your own study, weigh the practical cost of skipping `renv::init()` in a project you intend to publish, in the terms Wilson et al. use to separate "good enough" practices from "best" ones.
 :::
 
 ## Looking ahead
@@ -141,4 +139,10 @@ Chapter 3 takes up the ethical responsibilities that come with collecting and an
 ## References
 
 Open Science Collaboration. (2015). Estimating the reproducibility of psychological science. *Science*, *349*(6251), aac4716. https://doi.org/10.1126/science.aac4716
+
+::: {.graduate-extension}
+### Graduate readings
+
+Wilson, G., Bryan, J., Cranston, K., Kitzes, J., Nederbragt, L., & Teal, T. K. (2017). Good enough practices in scientific computing. *PLOS Computational Biology*, *13*(6), e1005510. https://doi.org/10.1371/journal.pcbi.1005510
+:::
 

@@ -156,6 +156,10 @@ The histogram explains how both things can be true at once. The mean is sensitiv
 
 This is what it means to treat descriptive statistics as a visual setup rather than a verdict. A mean is one number standing in for thousands, and which thousands it stands in for is something only the distribution can show. It also leaves a precise question for the next chapter. There is a gap of about five characters between the two means. Is that gap a real difference between gaming and non-gaming channels, or the kind of wobble that any two samples would show? A figure can frame that question. It cannot answer it.
 
+::: {.graduate-extension}
+**Effect size reporting with every comparison.** A good figure conveys the pattern in the data without distortion, and descriptive reporting adds a further requirement on top of that: every figure that displays a comparison must include the effect size of that comparison. A bar chart showing that one group scored higher than another is not a scientific claim; it is a visual impression. The effect size quantifies the magnitude of that difference in a scale-invariant unit. Cohen's *d* reports how many standard deviations apart two group means are; Cramer's *V* reports the strength of association between two categorical variables after accounting for marginal distributions. These values let future researchers use your descriptives as inputs for their power analyses, closing the cumulative science loop that Chapter 4 opened. Lakens (2013) argues that routine effect size reporting would improve meta-analyses in communication research; for your own work, ask what practical barriers stand in the way of adopting the convention in a field where effect sizes are rarely reported in standard write-ups.
+:::
+
 ## Figures other people can read
 
 Three figures are built. Before they are finished, they have to be made readable, and not only by the analyst who made them.
@@ -167,17 +171,7 @@ The second duty is the **alt text**, a short written description of the figure a
 A figure that is honest about its choices, legible without color, and described for readers who cannot see it is a figure that does its job for everyone. That is the standard a publication-quality figure is held to, and the three built here are meant to meet it.
 
 ::: {.graduate-extension}
-::: {.callout-note title="Graduate Extension"}
-**Effect size reporting with every comparison.** The undergrad edition focuses on visualization as communication: a good figure conveys the pattern in the data without distortion. That standard holds at the graduate level. But graduate-level descriptive reporting adds a further requirement: every figure that displays a comparison must include the effect size of that comparison.
-
-A bar chart showing that one group scored higher than another is not a scientific claim — it is a visual impression. The effect size quantifies the magnitude of that difference in a scale-invariant unit. Cohen's *d* reports how many standard deviations apart two group means are; Cramer's *V* reports the strength of association between two categorical variables after accounting for marginal distributions. These values allow future researchers to use your descriptives as inputs for their power analyses — closing the cumulative science loop that Chapter 4 opened.
-
-**Reporting conventions.** For every group comparison in a visualization, report the effect size in the figure caption or a companion table. For group means: Cohen's *d* with a 95% confidence interval. For cross-tabulations: Cramer's *V*. For correlations: *r* and its CI. The `v2v::run_t_test()` and `v2v::run_chi_square()` functions compute all of these automatically and return formatted output ready for the caption.
-
-**Required reading.** Lakens, D. (2013). Calculating and reporting effect sizes to facilitate cumulative science: A practical primer for *t*-tests and ANOVAs. *Frontiers in Psychology*, *4*, 863. https://doi.org/10.3389/fpsyg.2013.00863
-
-**Reflect.** (1) For two figures in your current analysis, report the effect size you would include in the caption. If one effect is small by Cohen's (1988) conventions, what does that imply for the interpretive claim you planned to make? (2) Lakens argues that routine effect size reporting would improve meta-analyses in communication research. What are the practical barriers to adopting this convention in a field where effect sizes are rarely reported in standard write-ups?
-:::
+**Reporting conventions.** For every group comparison in a visualization, report the effect size in the figure caption or a companion table. For group means: Cohen's *d* with a 95% confidence interval. For cross-tabulations: Cramer's *V*. For correlations: *r* and its CI. The `v2v::run_t_test()` and `v2v::run_chi_square()` functions compute all of these automatically and return formatted output ready for the caption. For two figures in your current analysis, report the effect size you would include in the caption; if one effect is small by Cohen's (1988) conventions, consider what that implies for the interpretive claim you planned to make.
 :::
 
 ## Looking ahead
@@ -189,3 +183,9 @@ The histogram left a precise question on the table. The means of the two groups 
 Wickham, H. (2016). _ggplot2: Elegant graphics for data analysis_ (2nd ed.). Springer. https://doi.org/10.1007/978-3-319-24277-4
 
 Wilkinson, L. (2005). _The grammar of graphics_ (2nd ed.). Springer. https://doi.org/10.1007/0-387-28695-0
+
+::: {.graduate-extension}
+### Graduate readings
+
+Lakens, D. (2013). Calculating and reporting effect sizes to facilitate cumulative science: A practical primer for *t*-tests and ANOVAs. *Frontiers in Psychology*, *4*, 863. https://doi.org/10.3389/fpsyg.2013.00863
+:::

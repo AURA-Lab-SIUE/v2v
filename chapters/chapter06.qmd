@@ -96,6 +96,10 @@ Assembled, a model prospectus for this course might read like this:
 
 That is roughly two hundred and fifty words. It fits on one page, every sentence carries weight, and every component of the method (the sample, the unit of analysis, the coding scheme, the reliability check, the comparison) is named.
 
+::: {.graduate-extension}
+A graduate prospectus commits to a specific sample size backed by a quantitative justification, and that justification is the a priori power analysis. The number of cases named in the method section is not asserted but defended.
+:::
+
 A different theory points the same student to a different prospectus. Here is the same dataset framed through parasocial interaction:
 
 > **Title.** Markers of parasocial bond in viewer chat: A content analysis of large-audience and small-audience streams in the Twitch working corpus.
@@ -161,12 +165,11 @@ Why this matters connects directly to Chapter 2. Simmons, Nelson, and Simonsohn 
 Your prospectus functions as an informal pre-registration. It documents what you planned to study and how you planned to study it, before you began coding and analyzing. When you are later tempted to add variables, chase an unexpected finding, or quietly reframe the study after seeing the data, the prospectus is the record of what you originally set out to do.
 
 ::: {.graduate-extension}
-::: {.callout-note title="Graduate Extension"}
-**Power analysis belongs in the prospectus.** The undergrad prospectus documents what you plan to study and how you plan to study it. The graduate prospectus does all of that — and also commits to a specific sample size with a quantitative justification. That justification is the a priori power analysis.
+Statistical power is the probability that your study will detect an effect of a given size, assuming that effect is real. A study with 50% power has a coin-flip chance of detecting the effect even if it exists. The conventional minimum threshold is 80% power. Below that threshold, a significant result is less credible, because underpowered studies have inflated false-positive rates and overestimated effect sizes. Lakens (2022) treats justification by resource constraints as a last resort: for your own study, ask whether it is ethically defensible to run a design you know is underpowered, and under what conditions.
+:::
 
-**What power analysis is and why it matters.** Statistical power is the probability that your study will detect an effect of a given size, assuming that effect is real. A study with 50% power has a coin-flip chance of detecting the effect even if it exists. The conventional minimum threshold is 80% power. Below that threshold, a significant result is less credible, because underpowered studies have inflated false-positive rates and overestimated effect sizes.
-
-**Running the analysis.** Once you have an effect size estimate from the literature (Chapter 4) and a significance level (*α* = .05), the `pwr` package computes the required *n*:
+::: {.graduate-extension}
+Once you have an effect size estimate from the literature (Chapter 4) and a significance level (*α* = .05), the `pwr` package computes the required *n*:
 
 ```r
 library(pwr)
@@ -174,12 +177,7 @@ library(pwr)
 pwr.t.test(d = 0.5, sig.level = 0.05, power = 0.80, type = "two.sample")
 ```
 
-This output — *n* = 64 per group — becomes the sampling plan justification in your prospectus. If you cannot feasibly collect that many observations, the research question must be revised, the design changed for greater power, or the limitation explicitly justified in writing.
-
-**Required reading.** Lakens, D. (2022). Sample size justification. *Collabra: Psychology*, *8*(1), 33267. https://doi.org/10.1525/collabra.33267
-
-**Reflect.** (1) Run a `pwr` analysis for your prospectus using the effect size you extracted in Chapter 4. Report required *n* at 80% and 90% power. How does the 10-point power increase change the sample size requirement? (2) Lakens describes "justification by resource constraints" as a last resort. Is it ethically defensible to run a study you know is underpowered? Under what conditions?
-:::
+This output, *n* = 64 per group, becomes the sampling plan justification in your prospectus. If you cannot feasibly collect that many observations, the research question must be revised, the design changed for greater power, or the limitation explicitly justified in writing. For your own prospectus, run this analysis with the effect size you extracted in Chapter 4 and report the required *n* at both 80% and 90% power, noting how the ten-point increase changes what you would need to collect.
 :::
 
 ## Looking ahead
@@ -197,4 +195,10 @@ Katz, E., Blumler, J. G., & Gurevitch, M. (1973). Uses and gratifications resear
 Simmons, J. P., Nelson, L. D., & Simonsohn, U. (2011). False-positive psychology: Undisclosed flexibility in data collection and analysis allows presenting anything as significant. *Psychological Science*, *22*(11), 1359-1366. https://doi.org/10.1177/0956797611417632
 
 Sjöblom, M., & Hamari, J. (2017). Why do people watch others play video games? An empirical study on the motivations of Twitch users. *Computers in Human Behavior*, *75*, 985-996. https://doi.org/10.1016/j.chb.2016.10.019
+
+::: {.graduate-extension}
+### Graduate readings
+
+Lakens, D. (2022). Sample size justification. *Collabra: Psychology*, *8*(1), 33267. https://doi.org/10.1525/collabra.33267
+:::
 
