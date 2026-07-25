@@ -711,3 +711,32 @@ body.show-grad-ext .graduate-extension { display: block; }
 #v2v-edition-toggle[aria-pressed="true"] .dot { background: #fff; }
 @media print { #v2v-edition-toggle { display: none; } }
 @media (max-width: 560px) { #v2v-edition-toggle { font-size: 0.72rem; padding: 0.4rem 0.7rem; } }
+
+// ============================================================
+// Graduate-extension aside — integrated, red-accented section
+// (revealed by the reader toggle; no longer a collapsed box; sits in-flow
+// before "Looking ahead"). Hidden-by-default rule lives above.
+// ============================================================
+.graduate-extension {
+  margin: 3rem 0 2.5rem;
+  border-top: 2px solid $red;
+  padding-top: 1.2rem;
+}
+.graduate-extension .callout {
+  border: none !important;
+  border-left: 3px solid $red !important;
+  border-radius: 0 !important;
+  background: rgba(229, 24, 45, 0.045) !important;
+  margin: 0 !important;
+}
+.graduate-extension .callout .callout-header,
+.graduate-extension .callout .callout-title-container,
+.graduate-extension .callout .callout-title {
+  color: $red !important;
+  font-family: $font-family-sans-serif !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.78rem;
+}
+.graduate-extension .callout .callout-body { font-size: 0.98rem; line-height: 1.6; }

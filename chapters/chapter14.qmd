@@ -109,17 +109,8 @@ One short piece remains, and the portfolio is not complete without it: a one-par
 
 A good reflection is specific. It names what turned out harder than expected, where a coding rule proved ambiguous in practice, what the dataset could not answer because of how it was collected, what a future version of the study would change. It resists the two easy failures, the bland report that everything went well and the anxious confession that everything went wrong. A reflection is not an apology. It is evidence of judgment: a researcher who can say precisely where their study is weak is a researcher who genuinely understands it. It is kept to a paragraph on purpose. One honest paragraph is worth more than a page of hedging.
 
-## Looking ahead
-
-This is the last chapter, and looking ahead now means looking past the book.
-
-The chat study is finished. A question became a design. A design became data. Data became figures and a test. The whole of it became a reproducible site with a public address, a study another person can read, check, and extend. The dataset along the way happened to be Twitch chat, but nothing in the path depended on that. The sequence is the same for any dataset a reader will ever meet: a question, a theory, a codebook, a sample, a reliability check, a clean dataset, an honest figure, a careful test, and a reproducible report.
-
-That sequence is what the book's title has been describing all along. **Vibes** are where a study starts, a hunch, an interesting feeling that some corner of the world works a particular way. **Variables** are what discipline turns the vibe into, something defined precisely enough to measure, and measured carefully enough to test. The distance between the two is the whole of research methods, and a reader who has now walked it once, from a vague curiosity about Twitch chat to a published finding about it, can walk it again with a dataset of their own. The tools will keep changing. The path from vibes to variables does not.
-
-
 ::: {.graduate-extension}
-::: {.callout-note title="Graduate Extension" collapse="true"}
+::: {.callout-note title="Graduate Extension"}
 **Two additional deliverables.** The undergrad edition produces a Quarto-rendered portfolio demonstrating the full V2V workflow in one reproducible document. The graduate edition produces two further deliverables: a *white paper* structured for academic publication and a *conference poster* formatted for a communication research conference.
 
 **The white paper vs. the portfolio.** The undergraduate portfolio is structured as a feature-style explainer for an educated general audience. A white paper follows IMRaD format (Introduction, Methods, Results, Discussion), uses APA 7th edition throughout, reports effect sizes and power statistics, and includes a pre-registration disclosure statement in the methods section. The discussion situates findings within the theoretical literature from Chapter 5 rather than narrating them for general readers.
@@ -133,6 +124,15 @@ That sequence is what the book's title has been describing all along. **Vibes** 
 **Reflect.** (1) Convert the key results and discussion from your undergraduate portfolio into IMRaD structure. What is lost? What must be added to meet white paper standards? (2) Design the layout of your 36 × 24 conference poster. Which single figure from your analysis best communicates your main finding in 30 seconds?
 :::
 :::
+
+## Looking ahead
+
+This is the last chapter, and looking ahead now means looking past the book.
+
+The chat study is finished. A question became a design. A design became data. Data became figures and a test. The whole of it became a reproducible site with a public address, a study another person can read, check, and extend. The dataset along the way happened to be Twitch chat, but nothing in the path depended on that. The sequence is the same for any dataset a reader will ever meet: a question, a theory, a codebook, a sample, a reliability check, a clean dataset, an honest figure, a careful test, and a reproducible report.
+
+That sequence is what the book's title has been describing all along. **Vibes** are where a study starts, a hunch, an interesting feeling that some corner of the world works a particular way. **Variables** are what discipline turns the vibe into, something defined precisely enough to measure, and measured carefully enough to test. The distance between the two is the whole of research methods, and a reader who has now walked it once, from a vague curiosity about Twitch chat to a published finding about it, can walk it again with a dataset of their own. The tools will keep changing. The path from vibes to variables does not.
+
 ## References
 
 Knuth, D. E. (1984). Literate programming. _The Computer Journal_, _27_(2), 97-111. https://doi.org/10.1093/comjnl/27.2.97

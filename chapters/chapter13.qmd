@@ -180,13 +180,8 @@ Read the two numbers. The intercept, 33.70, is the mean message length of the re
 
 That the regression reproduces the t-test is not a coincidence. A t-test is a regression with a single two-level predictor; an ANOVA is a regression with a single many-level predictor. All three belong to one framework, the **general linear model**, and once a study is written as a regression it can grow in ways a t-test cannot: a second predictor added, a continuous predictor rather than a categorical one, several influences weighed at once. This chapter's study needs only the two-group comparison, so the t-test is enough. But regression is where inference stops being a menu of separate tests and becomes one extensible way of modeling how one thing depends on another. Its effect size here tells the same story a third time: the model's R², the share of variance it explains, is about 0.001, so gaming status accounts for almost none of the variation in message length.
 
-## Looking ahead
-
-The chat study now has all of its pieces. It has a question and a theory, a prospectus, a codebook tested for reliability, a sample, a clean dataset, three figures, and a tested finding interpreted honestly. What it does not yet have is a form. The pieces are scattered across scripts and outputs, and a study that cannot be read as a single coherent document is not yet finished. Chapter 14 is where it becomes one. It is the publication chapter, where everything built since Chapter 9 is assembled into a single reproducible report and put where other people can read it.
-
-
 ::: {.graduate-extension}
-::: {.callout-note title="Graduate Extension" collapse="true"}
+::: {.callout-note title="Graduate Extension"}
 **Three obligations that constrain graduate-level inference.** The undergrad edition teaches inference as a decision: given a *p*-value and a significance level, you accept or reject the null hypothesis. That logic is correct but incomplete. Graduate-level inference carries three additional obligations: (1) the inference must reflect the power of the study; (2) the significance threshold must be justified, not assumed; and (3) the pre-registration disclosure must precede the inference claim.
 
 **Power and interpretation.** A significant result from a well-powered study (≥ 80%) is a stronger evidentiary claim than the same result from an underpowered study. Underpowered studies that achieve significance do so partly through sampling variation, which inflates effect size estimates. Report the achieved power of your study alongside the *p*-value. The v2v package's `run_t_test()` returns Cohen's *d* with confidence intervals, which allows readers to assess the precision of the effect estimate independently of the significance test.
@@ -202,6 +197,11 @@ The chat study now has all of its pieces. It has a question and a theory, a pros
 **Reflect.** (1) For your pre-registered study, write the disclosure statement you would include in the methods section. List any deviations from the pre-registration and how you would report them. (2) Lakens et al. propose that different research contexts justify different α levels. What would justify using *α* = .01 rather than .05 in a V2V study? (3) Name the test your own design calls for (t-test, ANOVA, or regression), the assumption most at risk in your data, and the diagnostic or robust alternative you would use to check or handle it.
 :::
 :::
+
+## Looking ahead
+
+The chat study now has all of its pieces. It has a question and a theory, a prospectus, a codebook tested for reliability, a sample, a clean dataset, three figures, and a tested finding interpreted honestly. What it does not yet have is a form. The pieces are scattered across scripts and outputs, and a study that cannot be read as a single coherent document is not yet finished. Chapter 14 is where it becomes one. It is the publication chapter, where everything built since Chapter 9 is assembled into a single reproducible report and put where other people can read it.
+
 ## References
 
 Cohen, J. (1988). _Statistical power analysis for the behavioral sciences_ (2nd ed.). Lawrence Erlbaum Associates.

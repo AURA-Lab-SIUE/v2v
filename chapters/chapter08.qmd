@@ -123,13 +123,8 @@ Here is a draft codebook for the running example, the study the prospectus in Ch
 
 Three variables, spanning two manifest measures a coder can apply almost mechanically and one latent measure that requires real judgment, spanning nominal and ratio levels, every category exhaustive and mutually exclusive, every decision rule traceable to something observation actually turned up. That is a draft codebook. It is enough to start.
 
-## Looking ahead
-
-Chapter 9 is first contact with the data inside R. You have a research question, a theoretical frame, a prospectus, a field-notes document, and now a draft codebook. What you have not yet done is open the dataset in the tool you will analyze it with. Chapter 9 is where the planning stops and the code begins: you will load `chat_log` and `stream_log`, look at their structure, and confirm that the data you have designed a study around is the data you actually have.
-
-
 ::: {.graduate-extension}
-::: {.callout-note title="Graduate Extension" collapse="true"}
+::: {.callout-note title="Graduate Extension"}
 **The formal intercoder reliability protocol.** The codebook you write in this chapter is the operational heart of your study. But a codebook that works for one coder is not necessarily a reliable instrument. At the graduate level, the codebook is not finished until a second coder has applied it to a sample of your data and the agreement has been measured and reported.
 
 A complete V2V reliability protocol has four steps. *First*, the second coder receives the codebook — no walk-through, no hints — and codes a training set of 20–30 units independently. *Second*, the two coders compare their coding and discuss every disagreement. No new production data is coded at this stage. *Third*, the codebook is revised to add decision rules for all identified disagreements. *Fourth*, the second coder codes a fresh reliability sample (separate from the training set) independently. The agreement on this fresh sample is the κ that gets reported.
@@ -141,6 +136,11 @@ A complete V2V reliability protocol has four steps. *First*, the second coder re
 **Reflect.** (1) Simulate a reliability scenario: two coders agree on 40 of 50 units. Run `v2v::reliability()` to compute κ and its interpretation. Does this codebook clear the 0.70 threshold? What would you revise? (2) Lombard et al. recommend reporting multiple reliability statistics. Which statistic would you add alongside κ for your design, and why?
 :::
 :::
+
+## Looking ahead
+
+Chapter 9 is first contact with the data inside R. You have a research question, a theoretical frame, a prospectus, a field-notes document, and now a draft codebook. What you have not yet done is open the dataset in the tool you will analyze it with. Chapter 9 is where the planning stops and the code begins: you will load `chat_log` and `stream_log`, look at their structure, and confirm that the data you have designed a study around is the data you actually have.
+
 ## References
 
 Krippendorff, K. (2018). _Content analysis: An introduction to its methodology_ (4th ed.). SAGE Publications.

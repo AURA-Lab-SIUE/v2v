@@ -178,13 +178,8 @@ This is what wrangling was for. The table is now **tidy**, in the precise sense 
 
 None of this was analysis. Not a single result has been computed. But every result that follows, every figure in Chapter 12 and every test in Chapter 13, will be computed from this table, which is why the care spent building it is not optional. A wrangling mistake does not announce itself. It travels quietly into every chart and every statistic downstream. The reward for getting this chapter right is that nothing later has to be unwound.
 
-## Looking ahead
-
-The data is tidy and the variables exist. The next move is to look at them. Chapter 12 turns the analysis-ready table into figures: how chat volume moves across the hours of the day, how viewership splits across game categories, and how the distribution of message length compares between gaming and non-gaming channels. It is the chapter where the study's central question finally meets a picture of the answer.
-
-
 ::: {.graduate-extension}
-::: {.callout-note title="Graduate Extension" collapse="true"}
+::: {.callout-note title="Graduate Extension"}
 **The wrangling script as a methods section.** The undergrad edition treats wrangling as preparation: you load messy data and shape it into the form your analysis needs. The graduate edition treats wrangling as a *documented transformation chain* — a sequence of decisions, each recorded in version-controlled code, that connects raw data to analysis-ready data.
 
 Every `mutate()`, `filter()`, and `group_by()` is a methodological decision. You decided which cases to exclude and why. You decided how to handle missing values. You decided how to aggregate timestamp data into time windows. When a reviewer asks "how did you handle cases where the streamer's username appeared in the chat?", the answer is in the wrangling script — but only if the script is version-controlled and decision points are commented.
@@ -198,6 +193,11 @@ Every `mutate()`, `filter()`, and `group_by()` is a methodological decision. You
 **Reflect.** (1) Identify three wrangling decisions in your script that a reviewer might challenge. For each, add a comment explaining the decision rule and its justification. (2) Re-run your wrangling script from a fresh R session against the raw data. Does it produce the same processed dataset without manual intervention? If not, what undocumented dependency did you miss?
 :::
 :::
+
+## Looking ahead
+
+The data is tidy and the variables exist. The next move is to look at them. Chapter 12 turns the analysis-ready table into figures: how chat volume moves across the hours of the day, how viewership splits across game categories, and how the distribution of message length compares between gaming and non-gaming channels. It is the chapter where the study's central question finally meets a picture of the answer.
+
 ## References
 
 Wickham, H. (2014). Tidy data. _Journal of Statistical Software_, _59_(10), 1-23. https://doi.org/10.18637/jss.v059.i10

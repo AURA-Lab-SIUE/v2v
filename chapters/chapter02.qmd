@@ -60,23 +60,22 @@ Install in this order:
 
 8. **The `v2v` package.** The Hub has the install command for the current package version. The package ships the Twitch dataset fixtures and a small set of helper functions used throughout the rest of the book.
 
-When everything is installed, open VSCode, create a new file, and try the following. Save it as `setup-check.qmd`, then click Quarto's Preview button or run `quarto preview setup-check.qmd` in the terminal.
+When everything is installed, open VSCode and create a new file named `setup-check.qmd`. Give it a title in the YAML front matter at the top:
 
-````
+```yaml
 ---
 title: "Setup check"
 ---
+```
 
-The R chunk below calls a function from the v2v package.
-If everything is installed correctly, it prints a confirmation.
+Then add an R code chunk that calls the v2v setup validator:
 
-```{r}
+```{{r}}
 library(v2v)
 v2v::setup()
 ```
-````
 
-The `v2v::setup()` function checks that R, Quarto, Git, and the v2v package are all present at acceptable versions. It prints "V2V setup complete" when everything is in place and a diagnostic message when something is missing. If you see anything other than the success message, the Hub has a troubleshooting page that addresses the common failure modes.
+Click Quarto's Preview button, or run `quarto preview setup-check.qmd` in the terminal. The `v2v::setup()` function checks that R, Quarto, Git, and the v2v package are all present at acceptable versions. It prints "V2V setup complete" when everything is in place and a diagnostic message when something is missing. If you see anything other than the success message, the Hub has a troubleshooting page that addresses the common failure modes.
 
 ## First contact with the data
 
@@ -121,16 +120,8 @@ The third is the **setup validator** you ran a few pages ago: `v2v::setup()`. Ru
 
 The full documentation for the package is available with `?v2v` in R or at the package website, which is linked from the V2V Hub. Treat the documentation as reference material rather than required reading.
 
-## Looking ahead
-
-Chapter 3 takes up the ethical responsibilities that come with collecting and analyzing data about other people. The Twitch dataset is a clean case for thinking through public-by-default information, pseudonymity, and the limits of what informed consent means when it was never asked. Most of the data you will encounter as a working social scientist will not be as clean, and the framework Chapter 3 builds is meant to handle the harder cases.
-
-## References
-
-Open Science Collaboration. (2015). Estimating the reproducibility of psychological science. *Science*, *349*(6251), aac4716. https://doi.org/10.1126/science.aac4716
-
 ::: {.graduate-extension}
-::: {.callout-note title="Graduate Extension" collapse="true"}
+::: {.callout-note title="Graduate Extension"}
 **The audit trail begins at setup.** The undergrad edition configures the workspace to make coding accessible: install R, create a GitHub repo, connect it. The graduate edition reframes each of those steps as a *methodological commitment* rather than a tool choice.
 
 **Git as epistemological infrastructure.** Every `git commit` is a time-stamped record of your analysis at a specific moment. Your entire analytical history is reproducible: another researcher can check out any commit and see exactly what your code did at that point. This is not a convenience feature — it is a standard of evidence. Graduate work in V2V treats `git log` as a portion of the methods section. The first commit — before any analysis code is written — should include your data, your codebook, and a `README` that describes the study.
@@ -142,3 +133,12 @@ Open Science Collaboration. (2015). Estimating the reproducibility of psychologi
 **Reflect.** (1) Run `git log --oneline` in a project you completed before learning version control. What would a reviewer want to see that you cannot now reconstruct? (2) Wilson et al. distinguish "good enough" practices from "best" practices. What is the practical cost of skipping `renv::init()` in a project you intend to publish?
 :::
 :::
+
+## Looking ahead
+
+Chapter 3 takes up the ethical responsibilities that come with collecting and analyzing data about other people. The Twitch dataset is a clean case for thinking through public-by-default information, pseudonymity, and the limits of what informed consent means when it was never asked. Most of the data you will encounter as a working social scientist will not be as clean, and the framework Chapter 3 builds is meant to handle the harder cases.
+
+## References
+
+Open Science Collaboration. (2015). Estimating the reproducibility of psychological science. *Science*, *349*(6251), aac4716. https://doi.org/10.1126/science.aac4716
+

@@ -160,24 +160,8 @@ Why this matters connects directly to Chapter 2. Simmons, Nelson, and Simonsohn 
 
 Your prospectus functions as an informal pre-registration. It documents what you planned to study and how you planned to study it, before you began coding and analyzing. When you are later tempted to add variables, chase an unexpected finding, or quietly reframe the study after seeing the data, the prospectus is the record of what you originally set out to do.
 
-## Looking ahead
-
-Chapter 7 begins Part III, where planning becomes practice. Before you can code a single chat message, you have to know the data the way a researcher knows it: not as an abstraction described in a prospectus, but as a texture you have spent real time inside. Chapter 7 is about that immersion, the structured listening that turns a dataset into something you understand well enough to operationalize.
-
-## References
-
-Hilvert-Bruce, Z., Neill, J. T., Sjöblom, M., & Hamari, J. (2018). Social motivations of live-streaming viewer engagement on Twitch. *Computers in Human Behavior*, *84*, 58-67. https://doi.org/10.1016/j.chb.2018.02.013
-
-Horton, D., & Wohl, R. R. (1956). Mass communication and para-social interaction: Observations on intimacy at a distance. *Psychiatry*, *19*(3), 215-229. https://doi.org/10.1080/00332747.1956.11023049
-
-Katz, E., Blumler, J. G., & Gurevitch, M. (1973). Uses and gratifications research. *Public Opinion Quarterly*, *37*(4), 509-523. https://doi.org/10.1086/268109
-
-Simmons, J. P., Nelson, L. D., & Simonsohn, U. (2011). False-positive psychology: Undisclosed flexibility in data collection and analysis allows presenting anything as significant. *Psychological Science*, *22*(11), 1359-1366. https://doi.org/10.1177/0956797611417632
-
-Sjöblom, M., & Hamari, J. (2017). Why do people watch others play video games? An empirical study on the motivations of Twitch users. *Computers in Human Behavior*, *75*, 985-996. https://doi.org/10.1016/j.chb.2016.10.019
-
 ::: {.graduate-extension}
-::: {.callout-note title="Graduate Extension" collapse="true"}
+::: {.callout-note title="Graduate Extension"}
 **Power analysis belongs in the prospectus.** The undergrad prospectus documents what you plan to study and how you plan to study it. The graduate prospectus does all of that — and also commits to a specific sample size with a quantitative justification. That justification is the a priori power analysis.
 
 **What power analysis is and why it matters.** Statistical power is the probability that your study will detect an effect of a given size, assuming that effect is real. A study with 50% power has a coin-flip chance of detecting the effect even if it exists. The conventional minimum threshold is 80% power. Below that threshold, a significant result is less credible, because underpowered studies have inflated false-positive rates and overestimated effect sizes.
@@ -197,3 +181,20 @@ This output — *n* = 64 per group — becomes the sampling plan justification i
 **Reflect.** (1) Run a `pwr` analysis for your prospectus using the effect size you extracted in Chapter 4. Report required *n* at 80% and 90% power. How does the 10-point power increase change the sample size requirement? (2) Lakens describes "justification by resource constraints" as a last resort. Is it ethically defensible to run a study you know is underpowered? Under what conditions?
 :::
 :::
+
+## Looking ahead
+
+Chapter 7 begins Part III, where planning becomes practice. Before you can code a single chat message, you have to know the data the way a researcher knows it: not as an abstraction described in a prospectus, but as a texture you have spent real time inside. Chapter 7 is about that immersion, the structured listening that turns a dataset into something you understand well enough to operationalize.
+
+## References
+
+Hilvert-Bruce, Z., Neill, J. T., Sjöblom, M., & Hamari, J. (2018). Social motivations of live-streaming viewer engagement on Twitch. *Computers in Human Behavior*, *84*, 58-67. https://doi.org/10.1016/j.chb.2018.02.013
+
+Horton, D., & Wohl, R. R. (1956). Mass communication and para-social interaction: Observations on intimacy at a distance. *Psychiatry*, *19*(3), 215-229. https://doi.org/10.1080/00332747.1956.11023049
+
+Katz, E., Blumler, J. G., & Gurevitch, M. (1973). Uses and gratifications research. *Public Opinion Quarterly*, *37*(4), 509-523. https://doi.org/10.1086/268109
+
+Simmons, J. P., Nelson, L. D., & Simonsohn, U. (2011). False-positive psychology: Undisclosed flexibility in data collection and analysis allows presenting anything as significant. *Psychological Science*, *22*(11), 1359-1366. https://doi.org/10.1177/0956797611417632
+
+Sjöblom, M., & Hamari, J. (2017). Why do people watch others play video games? An empirical study on the motivations of Twitch users. *Computers in Human Behavior*, *75*, 985-996. https://doi.org/10.1016/j.chb.2016.10.019
+

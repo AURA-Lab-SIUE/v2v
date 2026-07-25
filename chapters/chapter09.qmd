@@ -168,13 +168,8 @@ First contact also surfaces what the codebook will have to work harder at. The m
 
 One genuine wrinkle is worth carrying forward. Among the first messages is one addressed to a streamer: it begins "@xQcOW". The `channel` column for that same row reads "xqcow". The at-mention and the channel name are the same name in different casing, the display name as a viewer typed it against the lowercase login name the data stores. The message-target rule that keys on "an at-mention of the streamer's channel name" will have to account for that difference. This is precisely the kind of refinement that belongs in the codebook now, while it is still the project's living rulebook and before a single message has been coded. First contact has done its work: the study is buildable, and the codebook knows a little more than it did.
 
-## Looking ahead
-
-You have a workspace, a rulebook installed in it, and the data loaded and inspected. Chapter 10 puts the rulebook to the test. It draws a sample of chat messages, the specific messages your study will actually code, and asks the question every content analysis has to answer before its results mean anything: when two coders apply the codebook independently, do they agree? Sampling and inter-coder reliability are the subject, and the codebook you finalized here is what goes on trial.
-
-
 ::: {.graduate-extension}
-::: {.callout-note title="Graduate Extension" collapse="true"}
+::: {.callout-note title="Graduate Extension"}
 **Data provenance as a methodological disclosure.** The undergrad edition introduces first contact with data as a moment of exploration: load, inspect, describe. The graduate edition adds a prior step — documenting the *provenance* of the data before the first line of analysis code runs.
 
 When you publish a study, you are making a claim about specific data collected under specific conditions at a specific time. "I collected Twitch chat data" is not a methods section. "I collected 14 days of Twitch chat from the top 10 most-viewed streams in the *Just Chatting* category, using Twitch API v2, between 2024-01-15 and 2024-01-28, saving raw JSON responses to `data/raw/` before any processing" is. The difference matters because replication requires exact knowledge of what was done.
@@ -186,6 +181,11 @@ When you publish a study, you are making a claim about specific data collected u
 **Reflect.** (1) Write a four-sentence data provenance statement for the v2v package dataset that would satisfy a journal methods section. What information would you need that is not available in the package documentation? (2) If a journal reviewer asked you to "share the raw data," what would you share and what would you withhold for a study using the v2v package dataset?
 :::
 :::
+
+## Looking ahead
+
+You have a workspace, a rulebook installed in it, and the data loaded and inspected. Chapter 10 puts the rulebook to the test. It draws a sample of chat messages, the specific messages your study will actually code, and asks the question every content analysis has to answer before its results mean anything: when two coders apply the codebook independently, do they agree? Sampling and inter-coder reliability are the subject, and the codebook you finalized here is what goes on trial.
+
 ## References
 
 Wickham, H., Averick, M., Bryan, J., Chang, W., McGowan, L. D., François, R., Grolemund, G., Hayes, A., Henry, L., Hester, J., Kuhn, M., Pedersen, T. L., Miller, E., Bache, S. M., Müller, K., Ooms, J., Robinson, D., Seidel, D. P., Spinu, V., … Yutani, H. (2019). Welcome to the tidyverse. _Journal of Open Source Software_, _4_(43), 1686. https://doi.org/10.21105/joss.01686

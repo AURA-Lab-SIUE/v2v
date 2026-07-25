@@ -127,13 +127,8 @@ Then the codebook, now revised, is piloted again. New coders or the same coders,
 
 This is why Chapter 9 finalized only the codebook's status and not its content. A codebook is a living instrument right up until a pilot test certifies it, and a pilot test has the standing to send it back for revision however many times that takes. The discipline is to treat a low reliability coefficient as useful news rather than an obstacle. It has told you, before you invested weeks in coding, that the instrument was not yet sound. That is the pilot test working exactly as intended.
 
-## Looking ahead
-
-You now have a sample drawn and, once it has cleared its pilot, a codebook trusted to classify it. What you do not yet have is data in a form ready for analysis. The chat and stream tables are still separate, the timestamps are still unreadable integers, and the variables the study needs, message length and the gaming context of each message, do not yet exist as columns. Chapter 11 takes that on. It is the wrangling chapter: the one where the raw tables are reshaped, joined, and cleaned into the single tidy dataset every later analysis depends on.
-
-
 ::: {.graduate-extension}
-::: {.callout-note title="Graduate Extension" collapse="true"}
+::: {.callout-note title="Graduate Extension"}
 **The conversation between your prospectus and your sample.** The undergrad edition teaches sampling as a practical tradeoff: you cannot code everything, so you apply stratified sampling rules that capture the variation in your dataset. The graduate edition adds a second constraint: your sample must also be large enough to detect the effect you expect with adequate power.
 
 Your prospectus power analysis (Chapter 6) specified a minimum *n* at your chosen effect size and power level. Chapter 10 is where that number meets the realities of your dataset. If your power analysis requires 128 coded units and your platform generates 10,000 units in your collection window, stratified sampling solves the problem. If your platform generates only 80 units, you face a constraint: the study is underpowered, and you must either change the design (longer collection window, multiple platforms, or a revised research question targeting a larger expected effect) or explicitly justify the limitation in the prospectus.
@@ -145,6 +140,11 @@ Your prospectus power analysis (Chapter 6) specified a minimum *n* at your chose
 **Reflect.** (1) For your study, identify the minimum *n* from your Chapter 6 power analysis and the maximum *n* available from your dataset. If they conflict, document the conflict and propose one design modification that resolves it. (2) What is the ethical implication of publishing a study you know is underpowered because adequate data were unavailable? How should the limitations section handle this?
 :::
 :::
+
+## Looking ahead
+
+You now have a sample drawn and, once it has cleared its pilot, a codebook trusted to classify it. What you do not yet have is data in a form ready for analysis. The chat and stream tables are still separate, the timestamps are still unreadable integers, and the variables the study needs, message length and the gaming context of each message, do not yet exist as columns. Chapter 11 takes that on. It is the wrangling chapter: the one where the raw tables are reshaped, joined, and cleaned into the single tidy dataset every later analysis depends on.
+
 ## References
 
 Cohen, J. (1960). A coefficient of agreement for nominal scales. _Educational and Psychological Measurement_, _20_(1), 37-46. https://doi.org/10.1177/001316446002000104

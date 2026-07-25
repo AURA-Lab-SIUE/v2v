@@ -98,13 +98,8 @@ New streams stop surprising you. You can name three to five dimensions that clea
 
 What structured listening leaves you with is four things: conceptual clarity about what your variables actually mean in this medium, a set of candidate categories for each one, the beginnings of the decision rules that will resolve ambiguous cases, and the contextual knowledge to recognize when a surface feature is about to mislead you. Those four things are precisely the raw material of a codebook. Assembling them into one is the next chapter's work.
 
-## Looking ahead
-
-Chapter 8 is where vibes become variables, the move the whole book is named for. You have watched the medium and filled a field-notes document with what you saw. Chapter 8 takes that record and turns it into a codebook: a set of variables, each with defined values, each with a level of measurement, each with decision rules for the cases that do not sort themselves. It is the last step before the data, and the first step that the data will hold you to.
-
-
 ::: {.graduate-extension}
-::: {.callout-note title="Graduate Extension" collapse="true"}
+::: {.callout-note title="Graduate Extension"}
 **Two-coder reliability planning begins here.** The undergrad edition describes structured immersion as the process of watching or listening to media with focused attention before building a codebook: you take field notes, identify candidate categories, and notice edge cases. The graduate edition adds a second lens — you are simultaneously identifying *where two coders will disagree*.
 
 **Why disagreement identification matters before the codebook.** Most content-analytic codebook failures occur not from poorly defined categories but from underspecified decision rules for boundary cases. When you watch a Twitch stream and code a comment as "hostile," another coder watching the same stream might code it as "sarcastic" — because the category boundary was not drawn precisely enough. Structured immersion is when this ambiguity first becomes visible. The graduate-level field notes document not just *what* you observe, but *where* you are uncertain, because those locations are exactly where a second coder will need explicit guidance.
@@ -116,6 +111,11 @@ Chapter 8 is where vibes become variables, the move the whole book is named for.
 **Reflect.** (1) After completing your immersion log, identify three categories where you anticipate the most disagreement with a second coder. For each, write one candidate decision rule that would resolve the ambiguity. (2) Krippendorff argues that unitizing — deciding what counts as a single unit of analysis — is a prior reliability problem most researchers underestimate. What is your unit of analysis, and what edge cases make consistent unitizing difficult?
 :::
 :::
+
+## Looking ahead
+
+Chapter 8 is where vibes become variables, the move the whole book is named for. You have watched the medium and filled a field-notes document with what you saw. Chapter 8 takes that record and turns it into a codebook: a set of variables, each with defined values, each with a level of measurement, each with decision rules for the cases that do not sort themselves. It is the last step before the data, and the first step that the data will hold you to.
+
 ## References
 
 Geertz, C. (1973). _The interpretation of cultures: Selected essays_. Basic Books.
