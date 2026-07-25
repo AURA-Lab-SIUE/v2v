@@ -67,6 +67,10 @@ That convention deserves a note of its own. The .05 threshold is exactly that, a
 
 What matters more is being precise about what the p-value does not say. It is not the probability that the null hypothesis is true; the null is either true or false, and the p-value is a statement about data, not about hypotheses. It is not the probability that the result is a fluke. And, most important for what follows, it is not a measure of how large the difference is, or of how much the difference matters. A small p-value says the gap is probably not zero. It says nothing at all about whether the gap is big.
 
+::: {.graduate-extension}
+**Justify your α.** The .05 threshold is a convention, not a law. Run ten tests on one dataset without correction and you expect at least one false positive by chance alone, so declaring the number of tests and any correction procedure in advance, as pre-registration requires, is what keeps that inflation in check. Report the α you chose, state why it fits your design, and apply it consistently. Lakens et al. (2018) argue that different research contexts justify different thresholds; for your own study, ask what would justify using *α* = .01 rather than .05.
+:::
+
 ## How big is the difference
 
 For that, the p-value has to hand the question to a different number: an **effect size**.
@@ -80,6 +84,10 @@ This is worth dwelling on, because it sounds like a contradiction and is not. Th
 ![](../images/fig13-1-overlap-effect-size.png){fig-alt="Two message-length density curves, one for gaming channels and one for non-gaming channels, drawn over an axis from zero to 150 characters. The curves rise to nearly the same peak below 20 characters and decay along nearly the same path; two vertical lines mark the group means at 28.5 and 33.7 characters, visibly close together. The five-character gap between the means, set against standard deviations of 38 and 61, is Cohen's d of 0.13: the distributions all but coincide."}
 
 That leaves one question: how did a negligible difference come back statistically significant at all? The answer is the sample size. The test ran on 34,766 messages, and with a sample that large, a hypothesis test can detect a difference far too small to care about. This is the rule to carry forward: a large enough sample will make almost any difference, however tiny, statistically significant. Significance and size are different questions, and big samples pull them apart.
+
+::: {.graduate-extension}
+**Power and the strength of a claim.** Sample size cuts the other way too. A significant result from a well-powered study (at least 80%) is stronger evidence than the same result from an underpowered one: underpowered studies that reach significance do so partly through sampling variation, which inflates the effect-size estimate. Report the achieved power of your study alongside the *p*-value. `run_t_test()` returns Cohen's *d* with a confidence interval, which lets a reader judge how precisely the effect is pinned down, independently of the significance test.
+:::
 
 ## Seeing the difference
 
@@ -127,6 +135,10 @@ In practice that means a result is written up with the full set of numbers, in t
 > Gaming channels produced shorter chat messages on average than non-gaming channels (28.49 vs. 33.70 characters), Welch's _t_(3768.7) = -4.95, _p_ < .001, Cohen's _d_ = -0.13.
 
 And then, because a string of statistics is not an interpretation, it is written up a second time in a sentence a non-statistician can read: gaming and non-gaming channels do differ in how long their chat messages run, but the difference is so small that for most purposes the two are better thought of as alike than as different. That sentence is the call. It reports the real difference, refuses to inflate it, and tells the reader what the study actually found.
+
+::: {.graduate-extension}
+**The pre-registration disclosure.** A pre-registered study names it in the write-up: "This study's hypotheses, measures, and analysis plan were pre-registered on OSF prior to data collection at [URL]." Anything you ran beyond that plan is labelled exploratory and read with corresponding caution. For your own study, draft the disclosure you would put in the methods section, and list any deviations from the plan and how you would report them.
+:::
 
 ## More than two groups: ANOVA
 
@@ -181,21 +193,7 @@ Read the two numbers. The intercept, 33.70, is the mean message length of the re
 That the regression reproduces the t-test is not a coincidence. A t-test is a regression with a single two-level predictor; an ANOVA is a regression with a single many-level predictor. All three belong to one framework, the **general linear model**, and once a study is written as a regression it can grow in ways a t-test cannot: a second predictor added, a continuous predictor rather than a categorical one, several influences weighed at once. This chapter's study needs only the two-group comparison, so the t-test is enough. But regression is where inference stops being a menu of separate tests and becomes one extensible way of modeling how one thing depends on another. Its effect size here tells the same story a third time: the model's R², the share of variance it explains, is about 0.001, so gaming status accounts for almost none of the variation in message length.
 
 ::: {.graduate-extension}
-::: {.callout-note title="Graduate Extension"}
-**Three obligations that constrain graduate-level inference.** The undergrad edition teaches inference as a decision: given a *p*-value and a significance level, you accept or reject the null hypothesis. That logic is correct but incomplete. Graduate-level inference carries three additional obligations: (1) the inference must reflect the power of the study; (2) the significance threshold must be justified, not assumed; and (3) the pre-registration disclosure must precede the inference claim.
-
-**Power and interpretation.** A significant result from a well-powered study (≥ 80%) is a stronger evidentiary claim than the same result from an underpowered study. Underpowered studies that achieve significance do so partly through sampling variation, which inflates effect size estimates. Report the achieved power of your study alongside the *p*-value. The v2v package's `run_t_test()` returns Cohen's *d* with confidence intervals, which allows readers to assess the precision of the effect estimate independently of the significance test.
-
-**Justify your α.** The default *α* = .05 is a convention, not a law. If you ran 10 tests on the same dataset without correction, you expect at least one false positive by chance alone. Pre-registration mitigates this by requiring you to declare the number of tests and any correction procedure in advance. Report your chosen α, state why it is appropriate for your design, and apply it consistently.
-
-**The pre-registration disclosure statement.** Every graduate V2V paper that used pre-registration includes: "This study's hypotheses, measures, and analysis plan were pre-registered on OSF prior to data collection at [URL]." Exploratory analyses conducted beyond the pre-registration are labeled as exploratory and interpreted with corresponding caution.
-
-**The assumptions the tests rest on.** The undergraduate treatment runs `aov()` and `lm()` and reads the output. Graduate use checks the assumptions those numbers depend on before trusting them. ANOVA and ordinary regression assume the groups share a common variance (homoscedasticity); Chapter 12 showed the chat groups plainly do not, which is why the two-group test used Welch's correction, and the same heterogeneity argues for `oneway.test()` (Welch's ANOVA) over the pooled `aov()` used above. A significant ANOVA says only that *some* pair of means differs, not which; naming the pairs requires post-hoc comparisons (Tukey's HSD via `TukeyHSD()`) that correct for the multiple looks. A regression's credibility rests on its residuals: `plot(model)` produces the diagnostic quartet, residuals-versus-fitted for linearity and equal spread, a Q–Q plot for normal residuals, and leverage for influential points, and reading them is part of reporting a model, not an optional add-on. And when a model gains a predictor, whether the addition earns its place is a question of model comparison, adjusted R² and AIC across competing models or a nested *F*-test, not raw R², which never falls when a predictor is added.
-
-**Required reading.** Lakens, D., Adolfi, F. G., Albers, C. J., Anvari, F., Apps, M. A. J., Argamon, S. E., … Zwaan, R. A. (2018). Justify your alpha. *Nature Human Behaviour*, *2*, 168–171. https://doi.org/10.1038/s41562-018-0311-x
-
-**Reflect.** (1) For your pre-registered study, write the disclosure statement you would include in the methods section. List any deviations from the pre-registration and how you would report them. (2) Lakens et al. propose that different research contexts justify different α levels. What would justify using *α* = .01 rather than .05 in a V2V study? (3) Name the test your own design calls for (t-test, ANOVA, or regression), the assumption most at risk in your data, and the diagnostic or robust alternative you would use to check or handle it.
-:::
+**The assumptions underneath `aov()` and `lm()`.** Running the model and reading the output is the first step; the numbers earn trust only once their assumptions are checked. ANOVA and ordinary regression assume the groups share a common variance (homoscedasticity), and Chapter 12 showed the chat groups plainly do not — the reason the two-group test used Welch's correction, and the reason `oneway.test()` (Welch's ANOVA) is the safer choice over the pooled `aov()` above. A significant ANOVA says only that *some* pair of means differs, not which; naming the pairs takes post-hoc comparisons (Tukey's HSD, `TukeyHSD()`) that correct for the multiple looks. A regression's credibility rests on its residuals: `plot(model)` draws the diagnostic quartet — residuals-versus-fitted for linearity and equal spread, a Q–Q plot for normal residuals, and leverage for influential points. And whether an added predictor earns its place is a question of model comparison, adjusted R² and AIC or a nested *F*-test, not raw R², which never falls when a predictor is added. For your own design, name the test it calls for, the assumption most at risk in your data, and the diagnostic or robust alternative you would use to handle it.
 :::
 
 ## Looking ahead
@@ -207,3 +205,9 @@ The chat study now has all of its pieces. It has a question and a theory, a pros
 Cohen, J. (1988). _Statistical power analysis for the behavioral sciences_ (2nd ed.). Lawrence Erlbaum Associates.
 
 Wasserstein, R. L., & Lazar, N. A. (2016). The ASA's statement on p-values: Context, process, and purpose. _The American Statistician_, _70_(2), 129-133. https://doi.org/10.1080/00031305.2016.1154108
+
+::: {.graduate-extension}
+### Graduate readings
+
+Lakens, D., Adolfi, F. G., Albers, C. J., Anvari, F., Apps, M. A. J., Argamon, S. E., … Zwaan, R. A. (2018). Justify your alpha. *Nature Human Behaviour*, *2*, 168–171. https://doi.org/10.1038/s41562-018-0311-x
+:::
