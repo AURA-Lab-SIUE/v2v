@@ -11,11 +11,11 @@ book:
   title: "Vibes to Variables"
   subtitle: "Undergraduate Edition"
   site-url: https://undergrad.v2vhub.com
-  description: "Undergraduate edition of V2V (Vibes to Variables). Aligned to a one-semester content analysis study delivered as a feature article with a paired methodology appendix. Designed for undergraduate research-methods courses in communication and media studies; adoptable by any institution as an open educational resource (CC BY 4.0)."
+  description: "Undergraduate edition of V2V (Vibes to Variables). Aligned to a one-semester content analysis study delivered as a white paper. Designed for undergraduate research-methods courses in communication and media studies; adoptable by any institution as an open educational resource (CC BY 4.0)."
 
 format:
   html:
     metadata:
       profile-label: "Undergraduate"
-      final-piece-label: "Feature Article + Methodology Appendix"
-      final-piece-word-target: "2,500 to 4,000 words (feature), 800 to 1,500 words (appendix)"
+      final-piece-label: "White Paper"
+      final-piece-word-target: "2,500 to 4,000 words"
