@@ -183,7 +183,7 @@ None of this was analysis. Not a single result has been computed. But every resu
 The data is tidy and the variables exist. The next move is to look at them. Chapter 12 turns the analysis-ready table into figures: how chat volume moves across the hours of the day, how viewership splits across game categories, and how the distribution of message length compares between gaming and non-gaming channels. It is the chapter where the study's central question finally meets a picture of the answer.
 
 
-::: {.content-visible when-profile="grad"}
+::: {.graduate-extension}
 ::: {.callout-note title="Graduate Extension" collapse="true"}
 **The wrangling script as a methods section.** The undergrad edition treats wrangling as preparation: you load messy data and shape it into the form your analysis needs. The graduate edition treats wrangling as a *documented transformation chain* — a sequence of decisions, each recorded in version-controlled code, that connects raw data to analysis-ready data.
 

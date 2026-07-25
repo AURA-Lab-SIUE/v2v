@@ -173,7 +173,7 @@ One genuine wrinkle is worth carrying forward. Among the first messages is one a
 You have a workspace, a rulebook installed in it, and the data loaded and inspected. Chapter 10 puts the rulebook to the test. It draws a sample of chat messages, the specific messages your study will actually code, and asks the question every content analysis has to answer before its results mean anything: when two coders apply the codebook independently, do they agree? Sampling and inter-coder reliability are the subject, and the codebook you finalized here is what goes on trial.
 
 
-::: {.content-visible when-profile="grad"}
+::: {.graduate-extension}
 ::: {.callout-note title="Graduate Extension" collapse="true"}
 **Data provenance as a methodological disclosure.** The undergrad edition introduces first contact with data as a moment of exploration: load, inspect, describe. The graduate edition adds a prior step — documenting the *provenance* of the data before the first line of analysis code runs.
 

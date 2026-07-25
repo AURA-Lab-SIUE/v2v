@@ -156,7 +156,7 @@ Markham, A., & Buchanan, E. (2012). *Ethical decision-making and internet resear
 
 National Commission for the Protection of Human Subjects of Biomedical and Behavioral Research. (1979). *The Belmont Report: Ethical principles and guidelines for the protection of human subjects of research*. U.S. Department of Health, Education, and Welfare.
 
-::: {.content-visible when-profile="grad"}
+::: {.graduate-extension}
 ::: {.callout-note title="Graduate Extension" collapse="true"}
 **Paradigmatic positioning.** Every study operates from a paradigm — a set of assumptions about the nature of knowledge and how it is acquired. Post-positivist communication researchers assume an objective social reality that is incompletely knowable, that measurement error is irreducible but manageable, and that statistical inference allows probabilistic claims about that reality. If that description fits your study, the four graduate-edition commitments (power, pre-registration, reliability, audit trail) are not optional — they are logical entailments of the paradigm. If you are working from an interpretive or critical paradigm, V2V's quantitative tools occupy a different role in your methodology, and different obligations apply.
 

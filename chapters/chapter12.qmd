@@ -171,7 +171,7 @@ A figure that is honest about its choices, legible without color, and described 
 The histogram left a precise question on the table. The means of the two groups differ by about five characters, and the distributions behind those means are skewed, overlapping, and built from very different numbers of messages. Whether that five-character gap is a real difference or only sampling noise is not something the eye can settle. Chapter 13 takes it up. It is the inference chapter, where the study moves from describing what the sample looks like to testing what the difference is likely to mean.
 
 
-::: {.content-visible when-profile="grad"}
+::: {.graduate-extension}
 ::: {.callout-note title="Graduate Extension" collapse="true"}
 **Effect size reporting with every comparison.** The undergrad edition focuses on visualization as communication: a good figure conveys the pattern in the data without distortion. That standard holds at the graduate level. But graduate-level descriptive reporting adds a further requirement: every figure that displays a comparison must include the effect size of that comparison.
 

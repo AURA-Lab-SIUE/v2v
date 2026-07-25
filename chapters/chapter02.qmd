@@ -129,7 +129,7 @@ Chapter 3 takes up the ethical responsibilities that come with collecting and an
 
 Open Science Collaboration. (2015). Estimating the reproducibility of psychological science. *Science*, *349*(6251), aac4716. https://doi.org/10.1126/science.aac4716
 
-::: {.content-visible when-profile="grad"}
+::: {.graduate-extension}
 ::: {.callout-note title="Graduate Extension" collapse="true"}
 **The audit trail begins at setup.** The undergrad edition configures the workspace to make coding accessible: install R, create a GitHub repo, connect it. The graduate edition reframes each of those steps as a *methodological commitment* rather than a tool choice.
 

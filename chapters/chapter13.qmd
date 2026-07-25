@@ -185,7 +185,7 @@ That the regression reproduces the t-test is not a coincidence. A t-test is a re
 The chat study now has all of its pieces. It has a question and a theory, a prospectus, a codebook tested for reliability, a sample, a clean dataset, three figures, and a tested finding interpreted honestly. What it does not yet have is a form. The pieces are scattered across scripts and outputs, and a study that cannot be read as a single coherent document is not yet finished. Chapter 14 is where it becomes one. It is the publication chapter, where everything built since Chapter 9 is assembled into a single reproducible report and put where other people can read it.
 
 
-::: {.content-visible when-profile="grad"}
+::: {.graduate-extension}
 ::: {.callout-note title="Graduate Extension" collapse="true"}
 **Three obligations that constrain graduate-level inference.** The undergrad edition teaches inference as a decision: given a *p*-value and a significance level, you accept or reject the null hypothesis. That logic is correct but incomplete. Graduate-level inference carries three additional obligations: (1) the inference must reflect the power of the study; (2) the significance threshold must be justified, not assumed; and (3) the pre-registration disclosure must precede the inference claim.
 

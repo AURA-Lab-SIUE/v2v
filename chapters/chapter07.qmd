@@ -103,7 +103,7 @@ What structured listening leaves you with is four things: conceptual clarity abo
 Chapter 8 is where vibes become variables, the move the whole book is named for. You have watched the medium and filled a field-notes document with what you saw. Chapter 8 takes that record and turns it into a codebook: a set of variables, each with defined values, each with a level of measurement, each with decision rules for the cases that do not sort themselves. It is the last step before the data, and the first step that the data will hold you to.
 
 
-::: {.content-visible when-profile="grad"}
+::: {.graduate-extension}
 ::: {.callout-note title="Graduate Extension" collapse="true"}
 **Two-coder reliability planning begins here.** The undergrad edition describes structured immersion as the process of watching or listening to media with focused attention before building a codebook: you take field notes, identify candidate categories, and notice edge cases. The graduate edition adds a second lens — you are simultaneously identifying *where two coders will disagree*.
 

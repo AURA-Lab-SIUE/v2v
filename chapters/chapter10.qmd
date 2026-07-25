@@ -132,7 +132,7 @@ This is why Chapter 9 finalized only the codebook's status and not its content. 
 You now have a sample drawn and, once it has cleared its pilot, a codebook trusted to classify it. What you do not yet have is data in a form ready for analysis. The chat and stream tables are still separate, the timestamps are still unreadable integers, and the variables the study needs, message length and the gaming context of each message, do not yet exist as columns. Chapter 11 takes that on. It is the wrangling chapter: the one where the raw tables are reshaped, joined, and cleaned into the single tidy dataset every later analysis depends on.
 
 
-::: {.content-visible when-profile="grad"}
+::: {.graduate-extension}
 ::: {.callout-note title="Graduate Extension" collapse="true"}
 **The conversation between your prospectus and your sample.** The undergrad edition teaches sampling as a practical tradeoff: you cannot code everything, so you apply stratified sampling rules that capture the variation in your dataset. The graduate edition adds a second constraint: your sample must also be large enough to detect the effect you expect with adequate power.
 

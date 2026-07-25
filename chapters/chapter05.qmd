@@ -140,7 +140,7 @@ Sjöblom, M., & Hamari, J. (2017). Why do people watch others play video games? 
 
 Tajfel, H., & Turner, J. C. (1979). An integrative theory of intergroup conflict. In W. G. Austin & S. Worchel (Eds.), *The social psychology of intergroup relations* (pp. 33-47). Brooks/Cole.
 
-::: {.content-visible when-profile="grad"}
+::: {.graduate-extension}
 ::: {.callout-note title="Graduate Extension" collapse="true"}
 **Theory before data as an epistemological commitment.** The undergrad edition presents theory as a frame that focuses your research question and guides your choice of variables. The graduate edition adds a further function: theory is what you use to derive testable predictions *before you look at the data*. This sequencing — theory → prediction → data → test — is not a formality. It is what distinguishes confirmatory from exploratory research.
 

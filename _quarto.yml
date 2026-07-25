@@ -68,6 +68,36 @@ format:
       text: |
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    include-after-body:
+      text: |
+        <script>
+        (function(){
+          var KEY = 'v2v-show-grad-ext';
+          function apply(on){
+            document.body.classList.toggle('show-grad-ext', on);
+            var b = document.getElementById('v2v-edition-toggle');
+            if(b){
+              b.setAttribute('aria-pressed', on ? 'true' : 'false');
+              b.querySelector('.label').textContent = on ? 'Graduate edition: on' : 'Graduate edition: off';
+            }
+          }
+          document.addEventListener('DOMContentLoaded', function(){
+            var on = localStorage.getItem(KEY) === '1';
+            var btn = document.createElement('button');
+            btn.id = 'v2v-edition-toggle';
+            btn.type = 'button';
+            btn.title = 'Show or hide the graduate extensions (MC 501). Your choice is remembered across pages.';
+            btn.innerHTML = '<span class="dot" aria-hidden="true"></span><span class="label"></span>';
+            btn.addEventListener('click', function(){
+              var now = !(localStorage.getItem(KEY) === '1');
+              localStorage.setItem(KEY, now ? '1' : '0');
+              apply(now);
+            });
+            document.body.appendChild(btn);
+            apply(on);
+          });
+        })();
+        </script>
   # Typst, NOT LaTeX. A LaTeX PDF is UNTAGGED - no /StructTreeRoot, no /Alt -
   # so every fig-alt in this book would be silently discarded in the PDF and
   # Ally would score it red no matter how clean the source is. Typst emits a

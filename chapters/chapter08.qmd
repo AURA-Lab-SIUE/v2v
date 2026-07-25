@@ -128,7 +128,7 @@ Three variables, spanning two manifest measures a coder can apply almost mechani
 Chapter 9 is first contact with the data inside R. You have a research question, a theoretical frame, a prospectus, a field-notes document, and now a draft codebook. What you have not yet done is open the dataset in the tool you will analyze it with. Chapter 9 is where the planning stops and the code begins: you will load `chat_log` and `stream_log`, look at their structure, and confirm that the data you have designed a study around is the data you actually have.
 
 
-::: {.content-visible when-profile="grad"}
+::: {.graduate-extension}
 ::: {.callout-note title="Graduate Extension" collapse="true"}
 **The formal intercoder reliability protocol.** The codebook you write in this chapter is the operational heart of your study. But a codebook that works for one coder is not necessarily a reliable instrument. At the graduate level, the codebook is not finished until a second coder has applied it to a sample of your data and the agreement has been measured and reported.
 

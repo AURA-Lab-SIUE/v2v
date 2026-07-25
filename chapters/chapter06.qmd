@@ -176,7 +176,7 @@ Simmons, J. P., Nelson, L. D., & Simonsohn, U. (2011). False-positive psychology
 
 Sjöblom, M., & Hamari, J. (2017). Why do people watch others play video games? An empirical study on the motivations of Twitch users. *Computers in Human Behavior*, *75*, 985-996. https://doi.org/10.1016/j.chb.2016.10.019
 
-::: {.content-visible when-profile="grad"}
+::: {.graduate-extension}
 ::: {.callout-note title="Graduate Extension" collapse="true"}
 **Power analysis belongs in the prospectus.** The undergrad prospectus documents what you plan to study and how you plan to study it. The graduate prospectus does all of that — and also commits to a specific sample size with a quantitative justification. That justification is the a priori power analysis.
 

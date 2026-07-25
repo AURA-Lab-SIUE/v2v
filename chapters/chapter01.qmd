@@ -159,7 +159,7 @@ Reinhart, C. M., & Rogoff, K. S. (2010). Growth in a time of debt. *American Eco
 
 Storr, W. (2019). *The science of storytelling: Why stories make us human, and how to tell them better*. William Collins.
 
-::: {.content-visible when-profile="grad"}
+::: {.graduate-extension}
 ::: {.callout-note title="Graduate Extension" collapse="true"}
 **What distinguishes a scholarly contribution.** The undergrad edition frames research methods as disciplined storytelling — you have a claim, you gather evidence, you tell the story the data supports. Graduate-level work adds a second obligation: your story must be reproducible, falsifiable, and positioned within a cumulative scholarly conversation.
 
