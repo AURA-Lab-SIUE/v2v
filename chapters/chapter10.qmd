@@ -2,8 +2,6 @@
 title: "Chapter 10: The sample"
 ---
 
-![](../images/ch10-interview_1.jpg){fig-alt="A stylized rendering of a large field of dots with a small, evenly spaced subset highlighted."}
-
 Suppose you sat down to code the chat fixture by hand, one message at a time, the codebook open beside you. Read the message, decide who it is aimed at, record the code, move to the next. At a brisk and probably unsustainable pace of one message every ten seconds, the 35,267 messages in the fixture would take just under a hundred hours. The full 2018 collection, all twenty-two million messages, would outlast your degree.
 
 So you will not code all of it. You will code a **sample**: a smaller set of messages, drawn carefully enough that what you learn from coding it holds for the larger collection it came from. Drawing that sample well is the first half of this chapter.

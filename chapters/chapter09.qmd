@@ -2,8 +2,6 @@
 title: "Chapter 9: The rulebook and first workspace"
 ---
 
-![](../images/ch09-toolkit_1.jpg){fig-alt="A stylized rendering of an organized desk with a single open notebook."}
-
 Here is a strange thing about the work of the last eight chapters. You have a research question, a theoretical frame, a prospectus, a field-notes document, and a draft codebook. You have, in other words, designed an entire study around the Twitch dataset. And you have never actually seen it.
 
 You have been told what it contains. Chapter 1 described a collection of nearly 1,700 channels recorded across five and a half days of November 2018, Bob Ross streaming under Art while most of the platform played games. Chapter 2 showed ten rows of it. You have taken the rest on trust. This chapter is where the trust ends and the looking begins. By the end of it you will have typed a few lines of R, and the dataset will have stopped being a description and become an object sitting in front of you, one you can inspect column by column.

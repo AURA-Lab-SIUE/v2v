@@ -2,8 +2,6 @@
 title: "Chapter 14: The one-click report"
 ---
 
-![](../images/ch14-measuring_2.jpg){fig-alt="A stylized rendering of stacked pages resolving into a single bound document."}
-
 The chat study is, in almost every sense, done. Across the chapters since the prospectus it has acquired everything an empirical study needs. It has a question and a theory: do gaming and non-gaming Twitch channels differ in how their audiences talk, and what would a uses-and-gratifications account predict. It has a codebook, tested for reliability. It has a sample, drawn with a defensible procedure. It has a clean dataset, a set of figures, and a tested finding interpreted with care. Every hard part is finished.
 
 And yet the study is not finished, because all of that lives in pieces. The codebook is one document. The wrangling happened in an R script. The figures are a folder of images. The test result scrolled past in a console. A study scattered across a dozen files is not yet something another person can read, check, or build on. It is raw material for a study, not the study itself.
