@@ -21,6 +21,10 @@ Two tracks from one parse:
 import json, re, sys, pathlib
 
 def clean(t: str) -> str:
+    # Operators that appear in prose read as gibberish aloud ("percent greater
+    # than percent"), so name them instead.
+    t = t.replace('`%>%`', 'pipe symbol').replace('`|>`', 'pipe symbol')
+    t = t.replace('%>%', 'pipe symbol').replace('|>', 'pipe symbol')
     t = re.sub(r'!\[[^\]]*\]\([^)]*\)\{[^}]*\}', '', t)          # stray inline image
     t = re.sub(r'\[([^\]]+)\]\([^)]+\)', r'\1', t)                # [text](url) -> text
     t = re.sub(r'\s*\((?:[^()]*?\b(?:19|20)\d{2}[a-z]?)[^()]*\)', '', t)  # (Author, 2017a)
