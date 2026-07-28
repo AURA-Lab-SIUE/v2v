@@ -80,7 +80,13 @@ v2v::setup()
 Click Quarto's Preview button, or run `quarto preview setup-check.qmd` in the terminal. The `v2v::setup()` function checks that R, Quarto, Git, and the v2v package are all present at acceptable versions. It prints "V2V setup complete" when everything is in place and a diagnostic message when something is missing. If you see anything other than the success message, the Hub has a troubleshooting page that addresses the common failure modes.
 
 ::: {.graduate-extension}
-**Git as epistemological infrastructure.** Every `git commit` is a time-stamped record of your analysis at a specific moment. Your entire analytical history is reproducible: another researcher can check out any commit and see exactly what your code did at that point. This is not a convenience feature — it is a standard of evidence. Graduate work in V2V treats `git log` as a portion of the methods section. The first commit — before any analysis code is written — should include your data, your codebook, and a `README` that describes the study. For your own study, run `git log --oneline` on a project you completed before learning version control, and ask what a reviewer would want to see that you can no longer reconstruct.
+**Git as epistemological infrastructure.** Every `git commit` is a time-stamped record of your analysis at a specific moment. Your entire analytical history is reproducible: another researcher can check out any commit and see exactly what your code did at that point. This is not a convenience feature — it is a standard of evidence. Wilson et al. (2017) place change-tracking at the center of reproducible practice:
+
+> "Keeping track of changes that you or your collaborators make to data and software is a critical part of research. Being able to reference or retrieve a specific version of the entire project aids in reproducibility for you leading up to publication, when responding to reviewer comments, and when providing supporting information for reviewers, editors, and readers."
+>
+> Wilson et al. (2017, p. 12)
+
+Graduate work in V2V treats `git log` as a portion of the methods section. The first commit — before any analysis code is written — should include your data, your codebook, and a `README` that describes the study. For your own study, run `git log --oneline` on a project you completed before learning version control, and ask what a reviewer would want to see that you can no longer reconstruct.
 :::
 
 ## First contact with the data
@@ -127,7 +133,13 @@ The third is the **setup validator** you ran a few pages ago: `v2v::setup()`. Ru
 The full documentation for the package is available with `?v2v` in R or at the package website, which is linked from the V2V Hub. Treat the documentation as reference material rather than required reading.
 
 ::: {.graduate-extension}
-**The renv.lock as a methods citation.** The `renv.lock` file records the exact version of every R package your analysis depends on. When you publish a white paper, the `renv.lock` is the citation for your computational environment. Without it, a reader attempting replication may get different results because a package updated between your run and theirs. Run `renv::init()` before your first line of analysis code and commit the resulting lock file before you collect your first data point. For your own study, weigh the practical cost of skipping `renv::init()` in a project you intend to publish, in the terms Wilson et al. use to separate "good enough" practices from "best" ones.
+**The renv.lock as a methods citation.** The `renv.lock` file records the exact version of every R package your analysis depends on. When you publish a white paper, the `renv.lock` is the citation for your computational environment. Without it, a reader attempting replication may get different results because a package updated between your run and theirs. Wilson et al. (2017), whose "good enough" practices this aside builds on, extend the backup discipline to the software a project sits on:
+
+> "Back up (almost) everything created by a human being as soon as it is created. This includes scripts and programs of all kinds, software packages that your project depends on, and documentation."
+>
+> Wilson et al. (2017, p. 12)
+
+Run `renv::init()` before your first line of analysis code and commit the resulting lock file before you collect your first data point. For your own study, weigh the practical cost of skipping `renv::init()` in a project you intend to publish, in the terms Wilson et al. use to separate "good enough" practices from "best" ones.
 :::
 
 ## Looking ahead

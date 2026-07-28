@@ -163,7 +163,11 @@ Why this matters connects directly to Chapter 2. Simmons, Nelson, and Simonsohn 
 Your prospectus functions as an informal pre-registration. It documents what you planned to study and how you planned to study it, before you began coding and analyzing. When you are later tempted to add variables, chase an unexpected finding, or quietly reframe the study after seeing the data, the prospectus is the record of what you originally set out to do.
 
 ::: {.graduate-extension}
-Statistical power is the probability that your study will detect an effect of a given size, assuming that effect is real. A study with 50% power has a coin-flip chance of detecting the effect even if it exists. The conventional minimum threshold is 80% power. Below that threshold, a significant result is less credible, because underpowered studies have inflated false-positive rates and overestimated effect sizes. Lakens (2022) treats justification by resource constraints as a last resort: for your own study, ask whether it is ethically defensible to run a design you know is underpowered, and under what conditions.
+Statistical power is the probability that your study will detect an effect of a given size, assuming that effect is real. A study with 50% power has a coin-flip chance of detecting the effect even if it exists. The conventional minimum threshold is 80% power. Below that threshold, a significant result is less credible, because underpowered studies have inflated false-positive rates and overestimated effect sizes. That 80% figure is a convention rather than a derived optimum, and Lakens cautions against treating the number as settled:
+
+> "the default recommendation to aim for 80% power lacks a solid justification."
+>
+> Lakens (2022, p. 6) Lakens (2022) treats justification by resource constraints as a last resort: for your own study, ask whether it is ethically defensible to run a design you know is underpowered, and under what conditions.
 :::
 
 ::: {.graduate-extension}

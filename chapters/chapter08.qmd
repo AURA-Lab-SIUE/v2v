@@ -85,7 +85,11 @@ One principle ties the two together and is worth holding onto: reliability is ne
 ![](../images/fig08-2-reliability-validity.png){fig-alt="Four target diagrams, each with a cross at the bullseye standing for the concept being measured and dots standing for repeated measurements. Reliable and valid: dots cluster tightly on the bullseye. Reliable but not valid: dots cluster just as tightly but well off-centre, consistent and consistently wrong. Valid on average but not reliable: dots scatter widely around the centre, right on average and unusable one at a time. Neither: dots scatter widely and off-centre. A schematic illustration, not data."}
 
 ::: {.graduate-extension}
-**The formal intercoder reliability protocol.** Your codebook is the operational heart of the study, but a codebook that works for one coder is not necessarily a reliable instrument: it is not finished until a second coder has applied it to a sample of your data and the agreement has been measured and reported. A complete V2V reliability protocol has four steps. *First*, the second coder receives the codebook — no walk-through, no hints — and codes a training set of 20–30 units independently. *Second*, the two coders compare their coding and discuss every disagreement; no new production data is coded at this stage. *Third*, the codebook is revised to add decision rules for all identified disagreements. *Fourth*, the second coder codes a fresh reliability sample, separate from the training set, independently, and the agreement on this fresh sample is the κ that gets reported. Lombard et al. (2002) recommend reporting more than one reliability statistic; for your own design, decide which statistic you would report alongside κ, and why.
+**The formal intercoder reliability protocol.** Your codebook is the operational heart of the study, but a codebook that works for one coder is not necessarily a reliable instrument: it is not finished until a second coder has applied it to a sample of your data and the agreement has been measured and reported. A complete V2V reliability protocol has four steps. *First*, the second coder receives the codebook — no walk-through, no hints — and codes a training set of 20–30 units independently. *Second*, the two coders compare their coding and discuss every disagreement; no new production data is coded at this stage. *Third*, the codebook is revised to add decision rules for all identified disagreements. *Fourth*, the second coder codes a fresh reliability sample, separate from the training set, independently, and the agreement on this fresh sample is the κ that gets reported. Lombard et al. (2002) recommend reporting more than one reliability statistic; for your own design, decide which statistic you would report alongside κ, and why. Hayes and Krippendorff (2007) state the standard this protocol exists to meet in a single line:
+
+> "Conclusions from such data can be trusted only after demonstrating their reliability."
+>
+> Hayes and Krippendorff (2007, p. 77)
 :::
 
 ## The codebook
@@ -141,6 +145,8 @@ Neuendorf, K. A. (2017). _The content analysis guidebook_ (2nd ed.). SAGE Public
 
 ::: {.graduate-extension}
 ### Graduate readings
+
+Hayes, A. F., & Krippendorff, K. (2007). Answering the call for a standard reliability measure for coding data. *Communication Methods and Measures*, *1*(1), 77–89. https://doi.org/10.1080/19312450709336664
 
 Lombard, M., Snyder-Duch, J., & Campanella Bracken, C. (2002). Content analysis in mass communication: Assessment and reporting of intercoder reliability. *Human Communication Research*, *28*(4), 587–604. https://doi.org/10.1111/j.1468-2958.2002.tb00826.x
 :::

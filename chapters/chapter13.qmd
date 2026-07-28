@@ -66,7 +66,13 @@ That convention deserves a note of its own. The .05 threshold is exactly that, a
 What matters more is being precise about what the p-value does not say. It is not the probability that the null hypothesis is true; the null is either true or false, and the p-value is a statement about data, not about hypotheses. It is not the probability that the result is a fluke. And, most important for what follows, it is not a measure of how large the difference is, or of how much the difference matters. A small p-value says the gap is probably not zero. It says nothing at all about whether the gap is big.
 
 ::: {.graduate-extension}
-**Justify your α.** The .05 threshold is a convention, not a law. Run ten tests on one dataset without correction and you expect at least one false positive by chance alone, so declaring the number of tests and any correction procedure in advance, as pre-registration requires, is what keeps that inflation in check. Report the α you chose, state why it fits your design, and apply it consistently. Lakens et al. (2018) argue that different research contexts justify different thresholds; for your own study, ask what would justify using *α* = .01 rather than .05.
+**Justify your α.** The .05 threshold is a convention, not a law. Run ten tests on one dataset without correction and you expect at least one false positive by chance alone, so declaring the number of tests and any correction procedure in advance, as pre-registration requires, is what keeps that inflation in check. Report the α you chose, state why it fits your design, and apply it consistently. The American Statistical Association's guidance frames the deeper point, that a threshold is a convention rather than a verdict:
+
+> "Scientific conclusions and business or policy decisions should not be based only on whether a p-value passes a specific threshold."
+>
+> Wasserstein & Lazar (2016, p. 131)
+
+Lakens et al. (2018) argue that different research contexts justify different thresholds; for your own study, ask what would justify using *α* = .01 rather than .05.
 :::
 
 ## How big is the difference

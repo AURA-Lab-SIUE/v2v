@@ -141,7 +141,13 @@ Ethics does not end when data collection is over. How you analyze and report fin
 **HARKing**, an acronym for Hypothesizing After the Results are Known, occurs when researchers examine their data, identify patterns, and then write the paper as though they had predicted those patterns all along. This transforms exploratory analysis (which is legitimate) into confirmatory analysis (which requires pre-specification). A "prediction" that was actually a post-hoc observation carries none of the epistemic weight of a genuine a priori hypothesis.
 
 ::: {.graduate-extension}
-**Why pre-registration is a paradigmatic commitment.** Pre-registration is often framed as a statistical technique to control false-positive rates. That framing is accurate but incomplete. At the paradigmatic level, pre-registration embodies the hypothetico-deductive model: you derive predictions from theory *before* examining data, then submit those predictions to empirical test. This is the canonical post-positivist epistemological move. The OSF pre-registration form operationalizes that commitment: it requires you to state theory-derived hypotheses, specify measures, and describe the analysis before any data is collected or examined. Is pre-registration compatible with grounded theory or thematic analysis? Make the case for or against, using epistemological rather than practical reasoning.
+**Why pre-registration is a paradigmatic commitment.** Pre-registration is often framed as a statistical technique to control false-positive rates. That framing is accurate but incomplete. At the paradigmatic level, pre-registration embodies the hypothetico-deductive model: you derive predictions from theory *before* examining data, then submit those predictions to empirical test. This is the canonical post-positivist epistemological move. Nosek and colleagues (2018) define the commitment in precisely these terms:
+
+> "Preregistration of an analysis plan is committing to analytic steps without advance knowledge of the research outcomes."
+>
+> Nosek et al. (2018, p. 2601)
+
+The OSF pre-registration form operationalizes that commitment: it requires you to state theory-derived hypotheses, specify measures, and describe the analysis before any data is collected or examined. Is pre-registration compatible with grounded theory or thematic analysis? Make the case for or against, using epistemological rather than practical reasoning.
 :::
 
 Even without outright fabrication, researchers face constant temptation to overstate their findings. "Our results suggest" becomes "our results demonstrate." A small effect size gets buried while a large p-value gets highlighted. Limitations are mentioned but minimized. The discussion section tells a cleaner story than the data support.
@@ -170,5 +176,7 @@ National Commission for the Protection of Human Subjects of Biomedical and Behav
 ### Graduate readings
 
 Crotty, M. (1998). *The foundations of social research: Meaning and perspective in the research process*. SAGE Publications.
+
+Nosek, B. A., Ebersole, C. R., DeHaven, A. C., & Mellor, D. T. (2018). The preregistration revolution. *Proceedings of the National Academy of Sciences*, *115*(11), 2600-2606. https://doi.org/10.1073/pnas.1708274114
 :::
 

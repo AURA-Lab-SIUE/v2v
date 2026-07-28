@@ -51,7 +51,11 @@ A **comparative note** records how cases differ. "Two streams, same hour. The ga
 Keep the notes in a single plain-text document, dated, one entry per observation session. The V2V Hub provides a field-notes template that gives the four note types a consistent structure. Set yourself a rhythm, a note every fifteen or twenty minutes of observation, so the record keeps pace with the watching. The notes do not need to be good. They need to exist, because the codebook you build in the next chapter will be assembled almost entirely from what they contain.
 
 ::: {.graduate-extension}
-**Two-coder reliability planning begins here.** As you take field notes, identify candidate categories, and notice edge cases, you are doing something else at the same time: identifying *where two coders will disagree*. Structured immersion is not only preparation for a codebook. It is the first pass at the reliability problem, and field notes that mark your own uncertainty are its earliest record.
+**Two-coder reliability planning begins here.** As you take field notes, identify candidate categories, and notice edge cases, you are doing something else at the same time: identifying *where two coders will disagree*. Structured immersion is not only preparation for a codebook. It is the first pass at the reliability problem, and field notes that mark your own uncertainty are its earliest record. The stakes are what make this early work worth doing. As Hayes and Krippendorff argue, reliability is the precondition for a study's findings to count for anything at all:
+
+> "Conclusions from such data can be trusted only after demonstrating their reliability."
+>
+> Hayes and Krippendorff (2007, p. 77)
 :::
 
 ## Manifest and latent content
@@ -119,3 +123,9 @@ Geertz, C. (1973). _The interpretation of cultures: Selected essays_. Basic Book
 Katz, E., Blumler, J. G., & Gurevitch, M. (1973). Uses and gratifications research. _Public Opinion Quarterly_, _37_(4), 509-523. https://doi.org/10.1086/268109
 
 Krippendorff, K. (2018). _Content analysis: An introduction to its methodology_ (4th ed.). SAGE Publications.
+
+::: {.graduate-extension}
+### Graduate readings
+
+Hayes, A. F., & Krippendorff, K. (2007). Answering the call for a standard reliability measure for coding data. _Communication Methods and Measures_, _1_(1), 77-89. https://doi.org/10.1080/19312450709336664
+:::

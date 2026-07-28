@@ -142,7 +142,19 @@ This chapter has presented research through a social scientific lens: formulate 
 Chapter 5 explores these paradigms in more depth. For now, the thing to recognize is that the social scientific approach is a choice. A productive and powerful one. But one of several. The ability to understand and evaluate research from all three paradigms is what separates a methodologically literate scholar from a technician who can run statistical tests but cannot think critically about what those tests mean.
 
 ::: {.graduate-extension}
-**The four pillars of graduate-level practice.** The rest of this book introduces four practices central to graduate-level V2V work: (1) *a priori power analysis* — committing to a sample size before data collection; (2) *pre-registration* — committing to hypotheses, measures, and analysis plan before collection; (3) *two-coder reliability* — verifying that your codebook produces consistent results regardless of who applies it; and (4) *audit trail* — keeping a version-controlled record of every transformation from raw data to published figure. These are not optional add-ons. They are entailments of a post-positivist epistemological commitment. Munafo et al. (2017) describe a "garden of forking paths" in which researcher degrees of freedom inflate false-positive rates; for your own study, ask where in the V2V workflow this risk appears first, and how pre-registration addresses it.
+**The four pillars of graduate-level practice.** The rest of this book introduces four practices central to graduate-level V2V work: (1) *a priori power analysis* — committing to a sample size before data collection; (2) *pre-registration* — committing to hypotheses, measures, and analysis plan before collection; (3) *two-coder reliability* — verifying that your codebook produces consistent results regardless of who applies it; and (4) *audit trail* — keeping a version-controlled record of every transformation from raw data to published figure. These are not optional add-ons. They are entailments of a post-positivist epistemological commitment. The phrase "garden of forking paths" belongs to Gelman and Loken (2013), who show how the many defensible choices open to an analyst inflate false-positive rates even without any conscious fishing. Munafo et al. (2017) locate a related danger in underpowered designs:
+
+> "Low statistical power increases the likelihood of obtaining both false-positive and false-negative results, meaning that it offers no advantage if the purpose is to accumulate knowledge."
+>
+> Munafo et al. (2017, p. 2)
+
+Their proposed remedy maps directly onto two of the four pillars above:
+
+> "The strongest form of pre-registration involves both registering the study (with a commitment to make the results public) and closely pre-specifying the study design, primary outcome and analysis plan in advance of conducting the study or knowing the outcomes of the research."
+>
+> Munafo et al. (2017, p. 3)
+
+For your own study, ask where in the V2V workflow the forking-paths risk appears first, and how pre-registration addresses it.
 :::
 
 ## Looking ahead
@@ -167,6 +179,8 @@ Storr, W. (2019). *The science of storytelling: Why stories make us human, and h
 
 ::: {.graduate-extension}
 ### Graduate readings
+
+Gelman, A., & Loken, E. (2013). *The garden of forking paths: Why multiple comparisons can be a problem, even when there is no "fishing expedition" or "p-hacking" and the research hypothesis was posited ahead of time*. Department of Statistics, Columbia University.
 
 Munafo, M. R., Nosek, B. A., Bishop, D. V. M., Button, K. S., Chambers, C. D., Percie du Sert, N., Simonsohn, U., Wagenmakers, E.-J., Ware, J. J., & Ioannidis, J. P. A. (2017). A manifesto for reproducible science. *Nature Human Behaviour*, *1*, 0021. https://doi.org/10.1038/s41562-016-0021
 :::

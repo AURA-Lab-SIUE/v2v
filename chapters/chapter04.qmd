@@ -35,7 +35,13 @@ A strong literature review does several things at once.
 **It refines your research question.** Engaging with the literature sharpens a broad interest into a precise, researchable question. You might start with a vague curiosity about "Twitch chat" and, through reading, discover a specific debate about whether viewer engagement is driven by the content on the screen or the social environment around it. The literature provides the concepts, terminology, and frameworks that let you ask a question that is not just interesting but empirically tractable.
 
 ::: {.graduate-extension}
-**The quantitative function of the literature review.** Beyond surveying what is known to identify a gap, the literature review has a further function: *effect size extraction*. Before you can calculate the sample size you need (Chapter 6), you need a defensible estimate of the effect size you expect to find. The most defensible source is prior published research. When you read a study using a similar design, extract its effect size (Cohen's *d*, Cramer's *V*, correlation *r*) and note the sample size the authors used. These numbers become the inputs for your power analysis. A literature review that cannot supply effect size estimates has not finished its job. To practice, choose a published V2V-style study, extract its primary effect size, determine whether the authors provided a power analysis, and use the `pwr` package to calculate the sample size required to detect that effect at 80% power; then work out what you would do when no prior studies report an effect size for your specific research question, describing two defensible strategies for justifying a sample size in that case.
+**The quantitative function of the literature review.** Beyond surveying what is known to identify a gap, the literature review has a further function: *effect size extraction*. Before you can calculate the sample size you need (Chapter 6), you need a defensible estimate of the effect size you expect to find. The most defensible source is prior published research. When you read a study using a similar design, extract its effect size (Cohen's *d*, Cramer's *V*, correlation *r*) and note the sample size the authors used. These numbers become the inputs for your power analysis. A literature review that cannot supply effect size estimates has not finished its job. Cohen (1992), whose conventions for small, medium, and large effects the `pwr` package still encodes, identified where this step reliably stalls (he abbreviates effect size as ES):
+
+> "Researchers find specifying the ES the most difficult part of power analysis."
+>
+> Cohen (1992, p. 156)
+
+The literature review is how you make that difficulty tractable, by borrowing an estimate from studies that have already done the measuring. To practice, choose a published V2V-style study, extract its primary effect size, determine whether the authors provided a power analysis, and use the `pwr` package to calculate the sample size required to detect that effect at 80% power; then work out what you would do when no prior studies report an effect size for your specific research question, describing two defensible strategies for justifying a sample size in that case.
 :::
 
 ## The search process
@@ -177,6 +183,8 @@ Sjöblom, M., & Hamari, J. (2017). Why do people watch others play video games? 
 
 ::: {.graduate-extension}
 ### Graduate readings
+
+Cohen, J. (1992). A power primer. *Psychological Bulletin*, *112*(1), 155-159. https://doi.org/10.1037/0033-2909.112.1.155
 
 Cooper, H., Hedges, L. V., & Valentine, J. C. (Eds.). (2019). *The handbook of research synthesis and meta-analysis* (3rd ed.). Russell Sage Foundation.
 :::
