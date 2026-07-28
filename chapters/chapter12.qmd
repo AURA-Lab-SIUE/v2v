@@ -47,14 +47,14 @@ The data needs shaping first, the kind of dplyr work Chapter 11 covered. The str
 ```r
 library(tidyverse)
 
-viewers_over_time <- streams |>
-  filter(!is.na(game)) |>
+viewers_over_time <- streams %>%
+  filter(!is.na(game)) %>%
   mutate(
     timestamp = as.POSIXct(date / 1000, origin = "1970-01-01", tz = "UTC"),
     six_hour  = floor_date(timestamp, "6 hours"),
     category  = fct_lump_n(game, n = 5)
-  ) |>
-  group_by(six_hour, category) |>
+  ) %>%
+  group_by(six_hour, category) %>%
   summarise(total_viewers = sum(viewers), .groups = "drop")
 ```
 
@@ -88,8 +88,8 @@ Hour of day is not a continuous sweep the way a date is. It is a set of twenty-f
 The data is one short pipeline. The hour is pulled out of each message's timestamp, and the messages are counted within each hour:
 
 ```r
-chat_by_hour <- analysis |>
-  mutate(hour = hour(timestamp)) |>
+chat_by_hour <- analysis %>%
+  mutate(hour = hour(timestamp)) %>%
   count(hour, name = "messages")
 
 ggplot(chat_by_hour, aes(x = hour, y = messages)) +
@@ -117,8 +117,8 @@ This question is not about a total or a trend. It is about a **distribution**, t
 The figure overlays two histograms, one for gaming channels and one for non-gaming, so the shapes can be compared directly. Messages with no gaming label, the unmatched rows Chapter 11 set aside, are dropped first, and message lengths are capped at 120 characters for the view:
 
 ```r
-msglen <- analysis |>
-  filter(!is.na(is_gaming)) |>
+msglen <- analysis %>%
+  filter(!is.na(is_gaming)) %>%
   mutate(length_shown = pmin(message_length, 120))
 
 ggplot(msglen, aes(x = length_shown, fill = is_gaming)) +
@@ -142,15 +142,15 @@ The figure shows, first, a shape both groups share. Each distribution is heavily
 It matters because of what the summary numbers say. The descriptive statistics for the two groups, the kind of table `v2v::pretty_table()` formats cleanly, set the comparison up:
 
 ```r
-msglen |>
-  group_by(is_gaming) |>
+msglen %>%
+  group_by(is_gaming) %>%
   summarise(
     n      = n(),
     mean   = mean(message_length, na.rm = TRUE),
     median = median(message_length, na.rm = TRUE),
     sd     = sd(message_length, na.rm = TRUE),
     .groups = "drop"
-  ) |>
+  ) %>%
   v2v::pretty_table()
 ```
 

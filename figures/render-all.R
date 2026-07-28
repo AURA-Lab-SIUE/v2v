@@ -85,18 +85,18 @@ build_analysis <- function() {
     "Music & Performing Arts", "Science & Technology",
     "Sports & Fitness", "Talk Shows & Podcasts", "Travel & Outdoors")
 
-  channel_type <- streams |>
-    filter(!is.na(game)) |>
-    count(channel, game) |>
-    group_by(channel) |>
-    slice_max(n, n = 1, with_ties = FALSE) |>
-    ungroup() |>
-    mutate(is_gaming = !(game %in% nongaming_categories)) |>
+  channel_type <- streams %>%
+    filter(!is.na(game)) %>%
+    count(channel, game) %>%
+    group_by(channel) %>%
+    slice_max(n, n = 1, with_ties = FALSE) %>%
+    ungroup() %>%
+    mutate(is_gaming = !(game %in% nongaming_categories)) %>%
     select(channel, is_gaming)
 
-  analysis <- chat0 |>
+  analysis <- chat0 %>%
     mutate(timestamp      = as.POSIXct(date / 1000, origin = "1970-01-01", tz = "UTC"),
-           message_length = str_length(message)) |>
+           message_length = str_length(message)) %>%
     left_join(channel_type, by = "channel")
 
   list(streams = streams, chat = chat0, analysis = analysis)
@@ -104,7 +104,7 @@ build_analysis <- function() {
 
 # --- validation gate: the prose quotes these numbers, so assert them ---
 validate <- function(d) {
-  counts <- d$analysis |> count(is_gaming)
+  counts <- d$analysis %>% count(is_gaming)
   # NA must be keyed as the literal string "NA": as.character(NA) is NA, not "NA",
   # which silently produced an unmatchable key and a false "DIVERGED" warning.
   keys <- ifelse(is.na(counts$is_gaming), "NA", as.character(counts$is_gaming))
@@ -131,12 +131,12 @@ validate <- function(d) {
 # =====================================================================
 
 fig_ch12_1 <- function(d) {
-  viewers_over_time <- d$streams |>
-    filter(!is.na(game)) |>
+  viewers_over_time <- d$streams %>%
+    filter(!is.na(game)) %>%
     mutate(timestamp = as.POSIXct(date / 1000, origin = "1970-01-01", tz = "UTC"),
            six_hour  = floor_date(timestamp, "6 hours"),
-           category  = fct_lump_n(game, n = 5)) |>
-    group_by(six_hour, category) |>
+           category  = fct_lump_n(game, n = 5)) %>%
+    group_by(six_hour, category) %>%
     summarise(total_viewers = sum(viewers), .groups = "drop")
 
   p <- ggplot(viewers_over_time,
@@ -151,7 +151,7 @@ fig_ch12_1 <- function(d) {
 }
 
 fig_ch12_2 <- function(d) {
-  chat_by_hour <- d$analysis |> mutate(hour = hour(timestamp)) |> count(hour, name = "messages")
+  chat_by_hour <- d$analysis %>% mutate(hour = hour(timestamp)) %>% count(hour, name = "messages")
   # Single series: use the palette's highest-contrast hue (blue, 5.2:1 vs
   # white) rather than a hardcoded hex, so the book has ONE colour source.
   p <- ggplot(chat_by_hour, aes(hour, messages)) +
@@ -163,7 +163,7 @@ fig_ch12_2 <- function(d) {
 }
 
 fig_ch12_3 <- function(d) {
-  msglen <- d$analysis |> filter(!is.na(is_gaming)) |>
+  msglen <- d$analysis %>% filter(!is.na(is_gaming)) %>%
     mutate(length_shown = pmin(message_length, 120))
   p <- ggplot(msglen, aes(length_shown, fill = is_gaming)) +
     geom_histogram(binwidth = 5, position = "identity", alpha = 0.55,
@@ -177,10 +177,10 @@ fig_ch12_3 <- function(d) {
 }
 
 fig_ch13_means <- function(d) {
-  summ <- d$analysis |> filter(!is.na(is_gaming)) |>
-    group_by(group = ifelse(is_gaming, "Gaming", "Non-gaming")) |>
+  summ <- d$analysis %>% filter(!is.na(is_gaming)) %>%
+    group_by(group = ifelse(is_gaming, "Gaming", "Non-gaming")) %>%
     summarise(n = n(), mean = mean(message_length),
-              se = sd(message_length) / sqrt(n()), .groups = "drop") |>
+              se = sd(message_length) / sqrt(n()), .groups = "drop") %>%
     mutate(ci_lo = mean - 1.96 * se, ci_hi = mean + 1.96 * se)
 
   p <- ggplot(summ, aes(group, mean, colour = group)) +
@@ -205,13 +205,13 @@ fig_ch08_levels <- function(d) {
   library(patchwork)
   blue <- unname(v2v_colours["blue"])
 
-  titles <- d$streams |> filter(!is.na(title), title != "") |>
-    distinct(channel, title) |>
+  titles <- d$streams %>% filter(!is.na(title), title != "") %>%
+    distinct(channel, title) %>%
     mutate(nchar_title = str_length(title))
 
   n_titles <- nrow(titles)
   n_unique <- n_distinct(titles$title)
-  ex5 <- titles |> count(title, sort = TRUE) |> slice_head(n = 5) |>
+  ex5 <- titles %>% count(title, sort = TRUE) %>% slice_head(n = 5) %>%
     mutate(title_short = str_trunc(title, 18))
   pA <- ggplot(ex5, aes(n, fct_reorder(title_short, n))) +
     geom_col(fill = blue, colour = "grey20", linewidth = 0.2, width = 0.7) +
@@ -222,9 +222,9 @@ titles are unique: it tells you nothing", n_unique, n_titles),
          x = "Streams using this exact title", y = NULL) +
     theme_v2v()
 
-  bins <- titles |>
+  bins <- titles %>%
     mutate(bin = cut(nchar_title, c(-Inf, 20, 60, Inf),
-                     labels = c("≤20", "21–60", ">60"))) |>
+                     labels = c("≤20", "21–60", ">60"))) %>%
     count(bin)
   med_bin <- bins$bin[which(cumsum(bins$n) >= sum(bins$n) / 2)[1]]
   pB <- ggplot(bins, aes(bin, n)) +
@@ -248,7 +248,7 @@ titles are unique: it tells you nothing", n_unique, n_titles),
          x = "Title length (characters)", y = "Stream titles") +
     theme_v2v()
 
-  per_day <- d$analysis |> mutate(day = as.Date(timestamp)) |> count(day)
+  per_day <- d$analysis %>% mutate(day = as.Date(timestamp)) %>% count(day)
   pD <- ggplot(per_day, aes(day, n)) +
     geom_col(fill = blue, colour = "grey20", linewidth = 0.2) +
     labs(title = "Interval: the timestamp",
@@ -272,9 +272,9 @@ fig_ch10_sampling <- function(d) {
   # carried by BOTH shape and colour, and the SRS-miss region by a labeled line.
   anchors <- c("xqcow", "forsen", "sodapoppin", "asmongold", "loltyler1",
                "disguisedtoast", "giantwaffle", "bobross")
-  by_channel <- d$chat |>
-    count(channel, name = "messages") |>
-    arrange(desc(messages)) |>
+  by_channel <- d$chat %>%
+    count(channel, name = "messages") %>%
+    arrange(desc(messages)) %>%
     mutate(rank   = row_number(),
            design = ifelse(channel %in% anchors, "Anchor (fixed)", "Stratified draw"))
   srs_n     <- 1000
@@ -304,7 +304,7 @@ fig_ch11_rawlen <- function(d) {
   # axis at 120 characters; this is the figure that shows why that cap is
   # honest: the tail is long but nearly empty. Single hue + labeled cap line,
   # so colour carries no information (SC 1.4.1 by construction).
-  lens <- d$analysis |> filter(!is.na(message_length))
+  lens <- d$analysis %>% filter(!is.na(message_length))
   n_all    <- nrow(lens)
   n_beyond <- sum(lens$message_length > 120)
   max_len  <- max(lens$message_length)
@@ -332,9 +332,9 @@ fig_ch13_overlap <- function(d) {
   # G8 — the negligible effect size made visible: two nearly coincident
   # densities whose means sit five characters apart against SDs of 38 and 61.
   # Redundant encoding: colour + linetype + direct mean labels.
-  lens <- d$analysis |> filter(!is.na(is_gaming), !is.na(message_length)) |>
+  lens <- d$analysis %>% filter(!is.na(is_gaming), !is.na(message_length)) %>%
     mutate(group = ifelse(is_gaming, "Gaming", "Non-gaming"))
-  means <- lens |> group_by(group) |> summarise(m = mean(message_length), .groups = "drop")
+  means <- lens %>% group_by(group) %>% summarise(m = mean(message_length), .groups = "drop")
 
   # Densities are estimated on the FULL length range and only the view is
   # cropped: pmin-style capping would fold the tail into a false bump at 150.
@@ -397,16 +397,16 @@ fig_ch07_windows <- function(d) {
   # Rank by REAL viewership from the stream snapshots — chat counts are capped
   # at 1,000/channel in the fixture, which ties the entire head of the
   # distribution and makes them useless for ranking.
-  vol_rank <- d$streams |>
-    group_by(channel) |> summarise(v = mean(viewers), .groups = "drop") |>
-    arrange(desc(v)) |> mutate(rank = row_number())
-  picks <- vol_rank |> filter(rank %in% c(1, 8, 15, 22, 29, 36, 43, 50))
-  live <- d$streams |>
-    filter(channel %in% picks$channel) |>
+  vol_rank <- d$streams %>%
+    group_by(channel) %>% summarise(v = mean(viewers), .groups = "drop") %>%
+    arrange(desc(v)) %>% mutate(rank = row_number())
+  picks <- vol_rank %>% filter(rank %in% c(1, 8, 15, 22, 29, 36, 43, 50))
+  live <- d$streams %>%
+    filter(channel %in% picks$channel) %>%
     mutate(t = as.POSIXct(date / 1000, origin = "1970-01-01", tz = "UTC"),
-           slot = floor_date(t, "30 minutes")) |>
-    distinct(channel, slot) |>
-    left_join(picks, by = "channel") |>
+           slot = floor_date(t, "30 minutes")) %>%
+    distinct(channel, slot) %>%
+    left_join(picks, by = "channel") %>%
     mutate(chan_f = fct_reorder(channel, rank, .desc = TRUE))
 
   win <- data.frame(
@@ -436,7 +436,7 @@ fig_ch09_shape <- function(d) {
                missing = vapply(tbl, function(x) sum(is.na(x)), numeric(1)))
   }
   prof <- rbind(col_profile(d$chat, sprintf("chat (%s rows)", format(nrow(d$chat), big.mark = ","))),
-                col_profile(d$streams, sprintf("streams (%s rows)", format(nrow(d$streams), big.mark = ",")))) |>
+                col_profile(d$streams, sprintf("streams (%s rows)", format(nrow(d$streams), big.mark = ",")))) %>%
     mutate(present = 100 * (n - missing) / n,
            lab = ifelse(missing == 0, "complete",
                         sprintf("%s missing", format(missing, big.mark = ","))),

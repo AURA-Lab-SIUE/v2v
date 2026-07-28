@@ -42,7 +42,7 @@ consistent, and consistently wrong"),
 right on average, unusable one at a time"),
   transform(spread, cx = 1.4, cy = 1.4, panel = "Neither:
 inconsistent and off target"))
-quads <- quads |> mutate(x = cx + dx * 0.9, y = cy + dy * 0.9)
+quads <- quads %>% mutate(x = cx + dx * 0.9, y = cy + dy * 0.9)
 quads$panel <- factor(quads$panel, levels = unique(quads$panel))
 
 p <- ggplot() +

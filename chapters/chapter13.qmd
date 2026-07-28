@@ -109,14 +109,14 @@ That leaves one question: how did a negligible difference come back statisticall
 The two facts, a real gap and a negligible one, are easier to hold together as a picture. Plotting each group's mean with its ninety-five percent confidence interval, a band that reflects how precisely the mean is estimated, puts both on the same axis:
 
 ```r
-means_ci <- analysis |>
-  filter(!is.na(is_gaming)) |>
-  group_by(is_gaming) |>
+means_ci <- analysis %>%
+  filter(!is.na(is_gaming)) %>%
+  group_by(is_gaming) %>%
   summarise(
     mean = mean(message_length, na.rm = TRUE),
     se   = sd(message_length, na.rm = TRUE) / sqrt(n()),
     .groups = "drop"
-  ) |>
+  ) %>%
   mutate(
     lower = mean - 1.96 * se,
     upper = mean + 1.96 * se,
@@ -170,7 +170,7 @@ League of Legends 4000       22.63
 A t-test cannot settle this, because a t-test compares two means and there are four. Comparing them two at a time, Fortnite against Hearthstone, Hearthstone against Just Chatting, and so on, is worse than useless: it takes six separate tests, each carrying its own chance of a false positive, and those chances pile up. The test built for the whole comparison at once is the **analysis of variance**, or **ANOVA**. It asks a single question of all the groups together: is any of these means different enough from the rest that chance is an unconvincing explanation? `aov()` fits it and `summary()` reports it:
 
 ```r
-four_games <- analysis |>
+four_games <- analysis %>%
   filter(game %in% c("Fortnite", "Hearthstone",
                      "Just Chatting", "League of Legends"))
 

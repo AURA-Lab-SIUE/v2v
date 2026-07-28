@@ -24,13 +24,13 @@ The tidyverse handles wrangling through a small set of functions, each of which 
 **`filter()`** keeps rows that meet a condition and drops the rest. To look at only Bob Ross's messages:
 
 ```r
-chat |> filter(channel == "bobross")
+chat %>% filter(channel == "bobross")
 ```
 
 **`select()`** keeps or drops columns:
 
 ```r
-chat |> select(channel, sender, message)
+chat %>% select(channel, sender, message)
 ```
 
 **`mutate()`** adds a new column, or changes an existing one, computed from the columns already there. **`arrange()`** reorders the rows by a column's values. And **`group_by()`** together with **`summarize()`** collapses many rows into one per group, which is how you compute a per-channel or per-game figure.
@@ -48,7 +48,7 @@ Start with the timestamps, because Chapter 9 already flagged them. The `date` co
 What the number actually holds is a count of milliseconds elapsed since midnight on the first of January, 1970. That reference moment is the **Unix epoch**, the zero point nearly all computers use to keep time, and counting from it is how a timestamp becomes a single integer. The integer is precise and entirely unreadable. Turning it back into a date is a conversion, and `mutate()` is the verb for it:
 
 ```r
-chat <- chat |>
+chat <- chat %>%
   mutate(timestamp = as.POSIXct(date / 1000, origin = "1970-01-01", tz = "UTC"))
 ```
 
@@ -57,7 +57,7 @@ Two parts of that line carry the lesson. `as.POSIXct()` is the function that tur
 The result is a real date-time. Setting `date` and the new `timestamp` side by side shows the transformation:
 
 ```r
-chat |> select(date, timestamp) |> head(3)
+chat %>% select(date, timestamp) %>% head(3)
 ```
 
 ```
@@ -76,12 +76,12 @@ The same instant, now legible: the evening of the 18th of November, 2018. The co
 The second transformation creates a variable the codebook named but the data does not yet contain. Message length, the character count of a message, is `mutate()` again, this time with `str_length()`, which counts the characters in a string:
 
 ```r
-chat <- chat |>
+chat <- chat %>%
   mutate(message_length = str_length(message))
 ```
 
 ```r
-chat |> select(message, message_length) |> head(3)
+chat %>% select(message, message_length) %>% head(3)
 ```
 
 ```
@@ -106,11 +106,11 @@ Gaming or non-gaming is best understood as a property of the channel, fixed by w
 The first step reaches into the stream table. Each channel appears there many times, once per snapshot, each snapshot carrying the `game` it was streaming. The channel's dominant category is the **modal** category, the one that appears most often:
 
 ```r
-channel_type <- streams |>
-  filter(!is.na(game)) |>
-  count(channel, game) |>
-  group_by(channel) |>
-  slice_max(n, n = 1, with_ties = FALSE) |>
+channel_type <- streams %>%
+  filter(!is.na(game)) %>%
+  count(channel, game) %>%
+  group_by(channel) %>%
+  slice_max(n, n = 1, with_ties = FALSE) %>%
   ungroup()
 ```
 
@@ -126,8 +126,8 @@ nongaming_categories <- c(
   "Sports & Fitness", "Talk Shows & Podcasts", "Travel & Outdoors"
 )
 
-channel_type <- channel_type |>
-  mutate(is_gaming = !(game %in% nongaming_categories)) |>
+channel_type <- channel_type %>%
+  mutate(is_gaming = !(game %in% nongaming_categories)) %>%
   select(channel, is_gaming)
 ```
 
@@ -136,7 +136,7 @@ channel_type <- channel_type |>
 The third step is the **join**. A join brings columns from one table onto another by matching on a shared key, here the channel name. A `left_join()` keeps every row of the chat table and attaches the matching `is_gaming` value to it:
 
 ```r
-chat <- chat |>
+chat <- chat %>%
   left_join(channel_type, by = "channel")
 ```
 
@@ -145,7 +145,7 @@ A join is only as good as the match between its keys, and that is worth a word o
 One result of the join deserves attention. Always inspect a column you just derived:
 
 ```r
-chat |> count(is_gaming)
+chat %>% count(is_gaming)
 ```
 
 ```
@@ -164,11 +164,11 @@ Two channels in the corpus streamed without ever having a category recorded: eve
 Four transformations, run in sequence, have rebuilt the chat table:
 
 ```r
-chat <- v2v::twitch_chat() |>
+chat <- v2v::twitch_chat() %>%
   mutate(
     timestamp = as.POSIXct(date / 1000, origin = "1970-01-01", tz = "UTC"),
     message_length = str_length(message)
-  ) |>
+  ) %>%
   left_join(channel_type, by = "channel")
 ```
 

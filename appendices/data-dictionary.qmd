@@ -85,16 +85,16 @@ A typical analysis joins each chat message to the nearest-prior stream snapshot 
 library(dplyr)
 library(lubridate)
 
-chat <- twitch_chat_sample |>
+chat <- twitch_chat_sample %>%
   mutate(ts = as.POSIXct(date / 1000, origin = "1970-01-01", tz = "UTC"))
 
-streams <- twitch_streams_sample |>
+streams <- twitch_streams_sample %>%
   mutate(ts = as.POSIXct(date / 1000, origin = "1970-01-01", tz = "UTC"))
 
-joined <- chat |>
-  arrange(channel, ts) |>
+joined <- chat %>%
+  arrange(channel, ts) %>%
   left_join(
-    streams |> arrange(channel, ts) |> select(channel, ts, game, viewers),
+    streams %>% arrange(channel, ts) %>% select(channel, ts, game, viewers),
     by = join_by(channel, closest(ts >= ts))
   )
 ```
