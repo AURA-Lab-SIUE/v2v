@@ -1,6 +1,17 @@
-﻿---
+---
 title: "Chapter 7: Structured listening"
 ---
+
+::: {.chapter-audio}
+[Listen in Dr. Leith's voice]{.audio-label}
+
+```{=html}
+<audio class="v2v-audio v2v-audio-ug" controls preload="none"><source src="../audio/ch07-ug.mp3" type="audio/mpeg">Your browser does not support audio.</audio>
+<audio class="v2v-audio v2v-audio-grad" controls preload="none"><source src="../audio/ch07-grad.mp3" type="audio/mpeg">Your browser does not support audio.</audio>
+```
+
+:::
+
 
 In Chapter 2 you looked at ten rows of the `stream_log` and watched Sodapoppin's audience climb: 27,934 concurrent viewers, then 28,076 a minute later, then 28,203 a minute after that. Two hundred sixty-nine viewers in a hundred and twenty-two seconds. The dataset records that climb to the second. What the dataset cannot tell you is what the climb was.
 

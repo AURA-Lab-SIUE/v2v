@@ -2,6 +2,17 @@
 title: "Chapter 6: The Prospectus"
 ---
 
+::: {.chapter-audio}
+[Listen in Dr. Leith's voice]{.audio-label}
+
+```{=html}
+<audio class="v2v-audio v2v-audio-ug" controls preload="none"><source src="../audio/ch06-ug.mp3" type="audio/mpeg">Your browser does not support audio.</audio>
+<audio class="v2v-audio v2v-audio-grad" controls preload="none"><source src="../audio/ch06-grad.mp3" type="audio/mpeg">Your browser does not support audio.</audio>
+```
+
+:::
+
+
 There is a particular kind of paralysis that strikes partway through a research project. You have read thirty articles. You have notes scattered across several documents. You have identified a few interesting theories and several possible research questions. You can see connections everywhere, and the project feels simultaneously too small, just one study, and too large, impossible to finish.
 
 The problem is not a lack of ideas. It is a lack of focus. The difficult choices that turn a cloud of possibilities into a concrete plan have not been made yet.

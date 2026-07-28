@@ -2,6 +2,17 @@
 title: "Chapter 5: Theory as a Lens"
 ---
 
+::: {.chapter-audio}
+[Listen in Dr. Leith's voice]{.audio-label}
+
+```{=html}
+<audio class="v2v-audio v2v-audio-ug" controls preload="none"><source src="../audio/ch05-ug.mp3" type="audio/mpeg">Your browser does not support audio.</audio>
+<audio class="v2v-audio v2v-audio-grad" controls preload="none"><source src="../audio/ch05-grad.mp3" type="audio/mpeg">Your browser does not support audio.</audio>
+```
+
+:::
+
+
 Chapter 4 ended on a finding. Across a body of survey research, livestream viewing looks more socially motivated than content motivated. People watch, the studies suggest, for the chat as much as for the game. Take that finding as settled for a moment. It still does not explain itself. Why would the social experience matter more than the content on the screen? What is actually happening when a viewer chooses a stream and stays?
 
 Three researchers could look at the same finding and explain it three different ways. One, drawing on **uses and gratifications theory** (Katz, Blumler, & Gurevitch, 1973), might argue that viewers are active agents seeking to satisfy specific needs, and that a livestream happens to satisfy a social need that a finished, edited video cannot. A second, drawing on **parasocial interaction** (Horton & Wohl, 1956), might argue that viewers form one-sided emotional bonds with the streamer, and that the sense of social connection is the felt experience of that bond. A third, drawing on **social identity theory** (Tajfel & Turner, 1979), might argue that a stream community is a group, that viewers use it to construct part of their identity, and that the chat is a space of belonging.

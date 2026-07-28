@@ -2,6 +2,17 @@
 title: "Chapter 2: The Open Workspace"
 ---
 
+::: {.chapter-audio}
+[Listen in Dr. Leith's voice]{.audio-label}
+
+```{=html}
+<audio class="v2v-audio v2v-audio-ug" controls preload="none"><source src="../audio/ch02-ug.mp3" type="audio/mpeg">Your browser does not support audio.</audio>
+<audio class="v2v-audio v2v-audio-grad" controls preload="none"><source src="../audio/ch02-grad.mp3" type="audio/mpeg">Your browser does not support audio.</audio>
+```
+
+:::
+
+
 The Excel error in Chapter 1 was one study. In 2015 the Open Science Collaboration, a group of 270 researchers from around the world, set out to redo 100 published psychology studies. They followed the original methods as closely as the published papers described, recruited similar participants, and ran the same analyses. The results, published in *Science*, became one of the most cited findings in the social sciences of the decade. Only 36 percent of the original results replicated at conventional thresholds of statistical significance, and among the studies that did replicate, the effect sizes were on average about half the magnitude originally reported (Open Science Collaboration, 2015).
 
 The number was striking. The cause was more so. The Collaboration was not finding fraud. They were finding ordinary friction. Published methods sections did not contain enough detail to actually re-run the original analysis. Researchers had to email the original authors for clarifications. Some authors had moved. Some had lost the data. Some had run their analysis in software whose menus had since changed. The replications were not blocked by malice. They were blocked by the simple fact that the original research had never been built to be retraceable.

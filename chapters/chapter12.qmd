@@ -1,6 +1,17 @@
-﻿---
+---
 title: "Chapter 12: Visualizing the narrative"
 ---
+
+::: {.chapter-audio}
+[Listen in Dr. Leith's voice]{.audio-label}
+
+```{=html}
+<audio class="v2v-audio v2v-audio-ug" controls preload="none"><source src="../audio/ch12-ug.mp3" type="audio/mpeg">Your browser does not support audio.</audio>
+<audio class="v2v-audio v2v-audio-grad" controls preload="none"><source src="../audio/ch12-grad.mp3" type="audio/mpeg">Your browser does not support audio.</audio>
+```
+
+:::
+
 
 Chapter 11 ended with a single tidy table, `analysis`, a little over thirty-five thousand rows wide. That table is a complete and faithful record of the chat study's data, and it is almost impossible to read. Nobody can scroll thirty-five thousand rows and come away knowing whether gaming chat runs longer than non-gaming chat, or when in the day the channels are busiest. The numbers are all present. The pattern is not visible.
 

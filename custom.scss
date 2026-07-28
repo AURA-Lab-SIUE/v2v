@@ -734,3 +734,29 @@ body.show-grad-ext .graduate-extension { display: block; }
 .graduate-extension:has(> h3)::before { content: none; }
 .graduate-extension > h3 { margin-top: 0; color: $red; }
 .graduate-extension > :last-child { margin-bottom: 0; }
+
+// --- Chapter audio players (AI narration in the author's voice) ---
+// Two <audio> per chapter; the graduate toggle swaps which one shows, reusing
+// the .graduate-extension mechanism (body.show-grad-ext). Undergrad track is
+// the default; the grad track (with the extension asides + quotes) shows when
+// the reader turns on the graduate view.
+.chapter-audio {
+  margin: 0.25rem 0 1.75rem 0;
+}
+.chapter-audio .audio-label {
+  display: block;
+  font-family: $font-family-sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: $red;
+  margin-bottom: 0.45rem;
+}
+.chapter-audio .v2v-audio {
+  width: 100%;
+  max-width: 540px;
+}
+.chapter-audio .v2v-audio-grad { display: none; }
+body.show-grad-ext .chapter-audio .v2v-audio-ug { display: none; }
+body.show-grad-ext .chapter-audio .v2v-audio-grad { display: block; }

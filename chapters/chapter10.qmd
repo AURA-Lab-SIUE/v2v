@@ -1,6 +1,17 @@
-﻿---
+---
 title: "Chapter 10: The sample"
 ---
+
+::: {.chapter-audio}
+[Listen in Dr. Leith's voice]{.audio-label}
+
+```{=html}
+<audio class="v2v-audio v2v-audio-ug" controls preload="none"><source src="../audio/ch10-ug.mp3" type="audio/mpeg">Your browser does not support audio.</audio>
+<audio class="v2v-audio v2v-audio-grad" controls preload="none"><source src="../audio/ch10-grad.mp3" type="audio/mpeg">Your browser does not support audio.</audio>
+```
+
+:::
+
 
 Suppose you sat down to code the chat fixture by hand, one message at a time, the codebook open beside you. Read the message, decide who it is aimed at, record the code, move to the next. At a brisk and probably unsustainable pace of one message every ten seconds, the 35,267 messages in the fixture would take just under a hundred hours. The full 2018 collection, all twenty-two million messages, would outlast your degree.
 

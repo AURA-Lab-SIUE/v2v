@@ -1,6 +1,17 @@
-﻿---
+---
 title: "Chapter 9: The rulebook and first workspace"
 ---
+
+::: {.chapter-audio}
+[Listen in Dr. Leith's voice]{.audio-label}
+
+```{=html}
+<audio class="v2v-audio v2v-audio-ug" controls preload="none"><source src="../audio/ch09-ug.mp3" type="audio/mpeg">Your browser does not support audio.</audio>
+<audio class="v2v-audio v2v-audio-grad" controls preload="none"><source src="../audio/ch09-grad.mp3" type="audio/mpeg">Your browser does not support audio.</audio>
+```
+
+:::
+
 
 Here is a strange thing about the work of the last eight chapters. You have a research question, a theoretical frame, a prospectus, a field-notes document, and a draft codebook. You have, in other words, designed an entire study around the Twitch dataset. And you have never actually seen it.
 

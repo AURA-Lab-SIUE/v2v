@@ -2,6 +2,17 @@
 title: "Chapter 3: Knowing and Knowing Well"
 ---
 
+::: {.chapter-audio}
+[Listen in Dr. Leith's voice]{.audio-label}
+
+```{=html}
+<audio class="v2v-audio v2v-audio-ug" controls preload="none"><source src="../audio/ch03-ug.mp3" type="audio/mpeg">Your browser does not support audio.</audio>
+<audio class="v2v-audio v2v-audio-grad" controls preload="none"><source src="../audio/ch03-grad.mp3" type="audio/mpeg">Your browser does not support audio.</audio>
+```
+
+:::
+
+
 In June 2014, researchers at Facebook and Cornell University published a study in the *Proceedings of the National Academy of Sciences* that became one of the most debated experiments in the history of social science. For one week in January 2012, Facebook had manipulated the News Feeds of nearly 700,000 users without their knowledge. Some users saw fewer positive posts from friends; others saw fewer negative posts. The researchers then measured whether the manipulation affected what users themselves posted. It did. Users exposed to fewer positive posts produced slightly more negative content, and vice versa. The study, led by Adam Kramer, Jamie Guillory, and Jeffrey Hancock, offered evidence of "massive-scale emotional contagion through social networks" (Kramer, Guillory, & Hancock, 2014).
 
 The finding was interesting. The reaction was explosive.
