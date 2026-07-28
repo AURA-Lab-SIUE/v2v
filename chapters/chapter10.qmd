@@ -50,7 +50,7 @@ It is worth knowing that the fixture you loaded in Chapter 9 is itself the produ
 One feature of stratified sampling matters when the strata are uneven in size. If you ask for thirty messages per channel but a channel only ever produced nine, there is no way to draw thirty. The sensible rule, and the one the tools here follow, is to take everything that channel has. In the fixture, nineteen of the fifty channels hold fewer than a thousand messages, and a few hold only a handful. For those small strata, a request for a fixed number simply returns all of it. That is the right floor: a stratum contributes its full weight or, if it is too small, its full self.
 
 ::: {.graduate-extension}
-**Purposive sampling does not fix inadequate power.** A common misconception is that purposive sampling — selecting "most relevant" units — compensates for a small *n*. It does not. Purposive sampling improves construct validity; it has no effect on statistical power. The two concerns address different inferential problems, and conflating them produces a study that is internally coherent but statistically indefensible.
+**Purposive sampling does not fix inadequate power.** A common misconception is that purposive sampling (selecting "most relevant" units) compensates for a small *n*. It does not. Purposive sampling improves construct validity; it has no effect on statistical power. The two concerns address different inferential problems, and conflating them produces a study that is internally coherent but statistically indefensible.
 :::
 
 ## Drawing the sample

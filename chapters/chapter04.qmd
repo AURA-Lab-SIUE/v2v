@@ -86,7 +86,7 @@ A search string for livestreaming viewer research might look like this:
 Document every search in a plain-text search log: the date, the database, the exact search string, the limiters you applied, the number of results, and how many you kept. The log serves two purposes. It lets you defend your search strategy later, and it helps you refine searches by showing what worked and what did not.
 
 ::: {.graduate-extension}
-**Systematic search over ad hoc search.** Ad hoc searches — "I Googled it and found relevant papers" — cannot support power analysis inputs, because you do not know whether the studies you found are representative of the literature. A systematic search uses predefined databases (Communication Abstracts, Web of Science, PsycINFO), predefined search strings, and documented inclusion/exclusion criteria. The search process is itself a methods disclosure: you report it alongside the analysis so that a future researcher can reproduce and update your review.
+**Systematic search over ad hoc search.** Ad hoc searches ("I Googled it and found relevant papers") cannot support power analysis inputs, because you do not know whether the studies you found are representative of the literature. A systematic search uses predefined databases (Communication Abstracts, Web of Science, PsycINFO), predefined search strings, and documented inclusion/exclusion criteria. The search process is itself a methods disclosure: you report it alongside the analysis so that a future researcher can reproduce and update your review.
 :::
 
 ### Phase three: citation chaining
