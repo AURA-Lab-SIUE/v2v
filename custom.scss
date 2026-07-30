@@ -760,3 +760,28 @@ body.show-grad-ext .graduate-extension { display: block; }
 .chapter-audio .v2v-audio-grad { display: none; }
 body.show-grad-ext .chapter-audio .v2v-audio-ug { display: none; }
 body.show-grad-ext .chapter-audio .v2v-audio-grad { display: block; }
+
+// ============================================================
+// a11y-2026-07-30 sourcecode-at-token
+// Quarto's default highlighter paints the attribute token (.at) #657422, which
+// is only 4.41:1 on the tinted code surface. It appears in nearly every R code
+// block, so this was the single largest contrast failure on either site.
+// #55611C measures 5.77:1 on #F1EDE4. !important is required because Quarto
+// emits its highlight CSS after the theme.
+// ============================================================
+code span.at,
+pre code span.at { color: #55611C !important; }
+
+// ============================================================
+// a11y-2026-07-30 quarto-opacity-overrides
+// Quarto dims two elements with opacity, which silently multiplies an
+// AA-passing colour token below the 4.5:1 floor:
+//   .quarto-title-meta-heading  opacity 0.80  ->  $maroon       5.84:1 becomes 4.46:1
+//   .callout-header             opacity 0.85  ->  $callout-blue 5.91:1 becomes 4.31:1
+// The tokens were never wrong; the opacity was. These selectors deliberately
+// mirror Quarto's own specificity (an ID selector, and a child combinator with
+// two classes) because a plain class selector loses to them and compiles to a
+// rule that does nothing.
+// ============================================================
+#title-block-header.quarto-title-block.default .quarto-title-meta-heading { opacity: 1; }
+.callout.callout-style-default > div.callout-header { opacity: 1; }

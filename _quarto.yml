@@ -100,6 +100,30 @@ format:
           });
         })();
         </script>
+        <script>
+        /* a11y-2026-07-30 scrollable-pre: overflowing <pre> blocks scroll
+           horizontally, and with no focusable content a keyboard-only reader
+           cannot scroll them, so the truncated code is unreachable (WCAG 2.1.1).
+           tabindex="0" is the minimum that fixes it. We deliberately do NOT add
+           role="region": that would put every code block in the landmark list
+           and make the page markedly noisier to navigate by screen reader. */
+        (function(){
+          function mark(){
+            document.querySelectorAll('pre').forEach(function(el){
+              var scrolls = el.scrollWidth > el.clientWidth + 1 ||
+                            el.scrollHeight > el.clientHeight + 1;
+              if (scrolls && !el.hasAttribute('tabindex')) el.setAttribute('tabindex','0');
+            });
+          }
+          if (document.readyState === 'loading')
+            document.addEventListener('DOMContentLoaded', mark);
+          else mark();
+          window.addEventListener('load', mark);
+          window.addEventListener('resize', mark);
+          /* code-fold blocks measure 0 until opened */
+          document.addEventListener('toggle', mark, true);
+        })();
+        </script>
   # Typst, NOT LaTeX. A LaTeX PDF is UNTAGGED - no /StructTreeRoot, no /Alt -
   # so every fig-alt in this book would be silently discarded in the PDF and
   # Ally would score it red no matter how clean the source is. Typst emits a
