@@ -1,7 +1,7 @@
 /*-- scss:defaults --*/
 
 /* V2V 3rd Edition: editorial design system.
-   AURA Lab identity (aura-lab.siue.edu) — Archivo / Newsreader / Spline Sans Mono,
+   AURA Lab identity (aura-lab.siue.edu): Archivo / Newsreader / Spline Sans Mono,
    red #e5182d accent on warm paper. Rebuilt 2026-07-24 from the prior violet +
    Fraunces scheme to MATCH the live AURA Lab site: the book is the long-reading
    surface, so body stays serif (Newsreader) for comfort while headings take the
@@ -12,20 +12,20 @@
 // Explicit font loading: defensive against _brand.yml not being supported.
 @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Spline+Sans+Mono:wght@400;500;600&display=swap');
 
-// ===== Color tokens (AURA Lab identity — red on warm paper) =====
+// ===== Color tokens (AURA Lab identity: red on warm paper) =====
 // Token names preserved from the prior scheme so downstream references
 // (e.g. $maroon used 30+ times below) continue to resolve. $maroon now holds
 // the AA-safe AURA red used for TEXT + borders; $red is the bright mark hue.
 $paper:         #FCFBF7;            // AURA warm paper (light canvas)
 $ink:           #191B1E;            // AURA warm near-black
-$red:           #E5182D;            // bright AURA mark — title bar, ornaments (non-text)
+$red:           #E5182D;            // bright AURA mark: title bar, ornaments (non-text)
 $maroon:        #C41425;            // primary red: TEXT + borders, 5.9:1 on paper (alias retained)
 $maroon-dark:   #9E1019;            // hover / deeper red
 $maroon-tint:   rgba(229, 24, 45, 0.08);
 $code-bg:       #F1EDE4;            // tinted warm paper for code surface
 $callout-blue:  #2563A8;            // note callouts (AA on paper)
 $callout-green: #1F6F4F;            // tip callouts (AA on paper)
-$callout-amber: #8A5300;            // warning callouts — bronze, distinct from red (AA)
+$callout-amber: #8A5300;            // warning callouts: bronze, distinct from red (AA)
 $muted:         #6B6357;            // AURA warm grey, 5.2:1 on paper
 $rule:          #E0DACE;            // faint warm hairline
 
@@ -325,7 +325,7 @@ blockquote {
 
   p:last-child { margin-bottom: 0; }
 
-  // Attribution: a `cite` element or `— Name` at the end
+  // Attribution: a `cite` element or `– Name` at the end
   cite, footer {
     display: block;
     margin-top: 0.75rem;
@@ -336,7 +336,7 @@ blockquote {
     text-transform: uppercase;
     letter-spacing: 0.08em;
 
-    &::before { content: '— '; color: $maroon; }
+    &::before { content: '– '; color: $maroon; }
   }
 }
 

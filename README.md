@@ -44,7 +44,7 @@ The 3rd Edition is organized into 14 chapters across five parts. (Chapters 1 thr
 14. The One-Click Report *(in development)*
 
 ### Appendices
-- Data Dictionary — Variable reference for the V2V working datasets
+- Data Dictionary: variable reference for the V2V working datasets
 
 ### V2V 2nd Edition (archived)
 
@@ -93,7 +93,7 @@ A PDF version can be generated locally (see "Building Locally" below).
 ### Prerequisites
 
 - [Quarto](https://quarto.org/docs/get-started/) (v1.3 or later)
-- [R](https://cran.r-project.org/) (>= 4.1) — required for chapters with R code examples
+- [R](https://cran.r-project.org/) (>= 4.1): required for chapters with R code examples
 - R packages: `knitr`, `rmarkdown`, `tidyverse`, `kableExtra`, `rcompanion`
 
 ### Render the HTML book

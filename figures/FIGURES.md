@@ -1,4 +1,4 @@
-# Figures — registry, coverage, and identified gaps
+# Figures: registry, coverage, and identified gaps
 
 Audited 2026-07-23 against `redesign/unify-2026-07`.
 
@@ -59,44 +59,44 @@ including the conceptual Parts I–III chapters that previously carried none.
 
 Priority reflects teaching value: how much the figure does work that the prose cannot.
 
-**G6 — Ch10, stratified vs simple random coverage. (CLOSED 2026-07-24 → `fig10-1-stratified-coverage.png`)**
+**G6: Ch10, stratified vs simple random coverage. (CLOSED 2026-07-24 → `fig10-1-stratified-coverage.png`)**
 The chapter argues a simple random sample is not enough and that stratification fixes it,
 then asks the reader to take it on faith. The dataset's own design is the proof: 8 anchor
 channels plus 42 stratified additions. Plot channel viewership on a log axis, mark which
 channels an SRS would likely miss, and the argument becomes visible in one glance.
 Redundant encoding: shape for anchor vs stratified, not colour alone.
 
-**G3 — Ch8, levels of measurement on one real variable. (CLOSED 2026-07-24 → `fig08-1-levels-of-measurement.png`)**
+**G3: Ch8, levels of measurement on one real variable. (CLOSED 2026-07-24 → `fig08-1-levels-of-measurement.png`)**
 Nominal/ordinal/interval/ratio is the chapter's core and the most commonly muddled idea in
 the course. Take one Twitch variable and show it rendered at each level, so the reader sees
 what information each level keeps and discards. This is a small-multiple, not a chart type.
 
-**G4 — Ch8, reliability vs validity. (CLOSED 2026-07-24 → `fig08-2-reliability-validity.png`, via `figures/schematics.R`)**
+**G4: Ch8, reliability vs validity. (CLOSED 2026-07-24 → `fig08-2-reliability-validity.png`, via `figures/schematics.R`)**
 The four-quadrant target diagram is canonical for a reason. It is a schematic rather than a
 data figure, so it does not belong in `render-all.R`; author it as a tagged SVG or a
 ggplot-drawn schematic and register it separately.
 
-**G7 — Ch11, raw message-length distribution. (CLOSED 2026-07-24 → `fig11-1-rawlen-uncapped.png`)**
+**G7: Ch11, raw message-length distribution. (CLOSED 2026-07-24 → `fig11-1-rawlen-uncapped.png`)**
 Ch12's histogram caps length at 120 characters. Nothing shows the reader *why*. The
 uncapped distribution makes the long tail obvious and justifies the capping decision
 instead of asserting it. Cheap to build: the data is already in `build_analysis()`.
 
-**G8 — Ch13, effect size and overlap. (CLOSED 2026-07-24 → `fig13-1-overlap-effect-size.png`)**
+**G8: Ch13, effect size and overlap. (CLOSED 2026-07-24 → `fig13-1-overlap-effect-size.png`)**
 The chapter has means with confidence intervals but stops there. "How big is the
 difference" deserves a figure showing the overlap between the two distributions, since a
 significant difference between heavily overlapping distributions is the single most
 misread result in student work.
 
-**G1 — Ch4, saturation curve. (CLOSED 2026-07-24 → `fig04-1-saturation.png`, illustrative)**
+**G1: Ch4, saturation curve. (CLOSED 2026-07-24 → `fig04-1-saturation.png`, illustrative)**
 "Recognizing saturation" is described narratively. A curve of new-sources-found against
 sources-read makes the flattening concrete. Illustrative data is acceptable here provided
 the alt text and caption say so plainly.
 
-**G2 — Ch7, sampling your observation. (CLOSED 2026-07-24 → `fig07-1-observation-windows.png`)**
+**G2: Ch7, sampling your observation. (CLOSED 2026-07-24 → `fig07-1-observation-windows.png`)**
 A timeline strip showing which windows a structured observation actually covers versus the
 full collection week. Low cost, moderate payoff.
 
-**G5 — Ch9, the shape of the data. (CLOSED 2026-07-24 → `fig09-1-table-shape.png`)**
+**G5: Ch9, the shape of the data. (CLOSED 2026-07-24 → `fig09-1-table-shape.png`)**
 "Looking at the data" would benefit from a compact view of the table's structure: rows,
 columns, types, missingness. Missingness in particular pays off later, since the 501 NA
 rows in `is_gaming` are a live teaching point.

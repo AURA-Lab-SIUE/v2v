@@ -6,7 +6,7 @@ tracks each: `audio/chNN-ug.mp3` (undergraduate) and `audio/chNN-grad.mp3`
 players are injected after each chapter title; `custom.scss` swaps which one
 shows on the graduate toggle (`body.show-grad-ext`).
 
-## Rendering (on a CUDA GPU host, e.g. nsf-leith RTX 3090 — ephemeral compute)
+## Rendering (on a CUDA GPU host, e.g. nsf-leith RTX 3090, ephemeral compute)
 
 Stage transiently, render, pull the audio back here, then delete the staging dir
 (nsf-leith holds no resident data):
@@ -27,7 +27,7 @@ Stage transiently, render, pull the audio back here, then delete the staging dir
   U+2192) crashes on the cp1252 Windows console otherwise.
 - `PYTHONHASHSEED=0` + an in-range `seed`: F5 writes a 64-bit seed into
   PYTHONHASHSEED before spawning a worker; the default overflows the 32-bit max.
-- torchaudio 2.x defaults to torchcodec (needs ffmpeg libs) — force
+- torchaudio 2.x defaults to torchcodec (needs ffmpeg libs), so force
   `backend="soundfile"` for WAV loads.
 - The narration parser strips `>` blockquote markers and drops the trailing
   citation line, and speaks symbols (arrows read as "to").

@@ -39,7 +39,7 @@ jobs:
       # Single site (2026-07-24): one build. The graduate extensions ship in
       # every page as .graduate-extension blocks, hidden by CSS and revealed by
       # the reader's in-page toggle (see custom.scss + _quarto.yml
-      # include-after-body). No separate grad profile render — the visitor
+      # include-after-body). No separate grad profile render; the visitor
       # chooses the edition at read time, not at build time.
       - name: Render book
         uses: quarto-dev/quarto-actions/render@v2
