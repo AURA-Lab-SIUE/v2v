@@ -75,9 +75,11 @@ If it slips badly, tell me in December and adopt something else for the spring. 
 
 Free. It is openly licensed, hosted online, and there is no edition churn and nothing for students to buy.
 
-Worth knowing if you are being pointed toward open materials: **there is no open textbook for communication research methods in any of the major catalogues.** The Open Textbook Library's Journalism, Media Studies and Communications shelf holds ten titles and none of them is a methods text; the LibreTexts communication shelf has eight categories and none of them is either. The open options that do exist are out of discipline, written for social work, criminal justice, psychology or general social science, and the best known of them draws reviewer complaints for examples that have dated badly and for having no literature review chapter at all.
+Worth knowing if you are being pointed toward open materials: the open shelf in this field is nearly bare. The Open Textbook Library's Journalism, Media Studies and Communications shelf holds ten titles and none of them is a methods text, and the LibreTexts communication shelf has eight categories and none of them is either. Most open methods texts are written for another discipline: social work, criminal justice, psychology, general social science.
 
-So the realistic choice is a commercial text at eighty to a hundred and fifty dollars, or an open one written for somebody else's field. The third edition is meant to be a third option.
+There is one open communication methods text, *Navigating Communication Research* from Mount Royal University, and it is good at what it does. It is written for media practitioners who need to read and judge research rather than produce it, so experiments and content analysis share a single chapter called "Other Methods", and there is no analysis half: no descriptive or inferential statistics, no data preparation, no visualisation, and no software instruction of any kind. A student cannot take a dataset through to a result with it.
+
+The third edition is meant to be the one that teaches doing.
 
 ## What I need from you
 
