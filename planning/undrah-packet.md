@@ -51,6 +51,8 @@ The aim is a book that supports your course rather than one that imports mine.
 
 Forty-two lecture decks already exist, about eight hundred slides, built for MC 451 and MC 501 and covering the current edition's chapters. Those transfer directly. New chapters get new decks, and the test bank and chapter outlines are being built alongside.
 
+The standard to match here is set by the better open methods texts, which ship slide sets, quiz banks, course calendars and homework to instructors on request. That is the target, and the existing decks are most of the distance.
+
 What is ready when:
 
 | | |
@@ -69,9 +71,13 @@ The risk is that the schedule slips and you begin the semester with less than pr
 
 If it slips badly, tell me in December and adopt something else for the spring. I would rather you did that than teach from a book that was not ready.
 
-## Cost
+## Cost, and what else is open
 
 Free. It is openly licensed, hosted online, and there is no edition churn and nothing for students to buy.
+
+Worth knowing if you are being pointed toward open materials: **there is no open textbook for communication research methods in any of the major catalogues.** The Open Textbook Library's Journalism, Media Studies and Communications shelf holds ten titles and none of them is a methods text; the LibreTexts communication shelf has eight categories and none of them is either. The open options that do exist are out of discipline, written for social work, criminal justice, psychology or general social science, and the best known of them draws reviewer complaints for examples that have dated badly and for having no literature review chapter at all.
+
+So the realistic choice is a commercial text at eighty to a hundred and fifty dollars, or an open one written for somebody else's field. The third edition is meant to be a third option.
 
 ## What I need from you
 
