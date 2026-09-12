@@ -10,7 +10,7 @@ project:
 book:
   title: "Beyond Vibes"
   subtitle: "From Vibes to Variables, Graduate Supplement"
-  site-url: https://grad.v2vhub.com
+  site-url: https://aura-lab-siue.github.io/v2v/grad/
   description: "Graduate edition of V2V (Vibes to Variables). Adds power analysis, pre-registration discipline, two-coder reliability planning, and an audit-trail layer on top of the undergraduate foundation, supporting a publishable white paper and a 36 by 24 inch academic conference poster. Designed for graduate research-methods courses; adoptable by any institution as an open educational resource (CC BY 4.0)."
 
 format:
