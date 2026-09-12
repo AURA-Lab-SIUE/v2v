@@ -1,0 +1,136 @@
+---
+title: "Excel Supplement, Chapter 13: Survey Research"
+---
+
+This supplement does the work of Chapter 13 in Microsoft Excel. It assumes you have read the chapter, because it explains which buttons to press and not why you are pressing them. Every number printed here was produced in Excel from the file described below, so if your screen shows something different, something has gone wrong and the difference is worth chasing.
+
+You do not need the Analysis ToolPak. Everything here is built from formulas that ship with Excel, which matters because the ToolPak is an optional add-in that many institutional installations leave switched off. If you have it and prefer it, a note at the end says where its output differs.
+
+## Getting the data in
+
+The file is `respondents.csv`, the respondent-level table described in the chapter: one row per chat sender, 1,195 of them, each with the measures computed from their messages.
+
+Do not double-click it. A CSV opened by double-click uses your system's default text encoding, and Twitch usernames contain characters that will arrive mangled. Instead:
+
+1. Open Excel to a blank workbook.
+2. **Data** ribbon, then **From Text/CSV**.
+3. Choose `respondents.csv`.
+4. In the preview, set **File Origin** to **65001: Unicode (UTF-8)**.
+5. Check that **Delimiter** reads **Comma**, then click **Load**.
+
+You should land on a sheet of 1,196 rows, one header plus 1,195 cases, with columns A through I: `sender`, `messages`, `mean_words`, `pos_rate`, `neg_rate`, `question_pct`, `shouting_pct`, `nongame_pct`, `channels`.
+
+## Building the grouping variable
+
+The chapter compares respondents who mostly chat in non-gaming channels against those who mostly chat in gaming ones. That grouping does not exist in the file yet; `nongame_pct` is a percentage, and a comparison needs a category. Column H holds the percentage, so:
+
+1. Click cell **J1** and type `group`.
+2. Click **J2** and enter:
+
+```
+=IF(H2>=50,"nongame","gaming")
+```
+
+3. Select J2, copy, then select J3 down to J1196 and paste.
+
+Now freeze it. A formula that refers to H2 will follow H2 around when you sort, and the next step sorts the table. Select **J2:J1196**, copy, then **Paste Special** and choose **Values**. The column now holds text rather than a live formula, which is what you want.
+
+## Sorting so the groups sit together
+
+This is the step that makes everything after it simple, and it is the one most Excel tutorials skip.
+
+Excel's statistical functions want a *contiguous range*: a block of cells with nothing else in it. They have no equivalent of telling the function to use only the rows where some other column says "nongame". There is a way to force it with array formulas, and it is fragile, version-dependent, and a common source of silent wrong answers. Sorting the table so each group occupies an unbroken block removes the problem entirely.
+
+1. Click any cell inside the data.
+2. **Data** ribbon, then **Sort**.
+3. Sort by **group**, A to Z. Make sure **My data has headers** is ticked.
+4. Click **OK**.
+
+Scroll down the J column and find where `gaming` becomes `nongame`. In this file the gaming block runs from row 2 to row 1105, and the non-gaming block from row 1106 to row 1196. Write those numbers down; every formula below uses them.
+
+The column of interest for the worked comparison is **G**, `shouting_pct`. So the two ranges are `G2:G1105` and `G1106:G1196`.
+
+## Describing the two groups
+
+Put labels in column L and formulas in column M, starting at row 1:
+
+| Cell | Label | Formula |
+|---|---|---|
+| M1 | n, gaming | `=COUNT(G2:G1105)` |
+| M2 | n, non-gaming | `=COUNT(G1106:G1196)` |
+| M3 | mean, gaming | `=AVERAGE(G2:G1105)` |
+| M4 | mean, non-gaming | `=AVERAGE(G1106:G1196)` |
+| M5 | SD, gaming | `=STDEV.S(G2:G1105)` |
+| M6 | SD, non-gaming | `=STDEV.S(G1106:G1196)` |
+
+You should see 1104 and 91 for the counts, means of 13.92 and 9.77, and standard deviations of 21.28 and 13.74. Use `STDEV.S` and not `STDEV.P`: the S is the sample standard deviation, which is what you want whenever your cases are a sample of something larger, which is nearly always.
+
+## Comparing the two groups
+
+Chapter 13 reports Welch's t-test, which does not assume the two groups have equal variances. Given standard deviations of 21.28 and 13.74, that assumption would be uncomfortable here, so Welch is the right default.
+
+The standard error of the difference, the t statistic, and the degrees of freedom, each in its own cell so you can see the arithmetic:
+
+| Cell | Label | Formula |
+|---|---|---|
+| M7 | SE | `=SQRT(M5^2/M1+M6^2/M2)` |
+| M8 | t | `=(M3-M4)/M7` |
+| M9 | df | `=(M5^2/M1+M6^2/M2)^2/((M5^2/M1)^2/(M1-1)+(M6^2/M2)^2/(M2-1))` |
+| M10 | p | `=T.DIST.2T(ABS(M8),M9)` |
+
+Expect SE = 1.577, t = 2.633, df = 128.67, and p = 0.0095.
+
+Excel also has a single function that returns the p-value directly:
+
+```
+=T.TEST(G2:G1105,G1106:G1196,2,3)
+```
+
+The `2` asks for a two-tailed test and the `3` asks for the unequal-variance version. It returns 0.0095, agreeing with the long route to four decimal places. The tiny remaining difference is rounding in the degrees of freedom and does not matter. Use `T.TEST` when you only need the p-value, and the long route when you need to report t and df as well, which a results section always does.
+
+## Effect size
+
+Chapter 13 argues that the p-value tells you whether a difference is detectable, not whether it is large, and that a results section needs both. Cohen's d is the standard measure and Excel has no function for it, so build it from the pooled standard deviation:
+
+| Cell | Label | Formula |
+|---|---|---|
+| M11 | pooled SD | `=SQRT(((M1-1)*M5^2+(M2-1)*M6^2)/(M1+M2-2))` |
+| M12 | Cohen's d | `=(M3-M4)/M11` |
+
+Expect a pooled SD of 20.81 and **d = 0.200**. By the conventional benchmarks that is a small effect, which is exactly the point the chapter makes: the difference is detectable and it is also slight, and the two groups overlap heavily.
+
+## Writing it up
+
+From those cells, the sentence for a results section is:
+
+> Gaming-channel respondents typed in capitals more often (M = 13.92%, SD = 21.28) than non-gaming respondents (M = 9.77%, SD = 13.74), t(128.67) = 2.63, p = .009, d = 0.20.
+
+Report the degrees of freedom to two decimals when they are fractional, which they will be under Welch. Report p to three decimals, and as p < .001 when it falls below that.
+
+## Reliability for a Likert scale
+
+The chapter builds a four-item Likert battery. When you run it and have real responses, each item becomes a column and each respondent a row, and Cronbach's alpha tests whether the four items hang together well enough to be summed.
+
+With items in columns A to D and respondents in rows 2 to n, add a total column E with `=SUM(A2:D2)` filled down, then:
+
+| Label | Formula |
+|---|---|
+| sum of item variances | `=VAR.S(A2:A200)+VAR.S(B2:B200)+VAR.S(C2:C200)+VAR.S(D2:D200)` |
+| variance of totals | `=VAR.S(E2:E200)` |
+| alpha | `=(4/3)*(1-H1/H2)` |
+
+The `4/3` is k divided by k minus 1, where k is the number of items, so a six-item scale uses `6/5`. Adjust the row numbers to your own data. Conventionally alpha above .70 is treated as acceptable for a scale you intend to sum, though Chapter 10 is the place where that convention gets the scrutiny it deserves.
+
+## What Excel will not do for you
+
+Two honest limits, so you meet them here rather than mid-analysis.
+
+Excel has no built-in effect sizes, no confidence intervals around a mean difference, and no power analysis. The first you built above in two cells. The others are constructible but tedious, and by the time you need them routinely you are better served by a tool built for statistics.
+
+Excel is also weak at keeping a record of what you did. A chapter of this book is about reproducibility, and a spreadsheet where a formula has been overwritten by a pasted value leaves no trace of the overwrite. If you work in Excel, keep the raw import on its own untouched sheet, do all derived work on separate sheets, and never edit the raw data in place. That discipline is the manual version of what the R supplement gets for free.
+
+## If you prefer the Analysis ToolPak
+
+If the ToolPak is enabled, **Data** then **Data Analysis** then **t-Test: Two-Sample Assuming Unequal Variances** produces the same test with t, df and both one- and two-tailed p-values in a labelled block. It wants the two ranges separately, which is another reason to sort first. It will not give you Cohen's d, so the two cells above are needed either way.
+
+To enable it: **File**, **Options**, **Add-ins**, set **Manage** to **Excel Add-ins**, click **Go**, tick **Analysis ToolPak**, and click **OK**. On macOS it lives under **Tools**, **Excel Add-ins**.
