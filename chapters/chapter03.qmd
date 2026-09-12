@@ -2,7 +2,7 @@
 title: "Chapter 3: Knowing and Knowing Well"
 ---
 
-::: {.chapter-audio}
+::: {.chapter-audio .content-visible unless-format="epub"}
 [Listen in Dr. Leith's voice]{.audio-label}
 
 ```{=html}

@@ -25,8 +25,10 @@ book:
   repo-url: https://github.com/AURA-Lab-SIUE/v2v
   repo-actions: [issue]
   search: true
-  # The site is the deliverable; the tagged PDF is downloadable FROM it.
-  downloads: [pdf]
+  # The site is the deliverable; the tagged PDF and the EPUB are downloadable
+  # FROM it. Both are produced by the same `quarto render` that builds the site,
+  # so a download can never be a stale copy of a newer web version.
+  downloads: [pdf, epub]
   sidebar:
     collapse-level: 1
   chapters:
@@ -138,4 +140,19 @@ format:
       y: 1in
     toc: true
     toc-depth: 2
+
+  # EPUB is for reading on a phone, an e-reader, or in a screen-reader app that
+  # handles reflowable text better than a fixed-page PDF. It deliberately
+  # carries none of the HTML block's injected scripts: the graduate-extension
+  # toggle and the scrollable-pre fix are browser behaviours, and an EPUB reader
+  # would either ignore them or choke. Reflowable text makes the pre-block
+  # problem moot anyway.
+  epub:
+    toc: true
+    toc-depth: 2
+    number-sections: false
+    # No epub-cover-image: images/cover.png does not exist and Quarto fails the
+    # build on a missing cover rather than warning. A cover is worth adding
+    # before any catalogue submission, since a coverless EPUB looks unfinished
+    # in a library listing.
     section-numbering: none
