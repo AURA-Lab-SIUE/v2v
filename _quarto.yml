@@ -151,8 +151,9 @@ format:
     toc: true
     toc-depth: 2
     number-sections: false
-    # No epub-cover-image: images/cover.png does not exist and Quarto fails the
-    # build on a missing cover rather than warning. A cover is worth adding
-    # before any catalogue submission, since a coverless EPUB looks unfinished
-    # in a library listing.
+    # Cover is generated from the book's own data by tools/cover/make_cover.py:
+    # the message-length distribution of all 35,267 messages in the chat
+    # fixture, which is the histogram a reader meets in Chapter 12. Regenerate
+    # it rather than editing the PNG by hand.
+    epub-cover-image: images/cover.png
     section-numbering: none
