@@ -1,0 +1,113 @@
+---
+title: "Chapter 13: Survey Research"
+---
+
+There is a question the chat study cannot answer, and it is worth naming precisely before this chapter begins. By this point in the book you have learned to describe what people in a livestream chat *did*: how long their messages ran, who they addressed, which channels they turned up in, how often they shouted. Not once have you learned why any of them was there. Nobody in the corpus was ever asked whether they felt part of a community, whether they had watched the streamer for two years or two minutes, or whether they would have said any of it aloud in a room. The messages are a record of behavior, complete and unprompted and entirely silent on the question of what the behavior meant to the person producing it.
+
+Surveys exist for that silence. A **survey** is a method for collecting self-reported information from a sample of people by asking them the same questions in the same way, so that their answers can be compared to one another and, under conditions this chapter will spend some time on, generalized to a population those people came from. The phrase carrying the weight is *self-reported*. A survey is the only method in this book that asks a person to look inward and tell you what is there.
+
+That is its power and it is also its problem, and you cannot use the method well without holding both.
+
+## What a survey is for
+
+The temptation with surveys is to treat them as a general-purpose instrument, the thing you reach for when you want data and have no other idea. Resist it. A survey is the right instrument for a narrow and important class of questions: questions about attitudes, beliefs, perceptions, knowledge, reported behavior, and the demographic and situational facts that let you sort respondents into meaningful groups.
+
+Consider what separates those from the questions Chapter 12 taught you to answer by watching. Whether a chat message contains a question is observable; anyone with the codebook can check. Whether the person who typed it felt ignored when nobody answered is not observable at all. No amount of careful coding recovers it, because it never entered the record. You have to ask.
+
+The same logic runs the other way, and this is the part students skip. If a fact is directly observable, asking about it is usually the worse method. Ask a hundred viewers how many hours they watched last week and you will get a hundred estimates, shaped by memory, by rounding, by whatever they wish were true. The platform already knows the answer. **Self-report is a substitute for observation, not an improvement on it**, and a study that surveys people about things it could have measured has chosen a noisier instrument for no reason.
+
+So the design question that opens every survey is not what you want to know but what you want to know that cannot be seen. For the livestreaming domain, that list is long and interesting. Whether viewers experience a stream as a social relationship or as entertainment. Whether a subscriber feels obligated to keep subscribing. What viewers believe a streamer owes them. Whether non-gaming viewers came to the platform for gaming and drifted, or arrived for something else entirely. Not one of those is recoverable from a chat log, and every one of them is answerable by asking.
+
+## The population and the frame
+
+Chapter 11 drew the distinction between a **population**, the full set of cases your conclusions are meant to describe, and a **sample**, the subset you actually examine. Surveys add a third term that sits between them and causes most of the trouble.
+
+The **sampling frame** is the list you actually draw from. It is a practical object: a roster, a subscriber list, a set of email addresses, the people who happen to be in the channel when you post a recruitment link. The frame is your operational stand-in for the population, and the distance between the two is where survey conclusions quietly fail.
+
+Suppose your population is viewers of non-gaming Twitch streams. Now build a frame. You could post a recruitment link in chat during a stream, which reaches only people watching live, excluding everyone who watches recordings and everyone who lurks without opening chat. You could recruit through a subreddit, which reaches the subset invested enough to join a forum. You could buy a panel, which reaches people who have agreed to take surveys for money. Each frame is defensible. Not one of them is the population, and each excludes a group in a way that is *systematic* rather than random: the lurkers, the casual viewers, the people who find survey panels distasteful.
+
+That systematic distance is called **coverage error**, and the reason it deserves its own name is that no sample size fixes it. A frame that omits lurkers omits them just as thoroughly at ten thousand respondents as at a hundred. The only remedies are to build a better frame or to state plainly, in the limitations section, which population your frame actually represents. The second remedy is honest and costs nothing, and it is astonishing how often studies skip it.
+
+## Writing items that mean what you think
+
+An **item** is a single question and its response options. Writing them is the part of survey research that looks easy and is not, because a question that seems perfectly clear to the person who wrote it can be read three ways by the people answering it. Four failures account for most of the damage.
+
+A **double-barreled** item asks two things and accepts one answer. The statement that a streamer is entertaining and trustworthy cannot be answered by a viewer who finds them hilarious and dishonest. Split it.
+
+A **leading** item signals the answer the researcher wants. Asking how much a viewer enjoys the sense of community in a chat has already decided that a sense of community exists and that the respondent enjoys it. Ask whether they experience one, then how they feel about it.
+
+A **loaded** item carries a term that does the arguing for you. Asking whether viewers support reasonable moderation invites agreement in a way that asking about moderation does not, because nobody is against reasonableness.
+
+**Vague quantifiers** invite incomparable answers. Asking whether someone watches streams often means something different to every respondent, and their answers cannot be compared because they are not answering the same question. Ask for a count, or a frequency with defined intervals, or a fixed time window.
+
+Run every draft item through one test: can two people who feel differently give the same answer, or two people who feel the same way give different answers? If either is true, the item is not measuring what you think it measures.
+
+## Response formats
+
+Chapter 9 taught **levels of measurement** and turned concepts into operational definitions. Response formats are where those ideas meet an actual respondent.
+
+A **Likert item** presents a statement and asks for agreement along an ordered scale, conventionally five or seven points from strongly disagree to strongly agree. Its virtue is that people find it easy, and a set of Likert items about the same underlying concept can be summed into a **scale** whose reliability you can test with the alpha statistics from Chapter 10. Two decisions matter. An odd number of points offers a midpoint, which lets genuinely neutral respondents say so and also lets uninterested ones hide; an even number forces a side. And every point should be labeled rather than just the endpoints, because unlabeled middles get interpreted inconsistently.
+
+A **semantic differential** anchors a scale between opposed adjectives and asks the respondent to place a target along it: a streamer rated between cold and warm, a channel between chaotic and orderly. It measures connotation rather than agreement, and it is the better instrument when you want the feeling a thing evokes rather than a proposition about it.
+
+**Closed-ended** items supply the options and **open-ended** items do not. Closed items are comparable and fast to analyze, and they constrain the respondent to categories you thought of in advance. Open items surface what you failed to anticipate and cost you the labor of Chapters 19 and 21 to analyze. Most instruments want mostly closed items and a small number of open ones, placed at the end.
+
+## A short instrument, built
+
+Abstract rules about item writing are easier to agree with than to apply, so build one. Suppose the research question is whether viewers of non-gaming streams experience the stream as a social relationship rather than as entertainment, which is exactly the question the chat corpus cannot touch.
+
+Start with a bad draft, because that is what a first draft is. *How much do you enjoy the strong sense of community in this channel, and would you recommend it to a friend?* That single item commits three of the four failures at once. It is double-barreled, asking about enjoyment and about recommendation. It is leading, having decided that the sense of community is strong. And it is loaded, since community is a warm word that few respondents will push back on.
+
+Now take it apart. The concept is parasocial closeness, and no single item measures a concept of that size, so the instrument needs several that approach it from different directions and can be tested for internal consistency afterward. Four Likert items, each a statement the respondent rates from strongly disagree to strongly agree with all five points labeled:
+
+I would miss this streamer if they stopped broadcasting. I feel like I know this streamer. When I watch, I feel like part of a group rather than an audience. I have friendships with other viewers of this channel.
+
+Each is a single proposition, none announces the expected answer, and none of them contains a word doing rhetorical work. Notice also that the last two separate closeness to the streamer from closeness to the other viewers, which are different things that a careless instrument would blend.
+
+Then the behavioral and situational items that let you sort respondents. How long they have watched the channel, asked as a defined interval rather than as often or rarely. Roughly how many hours in the last seven days, a bounded window people can actually recall. Whether they subscribe, and whether they have ever posted in chat, which separates the lurkers the frame discussion warned about from the people who show up in a chat log at all.
+
+Finally a single open item at the end: what keeps you coming back to this channel? It costs little, and it is where you learn what your four Likert items failed to anticipate.
+
+That is a working instrument at perhaps three minutes of respondent time, and it demonstrates the general shape. A few multi-item scales for the concepts that carry the argument, a small set of clean behavioral and demographic items for grouping, and one open question as insurance against your own blind spots.
+
+## Assembling and pretesting
+
+Order matters more than intuition suggests. Early items shape how later ones are read, an effect called **priming**, so a block of questions about toxicity will color everything that follows it. Put easy, non-threatening items first to build momentum, group related items so respondents are not switching frames constantly, and put demographics last, where fatigue does the least damage.
+
+Length matters more than anything else. Every additional minute costs you respondents, and the ones you lose are not lost at random: the busy, the bored and the marginally interested leave first, which is precisely the drift toward an unrepresentative sample you were trying to avoid.
+
+Then **pretest**. Give the instrument to five or ten people from the target population and watch them take it, ideally asking them to think aloud. You are not checking whether they can answer. You are checking whether they understand each item the way you meant it, which is a different question, and a pretest of ten people routinely catches problems that a hundred careful readings by the author did not. Pretesting is the cheapest error reduction available in this book, and it is the step most often cut.
+
+## Who answers and who does not
+
+The **response rate** is the proportion of people in your sample who complete the survey. It is reported in every credible survey study, for a reason more specific than bigger being better.
+
+**Nonresponse bias** is the distortion introduced when the people who did not answer differ systematically from the people who did. A thirty percent response rate is not a problem because seventy percent of the data is missing. It is a problem because the missing seventy percent may be disproportionately the people who found the topic uncomfortable, or who had no strong opinion, or who were not there for the thing you are asking about. The direction of the distortion is usually unknowable, which is exactly why the rate gets reported: it tells your reader how much room there is for it.
+
+Two further threats travel with self-report, and neither is fixed by sample size. **Social desirability** pushes answers toward what the respondent believes is acceptable, which is why self-reported toxicity is always lower than observed toxicity. **Satisficing** is what a tired respondent does instead of thinking: choosing the midpoint, agreeing with everything, or answering a question they did not read. Attention checks and a shorter instrument are the practical defenses.
+
+## What people say and what people do
+
+Sometimes you cannot run a survey. The population is unreachable, the budget is nothing, the semester is eleven weeks long, or the behavior you care about already happened and the people who produced it are gone. The chat corpus is all four at once: nobody in it can be recontacted, and the messages were sent in 2018.
+
+There is a partial substitute, and being precise about what it substitutes for is the whole of using it well. Behavioral traces can be reorganized into the *shape* of survey data. Take the 35,267 messages in the chat fixture, group them by the person who sent them, and compute a set of measures for each person. What you have then is a table with one row per individual and one column per variable, which is exactly the structure a completed questionnaire produces, and every technique in Part VI applies to it unchanged.
+
+The fixture holds messages from 16,866 distinct senders, but most appear once or twice, and a measure computed from two messages is noise. Restricting to senders with at least five messages leaves **1,195 cases**, each carrying a count of messages, an average message length in words, a rate of positive and negative dictionary words per thousand, the percentage of messages containing a question, the percentage typed mostly in capitals, and the percentage sent in non-gaming channels. The dictionaries are small, hand-built, and printed in the supplement in full. That matters: a student can read every word that drives a score, where a proprietary lexicon would hide exactly that.
+
+Those 1,195 rows behave like survey data in every mechanical respect. They also differ from it in one respect that no amount of computation repairs. **Not one of those measures is a self-report.** The positive-word rate is not a happiness score; it is a count of words from a list. A respondent who felt warmly and typed tersely is indistinguishable from one who felt nothing at all. Traces tell you what people did, reliably and at scale and without asking. They cannot tell you what any of it meant, and the moment a study describes a trace measure in the language of an internal state, it has claimed something its data cannot support.
+
+The honest framing, and the one to use in your own write-up, is that trace data and survey data answer adjacent questions rather than the same one. Where both are available, the interesting finding is usually the gap between them.
+
+## What the trace data can and cannot show
+
+Work the example through. Of the 1,195 respondents, 91 sent most of their messages in non-gaming channels and 1,104 in gaming channels. That imbalance is a finding about the frame rather than about people: the corpus was drawn from fifty channels weighted toward gaming, so non-gaming chatters are scarce in it by construction. A survey designed to compare those groups would have oversampled non-gaming viewers deliberately. You cannot oversample retroactively, and that constraint is worth feeling, because it is the price of not having designed the collection yourself.
+
+Compare the two groups on how often they type in capitals. Non-gaming chatters shout in 9.8 percent of their messages and gaming chatters in 13.9 percent, and the difference clears conventional significance, t(129) = -2.63, with a standardized effect size of d = -0.20. That second number deserves more attention than the first. An effect of 0.20 is small by any conventional benchmark, which is to say the two groups overlap heavily, and knowing which kind of channel someone favors tells you very little about whether they shout.
+
+Compare them on positive-word rate and the result is a near miss: 24.4 per thousand words against 18.7, t(99) = 1.20, which does not clear significance at any conventional threshold. Chapter 25 argues at length that this is not the same as showing the groups are identical. With 91 cases in the smaller group, a real difference of this size would frequently go undetected, and the correct conclusion is that the study did not settle the question rather than that there is nothing to settle.
+
+Notice what neither comparison licenses. Nothing here says non-gaming viewers are calmer people, or friendlier, or more invested in their communities. Those are claims about internal states, and what the study measured was capital letters and word lists. Getting that distinction right in a results section is the difference between a paper that survives review and one that does not.
+
+## Looking ahead
+
+Chapter 14 turns to the one design in this book that can support a causal claim, where the researcher does not merely observe variation but creates it. The survey techniques here return immediately, because most experiments measure their outcomes with exactly the items this chapter taught you to write.
