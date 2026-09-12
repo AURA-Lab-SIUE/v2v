@@ -2,7 +2,7 @@
 
 **A communication research methods textbook for MC 451, free to adopt, with an Excel supplement.**
 
-Prepared for Undrah Baasanjav, September 2026
+Prepared for Undrah, September 2026
 
 ---
 
