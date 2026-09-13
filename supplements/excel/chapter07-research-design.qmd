@@ -1,0 +1,109 @@
+---
+title: "Excel Supplement, Chapter 7: Research Design"
+---
+
+Chapter 7 argues that the unit of analysis is a design decision rather than a technical one, and that the same data rolled up to a different unit answers a different question. This supplement makes that concrete by producing the chapter's three numbers in Excel.
+
+The tool for it is the PivotTable, which is the single most useful thing Excel does for research data. A PivotTable takes a file with one row per small thing and collapses it into one row per larger thing. That is exactly the operation of changing the unit of analysis, which is why it belongs with this chapter and not with a chapter about statistics.
+
+Every number printed here was produced in Excel from the file described below.
+
+## Getting the data in
+
+The file is `message_words.csv`: one row per chat message, 35,267 of them, with three columns.
+
+1. Open Excel to a blank workbook.
+2. **Data** ribbon, then **From Text/CSV**.
+3. Choose `message_words.csv`.
+4. Set **File Origin** to **65001: Unicode (UTF-8)**, confirm **Delimiter** is **Comma**, and click **Load**.
+
+You should land on a sheet of 35,268 rows, one header plus 35,267 messages, with columns A, B, and C: `channel`, `sender`, `words`.
+
+Two notes on that third column before you use it.
+
+The word count is already computed. That is deliberate. Excel can count words only by counting the spaces in a string, and a chat message is full of emotes, punctuation runs, and repeated spaces that make the space count disagree with any sensible idea of a word. The chapter counts word-like tokens instead, using the same rule as Chapters 13 and 14, so the column arrives finished and every chapter in this book agrees about what a word is.
+
+Some messages have a word count of zero. They are real: a message consisting only of an emote has no words in it. Do not filter them out. They are part of what chat is, and dropping them would quietly raise every average on this page.
+
+## The message as the unit
+
+Start with the simplest case, where each row is already a case. In any empty cell:
+
+```
+=AVERAGE(C2:C35268)
+```
+
+That returns **4.81**. This is the average length of a message, and it is the right number if your claim is about messages.
+
+## The sender as the unit
+
+Now the same measure with people as the cases. Averaging column C again will not do it, because a person who posted four hundred times would contribute four hundred times as much as a person who posted once. You need each person to contribute one number.
+
+1. Click any cell inside the data.
+2. **Insert** ribbon, then **PivotTable**.
+3. Accept the range Excel proposes, choose **New Worksheet**, and click **OK**.
+4. In the field list, drag **sender** into **Rows**.
+5. Drag **words** into **Values**.
+6. The Values box will read **Sum of words**. Click it, choose **Value Field Settings**, select **Average**, and click **OK**.
+
+You now have 16,866 rows, one per sender, each holding that sender's average message length. This is a new dataset at a new unit of analysis, and everything Chapter 7 says about matching the unit to the claim now applies to it.
+
+**Before you average it, turn the grand total off.** On the **Design** ribbon, click **Grand Totals**, then **Off for Rows and Columns**.
+
+That step is not cosmetic, and it is the reason this supplement exists in the form it does. A PivotTable puts a Grand Total row at the bottom of its own output, holding the message-level average of 4.81. If you leave it there and select the whole column of results, Excel averages 16,867 numbers instead of 16,866, and one of them is a number of a completely different kind. At the sender level the damage is invisible, a change in the fifth decimal. At the channel level, where there are only 50 real rows, it moves the answer from 4.97 to 4.96.
+
+Nothing on screen warns you. The formula looks right, the range looks right, and the number is wrong. This is the characteristic way spreadsheet analyses fail, and the defense is the habit of checking that the number of rows you are averaging is the number of cases you think you have.
+
+With grand totals off, average the pivot's results column. If the averages run from B4 to B16869, that is:
+
+```
+=AVERAGE(B4:B16869)
+```
+
+Check the row count before you trust it:
+
+```
+=COUNT(B4:B16869)
+```
+
+It must read **16866**. If it reads 16867, the grand total is still there.
+
+The average is **4.22**.
+
+## The channel as the unit
+
+Same procedure, one field changed.
+
+1. Build a second PivotTable, again on a new worksheet.
+2. Drag **channel** into **Rows** and **words** into **Values**, set to **Average**.
+3. **Design**, **Grand Totals**, **Off for Rows and Columns**.
+
+Fifty rows this time, one per channel. Average them the same way, and confirm with `COUNT` that you are averaging 50 numbers.
+
+The average is **4.97**.
+
+## The three answers together
+
+| Unit of analysis | n | Mean words |
+|---|---|---|
+| Message | 35,267 | 4.81 |
+| Sender | 16,866 | 4.22 |
+| Channel | 50 | 4.97 |
+
+One file, one measure, three numbers, and no arithmetic error anywhere. The chapter explains why they differ. What the spreadsheet adds is the scale of the difference: the gap between the message answer and the sender answer is more than half a word, which is larger than most of the effects this book goes on to test.
+
+The n column is worth as much attention as the mean column. Moving from messages to channels drops you from 35,267 cases to 50. That is not a loss of data; the same data are still there. It is an honest statement of how many independent things you actually have to reason about, and Chapter 14 is where the consequences of getting that wrong show up in a test statistic.
+
+## Two more things a PivotTable will tell you
+
+While the sender pivot is open, drag **words** into **Values** a second time and set this copy to **Count**. Each row now shows how many messages that sender wrote alongside their average. Sort by the count, largest first, by clicking a cell in that column and using **Data**, then **Sort Largest to Smallest**.
+
+This is how the chapter's claim about the distribution was checked, and it is worth seeing yourself: most senders wrote once. A design that treats senders as cases is therefore mostly a design about people who said one thing, and whether that is a feature or a problem depends entirely on the question you asked.
+
+You can also put **channel** into **Filters** at the top of the field list, which lets you recompute any of this for one channel at a time. That is the beginning of the relational question in Chapter 7's worked example: not what the average is, but whether it differs across contexts.
+
+## What Excel will not do for you
+
+A PivotTable aggregates and it does not test. It will tell you that the channel-level mean is 4.97 and it will not tell you whether that differs from anything, which needs the tools in the Chapter 13 and Chapter 14 supplements.
+
+It also breaks the link between your result and how you got it. A pivot is a live object that changes when the underlying data change and leaves no record of the choices you made in building it, so a workbook returned to in six weeks will not tell you whether grand totals were on. Write down the procedure alongside the result, or keep a sheet in the workbook that says in plain language what each pivot is and what unit it represents. That is the manual version of the reproducibility argument the book makes elsewhere, and this chapter is the one where the cost of skipping it is easiest to demonstrate.
