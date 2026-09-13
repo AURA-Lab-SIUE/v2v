@@ -2,7 +2,7 @@
 title: "Chapter 5: Theory as a Lens"
 ---
 
-::: {.chapter-audio}
+::: {.chapter-audio .content-visible unless-format="epub"}
 [Listen in Dr. Leith's voice]{.audio-label}
 
 ```{=html}

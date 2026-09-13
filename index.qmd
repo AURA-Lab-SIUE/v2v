@@ -13,7 +13,7 @@ V2V is a methods package, not a textbook with bonuses. The book you are reading 
 - **The book** (this site): chapter prose anchored to a real, public dataset.
 - **V2V Hub**: the course site that wraps this book with workbooks, cheat sheets, datasets, references, and instructor materials.
 - **`v2v` R package**: friction-reducing helpers that make chapter exercises one-line calls instead of multi-step setup.
-- **Beyond Vibes**: the graduate supplement, paired with MC 500, that produces a publishable white paper and conference poster.
+- **Beyond Vibes**: the graduate supplement, paired with MC 501, that produces a publishable white paper and conference poster.
 
 ## How This Book Works
 
@@ -26,14 +26,16 @@ The book is organized into 14 chapters across five parts that mirror the phases 
 5. **Inference and Publication** (Chapters 13 to 14): Hypothesis testing with effect sizes, then a one-click reproducible portfolio rendered to GitHub Pages.
 
 ::: {.callout-note}
-## V2V 3rd Edition: in development
+## V2V 3rd Edition
 
-This third edition is a structural rewrite of the second edition: 22 chapters condensed to 14, R deferred to Chapter 9 (so the first eight chapters build conceptual scaffolding before any code), and every example anchored in the Twitch working corpus rather than four separate datasets. **Chapters 1 through 6 are drafted; chapters 7 through 14 are stubs at this release** and will land progressively through Summer and Fall 2026. The V2V 2nd Edition (22 chapters, music dataset) remains available at the `_archive-v2/` folder in this repository as a transitional reference.
+This third edition is a structural rewrite of the second edition: 22 chapters condensed to 14, R deferred to Chapter 9 (so the first eight chapters build conceptual scaffolding before any code), and every example anchored in the Twitch working corpus rather than four separate datasets. **All fourteen chapters are drafted.** The V2V 2nd Edition (22 chapters, music dataset) remains available at the `_archive-v2/` folder in this repository as a transitional reference.
+
+A fourth edition is in progress for Spring 2027. It widens the book from one method to a survey of the methods a research methods course carries, and moves the tool instruction out of the chapters into separate Excel, SPSS and R supplements so the text can be taught in any of them.
 :::
 
 ## The Dataset
 
-V2V 3rd Edition anchors all examples in the **Twitch working corpus**, a 1.6 GB PostgreSQL dump from a 2018 dissertation: two tables (`chat_log` for IRC messages, `stream_log` for Twitch API snapshots) covering nearly 1,700 channels across five and a half days of public broadcasting. The `v2v` R package ships row-sampled fixtures so students never touch the full dump:
+V2V 3rd Edition anchors all examples in the **Twitch working corpus**, a 1.6 GB PostgreSQL dump from a 2018 dissertation: two tables (`chat_log` for IRC messages, `stream_log` for Twitch API snapshots) covering nearly 1,700 channels across 5.85 days of public broadcasting. The `v2v` R package ships row-sampled fixtures so students never touch the full dump:
 
 ```r
 library(v2v)
@@ -49,4 +51,4 @@ This work is licensed under a [Creative Commons Attribution 4.0 International Li
 
 **Author:** Alex P. Leith, Southern Illinois University Edwardsville
 
-**Courses:** MC 451 Social Media Analytics (undergraduate); MC 500 + MC 501 Research Methods (graduate, via the *Beyond Vibes* supplement)
+**Courses:** MC 451 Research Methods in Mass Media (undergraduate); MC 501 Research Methods for Mass Communications (graduate, via the *Beyond Vibes* supplement)

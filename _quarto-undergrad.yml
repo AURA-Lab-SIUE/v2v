@@ -10,7 +10,10 @@ project:
 book:
   title: "Vibes to Variables"
   subtitle: "Undergraduate Edition"
-  site-url: https://undergrad.v2vhub.com
+  # SUPERSEDED 2026-07-24: the build collapsed to ONE site whose graduate
+  # extensions are revealed by a read-time toggle, so this profile is never
+  # rendered. Kept only as a record. The live book is the URL below.
+  site-url: https://aura-lab.siue.edu/v2v/
   description: "Undergraduate edition of V2V (Vibes to Variables). Aligned to a one-semester content analysis study delivered as a white paper. Designed for undergraduate research-methods courses in communication and media studies; adoptable by any institution as an open educational resource (CC BY 4.0)."
 
 format:
