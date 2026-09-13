@@ -93,11 +93,10 @@ for line in ("A Methods Package for Students",
 d.text((110, base_y + 92), "ALEX P. LEITH", font=meta, fill=INK)
 d.text((110, base_y + 158), "THIRD EDITION", font=small, fill=RED)
 
-cap = font("Newsreader", 34)
-d.text((right, base_y + 96), "message length, 35,267 messages", font=cap, fill=MUTED,
-       anchor="ra")
-d.text((right, base_y + 146), "Twitch chat corpus, November 2018", font=cap, fill=MUTED,
-       anchor="ra")
+# The figure caption used to sit here, bottom right. It moved to an "About the
+# cover" note in the front matter (index.qmd, hidden from HTML), because a cover
+# should carry the work's identity and not its methods note. The note reaches
+# both downloads and stays off the website, which has no cover.
 
 out = HERE / "cover.png"
 img.save(out, "PNG")

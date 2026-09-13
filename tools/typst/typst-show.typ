@@ -63,6 +63,24 @@
     $for(by-author)$$it.name.literal$$sep$, $endfor$
   ]
   #v(1fr)
+  // About-the-cover note. It lives here rather than on the cover itself: a
+  // cover should carry the work's identity, not its methods note. Written in
+  // the partial rather than in index.qmd because Quarto's conditional-content
+  // divs do not process in that file, so a `when-format` block leaked its raw
+  // `:::` markers onto the website.
+  #block(width: 78%)[
+    #set text(font: ("Newsreader",), size: 0.88em, fill: rgb("#6B6357"))
+    #set par(justify: false, leading: 0.62em)
+    *About the cover.* The shape on the front is real data from this book: the
+    distribution of message lengths across all 35,267 messages in the Twitch
+    chat corpus of November 2018, counted in words. A tall bar at one word falls
+    away into a long tail running out past a hundred. You meet the same
+    distribution again in Chapter 12, drawn properly and read carefully. It is
+    on the cover because it is the honest shape of the thing this book is about:
+    most of what people say in a livestream chat is very short, and a method
+    that assumes otherwise will mislead you.
+  ]
+  #v(1.4em)
   #block[
     #set text(font: ("Newsreader",), size: 0.92em, fill: rgb("#6B6357"))
     Third Edition
