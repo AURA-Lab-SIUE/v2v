@@ -1,0 +1,147 @@
+---
+title: "Chapter 14: Experimental Design"
+---
+
+Every method in this book so far has watched. Content analysis reads what people already said, surveys ask people to report on themselves, and both take the world as they find it. This chapter is about the one design that does not take the world as it finds it. In an experiment the researcher reaches in, changes something on purpose, and watches what happens next.
+
+That reach is the whole difference, and it buys a claim no amount of careful observation can buy. Every other design in this book can establish that two things occur together. An experiment, done properly, can establish that one of them *caused* the other.
+
+It is also the design this book's corpus cannot support, and being exact about why is most of the work here. By the end of the chapter you will know what an experiment requires, what it would take to run one on a question about livestreaming, and what the archive can offer instead, which turns out to be more than nothing and considerably less than an experiment.
+
+## The three requirements
+
+An experiment needs three things at once. Drop any one and the causal claim goes with it.
+
+**Manipulation.** The researcher controls the thing being tested rather than waiting for it to vary. If you want to know whether a streamer's tone changes how viewers talk, you do not find streamers who happen to differ in tone. You decide, for each session, which tone will be used.
+
+The thing you manipulate is the **independent variable**, and the values you set it to are **conditions**. The thing you measure afterward is the **dependent variable**, which for the questions in this book usually means something about what viewers said or did. Chapter 9 is where those become measurable; this chapter assumes you have already done that work, because an experiment with a badly operationalized outcome measures nothing precisely.
+
+**Control.** Everything other than the manipulation is held as constant as you can make it. Same platform, same time of day, same stream length, same game, same overlay. Anything you cannot hold constant is a rival explanation waiting for a reviewer to find.
+
+**Random assignment.** Each participant is assigned to a condition by chance, and by nothing else. This is the requirement most often confused with random *sampling*, and they solve different problems. Chapter 11 covered random sampling, which is about whether your sample resembles the population, and therefore about generalizing outward. Random assignment is about whether your groups resemble each other *before* the manipulation, and therefore about attributing the difference afterward.
+
+## Why random assignment is the engine
+
+It is worth being slow here, because this single idea is what separates an experiment from everything else.
+
+Suppose you compare two groups of viewers and find that one group asked more questions. To say the manipulation caused it, you have to rule out the possibility that those people were already different: more talkative, more invested, more awake, more familiar with the streamer. There are hundreds of such variables and you cannot measure them all, let alone match on them.
+
+Random assignment handles all of them at once, including the ones you never thought of. If people are assigned by coin flip, then any pre-existing difference has the same chance of landing in either group, so on average the groups start equivalent on *everything*. Not exactly equivalent in any one study, which is why sample size still matters, but equivalent in expectation.
+
+That is the trick, and nothing else in this book does it. A survey can measure covariates and adjust for them statistically, which helps with the variables you thought to measure and does nothing for the rest. Only random assignment balances the unknown.
+
+## Between-subjects and within-subjects
+
+In a **between-subjects** design each participant experiences one condition, and you compare across people. It is the default, and its cost is that differences between people add noise to the comparison.
+
+In a **within-subjects** design each participant experiences every condition, and you compare each person against themselves. That removes person-level noise and needs far fewer participants for the same precision. Its cost is **order effects**: having seen the first condition changes how someone responds to the second, through practice, fatigue, or simply guessing what the study is about. The standard defense is **counterbalancing**, varying the order across participants so that order effects cancel rather than accumulate.
+
+For livestream research the choice is often forced. If the manipulation is something a viewer would notice being repeated, such as a streamer's tone shifting back and forth within a session, within-subjects will not survive the participant working out the design.
+
+## The designs you will actually see
+
+Four arrangements cover most published experiments, and they are worth recognizing by name because reviewers and textbooks refer to them as shorthand.
+
+The **posttest-only control group design** is the simplest honest experiment. Assign at random, manipulate, measure once. Because randomization did the work of making the groups equivalent, you do not need a pretest to prove it, and this design is the default for good reason.
+
+The **pretest-posttest control group design** measures everyone before the manipulation as well as after. It buys two things: a check that randomization worked, and more precision, since each participant's change can be measured against their own starting point. It costs one thing, which is that taking the pretest can itself change how people respond to the manipulation. Asking viewers to rate a streamer's warmth before they watch teaches them what the study is about.
+
+The **factorial design** manipulates more than one variable at once. A 2 x 2 crosses two independent variables with two conditions each, producing four groups. It is more efficient than running two separate experiments, and it answers a question neither of them could: whether the effect of one variable depends on the level of the other. That dependence is an **interaction**, and it is often the most interesting result in the study. If naming individual chatters increases replies on a small stream and decreases them on a large one, the main effect of naming may be near zero while the real finding sits in the interaction.
+
+The **quasi-experimental variants** keep the structure and drop the randomization, which is the next section but one.
+
+A design gets written in a compact notation you will meet in older sources: R for random assignment, X for the manipulation, O for an observation. The pretest-posttest control group design is two rows, R O X O above R O O. It is worth being able to read, because it makes the logic of a design visible in one line.
+
+## Manipulation checks, pilots, and power
+
+Three practical steps separate an experiment that works from one that merely ran.
+
+A **manipulation check** is a measure confirming that the independent variable did what you intended. If the warm condition was not perceived as warmer, a null result tells you nothing about warmth; it tells you your manipulation failed. The check is usually a short item administered after the dependent measures, so it does not cue the participant early.
+
+A **pilot** runs the whole procedure on a handful of people before the real study. It is where you discover that the video buffers, that the instructions are ambiguous, and that nobody understood question 7. Piloting is the cheapest error correction in research, and it is the step most often skipped under deadline.
+
+**Power** is the probability that your study detects an effect that is really there. It depends on the size of the effect, the variability of the measure, and the number of participants, and it is decided before data collection rather than discovered afterward. An underpowered experiment is not a small contribution to knowledge; it is a study that will probably fail to find a real effect and that cannot distinguish that failure from evidence of no effect. Chapter 25 returns to this when it separates a non-significant result from a demonstration of no difference.
+
+## The ethics of doing something to people
+
+Every other design in this book observes. An experiment acts on participants, which raises obligations the observational chapters do not.
+
+**Informed consent** has to describe the procedure well enough for a reasonable person to decide, and in an experiment that description is complicated by the fact that telling people the hypothesis can destroy the study.
+
+**Deception**, where a study misrepresents its purpose or procedure, is permitted in some research and always requires justification: no less deceptive method would answer the question, the risk is minimal, and participants are told the truth afterward. That telling afterward is **debriefing**, and it is not optional. It explains what was withheld and why, and offers the participant the chance to withdraw their data.
+
+Manipulations that could plausibly harm, such as exposing viewers to harassment to see how they respond, face a much higher bar and often should simply not be run. Chapter 3 covers the review process and the standards; the point here is that the power to intervene is exactly what makes experimental ethics stricter than observational ethics.
+
+## Internal validity, and the things that threaten it
+
+**Internal validity** is the degree to which a study supports the causal claim it makes about its own participants. An experiment is the design that maximizes it, and there are standard ways to lose it anyway.
+
+**History**: something happens during the study that affects one group and not the other. A platform outage during the evening session is a history threat.
+
+**Maturation**: participants change over the course of the study for reasons internal to them. In a two-hour session they get tired, and if one condition ran longer, tiredness is confounded with condition.
+
+**Selection**: the groups differed before the manipulation. This is exactly what random assignment prevents, and exactly what is waiting for you if you abandon it.
+
+**Attrition**: participants drop out, and they do not drop out at random. If the dull condition loses its least patient participants, the survivors make it look better than it was.
+
+**Instrumentation**: the measure itself drifts. Human coders get better or more lenient over a long coding session, which is why Chapter 10's reliability checks are run across the whole period rather than at the start.
+
+**Demand characteristics**: participants work out what you are hoping for and oblige. The defense is to keep participants unaware of condition and, where possible, to keep the person running the session unaware too.
+
+## External validity, and the trade
+
+**External validity** is whether the finding holds outside the study: other people, other settings, other times. Experiments are strong on internal validity and frequently weak here, and the weakness is structural rather than careless.
+
+The control that makes an experiment interpretable is exactly what makes it artificial. A viewer watching an assigned stream in a lab for twenty minutes, knowing they are in a study, is not doing the thing you actually care about, which is watching a streamer they chose, for hours, because they wanted to. You bought a clean causal claim and paid for it in realism.
+
+Neither validity is superior. They answer different questions, and a literature needs both: experiments to establish that an effect can occur, observational work to establish that it does occur in the wild. That is a good reason to read Chapter 12 and this chapter as partners rather than rivals.
+
+**Statistical conclusion validity** is the third kind worth naming: whether the statistical claim about the data is right. An underpowered test, a violated assumption, or a fishing expedition through twenty outcomes until one reaches significance all break it without touching the design. It is the validity most often lost at the analysis stage rather than the design stage, which is why Chapter 6 asks for the analysis to be specified in advance.
+
+## What an experiment on this book's question would look like
+
+Concretely, because the abstraction is easy to nod along to.
+
+Say the question is whether a streamer addressing chat by name changes how viewers talk to each other. The independent variable is direct address, with two conditions: a streamer who names individual chatters, and one who speaks to the room. Participants are recruited, randomly assigned, and each watches a twenty-minute segment prepared so that the two versions differ in that respect and nothing else. The dependent variables are drawn from Chapter 9: message length, proportion of messages addressed to other viewers rather than the streamer, and question rate.
+
+Notice what that design requires which the archive cannot give you. A prepared stimulus that differs in exactly one respect. Participants who can be assigned. And consent, which Chapter 3 established you cannot obtain retroactively from people who chatted in 2018.
+
+## When you cannot randomize
+
+Most communication research cannot randomize, because the interesting variables are not ethically or practically assignable. You cannot randomly assign someone to be harassed, to be a moderator, or to have watched a streamer for six years.
+
+Two designs fill the gap, and the distinction between them matters.
+
+A **quasi-experiment** has a manipulation and conditions but no random assignment. Groups are formed by something other than chance, which means selection is back on the table as a rival explanation and has to be argued away rather than designed away.
+
+A **natural experiment** has neither manipulation by the researcher nor random assignment, but something in the world produces a change that resembles one. A platform changes a policy, a channel goes offline, a streamer switches what they are doing. The researcher did not cause it, and can still compare before against after.
+
+Both are weaker than an experiment and both are far stronger than comparing two groups that differ in unknown ways. What makes either credible is the argument that the change was, in the relevant sense, not caused by the thing you are measuring.
+
+## A natural experiment in the corpus
+
+The stream records make one available. Streamers change category during a session: they stop playing and start talking, or the reverse. That change has a timestamp, the researcher had nothing to do with it, and chat continues on either side of it. It is a real intervention with a known moment, which is exactly the shape a natural experiment needs.
+
+Across the fifty channels there are **54 category switches into or out of Just Chatting**. Comparing chat in a symmetric 45-minute window either side, and requiring at least fifteen messages on both sides so the measures are not noise, leaves **17 usable events across seven channels**.
+
+The result is consistent. After a switch, messages get shorter by about a word: a mean change of **-1.08 words**, SD 1.54, which against zero gives t(16) = -2.89, p = .011, and a standardized effect of d = -0.70. Question rate and shouting show nothing: -0.63 and -1.53 percentage points, p = .62 and p = .39.
+
+Now the part that matters more than the result. Those seventeen events are not seventeen independent observations. Five of them come from a single channel, and one streamer's audience behaving one way is one fact, not five. Treating them as independent inflates the apparent precision, which is a mistake this book would rather you catch here than in review.
+
+Averaging within channel first and testing across the seven channels gives **M = -1.07 words, SD 1.02, t(6) = -2.77, p = .032, d = -1.05**. The effect survives, the degrees of freedom collapse from 16 to 6, and the standardized effect gets *larger* rather than smaller, because averaging removed noise within channels. Both analyses are defensible and the clustered one is the honest one, because it matches the level at which the data are actually independent.
+
+## What this design cannot license
+
+It is a real finding and it is not a causal claim of the kind an experiment would support. Three reasons, each worth being able to state.
+
+The switch was not assigned. Streamers choose when to stop playing and start talking, and that choice is not random: it follows a match ending, a lull, an audience mood. Whatever prompted the switch may be what changed the chat.
+
+The window contains more than the switch. Forty-five minutes either side of a change includes audience turnover, time of day, and whatever else the streamer did. A confound does not have to be exotic to be fatal.
+
+And the window length is a choice. Forty-five minutes was picked because it leaves enough messages to measure; a different window would give different numbers. Chapter 6's insistence that a hypothesis is committed to before the data are examined applies directly here, and the honest move is to fix the window in advance and report what other windows show.
+
+So the defensible sentence is that chat messages were shorter after a category change in this corpus, that the pattern held across seven channels, and that the design cannot separate the change itself from what prompted it. That sentence is worth more than a stronger one that will not survive a reviewer.
+
+## Looking ahead
+
+Chapter 15 turns to the data that already exists: archives, platform records, and the material other researchers have left behind. That is where this chapter's compromise becomes a method in its own right, with its own rules for what secondary data can and cannot be asked.
