@@ -4,33 +4,33 @@ title: "Vibes to Variables, fourth edition"
 
 # Vibes to Variables, fourth edition
 
-**A free research methods textbook for MC 451, with the course already built around it.**
+**A free research methods textbook for MC 451, written to be taught in whichever tool you choose.**
 
 Prepared for Undrah, September 2026
 
-## What you would get
+## What it is
 
-Not just a book. The course that goes with it, already built and already taught:
+A survey of the methods a 451 course carries: research design, surveys, experiments, content analysis, interviewing, focus groups, ethnography, qualitative analysis and mixed methods. I checked the current edition against ten standard texts across thirty-seven topics to decide what was missing.
 
-- **The textbook.** Fourteen chapters today, free and openly licensed, online at aura-lab-siue.github.io/v2v. Nothing for students to buy.
-- **Forty-two lecture decks**, 796 slides, built and delivered for MC 451 and MC 501.
-- **The full assignment sequence**, five phases from literature review to a published white paper, with submission instructions written for students.
-- **A syllabus** you can adopt or edit rather than write.
+The tool instruction sits in a separate supplement. The book teaches what to do and why; the supplement teaches which buttons. Hand your students the Excel supplement and it is an Excel book.
 
-## What changes in the fourth edition
+This is not the edition online today. That one is mine: one method end to end, in R, built around how I run the course. The fourth is written for somebody else to teach.
 
-The current edition teaches one method, content analysis, and teaches it in R. That is a narrow book that asks you to teach a language.
+## What you would have in January
 
-The fourth edition fixes both. It covers the full range a 451 course carries: research design, surveys, experiments, interviewing, focus groups, ethnography, qualitative analysis and mixed methods. I checked it against ten standard texts across thirty-seven topics to decide what was missing.
+- **The textbook.** Free and openly licensed, online, nothing for students to buy.
+- **A supplement in your tool.** Excel is being written first; SPSS and R follow.
+- **Lecture decks** for the full book.
+- **Assignments** in three shapes, so you can run one project across the term, survey the methods broadly, or teach to a midterm and final.
+- **A syllabus** for whichever of those you pick.
+- **A test bank and chapter outlines.**
 
-And the tool instruction moves into a separate supplement. The book teaches what to do and why; the supplement teaches which buttons. Hand your students the Excel supplement and it is an Excel book. Excel is first, with four sections drafted; SPSS and R follow.
+## Why that date is realistic
 
-## What it asks of you
+The current edition already ships all of it for my course: fourteen chapters, forty-two decks and 796 slides, a five-phase assignment sequence, a syllabus. The materials are being re-scoped, not invented, and fifteen of those decks are already tool-free.
 
-Four new chapters and their Excel sections are drafted now. The rest are drafted by the end of November and edited through December, with new decks, a test bank and chapter outlines built in January. I am on sabbatical in the spring, which is what makes that schedule real rather than hopeful.
-
-If it slips, tell me in December and adopt something else.
+Four new chapters and their Excel sections are drafted now. The rest follow by the end of November, edited through December, with teaching materials in January. I am on sabbatical in the spring, which makes that schedule real rather than hopeful. If it slips, tell me in December and adopt something else.
 
 ## The one thing I need
 
-**Which tool would you want to teach in?** Excel is first, but that is not locked, and knowing now changes what gets built before January. Happy to send samples or the full contents if useful.
+**Which tool would you want to teach in?** Excel is first, but that is not locked, and knowing now changes what gets built before January. Happy to send sample chapters if useful.
