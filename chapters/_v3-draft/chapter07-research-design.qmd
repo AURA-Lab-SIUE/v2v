@@ -34,7 +34,7 @@ Most confusion about design comes from asking a causal question and then buildin
 
 ## What a causal claim requires
 
-Three conditions have to hold before you may say that X causes Y, and they are worth memorizing because they are the checklist a reviewer will run.
+Three conditions have to hold before you may say that X causes Y, and they are worth memorizing because they are the checklist a reviewer will run (Babbie, 2021; Shadish, Cook, & Campbell, 2002).
 
 **Covariation.** X and Y have to actually vary together. If the outcome is the same whatever X does, there is nothing to explain.
 
@@ -60,11 +60,11 @@ So the rule is not that one unit is correct. The rule is that **the unit has to 
 
 Two named errors come from mismatching the unit to the claim, and they are mirror images.
 
-The **ecological fallacy** is concluding something about individuals from data about groups. If channels with more non-gaming content have shorter messages on average, it does not follow that any given viewer types shorter messages when watching non-gaming content. The relationship holds between channels; the claim was about people.
+The **ecological fallacy** is concluding something about individuals from data about groups. Robinson (1950) is the paper that named the problem, and its demonstration is worth carrying with you: a correlation computed from group averages can differ from the same correlation computed from individuals not only in size but in sign, so the group-level result can point the opposite way to the truth about people. If channels with more non-gaming content have shorter messages on average, it does not follow that any given viewer types shorter messages when watching non-gaming content. The relationship holds between channels; the claim was about people.
 
 The **individualistic fallacy** is the reverse, concluding something about groups from data about individuals. That the average viewer behaves one way tells you less than you would think about how a chat room behaves collectively, because a chat room is an interaction and not a sum.
 
-There is also a quieter problem that is not a fallacy but a statistical fact, and it will return in Chapter 14. When cases are **nested**, meaning each one belongs to a larger group, cases within the same group resemble each other more than they resemble cases elsewhere. Messages from one channel are not independent of each other. Pretending they are makes your evidence look stronger than it is: the standard error of the mean message length is 0.036 words at the message level and 0.355 words at the channel level, a difference of roughly ten times, and the second is the honest one if the claim is about channels. Noticing nesting at the design stage is much cheaper than discovering it at the analysis stage.
+There is also a quieter problem that is not a fallacy but a statistical fact, and it will return in Chapter 14. When cases are **nested**, meaning each one belongs to a larger group, cases within the same group resemble each other more than they resemble cases elsewhere. Messages from one channel are not independent of each other. Pretending they are makes your evidence look stronger than it is, and Kenny and Judd (1986) show precisely how much stronger: the standard error of the mean message length is 0.036 words at the message level and 0.355 words at the channel level, a difference of roughly ten times, and the second is the honest one if the claim is about channels. Noticing nesting at the design stage is much cheaper than discovering it at the analysis stage.
 
 ## Timing
 
@@ -76,7 +76,7 @@ A **trend** study asks the same question of a fresh sample each time, so it trac
 
 A **panel** study follows the same individuals across waves, which is what you need to say that a change happened *within* people rather than in the population average. It is the strongest of the three and the most fragile, because participants drop out and the ones who remain are not a random remainder.
 
-A **cohort** study follows a group defined by a shared starting point, such as everyone who began streaming in a particular year, through a fresh sample of that group at each wave.
+A **cohort** study follows a group defined by a shared starting point, such as everyone who began streaming in a particular year, through a fresh sample of that group at each wave. Babbie (2021) is the standard treatment of all three.
 
 The corpus this book uses spans a bounded window of late 2018, which makes it cross-sectional for most purposes, with the partial exception exploited in Chapter 14, where a change that happens partway through gives a before and an after.
 
@@ -88,7 +88,7 @@ This choice is frequently presented as a matter of temperament, and it is better
 
 **Qualitative** designs record things as language, observation, and meaning across fewer cases studied more deeply. They are what you want when the question is what something means to people, how a process unfolds, or what categories even exist in a setting nobody has described yet. Part IV covers them properly.
 
-**Mixed methods** designs use both, deliberately and in a stated order. Qualitative work first can define the categories that a quantitative instrument then measures at scale. Quantitative work first can identify the pattern that qualitative work then explains. What makes a design mixed rather than merely two studies stapled together is that the two parts were planned to inform each other, and Chapter 26 is where that planning gets its own treatment.
+**Mixed methods** designs use both, deliberately and in a stated order (Creswell & Plano Clark, 2018). Qualitative work first can define the categories that a quantitative instrument then measures at scale. Quantitative work first can identify the pattern that qualitative work then explains. What makes a design mixed rather than merely two studies stapled together is that the two parts were planned to inform each other, and Chapter 26 is where that planning gets its own treatment.
 
 Neither family is the rigorous one. Both have standards, both can be done badly, and the standards are different, which is why Chapter 2's discussion of paradigms comes before this chapter rather than after it.
 
@@ -140,3 +140,15 @@ One topic, three legitimate studies, three different units, three different ceil
 ## Looking ahead
 
 Chapter 8 takes the design you have chosen and starts turning its concepts into things that can actually be recorded, which is the step where a plan meets the awkward specifics of the world.
+
+## References
+
+Babbie, E. R. (2021). *The practice of social research* (15th ed.). Cengage Learning.
+
+Creswell, J. W., & Plano Clark, V. L. (2018). *Designing and conducting mixed methods research* (3rd ed.). SAGE Publications.
+
+Kenny, D. A., & Judd, C. M. (1986). Consequences of violating the independence assumption in analysis of variance. *Psychological Bulletin*, *99*(3), 422-431. https://doi.org/10.1037/0033-2909.99.3.422
+
+Robinson, W. S. (1950). Ecological correlations and the behavior of individuals. *American Sociological Review*, *15*(3), 351-357. https://doi.org/10.2307/2087176
+
+Shadish, W. R., Cook, T. D., & Campbell, D. T. (2002). *Experimental and quasi-experimental designs for generalized causal inference*. Houghton Mifflin.

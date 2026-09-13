@@ -46,11 +46,13 @@ The **posttest-only control group design** is the simplest honest experiment. As
 
 The **pretest-posttest control group design** measures everyone before the manipulation as well as after. It buys two things: a check that randomization worked, and more precision, since each participant's change can be measured against their own starting point. It costs one thing, which is that taking the pretest can itself change how people respond to the manipulation. Asking viewers to rate a streamer's warmth before they watch teaches them what the study is about.
 
+If that worry is the whole point of the study, the **Solomon four-group design** crosses the two: half the participants take a pretest and half do not, so the effect of the pretest itself becomes measurable rather than assumed (Solomon, 1949). It costs twice the participants, which is why it is admired more often than it is run.
+
 The **factorial design** manipulates more than one variable at once. A 2 x 2 crosses two independent variables with two conditions each, producing four groups. It is more efficient than running two separate experiments, and it answers a question neither of them could: whether the effect of one variable depends on the level of the other. That dependence is an **interaction**, and it is often the most interesting result in the study. If naming individual chatters increases replies on a small stream and decreases them on a large one, the main effect of naming may be near zero while the real finding sits in the interaction.
 
 The **quasi-experimental variants** keep the structure and drop the randomization. They are what you fall back on when assignment is impossible, and they get their own treatment later in the chapter.
 
-A design gets written in a compact notation you will meet in older sources: R for random assignment, X for the manipulation, O for an observation. The pretest-posttest control group design is two rows, R O X O above R O O. It is worth being able to read, because it makes the logic of a design visible in one line.
+A design gets written in a compact notation you will meet in older sources, introduced by Campbell and Stanley (1963): R for random assignment, X for the manipulation, O for an observation. The pretest-posttest control group design is two rows, R O X O above R O O. It is worth being able to read, because it makes the logic of a design visible in one line.
 
 ## Manipulation checks, pilots, and power
 
@@ -60,7 +62,7 @@ A **manipulation check** is a measure confirming that the independent variable d
 
 A **pilot** runs the whole procedure on a handful of people before the real study. It is where you discover that the video buffers, that the instructions are ambiguous, and that nobody understood question 7. Piloting is the cheapest error correction in research, and it is the step most often skipped under deadline.
 
-**Power** is the probability that your study detects an effect that is really there. It depends on the size of the effect, the variability of the measure, and the number of participants, and it is decided before data collection rather than discovered afterward. An underpowered experiment is not a small contribution to knowledge; it is a study that will probably fail to find a real effect and that cannot distinguish that failure from evidence of no effect. Chapter 25 returns to this when it separates a non-significant result from a demonstration of no difference.
+**Power** is the probability that your study detects an effect that is really there. It depends on the size of the effect, the variability of the measure, and the number of participants, and it is decided before data collection rather than discovered afterward (Cohen, 1988). Cohen (1992) is the short version worth keeping on hand. An underpowered experiment is not a small contribution to knowledge; it is a study that will probably fail to find a real effect and that cannot distinguish that failure from evidence of no effect. Chapter 25 returns to this when it separates a non-significant result from a demonstration of no difference.
 
 ## The ethics of doing something to people
 
@@ -74,7 +76,7 @@ Manipulations that could plausibly harm, such as exposing viewers to harassment 
 
 ## Internal validity, and the things that threaten it
 
-**Internal validity** is the degree to which a study supports the causal claim it makes about its own participants. An experiment is the design that maximizes it, and there are standard ways to lose it anyway.
+**Internal validity** is the degree to which a study supports the causal claim it makes about its own participants. An experiment is the design that maximizes it, and there are standard ways to lose it anyway. The catalogue of those ways comes from Campbell and Stanley (1963) and is developed in Shadish, Cook, and Campbell (2002); the list below is the short form.
 
 **History**: something happens during the study that affects one group and not the other. A platform outage during the evening session is a history threat.
 
@@ -86,7 +88,7 @@ Manipulations that could plausibly harm, such as exposing viewers to harassment 
 
 **Instrumentation**: the measure itself drifts. Human coders get better or more lenient over a long coding session, which is why Chapter 10's reliability checks are run across the whole period rather than at the start.
 
-**Demand characteristics**: participants work out what you are hoping for and oblige. The defense is to keep participants unaware of condition and, where possible, to keep the person running the session unaware too.
+**Demand characteristics**: participants work out what you are hoping for and oblige (Orne, 1962). The defense is to keep participants unaware of condition and, where possible, to keep the person running the session unaware too.
 
 ## External validity, and the trade
 
@@ -96,7 +98,7 @@ The control that makes an experiment interpretable is exactly what makes it arti
 
 Neither validity is superior. They answer different questions, and a literature needs both: experiments to establish that an effect can occur, observational work to establish that it does occur in the wild. That is a good reason to read Chapter 12 and this chapter as partners rather than rivals.
 
-**Statistical conclusion validity** is the third kind worth naming: whether the statistical claim about the data is right. An underpowered test, a violated assumption, or a fishing expedition through twenty outcomes until one reaches significance all break it without touching the design. It is the validity most often lost at the analysis stage rather than the design stage, which is why Chapter 6 asks for the analysis to be specified in advance.
+**Statistical conclusion validity** is the third kind worth naming (Shadish et al., 2002): whether the statistical claim about the data is right. An underpowered test, a violated assumption, or a fishing expedition through twenty outcomes until one reaches significance all break it without touching the design. It is the validity most often lost at the analysis stage rather than the design stage, which is why Chapter 6 asks for the analysis to be specified in advance.
 
 ## What an experiment on this book's question would look like
 
@@ -114,7 +116,7 @@ Two designs fill the gap, and the distinction between them matters.
 
 A **quasi-experiment** has a manipulation and conditions but no random assignment. Groups are formed by something other than chance, which means selection is back on the table as a rival explanation and has to be argued away rather than designed away.
 
-A **natural experiment** has neither manipulation by the researcher nor random assignment, but something in the world produces a change that resembles one. A platform changes a policy, a channel goes offline, a streamer switches what they are doing. The researcher did not cause it, and can still compare before against after.
+A **natural experiment** has neither manipulation by the researcher nor random assignment, but something in the world produces a change that resembles one (Dunning, 2012). A platform changes a policy, a channel goes offline, a streamer switches what they are doing. The researcher did not cause it, and can still compare before against after.
 
 Both are weaker than an experiment and both are far stronger than comparing two groups that differ in unknown ways. What makes either credible is the argument that the change was, in the relevant sense, not caused by the thing you are measuring.
 
@@ -126,7 +128,7 @@ Across the fifty channels there are **54 category switches into or out of Just C
 
 The result is consistent. After a switch, messages get shorter by about a word: a mean change of **-1.08 words**, SD 1.54, which against zero gives t(16) = -2.89, p = .011, and a standardized effect of d = -0.70. Question rate and shouting show nothing: -0.63 and -1.53 percentage points, p = .62 and p = .39.
 
-Now the part that matters more than the result. Those seventeen events are not seventeen independent observations. Five of them come from a single channel, and one streamer's audience behaving one way is one fact, not five. Treating them as independent inflates the apparent precision, which is a mistake this book would rather you catch here than in review.
+Now the part that matters more than the result. Those seventeen events are not seventeen independent observations. Five of them come from a single channel, and one streamer's audience behaving one way is one fact, not five. Treating them as independent inflates the apparent precision, which is a mistake this book would rather you catch here than in review. Kenny and Judd (1986) work through what violating the independence assumption actually does to a test, and the short answer is that it makes the test claim more than it has earned.
 
 Averaging within channel first and testing across the seven channels gives **M = -1.07 words, SD 1.02, t(6) = -2.77, p = .032, d = -1.05**. The effect survives, the degrees of freedom collapse from 16 to 6, and the standardized effect gets *larger* rather than smaller, because averaging removed noise within channels. Both analyses are defensible and the clustered one is the honest one, because it matches the level at which the data are actually independent.
 
@@ -145,3 +147,27 @@ So the defensible sentence is that chat messages were shorter after a category c
 ## Looking ahead
 
 Chapter 15 turns to the data that already exists: archives, platform records, and the material other researchers have left behind. That is where this chapter's compromise becomes a method in its own right, with its own rules for what secondary data can and cannot be asked.
+
+## References
+
+Campbell, D. T., & Stanley, J. C. (1963). Experimental and quasi-experimental designs for research on teaching. In N. L. Gage (Ed.), *Handbook of research on teaching* (pp. 171-246). Rand McNally.
+
+Cohen, J. (1988). *Statistical power analysis for the behavioral sciences* (2nd ed.). Lawrence Erlbaum Associates.
+
+Cohen, J. (1992). A power primer. *Psychological Bulletin*, *112*(1), 155-159. https://doi.org/10.1037/0033-2909.112.1.155
+
+Dunning, T. (2012). *Natural experiments in the social sciences: A design-based approach*. Cambridge University Press.
+
+Kenny, D. A., & Judd, C. M. (1986). Consequences of violating the independence assumption in analysis of variance. *Psychological Bulletin*, *99*(3), 422-431. https://doi.org/10.1037/0033-2909.99.3.422
+
+Orne, M. T. (1962). On the social psychology of the psychological experiment: With particular reference to demand characteristics and their implications. *American Psychologist*, *17*(11), 776-783. https://doi.org/10.1037/h0043424
+
+Shadish, W. R., Cook, T. D., & Campbell, D. T. (2002). *Experimental and quasi-experimental designs for generalized causal inference*. Houghton Mifflin.
+
+Solomon, R. L. (1949). An extension of control group design. *Psychological Bulletin*, *46*(2), 137-150. https://doi.org/10.1037/h0062958
+
+::: {.graduate-extension}
+### Graduate readings
+
+Lakens, D. (2013). Calculating and reporting effect sizes to facilitate cumulative science: A practical primer for t-tests and ANOVAs. *Frontiers in Psychology*, *4*, 863. https://doi.org/10.3389/fpsyg.2013.00863
+:::

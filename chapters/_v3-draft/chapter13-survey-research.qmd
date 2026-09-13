@@ -46,7 +46,7 @@ Run every draft item through one test: can two people who feel differently give 
 
 Chapter 9 taught **levels of measurement** and turned concepts into operational definitions. Response formats are where those ideas meet an actual respondent.
 
-A **Likert item** presents a statement and asks for agreement along an ordered scale, conventionally five or seven points from strongly disagree to strongly agree. Its virtue is that people find it easy, and a set of Likert items about the same underlying concept can be summed into a **scale** whose reliability you can test with the alpha statistics from Chapter 10. Two decisions matter. An odd number of points offers a midpoint, which lets genuinely neutral respondents say so and also lets uninterested ones hide; an even number forces a side. And every point should be labeled rather than just the endpoints, because unlabeled middles get interpreted inconsistently.
+A **Likert item** presents a statement and asks for agreement along an ordered scale, conventionally five or seven points from strongly disagree to strongly agree. The format is Likert's (1932), and it has outlasted almost everything else proposed alongside it. Its virtue is that people find it easy, and a set of Likert items about the same underlying concept can be summed into a **scale** whose reliability you can test with coefficient alpha (Cronbach, 1951), which Chapter 10 covers. Two decisions matter. An odd number of points offers a midpoint, which lets genuinely neutral respondents say so and also lets uninterested ones hide; an even number forces a side. And every point should be labeled rather than just the endpoints, because unlabeled middles get interpreted inconsistently.
 
 A **semantic differential** anchors a scale between opposed adjectives and asks the respondent to place a target along it: a streamer rated between cold and warm, a channel between chaotic and orderly. It measures connotation rather than agreement, and it is the better instrument when you want the feeling a thing evokes rather than a proposition about it.
 
@@ -82,11 +82,13 @@ Then **pretest**. Give the instrument to five or ten people from the target popu
 
 The **response rate** is the proportion of people in your sample who complete the survey. It is reported in every credible survey study, for a reason more specific than bigger being better.
 
-**Nonresponse bias** is the distortion introduced when the people who did not answer differ systematically from the people who did. A thirty percent response rate is not a problem because seventy percent of the data is missing. It is a problem because the missing seventy percent may be disproportionately the people who found the topic uncomfortable, or who had no strong opinion, or who were not there for the thing you are asking about. The direction of the distortion is usually unknowable, which is exactly why the rate gets reported: it tells your reader how much room there is for it.
+**Nonresponse bias** is the distortion introduced when the people who did not answer differ systematically from the people who did (Groves, 2006). A thirty percent response rate is not a problem because seventy percent of the data is missing. It is a problem because the missing seventy percent may be disproportionately the people who found the topic uncomfortable, or who had no strong opinion, or who were not there for the thing you are asking about. The direction of the distortion is usually unknowable, which is exactly why the rate gets reported: it tells your reader how much room there is for it. Groves (2006) is also the corrective to the intuition that a low rate automatically means a biased result, since the two are related far more loosely than most people assume.
 
 Two further threats travel with self-report, and neither is fixed by sample size. **Social desirability** pushes answers toward what the respondent believes is acceptable, which is why self-reported toxicity is always lower than observed toxicity. **Satisficing** is what a tired respondent does instead of thinking: choosing the midpoint, agreeing with everything, or answering a question they did not read. Attention checks and a shorter instrument are the practical defenses.
 
 ## What people say and what people do
+
+The gap this section is about has a founding demonstration. LaPiere (1934) traveled the United States with a young Chinese couple, stopping at 251 hotels, restaurants and camps, and was refused service exactly once. Months later he wrote to the same establishments and asked whether they would accept Chinese guests. More than nine in ten of those who answered said they would not. What people report and what people do are two different measurements, and a survey collects the first.
 
 Sometimes you cannot run a survey. The population is unreachable, the budget is nothing, the semester is eleven weeks long, or the behavior you care about already happened and the people who produced it are gone. The chat corpus is all four at once: nobody in it can be recontacted, and the messages were sent in 2018.
 
@@ -102,7 +104,7 @@ The honest framing, and the one to use in your own write-up, is that trace data 
 
 Work the example through. Of the 1,195 respondents, 91 sent most of their messages in non-gaming channels and 1,104 in gaming channels. That imbalance is a finding about the frame rather than about people: the corpus was drawn from fifty channels weighted toward gaming, so non-gaming chatters are scarce in it by construction. A survey designed to compare those groups would have oversampled non-gaming viewers deliberately. You cannot oversample retroactively, and that constraint is worth feeling, because it is the price of not having designed the collection yourself.
 
-Compare the two groups on how often they type in capitals. Non-gaming chatters shout in 9.8 percent of their messages and gaming chatters in 13.9 percent, and the difference clears conventional significance, t(129) = -2.63, with a standardized effect size of d = -0.20. That second number deserves more attention than the first. An effect of 0.20 is small by any conventional benchmark, which is to say the two groups overlap heavily, and knowing which kind of channel someone favors tells you very little about whether they shout.
+Compare the two groups on how often they type in capitals. Non-gaming chatters shout in 9.8 percent of their messages and gaming chatters in 13.9 percent, and the difference clears conventional significance, t(129) = -2.63, with a standardized effect size of d = -0.20. The fractional degrees of freedom are the signature of Welch's (1947) version of the t-test, which does not assume the two groups have equal variances and is the right default when the groups differ this much in size. That second number deserves more attention than the first. An effect of 0.20 is small by any conventional benchmark, which is to say the two groups overlap heavily, and knowing which kind of channel someone favors tells you very little about whether they shout.
 
 Compare them on positive-word rate and the result is a near miss: 24.4 per thousand words against 18.7, t(99) = 1.20, which does not clear significance at any conventional threshold. Chapter 25 argues at length that this is not the same as showing the groups are identical. With 91 cases in the smaller group, a real difference of this size would frequently go undetected, and the correct conclusion is that the study did not settle the question rather than that there is nothing to settle.
 
@@ -111,3 +113,15 @@ Notice what neither comparison licenses. Nothing here says non-gaming viewers ar
 ## Looking ahead
 
 Chapter 14 turns to the one design in this book that can support a causal claim, where the researcher does not merely observe variation but creates it. The survey techniques here return immediately, because most experiments measure their outcomes with exactly the items this chapter taught you to write.
+
+## References
+
+Cronbach, L. J. (1951). Coefficient alpha and the internal structure of tests. *Psychometrika*, *16*(3), 297-334. https://doi.org/10.1007/BF02310555
+
+Groves, R. M. (2006). Nonresponse rates and nonresponse bias in household surveys. *Public Opinion Quarterly*, *70*(5), 646-675. https://doi.org/10.1093/poq/nfl033
+
+LaPiere, R. T. (1934). Attitudes vs. actions. *Social Forces*, *13*(2), 230-237. https://doi.org/10.2307/2570339
+
+Likert, R. (1932). A technique for the measurement of attitudes. *Archives of Psychology*, *22*(140), 5-55.
+
+Welch, B. L. (1947). The generalization of "Student's" problem when several different population variances are involved. *Biometrika*, *34*(1-2), 28-35. https://doi.org/10.1093/biomet/34.1-2.28
