@@ -48,7 +48,7 @@ The **pretest-posttest control group design** measures everyone before the manip
 
 The **factorial design** manipulates more than one variable at once. A 2 x 2 crosses two independent variables with two conditions each, producing four groups. It is more efficient than running two separate experiments, and it answers a question neither of them could: whether the effect of one variable depends on the level of the other. That dependence is an **interaction**, and it is often the most interesting result in the study. If naming individual chatters increases replies on a small stream and decreases them on a large one, the main effect of naming may be near zero while the real finding sits in the interaction.
 
-The **quasi-experimental variants** keep the structure and drop the randomization, which is the next section but one.
+The **quasi-experimental variants** keep the structure and drop the randomization. They are what you fall back on when assignment is impossible, and they get their own treatment later in the chapter.
 
 A design gets written in a compact notation you will meet in older sources: R for random assignment, X for the manipulation, O for an observation. The pretest-posttest control group design is two rows, R O X O above R O O. It is worth being able to read, because it makes the logic of a design visible in one line.
 
