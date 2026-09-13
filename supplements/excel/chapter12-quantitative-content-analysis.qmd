@@ -1,0 +1,155 @@
+---
+title: "Excel Supplement, Chapter 12: Quantitative Content Analysis"
+---
+
+Chapter 12 takes you as far as a coded dataset. This supplement takes the coded dataset and turns it into a result.
+
+The characteristic analysis of a content analysis is a **crosstab** and a **chi-square test**: two categorical variables, a table of counts, and a question about whether the two are related. That is what this supplement builds, along with the thing most people forget to build alongside it, which is a measure of how large the relationship is.
+
+Every number printed here was produced in Excel from the file described below.
+
+## Getting the data in
+
+The file is `coded_messages.csv`: one row per chat message, 35,256 of them, with three columns.
+
+1. Open Excel to a blank workbook.
+2. **Data** ribbon, then **From Text/CSV**.
+3. Choose `coded_messages.csv`, set **File Origin** to **65001: Unicode (UTF-8)**, confirm **Delimiter** is **Comma**, and click **Load**.
+
+You should land on 35,257 rows, one header plus 35,256 messages: `channel`, `target`, `context`.
+
+Both coded variables are **manifest** in the sense Chapter 12 defines. `target` is `directed` if the message contains an at-mention and `broadcast` otherwise. `context` is `gaming` or `nongame`, taken from the stream's category at the moment the message was sent rather than from the channel's usual habit, so a channel that switched partway through an evening is counted correctly on both sides of the switch.
+
+Because both rules are mechanical, a machine applied them to every message, which is what makes 35,256 coded units possible at all. That is a real option for manifest variables and it is not an option for latent ones. No rule of this kind can tell you whether a message is hostile or sarcastic, which is why the chapter spends its length on codebooks and coder agreement rather than on writing cleverer rules.
+
+Eleven messages are missing from the file. They arrived before their channel's first stream snapshot, so there was no category in force to code them against. They are not silently zero and they are not quietly dropped into a category that suited the argument; the rule could not code them, so they are gone and their absence is stated. A study reports that number.
+
+## If you are coding by hand
+
+You will not always receive a coded file. When you are the coder, the coding sheet is your instrument, and two habits prevent most of the damage.
+
+**Put the raw material and the codes on separate sheets, and never type into the raw one.** Copy the units onto a coding sheet with an ID column that links back. If you later discover the rule was wrong, you recode from an untouched original instead of trying to remember what a cell used to say.
+
+**Constrain what can be typed into a code column.** Select the column, then **Data** ribbon, then **Data Validation**. Set **Allow** to **List** and type your category names, separated by commas, into **Source**. The cell becomes a dropdown and rejects anything else.
+
+This is a small feature that solves a large problem. Hand-coded data is full of `directed`, `Directed`, `dirceted`, and a trailing space nobody can see, and every one of those becomes its own category the moment you build a crosstab. `COUNTIFS` will not warn you. It will simply return a number that is too small, and the total will not match, and you will spend an evening finding out why. Validation makes the mistake impossible to type.
+
+## Building the crosstab
+
+You could do this with a PivotTable, and Chapter 7's supplement teaches how. Here it is worth doing with `COUNTIFS` instead, because a chi-square test needs the four counts as real cells you can point other formulas at, and because writing them out makes it obvious what the table actually contains.
+
+On a new sheet, lay out the labels: `gaming` in A2, `nongame` in A3, `directed` in B1, `broadcast` in C1. Then the four counts, assuming the data sits on a sheet named `coded_messages`:
+
+| Cell | Formula |
+|---|---|
+| B2 | `=COUNTIFS(coded_messages!$C$2:$C$35257,"gaming",coded_messages!$B$2:$B$35257,"directed")` |
+| C2 | `=COUNTIFS(coded_messages!$C$2:$C$35257,"gaming",coded_messages!$B$2:$B$35257,"broadcast")` |
+| B3 | `=COUNTIFS(coded_messages!$C$2:$C$35257,"nongame",coded_messages!$B$2:$B$35257,"directed")` |
+| C3 | `=COUNTIFS(coded_messages!$C$2:$C$35257,"nongame",coded_messages!$B$2:$B$35257,"broadcast")` |
+
+Then the margins: `=SUM(B2:C2)` in D2, `=SUM(B3:C3)` in D3, `=SUM(B2:B3)` in B4, `=SUM(C2:C3)` in C4, and `=SUM(B2:C3)` in D4.
+
+|  | directed | broadcast | total |
+|---|---|---|---|
+| **gaming** | 3,052 | 28,160 | 31,212 |
+| **nongame** | 298 | 3,746 | 4,044 |
+| **total** | 3,350 | 31,906 | 35,256 |
+
+Check D4 against the row count before going further. If the grand total is not 35,256, a category label somewhere is not what you think it is, and this is the moment to find out.
+
+## Percentages, and which ones
+
+Raw counts cannot be compared across rows of different sizes. There are nearly eight times as many gaming messages as non-gaming ones, so of course there are more directed messages in the gaming row. The comparison you want is within each row:
+
+```
+=B2/D2
+=B3/D3
+```
+
+That gives **9.78 percent** of gaming messages directed at the streamer, against **7.37 percent** of non-gaming messages.
+
+Which direction you percentage matters, and getting it backwards is the most common error in reporting a crosstab. The rule: percentage in the direction of the thing you think is doing the explaining. Here the claim under test is that the stream's context shapes how people talk, so context is the row and the percentages run across it. Percentaging the other way would answer a different and stranger question, namely what proportion of directed messages happened to occur in gaming streams, which is mostly a fact about how much gaming content the corpus contains.
+
+## What "no relationship" would look like
+
+A chi-square test compares what you observed against what you would expect if the two variables were unrelated. Those expected counts are worth building yourself once, because the test is otherwise a black box.
+
+If context had nothing to do with target, then every row should show the same overall rate of directed messages, 3,350 out of 35,256, or 9.50 percent. Apply that rate to each row's total and you have the expected counts. The formula is the row total times the column total divided by the grand total:
+
+| Cell | Formula |
+|---|---|
+| B6 | `=$D2*B$4/$D$4` |
+| C6 | `=$D2*C$4/$D$4` |
+| B7 | `=$D3*B$4/$D$4` |
+| C7 | `=$D3*C$4/$D$4` |
+
+|  | directed | broadcast |
+|---|---|---|
+| **gaming** | 2,965.74 | 28,246.26 |
+| **nongame** | 384.26 | 3,659.74 |
+
+The mixed dollar signs are doing real work: `$D2` locks the column so it always reads the row totals, `B$4` locks the row so it always reads the column totals, and the formula can then be filled across and down without editing.
+
+Compare the two tables. The gaming row has about 86 more directed messages than independence predicts, and the non-gaming row has about 86 fewer. That is the entire finding, and it is worth seeing at that size before a test tells you it is significant.
+
+## The test
+
+Two routes, and you want both the first time. Put the first in **B9**, because later formulas refer to it.
+
+```
+=SUMPRODUCT((B2:C3-B6:C7)^2/B6:C7)
+```
+
+That is the chi-square statistic built from its definition, the sum of squared differences between observed and expected, each divided by its expected count. `SUMPRODUCT` handles the cell-by-cell arithmetic without needing Ctrl+Shift+Enter, which is the same reason Chapter 13's supplement sorts its data rather than reaching for array formulas.
+
+It returns **24.168**. Degrees of freedom for a crosstab are (rows minus 1) times (columns minus 1), so for a 2 by 2 table, 1.
+
+```
+=CHISQ.DIST.RT(B9,1)
+```
+
+returns **0.00000088**. Excel's built-in shortcut gives the same p-value from the two tables directly:
+
+```
+=CHISQ.TEST(B2:C3,B6:C7)
+```
+
+Both return 8.83 times ten to the negative seventh. Report it as p < .001.
+
+## The number that keeps you honest
+
+So there it is: a highly significant relationship, p less than one in a million. Time to write it up.
+
+Not quite. Ask how *big* the relationship is, and the answer is that it is almost nothing.
+
+The effect size for a crosstab is **Cramér's V**, which for a 2 by 2 table is the chi-square statistic divided by the sample size, square-rooted:
+
+```
+=SQRT(B9/D4)
+```
+
+It returns **0.026**, on a scale where 0 is no relationship and 1 is perfect. That is, by any published benchmark, negligible. Both kinds of stream are overwhelmingly full of broadcast messages, and knowing which kind you are watching moves the directed rate by about two and a half percentage points.
+
+Here is the thing worth carrying out of this supplement, because it generalizes well beyond content analysis. The p-value did not tell you the relationship was large. It told you the relationship was unlikely to be exactly zero. With 35,256 cases, a test can detect a difference far too small to matter to anyone, and it will announce that detection with a very small number that looks impressive. Significance is a statement about your sample size at least as much as about the world. This is why a results section reports both, and why a reader who sees only a p-value has not been told the finding.
+
+## The caveat this dataset comes with
+
+One more thing before the write-up, and it is the same problem Chapter 7 raised and Chapter 14 pays for.
+
+The test just treated 35,256 messages as 35,256 independent observations. They are not. They come from 50 channels, and messages from one channel share a streamer, an audience, and a set of local habits. The effective number of independent units is very much closer to 50 than to 35,256, and a chi-square test has no way of knowing that.
+
+The consequence runs one way: the test is overconfident. The p-value is smaller than it should be, perhaps dramatically so. In this particular case the conclusion survives anyway, because the effect size was negligible and no p-value was going to rescue it. But a borderline result on nested data is not a borderline result. It is an unknown one.
+
+If the claim you want to make is about channels, then channels are your cases, and the honest version of this analysis computes a directed-message rate per channel and compares 50 numbers rather than 35,256. Chapter 14's supplement does exactly that for a different measure, and the machinery transfers.
+
+## Writing it up
+
+> Messages sent during gaming streams were more often addressed directly to the streamer (9.8%) than messages sent during non-gaming streams (7.4%), a difference that was statistically significant, chi-square(1, N = 35,256) = 24.17, p < .001, but negligible in size, Cramér's V = .03. Messages are nested within 50 channels, so the test overstates the precision of this comparison.
+
+Three things that sentence does deliberately. It gives the percentages before the test, because the percentages are the finding and the test is a check on it. It reports N inside the chi-square parentheses, which is the convention for this test and not for t-tests. And it names the limitation in the same breath as the result, rather than leaving it for a discussion section the reader may not reach.
+
+## What Excel will not do for you
+
+Excel's chi-square functions handle the test of independence and nothing else in the family. There is no built-in for Cramér's V, which you built above in one cell, and none for the corrections and exact tests you need when expected counts get small. The working rule is that chi-square becomes unreliable when any expected count drops below 5; here the smallest expected count was 384, so there is no problem, but check it rather than assume it, because small categories are common in content analysis and a rare code will put you there quickly.
+
+Excel also cannot fit anything that accounts for the nesting described above. That is not an Excel failure so much as a boundary: handling clustered data properly means multilevel models, and a statistics package is where those live.
