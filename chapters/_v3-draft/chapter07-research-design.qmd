@@ -1,0 +1,142 @@
+---
+title: "Chapter 7: Research Design"
+---
+
+By the end of Chapter 6 you have a question and, if it is that kind of question, a hypothesis. What you do not have is any evidence, or any plan for getting some. This chapter is the bridge between the two.
+
+A **research design** is the plan that connects a question to the evidence that could answer it. It says which cases you will look at, what you will record about them, when you will record it, and what you will compare against what. Everything after this chapter is a detail of one of those four decisions.
+
+Designs are worth treating as their own topic because the most expensive mistakes in research are made here, before any data exist. A badly worded survey item can be fixed in the next round. A study built on the wrong cases cannot be fixed at all, because the data you needed were never collected. It is normal to spend longer on this chapter's decisions than on the analysis they eventually lead to.
+
+## What a design specifies
+
+Four decisions, and they are not independent of each other.
+
+**The cases.** What is one row in your eventual data file? A person, a message, a video, an organization, a day. This is the **unit of analysis**, and it gets its own section below because it is the decision people get wrong most often.
+
+**The measures.** What will you record about each case, and how will an abstract idea become something recordable? That is Chapter 8's subject, and Chapter 9's.
+
+**The timing.** Once, or repeatedly? At one moment, or across months?
+
+**The comparison.** Almost nothing is interpretable on its own. A finding that 14 percent of messages are shouted means nothing until you know 14 percent compared to what: another channel, another time, another kind of stream, or a rate you had reason to expect. Deciding what the comparison is, and making sure your design actually collects the other side of it, is the decision most often discovered too late.
+
+## Let the question choose
+
+The right design is not the most sophisticated one. It is the simplest one that can answer the question you have, and questions come in three kinds.
+
+A **descriptive** question asks what is there. How often do viewers ask questions in chat? What topics do streamers talk about? Description is not a lesser activity, and a field with no good description of its object has nothing for its theories to be about. Descriptive questions are answered by careful measurement of a well-chosen sample, and they do not need a comparison group.
+
+A **relational** question asks whether two things go together. Do channels with more viewers have shorter messages? Does the rate of questions rise when a streamer is talking rather than playing? These need measurement of both variables across enough cases to see whether they covary, and the answer is a pattern of association.
+
+A **causal** question asks whether one thing produces another. Does being addressed by name make a viewer more likely to post again? This is the demanding kind, and the next section says why.
+
+Most confusion about design comes from asking a causal question and then building a relational study, which is easy to do by accident because the two look similar from the outside. Both end with two variables and a statistic. Only one of them licenses the word "because."
+
+## What a causal claim requires
+
+Three conditions have to hold before you may say that X causes Y, and they are worth memorizing because they are the checklist a reviewer will run.
+
+**Covariation.** X and Y have to actually vary together. If the outcome is the same whatever X does, there is nothing to explain.
+
+**Temporal order.** X has to come before Y. This sounds trivial and is often the condition that fails: two things measured at the same moment cannot tell you which came first, and plenty of plausible stories run in the reverse direction. Viewers may talk more because a streamer is warm, or a streamer may be warm because the chat is going well.
+
+**Non-spuriousness.** No third thing explains both. A **spurious** relationship is one where X and Y move together only because some Z drives each of them. Larger channels have both more viewers and shorter messages, so any apparent relationship between viewership and message length has to contend with the channel's size as an explanation of both.
+
+Different designs meet these conditions in different numbers. An experiment meets all three by construction, which is what Chapter 14 is about. A study measuring everything at one moment can establish covariation and nothing else. A design that measures X before Y adds temporal order. Non-spuriousness is never fully settled by any design short of random assignment, which is why observational work argues it rather than proves it, by measuring the obvious rivals and showing the relationship survives them.
+
+## The unit of analysis
+
+Here is the decision that a semester of trouble usually traces back to, made concrete with the corpus this book uses.
+
+The Twitch data contain 35,267 chat messages, written by 16,866 distinct senders, across 50 channels, alongside 32,276 stream snapshots. Those are not four datasets. They are one dataset seen at four levels, and choosing among them is choosing your unit of analysis.
+
+Say the question is simply how long a chat message is. The obvious answer is to average the length of all 35,267 messages, which gives **4.81 words**. But you could equally average each sender's messages first and then average those 16,866 people, which gives **4.22 words**. Or average within each channel and then across the 50 channels, which gives **4.97 words**.
+
+Same corpus, same measure, three different answers, and none of them is a mistake. They answer three different questions. The first is about the average message. The second is about the average person. The third is about the average channel. They differ because the levels are not evenly populated: 11,544 of the 16,866 senders posted exactly once, and the median sender posted once, so the message-level average is dominated by the small number of people who talk constantly, while the sender-level average gives the one-message lurker the same weight as the regular.
+
+So the rule is not that one unit is correct. The rule is that **the unit has to match the claim**. If you intend to say something about people, your cases have to be people, and you have to build that file deliberately, which is what Chapter 13 does when it turns messages into respondents. If you intend to say something about channels, your n is 50 and no amount of chat volume changes that.
+
+## The mistakes that live between levels
+
+Two named errors come from mismatching the unit to the claim, and they are mirror images.
+
+The **ecological fallacy** is concluding something about individuals from data about groups. If channels with more non-gaming content have shorter messages on average, it does not follow that any given viewer types shorter messages when watching non-gaming content. The relationship holds between channels; the claim was about people.
+
+The **individualistic fallacy** is the reverse, concluding something about groups from data about individuals. That the average viewer behaves one way tells you less than you would think about how a chat room behaves collectively, because a chat room is an interaction and not a sum.
+
+There is also a quieter problem that is not a fallacy but a statistical fact, and it will return in Chapter 14. When cases are **nested**, meaning each one belongs to a larger group, cases within the same group resemble each other more than they resemble cases elsewhere. Messages from one channel are not independent of each other. Pretending they are makes your evidence look stronger than it is: the standard error of the mean message length is 0.036 words at the message level and 0.355 words at the channel level, a difference of roughly ten times, and the second is the honest one if the claim is about channels. Noticing nesting at the design stage is much cheaper than discovering it at the analysis stage.
+
+## Timing
+
+**Cross-sectional** designs measure at a single point in time. They are the common case, they are cheap, and they cannot establish temporal order, which is the ceiling on what they can claim.
+
+**Longitudinal** designs measure repeatedly, and they come in three shapes worth distinguishing.
+
+A **trend** study asks the same question of a fresh sample each time, so it tracks a population as it changes while the individuals differ from wave to wave.
+
+A **panel** study follows the same individuals across waves, which is what you need to say that a change happened *within* people rather than in the population average. It is the strongest of the three and the most fragile, because participants drop out and the ones who remain are not a random remainder.
+
+A **cohort** study follows a group defined by a shared starting point, such as everyone who began streaming in a particular year, through a fresh sample of that group at each wave.
+
+The corpus this book uses spans a bounded window of late 2018, which makes it cross-sectional for most purposes, with the partial exception exploited in Chapter 14, where a change that happens partway through gives a before and an after.
+
+## Quantitative, qualitative, and mixed
+
+This choice is frequently presented as a matter of temperament, and it is better understood as a matter of what the question needs.
+
+**Quantitative** designs record things as counts and measurements across many cases. They are what you want when the question is how much, how often, or whether two things go together at a scale where an individual case tells you nothing.
+
+**Qualitative** designs record things as language, observation, and meaning across fewer cases studied more deeply. They are what you want when the question is what something means to people, how a process unfolds, or what categories even exist in a setting nobody has described yet. Part IV covers them properly.
+
+**Mixed methods** designs use both, deliberately and in a stated order. Qualitative work first can define the categories that a quantitative instrument then measures at scale. Quantitative work first can identify the pattern that qualitative work then explains. What makes a design mixed rather than merely two studies stapled together is that the two parts were planned to inform each other, and Chapter 26 is where that planning gets its own treatment.
+
+Neither family is the rigorous one. Both have standards, both can be done badly, and the standards are different, which is why Chapter 2's discussion of paradigms comes before this chapter rather than after it.
+
+Cutting across all of this is a separate question: whether you collect the data at all. **Primary data** are data you gather yourself, for your question. **Secondary data** are data someone else gathered, for theirs, which you analyze anyway. The corpus used throughout this book is secondary data, and so is most of what a student can realistically obtain in one semester. The trade is a real one. You get scale and history you could never collect, and you give up control over what was measured, which means you will want a variable that nobody recorded. Chapter 15 takes this seriously as a design in its own right rather than a fallback.
+
+## The constraints that actually decide it
+
+Textbooks tend to describe design choice as though it were free. It is not, and pretending otherwise leaves you unprepared for the moment a supervisor asks what you can do by April.
+
+**Access.** Can you reach these cases at all? A design requiring interviews with executives at three platforms is not a design if none of them answer.
+
+**Time.** A panel study with three waves a month apart cannot be done in a semester, and the honest response is to change the design rather than compress the waves until they mean nothing.
+
+**Skill and tools.** A design that needs a statistical model you cannot fit, or a coding scheme you have no second coder for, is not yet a design you can execute.
+
+**Ethics.** Some designs are ruled out no matter how well they would answer the question, and Chapter 3 is where the standards and the review process live. The relevant point here is that ethical constraints belong at the design stage, not as a form filled in once the plan is fixed.
+
+Adjusting a question to fit a feasible design is normal practice and not a defeat. What is a defeat is keeping the ambitious question, running the feasible study, and writing up the second as though it had answered the first.
+
+## Writing the design down
+
+At some point the design stops being a set of intentions and becomes a paragraph someone else can evaluate. In a prospectus, a proposal, or the methods section of a final paper, that paragraph does a specific job: it lets a reader decide whether your evidence could answer your question before they look at any of it.
+
+Six things belong in it, and a design that cannot supply all six is not finished.
+
+1. **The question or hypothesis**, restated in the form the design will actually test.
+2. **The cases**, named as a unit and a population: not "Twitch chat" but "chat messages posted in the 50 sampled channels between 18 and 24 November 2018."
+3. **How cases were selected**, which is Chapter 11's subject, and how many.
+4. **The measures**, each tied to the concept it stands for, which is Chapter 8's and Chapter 9's.
+5. **The comparison**, stated plainly. Against what, and why that is the right against-what.
+6. **The limits**, meaning the claims the design cannot support. Naming these yourself is not a weakness in the writing. It is the clearest signal available that you understood your own design, and a reviewer who finds an unnamed limit trusts everything else less.
+
+A useful test before you commit: write the sentence you hope to end up with, the one that would appear in your abstract, and ask whether this design could produce it. If the hoped-for sentence says "because" and the design is cross-sectional, you have found the problem while it is still free to fix.
+
+## One question, three designs
+
+Take a single topic and watch it produce different studies, because this is the exercise that makes the chapter concrete.
+
+The topic: streamers addressing viewers by name.
+
+*As a descriptive question.* How often does it happen, and does it vary by category? Unit of analysis is the message, or the stream session if you want rates. Design is quantitative content analysis, Chapter 12, on a sample of sessions. It can say how common the practice is and nothing about its effects.
+
+*As a relational question.* Do sessions with more direct address have more viewer-to-viewer conversation? Unit is the session. Design is still content analysis, now measuring two variables per session and testing their association, with channel size measured as an obvious rival explanation. It can say the two go together, and it cannot say which drives which.
+
+*As a causal question.* Does being addressed by name make a viewer post again? Unit is the viewer. Design is an experiment, Chapter 14, with participants randomly assigned to a session where they are named or one where they are not. It can support the causal claim, and it pays for that with a laboratory setting that is not a real stream.
+
+One topic, three legitimate studies, three different units, three different ceilings on what may be claimed. Choosing among them is the work this chapter names.
+
+## Looking ahead
+
+Chapter 8 takes the design you have chosen and starts turning its concepts into things that can actually be recorded, which is the step where a plan meets the awkward specifics of the world.
