@@ -1,6 +1,10 @@
+---
+title: "Vibes to Variables, third edition"
+---
+
 # Vibes to Variables, third edition
 
-**A communication research methods textbook for MC 451, free to adopt, with an Excel supplement.**
+**A communication research methods textbook for MC 451. Free to adopt, with the tool instruction kept separate from the text.**
 
 Prepared for Undrah, September 2026
 
@@ -8,7 +12,7 @@ Prepared for Undrah, September 2026
 
 ## The short version
 
-The current edition of *Vibes to Variables* teaches one method, quantitative content analysis, carried end to end through a single study, and it teaches the analysis in R. That makes it a poor fit for a survey-of-methods course taught in Excel, which is what you would be teaching.
+The current edition of *Vibes to Variables* teaches one method, quantitative content analysis, carried end to end through a single study, and it teaches the analysis in R. That makes it a poor fit for a survey-of-methods course, and a poor fit for anyone who does not want to teach R.
 
 The third edition changes both of those things. It covers the full range of methods a communication methods course is expected to carry, and the tool instruction moves out of the book into a separate supplement, so the same text works in Excel, SPSS or R depending on which supplement you hand your students.
 
@@ -27,15 +31,19 @@ It is free, openly licensed, and it will be complete before the spring semester 
 
 Rhetorical criticism, critical and cultural analysis, and secondary and archival data follow in the same edition at lower priority.
 
-**What the current edition already does well**, and what the comparison showed the standard texts mostly skip: reproducible workflow, literature review as a taught skill rather than an assumed one, data preparation, visualisation, and sampling. Those chapters stay.
+**What the current edition already does well**, and what the comparison showed the standard texts mostly skip: reproducible workflow, literature review as a taught skill rather than an assumed one, data preparation, visualization, and sampling. Those chapters stay.
 
-**Tools.** The book teaches what to do and why. A separate supplement teaches which buttons. Excel is being written first because it is the one you would use. An R supplement already exists as the residue of the current edition. SPSS follows if there is demand.
+**Tools.** The book teaches what to do and why. A separate supplement teaches which buttons to press.
 
-## Two samples are attached
+Excel is being written first, because it is the option with no licence to buy, nothing to install, and the shortest distance between a student and their first result. Four Excel supplement sections are drafted. The R instruction already exists but is currently written into the chapters themselves rather than held separately, so part of this work is pulling it out into a supplement of its own. An SPSS supplement is planned for the full release.
 
-A new chapter, **Survey Research**, and its **Excel supplement**, so you can judge the prose and the tool instruction rather than take a description on trust.
+## What is attached
 
-Two things about them worth knowing. Every number in both is real, computed from a corpus of Twitch chat I collected and can trace to its source, rather than invented for the example. And the Excel supplement needs no add-ins: it works with the functions that ship with Excel, because institutional installations often leave the Analysis ToolPak switched off.
+The packet continues with two complete samples: a new chapter, **Survey Research**, and its **Excel supplement**, so you can judge the prose and the tool instruction rather than take a description on trust.
+
+Three further chapters are drafted to the same standard and can be sent on request: Research Design, Quantitative Content Analysis, and Experimental Design, each with its own Excel supplement.
+
+Two things about the samples worth knowing. Every number in both is real, computed from a corpus of Twitch chat I collected and can trace back to its source, rather than invented for the example. And the Excel supplement needs no add-ins: it works with the functions that ship with Excel, because institutional installations often leave the Analysis ToolPak switched off.
 
 ## Assessment is not assumed
 
@@ -57,8 +65,7 @@ What is ready when:
 
 | | |
 |---|---|
-| Now | 14 chapters, 42 decks, R supplement, the two attached samples |
-| Early October | Research design, experimental design, content analysis reorganised, matching Excel sections |
+| Now | 14 chapters and 42 decks from the current edition, plus 4 new chapters and 4 Excel supplement sections |
 | End of November | All new chapters drafted, the tool split complete, Excel supplement complete |
 | Mid-December | Full editorial pass, cross-references, accessibility |
 | Early January | Decks for the new chapters, test bank, chapter outlines, sample syllabi for all three paths |
@@ -77,10 +84,20 @@ Free. It is openly licensed, hosted online, and there is no edition churn and no
 
 Worth knowing if you are being pointed toward open materials: the open shelf in this field is nearly bare. The Open Textbook Library's Journalism, Media Studies and Communications shelf holds ten titles and none of them is a methods text, and the LibreTexts communication shelf has eight categories and none of them is either. Most open methods texts are written for another discipline: social work, criminal justice, psychology, general social science.
 
-There is one open communication methods text, *Navigating Communication Research* from Mount Royal University, and it is good at what it does. It is written for media practitioners who need to read and judge research rather than produce it, so experiments and content analysis share a single chapter called "Other Methods", and there is no analysis half: no descriptive or inferential statistics, no data preparation, no visualisation, and no software instruction of any kind. A student cannot take a dataset through to a result with it.
+There is one open communication methods text, *Navigating Communication Research* from Mount Royal University, and it is good at what it does. It is written for media practitioners who need to read and judge research rather than produce it, so experiments and content analysis share a single chapter called "Other Methods", and there is no analysis half: no descriptive or inferential statistics, no data preparation, no visualization, and no software instruction of any kind. A student cannot take a dataset through to a result with it.
 
 The third edition is meant to be the one that teaches doing.
 
 ## What I need from you
 
-Whether the coverage above matches what you intend to teach, and whether anything important to your course is missing from it. The table of contents is not fixed, and it is much cheaper to add a chapter now than in November.
+Two things.
+
+First, which tool you would want to teach in. Excel is being written first, but that decision is not locked, and knowing your answer now changes what gets built between here and January rather than after.
+
+Second, whether the coverage above matches what you intend to teach, and whether anything important to your course is missing from it. The table of contents is not fixed, and it is much cheaper to add a chapter now than in November.
+
+\newpage
+
+# Appendix A: Sample chapter
+
+The chapter that follows is one of the four new chapters, reproduced in full.
