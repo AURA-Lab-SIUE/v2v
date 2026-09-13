@@ -133,6 +133,12 @@ format:
   # Verify after any toolchain change by probing the built PDF for
   # /StructTreeRoot and a non-zero /Alt count.
   typst:
+    # Typst cannot reach Google Fonts, and Quarto bundles only Font Awesome, so
+    # without these the PDF silently fell back to a default serif for every
+    # heading while the website rendered correctly. Vendored so the build does
+    # not depend on the fonts a given machine happens to have.
+    font-paths:
+      - tools/fonts
     papersize: us-letter
     fontsize: 11pt
     margin:
@@ -140,6 +146,8 @@ format:
       y: 1in
     toc: true
     toc-depth: 2
+    template-partials:
+      - tools/typst/page.typ
 
   # EPUB is for reading on a phone, an e-reader, or in a screen-reader app that
   # handles reflowable text better than a fixed-page PDF. It deliberately
