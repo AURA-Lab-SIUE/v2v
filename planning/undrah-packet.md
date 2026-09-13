@@ -12,16 +12,16 @@ Prepared for Undrah, September 2026
 
 A survey of the methods a 451 course carries: research design, surveys, experiments, content analysis, interviewing, focus groups, ethnography, qualitative analysis and mixed methods. I checked the current edition against ten standard texts across thirty-seven topics to decide what to add.
 
-The tool instruction sits in a separate supplement rather than in the text. The book teaches what to do and why; the supplement teaches which buttons. That supplement is Excel: no licence, nothing to install, and your students already have it.
+The tool instruction sits in a separate supplement rather than in the text. The book teaches what to do and why; the supplement teaches which buttons. That supplement is Excel: no license, nothing to install, and your students already have it.
 
 This is not the edition online today. That one is mine: one method end to end, in R, built around how I run the course.
 
 ## What you would have in January
 
 - **The textbook.** Free and openly licensed, online, nothing for students to buy.
-- **An Excel supplement.** No licence to buy, nothing to install. SPSS and R follow later.
+- **An Excel supplement.** No license to buy, nothing to install. SPSS and R follow later.
 - **Lecture decks** for the full book.
-- **Assignments** in three shapes, so you can run one project across the term, survey the methods broadly, or teach to a midterm and final.
+- **Assignments** in three formats, so you can run one project across the term, survey the methods broadly, or teach to a midterm and final.
 - **A syllabus** for whichever of those you pick.
 - **A test bank and chapter outlines.**
 
