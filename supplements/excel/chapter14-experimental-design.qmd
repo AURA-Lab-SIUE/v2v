@@ -1,0 +1,161 @@
+---
+title: "Excel Supplement, Chapter 14: Experimental Design"
+---
+
+This supplement does the work of Chapter 14 in Microsoft Excel. It assumes you have read the chapter, because it explains which buttons to press and not why you are pressing them. Every number printed here was produced in Excel from the file described below, so if your screen shows something different, something has gone wrong and the difference is worth chasing.
+
+You do not need the Analysis ToolPak. Everything here is built from formulas that ship with Excel.
+
+One thing to expect before you start. This supplement runs the same test twice and gets two different answers, and the second answer is the right one. That is not a mistake in the instructions. It is the point of the exercise, and the chapter explains why.
+
+## Getting the data in
+
+The file is `switch_events.csv`, the category-switch table described in the chapter: one row per switch event that had enough chat on both sides to measure, seventeen of them.
+
+1. Open Excel to a blank workbook.
+2. **Data** ribbon, then **From Text/CSV**.
+3. Choose `switch_events.csv`.
+4. Set **File Origin** to **65001: Unicode (UTF-8)** and check that **Delimiter** reads **Comma**.
+5. Click **Load**.
+
+You should land on a sheet of 18 rows, one header plus 17 events, with columns A through G: `channel`, `direction`, `before_n`, `after_n`, `d_words`, `d_q`, `d_shout`.
+
+The three columns beginning with `d_` are **difference scores**. Each one is the after value minus the before value for a single event, so a negative number means chat did less of that thing after the switch. `d_words` is the change in mean words per message, and it is the column this supplement works with.
+
+## Why this is a one-sample test
+
+Chapter 13 compared two groups of people. This is a different shape of question, and it needs a different test.
+
+Here every event contributes one number that is already a comparison: the difference between after and before. There are not two groups to compare. There is one column of differences, and the question is whether that column's mean is far enough from zero to take seriously. Zero is the value you would expect if switching category changed nothing.
+
+That is a **one-sample t-test**, and it is the test to reach for whenever your data are already differences: before and after, twin versus twin, the same person measured twice. Excel has no single function for it, so you build it from four cells, and building it is a better way to learn it than pressing a button would be.
+
+## The naive analysis
+
+Put labels in column I and formulas in column J, starting at row 1. The data range is `E2:E18`.
+
+| Cell | Label | Formula |
+|---|---|---|
+| J1 | n | `=COUNT(E2:E18)` |
+| J2 | mean difference | `=AVERAGE(E2:E18)` |
+| J3 | SD | `=STDEV.S(E2:E18)` |
+| J4 | SE | `=J3/SQRT(J1)` |
+| J5 | t | `=J2/J4` |
+| J6 | df | `=J1-1` |
+| J7 | p | `=T.DIST.2T(ABS(J5),J6)` |
+| J8 | Cohen's d | `=J2/J3` |
+
+You should see n = 17, a mean of -1.080, SD = 1.541, SE = 0.374, t = -2.889, df = 16, p = 0.0107, and d = -0.701.
+
+Read the three middle cells together, because they are the whole logic of a t-test in one line. The mean difference is about one word. The standard error is the amount the mean would be expected to bounce around from sample to sample, here about a third of a word. Dividing one by the other asks how many standard errors the observed mean sits from zero, and the answer is nearly three, which is far enough to be unlikely by chance.
+
+Cohen's d for a one-sample test is simpler than the two-group version in Chapter 13: it is the mean divided by the standard deviation, with no pooling, because there is only one group.
+
+**A cross-check.** Excel's `T.TEST` can run this if you give it something to compare against. Put zeros in `L2:L18`, then:
+
+```
+=T.TEST(E2:E18,L2:L18,2,1)
+```
+
+The `2` asks for two tails and the `1` asks for the paired test, and testing a column against a column of zeros is arithmetically identical to testing it against zero. It returns 0.0107, matching cell J7 exactly. Use it to check your work, not to replace it, because it gives you the p-value and neither t nor df, and a results section needs all three.
+
+## Why that answer overstates its case
+
+Look at column A. Seventeen events, but not seventeen streamers. Sort by channel and count: forsen appears five times, uberhaxornova three, four channels twice each, and giantwaffle once. Seven channels in total.
+
+That matters because the t-test above assumed seventeen independent observations. They are not independent. Five of those rows describe the same streamer with largely the same audience, and if that audience has a habit, the habit gets counted five times. The test cannot tell the difference between seventeen facts and seven facts recorded seventeen times, so it reports a precision the data do not have.
+
+This is **non-independence**, and it is one of the most common ways a real analysis goes wrong. It is invisible in the output. Nothing in cells J1 to J8 looks suspicious. The only way to catch it is to look at where the rows came from, which is a habit worth building now.
+
+## The clustered analysis
+
+The fix is to analyze at the level where the observations really are independent. Different channels are plausibly independent of each other; events within a channel are not. So average each channel's events into a single number first, then test those seven numbers.
+
+Excel does this with `AVERAGEIF`, which takes three arguments: the range to search, the value to match, and the range to average.
+
+1. In **N1** through **N7**, type the seven channel names: `chemicaldragoon`, `forsen`, `giantwaffle`, `leonblack`, `skiddlerrs`, `sodapoppin`, `uberhaxornova`.
+2. In **O1**, enter:
+
+```
+=AVERAGEIF($A$2:$A$18,N1,$E$2:$E$18)
+```
+
+3. Select O1, copy, and paste into O2 down to O7.
+
+The dollar signs matter. They pin the two data ranges so they do not slide down as the formula is copied, while `N1` is left free to advance to N2, N3, and so on. Getting this wrong is the most common `AVERAGEIF` error, and it fails quietly by averaging a range that has drifted off the bottom of the data.
+
+You should see these seven channel means:
+
+| Channel | Mean change in words |
+|---|---|
+| chemicaldragoon | -1.93 |
+| forsen | -1.73 |
+| giantwaffle | -0.95 |
+| leonblack | -1.22 |
+| skiddlerrs | -0.52 |
+| sodapoppin | -2.04 |
+| uberhaxornova | +0.89 |
+
+Six of the seven are negative. Read that row of numbers before you run anything on them, because it is more informative than the test will be: the pattern is consistent but not universal, and one channel went the other way.
+
+Now the same eight formulas as before, in columns Q and R, pointed at `O1:O7`:
+
+| Cell | Label | Formula |
+|---|---|---|
+| R1 | n | `=COUNT(O1:O7)` |
+| R2 | mean difference | `=AVERAGE(O1:O7)` |
+| R3 | SD | `=STDEV.S(O1:O7)` |
+| R4 | SE | `=R3/SQRT(R1)` |
+| R5 | t | `=R2/R4` |
+| R6 | df | `=R1-1` |
+| R7 | p | `=T.DIST.2T(ABS(R5),R6)` |
+| R8 | Cohen's d | `=R2/R3` |
+
+Expect n = 7, a mean of -1.071, SD = 1.024, SE = 0.387, t = -2.769, df = 6, p = 0.0325, and **d = -1.047**.
+
+## Reading the two answers side by side
+
+Put them next to each other, because the comparison teaches more than either result alone.
+
+| | Naive | Clustered |
+|---|---|---|
+| n | 17 events | 7 channels |
+| mean | -1.080 | -1.071 |
+| SD | 1.541 | 1.024 |
+| t | -2.889 | -2.769 |
+| df | 16 | 6 |
+| p | .011 | .032 |
+| d | -0.701 | -1.047 |
+
+Four things are worth noticing.
+
+The **mean barely moved**, from -1.080 to -1.071. Averaging within channel did not change what the data say is happening.
+
+The **degrees of freedom collapsed**, from 16 to 6. This is the honest cost of admitting you have seven independent units and not seventeen, and it is why the p-value tripled.
+
+The **effect size got larger**, from -0.70 to -1.05, which surprises most people. Averaging within a channel removes the variation between that channel's own events, so the standard deviation shrank from 1.54 to 1.02 while the mean stayed put. A standardized effect is the mean divided by that standard deviation, so it grew. Larger is not better here; it is simply a different and more appropriate question, about how much channels differ from each other rather than how much events do.
+
+And the **conclusion survived**. The effect is still there at p = .032. It does not always work out that way, and when clustering destroys a result, the result was never there.
+
+## Writing it up
+
+From the clustered cells:
+
+> Across seven channels, chat messages were shorter after a category switch than before it (M = -1.07 words, SD = 1.02), t(6) = -2.77, p = .032, d = -1.05. Events were averaged within channel before testing, because five of the seventeen events came from a single channel.
+
+That last sentence is not optional padding. A reader who does not know you clustered cannot judge the degrees of freedom, and a reviewer who spots seventeen events reported with six degrees of freedom will want the explanation you just gave them.
+
+Chapter 14 also sets the limit on what this sentence may claim. It is a difference before and after a real event, not the result of an experiment, and the write-up should not let a reader mistake one for the other.
+
+## What Excel will not do for you
+
+Averaging within clusters is the simplest way to handle non-independence and it is not the only one. The general tools are multilevel or mixed-effects models, which estimate the channel-level and event-level variation at once instead of averaging one of them away, and they keep more information than the approach above. Excel cannot fit them. Neither can the Excel-based version of this course, and that is an honest boundary rather than a hidden one: when your design has clusters in it, the averaging approach here is defensible and reportable, and a statistics package is the next step when you need more.
+
+Excel also has no built-in confidence interval for a mean difference. You have the pieces in cells R2 and R4, so if you want one:
+
+```
+=R2-T.INV.2T(0.05,R6)*R4
+=R2+T.INV.2T(0.05,R6)*R4
+```
+
+That returns -2.02 to -0.12 words, which is a more useful sentence than the p-value on its own: the data are consistent with a drop of anywhere from a tenth of a word to two words, and not with an increase.
