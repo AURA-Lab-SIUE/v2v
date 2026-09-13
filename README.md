@@ -11,13 +11,13 @@ V2V is an open educational resource that teaches communication and media researc
 
 **Author:** Alex P. Leith, Southern Illinois University Edwardsville
 
-**Courses:** MC 451 Social Media Analytics (undergraduate); MC 500 + MC 501 Research Methods (graduate, via *Beyond Vibes*)
+**Courses:** MC 451 Research Methods in Mass Media (undergraduate); MC 501 Research Methods for Mass Communications (graduate, via *Beyond Vibes*)
 
 ---
 
 ## Table of Contents
 
-The 3rd Edition is organized into 14 chapters across five parts. (Chapters 1 through 6 are drafted; chapters 7 through 14 are stubs at this release and land progressively through Summer and Fall 2026.)
+The 3rd Edition is organized into 14 chapters across five parts, all of them drafted.
 
 ### Part I: Foundation
 1. The Science of Storytelling
@@ -61,9 +61,9 @@ The third edition consolidates the prior *From Vibes to Variables* textbook with
 - **Beyond Vibes graduate supplement** (in progress): the MC 501 edition adds power analysis, pre-registration discipline, two-coder reliability planning, and an audit-trail layer on top of the undergraduate foundation, satisfying the SIUE 33 percent cross-listing differential.
 - **`coursepackR` rebrand to `v2v`** (in progress): the R package is being renamed to match the umbrella brand.
 - **Open Methods Hub fold-in to V2V Hub** (in progress): the prior `liaison-program` course site is being consolidated under the V2V Hub identifier.
-- **Planned dataset migration**: chapter examples will move from the music dataset to a Twitch chat and stream-metadata corpus, better serving the MC 451 Social Media Analytics course. The migration ships chapter by chapter; the music dataset remains canonical until each chapter is updated.
+- **Dataset migration (complete)**: chapter examples moved from the music dataset to a Twitch chat and stream-metadata corpus, better serving the MC 451 Research Methods in Mass Media course. The music dataset remains available as a secondary teaching corpus.
 
-The 2nd Edition's 22-chapter content (research ethics, the methods landscape, qualitative methods, survey design, experimental design, the music dataset throughout) is preserved at `chapters/_archive-v2/` as a transitional reference. Pedagogical material from the 2nd Edition's expansion will be re-integrated into the 3rd Edition's 14-chapter structure as chapters 7 through 14 are drafted through Summer and Fall 2026.
+The 2nd Edition's 22-chapter content (research ethics, the methods landscape, qualitative methods, survey design, experimental design, the music dataset throughout) is preserved at `chapters/_archive-v2/` as a transitional reference. Pedagogical material from the 2nd Edition's expansion has been re-integrated into the 3rd Edition's 14-chapter structure.
 
 ---
 
@@ -107,27 +107,30 @@ Output goes to `docs/`. Open `docs/index.html` in your browser.
 ### Render a PDF
 
 ```bash
-quarto render --to pdf
+quarto render --to typst
 ```
 
-This requires a LaTeX distribution (TinyTeX recommended: `quarto install tinytex`).
+The PDF renders through Typst, which Quarto bundles, so no LaTeX distribution is required. A PDF and an EPUB are also offered as downloads from the published book.
 
 ---
 
 ## The Dataset
 
-Throughout the book, examples currently use the `unified_music` dataset, 1,792 songs combining Billboard chart performance, Spotify audio features, and Genius metadata. The dataset is bundled in the [v2v](https://github.com/AURA-Lab-SIUE/v2v) R package:
+Throughout the book, examples use the **Twitch working corpus**: chat messages and stream metadata from a 2018 collection covering nearly 1,700 channels. The `v2v` R package ships row-sampled fixtures so students never touch the full dump:
 
 ```r
 library(v2v)
+v2v::twitch_chat()    # sampled chat_log
+v2v::twitch_streams() # sampled stream_log
+```
+
+The 2nd Edition's `unified_music` dataset (1,792 songs combining Billboard chart performance, Spotify audio features, and Genius metadata) remains available in the package as a secondary teaching corpus:
+
+```r
 data(unified_music)
 ```
 
 See the [Data Dictionary appendix](https://aura-lab.siue.edu/v2v/appendices/data-dictionary.html) for the full variable reference.
-
-The third-edition migration will move chapter examples to a Twitch chat and stream-metadata corpus to better serve the MC 451 Social Media Analytics course. That migration ships chapter by chapter through Summer and Fall 2026; the music dataset remains canonical until each chapter is updated.
-
----
 
 ## V2V Package Components
 
