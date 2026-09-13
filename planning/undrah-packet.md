@@ -1,8 +1,8 @@
 ---
-title: "Vibes to Variables, third edition"
+title: "Vibes to Variables, fourth edition"
 ---
 
-# Vibes to Variables, third edition
+# Vibes to Variables, fourth edition
 
 **A communication research methods textbook for MC 451. Free to adopt, with the tool instruction kept separate from the text.**
 
@@ -14,15 +14,15 @@ Prepared for Undrah, September 2026
 
 The current edition of *Vibes to Variables* teaches one method, quantitative content analysis, carried end to end through a single study, and it teaches the analysis in R. That makes it a poor fit for a survey-of-methods course, and a poor fit for anyone who does not want to teach R.
 
-The third edition changes both of those things. It covers the full range of methods a communication methods course is expected to carry, and the tool instruction moves out of the book into a separate supplement, so the same text works in Excel, SPSS or R depending on which supplement you hand your students.
+The fourth edition changes both of those things. It covers the full range of methods a communication methods course is expected to carry, and the tool instruction moves out of the book into a separate supplement, so the same text works in Excel, SPSS or R depending on which supplement you hand your students.
 
 It is free, openly licensed, and it will be complete before the spring semester begins.
 
 ## What changes, concretely
 
-**Coverage.** I compared the current edition against ten standard texts, including Croucher and Cronn-Mills, Wimmer and Dominick, Babbie, Treadwell, Lindlof and Taylor, and Neuendorf, across thirty-seven topics. The third edition adds the eleven that a methods course is expected to cover and the current edition does not:
+**Coverage.** I compared the current edition against ten standard texts, including Croucher and Cronn-Mills, Wimmer and Dominick, Babbie, Treadwell, Lindlof and Taylor, and Neuendorf, across thirty-seven topics. The fourth edition adds the eleven that a methods course is expected to cover and the current edition does not:
 
-| Added in the third edition | | |
+| Added in the fourth edition | | |
 |---|---|---|
 | Research design | Survey research | Experimental design |
 | Qualitative interviewing | Focus groups | Ethnography and observation |
@@ -47,7 +47,7 @@ Two things about the samples worth knowing. Every number in both is real, comput
 
 ## Assessment is not assumed
 
-The current edition assumes a single end-to-end project delivered as a white paper, which is how I teach it and is not how everyone teaches it. The third edition marks every chapter for three paths, so a chapter can be taught, compressed, or skipped without breaking the ones after it:
+The current edition assumes a single end-to-end project delivered as a white paper, which is how I teach it and is not how everyone teaches it. The fourth edition marks every chapter for three paths, so a chapter can be taught, compressed, or skipped without breaking the ones after it:
 
 - the **project path**, one study carried through the term
 - the **survey path**, broad coverage of many methods
@@ -86,7 +86,7 @@ Worth knowing if you are being pointed toward open materials: the open shelf in 
 
 There is one open communication methods text, *Navigating Communication Research* from Mount Royal University, and it is good at what it does. It is written for media practitioners who need to read and judge research rather than produce it, so experiments and content analysis share a single chapter called "Other Methods", and there is no analysis half: no descriptive or inferential statistics, no data preparation, no visualization, and no software instruction of any kind. A student cannot take a dataset through to a result with it.
 
-The third edition is meant to be the one that teaches doing.
+The fourth edition is meant to be the one that teaches doing.
 
 ## What I need from you
 

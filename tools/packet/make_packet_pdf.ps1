@@ -9,7 +9,7 @@ $ErrorActionPreference = "Stop"
 $dir  = "C:\Users\alexl\AppData\Local\Temp\claude\C--pythia\911c8096-d1d3-4b3f-ab5c-0faea3c53a43\scratchpad\packet"
 $md   = Join-Path $dir "undrah-packet-full.md"
 $docx = Join-Path $dir "undrah-packet-full.docx"
-$pdf  = Join-Path $dir "v2v-third-edition-overview.pdf"
+$pdf  = Join-Path $dir "v2v-fourth-edition-overview.pdf"
 
 function Set-WordDocProperty {
     param($Properties, [string]$Name, $Value)
@@ -99,9 +99,9 @@ try {
     } catch {}
 
     $props = $doc.BuiltInDocumentProperties
-    Set-WordDocProperty -Properties $props -Name "Title"   -Value "Vibes to Variables, third edition: an overview for MC 451"
+    Set-WordDocProperty -Properties $props -Name "Title"   -Value "Vibes to Variables, fourth edition: an overview for MC 451"
     Set-WordDocProperty -Properties $props -Name "Author"  -Value "Dr. Alex P. Leith"
-    Set-WordDocProperty -Properties $props -Name "Subject" -Value "Communication research methods textbook, third edition overview and samples"
+    Set-WordDocProperty -Properties $props -Name "Subject" -Value "Communication research methods textbook, fourth edition overview and samples"
     Set-WordDocProperty -Properties $props -Name "Company" -Value "Southern Illinois University Edwardsville"
 
     $doc.ExportAsFixedFormat($pdf, 17, $false, 1, 0, 1, 1, 0, $true, $true, 0, $true, $true, $false)
