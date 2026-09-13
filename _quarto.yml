@@ -146,8 +146,14 @@ format:
       y: 1in
     toc: true
     toc-depth: 2
+    # Both partials replace orange-book's. See the headers in each file: the
+    # template drew chapter banners with outset that bled off every chapter
+    # opener, gave each chapter an otherwise-blank title page, and tinted the
+    # title block pink. Its numbering.typ is deliberately left in place, because
+    # chapter-based figure numbering is what a textbook wants.
     template-partials:
       - tools/typst/page.typ
+      - tools/typst/typst-show.typ
 
   # EPUB is for reading on a phone, an e-reader, or in a screen-reader app that
   # handles reflowable text better than a fixed-page PDF. It deliberately
