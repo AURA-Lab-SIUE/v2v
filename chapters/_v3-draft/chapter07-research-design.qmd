@@ -54,7 +54,7 @@ Say the question is simply how long a chat message is. The obvious answer is to 
 
 Same corpus, same measure, three different answers, and none of them is a mistake. They answer three different questions. The first is about the average message. The second is about the average person. The third is about the average channel. They differ because the levels are not evenly populated: 38,158 of the 61,320 senders posted exactly once, and the median sender posted once, so the message-level average is dominated by the small number of people who talk constantly, while the sender-level average gives the one-message lurker the same weight as the regular.
 
-So the rule is not that one unit is correct. The rule is that **the unit has to match the claim**. If you intend to say something about people, your cases have to be people, and you have to build that file deliberately, which is what Chapter 13 does when it turns messages into respondents. If you intend to say something about channels, your n is 50 and no amount of chat volume changes that.
+So the rule is not that one unit is correct. The rule is that **the unit has to match the claim**. If you intend to say something about people, your cases have to be people, and you have to build that file deliberately, which is what Chapter 13 does when it turns messages into respondents. If you intend to say something about channels, your *n* is 228 and no amount of chat volume changes that.
 
 ## The mistakes that live between levels
 
@@ -64,7 +64,7 @@ The **ecological fallacy** is concluding something about individuals from data a
 
 The **individualistic fallacy** is the reverse, concluding something about groups from data about individuals. That the average viewer behaves one way tells you less than you would think about how a chat room behaves collectively, because a chat room is an interaction and not a sum.
 
-There is also a quieter problem that is not a fallacy but a statistical fact, and it will return in Chapter 14. When cases are **nested**, meaning each one belongs to a larger group, cases within the same group resemble each other more than they resemble cases elsewhere. Messages from one channel are not independent of each other. Pretending they are makes your evidence look stronger than it is, and Kenny and Judd (1986) show precisely how much stronger: the standard error of the mean message length is 0.0184 words at the message level and 0.1502 words at the channel level, a difference of roughly ten times, and the second is the honest one if the claim is about channels. Noticing nesting at the design stage is much cheaper than discovering it at the analysis stage.
+There is also a quieter problem that is not a fallacy but a statistical fact, and it will return in Chapter 14. When cases are **nested**, meaning each one belongs to a larger group, cases within the same group resemble each other more than they resemble cases elsewhere. Messages from one channel are not independent of each other. Pretending they are makes your evidence look stronger than it is, and Kenny and Judd (1986) show precisely how much stronger: the standard error of the mean message length is 0.0184 words at the message level and 0.1502 words at the channel level, a difference of roughly eight times, and the second is the honest one if the claim is about channels. Noticing nesting at the design stage is much cheaper than discovering it at the analysis stage.
 
 ## Timing
 

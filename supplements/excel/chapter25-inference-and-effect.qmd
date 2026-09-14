@@ -99,7 +99,7 @@ A different question from the same table: are bot commands distributed evenly be
 | non-gaming | 1,764 | 77,649 | 79,413 |
 | total | 5,526 | 151,053 | 156,579 |
 
-Those are counts of messages rather than of lengths, so all 156,579 classified messages appear here, including the four with no text.
+Those are counts of messages rather than of lengths, so all 156,579 classified messages appear here, including the five that read `NA`.
 
 The expected count for each cell, if the two variables were unrelated, is its row total times its column total over the grand total:
 
@@ -168,4 +168,4 @@ Three of those four came from formulas you wrote rather than from a function, wh
 
 It will not tell you that your observations are not independent, which for this corpus they emphatically are not: Chapter 7 puts the naive standard error at 0.0184 against a clustered 0.1502. Every p-value above is computed as though each of the 156,579 messages were an independent draw, and they are messages from 61,320 senders in 226 channels. The arithmetic is right and the assumption underneath it is wrong, and no cell in the workbook knows that.
 
-It will not stop you running the test twenty times and reporting the one that worked. It will not tell you that a significant result on 156,579 observations is a statement about your sample size. And it will not decide whether a five-character difference matters to anyone, which is the only question the reader actually has.
+It will not stop you running the test twenty times and reporting the one that worked. It will not tell you that a significant result on 156,579 observations is a statement about your sample size. And it will not decide whether a two-and-a-half-character difference matters to anyone, which is the only question the reader actually has.

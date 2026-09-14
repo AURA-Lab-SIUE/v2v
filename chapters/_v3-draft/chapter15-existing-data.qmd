@@ -48,7 +48,9 @@ That is more than most datasets tell you. The audit confirms the counts and stil
 
 **The row and channel counts hold.** 157,080 messages, 228 channels, all eight anchors present, and no duplicate identifiers.
 
-**Four messages have no text at all.** They are missing values, and because the file is a CSV, they arrive as the two bare characters `NA`. A tool that knows the convention reads them as missing; a spreadsheet reads them as a two-character message. Four rows in 157,080 changes almost nothing here, and it is the shape of a problem that is not always small: a CSV cannot distinguish a missing value from the text that spells it, and `NA`, `NULL`, `N/A`, `-99` and an empty cell all arrive as something.
+**Five messages in the file are the two bare characters `NA`.** Four are from `asmongold` and one from `dyrus`. A tool that knows the convention reads them as missing; a spreadsheet reads them as a two-character message.
+
+Which is right is not obvious, and that is the lesson rather than a footnote to it. `NA` is the standard CSV spelling of a missing value. It is also, in a gaming channel, how people write North America. Nothing in the file settles it, and a tool that decides for you has made an interpretive call and recorded it as a fact. Five rows in 157,080 changes almost nothing here, and it is the shape of a problem that is not always small: a CSV cannot distinguish a missing value from the text that spells it, and `NA`, `NULL`, `N/A`, `-99` and an empty cell all arrive as something.
 
 **One documented figure describes a different dataset.** The help page says messages run up to 509 characters. The longest message in this file is **500**, and none exceeds it.
 

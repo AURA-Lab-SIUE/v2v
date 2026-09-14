@@ -4,7 +4,7 @@ title: "Chapter 25: Inference and Effect"
 
 Chapter 24 ended on a number and a doubt. The number was a gap: across the sample, gaming channels averaged 29.54 characters per chat message and non-gaming channels 31.96, a difference of a little under two and a half characters. The doubt was whether that gap means anything.
 
-The doubt is not idle. A sample almost always shows some gap. Split any group of people in two at random, measure their heights, and the two averages will differ a little, not because the halves are truly different but because no two samples come out identically. The five-character gap between gaming and non-gaming chat could be a real difference between the two kinds of channel. It could also be the ordinary wobble that any two samples produce. Looking at the histogram cannot tell the two apart, because both possibilities produce a gap.
+The doubt is not idle. A sample almost always shows some gap. Split any group of people in two at random, measure their heights, and the two averages will differ a little, not because the halves are truly different but because no two samples come out identically. The two-and-a-half-character gap between gaming and non-gaming chat could be a real difference between the two kinds of channel. It could also be the ordinary wobble that any two samples produce. Looking at the histogram cannot tell the two apart, because both possibilities produce a gap.
 
 Settling that doubt is the job of **inferential statistics**, and it is the work of this chapter. After describing a sample, a researcher eventually has to make a call: is the pattern in the data a real feature of the world, or is it noise that will not survive the next sample? Chapter 13 is where the chat study makes that call about its central finding.
 
@@ -14,7 +14,7 @@ Start with what the question really is. The study did not measure those 156,579 
 
 So the honest question is not "is there a gap in the sample," because there plainly is. It is "is the gap in the sample large enough that chance alone is an unconvincing explanation for it." That is the question a **hypothesis test** answers, and it answers it through a move that feels backward the first time.
 
-The test does not start from the difference you suspect is real. It starts from its opposite, called the **null hypothesis**: the assumption that there is no real difference at all, that gaming and non-gaming chat have the same true mean length, and that the five-character gap is nothing but sampling noise. The test then asks a single question of the data: if the null hypothesis were true, how surprising would a gap this large be?
+The test does not start from the difference you suspect is real. It starts from its opposite, called the **null hypothesis**: the assumption that there is no real difference at all, that gaming and non-gaming chat have the same true mean length, and that the gap is nothing but sampling noise. The test then asks a single question of the data: if the null hypothesis were true, how surprising would a gap this large be?
 
 The logic is the logic of a skeptic. Imagine testing whether a coin is weighted by flipping it a hundred times. You would not try to prove it crooked directly. You would assume it fair, the null hypothesis, work out how often a fair coin would produce a result as lopsided as the one you got, and if that turned out to be a rare event, conclude that the fair-coin assumption is hard to believe. A hypothesis test treats the chat data the same way. Assume nothing is going on, measure how surprising the data are under that assumption, and if they are surprising enough, reject the assumption.
 
@@ -57,7 +57,7 @@ The rest of the output is the result, and it has three parts worth reading slowl
 
 The **p-value** reported here is "< .001," and stating exactly what that means takes care, because the p-value is the most misread number in statistics.
 
-It means this: if gaming and non-gaming chat truly had the same mean message length, so that the null hypothesis were true, then drawing a sample with a gap at least as large as the observed five characters would happen less than one time in a thousand. The data are, in other words, very surprising under the assumption that nothing is going on. By the convention that researchers apply, a p-value below the threshold of .05 counts as **statistically significant**, and a p-value this small clears that bar easily. Chance alone is an unconvincing explanation for the gap.
+It means this: if gaming and non-gaming chat truly had the same mean message length, so that the null hypothesis were true, then drawing a sample with a gap at least as large as the observed 2.43 characters would happen less than one time in a thousand. The data are, in other words, very surprising under the assumption that nothing is going on. By the convention that researchers apply, a p-value below the threshold of .05 counts as **statistically significant**, and a p-value this small clears that bar easily. Chance alone is an unconvincing explanation for the gap.
 
 That convention deserves a note of its own. The .05 threshold is exactly that, a convention, with no deep justification; a p-value of .049 and one of .051 describe almost identical evidence, and treating one as a discovery and the other as a non-event is a habit the field is right to question (Wasserstein & Lazar, 2016).
 
@@ -89,7 +89,7 @@ The intervals are so short they nearly vanish behind the points, a direct conseq
 
 Putting the two numbers together is the call this chapter has been building toward, and it is a more careful call than "significant or not."
 
-The finding is this. Gaming and non-gaming channels do differ in their mean chat-message length; the difference is statistically significant, unlikely to be an accident of sampling. And the difference is negligible in size, about five characters, a word's worth, dwarfed by how much message lengths vary in the first place. Both halves are true, and a report that gave only the first half would mislead. A reader who heard "gaming and non-gaming chat differ significantly, p < .001" and nothing else would picture a real divide between two kinds of community. The effect size corrects the picture: there is a divide, and it is almost too small to see.
+The finding is this. Gaming and non-gaming channels do differ in their mean chat-message length; the difference is statistically significant, unlikely to be an accident of sampling. And the difference is negligible in size, about two and a half characters, well under a word, dwarfed by how much message lengths vary in the first place. Both halves are true, and a report that gave only the first half would mislead. A reader who heard "gaming and non-gaming chat differ significantly, p < .001" and nothing else would picture a real divide between two kinds of community. The effect size corrects the picture: there is a divide, and it is almost too small to see.
 
 This is the difference between **statistical significance** and **practical significance**, and it is perhaps the single most important habit this book asks for. Statistical significance asks whether an effect is distinguishable from zero. Practical significance asks whether the effect is large enough to matter. They are not the same question, large samples make them diverge, and a finding is only honestly reported when both are on the page.
 
@@ -159,10 +159,10 @@ Do it properly. Take each channel's mean message length as one observation and c
 
 | | channels | mean of channel means | sd |
 |---|---|---|---|
-| non-gaming | 106 | 32.74 | 16.0 |
-| gaming | 95 | 31.02 | 11.5 |
+| non-gaming | 112 | 32.64 | 16.0 |
+| gaming | 114 | 30.48 | 11.6 |
 
-Welch's *t*(190.2) = 0.88, *p* = .38. The difference is not statistically significant.
+Welch's *t*(202.5) = 1.16, *p* = .25. The difference is not statistically significant.
 
 Read those two results together, because they are the same data. At the message level, *p* < .0000000000000002. At the channel level, *p* = .38. Nothing changed except the unit, and the unit is not a matter of taste: the label varies across channels, so channels are what the test has to count.
 
@@ -186,7 +186,7 @@ None of that makes the test worthless. It makes it one input to a judgment, whic
 
 The study now has a tested finding, honestly interpreted: a real difference, a negligible effect, and an assumption it is knowingly straining.
 
-It also has a shape of question it cannot answer. The test says gaming and non-gaming chat differ by five characters; it does not say what those five characters are made of, or why anyone would type differently in a painting stream. Chapter 26 is about designs that go after both at once, and about the fact that combining methods is considerably harder than running two studies and stapling them together.
+It also has a shape of question it cannot answer. The test says gaming and non-gaming chat differ by 2.43 characters; it does not say what those 2.43 characters are made of, or why anyone would type differently in a painting stream. Chapter 26 is about designs that go after both at once, and about the fact that combining methods is considerably harder than running two studies and stapling them together.
 
 ## References
 

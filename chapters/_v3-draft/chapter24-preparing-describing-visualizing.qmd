@@ -30,11 +30,11 @@ Three variables in this book's running study do not exist in the raw data and ha
 
 Converting it back is the most error-prone small step in this chapter, and the reason is a factor of a thousand. Most date functions expect a count of **seconds**, and this column holds **milliseconds**. Hand the raw number to a function expecting seconds and every message lands tens of thousands of years in the future, which at least announces itself. The quieter failure is a tool that silently succeeds on a value it should have rejected.
 
-The first message in the corpus carries the timestamp `1542578127023`, which is the evening of the 18th of November, 2018. If your conversion gives you a date in the year 50,000, you forgot to divide.
+The first message in the corpus carries the timestamp `1542578131126`, which is the evening of the 18th of November, 2018. If your conversion gives you a date in the year 50,000, you forgot to divide.
 
 **Message length.** The character count of each message, which the codebook named and the file does not contain. It is a ratio variable in the Chapter 9 sense: a true zero, equal intervals, a count you can average.
 
-The first three messages in the corpus run 23, 441 and 8 characters: a row of punctuation, a block of copy-pasted emotes, and a single word. All three are ordinary Twitch chat, and the distance between them is the raw material of the study.
+The first three messages in the corpus run 18, 11 and 18 characters, and none of them is English: a French stream title echoed back, an Italian one with a scoreline, and a Turkish phrase. All three are ordinary Twitch chat, and the distance between them is the raw material of the study.
 
 **A gaming label.** This is the one the research question turns on, and it takes real work, so it gets its own section.
 
@@ -85,7 +85,7 @@ Here they are for the study's central variable, message length, split by the lab
 
 Read the `mean` column and a story jumps out. Read the `median` column and it collapses.
 
-Read the `mean` column and a story jumps out: non-gaming messages, the `FALSE` row, average 31.96 characters against 29.54 for gaming messages. Non-gaming chat looks longer. Now read the `median` column, the length of the exactly-middle message in each group, and the story collapses: 16 characters for non-gaming, 18 for gaming, all but identical, and pointing the other way. The typical message is the same length in both kinds of channel.
+Read the `mean` column and a story jumps out: non-gaming messages average 31.96 characters against 29.54 for gaming messages. Non-gaming chat looks longer. Now read the `median` column, the length of the exactly-middle message in each group, and the story collapses: 16 characters for non-gaming, 18 for gaming, all but identical, and pointing the other way. The typical message is the same length in both kinds of channel.
 
 Note the standard deviations too, because they are the loudest signal in the table and the easiest to skip. Non-gaming messages vary more than gaming ones, 54.51 against 39.69, and a standard deviation well over a group's own mean is a warning that the mean is describing a shape it does not fit.
 
@@ -119,7 +119,7 @@ The second question is about timing. The chat data spans a little under six days
 
 Hour of day is not a continuous sweep the way a date is. It is a set of twenty-four discrete categories, and the thing being measured for each is a simple count of messages. For counts across discrete categories, the natural geometry is the **bar chart**: one bar per category, its height the count, the bars sitting side by side so the eye can compare them.
 
-The figure shows a clear daily pulse. Chat is busiest through the UTC midday and afternoon, peaking at 22:00 with 10,967 messages, and quietest in the early afternoon, bottoming out at 14:00 with 4,173, a swing of well over two to one between the loudest hour and the quietest. The shape is not mysterious. Twitch's audience in 2018 was concentrated in the Americas and Europe, and the UTC midday and afternoon are the waking, screen-facing hours across that span, while 03:00 UTC is the middle of the night for most of it. The point worth taking is less the particular peak than what the bar chart does: it takes twenty-four numbers and makes a rhythm visible in one glance, which is exactly the job a bar chart is for.
+The figure shows a clear daily pulse. Chat is busiest through the UTC evening, peaking at 22:00 with 10,967 messages, and quietest in the early afternoon, bottoming out at 14:00 with 4,173, a swing of well over two to one between the loudest hour and the quietest. The shape is not mysterious. Twitch's audience in 2018 was concentrated in the Americas and Europe, and the UTC midday and afternoon are the waking, screen-facing hours across that span, while 03:00 UTC is the middle of the night for most of it. The point worth taking is less the particular peak than what the bar chart does: it takes twenty-four numbers and makes a rhythm visible in one glance, which is exactly the job a bar chart is for.
 
 ### A histogram for shape
 
@@ -129,7 +129,7 @@ This question is not about a total or a trend. It is about a **distribution**, t
 
 Two choices shape a histogram and both have to be disclosed. **Bin width** sets how wide each bar is: wider bins smooth the shape, narrower bins roughen it, and the number is a judgment you make and report. **Capping the axis** hides the far tail so the bulk of the data is visible, and it is legitimate only if you say what it hid. Here the display caps at 120 characters, which puts 5,699 messages, under four percent of the corpus, out of view, stretched thinly all the way out to 500 characters.
 
-A cap that removes three percent to make the other ninety-seven legible is a good trade. A cap that removes a third of the data is a different figure entirely.
+A cap that removes four percent to make the other ninety-six legible is a good trade. A cap that removes a third of the data is a different figure entirely.
 
 The figure shows, first, a shape both groups share. Each distribution is heavily **right-skewed**: a tall stack of very short messages at the left, then a long thin tail trailing off to the right. Twitch chat is mostly brief, a word or an emote, with a minority of longer messages stretching the range. This is the most important thing the histogram reveals, and it is invisible in any single summary number.
 
@@ -149,7 +149,7 @@ A figure that is honest about its choices, legible without color, and described 
 
 ## Looking ahead
 
-The histogram left a precise question on the table. The means of the two groups differ by about five characters, and the distributions behind those means are skewed, overlapping, and built from very different numbers of messages. Whether that five-character gap is a real difference or only sampling noise is not something the eye can settle. Chapter 13 takes it up. It is the inference chapter, where the study moves from describing what the sample looks like to testing what the difference is likely to mean.
+The histogram left a precise question on the table. The means of the two groups differ by about two and a half characters, and the distributions behind those means are skewed, overlapping, and built from very different numbers of messages. Whether that two-and-a-half-character gap is a real difference or only sampling noise is not something the eye can settle. Chapter 13 takes it up. It is the inference chapter, where the study moves from describing what the sample looks like to testing what the difference is likely to mean.
 
 Chapter 25 answers it. It is the chapter where a difference you can see becomes a difference you can defend, and where the size of that difference finally gets reported alongside the question of whether it is real.
 

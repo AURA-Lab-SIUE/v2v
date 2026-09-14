@@ -61,11 +61,11 @@ Two messages out of 157,080 is not a crisis. It is a demonstration that a conver
 =IF(D2="NA","",LEN(D2))
 ```
 
-The first three come back 23, 441 and 8. If you skipped the Text step above, some of these are the length of a date serial number instead.
+The first three come back 18, 11 and 18. If you skipped the Text step above, some of these are the length of a date serial number instead.
 
 ### Trap five: `NA` is a word in a CSV
 
-The `IF` is not decoration. **Four messages in this corpus have no text at all**, and R writes a missing value into a CSV as the two bare characters `NA`. Excel has no way to know that is not a message, so `LEN` returns **2** and four missing messages quietly become four two-character ones.
+The `IF` is not decoration. **Five messages in this corpus are the bare characters `NA`**, and R writes a missing value into a CSV as the two bare characters `NA`. Excel has no way to know that is not a message, so `LEN` returns **2** and four missing messages quietly become four two-character ones.
 
 Four rows in 157,080 move the mean by less than a hundredth of a character, so nothing in the descriptives below changes. They move the third digit of Chapter 25's test statistics, and they change an `n` you would report. The general point is the one worth keeping: **a CSV cannot distinguish a missing value from the text that spells it**, and every tool guesses differently. Check what your file uses for missing before you compute anything over it, because `NA`, `N/A`, `NULL`, `-99` and an empty cell all arrive as something, and only one of them is nothing.
 
@@ -175,7 +175,7 @@ Select the message-length column and insert a **Histogram** chart, or build one 
 
 Two settings have to be chosen and reported. **Bin width**: five characters is a reasonable start here. **The axis cap**: set the horizontal axis maximum to 120. That hides **5,699 messages, under four percent of the corpus**, which run out as far as 500 characters.
 
-Check that number before you cap, with `=COUNTIF($H$2:$H$157081,">120")`, and put it in the figure caption. A cap that hides three percent to make the other ninety-seven legible is a good trade that you disclosed. A cap you did not measure is a figure you cannot defend.
+Check that number before you cap, with `=COUNTIF($H$2:$H$157081,">120")`, and put it in the figure caption. A cap that hides four percent to make the other ninety-six legible is a good trade that you disclosed. A cap you did not measure is a figure you cannot defend.
 
 ## The sheet that makes this reproducible
 
