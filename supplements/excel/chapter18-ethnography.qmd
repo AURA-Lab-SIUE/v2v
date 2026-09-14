@@ -1,0 +1,98 @@
+---
+title: "Excel Supplement, Chapter 18: Ethnography and Participant Observation"
+---
+
+Chapter 18 warns that observation concentrated in one window is a study of that window, and that time of day is part of the field site rather than a scheduling detail.
+
+That warning is usually delivered as advice and then ignored, because it has no number attached. This supplement attaches one. If you know when the setting is actually busy, you can measure what share of its activity your observation sessions covered, and the measure is uncomfortable in a useful way.
+
+## Two kinds of data, and which is which
+
+This supplement uses real data for the half that can be real, and asks you to supply the half that cannot.
+
+**The setting's rhythm is real.** `coverage.csv` is built from the stream snapshots: for each hour of the day, how many channels were live and the mean total viewers. Twenty-four rows, one per hour.
+
+**Your observation schedule is yours.** No session log ships with this supplement, because a log of sessions nobody attended is a plan dressed up as evidence. You will mark the hours you actually observed, or the hours you are proposing to observe, and the diagnostic works the same either way. Running it *before* fieldwork is the better use.
+
+Import the file the usual way: **Data**, **From Text/CSV**, **65001: Unicode (UTF-8)**, **Load**. You should land on 25 rows and three columns: `hour_utc`, `channels_live`, `mean_viewers`.
+
+**Note the timezone before anything else.** These hours are UTC, and the file says so in its column name on purpose. A coverage matrix built in the wrong timezone is confidently wrong rather than obviously wrong: everything still computes, the chart still has a shape, and the shape is shifted by five or eight hours. Whatever timezone you work in, write it in the column heading, and convert the setting's clock to match yours before you compare them.
+
+## What the setting's rhythm looks like
+
+Before measuring your coverage, look at what you are covering.
+
+Put these somewhere to the right:
+
+| Label | Formula |
+|---|---|
+| total activity | `=SUM(C2:C25)` |
+| busiest hour | `=INDEX(A2:A25,MATCH(MAX(C2:C25),C2:C25,0))` |
+| quietest hour | `=INDEX(A2:A25,MATCH(MIN(C2:C25),C2:C25,0))` |
+| peak to trough | `=MAX(C2:C25)/MIN(C2:C25)` |
+
+You should get a total of **178,792**, a busiest hour of **23** UTC, a quietest hour of **7** UTC, and a ratio of **3.39**.
+
+`INDEX` with `MATCH` is worth learning here rather than looking up later. `MAX(C2:C25)` finds the largest value; `MATCH` finds which position in the column holds it; `INDEX` returns the value sitting at that same position in a different column. Together they answer "which hour was busiest", which `MAX` alone cannot, because `MAX` gives you the number and not its label.
+
+Now select A1:C25 and insert a line chart of `mean_viewers` against `hour_utc`. The curve falls through the small hours, bottoms out around 07 UTC, and climbs to its peak late. **The setting is three and a half times busier at its peak than at its trough.** Any claim that treats "the channel" as one thing is averaging across that.
+
+## Marking your coverage
+
+In **D1** type `observed`. In D2 through D25, put a `1` for each hour you observed and a `0` for each hour you did not. Hour 0 is in row 2, so hour 23 is in row 25.
+
+If you are logging real sessions rather than planning them, keep the underlying session log on its own sheet with one row per session and columns for date, start time, end time and site, and derive this column from it rather than ticking boxes from memory. Memory systematically remembers the interesting sessions.
+
+## The three numbers
+
+Three formulas, and the third is the one that matters.
+
+| Cell | Label | Formula |
+|---|---|---|
+| G2 | hours observed | `=SUM(D2:D25)` |
+| G3 | share of the clock | `=SUM(D2:D25)/24` |
+| G4 | share of the activity | `=SUMPRODUCT(C2:C25,D2:D25)/SUM(C2:C25)` |
+
+The first two are obvious. The third is a **weighted** coverage: instead of counting hours equally, it counts each hour in proportion to how much was happening in it.
+
+`SUMPRODUCT` multiplies the two ranges cell by cell and adds the results. Because column D is ones and zeros, every unobserved hour multiplies to zero and drops out, and what remains is the total activity in the hours you did observe. Divide by the total and you have the share. This is the same weighted-sum trick that made the chi-square in Chapter 12's supplement work, doing a different job.
+
+## Reading the answer
+
+Two schedules, both run against this data.
+
+**Evenings only,** hours 0, 22 and 23. That is **12.5 percent** of the clock and **20.4 percent** of the activity.
+
+**Spread out,** hours 2, 7, 11, 15, 19 and 23. That is **25 percent** of the clock and **24.6 percent** of the activity.
+
+Read those together, because the pair says something neither says alone.
+
+The evening schedule is **efficient**. Three hours buy a fifth of everything happening, because those are the hours when the setting is busiest. If your question is about peak-time behavior, that is a defensible design and the number supports it.
+
+The evening schedule is also **narrow in a way the hour count hides**. You have seen a fifth of the activity and essentially none of the setting's quiet hours, and quiet hours are not just less of the same thing. A channel with four thousand viewers behaves differently from the same channel with twelve thousand: the chat is legible rather than a wall, regulars can hold a conversation, the streamer can read individual messages. Those are different social conditions, not a smaller sample of one condition.
+
+The spread schedule buys almost exactly proportional coverage, 25 percent of the clock for 24.6 percent of the activity, which is what you want when the question is about the setting as a whole rather than about its peak.
+
+Neither is correct. What is not defensible is running the evening schedule and writing as though you had described the channel.
+
+## The sentence this produces
+
+The point of the exercise is a sentence you can put in a methods section:
+
+> Observation was conducted across six hours of the day spanning peak and off-peak periods (02, 07, 11, 15, 19 and 23 UTC), covering 25% of the daily cycle and approximately 25% of total channel activity as measured by mean concurrent viewers.
+
+Compare that with what such sections usually say, which is "observation was conducted over four months." The second tells a reader the duration and nothing about the shape, and duration was never the thing at risk.
+
+## Extending to days
+
+This file collapses the week into a single day, and for this corpus that is the honest choice: the collection window runs from a Sunday evening to the following Saturday afternoon, so each weekday appears once and two appear as fragments. One Tuesday cannot tell you what Tuesdays are like.
+
+For your own fieldwork the same matrix extends: make the rows days of the week, the columns hours, and mark the cells you observed. The diagnostic is unchanged, the weights come from your own record of when the setting was busy, and the failure mode it catches is the common one, which is a study that happened entirely on the two evenings its author had free.
+
+Say which cells you covered. A reader can then judge what you were positioned to see, which is the whole purpose of reporting a method.
+
+## What Excel will not do for you
+
+Excel cannot tell you whether the hours you missed contained anything different. It can only tell you that you missed them, and how much was going on while you did. Whether the quiet hours hold a different community or merely a thinner version of the same one is a question for observation, and the matrix exists to stop you assuming the answer.
+
+It also will not convert timezones for you in any way you should trust across a daylight-saving boundary. If your fieldwork spans one, handle it deliberately, and note that the setting's own audience shifted by an hour on that date whether or not your schedule did.
