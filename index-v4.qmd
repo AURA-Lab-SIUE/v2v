@@ -1,0 +1,71 @@
+---
+title: "Welcome"
+---
+
+# Vibes to Variables {.unnumbered}
+
+*Fourth Edition (V2V)*
+
+This open educational resource teaches communication and media research methods as a complete arc, from the first spark of curiosity through a published, reproducible study. V2V is written for students who have never opened a stats program and have never written a research paper. It meets them where they are and walks them to a defensible study.
+
+V2V is a methods package, not a textbook with bonuses. The book you are reading is one of several co-equal components:
+
+- **The book** (this site): chapter prose anchored to a real, public dataset.
+- **V2V Hub**: the course site that wraps this book with workbooks, cheat sheets, datasets, references, and instructor materials.
+- **`v2v` R package**: friction-reducing helpers that make chapter exercises one-line calls instead of multi-step setup.
+- **The supplements**: two practice supplements and an Excel supplement for most chapters, so the analysis can be done in a spreadsheet by readers who are not working in R.
+
+## How this book works
+
+The book is organized into 27 chapters across six parts that follow the phases of a research project.
+
+1. **Foundation** (Chapters 1 to 3). Research as disciplined storytelling, the three paradigms that divide the field and what each treats as an answer, and research ethics.
+2. **Planning** (Chapters 4 to 6). Literature review, theoretical lens, and a prospectus that locks scope before any code.
+3. **Quantitative Methods** (Chapters 7 to 15). Research design, operationalization, measurement, reliability and validity, wrangling, and then the four designs themselves: content analysis, surveys, experiments, and working with data somebody else collected.
+4. **Qualitative Methods** (Chapters 16 to 21). Interviewing, focus groups, ethnography, qualitative content analysis, discourse and conversation analysis, and the chapter all of them point at: how language becomes a finding through coding.
+5. **Rhetorical and Critical Analysis** (Chapters 22 and 23). Neither chapter codes or counts. One reads a text closely to evaluate how it persuades; the other asks whose interests an arrangement serves.
+6. **Analysis and Publication** (Chapters 24 to 27). Preparing, describing and visualizing data, inference and effect size, mixed methods, and the report itself.
+
+Two **practice supplements** sit outside that arc because they are hands-on setup rather than method. *The Open Workspace* installs the tools and opens the dataset for the first time; *Structured Listening* is the immersion in the live medium that Chapter 8 assumes you have done. Work through both early: Chapter 8 depends on the field notes the second one produces.
+
+An **Excel supplement** accompanies most chapters in Parts III through VI. Each one does that chapter's analysis in a spreadsheet, and each one is also a catalogue of the ways a spreadsheet will hand you a confident wrong answer.
+
+::: {.callout-note}
+## What changed in the fourth edition
+
+The third edition taught one method end to end: quantitative content analysis, in 14 chapters. The fourth widens the book to the range of methods a research methods course actually carries, which is why it runs to 27 chapters and why Parts IV and V are new.
+
+Two other changes matter to anyone returning to the book. Tool instruction has moved out of the chapters and into the supplements, so the text can be taught in R, in a spreadsheet, or with no software at all. And the working corpus was re-drawn: the third edition's 50-channel sample contained five non-gaming channels, which was too thin a base for the comparison the book is built on. The fourth edition takes every non-gaming channel in the population and matches them with an equal number of gaming channels. The appendix explains what that design buys and what it costs.
+
+The V2V 2nd Edition (22 chapters, music dataset) remains in the `_archive-v2/` folder of this repository as a transitional reference.
+:::
+
+## The dataset
+
+V2V anchors all examples in the **Twitch working corpus**, drawn from a 1.6 GB PostgreSQL dump collected for a 2018 dissertation: two tables, `chat_log` for IRC messages and `stream_log` for Twitch API snapshots, covering 1,695 channels across 5.85 days of public broadcasting.
+
+The `v2v` R package ships fixtures so students never touch the full dump: **157,080 chat messages and 90,245 stream snapshots across 228 channels.**
+
+```r
+library(v2v)
+v2v::twitch_chat()    # 157,080 messages, 228 channels
+v2v::twitch_streams() # 90,245 snapshots, same channels
+```
+
+**One thing to know before you quote a number from it.** The corpus is deliberately not proportional to Twitch. Non-gaming channels are under seven percent of the population and half of this fixture, because the book's central comparison needs both groups. That makes the two groups comparable to each other and makes the corpus useless for estimating what share of Twitch is anything. The appendix says so at more length, and Chapter 15 makes an exercise of finding it out.
+
+The 2nd Edition's `unified_music` dataset (Billboard, Spotify and Genius for 1,792 songs) remains in the `v2v` package as a secondary teaching corpus.
+
+## License
+
+This work is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
+
+That licence covers the prose, the figures and the code written for this book. It does not and cannot cover everything the book contains. Quoted passages from published work appear under fair use and remain the property of their authors. The chat messages in the working corpus were written by members of the public who granted a licence to a platform and not to this book; they are reproduced here for teaching and research, and the appendix and Chapter 3 set out the terms on which that is done.
+
+**Author:** Alex P. Leith, Southern Illinois University Edwardsville
+
+**How to cite:** Leith, A. P. (2026). *Vibes to variables: A methods package for students new to research, stats, and code* (4th ed.). Southern Illinois University Edwardsville. https://aura-lab.siue.edu/v2v/
+
+**Courses:** MC 451 Research Methods in Mass Media (undergraduate); MC 501 Research Methods for Mass Communications (graduate)
+
+**Corrections:** Errors in this book are reported as issues at [github.com/AURA-Lab-SIUE/v2v](https://github.com/AURA-Lab-SIUE/v2v), or by email to the author. A list of what a reader found and what changed is worth more to the next reader than a clean-looking page, so please send them.

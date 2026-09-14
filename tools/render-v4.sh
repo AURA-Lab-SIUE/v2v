@@ -36,6 +36,12 @@ rsync -a --delete \
 
 rm -f "$BUILD/_quarto-grad.yml" "$BUILD/_quarto-undergrad.yml"
 
+# index.qmd is in BOTH editions' tables of contents, so the 4th edition gets its
+# own front matter in index-v4.qmd and the build copy swaps it into place. Editing
+# index.qmd directly would rewrite the published 3rd edition's landing page.
+cp "$REPO/index-v4.qmd" "$BUILD/index.qmd"
+rm -f "$BUILD/index-v4.qmd"
+
 # Splice: the base config, with output-dir, downloads, edition, subtitle and the
 # whole book.chapters block replaced by the v4 ones. Line surgery rather than a
 # YAML library because m4's python3 has no PyYAML. The result is not trusted on

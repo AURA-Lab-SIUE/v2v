@@ -109,6 +109,8 @@ The first question is about viewership. Across the collection week, how did the 
 
 When the horizontal axis is time and the vertical axis is a quantity that rises and falls, the natural geometry is the **line chart**. A line connects one moment to the next, and the eye reads the climb and the drop as a single continuous motion. That is what makes a line right for change over time and wrong for unordered categories: it implies that the points are in sequence and that the space between them is real.
 
+![Total concurrent viewers across the 228 channels, summed within six-hour UTC buckets and split by category, over the November 2018 collection week.](../../images/fig24-1-viewers-by-game.png){fig-alt="A line chart running from 18 to 24 November 2018, with one line per category and a sixth line pooling all others. The pooled line sits far above the rest for the whole week, peaking near 28.7 million summed concurrent viewers. Just Chatting is the largest named category and still runs well below the pooled line. Fortnite, Pokemon, Art and ASMR stay low and close to the axis throughout. Every line shows the same daily rise and fall."}
+
 The figure has an obvious headline: the line that dominates it is "Other", the catch-all holding every game outside the top five, which spikes far above any named category.
 
 That fact can be read two ways and a careful analyst holds both. One reading is substantive, that viewership here is spread across a long tail of smaller games rather than concentrated in the big ones. The other is an artifact of the analyst's own choice, since "Other" is large precisely because the top five was set at five. A category you created is not a finding about the world, and a figure whose headline is your own binning decision needs that said out loud.
@@ -118,6 +120,8 @@ That fact can be read two ways and a careful analyst holds both. One reading is 
 The second question is about timing. The chat data spans a little under six days; across the hours of the day, when are the channels busiest?
 
 Hour of day is not a continuous sweep the way a date is. It is a set of twenty-four discrete categories, and the thing being measured for each is a simple count of messages. For counts across discrete categories, the natural geometry is the **bar chart**: one bar per category, its height the count, the bars sitting side by side so the eye can compare them.
+
+![Chat messages by hour of day in UTC, across the collection window.](../../images/fig24-2-chat-by-hour.png){fig-alt="A bar chart of message counts for each of the 24 hours of the day in UTC. The tallest bar is 22:00 at 10,967 messages and the shortest is 14:00 at 4,173, a ratio of about two and a half to one. Counts climb through the evening hours, peak between 21:00 and 23:00, and fall to their lowest in the early UTC afternoon."}
 
 The figure shows a clear daily pulse. Chat is busiest through the UTC evening, peaking at 22:00 with 10,967 messages, and quietest in the early afternoon, bottoming out at 14:00 with 4,173, a swing of well over two to one between the loudest hour and the quietest. The shape is not mysterious. Twitch's audience in 2018 was concentrated in the Americas and Europe, and the UTC midday and afternoon are the waking, screen-facing hours across that span, while 03:00 UTC is the middle of the night for most of it. The point worth taking is less the particular peak than what the bar chart does: it takes twenty-four numbers and makes a rhythm visible in one glance, which is exactly the job a bar chart is for.
 
@@ -130,6 +134,8 @@ This question is not about a total or a trend. It is about a **distribution**, t
 Two choices shape a histogram and both have to be disclosed. **Bin width** sets how wide each bar is: wider bins smooth the shape, narrower bins roughen it, and the number is a judgment you make and report. **Capping the axis** hides the far tail so the bulk of the data is visible, and it is legitimate only if you say what it hid. Here the display caps at 120 characters, which puts 5,699 messages, under four percent of the corpus, out of view, stretched thinly all the way out to 500 characters.
 
 A cap that removes four percent to make the other ninety-six legible is a good trade. A cap that removes a third of the data is a different figure entirely.
+
+![Message length for gaming and non-gaming channels, bin width five characters, lengths capped at 120.](../../images/fig24-3-msglen-by-context.png){fig-alt="Two histograms of message length, one panel per group, each with its own vertical scale so the shapes can be compared rather than the totals. Both are heavily right-skewed: most messages are under 20 characters and a long thin tail runs to the right. The two shapes are close to identical. A small pile-up appears at the 120-character cap in both panels, holding the 3.6 percent of messages that run longer."}
 
 The figure shows, first, a shape both groups share. Each distribution is heavily **right-skewed**: a tall stack of very short messages at the left, then a long thin tail trailing off to the right. Twitch chat is mostly brief, a word or an emote, with a minority of longer messages stretching the range. This is the most important thing the histogram reveals, and it is invisible in any single summary number.
 

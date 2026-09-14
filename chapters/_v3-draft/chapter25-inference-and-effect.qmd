@@ -83,6 +83,8 @@ That leaves one question: how did a negligible difference come back statisticall
 
 The two facts, a real gap and a negligible one, are easier to hold together as a picture. Plotting each group's mean with its ninety-five percent confidence interval, a band that reflects how precisely the mean is estimated, puts both on the same axis.
 
+![Mean message length for each group with a ninety-five percent confidence interval, on an axis starting at zero.](../../images/fig25-1-means-ci.png){fig-alt="A dot-and-interval chart with two points on a vertical axis of message length running from zero to about 35 characters. Gaming channels average 29.5 characters and non-gaming channels 32.0. Both intervals are so short they are barely visible at this scale and the two do not overlap. The visual point is that both means sit close together and far above zero, so the gap between them is small next to the quantity being measured."}
+
 The intervals are so short they nearly vanish behind the points, a direct consequence of the large sample: with tens of thousands of messages, each group's mean is pinned down precisely. That the two intervals do not overlap is the visual signature of a statistically significant difference. And yet the two points sit close together near the top of the axis, both far above zero, so the eye reads them as almost the same height. That is the negligible effect size made visible. The gap is real enough that the intervals clear each other, and small enough that against the scale of the data it barely shows.
 
 ## Statistical significance is not practical importance

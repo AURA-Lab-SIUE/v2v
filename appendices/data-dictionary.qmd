@@ -4,116 +4,162 @@ title: "Data Dictionary"
 
 # The Twitch Dataset {.unnumbered}
 
-Every example, exercise, and walkthrough in *Vibes to Variables* derives from a single dataset: a 2018-11-18 to 2018-11-24 snapshot of public Twitch IRC chat and concurrent stream metadata. One corpus, six days, two tables. Students learn one community deeply rather than four shallowly.
+Every example, exercise, and walkthrough in *Vibes to Variables* derives from a single dataset: a snapshot of public Twitch IRC chat and concurrent stream metadata running from 18 November 2018 to 24 November 2018. One corpus, six days, two tables. Students learn one community deeply rather than four shallowly.
 
-The full dump contains 21,964,296 chat messages and 590,876 stream snapshots across 1,695 channels and 457 games. For the book, that has been distilled to a 50-channel working corpus shipped with the `v2v` R package. Eight of those channels are **anchor channels**, referenced repeatedly in the textbook's worked examples. The other 42 are a stratified random sample by chat-volume decile from the broader population of 1,690 joinable channels, drawn so that Chapter 10's stratified-sampling lesson works against a real sample frame rather than a curated friends list.
+**This appendix documents fixture version 0.3.0**, which ships with `v2v` package version 0.3.0 and later. Earlier versions of the package carried a 50-channel fixture of roughly 35,000 messages; if the numbers below do not match what you have loaded, check your package version before you check your code. Chapter 15 makes an exercise of exactly that comparison.
+
+## Population and sample
+
+The source dump holds **21,964,296 chat messages and 590,876 stream snapshots across 1,695 channels**. Of those channels, 1,690 appear in both tables during the collection window and are therefore joinable end to end.
+
+The book's working corpus is **228 of those 1,690 channels**, and how they were chosen is a fact about every finding in this book rather than a housekeeping note.
+
+**The non-gaming stratum is a census.** All 113 non-gaming channels in the joinable population are included, not a sample of them. Just Chatting is counted as non-gaming: it is Twitch's catch-all for streaming that is not a named game, and excluding it would be a judgment about content the category does not record. Chapter 23 reads that catch-all critically.
+
+**The gaming stratum is matched at 113 channels**: the 45 that were in the previous fixture, plus 68 drawn by stratified random sample from the remaining gaming population, sorted by chat volume during the window and partitioned into deciles. Seed: 20261113.
+
+**Two further channels** are in the corpus with no recorded category, which is why the totals below run to 228 rather than 226.
+
+**The eight anchor channels** are inside those 228 and are named repeatedly in worked examples.
+
+::: {.callout-important}
+## This corpus is not proportional to Twitch, and cannot be made to be
+
+Non-gaming channels are **6.8 percent of the joinable population** and **half of this fixture**. The rare stratum was enumerated and the common one was sampled, which is standard practice for comparing a rare group against a common one and is the reason the book's central comparison is possible at all.
+
+The cost is exact and you must not spend it. **This corpus cannot estimate what share of Twitch is gaming, how common any category is, or what a typical channel looks like.** It can compare the two groups to each other. Any claim of the first kind is a claim about the sampling design.
+
+A previous fixture drew its non-gaming channels proportionally and got five of them. Re-drawing that sample under other defensible designs moved the book's headline gap from +14.25 characters to -1.16, sign included. That is why the design changed, and it is the most useful thing in this appendix.
+:::
 
 ## Loading the data
 
 ```r
 library(v2v)
 
-# Direct (data objects exposed by the package)
+# The data objects themselves
 data(twitch_chat_sample,    package = "v2v")
 data(twitch_streams_sample, package = "v2v")
 
-# Or via the loader functions introduced in Chapter 9
+# Or the loader functions, which accept optional channels/games/n filters
 chat    <- v2v::twitch_chat()
 streams <- v2v::twitch_streams()
 ```
 
-Both forms return tibble-compatible data frames. The loader functions accept optional filter arguments (`channels`, `games`, `n`) for the worked examples in later chapters.
+Both routes return the same rows. The data objects are the plain fixtures; the loaders wrap them and take optional `channels`, `games` and `n` arguments used by some worked examples. Chapters that print a table use the data objects, so if you are following along, use those.
 
 ## `twitch_chat_sample`: chat-message rows
 
+**157,080 rows**, one per chat message.
+
 | Column | R class | Range or values | Notes |
 |---|---|---|---|
-| `id` | integer | primary key | Surrogate identifier from the source database |
-| `channel` | character | 50 distinct values | **In the raw dump, prefixed with `#`** (IRC convention). The shipped fixture has the prefix stripped so `channel` joins cleanly to `twitch_streams_sample`. Recovering the IRC representation is a Chapter 11 exercise |
-| `sender` | character | tens of thousands distinct | Pseudonymous Twitch username; public on the IRC feed; chosen by the user |
-| `message` | character | 1 to 509 chars | UTF-8; includes Twitch emote tokens (`LULW`, `OMEGALUL`, `monkaS`, `Pog`, `Kappa`, etc.) as first-class lexical items |
-| `date` | integer (bigint) | 1542578125327 to 1543083667610 | **Unix epoch in milliseconds**, not seconds. Convert with `as.POSIXct(date / 1000, origin = "1970-01-01", tz = "UTC")`. This is the headline Chapter 11 conversion lesson |
+| `id` | integer | 316 to 21,963,579 | Surrogate key from the source database. The range spans the full 22-million-row dump because the sample is drawn from it, so `id` is an identifier and not a row number |
+| `channel` | character | 228 distinct | **In the raw dump this is prefixed with `#`** (IRC convention). The shipped fixture has the prefix stripped so `channel` joins cleanly to `twitch_streams_sample`. Chapter 11 uses the mismatch as a worked example of a join that fails silently |
+| `sender` | character | 61,320 distinct | Pseudonymous Twitch username, public on the IRC feed, chosen by the user |
+| `message` | character | 1 to 500 characters | UTF-8. Includes Twitch emote tokens (`LULW`, `OMEGALUL`, `monkaS`, `Pog`, `Kappa`) as first-class lexical items, and messages in Cyrillic, Hangul, Thai, Greek and CJK scripts as well as Latin ones |
+| `date` | integer (bigint) | 1542578131126 to 1543083655336 | **Unix epoch in milliseconds**, not seconds. Convert with `as.POSIXct(date / 1000, origin = "1970-01-01", tz = "UTC")`. Chapter 11's headline conversion |
 
-Approximately 35,000 rows total. Per-channel sample size is `min(1000, available)`: most channels contribute the full 1,000 messages, but 19 of the 50 contribute fewer because they had fewer than 1,000 messages during the collection window. This per-channel imbalance is itself part of the population structure students should see.
+**No message in the file is empty.** Five messages consist of the two characters `NA`, four from `asmongold` and one from `dyrus`; whether those are missing values or messages that say *North America* is not settled by anything in the file, and Chapter 15 makes the case that the ambiguity is the lesson.
 
-## The 8 anchor channels
+**The message maximum in this file is 500 characters.** Twitch's own limit was 500 in 2018. If you find documentation for this dataset quoting 509, that figure belongs to the population and not to this extract, and Chapter 15 walks through catching it.
 
-These channels appear in named-vignette worked examples throughout the textbook:
+### The per-channel cap, and what it does to your results
 
-| Channel | Top game in the window | Why this channel earns named-anchor status |
-|---|---|---|
-| `xqcow` | Just Chatting | Top chat volume in the entire corpus; variety streamer (Just Chatting is a non-game category) |
-| `forsen` | The Elder Scrolls V: Skyrim | RPG; concentrated repeat-audience (the lowest sender-to-message ratio in the anchor set) |
-| `sodapoppin` | Hand Simulator | Variety streamer with a long-tail game; 22,919 average viewers despite the obscure category |
-| `asmongold` | World of Warcraft | MMO; broad-audience streamer |
-| `loltyler1` | League of Legends | MOBA; peak audience in the focal set (78,340 concurrent viewers) |
-| `disguisedtoast` | Pokemon Let's Go | Pokemon Let's Go launched November 16, 2018, two days before the collection window opened |
-| `giantwaffle` | Rocket League | Esports-adjacent; highest snapshot density among the top-chat streamers |
-| `bobross` | Art | Non-gaming contrast. The late painter's PBS series, on a continuous Twitch loop since November 2015 |
+Each channel contributes `min(1000, available)` messages. **137 of the 228 channels sit at exactly 1,000; the remaining 91 contributed everything they had.** The smallest channel in the corpus has one message.
 
-## The 42 stratified additions
+The cap is not neutral, and the direction of its effect is the opposite of the intuitive one.
 
-The remaining 42 channels are drawn by stratified random sample: the 1,682 non-anchor channels are sorted by chat volume during the collection window, partitioned into 10 deciles, and 4 channels are drawn at random from each decile (plus 2 random fills). Seed: 20261113.
+Capping does not trim a channel's heaviest posters. It takes a random subsample of that channel's messages, and a random subsample of a heavy poster's output looks like several light posters. **The cap therefore manufactures one-time senders:**
 
-The resulting 42 channels span:
+| | singleton-sender rate |
+|---|---|
+| The 137 capped channels | **63.9 percent** |
+| The 91 uncapped channels | **43.1 percent** |
 
-- The full chat-volume distribution, from channels with over 100,000 messages in the window down to channels with single-digit message counts.
-- Additional non-gaming categories beyond Bob Ross: comedy (RiffTrax), sports (NFL Redzone), variety streaming.
-- Mid-tier gaming streamers across MOBA, FPS, RPG, sports, and party-game categories.
-- Smaller communities and niche channels that round out what the long tail of Twitch actually looked like in late 2018.
+So any measure of participation inequality computed over the whole fixture is substantially a measure of the sampling design. Chapter 23 reports that 62.2 percent of senders posted exactly once and that the corpus has a Gini coefficient of 0.514; both figures are properties of this sample and neither should be read as a property of Twitch. Restricting such an analysis to the 91 uncapped channels is the honest version.
 
-A full per-channel breakdown lives in the V2V data report.
+## The eight anchor channels
+
+Named in worked examples throughout the book. "Top game" is the category with the most snapshots across the collection week, which is not the same as the category showing in any particular minute.
+
+| Channel | Top game in the window | Messages | Peak viewers | Why it earns anchor status |
+|---|---|---|---|---|
+| `xqcow` | Just Chatting | 1,000 | 33,543 | Highest chat volume in the corpus; variety streamer, and Just Chatting is a non-game category |
+| `forsen` | The Elder Scrolls V: Skyrim | 1,000 | 15,495 | RPG; concentrated repeat audience, the lowest sender-to-message ratio in the anchor set |
+| `sodapoppin` | Hand Simulator | 1,000 | 43,022 | Variety streamer with a long-tail game, and a mean audience of 22,918 despite the obscure category |
+| `asmongold` | World of Warcraft | 1,000 | 27,629 | MMO; broad-audience streamer |
+| `loltyler1` | League of Legends | 1,000 | 78,340 | MOBA; the peak audience in the corpus |
+| `disguisedtoast` | Pokemon: Let's Go, Pikachu!/Eevee! | 1,000 | 17,501 | The game launched on 16 November 2018, two days before the window opened |
+| `giantwaffle` | Rocket League | 1,000 | 11,119 | Esports-adjacent; the highest snapshot density among the top-chat streamers |
+| `bobross` | Art | 1,000 | 7,169 | The non-gaming contrast. The late painter's PBS series, on a continuous Twitch loop since November 2015 |
+
+All eight are at the 1,000-message cap, which is worth noticing: the channels the book quotes most often are the ones the cap bites hardest.
 
 ## `twitch_streams_sample`: stream-snapshot rows
 
+**90,245 rows**, one per snapshot. This is the complete snapshot record for those 228 channels during the window, with no sampling applied.
+
 | Column | R class | Range or values | Notes |
 |---|---|---|---|
-| `id` | integer | primary key | Surrogate identifier |
-| `channel` | character | 50 distinct values | No `#` prefix; matches the normalized `chat_log.channel` in `twitch_chat_sample` |
-| `title` | character | up to 128 chars; some NULL | Current stream title at snapshot time |
-| `game` | character | 25+ distinct; some NULL | Current Twitch category. Includes both gaming categories and non-gaming categories (Just Chatting, Art, Music & Performing Arts, Sports & Fitness, Talk Shows & Podcasts) |
-| `viewers` | integer | 0 to ~78,000 | Concurrent viewer count, as reported by Twitch at snapshot time. Not de-botted |
-| `date` | integer (bigint) | 1542578200214 to 1543083621279 | Unix epoch in milliseconds; same conversion rule as `twitch_chat_sample.date` |
+| `id` | integer | 3 to 590,876 | Surrogate key. The maximum is the population snapshot count, because this table is a channel subset rather than a row sample |
+| `channel` | character | 228 distinct | No `#` prefix; matches `twitch_chat_sample.channel` |
+| `title` | character | 0 to 128 characters | Stream title at snapshot time. **96 snapshots carry an empty title.** Whether that means the streamer set none or the field failed to populate is not recorded, and Chapter 9 uses it as a case where a zero and a missing value are hard to tell apart |
+| `game` | character | 123 distinct, 450 empty | Twitch category at snapshot time. **123 distinct strings, but 117 distinct categories**: six differ only in capitalization (`Minecraft` and `minecraft`, `Just Chatting` and `just chatting`, and four more). Chapter 16's supplement shows Excel silently folding them and a case-sensitive tool not doing so |
+| `viewers` | integer | 2 to 78,340 | Concurrent viewers as reported by Twitch at snapshot time. Not de-botted |
+| `date` | integer (bigint) | 1542578200210 to 1543083621279 | Unix epoch in milliseconds; same conversion as the chat table |
 
-Approximately 32,000 rows. This is the **full** focal-50 stream coverage (no sampling); the underlying snapshot count is small enough to bundle in entirety.
+### What counts as non-gaming
+
+Eleven of the 117 categories are Twitch's non-game labels: Just Chatting, Art, Music & Performing Arts, ASMR, Talk Shows & Podcasts, IRL, Food & Drink, Travel & Outdoors, Science & Technology, Sports & Fitness, Makers & Crafting. The other 106 are named games.
+
+Two categories in the corpus sit awkwardly against that line, `Music` and `Casino`, and the book counts them as games because they are not on the platform's non-game list. That is a defensible call and it is a call. Chapter 23 argues that the asymmetry itself, 106 named games against eleven bins for everything else, is the finding rather than the background.
+
+A channel's gaming status is assigned from its **modal category across the week**, not per message. Chapter 25 checks that choice against the alternative, labelling each message by the category on screen when it was sent, and reports both.
 
 ## Joining the tables
 
-A typical analysis joins each chat message to the nearest-prior stream snapshot on the same channel. The pattern Chapter 11 develops:
+A typical analysis attaches each chat message to the nearest earlier stream snapshot on the same channel.
 
 ```r
 library(dplyr)
-library(lubridate)
 
-chat <- twitch_chat_sample %>%
+chat <- twitch_chat_sample |>
   mutate(ts = as.POSIXct(date / 1000, origin = "1970-01-01", tz = "UTC"))
 
-streams <- twitch_streams_sample %>%
+streams <- twitch_streams_sample |>
   mutate(ts = as.POSIXct(date / 1000, origin = "1970-01-01", tz = "UTC"))
 
-joined <- chat %>%
-  arrange(channel, ts) %>%
+joined <- chat |>
+  arrange(channel, ts) |>
   left_join(
-    streams %>% arrange(channel, ts) %>% select(channel, ts, game, viewers),
+    streams |> arrange(channel, ts) |> select(channel, ts, game, viewers),
     by = join_by(channel, closest(ts >= ts))
   )
 ```
 
-On the full focal corpus, this join produces a 99.95% match rate. The 0.05% unmatched chat messages are messages whose timestamp precedes the first stream_log snapshot for their channel during the collection window: a Chapter 11 discussion of `left_join` vs `inner_join` semantics.
+This join matches **99.94 percent** of messages. The **88 unmatched** messages arrived before their channel's first snapshot in the window, so there was no category in force to attach. They are not zero and they are not silently dropped into whichever category suited the argument; the rule could not label them, so they are absent and the absence is reported. Chapter 12's coded file carries 156,992 rows for exactly this reason.
 
 ## What this dataset cannot answer
 
-A six-day snapshot supports a narrow class of research questions well, and rules others out:
+Six days of one platform supports a narrow class of questions well and rules others out.
 
-- **Supported:** within-stream dynamics (chat density vs viewer trajectory), across-channel comparisons (how does Bob Ross's audience differ from xqcow's), category-level audience structure (gaming vs non-gaming), codebook design and reliability work on real chat text, sampling design and stratification, the long-tail Twitch ecosystem.
-- **Not supported:** longitudinal cohort analysis, seasonality, holiday effects, long-term audience evolution, post-collection Twitch policy changes.
+**Supported.** Within-stream dynamics such as chat density against viewer trajectory. Across-channel comparison. Comparison of the gaming and non-gaming groups to each other. Codebook design and reliability work on real chat text. Sampling design, stratification, and what a cap does to a distribution. The texture of the platform's long tail in late 2018.
 
-Chapter 6 (The Prospectus) teaches students to align research question scope with data scope. This dataset is the standing demonstration of why that alignment matters.
+**Not supported.** Longitudinal or cohort analysis. Seasonality or holiday effects. Long-term audience evolution. Anything after the collection window, including every Twitch policy change since. Any estimate of what share of Twitch is anything, for the reason given at the top of this appendix.
 
-## Ethics framing in brief
+Chapter 6 teaches aligning a question's scope to the data's scope. This dataset is the standing demonstration of why that alignment matters.
 
-Twitch IRC chat is public by default and visible to every concurrent viewer in real time. Usernames are pseudonymous and self-chosen. The dataset contains no IP addresses, no email addresses, no Twitch internal user IDs, no payment data, no subscription status, and no whisper or private-message content. Three published manuscripts have already analyzed adjacent slices of this data infrastructure under an exempt-by-design IRB determination based on the public-channel basis. Chapter 3 walks the full ethics determination from Belmont Report principles through SIUE IRB tiers, using this dataset as the worked example.
+## Ethics, in brief
 
-## Full data report and provenance
+Twitch IRC chat is public by default and visible to every concurrent viewer in real time. Usernames are pseudonymous and self-chosen. The dataset contains no IP addresses, no email addresses, no Twitch internal user IDs, no payment or subscription data, and no whisper or private-message content.
 
-The detailed data report (maintained in the SIM Lab research tree at `D:/hub/academic/research/sim-lab/v2v/data/report/v2v-data-report.md`) documents the full extraction pipeline, top-line statistics on the full 22-million-row corpus, the 50-channel sampling design with seed and per-channel breakdown, chapter-keyed analytical results that match every number quoted in chapter prose, and the population vs. sample distinctions students should learn to track. Students who want to know "where did this number come from" should be pointed to that report.
+Chapter 3 walks the full determination from the Belmont principles through IRB tiers, using this dataset as its worked example, and Chapter 18 takes up the harder question that follows: public is not the same as published, and a verbatim quotation remains searchable however the username is handled.
+
+## Provenance
+
+**The derived files are fully traceable.** Every CSV the chapters and supplements quote from is produced by a script in the book's own repository under `data-raw/v3/`: `build_coded.py` makes the coded messages, `build_respondents.py` the respondent table, `build_switch.py` the category-switch events, and so on. If you want to know where a number came from, open the script that made it. They are public, they are deterministic, and they are the reason a reader can check this book rather than trust it.
+
+**The fixtures themselves are one step less traceable, and the gap is worth naming.** The sampling script that drew the 228 channels, `sample_v3.py`, is deterministic and records its seed, and it carries a superset guarantee that refuses to write output unless every channel from the previous fixture is retained, so that examples in earlier editions still resolve. It is not currently published alongside the package. Until it is, the sampling design is documented in this appendix and reproducible in principle rather than in practice, which is a weaker claim than the one the rest of this section makes and is stated here rather than glossed over.
+
+Chapter 27 argues that materials available on request are, in practice, unavailable. That applies to this book.
