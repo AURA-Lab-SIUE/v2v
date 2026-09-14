@@ -1,0 +1,156 @@
+---
+title: "Chapter 16: Qualitative Interviewing"
+---
+
+Chapter 13 built a survey that asked chat participants what kind of channel they watch and how they behave in it. Suppose one of them had written, in the open-ended box at the end, that they stopped posting in a channel they had watched for three years and could not really say why.
+
+Nothing in the survey can follow that. The instrument was fixed before the respondent arrived, and its questions cannot notice that this answer is the interesting one. You would need to ask a second question, and a third, and let the answers decide where to go next. That is an interview, and it is the first method in this book where the researcher is the instrument rather than the person who built it.
+
+Part IV is the qualitative half of the book. The methods in it produce language rather than counts, work with dozens of cases rather than thousands, and answer questions that begin with how and why rather than how many. They have standards, and the standards are different, which is why Chapter 2 separated the paradigms before any method arrived.
+
+## What an interview is for
+
+An interview is a conversation with a purpose, conducted to understand a participant's experience in their own terms.
+
+That last phrase is the whole method. A survey imposes your categories and asks people to sort themselves into them, which is efficient and is exactly what you want when you already know the categories. An interview asks people to describe something in their own words, so the categories can turn out to be wrong. Weiss (1994) frames the interviewer's job as learning from strangers: you are there because the participant knows something you do not, and the interview fails when your existing understanding survives it untouched.
+
+Interviews are the right method when you want to know what something means to people, how a process unfolded from the inside, why a decision was made, or what vocabulary a community uses for its own experience. They are the wrong method when you want to know how often something happens. Ten interviews cannot tell you what proportion of viewers do anything, and a study that reports "most participants said" as though ten people were a sample is making a quantitative claim on qualitative evidence.
+
+## Three degrees of structure
+
+Interviews vary in how much of the conversation is fixed in advance, and the choice follows from how much you already know.
+
+A **structured interview** asks every participant the same questions in the same order with no improvisation. It is a survey delivered aloud. Use it when you need comparability above all and already know what to ask.
+
+A **semi-structured interview** works from a guide of topics and questions but lets the order move and the follow-ups emerge. The interviewer can chase something unexpected and return to the guide afterward. This is the default in communication research and the form the rest of this chapter teaches.
+
+An **unstructured interview** begins with an opening prompt and follows the participant wherever they go. It demands the most skill, produces the least comparable material, and is most useful very early, when you do not yet know enough to write a guide.
+
+## Building the guide
+
+An **interview guide** is not a script. It is a list of the things you need to come away understanding, written as questions you could actually say out loud.
+
+Start with a **grand tour question**, a broad opening that invites description rather than a verdict. "Walk me through a typical evening watching your main channel" will produce more than "Do you enjoy watching streams?" The first asks for a narrative and the second asks for a yes.
+
+Then the substantive questions, and the craft is mostly in what you avoid.
+
+**Leading questions** supply the answer inside the question. "How frustrating is it when the streamer ignores chat?" has already decided that it is frustrating. Ask "What is it like when the streamer does not respond to chat?"
+
+**Double-barrelled questions** ask two things at once, and you will not know which one was answered. Chapter 13 made the same point about survey items, and it matters more here, because in a survey the respondent picks one number and in an interview they simply answer the easier half.
+
+**Closed questions** invite a word where you wanted a paragraph. Not "Did you like it?" but "What did you make of it?"
+
+**Why questions** deserve their own warning. "Why did you stop posting?" often produces a rationalization, because people supply reasons on demand whether or not those reasons drove the behavior. "What was going on around the time you stopped?" gets at the same ground and lets the participant narrate rather than justify.
+
+Sequence the guide as a funnel: broad and easy first, specific and sensitive later, once there is some rapport to spend. Put anything a participant might find uncomfortable past the midpoint, and end with something easy so they do not leave the conversation on their most exposed moment.
+
+## Probing is the actual skill
+
+The guide gets you to the topic. Probes get you the data.
+
+A **probe** is a short follow-up that asks for more without steering. "Tell me more about that." "What was that like?" "Can you give me an example?" "You said it felt different. Different how?"
+
+Silence is a probe, and it is the one novice interviewers cannot stand. A participant who stops talking is often assembling the more considered half of their answer. Waiting three seconds costs nothing and frequently gets the part worth quoting.
+
+The **echo probe**, repeating a participant's own word back as a question, is effective precisely because it introduces no vocabulary of your own. If they say the channel got "weird", ask "Weird?" rather than "Do you mean hostile?" The second one hands them your word, and if they take it you will never know whether it was ever theirs.
+
+## The interviewer is the instrument
+
+In Chapter 12 the instrument was a codebook, and two coders applying it should produce the same result. Here the instrument is a person, and two interviewers will not produce the same interview. That is not a defect to be engineered away; it is the condition of the method, and it creates obligations.
+
+**Rapport** is the working relationship that makes candor possible, and it is built by listening rather than by disclosing. You do not need to share your own opinions, and volunteering them contaminates what follows.
+
+**Power** runs in both directions and is rarely equal. A researcher interviewing a student, an employee, or anyone with reason to want their approval is asking for candor from someone with a reason to perform. Naming the asymmetry in your write-up is part of the analysis, not an apology attached to it.
+
+**Reflexivity** is the discipline of accounting for what you brought. Lindlof and Taylor (2011) treat the researcher's position as data rather than noise: who you are shapes what participants say to you, and a study that pretends otherwise has hidden a variable rather than eliminated it. If you are a streamer interviewing streamers, that access is an asset and a bias, and both belong in the methods section.
+
+## Consent, recording, and transcription
+
+Chapter 3 set the standards. Three practical points belong here.
+
+**Consent is ongoing.** A participant who agreed at the start can decline a particular question or withdraw later, and the interview should make that easy rather than technically possible.
+
+**Record, with permission, and take minimal notes.** Recording frees you to listen. Notes taken during the interview should capture things the audio will not: what they gestured at, when they hesitated, what they would not say.
+
+**Transcription is an analytic act, not a clerical one.** Deciding whether to keep the false starts, the pauses, the laughter and the overlaps decides what can be analyzed afterward. A cleaned-up transcript reads better and has already thrown away the hesitation that might have been the finding. Chapter 20, on discourse and conversation analysis, needs the messy version; a thematic analysis can usually live with the tidy one. Decide before you transcribe, not after, and say in your methods which you did.
+
+## Who to interview, and how many
+
+Sampling here is not Chapter 11's sampling, and the difference is a difference of purpose rather than of rigor.
+
+**Purposive sampling** selects participants because they can speak to the question. If you want to understand why long-term viewers disengage, you need long-term viewers who disengaged, and a random sample of chat participants would mostly return people to whom nothing happened.
+
+**Snowball sampling** asks participants to refer others, which reaches populations that do not announce themselves. It biases toward the socially connected, and that limitation gets stated.
+
+**Maximum variation sampling** deliberately seeks cases that differ, so the pattern that survives across them is more credible than one found among people who resemble each other.
+
+On how many: the conventional answer is **saturation**, the point at which new interviews stop producing new categories. Chapter 4 used the same idea for literature searching and Chapter 12 for observation. Treat it carefully. Saunders and colleagues (2018) show that saturation is used to mean at least four different things across the literature, from no new codes to no new theoretical insight, and that researchers routinely assert it without any stated procedure for recognizing it. Small (2009) makes the sharper argument that borrowing the logic of sample size from survey research misunderstands what case-based work is doing: each case is a chance to refine an account, not a draw from a population.
+
+The defensible move is to say what you did. State how many you interviewed, what you were watching for, and the point at which new material stopped changing your categories. A number with a procedure behind it is worth more than a number with the word "saturation" attached.
+
+## Modes: in person, video, and text
+
+Where the interview happens changes what it produces, and for research into online communities the choice is rarely obvious.
+
+**In person** gives you the most: tone, hesitation, the thing they glance at before answering. It also costs the most and restricts you to people who can meet you, which for a study of a global platform is a serious constraint on who is in your sample.
+
+**Video call** has become the default for this kind of work and loses less than people assume. You keep the face, the pauses and most of the rapport. What you lose is the setting, and the fact that a participant is in their own room is itself worth noticing.
+
+**Voice only**, including a call in the platform's own voice channel, strips the face and often relaxes the participant. For communities where people know each other by voice and not by appearance, which describes a great deal of livestreaming, voice can be the native register rather than a degraded one.
+
+**Text-based and asynchronous** interviews, conducted over direct messages across days, are the outlier worth taking seriously here. They are slower, they lose tone entirely, and the participant can edit themselves into something more composed than they are. They also let people answer in the medium they actually live in, give them time to think, and reach participants who would never agree to be on camera. For a study of people whose whole relationship with a community is typed, insisting on voice may be the less faithful choice.
+
+Whichever you use, say which in the methods section, and do not mix modes without noticing that you have.
+
+## What goes wrong
+
+Five failures account for most weak interview studies, and all of them are visible in the transcript afterward.
+
+**The interviewer talks too much.** Count the words in your own transcript. If your share is much past a fifth, you conducted a conversation about your own views and collected the participant's reactions to them.
+
+**The guide is followed as a script.** A participant opens something unexpected and the interviewer returns to question four. Everything the method exists for was in that opening.
+
+**Consent is treated as paperwork.** Signed once and never revisited, so the participant does not realize they can decline a question, and the discomfort ends up in the data as compliance.
+
+**The analysis is quotation shopping.** The researcher arrives with a conclusion and goes through the transcripts looking for someone who said it. This is the failure that most resembles success, because the write-up is full of evidence. The defense is a coding procedure applied to everything before any quotation is chosen, which is Chapter 21's subject.
+
+**The claims outrun the design.** Twelve interviews become "viewers feel", and a qualitative study starts making a distributional claim. What twelve interviews support is an account of how something can work and what it can mean, offered with enough detail that a reader can judge where else it might hold.
+
+One more, less obvious. **Interview data is harder to code reliably than it looks.** Campbell and colleagues (2013) show that with semi-structured material the coders must first agree on what the unit of analysis even is, because unlike a chat message a transcript does not arrive pre-divided, and two coders who segment differently cannot meaningfully agree about anything afterward. If your study reports intercoder agreement on interview data, it needs to say how the transcripts were unitized before it reports how well the coders agreed.
+
+
+## Where this chapter's data would come from
+
+Chapters 12, 13 and 14 each worked a real dataset. This one cannot, and it is worth saying why rather than quietly substituting invented quotations.
+
+Interview data does not exist until someone conducts interviews. The Twitch corpus records what people typed in public, not what they would say to a researcher who asked, and no amount of processing turns the first into the second. Where this chapter needs an example it uses a short excerpt from a public recording, cited, under fair use, and marked as outside the book's open license.
+
+If your course includes an interview study, you will produce the data yourself, with consent, and Chapter 21 is where you will learn to analyze it. That is the honest version. A textbook that hands you a synthetic transcript to practice on has taught you to code a thing no human said.
+
+## A guide, built
+
+Take the question from the top of this chapter: why do long-term viewers stop participating in a channel they still watch?
+
+*Opening.* Walk me through how you found this channel and what kept you coming back.
+
+*Substantive.* Tell me about a time chat felt like the right place to post. What was different about the times it did not? Describe the last message you remember posting there. What was going on around the time you stopped posting? When you watch now without posting, what is that like?
+
+*Closing.* What would have to change for you to start posting again? Is there anything I should have asked about and did not?
+
+Notice what is absent. No question contains the words "toxic", "parasocial" or "community", because those are the researcher's words, and if a participant reaches for them unprompted that is a finding rather than an echo. The final question is standard practice and frequently the most productive thing in the guide.
+
+## Looking ahead
+
+Chapter 17 keeps the conversation and adds people to it. A focus group is not an interview with a larger n: the data is what participants say to each other, the moderator's job is different, and both the strengths and the failure modes change once the room can disagree with itself.
+
+## References
+
+Campbell, J. L., Quincy, C., Osserman, J., & Pedersen, O. K. (2013). Coding in-depth semistructured interviews: Problems of unitization and intercoder reliability and agreement. *Sociological Methods & Research*, *42*(3), 294-320. https://doi.org/10.1177/0049124113500475
+
+Lindlof, T. R., & Taylor, B. C. (2011). *Qualitative communication research methods* (3rd ed.). SAGE Publications.
+
+Saunders, B., Sim, J., Kingstone, T., Baker, S., Waterfield, J., Bartlam, B., Burroughs, H., & Jinks, C. (2018). Saturation in qualitative research: Exploring its conceptualization and operationalization. *Quality & Quantity*, *52*(4), 1893-1907. https://doi.org/10.1007/s11135-017-0574-8
+
+Small, M. L. (2009). "How many cases do I need?" On science and the logic of case selection in field-based research. *Ethnography*, *10*(1), 5-38. https://doi.org/10.1177/1466138108099586
+
+Weiss, R. S. (1994). *Learning from strangers: The art and method of qualitative interview studies*. Free Press.
