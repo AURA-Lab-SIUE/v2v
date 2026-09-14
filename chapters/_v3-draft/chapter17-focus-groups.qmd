@@ -1,0 +1,136 @@
+---
+title: "Chapter 17: Focus Groups"
+---
+
+The obvious way to describe a focus group is an interview with more people in the room. That description is wrong in a way worth fixing immediately, because it leads to a study that collects the wrong thing.
+
+In an interview, the data is what the participant tells you. In a focus group, the data is what the participants say **to each other**. Kitzinger (1994) made this the defining argument for the method: the interaction between participants is not a logistical feature to be managed around, it is the material. A group where eight people take turns answering the moderator has produced eight thin interviews at once and wasted the method.
+
+That single distinction drives everything in this chapter: how you compose the group, what the moderator does, what you can claim afterward, and how you know the session failed.
+
+## What the method is good at
+
+A focus group is the right choice when the thing you want to understand is social.
+
+**Contested or negotiated meaning.** When participants disagree about whether a streamer's behavior was funny or cruel, and then argue, you learn where the boundary sits and what arguments are available on each side. No individual interview surfaces that, because no individual has to defend a position.
+
+**Shared vocabulary.** Communities have words for things. A group will use them naturally with each other and then explain them to a confused peer, which is more informative than explaining them to you.
+
+**Norms, and their edges.** What a group treats as obviously true, what produces an awkward pause, and what one person says and three others rush to qualify all tell you where the norms are.
+
+**Efficient breadth early on.** Two groups of six will map the territory faster than twelve interviews, which is why focus groups often precede a survey: they generate the categories the survey will measure. Morgan (1996) describes this pairing as the most common productive use of the method.
+
+Focus groups are the wrong choice when the topic is sensitive enough that people will not be candid in front of peers, when you need each person's full individual account, or when the group would contain a power difference that silences part of the room.
+
+## Composition
+
+**Size.** Six to eight participants is the working range. Four can stall if two are quiet. Ten produces a session where the least assertive people say nothing and a transcript where you cannot tell who is speaking.
+
+**Number of groups.** One group is a case study of one group, and whatever happens in it may be that room rather than your topic. Three to five groups per distinct population is the usual working answer, run until the patterns repeat across groups rather than within them.
+
+**Homogeneity.** Compose each group so participants are similar enough to speak freely, and vary across groups rather than inside them. If you want to compare long-term viewers and newcomers, that is two groups, not one mixed group, because the mixed group will produce the newcomers deferring to the veterans and you will read that deference as agreement.
+
+**Strangers or acquaintances.** Strangers speak more freely about things their friends would judge. People who already know each other have shared references, finish each other's accounts, and will also protect each other's reputations and leave things out. Neither is correct; the choice depends on the topic, and it belongs in the write-up.
+
+## Moderating
+
+The moderator's job is not to ask eight people a list of questions. It is to get a conversation started and keep it usable.
+
+**Open, then get out of the way.** A good opening prompt is concrete and low-stakes: "Think about the last stream you watched all the way through. What kept you there?" Then let it run. If the first four exchanges are all moderator to participant and back, redirect to the room.
+
+**Redirect to the group.** The single most useful moderator move is refusing to be the audience. "Does anyone see it differently?" "Has anyone had the opposite experience?" "Kai, you were nodding at that." Each one hands the conversation back.
+
+**Manage the dominant talker without silencing them.** Thank them and move: "That's useful. I want to hear from people who have not had a chance yet." You cannot let one person set the tone unchallenged, because the rest of the transcript then measures their influence rather than the group's view.
+
+**Protect the dissenter.** When one person disagrees with a forming consensus, that moment is the most valuable data in the session and the most fragile. Slow down, ask them to say more, and do not let the group close over it.
+
+**Tolerate conflict, and do not resolve it.** A moderator who smooths over a disagreement has deleted the finding. Your job is not consensus.
+
+**Watch for groupthink.** A room that agrees quickly and comfortably may be telling you about a norm, or it may be telling you that disagreeing felt expensive. The way to tell is to make disagreeing cheap and see whether anyone takes it.
+
+## What the method does to what people say
+
+The uncomfortable question is whether a focus group tells you what people think or what people are willing to say in front of five peers and a researcher.
+
+Hollander (2004) takes this seriously and answers it usefully. Participants are always performing for a specific audience, and what they produce is shaped by the group's composition, the setting, and what each person believes the others expect. That is not a flaw that careful design removes. It is what group talk is, and the response is to treat the social context as part of the data rather than as interference.
+
+Practically: do not report a focus group finding as though it were a private belief. "Participants defended the streamer's behavior to each other, and the defense they reached for was that chat had provoked it" is a claim the method supports. "Participants believed chat had provoked it" is not, because you did not observe belief, you observed what was sayable in that room.
+
+## Running one, concretely
+
+**Before.** Recruit to a composition plan, not to whoever answers. Confirm twice, and over-recruit by two, because people do not come. Prepare a guide of four to six topics, not fifteen questions. Set up two recorders.
+
+**Opening.** Consent, including the part that matters most here: you can promise confidentiality on your own behalf and you cannot promise it on behalf of the other participants. Say that plainly, because it affects what people choose to disclose and they are entitled to decide knowing it. Then ground rules, brief: one voice at a time, disagreement is welcome, nobody has to answer anything.
+
+**During.** Name tents so participants can address each other by name, which is how you get interaction rather than parallel monologue. A second person taking notes on who speaks to whom, because the audio will not tell you.
+
+**After.** Write a debrief within the hour, while you still remember the dynamic: who dominated, what the room would not touch, where it got loud.
+
+## Online groups
+
+For a study of people who met each other online, convening them in a room is arguably the artificial choice. Three formats are worth distinguishing, because they are not interchangeable.
+
+**Synchronous video.** A scheduled call with six people. Closest to the in-person session and the most common substitute for it. The costs are specific: turn-taking is mediated by the software, so genuine overlap either does not happen or becomes unintelligible, and the person with the worse connection participates less for reasons that have nothing to do with the topic. You also lose the side-channel, the muttered aside that in a room would start something.
+
+**Synchronous text.** A moderated chat session, which for this book's population is the native register. Everyone can talk at once, and the transcript arrives already attributed and already written. What changes is the rhythm: text groups sustain several threads simultaneously, so the conversation is less a sequence than a braid, and a transcript that reads as chaos on the page may have been perfectly legible to the participants. Read it as they did, in threads, not in line order.
+
+**Asynchronous, over days.** A private forum or channel where a prompt is posted and participants respond when they can, across several days. This buys reach and reflection: people in other time zones can join, and answers are more considered. It costs spontaneity, and it introduces a problem the other formats do not have, which is that late participants read the earlier answers before writing their own. Whether that is contamination or realistic social influence depends on your question, and either way it belongs in the methods section.
+
+One caution across all three. Online formats make it easy to recruit people who are not who they say they are, and easy for one participant to screenshot the session. The confidentiality limit that matters in any focus group, that you cannot promise it on behalf of other participants, is sharper when every word is already text on someone else's screen.
+
+
+## Transcription, and the problem this method adds
+
+Transcribing a focus group is materially harder than transcribing an interview, and the difficulty is not clerical.
+
+**Speaker attribution.** A transcript that reads "Participant: ..." throughout has destroyed the method's entire advantage. You cannot see who took a position, who followed, who dissented. Attribution has to be recoverable, which is what the name tents and the note-taker are for.
+
+**Overlap.** People interrupt each other, and the interruptions are frequently the interesting part. A tidy transcript that serializes overlapping speech has quietly removed the evidence of who felt entitled to cut in.
+
+**The unit problem.** Chapter 16 raised this for interviews and it is worse here. Is your unit a turn, a topic, or an exchange? If you intend to code, that decision comes before coding and is stated, because two coders who segment a group conversation differently are not disagreeing about codes, they are analyzing different data.
+
+Automatic transcription tools do not solve any of this. They are least reliable exactly where the method is most informative: overlapping speech and rapid exchange.
+
+## Analyzing group data
+
+Chapter 21 covers coding in general. Two things are specific to this method and decided before you start.
+
+**Analyze at the level your claim is about.** If the claim concerns individuals, the group is a poor instrument and you should have run interviews. If the claim concerns the group, then the unit is the exchange rather than the utterance, and counting how many participants said a thing is close to meaningless: in a conversation, agreement is often silence and one person can speak for a room that has stopped bothering.
+
+**Resist counting participants.** "Five of eight participants mentioned burnout" invites a reader to treat eight people as a sample, which they are not, and to treat a conversation as eight independent reports, which it is not, because participants heard each other. The non-independence problem from Chapters 7 and 14 reappears here in its most extreme form: in a focus group, the observations directly caused one another. That is the point of the method and it is also why the counts mean nothing.
+
+What the transcript supports is an account of how a position was built, defended, conceded or abandoned in conversation, quoted at enough length that the reader can see the interaction rather than the conclusion.
+
+
+## A composition plan, built
+
+Take Chapter 16's question, why long-term viewers stop participating, and ask what it would take to study it with groups instead.
+
+*Groups.* Four sessions of six. Two with viewers who still post regularly, two with viewers who stopped. Separated rather than mixed, because a mixed room turns into the lapsed participants explaining themselves to the active ones, and you would be measuring that dynamic rather than the topic.
+
+*Recruitment.* Over-recruit to eight per session. Screen for at least a year in the channel, since the question is about long-term viewers and a three-week newcomer is a different study.
+
+*Opening prompt.* "Think back to when you were posting the most in this channel. What was it like then?" Concrete, past-tense, and it does not name the outcome.
+
+*Topics, not questions.* What chat was for, back then. What changed and when anyone noticed. What posting costs now. What other people in chat seem to be doing. What would bring them back.
+
+*The moment to watch for.* One participant offers a reason for leaving and another says that is not how it was for them. Do not resolve it. That disagreement is the finding this design exists to produce, and an interview study would have collected the two accounts separately and never known they conflicted.
+
+
+## Where this chapter's data would come from
+
+As in Chapter 16, there is no dataset here, and for the same reason: a focus group does not exist until you convene one. The Twitch corpus contains group talk, and it is not focus group data, because nobody was asked anything and no moderator shaped it. Treating found conversation as a focus group would misrepresent both.
+
+Public panel discussions and roundtables have a superficially similar shape and are also not focus groups: the participants are performing for an audience rather than a moderator, and they were selected to be interesting rather than to represent a population. They are usable as illustration, cited and under fair use, and they are not a substitute for running a session.
+
+## Looking ahead
+
+Chapter 18 stops asking altogether. Ethnography and participant observation return to the setting itself, and to the position Chapter 12's structured listening prepared you for, with the difference that the ethnographer is a participant in the thing being studied rather than a watcher of it.
+
+## References
+
+Hollander, J. A. (2004). The social contexts of focus groups. *Journal of Contemporary Ethnography*, *33*(5), 602-637. https://doi.org/10.1177/0891241604266988
+
+Kitzinger, J. (1994). The methodology of focus groups: The importance of interaction between research participants. *Sociology of Health & Illness*, *16*(1), 103-121. https://doi.org/10.1111/1467-9566.ep11347023
+
+Morgan, D. L. (1996). Focus groups. *Annual Review of Sociology*, *22*(1), 129-152. https://doi.org/10.1146/annurev.soc.22.1.129
