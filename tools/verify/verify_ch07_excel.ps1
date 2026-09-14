@@ -3,11 +3,12 @@
 # average the pivot's own output. Expected from Python: 4.81 at message level,
 # 4.22 at sender level, 4.97 at channel level.
 $ErrorActionPreference = 'Stop'
-$csv = 'C:\Users\alexl\AppData\Local\Temp\claude\C--pythia\911c8096-d1d3-4b3f-ab5c-0faea3c53a43\scratchpad\message_words.csv'
+$csv = 'O:\20-research\aura-lab\v2v\data-raw\v3\message_words.csv'
 $xl = New-Object -ComObject Excel.Application
 $xl.Visible = $false; $xl.DisplayAlerts = $false
 try {
-    $wb = $xl.Workbooks.Open($csv)
+    $xl.Workbooks.OpenText($csv, 65001, 1, 1, 1, $false, $false, $false, $true, $false, $false)
+    $wb = $xl.ActiveWorkbook
     $ws = $wb.Worksheets.Item(1)
     $last = $ws.Cells($ws.Rows.Count, 1).End(-4162).Row
     Write-Output "rows incl header: $last"

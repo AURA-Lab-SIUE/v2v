@@ -11,7 +11,7 @@ try {
     $wb = $xl.ActiveWorkbook
     $src = $wb.Worksheets.Item(1)
     $lastRow = $src.Cells($src.Rows.Count, 1).End(-4162).Row
-    Write-Host "source rows: $lastRow  (expect 35268)"
+    Write-Host "source rows: $lastRow  (expect 157081)"
     Write-Host "headers: $($src.Range('A1').Text),$($src.Range('B1').Text),$($src.Range('C1').Text)"
 
     # --- PivotTable: count of messages per sender
@@ -35,7 +35,7 @@ try {
     $calc.Range("A1").PasteSpecial(-4163) | Out-Null
     $xl.CutCopyMode = 0
     $n = $calc.Cells($calc.Rows.Count, 1).End(-4162).Row
-    Write-Host "distinct senders: $n  (expect 16866)"
+    Write-Host "distinct senders: $n  (expect 61320)"
 
     # --- sort by count, descending
     $calc.Range("A1:B$n").Sort($calc.Range("B1"), 2, $null, $null, 1, $null, 1, 0) | Out-Null
@@ -74,8 +74,8 @@ try {
         if ($lbl) { "{0,-22} {1}" -f $lbl, $val | Write-Host }
     }
     Write-Host ""
-    Write-Host "expect: senders 16866 | once 11544 (68.4%) | max 365 | median 1"
-    Write-Host "expect: top1 16.1% top5 32.7% top10 43.4% top25 61.0% top50 76.1% | bottom50 23.9% | gini 0.449"
+    Write-Host "expect: senders 61320 | once 38158 (62.2%) | max 1773 | median 1"
+    Write-Host "expect: top1 16.6% top5 35.6% top10 47.4% top25 65.7% top50 80.5% | bottom50 19.5% | gini 0.514"
 
     $wb.Close($false)
 }

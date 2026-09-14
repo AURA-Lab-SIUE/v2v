@@ -6,7 +6,7 @@
 # formula string to every cell does NOT shift relative references the way filling does,
 # which silently pointed every column at the first participant on the first attempt.
 $ErrorActionPreference = 'Stop'
-$dir = 'C:\Users\alexl\AppData\Local\Temp\claude\C--pythia\911c8096-d1d3-4b3f-ab5c-0faea3c53a43\scratchpad'
+$dir = 'O:\20-research\aura-lab\v2v\data-raw\v3'
 
 function Col([int]$n) {  # 1 -> A
     $s = ''
@@ -17,7 +17,8 @@ function Col([int]$n) {  # 1 -> A
 $xl = New-Object -ComObject Excel.Application
 $xl.Visible = $false; $xl.DisplayAlerts = $false
 try {
-    $wb = $xl.Workbooks.Open((Join-Path $dir 'interaction.csv'))
+    $xl.Workbooks.OpenText((Join-Path $dir 'interaction.csv'), 65001, 1, 1, 1, $false, $false, $false, $true, $false, $false)
+    $wb = $xl.ActiveWorkbook
     $ws = $wb.Worksheets.Item(1)
     $last = $ws.Cells($ws.Rows.Count, 1).End(-4162).Row
     Write-Output "edge rows incl header: $last"

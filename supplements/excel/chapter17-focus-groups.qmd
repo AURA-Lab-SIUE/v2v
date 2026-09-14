@@ -54,14 +54,14 @@ Those two numbers have names worth knowing. **Out-degree** is how much someone a
 
 | participant | addressed others | was addressed |
 |---|---|---|
-| HOST | 0 | 32 |
-| P1 | 24 | 9 |
-| P2 | 30 | 2 |
-| P3 | 9 | 8 |
-| P4 | 3 | 14 |
-| P5 | 4 | 1 |
-| P6 | 1 | 3 |
-| P7 | 3 | 5 |
+| HOST | 0 | 29 |
+| P1 | 24 | 8 |
+| P2 | 25 | 3 |
+| P3 | 4 | 2 |
+| P4 | 7 | 6 |
+| P5 | 2 | 14 |
+| P6 | 3 | 3 |
+| P7 | 2 | 2 |
 
 Total directed messages, in **B13**:
 
@@ -69,7 +69,7 @@ Total directed messages, in **B13**:
 =SUM(B2:I9)
 ```
 
-returns **74**.
+returns **67**.
 
 ## The diagnostic
 
@@ -79,15 +79,15 @@ Now the number the chapter was really asking for. What share of all addressing w
 =B11/B13
 ```
 
-returns **0.432**.
+returns **0.433**.
 
-Read the table with Chapter 17 in hand. The HOST has an out-degree of **zero** and an in-degree of **32**: never addresses anyone by name, and absorbs **43 percent** of everything directed at anybody. That is the signature of a hub. Conversation flows to the center and does not cross.
+Read the table with Chapter 17 in hand. The HOST has an out-degree of **zero** and an in-degree of **29**: never addresses anyone by name, and absorbs **43 percent** of everything directed at anybody. That is the signature of a hub. Conversation flows to the center and does not cross.
 
 If a focus group transcript produced this table, the session failed. You would have run eight interviews simultaneously, and Kitzinger's argument says the thing you came for never happened.
 
 Here, the same table is unremarkable, because a livestream is supposed to work this way. The audience is there for the host and addressing the host is the point. **The measure is the same and the verdict is opposite, because the verdict depends on what the format was supposed to do.** A statistic does not interpret itself, which is worth meeting in a small, checkable case before you meet it in a large one.
 
-And notice the other 57 percent. P1 and P2 have out-degrees of 24 and 30 against in-degrees of 9 and 2, so they are talking to people other than the host and mostly not being answered. Real participant-to-participant conversation is happening underneath the hub pattern. A matrix shows you both at once, which prose summaries of a transcript rarely do.
+And notice the other 57 percent. P1 and P2 have out-degrees of 24 and 25 against in-degrees of 8 and 3, so they are talking to people other than the host and mostly not being answered. Real participant-to-participant conversation is happening underneath the hub pattern. A matrix shows you both at once, which prose summaries of a transcript rarely do.
 
 ## What to do with a bad table
 
@@ -105,7 +105,7 @@ For any of these, the matrix belongs in your methods section. A reader who can s
 
 `participants.csv` has a turn count per participant. It is tempting to use it as the participation measure and it is the weaker one.
 
-Put the two side by side and the reason shows. The HOST took **8 turns** in this data, fewer than almost everyone, and sits at the center of the interaction anyway. Counting turns would have ranked the host near the bottom of the session. Counting who addresses whom puts them where they belong.
+Put the two side by side and the reason shows. The HOST took **9 turns** in this data, fewer than almost everyone, and sits at the center of the interaction anyway. Counting turns would have ranked the host near the bottom of the session. Counting who addresses whom puts them where they belong.
 
 Turns measure how much someone talked. The matrix measures what the talk was doing. Chapter 17's argument is that a focus group is about the second, and this is what that difference looks like in cells.
 

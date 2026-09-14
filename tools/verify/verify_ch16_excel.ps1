@@ -1,13 +1,15 @@
 # Verify the Chapter 16 supplement's saturation procedure in Excel: the expanding
 # COUNTIFS that flags a category's first appearance, the per-case new count, and the
 # decision statistic (new categories in the last 10 cases).
-# Expected from Python: 103 rows, 48 cases, 60 categories, 25 new in the last 10.
+# Expected from Python: 382 rows, 226 cases, 117 categories, 7 new in the last 10,
+# halfway (case 114) 70 of 117.
 $ErrorActionPreference = 'Stop'
-$csv = 'C:\Users\alexl\AppData\Local\Temp\claude\C--pythia\911c8096-d1d3-4b3f-ab5c-0faea3c53a43\scratchpad\accumulation.csv'
+$csv = 'O:\20-research\aura-lab\v2v\data-raw\v3\accumulation.csv'
 $xl = New-Object -ComObject Excel.Application
 $xl.Visible = $false; $xl.DisplayAlerts = $false
 try {
-    $wb = $xl.Workbooks.Open($csv); $ws = $wb.Worksheets.Item(1)
+    $xl.Workbooks.OpenText($csv, 65001, 1, 1, 1, $false, $false, $false, $true, $false, $false)
+    $wb = $xl.ActiveWorkbook; $ws = $wb.Worksheets.Item(1)
     $last = $ws.Cells($ws.Rows.Count, 1).End(-4162).Row
     Write-Output "rows incl header: $last"
 
@@ -30,6 +32,8 @@ try {
     $xl.Calculate()
     Write-Output ("cumulative at final case: {0}" -f $sh.Cells($n+1,3).Value2)
     Write-Output ("cumulative at case 25   : {0}" -f $sh.Cells(26,3).Value2)
+    Write-Output ("cumulative at case 114  : {0}  (halfway; expect 70)" -f $sh.Cells(115,3).Value2)
+    Write-Output ("cumulative at case 10   : {0}  (expect 14)" -f $sh.Cells(11,3).Value2)
 
     # Decision statistic: new categories contributed by the last 10 cases.
     $sh.Cells(1,5).Value2 = 'new_in_last_10'

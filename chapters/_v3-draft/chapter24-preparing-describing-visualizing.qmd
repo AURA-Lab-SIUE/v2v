@@ -105,7 +105,7 @@ Named that way, the choice of chart stops being a menu of pictures and becomes a
 
 ### A line for change over time
 
-The first question is about viewership. Across the collection week, how did the audience for these fifty channels move, and how was it split across the games being played?
+The first question is about viewership. Across the collection week, how did the audience for these 228 channels move, and how was it split across the games being played?
 
 When the horizontal axis is time and the vertical axis is a quantity that rises and falls, the natural geometry is the **line chart**. A line connects one moment to the next, and the eye reads the climb and the drop as a single continuous motion. That is what makes a line right for change over time and wrong for unordered categories: it implies that the points are in sequence and that the space between them is real.
 

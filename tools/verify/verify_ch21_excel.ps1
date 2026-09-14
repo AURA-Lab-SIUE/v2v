@@ -12,12 +12,13 @@ try {
     $ws = $wb.Worksheets.Item(1)
 
     $last = $ws.Cells($ws.Rows.Count, 1).End(-4162).Row
-    Write-Host "last row: $last  (expect 35257)"
-    Write-Host "A1/B1/C1: $($ws.Range('A1').Text) / $($ws.Range('B1').Text) / $($ws.Range('C1').Text)"
+    Write-Host "last row: $last  (expect 156993)"
+    Write-Host "A1..D1: $($ws.Range('A1').Text) / $($ws.Range('B1').Text) / $($ws.Range('C1').Text) / $($ws.Range('D1').Text)"
 
     $D = "`$A`$2:`$A`$$last"   # channel
     $T = "`$B`$2:`$B`$$last"   # target
     $X = "`$C`$2:`$C`$$last"   # context
+    $M = "`$D`$2:`$D`$$last"   # form
 
     # --- build the unique source list with Remove Duplicates, as a student would
     $ws.Range("A2:A$last").Copy() | Out-Null
@@ -26,7 +27,7 @@ try {
     $ws.Range("F1").Value2 = "source"
     $ws.Range("F1:F$last").RemoveDuplicates(1, 1) | Out-Null
     $nSrc = $ws.Cells($ws.Rows.Count, 6).End(-4162).Row - 1
-    Write-Host "unique sources: $nSrc  (expect 50)"
+    Write-Host "unique sources: $nSrc  (expect 228)"
 
     $srcLast = $nSrc + 1
 
@@ -34,72 +35,69 @@ try {
     $ws.Range("G1").Value2 = "n"
     $ws.Range("G2:G$srcLast").Formula = "=COUNTIF($D,`$F2)"
 
-    # --- the code-by-source matrix
-    $ws.Range("H1").Value2 = "directed"
-    $ws.Range("I1").Value2 = "broadcast"
-    $ws.Range("J1").Value2 = "gaming"
-    $ws.Range("K1").Value2 = "nongame"
-    $ws.Range("H2:H$srcLast").Formula = "=COUNTIFS($D,`$F2,$T,H`$1)"
-    $ws.Range("I2:I$srcLast").Formula = "=COUNTIFS($D,`$F2,$T,I`$1)"
-    $ws.Range("J2:J$srcLast").Formula = "=COUNTIFS($D,`$F2,$X,J`$1)"
-    $ws.Range("K2:K$srcLast").Formula = "=COUNTIFS($D,`$F2,$X,K`$1)"
+    # --- the code-by-source matrix, six codes across three columns of the CSV
+    $names = @("directed","broadcast","gaming","nongame","command","talk")
+    $cols  = @("H","I","J","K","L","M")
+    $ranges= @($T,$T,$X,$X,$M,$M)
+    for ($i = 0; $i -lt 6; $i++) {
+        $c = $cols[$i]
+        $ws.Range("$c`1").Value2 = $names[$i]
+        $ws.Range("$c`2:$c$srcLast").Formula = "=COUNTIFS($D,`$F2,$($ranges[$i]),$c`$1)"
+    }
 
-    # --- diagnostics per code
-    $ws.Range("M1").Value2 = "total"
-    $ws.Range("M2").Formula = "=SUM(H2:H$srcLast)"
-    $ws.Range("M3").Formula = "=SUM(I2:I$srcLast)"
-    $ws.Range("M4").Formula = "=SUM(J2:J$srcLast)"
-    $ws.Range("M5").Formula = "=SUM(K2:K$srcLast)"
-    $ws.Range("N1").Value2 = "sources"
-    $ws.Range("N2").Formula = "=COUNTIF(H2:H$srcLast,`">0`")"
-    $ws.Range("N3").Formula = "=COUNTIF(I2:I$srcLast,`">0`")"
-    $ws.Range("N4").Formula = "=COUNTIF(J2:J$srcLast,`">0`")"
-    $ws.Range("N5").Formula = "=COUNTIF(K2:K$srcLast,`">0`")"
-    $ws.Range("O1").Value2 = "max"
-    $ws.Range("O2").Formula = "=MAX(H2:H$srcLast)"
-    $ws.Range("O3").Formula = "=MAX(I2:I$srcLast)"
-    $ws.Range("O4").Formula = "=MAX(J2:J$srcLast)"
-    $ws.Range("O5").Formula = "=MAX(K2:K$srcLast)"
-    $ws.Range("P1").Value2 = "concentration"
-    $ws.Range("P2").Formula = "=O2/M2"
-    $ws.Range("P3").Formula = "=O3/M3"
-    $ws.Range("P4").Formula = "=O4/M4"
-    $ws.Range("P5").Formula = "=O5/M5"
-    $ws.Range("Q1").Value2 = "topsource"
-    $ws.Range("Q2").Formula = "=INDEX(`$F`$2:`$F`$$srcLast,MATCH(O2,H2:H$srcLast,0))"
-    $ws.Range("Q5").Formula = "=INDEX(`$F`$2:`$F`$$srcLast,MATCH(O5,K2:K$srcLast,0))"
+    # --- diagnostics per code, one row each in O..S
+    $ws.Range("O1").Value2 = "total"
+    $ws.Range("P1").Value2 = "sources"
+    $ws.Range("Q1").Value2 = "max"
+    $ws.Range("R1").Value2 = "concentration"
+    $ws.Range("S1").Value2 = "top3"
+    $ws.Range("T1").Value2 = "topsource"
+    for ($i = 0; $i -lt 6; $i++) {
+        $c = $cols[$i]; $r = $i + 2
+        $ws.Range("O$r").Formula = "=SUM($c`2:$c$srcLast)"
+        $ws.Range("P$r").Formula = "=COUNTIF($c`2:$c$srcLast,`">0`")"
+        $ws.Range("Q$r").Formula = "=MAX($c`2:$c$srcLast)"
+        $ws.Range("R$r").Formula = "=Q$r/O$r"
+        $ws.Range("S$r").Formula = "=(LARGE($c`2:$c$srcLast,1)+LARGE($c`2:$c$srcLast,2)+LARGE($c`2:$c$srcLast,3))/O$r"
+        $ws.Range("T$r").Formula = "=INDEX(`$F`$2:`$F`$$srcLast,MATCH(Q$r,$c`2:$c$srcLast,0))"
+    }
 
     # --- extra claims
-    $ws.Range("S1").Value2 = "sources>=100"
-    $ws.Range("S2").Formula = "=COUNTIF(G2:G$srcLast,`">=100`")"
-    $ws.Range("S3").Value2 = "directed present among those"
-    $ws.Range("S4").Formula = "=COUNTIFS(G2:G$srcLast,`">=100`",H2:H$srcLast,`">0`")"
-    $ws.Range("S5").Value2 = "channels wholly nongame"
-    $ws.Range("S6").Formula = "=SUMPRODUCT(--(K2:K$srcLast=G2:G$srcLast),--(G2:G$srcLast>0))"
-    $ws.Range("S7").Value2 = "nongame top3 share"
-    $ws.Range("S8").Formula = "=(LARGE(K2:K$srcLast,1)+LARGE(K2:K$srcLast,2)+LARGE(K2:K$srcLast,3))/M5"
-    $ws.Range("S9").Value2 = "rows"
-    $ws.Range("S10").Formula = "=COUNTA($D)"
+    $ws.Range("V1").Value2  = "rows"
+    $ws.Range("W1").Formula = "=COUNTA($D)"
+    $ws.Range("V2").Value2  = "sources>=100"
+    $ws.Range("W2").Formula = "=COUNTIF(G2:G$srcLast,`">=100`")"
+    $ws.Range("V3").Value2  = "of those, directed present"
+    $ws.Range("W3").Formula = "=COUNTIFS(G2:G$srcLast,`">=100`",H2:H$srcLast,`">0`")"
+    $ws.Range("V4").Value2  = "smallest source"
+    $ws.Range("W4").Formula = "=MIN(G2:G$srcLast)"
+    $ws.Range("V5").Value2  = "sources under 50 msgs"
+    $ws.Range("W5").Formula = "=COUNTIF(G2:G$srcLast,`"<50`")"
+    $ws.Range("V6").Value2  = "sources tied at the max size"
+    $ws.Range("W6").Formula = "=COUNTIF(G2:G$srcLast,MAX(G2:G$srcLast))"
+    $ws.Range("V7").Value2  = "largest source"
+    $ws.Range("W7").Formula = "=MAX(G2:G$srcLast)"
 
     $xl.CalculateFullRebuild()
 
     Write-Host ""
-    Write-Host "code        total   sources   max   concentration  top"
-    foreach ($r in 2..5) {
-        $lbl = @{2="directed";3="broadcast";4="gaming";5="nongame"}[$r]
-        $tot = $ws.Range("M$r").Value2
-        $src = $ws.Range("N$r").Value2
-        $max = $ws.Range("O$r").Value2
-        $con = $ws.Range("P$r").Value2
-        $top = $ws.Range("Q$r").Text
-        "{0,-10} {1,7} {2,7} {3,7}  {4,12:P1}  {5}" -f $lbl, $tot, $src, $max, $con, $top | Write-Host
+    Write-Host "code        total   sources   max   concentration   top3   top"
+    for ($i = 0; $i -lt 6; $i++) {
+        $r = $i + 2
+        "{0,-10} {1,7} {2,7} {3,7}  {4,12:P1} {5,7:P1}   {6}" -f $names[$i],
+            $ws.Range("O$r").Value2, $ws.Range("P$r").Value2, $ws.Range("Q$r").Value2,
+            $ws.Range("R$r").Value2, $ws.Range("S$r").Value2, $ws.Range("T$r").Text | Write-Host
     }
     Write-Host ""
-    Write-Host "rows                       : $($ws.Range('S10').Value2)  (expect 35256)"
-    Write-Host "sources with >=100 msgs    : $($ws.Range('S2').Value2)  (expect 41)"
-    Write-Host "  of those carrying directed: $($ws.Range('S4').Value2)  (expect 41)"
-    Write-Host "channels wholly nongame    : $($ws.Range('S6').Value2)  (expect 4)"
-    Write-Host "nongame top-3 share        : $($ws.Range('S8').Value2)  (expect 0.6229)"
+    $exp = @{1="156992"; 2="187"; 3="185"; 4="1"; 5="32"; 6="115"; 7="1000"}
+    $lbl = @{1="rows"; 2="sources>=100"; 3="  of those carrying directed"; 4="smallest source";
+             5="sources under 50 messages"; 6="sources tied at the max size"; 7="largest source"}
+    foreach ($r in 1..7) {
+        "{0,-30}: {1}  (expect {2})" -f $lbl[$r], $ws.Range("W$r").Value2, $exp[$r] | Write-Host
+    }
+    Write-Host ""
+    Write-Host "supplement claims: directed 13,884 / 204 / 233 / 1.7% / 4.7%"
+    Write-Host "                   command   5,524 / 182 / 694 / 12.6% / 27.3% / jbishere"
 
     $wb.Close($false)
 }

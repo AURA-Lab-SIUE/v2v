@@ -10,7 +10,7 @@ One thing to expect before you start. This supplement runs the same test twice a
 
 ## Getting the data in
 
-The file is `switch_events.csv`, the category-switch table described in the chapter: one row per switch event that had enough chat on both sides to measure, seventeen of them.
+The file is `switch_events.csv`, the category-switch table described in the chapter: one row per switch event that had enough chat on both sides to measure, seventy-six of them.
 
 1. Open Excel to a blank workbook.
 2. **Data** ribbon, then **From Text/CSV**.
@@ -18,7 +18,7 @@ The file is `switch_events.csv`, the category-switch table described in the chap
 4. Set **File Origin** to **65001: Unicode (UTF-8)** and check that **Delimiter** reads **Comma**.
 5. Click **Load**.
 
-You should land on a sheet of 18 rows, one header plus 17 events, with columns A through G: `channel`, `direction`, `before_n`, `after_n`, `d_words`, `d_q`, `d_shout`.
+You should land on a sheet of 77 rows, one header plus 76 events, with columns A through G: `channel`, `direction`, `before_n`, `after_n`, `d_words`, `d_q`, `d_shout`.
 
 The three columns beginning with `d_` are **difference scores**. Each one is the after value minus the before value for a single event, so a negative number means chat did less of that thing after the switch. `d_words` is the change in mean words per message, and it is the column this supplement works with.
 
@@ -32,86 +32,87 @@ That is a **one-sample t-test**, and it is the test to reach for whenever your d
 
 ## The naive analysis
 
-Put labels in column I and formulas in column J, starting at row 1. The data range is `E2:E18`.
+Put labels in column I and formulas in column J, starting at row 1. The data range is `E2:E77`.
 
 | Cell | Label | Formula |
 |---|---|---|
-| J1 | n | `=COUNT(E2:E18)` |
-| J2 | mean difference | `=AVERAGE(E2:E18)` |
-| J3 | SD | `=STDEV.S(E2:E18)` |
+| J1 | n | `=COUNT(E2:E77)` |
+| J2 | mean difference | `=AVERAGE(E2:E77)` |
+| J3 | SD | `=STDEV.S(E2:E77)` |
 | J4 | SE | `=J3/SQRT(J1)` |
 | J5 | t | `=J2/J4` |
 | J6 | df | `=J1-1` |
 | J7 | p | `=T.DIST.2T(ABS(J5),J6)` |
 | J8 | Cohen's d | `=J2/J3` |
 
-You should see n = 17, a mean of -1.080, SD = 1.541, SE = 0.374, t = -2.889, df = 16, p = 0.0107, and d = -0.701.
+You should see n = 76, a mean of 0.213, SD = 1.988, SE = 0.228, t = 0.934, df = 75, p = 0.353, and d = 0.107.
 
-Read the three middle cells together, because they are the whole logic of a t-test in one line. The mean difference is about one word. The standard error is the amount the mean would be expected to bounce around from sample to sample, here about a third of a word. Dividing one by the other asks how many standard errors the observed mean sits from zero, and the answer is nearly three, which is far enough to be unlikely by chance.
+Read the three middle cells together, because they are the whole logic of a t-test in one line. The mean difference is about a fifth of a word, in the direction of slightly longer messages after a switch. The standard error is the amount the mean would be expected to bounce around from sample to sample, here about a quarter of a word. Dividing one by the other asks how many standard errors the observed mean sits from zero, and the answer is under one, which is well inside what chance produces routinely.
 
 Cohen's d for a one-sample test is simpler than the two-group version in Chapter 13: it is the mean divided by the standard deviation, with no pooling, because there is only one group.
 
-**A cross-check.** Excel's `T.TEST` can run this if you give it something to compare against. Put zeros in `L2:L18`, then:
+**A cross-check.** Excel's `T.TEST` can run this if you give it something to compare against. Put zeros in `L2:L77`, then:
 
 ```
-=T.TEST(E2:E18,L2:L18,2,1)
+=T.TEST(E2:E77,L2:L77,2,1)
 ```
 
-The `2` asks for two tails and the `1` asks for the paired test, and testing a column against a column of zeros is arithmetically identical to testing it against zero. It returns 0.0107, matching cell J7 exactly. Use it to check your work, not to replace it, because it gives you the p-value and neither t nor df, and a results section needs all three.
+The `2` asks for two tails and the `1` asks for the paired test, and testing a column against a column of zeros is arithmetically identical to testing it against zero. It returns 0.353, matching cell J7 exactly. Use it to check your work, not to replace it, because it gives you the p-value and neither t nor df, and a results section needs all three.
 
 ## Why that answer overstates its case
 
-Look at column A. Seventeen events, but not seventeen streamers. Sort by channel and count: forsen appears five times, uberhaxornova three, four channels twice each, and giantwaffle once. Seven channels in total.
+Look at column A. Seventy-six events, but not seventy-six streamers. Sort by channel and count: `pokelawls` appears eleven times, `nymn` and `jahrein` six each, `alinity` five, `uberhaxornova` four, and sixteen channels appear exactly once. Thirty-three channels in total.
 
-That matters because the t-test above assumed seventeen independent observations. They are not independent. Five of those rows describe the same streamer with largely the same audience, and if that audience has a habit, the habit gets counted five times. The test cannot tell the difference between seventeen facts and seven facts recorded seventeen times, so it reports a precision the data do not have.
+That matters because the t-test above assumed seventy-six independent observations. They are not independent. Eleven of those rows describe the same streamer with largely the same audience, and if that audience has a habit, the habit gets counted eleven times. The test cannot tell the difference between seventy-six facts and thirty-three facts recorded seventy-six times, so it reports a precision the data do not have.
 
 This is **non-independence**, and it is one of the most common ways a real analysis goes wrong. It is invisible in the output. Nothing in cells J1 to J8 looks suspicious. The only way to catch it is to look at where the rows came from, which is a habit worth building now.
 
 ## The clustered analysis
 
-The fix is to analyze at the level where the observations really are independent. Different channels are plausibly independent of each other; events within a channel are not. So average each channel's events into a single number first, then test those seven numbers.
+The fix is to analyze at the level where the observations really are independent. Different channels are plausibly independent of each other; events within a channel are not. So average each channel's events into a single number first, then test those thirty-three numbers.
 
 Excel does this with `AVERAGEIF`, which takes three arguments: the range to search, the value to match, and the range to average.
 
-1. In **N1** through **N7**, type the seven channel names: `chemicaldragoon`, `forsen`, `giantwaffle`, `leonblack`, `skiddlerrs`, `sodapoppin`, `uberhaxornova`.
+1. In **N1** through **N33**, put the 33 distinct channel names. Copy column A into N, then **Data**, **Remove Duplicates**, which is quicker and less error-prone than typing them out.
 2. In **O1**, enter:
 
 ```
-=AVERAGEIF($A$2:$A$18,N1,$E$2:$E$18)
+=AVERAGEIF($A$2:$A$77,N1,$E$2:$E$77)
 ```
 
-3. Select O1, copy, and paste into O2 down to O7.
+3. Select O1, copy, and paste into O2 down to O33.
 
 The dollar signs matter. They pin the two data ranges so they do not slide down as the formula is copied, while `N1` is left free to advance to N2, N3, and so on. Getting this wrong is the most common `AVERAGEIF` error, and it fails quietly by averaging a range that has drifted off the bottom of the data.
 
-You should see these seven channel means:
+Thirty-three numbers is too many to read at once, so here are the six channels contributing the most events, plus the two extremes:
 
-| Channel | Mean change in words |
-|---|---|
-| chemicaldragoon | -1.93 |
-| forsen | -1.73 |
-| giantwaffle | -0.95 |
-| leonblack | -1.22 |
-| skiddlerrs | -0.52 |
-| sodapoppin | -2.04 |
-| uberhaxornova | +0.89 |
+| Channel | Events | Mean change in words |
+|---|---|---|
+| pokelawls | 11 | +0.49 |
+| nymn | 6 | -0.77 |
+| jahrein | 6 | +0.85 |
+| alinity | 5 | +0.58 |
+| uberhaxornova | 4 | +0.69 |
+| forsen | 3 | +1.30 |
+| xqcow | 2 | +4.93 |
+| trainwreckstv | 1 | -2.74 |
 
-Six of the seven are negative. Read that row of numbers before you run anything on them, because it is more informative than the test will be: the pattern is consistent but not universal, and one channel went the other way.
+Sixteen of the thirty-three are negative and seventeen are positive. Read that before you run anything on it, because it is more informative than the test will be: the channels are not agreeing with each other about anything, and the two extremes come from a channel with two events and a channel with one.
 
-Now the same eight formulas as before, in columns Q and R, pointed at `O1:O7`:
+Now the same eight formulas as before, in columns Q and R, pointed at `O1:O33`:
 
 | Cell | Label | Formula |
 |---|---|---|
-| R1 | n | `=COUNT(O1:O7)` |
-| R2 | mean difference | `=AVERAGE(O1:O7)` |
-| R3 | SD | `=STDEV.S(O1:O7)` |
+| R1 | n | `=COUNT(O1:O33)` |
+| R2 | mean difference | `=AVERAGE(O1:O33)` |
+| R3 | SD | `=STDEV.S(O1:O33)` |
 | R4 | SE | `=R3/SQRT(R1)` |
 | R5 | t | `=R2/R4` |
 | R6 | df | `=R1-1` |
 | R7 | p | `=T.DIST.2T(ABS(R5),R6)` |
 | R8 | Cohen's d | `=R2/R3` |
 
-Expect n = 7, a mean of -1.071, SD = 1.024, SE = 0.387, t = -2.769, df = 6, p = 0.0325, and **d = -1.047**.
+Expect n = 33, a mean of 0.151, SD = 1.504, SE = 0.262, t = 0.578, df = 32, p = 0.567, and **d = 0.101**.
 
 ## Reading the two answers side by side
 
@@ -119,33 +120,63 @@ Put them next to each other, because the comparison teaches more than either res
 
 | | Naive | Clustered |
 |---|---|---|
-| n | 17 events | 7 channels |
-| mean | -1.080 | -1.071 |
-| SD | 1.541 | 1.024 |
-| t | -2.889 | -2.769 |
-| df | 16 | 6 |
-| p | .011 | .032 |
-| d | -0.701 | -1.047 |
+| n | 76 events | 33 channels |
+| mean | 0.213 | 0.151 |
+| SD | 1.988 | 1.504 |
+| t | 0.934 | 0.578 |
+| df | 75 | 32 |
+| p | .353 | .567 |
+| d | 0.107 | 0.101 |
 
 Four things are worth noticing.
 
-The **mean barely moved**, from -1.080 to -1.071. Averaging within channel did not change what the data say is happening.
+The **mean barely moved**, from 0.213 to 0.151. Averaging within channel did not change what the data say is happening.
 
-The **degrees of freedom collapsed**, from 16 to 6. This is the honest cost of admitting you have seven independent units and not seventeen, and it is why the p-value tripled.
+The **degrees of freedom collapsed**, from 75 to 32. This is the honest cost of admitting you have thirty-three independent units and not seventy-six, and it is why the p-value rose by more than half.
 
-The **effect size got larger**, from -0.70 to -1.05, which surprises most people. Averaging within a channel removes the variation between that channel's own events, so the standard deviation shrank from 1.54 to 1.02 while the mean stayed put. A standardized effect is the mean divided by that standard deviation, so it grew. Larger is not better here; it is simply a different and more appropriate question, about how much channels differ from each other rather than how much events do.
+The **effect size hardly moved**, from 0.107 to 0.101. Averaging within a channel removes the variation between that channel's own events, so the standard deviation shrank from 1.99 to 1.50, but the mean shrank in step with it and the ratio came out almost unchanged. It does not always work that way: when the within-channel variation is large relative to the variation between channels, clustering makes the standardized effect noticeably bigger.
 
-And the **conclusion survived**. The effect is still there at p = .032. It does not always work out that way, and when clustering destroys a result, the result was never there.
+And the **verdict did not change**, because there was no verdict to change. Neither test found anything. That is worth dwelling on rather than skipping past, because a null that survives clustering is a stronger null than one that does not: the naive analysis had 76 observations and all the overstated precision that goes with them, and it still could not distinguish this mean from zero.
+
+The reverse case is the dangerous one. A naive p of .04 on clustered data can become .3 the moment the units are counted honestly, and the result vanishes. You cannot tell which case you are in without running both, which is the argument for making the clustered analysis your default rather than your robustness check.
 
 ## Writing it up
 
 From the clustered cells:
 
-> Across seven channels, chat messages were shorter after a category switch than before it (M = -1.07 words, SD = 1.02), t(6) = -2.77, p = .032, d = -1.05. Events were averaged within channel before testing, because five of the seventeen events came from a single channel.
+> Across 33 channels, mean message length did not differ reliably before and after a category switch (M = +0.15 words, SD = 1.50), t(32) = 0.58, p = .567, d = 0.10. Events were averaged within channel before testing, because 11 of the 76 events came from a single channel.
 
-That last sentence is not optional padding. A reader who does not know you clustered cannot judge the degrees of freedom, and a reviewer who spots seventeen events reported with six degrees of freedom will want the explanation you just gave them.
+That last sentence is not optional padding. A reader who does not know you clustered cannot judge the degrees of freedom, and a reviewer who spots 76 events reported with 32 degrees of freedom will want the explanation you just gave them.
+
+Notice also what the sentence does not say. It does not say the switch had no effect. It says this analysis could not detect one, which is a claim about the study rather than about the world, and with an effect size of 0.10 it is the only claim available.
 
 Chapter 14 also sets the limit on what this sentence may claim. It is a difference before and after a real event, not the result of an experiment, and the write-up should not let a reader mistake one for the other.
+
+## The other outcome, in the same file
+
+Everything above ran on column E. The file has two more difference columns and one of them behaves differently, which is worth seeing, because a supplement that only ever shows you a null teaches half the lesson.
+
+Column G is `d_shout`: the change in the percentage of messages that are more than half capital letters. Point the same sixteen formulas at `G2:G77` and at the channel means built from it.
+
+| | Naive | Clustered |
+|---|---|---|
+| n | 76 events | 33 channels |
+| mean | -3.232 | -3.628 |
+| SD | 10.263 | 9.392 |
+| t | -2.745 | -2.219 |
+| df | 75 | 32 |
+| p | .0076 | .034 |
+| d | -0.315 | -0.386 |
+
+Here there is something. Shouting falls by about three and a half percentage points after a category switch, and unlike the word-count result it is still there once the channels are counted honestly.
+
+Read this table against the last one, because between them they show the two things clustering does.
+
+The **p-value got worse and the finding survived anyway**, .008 to .034. That is the ordinary case: you pay for the honest degrees of freedom, and if the effect is real you can afford it.
+
+The **effect size got larger**, from -0.32 to -0.39. This is the pattern the word-count column did not show. Averaging within a channel strips out the variation between one channel's own events, so the standard deviation fell from 10.26 to 9.39 while the mean moved away from zero rather than toward it. A standardized effect is the mean over that standard deviation, so it grew. Larger is not better; it is a different question, about how much channels differ from each other rather than how much events do.
+
+And the third column, `d_q`, the change in question rate, returns *t*(32) = 0.33, *p* = .74. Three measures, one result. Report all three, because reporting only the one that worked is the practice Chapter 6 names and Chapter 27 will not let you get away with.
 
 ## What Excel will not do for you
 

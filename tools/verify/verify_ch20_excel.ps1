@@ -5,7 +5,7 @@
 #   gap median 35, mean 111.7, next-turn 9 (7.7%), within 5 = 23.1%
 #   seconds median 954
 $ErrorActionPreference = 'Stop'
-$dir = 'C:\Users\alexl\AppData\Local\Temp\claude\C--pythia\911c8096-d1d3-4b3f-ab5c-0faea3c53a43\scratchpad'
+$dir = 'O:\20-research\aura-lab\v2v\data-raw\v3'
 $xl = New-Object -ComObject Excel.Application
 $xl.Visible = $false; $xl.DisplayAlerts = $false
 try {

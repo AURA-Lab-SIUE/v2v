@@ -70,15 +70,17 @@ That last point is worth being blunt about. A study that coded interviews, group
 
 Phase four asks you to test a candidate theme against the whole dataset, and the question underneath it is simple: does this pattern run across your sources, or does it come from one or two of them?
 
-That question has an answer you can compute, and the corpus shows what the two outcomes look like. Chapter 12's coded messages carry two manifest codes across fifty channels, and the codes behave in opposite ways.
+That question has an answer you can compute, and the corpus shows what the two outcomes look like. Chapter 12's coded messages carry three manifest codes across 228 channels, and two of them behave in opposite ways.
 
-The code `directed`, for a message aimed at a named participant, appears in **42 of the 50 channels**, and in **all 41** of the channels with at least a hundred messages. No single channel supplies more than **5.8 percent** of it. Whatever it is measuring is a property of the setting rather than of any one room.
+The code `directed`, for a message aimed at a named participant, appears in **204 of the 228 channels**. Its single largest channel supplies **1.7 percent** of it, and its three largest supply **4.7 percent** between them. Whatever it is measuring is a property of the setting rather than of any one room.
 
-The code `nongame`, for talk not about the game being played, appears in **13 of 50 channels**. Three channels supply **62 percent** of it, and four channels consist of nothing else.
+The code `command`, for a message beginning with an exclamation mark, appears in **182 of 228 channels**, which is nearly as many. On the count that matters it is a different animal: one channel supplies **12.6 percent** of every command in the corpus, and three channels supply **27 percent**.
 
-Both codes are perfectly real, and both were applied the same way. But a claim of the form "chat talks about things other than the game" would be describing four painting and talk-show streams that happen to be in the sample, while a claim about directed address would be describing the corpus. The frequencies alone cannot tell these apart: `nongame` occurs 4,044 times, which is a large number, and largeness is exactly what makes it convincing when it should not be.
+Both codes are real and both were applied by the same kind of rule. But a claim of the form "chat is full of bot commands" would be describing a handful of channels that run music-request bots, while a claim about directed address would be describing the corpus.
 
-So the test is not how often a code occurs but **how many sources it occurs in, and how concentrated it is in the largest of them**. Spread across sources, it is a candidate theme. Concentrated in one or two, it is a finding about those participants, which may well be worth reporting as long as you report it as that.
+**Notice what the count of sources alone would have told you: almost nothing.** 204 against 182 looks like a small difference. The concentration is where the two separate, by a factor of seven, and a study that reported only how many participants mentioned a theme would have missed it entirely.
+
+So the test is not how often a code occurs, nor even how many sources it occurs in, but **how much of it comes from its largest sources**. Spread thinly across many, it is a candidate theme. Piled up in two or three, it is a finding about those participants, which may well be worth reporting as long as you report it as that.
 
 This is a mechanical check standing in for an interpretive judgment, and it does not replace the judgment. A pattern in two interviews out of twelve can matter enormously if those two are the only participants who experienced the thing you are studying. What the check does is stop you from mistaking a loud minority for a dataset, which is the most common way a thematic analysis goes wrong. The Excel supplement builds the matrix the check runs on.
 

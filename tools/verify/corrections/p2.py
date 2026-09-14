@@ -1,40 +1,14 @@
----
-title: "Excel Supplement, Chapter 21: Qualitative Data Analysis"
----
+import io, pathlib
+p = pathlib.Path("/Volumes/One Touch/20-research/aura-lab/v2v/supplements/excel/chapter21-qualitative-data-analysis.qmd")
+t = io.open(p, encoding="utf-8").read()
+t = t.replace("using the corpus because it has fifty sources and a ready answer, and because the two codes in it behave in opposite ways.",
+              "using the corpus because it has 228 sources and a ready answer, and because two of the codes in it behave in opposite ways.")
+t = t.replace("because a file with fifty sources shows you both outcomes in one screen. Treat `channel` as your `source` column and the two code columns as two of your codes.",
+              "because a file with 228 sources shows you both outcomes in one workbook. Treat `channel` as your `source` column and the three code columns as three of your codes.")
 
-Two things a spreadsheet can do for a qualitative analysis, and one it cannot.
-
-It can hold your coding: a codebook, a validated list of codes, and a link from every code back to the segment it came from. And it can run phase four's check, the one that asks whether a candidate theme runs across your sources or comes from one or two of them.
-
-What it cannot do is the coding. The codes in a thematic analysis are your reading of your material, and nothing here produces them. Chapter 21 says the labels *are* the analysis, which is exactly why this supplement cannot supply them.
-
-So the workbook comes in two halves. The first half is the one you will actually use on your own data, and it has no numbers in it. The second half runs the cross-source check, using the corpus because it has 228 sources and a ready answer, and because two of the codes in it behave in opposite ways.
-
-## Part one: the coding workbook
-
-**The codebook sheet.** Four columns and one row per code: `code`, `definition`, `include`, `exclude`. Type it yourself, and write the `exclude` column, because Chapter 21's phase five says a code you cannot draw a boundary around is not defined yet. It is also the column you will revise most, and revising it is the analysis happening.
-
-**The data sheet.** One row per segment, with at minimum `segment_id`, `source`, `text`, and a `code` column. `source` is the participant, interview, channel or document the segment came from, and everything in part two depends on it being there.
-
-Put the whole quoted segment in `text`, not a paraphrase. Chapter 21's rule is that you must be able to get from a code back to the passage, and a summary you wrote in week two will not be enough in week six.
-
-**Validation on the code column.** Select the code column, then **Data**, **Data Validation**, **Allow: List**, and point **Source** at the code column of your codebook sheet. You now get a dropdown, and a typo becomes impossible.
-
-That last part matters more than it looks. Chapter 19's supplement showed that `COUNTIF` is case-insensitive, so `Defending` and `defending` would at least still be counted together. But `defending the streamer` and `defending streamer` are two codes forever, and you will not notice until a frequency table has two rows that should be one. Validation is ten seconds of setup against an error you cannot see.
-
-**Second cycle.** Add a `theme` column rather than editing the `code` column. Chapter 21 asks for an audit trail of how the codes changed, and overwriting the first-cycle code destroys it. Keep both, and the grouping is visible.
-
-## Part two: the cross-source check
-
-Now the corpus, for the check itself.
-
-`coded_messages.csv` is the file Chapter 12 coded: 156,992 messages with four columns, `channel`, `target`, `context` and `form`. `target` is `directed` or `broadcast`, `context` is `gaming` or `nongame`, and `form` is `command` or `talk`.
-
-**These are manifest codes, and they stand in for interpretive ones.** They were applied by a rule rather than by a reading, which is precisely what Chapter 21 says your codes will not be. They are here because the mechanics of the check are identical whatever produced the codes, and because a file with 228 sources shows you both outcomes in one workbook. Treat `channel` as your `source` column and the three code columns as three of your codes.
-
-Import through **Data**, **From Text/CSV**, **65001: Unicode (UTF-8)**. You should have 156,993 rows including the header.
-
-### The source list
+i = t.index("### The source list")
+j = t.index("## What Excel will not do for you")
+new = '''### The source list
 
 Copy column A, paste it into **F2**, type `source` in **F1**, then select **F1:F** and use **Data**, **Remove Duplicates**. 228 sources.
 
@@ -142,10 +116,7 @@ Select **H2:M229** and apply **Home**, **Conditional Formatting**, **Color Scale
 
 Do not report the picture. Color scales compare raw counts, and your sources are different sizes, so a dark cell may only mean a long interview. Add a share column, `=H2/$G2`, before drawing any conclusion from the shading, and use the count of sources rather than the colors when you write.
 
-## What Excel will not do for you
-
-Everything that matters in Chapter 21.
-
-It cannot tell you that two of your codes are the same code in different words, which is most of what second-cycle coding is. It cannot tell you that a pattern in two transcripts out of twelve is the finding, because those two participants are the only ones who experienced the thing you are studying, and a cross-source check would have quietly demoted it. It cannot write a memo, and it certainly cannot tell you what your codes mean.
-
-What it contributes is a place to keep the coding where a typo cannot fork a code, and one formula that tells you whether a theme is a theme. That is a diagnostic you run on yourself in phase four, and it belongs in your account of the process rather than in your results.
+'''
+t = t[:i] + new + t[j:]
+io.open(p, "w", encoding="utf-8", newline="\n").write(t)
+print("rewrote part two")

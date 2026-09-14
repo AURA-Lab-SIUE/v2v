@@ -7,6 +7,10 @@ here, because a rule cannot do that job and pretending otherwise would teach the
 wrong lesson.
 
   target  : "directed" if the message contains an @mention, else "broadcast"
+  form    : "command" if the message begins with "!", else "talk". Bot commands are
+            addressed to software rather than to anyone in the room, and Chapter 21
+            uses this code because it is concentrated in a few channels where the
+            other two are spread across nearly all of them.
   context : the stream's category at the moment the message was sent, reduced to
             "gaming" or "nongame"
 
@@ -50,10 +54,11 @@ for r in chat:
         "channel": ch,
         "target": "directed" if MENTION.search(r["message"] or "") else "broadcast",
         "context": "nongame" if game in NONGAME else "gaming",
+        "form": "command" if (r["message"] or "").startswith("!") else "talk",
     })
 
 with open("coded_messages.csv", "w", newline="", encoding="utf-8") as f:
-    w = csv.DictWriter(f, fieldnames=["channel", "target", "context"])
+    w = csv.DictWriter(f, fieldnames=["channel", "target", "context", "form"])
     w.writeheader()
     w.writerows(rows)
 

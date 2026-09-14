@@ -2,12 +2,12 @@
 # rhythm. Expected from Python: total 178,792; evening schedule {0,22,23} = 12.5% of
 # the clock but 20.4% of activity; spread {2,7,11,15,19,23} = 25% of clock, 24.6%.
 $ErrorActionPreference = 'Stop'
-$dir = 'C:\Users\alexl\AppData\Local\Temp\claude\C--pythia\911c8096-d1d3-4b3f-ab5c-0faea3c53a43\scratchpad'
+$dir = 'O:\20-research\aura-lab\v2v\data-raw\v3'
 $xl = New-Object -ComObject Excel.Application
 $xl.Visible = $false; $xl.DisplayAlerts = $false
 try {
-    $wb = $xl.Workbooks.Open((Join-Path $dir 'coverage.csv'))
-    $ws = $wb.Worksheets.Item(1)
+    $xl.Workbooks.OpenText((Join-Path $dir 'coverage.csv'), 65001, 1, 1, 1, $false, $false, $false, $true, $false, $false)
+    $wb = $xl.ActiveWorkbook; $ws = $wb.Worksheets.Item(1)
     $last = $ws.Cells($ws.Rows.Count, 1).End(-4162).Row
     Write-Output "rows incl header: $last"
 

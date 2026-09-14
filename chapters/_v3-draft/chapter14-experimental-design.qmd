@@ -124,13 +124,15 @@ Both are weaker than an experiment and both are far stronger than comparing two 
 
 The stream records make one available. Streamers change category during a session: they stop playing and start talking, or the reverse. That change has a timestamp, the researcher had nothing to do with it, and chat continues on either side of it. It is a real intervention with a known moment, which is exactly the shape a natural experiment needs.
 
-Across the fifty channels there are **54 category switches into or out of Just Chatting**. Comparing chat in a symmetric 45-minute window either side, and requiring at least fifteen messages on both sides so the measures are not noise, leaves **17 usable events across seven channels**.
+Across the 228 channels there are **178 category switches into or out of Just Chatting**. Comparing chat in a symmetric 45-minute window either side, and requiring at least fifteen messages on both sides so the measures are not noise, leaves **76 usable events across 33 channels**.
 
-The result is consistent. After a switch, messages get shorter by about a word: a mean change of **-1.08 words**, SD 1.54, which against zero gives t(16) = -2.89, p = .011, and a standardized effect of d = -0.70. Question rate and shouting show nothing: -0.63 and -1.53 percentage points, p = .62 and p = .39.
+Three measures, and only one of them moves. Message length gives a mean change of **+0.21 words**, SD 1.99, t(75) = 0.93, p = .35, d = 0.11, which is nothing. Question rate gives p = .99, which is nothing twice over. **Shouting falls**: the percentage of messages that are more than half capitals drops by **3.23 points**, SD 10.26, t(75) = -2.75, p = .008, d = -0.32.
 
-Now the part that matters more than the result. Those seventeen events are not seventeen independent observations. Five of them come from a single channel, and one streamer's audience behaving one way is one fact, not five. Treating them as independent inflates the apparent precision, which is a mistake this book would rather you catch here than in review. Kenny and Judd (1986) work through what violating the independence assumption actually does to a test, and the short answer is that it makes the test claim more than it has earned.
+That pattern is itself worth stating plainly. Two of the three measures were chosen in advance and returned nothing, and reporting only the third would misrepresent the study. It is also the reason the one surviving result deserves more scepticism than it would get on its own: three tests were run.
 
-Averaging within channel first and testing across the seven channels gives **M = -1.07 words, SD 1.02, t(6) = -2.77, p = .032, d = -1.05**. The effect survives, the degrees of freedom collapse from 16 to 6, and the standardized effect gets *larger* rather than smaller, because averaging removed noise within channels. Both analyses are defensible and the clustered one is the honest one, because it matches the level at which the data are actually independent.
+Now the part that matters more than the result. Those seventy-six events are not seventy-six independent observations. Eleven of them come from a single channel, and one streamer's audience behaving one way is one fact, not eleven. Treating them as independent inflates the apparent precision, which is a mistake this book would rather you catch here than in review. Kenny and Judd (1986) work through what violating the independence assumption actually does to a test, and the short answer is that it makes the test claim more than it has earned.
+
+Averaging within channel first and testing the shouting measure across the 33 channels gives **M = -3.63 points, SD 9.39, t(32) = -2.22, p = .034, d = -0.39**. The effect survives, the degrees of freedom collapse from 75 to 32, and the standardized effect gets *larger* rather than smaller, because averaging removed noise within channels. The message-length null survives too, at p = .57. Both analyses are defensible and the clustered one is the honest one, because it matches the level at which the data are actually independent.
 
 ## What this design cannot license
 
@@ -142,7 +144,7 @@ The window contains more than the switch. Forty-five minutes either side of a ch
 
 And the window length is a choice. Forty-five minutes was picked because it leaves enough messages to measure; a different window would give different numbers. Chapter 6's insistence that a hypothesis is committed to before the data are examined applies directly here, and the honest move is to fix the window in advance and report what other windows show.
 
-So the defensible sentence is that chat messages were shorter after a category change in this corpus, that the pattern held across seven channels, and that the design cannot separate the change itself from what prompted it. That sentence is worth more than a stronger one that will not survive a reviewer.
+So the defensible sentence is that chat shouted less after a category change in this corpus, that the pattern held across 33 channels, that message length and question rate did not move at all, and that the design cannot separate the change itself from what prompted it. That sentence is worth more than a stronger one that will not survive a reviewer.
 
 ## Looking ahead
 

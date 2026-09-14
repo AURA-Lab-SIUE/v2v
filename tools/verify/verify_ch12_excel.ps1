@@ -1,13 +1,14 @@
 # Verify the Chapter 12 Excel supplement by doing what it tells the reader to do:
 # build the crosstab from coded_messages.csv with a PivotTable, compute expected
 # counts, then chi-square by hand and with CHISQ.TEST. Expected from Python:
-# chi-square = 24.1684, df = 1, p = 0.000001, Cramer's V = 0.0262.
+# chi-square = 97.48, df = 1, p = 5.4e-23, Cramer's V = 0.0249.
 $ErrorActionPreference = 'Stop'
-$csv = 'C:\Users\alexl\AppData\Local\Temp\claude\C--pythia\911c8096-d1d3-4b3f-ab5c-0faea3c53a43\scratchpad\coded_messages.csv'
+$csv = 'O:\20-research\aura-lab\v2v\data-raw\v3\coded_messages.csv'
 $xl = New-Object -ComObject Excel.Application
 $xl.Visible = $false; $xl.DisplayAlerts = $false
 try {
-    $wb = $xl.Workbooks.Open($csv); $ws = $wb.Worksheets.Item(1)
+    $xl.Workbooks.OpenText($csv, 65001, 1, 1, 1, $false, $false, $false, $true, $false, $false)
+    $wb = $xl.ActiveWorkbook; $ws = $wb.Worksheets.Item(1)
     $last = $ws.Cells($ws.Rows.Count, 1).End(-4162).Row
     Write-Output "rows incl header: $last"
 

@@ -31,11 +31,11 @@ Put these somewhere to the right:
 | quietest hour | `=INDEX(A2:A25,MATCH(MIN(C2:C25),C2:C25,0))` |
 | peak to trough | `=MAX(C2:C25)/MIN(C2:C25)` |
 
-You should get a total of **178,792**, a busiest hour of **23** UTC, a quietest hour of **7** UTC, and a ratio of **3.39**.
+You should get a total of **110,495**, a busiest hour of **22** UTC, a quietest hour of **7** UTC, and a ratio of **2.92**.
 
 `INDEX` with `MATCH` is worth learning here rather than looking up later. `MAX(C2:C25)` finds the largest value; `MATCH` finds which position in the column holds it; `INDEX` returns the value sitting at that same position in a different column. Together they answer "which hour was busiest", which `MAX` alone cannot, because `MAX` gives you the number and not its label.
 
-Now select A1:C25 and insert a line chart of `mean_viewers` against `hour_utc`. The curve falls through the small hours, bottoms out around 07 UTC, and climbs to its peak late. **The setting is three and a half times busier at its peak than at its trough.** Any claim that treats "the channel" as one thing is averaging across that.
+Now select A1:C25 and insert a line chart of `mean_viewers` against `hour_utc`. The curve falls through the small hours, bottoms out at 07 UTC, and climbs to its peak late. **The setting is nearly three times busier at its peak than at its trough.** Any claim that treats "the channel" as one thing is averaging across that.
 
 ## Marking your coverage
 
@@ -61,17 +61,17 @@ The first two are obvious. The third is a **weighted** coverage: instead of coun
 
 Two schedules, both run against this data.
 
-**Evenings only,** hours 0, 22 and 23. That is **12.5 percent** of the clock and **20.4 percent** of the activity.
+**Evenings only,** hours 0, 22 and 23. That is **12.5 percent** of the clock and **19.2 percent** of the activity.
 
-**Spread out,** hours 2, 7, 11, 15, 19 and 23. That is **25 percent** of the clock and **24.6 percent** of the activity.
+**Spread out,** hours 2, 7, 11, 15, 19 and 23. That is **25 percent** of the clock and **25.1 percent** of the activity.
 
 Read those together, because the pair says something neither says alone.
 
 The evening schedule is **efficient**. Three hours buy a fifth of everything happening, because those are the hours when the setting is busiest. If your question is about peak-time behavior, that is a defensible design and the number supports it.
 
-The evening schedule is also **narrow in a way the hour count hides**. You have seen a fifth of the activity and essentially none of the setting's quiet hours, and quiet hours are not just less of the same thing. A channel with four thousand viewers behaves differently from the same channel with twelve thousand: the chat is legible rather than a wall, regulars can hold a conversation, the streamer can read individual messages. Those are different social conditions, not a smaller sample of one condition.
+The evening schedule is also **narrow in a way the hour count hides**. You have seen a fifth of the activity and essentially none of the setting's quiet hours, and quiet hours are not just less of the same thing. A channel with two and a half thousand viewers behaves differently from the same channel with seven and a half thousand: the chat is legible rather than a wall, regulars can hold a conversation, the streamer can read individual messages. Those are different social conditions, not a smaller sample of one condition.
 
-The spread schedule buys almost exactly proportional coverage, 25 percent of the clock for 24.6 percent of the activity, which is what you want when the question is about the setting as a whole rather than about its peak.
+The spread schedule buys almost exactly proportional coverage, 25 percent of the clock for 25.1 percent of the activity, which is what you want when the question is about the setting as a whole rather than about its peak.
 
 Neither is correct. What is not defensible is running the evening schedule and writing as though you had described the channel.
 

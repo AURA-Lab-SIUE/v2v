@@ -8,10 +8,16 @@
 #      column. COUNTIF survives them; SUMPRODUCT does not. Hence IFERROR.
 #
 # Expected from Python (case-sensitive, whole space-delimited token):
-#   LUL 1428, LULW 389, OMEGALUL 277, 4Head 150, Pog 610, PogChamp 273
-#   !play 775 exact; !-prefixed 1980; dev1 1000 messages, 460 !play
+#   LUL 6449, LULW 1326, OMEGALUL 1041, 4Head 426, Pog 2008, PogChamp 1242
+#   LUL substring (case-insensitive) 9716
+#   !play 855 exact; !-prefixed 5529; dev1 1000 messages, 449 !play
+# NOTE on the 1-2 message gaps below. This script uses OpenText, which EVALUATES
+# 18 messages as formulas and turns them into errors; one of them carries a LUL
+# token, one an OMEGALUL, and two a lowercase lul. The supplement tells the reader
+# to import through Data > From Text/CSV (Power Query), which imports them as text
+# and so returns the Python figures above. Both behaviours are the point of Ch 24.
 $ErrorActionPreference = 'Stop'
-$dir = 'C:\Users\alexl\AppData\Local\Temp\claude\C--pythia\911c8096-d1d3-4b3f-ab5c-0faea3c53a43\scratchpad'
+$dir = 'O:\20-research\aura-lab\v2v\data-raw\v3'
 $xl = New-Object -ComObject Excel.Application
 $xl.Visible = $false; $xl.DisplayAlerts = $false
 try {

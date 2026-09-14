@@ -63,9 +63,9 @@ Chapter 16 argues that "saturation was reached" means nothing on its own, and th
 
 Order your cases. After each one, count the categories you have seen that you had not seen before. Plot the running total. When new categories stop arriving, you have evidence. When they do not stop, you have that too, and saying so is better than claiming otherwise.
 
-**A note on the data.** Interview transcripts do not exist for this book, and inventing them would have you practice on something no human said. So this section runs the procedure on real data with the identical structure: `accumulation.csv` holds 102 rows, one per channel-and-category pair, with 48 channels standing in as cases and the stream categories standing in as the categories you would be discovering. The Excel technique is exactly what you would run over a set of interviews.
+**A note on the data.** Interview transcripts do not exist for this book, and inventing them would have you practice on something no human said. So this section runs the procedure on real data with the identical structure: `accumulation.csv` holds 381 rows, one per channel-and-category pair, with 226 channels standing in as cases and the stream categories standing in as the categories you would be discovering. The Excel technique is exactly what you would run over a set of interviews.
 
-Import it the usual way: **Data**, **From Text/CSV**, **65001: Unicode (UTF-8)**, **Load**. You should have 103 rows and three columns: `case_order`, `channel`, `category`.
+Import it the usual way: **Data**, **From Text/CSV**, **65001: Unicode (UTF-8)**, **Load**. You should have 382 rows and three columns: `case_order`, `channel`, `category`.
 
 ### Flagging first appearances
 
@@ -75,24 +75,24 @@ This is the one clever formula in the supplement. In **D1** type `first_appearan
 =IF(COUNTIFS($C$2:C2,C2)=1,1,0)
 ```
 
-Fill it down to row 103.
+Fill it down to row 382.
 
 Look closely at the range: `$C$2:C2`. The start is locked and the end is not, so as the formula moves down the row the range *expands*. In row 2 it looks at one cell; in row 50 it looks at rows 2 through 50. The question it asks is therefore "counting only what has appeared at or above this row, is this the first time?" The answer is 1 exactly once per category, at its first appearance, and 0 every time after.
 
 Sum the column and you have the number of distinct categories:
 
 ```
-=SUM(D2:D103)
+=SUM(D2:D382)
 ```
 
-It returns **59**.
+It returns **117**.
 
 ### The curve
 
-On a new sheet, put `case` in A1, `new` in B1 and `cumulative` in C1. Fill A2:A49 with 1 through 48. Then in **B2**:
+On a new sheet, put `case` in A1, `new` in B1 and `cumulative` in C1. Fill A2:A227 with 1 through 226. Then in **B2**:
 
 ```
-=SUMIFS(accumulation!$D$2:$D$103,accumulation!$A$2:$A$103,A2)
+=SUMIFS(accumulation!$D$2:$D$382,accumulation!$A$2:$A$382,A2)
 ```
 
 and in **C2**:
@@ -101,46 +101,48 @@ and in **C2**:
 =SUM($B$2:B2)
 ```
 
-Fill both down to row 49. `C2` uses the same expanding-range trick, this time to make a running total.
+Fill both down to row 227. `C2` uses the same expanding-range trick, this time to make a running total.
 
 You should see the first cases arriving like this:
 
 | case | new | cumulative |
 |---|---|---|
-| 1 | 3 | 3 |
-| 2 | 1 | 4 |
-| 3 | 1 | 5 |
-| 4 | 1 | 6 |
-| 5 | 0 | 6 |
-| 6 | 2 | 8 |
+| 1 | 1 | 1 |
+| 2 | 2 | 3 |
+| 3 | 0 | 3 |
+| 4 | 3 | 6 |
+| 5 | 1 | 7 |
+| 6 | 3 | 10 |
 
-and the final cumulative value, in C49, is **59**.
+and the final cumulative value, in C227, is **117**.
 
-Select A1:C49 and insert a line chart of the cumulative column. That picture is the thing a methods section should contain when it uses the word saturation.
+Select A1:C227 and insert a line chart of the cumulative column. That picture is the thing a methods section should contain when it uses the word saturation.
 
 ### Reading it honestly
 
 Now the decision rule. How many new categories arrived in the last ten cases?
 
 ```
-=SUM(B40:B49)
+=SUM(B218:B227)
 ```
 
-It returns **24**. Of 59 categories, 24 arrived in the final ten cases, and the halfway point had seen only 33.
+It returns **7**. Of 117 categories, 7 arrived in the final ten cases, and the halfway point, case 114, had seen 70 of them, sixty percent.
 
-**This curve has not flattened.** That is the correct reading and it is the useful one. If these were interviews, the honest sentence would be that the study had not reached saturation at 48 cases, and the honest next step would be more cases or a narrower question. What you must not write is "saturation was reached", because the evidence on the screen says it was not.
+So the curve has flattened a great deal. The first ten cases produced 14 new categories and the last ten produced 7, half the rate over twenty times the accumulated total. **It has not stopped, though, and the shape is less tidy than the textbook picture.** Cases 101 to 110 brought only 2 new categories, and the final ten brought more than three times that. A curve that appears to have levelled off can start climbing again, which is the reason the rule has to be fixed before you look rather than declared at the point the line happens to look flat.
+
+If these were interviews, the honest sentence would be that new categories were still arriving at 226 cases, at a much reduced rate, and that saturation in the strict sense was not reached. What you must not write is "saturation was reached", because the evidence on the screen says it was not.
 
 Two things this exercise teaches beyond the arithmetic.
 
 **The curve depends on the order of your cases.** Sort the same data differently and the shape changes, even though the final total cannot. So fix the order in advance, ordinarily the order in which you collected the cases, and say in your methods that you did. An order chosen after seeing the results is a curve you drew rather than found.
 
-**Heterogeneous cases saturate slowly, or never.** These 48 channels have little in common, so each one brings something new. A study whose participants are more alike will flatten sooner, and that is a fact about your sampling rather than about your diligence. It is the same tension Chapter 16 raised between maximum variation sampling and saturation: the sampling strategy that makes a finding most credible is the one that makes saturation hardest to reach.
+**Heterogeneous cases saturate slowly, or never.** These 226 channels have little in common, so each one brings something new. A study whose participants are more alike will flatten sooner, and that is a fact about your sampling rather than about your diligence. It is the same tension Chapter 16 raised between maximum variation sampling and saturation: the sampling strategy that makes a finding most credible is the one that makes saturation hardest to reach.
 
 ## A trap worth knowing about
 
-While preparing this supplement, Excel and a case-sensitive tool disagreed about the number of categories: 59 against 60.
+While preparing this supplement, Excel and a case-sensitive tool disagreed about the number of categories: 117 against 123.
 
-The cause was in the raw data, which carries both `minecraft` and `Minecraft` as category strings. They are one category recorded two ways. **Excel's `COUNTIFS` is case-insensitive**, so it merged them without comment and returned 59. The case-sensitive count returned 60.
+The cause was in the raw data, which carries both `minecraft` and `Minecraft` as category strings, and five more pairs like it: `Just Chatting`, `League of Legends`, `Hearthstone`, `Town of Salem` and `HaxBall` all appear in two spellings. Each is one category recorded two ways. **Excel's `COUNTIFS` is case-insensitive**, so it merged all six without comment and returned 117. The case-sensitive count returned 123.
 
 Excel happened to give the substantively right answer here, and that is exactly why it is worth flagging. You cannot rely on a tool's incidental behavior to clean your data, and a project that moves between Excel and anything else will get two different counts with no warning from either. The data shipped with this supplement has been normalized to one spelling, and the normalization is recorded in the script that built it.
 
