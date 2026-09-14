@@ -1,0 +1,97 @@
+---
+title: "Excel Supplement, Chapter 20: Discourse and Conversation Analysis"
+---
+
+A warning before anything else: **this supplement does not do conversation analysis.** Conversation analysis is close reading of sequences, and no spreadsheet performs it.
+
+What a spreadsheet can do is measure the thing Chapter 20 says the medium has broken. If adjacency is the resource that carries meaning in talk, and text chat disrupts it, then the size of the disruption is a number, and knowing it tells you which analytic resources are actually available to you before you start reading. That is worth ten minutes.
+
+## The data
+
+`adjacency.csv` is one channel from the corpus, ordered by time, with 1,000 turns and four columns: `turn`, `sender`, `addressed`, `ts_ms`.
+
+**There is no message text in this file**, and that is deliberate twice over. The measurement needs only who spoke, who they addressed and when, so shipping the text would add nothing but exposure. And extracting an at-mention from free text in Excel is a `MID` and `FIND` exercise that teaches nothing about discourse, so it is done in the builder instead.
+
+`addressed` holds the person named by an at-mention, lowercased, and is blank unless the message names someone who also speaks in this channel. Someone who is mentioned but never types cannot have a next turn, so there is nothing to measure.
+
+Import through **Data**, **From Text/CSV**, **65001: Unicode (UTF-8)**. You should have 1,001 rows.
+
+## Finding the reply
+
+The question for each addressed message is: what is the addressee's next turn?
+
+That is a lookup with two conditions, the smallest turn number that belongs to the addressee and is greater than this one, and `MINIFS` does exactly that. In **F1** type `next_turn`, and in **F2**:
+
+```
+=IF(C2="","",IF(MINIFS($A$2:$A$1001,$B$2:$B$1001,C2,$A$2:$A$1001,">"&A2)=0,
+   "none",MINIFS($A$2:$A$1001,$B$2:$B$1001,C2,$A$2:$A$1001,">"&A2)))
+```
+
+filled down to row 1001. Read the middle of it: among all turns, take the smallest one whose `sender` equals this row's `addressed` and whose turn number is greater than this row's turn.
+
+**The formula tests for zero, and that is not decoration.** `MINIFS` returns **0** when nothing matches, not an error. So `IFERROR` does not catch it, the zero looks like a turn number, and the gap comes out as a large negative number. Written the obvious way, this analysis reports a mean gap of **-133 turns**, which is impossible and is also easy to miss if you only look at the median.
+
+That is the third time in this book a function has failed by returning something plausible rather than an error, after `COUNTIF` ignoring case and Excel evaluating messages as formulas. The habit worth forming is to ask what each function does when it finds nothing, before trusting any aggregate built on it.
+
+## The two gaps
+
+In **G2**, the distance in turns:
+
+```
+=IF(OR(F2="",F2="none"),"",F2-A2)
+```
+
+And in **H2**, the distance in seconds, since the timestamps are Unix milliseconds:
+
+```
+=IF(OR(F2="",F2="none"),"",(INDEX($D$2:$D$1001,MATCH(F2,$A$2:$A$1001,0))-D2)/1000)
+```
+
+`MATCH` finds which row holds the addressee's next turn and `INDEX` reads that row's timestamp, which is the same pairing Chapter 18's supplement used to recover a label from a position.
+
+Fill both down. Now the summary:
+
+| Label | Formula | Result |
+|---|---|---|
+| turns | `=COUNT(A2:A1001)` | 1,000 |
+| messages addressing someone | `=COUNTIF(C2:C1001,"?*")` | 174 |
+| addressee never returns | `=COUNTIF(F2:F1001,"none")` | 57 |
+| gaps measured | `=COUNT(G2:G1001)` | 117 |
+| median gap, turns | `=MEDIAN(G2:G1001)` | 35 |
+| mean gap, turns | `=AVERAGE(G2:G1001)` | 111.7 |
+| longest gap | `=MAX(G2:G1001)` | 481 |
+| reply is the very next turn | `=COUNTIF(G2:G1001,1)` | 9 |
+| reply within five turns | `=COUNTIF(G2:G1001,"<=5")` | 27 |
+| median seconds to reply | `=MEDIAN(H2:H1001)` | 954 |
+
+Note `"?*"` for counting addressed messages: it means at least one character, which counts non-blank text cells and is safer here than `"<>"`.
+
+## Reading it
+
+Of 174 messages that address a named participant, **57 (33 percent) are aimed at someone who never types again** in the next thousand turns. Of the 117 that do get a later turn from the addressee, **9 arrive in the very next turn: 7.7 percent.** The median wait is **35 turns and about sixteen minutes.**
+
+Set that against the machinery in Chapter 20. In speech, a first pair part makes a second conditionally relevant in the *next* turn, and its absence there is itself meaningful. In this room the next turn belongs to whoever typed fastest, and the median reply arrives with thirty-five other messages stacked in front of it.
+
+Compare the mean and the median too. The mean gap is **111.7** turns against a median of **35**, and the longest is **481**. That right skew is the signature of a distribution where most replies are slow and a few are enormously slow, and it is why reporting a mean alone would misdescribe the room.
+
+## Why this channel is worse than the book's figure
+
+Chapter 20 quotes 11.1 percent for next-turn replies across the whole corpus, and this channel gives 7.7 percent. The difference is the point rather than a discrepancy.
+
+This channel has **440 distinct senders in 1,000 messages**. A room where almost every message comes from a different person offers less chance that any two consecutive turns belong to the same conversation. A smaller channel, where thirty regulars produce most of the traffic, behaves much more like speech.
+
+So the coherence problem scales with the size of the room, and a study that measured it in one channel and reported it as a property of "Twitch chat" would be generalizing from a single room. Run this on several channels of different sizes before claiming anything general. The file ships one channel because the exercise is about the technique; the finding needs more.
+
+## What this is for
+
+Chapter 20 is explicit that these numbers are not the analysis, and the supplement ends by agreeing.
+
+What the numbers do is tell you which resources you may rely on when you sit down to read sequences. In a room where 7.7 percent of replies are adjacent, you cannot use position to establish that one message responds to another, so the at-mention and the quotation become your evidence, and a claim resting on two messages merely being consecutive is not supported. That is a genuine finding about method, arrived at before any interpretation.
+
+They also tell you where to look. The 9 adjacent replies and the handful of long gaps are both worth reading closely, because the first shows what the room does when adjacency survives and the second shows how people reconnect after it has plainly failed.
+
+## What Excel will not do for you
+
+Everything that matters in Chapter 20. Excel cannot see that a disagreement was hedged, that a correction was softened, that "nobody cares" was policing the room rather than contributing to the argument. It found the gaps; it has no idea what was in them.
+
+It also cannot tell you whether a reply is a reply. A later message from the addressee is a later message, and this measurement assumes without evidence that it responds to the one that named them. Some do and some are about something else entirely. Checking is reading, which is the chapter's work and not the spreadsheet's.
