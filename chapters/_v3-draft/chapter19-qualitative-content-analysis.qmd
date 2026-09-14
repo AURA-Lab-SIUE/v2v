@@ -1,0 +1,155 @@
+---
+title: "Chapter 19: Qualitative Content and Textual Analysis"
+---
+
+Chapter 12 counted these messages. This chapter reads them.
+
+That sounds like a smaller ambition and it is a different one. Quantitative content analysis fixes categories in advance, applies them uniformly, and reports how often each occurs. Qualitative content analysis lets the categories emerge from the material, attends to what the material means rather than how often it appears, and reports an interpretation supported by evidence rather than a frequency supported by a codebook.
+
+Both are content analysis. Krippendorff (2018) defines the method as making replicable and valid inferences from texts to the **contexts of their use**, and that last phrase is the hinge. Counting establishes what is in the text. Saying what it meant requires the context, and the context is not in the frequency table. They answer different questions about the same material, and a study that wants both usually needs both, which is Chapter 26's subject.
+
+## What changes
+
+Three things, and they follow from each other.
+
+**Categories emerge.** In Chapter 12 you built the codebook before coding and the pilot tested whether two people could apply it the same way. Here the first pass through the material is what produces the categories, and they change as you go. Elo and Kyngäs (2008) describe the process as preparation, organizing and reporting, with the organizing phase repeatedly revisited rather than completed once.
+
+**Latent content is the point rather than the problem.** Chapter 12 treated latent meaning as the hard case, the thing that threatens reliability and needs decision rules to pin down. Here it is the target. You are trying to say what something means in context, and the fact that a naive reader would not see it is the reason the analysis is worth doing.
+
+**Reliability is replaced by warrant.** Two coders agreeing is not the standard, because the reading depends on interpretive judgment that a second coder is not supposed to duplicate mechanically. What replaces it is evidence: showing enough of the material that a reader can evaluate your reading against it. That is a weaker guarantee and a real one, and the last sections of this chapter are about how to earn it.
+
+## Three approaches
+
+Hsieh and Shannon (2005) divide qualitative content analysis into three, and knowing which one you are doing prevents most confusion in a methods section.
+
+**Conventional** content analysis derives categories entirely from the data. You use it when the literature on your phenomenon is thin and imposing existing categories would prejudge it. This is the default for a new setting.
+
+**Directed** content analysis starts from existing theory or prior research, uses it to define initial categories, and then extends or revises them against the material. You use it when there is a framework worth testing and refining rather than ignoring. The risk it carries is confirmation: having arrived with categories, you find them.
+
+**Summative** content analysis starts by counting words or content, then interprets what the counts mean in context. It begins where Chapter 12 ends. The counting is not the finding; it is the entry point to a reading of why the distribution looks that way.
+
+This chapter's worked examples are summative, because the corpus has already been counted and the counts turn out to be the interesting thing to interpret.
+
+## The neighboring traditions
+
+Qualitative content analysis sits among several approaches that read texts closely, and the distinctions are worth a paragraph each so you can name what you are doing.
+
+**Textual analysis** is the broad label for close reading of media texts to understand how they make meaning. It is less systematic about sampling and category-building than qualitative content analysis and more attentive to the individual text.
+
+**Semiotic analysis** reads texts as systems of signs, asking what signifies what, and by what convention. It is the right frame when the material's meaning is carried by things that are not words, which is directly relevant below.
+
+**Framing analysis** asks how a text organizes a topic: what it makes salient, what it omits, what the problem is presented as being, and who is implied to be responsible.
+
+**Narrative analysis** asks how a text tells a story: who the characters are, what sequence events are given, and what the telling accomplishes.
+
+These overlap heavily in practice, and a study is not improved by insisting on a label. What matters is that you say what you attended to and why.
+
+## Latent meaning, where it actually lives
+
+Here is the corpus reading the counting could not produce.
+
+The single most common thing a person types in this corpus is not a word. Across all 35,267 messages, **30.7 percent contain exactly one word**, **53.4 percent contain three or fewer**, and **4.9 percent contain no alphabetic characters at all**. Just under a third of all messages, **31.2 percent**, are a single token with no spaces in them.
+
+Chapter 12 can tell you that. What it cannot tell you is that many of those single tokens belong to a system.
+
+Consider the laughter family. **LUL** appears in 2,193 messages, **LULW** in 389, **OMEGALUL** in 280, **4Head** in 154. These are not four ways of saying the same thing, and they are not interchangeable in use. They are graded: LUL is ordinary amusement, LULW is stronger, OMEGALUL is stronger still and carries a note of derision, 4Head is older and carries the faint archaism of a joke that has been around. A reader who does not know this sees four unfamiliar strings. A member sees intensity, and sometimes sees which of the four you chose as itself a comment.
+
+This is what **semiotic** means concretely. The meaning is not in the letters, and it is not recoverable by anyone who has not learned the convention. It is also not stable: the same token means something different two channels over, and the whole family shifts over a few years.
+
+That last point is testable in this corpus and the result is worth stating. **KEKW, which now carries much of the work these emotes did, appears zero times here.** It spread in 2019, after this collection. A researcher who arrived with a 2026 understanding of Twitch vocabulary and coded for KEKW would find nothing and could easily conclude that this community did not laugh. The corpus dates itself, and reading it requires reading it in its own period.
+
+## When a message is not a message
+
+The second reading is sharper, because it undoes something the quantitative chapter took for granted.
+
+**`!play` appears 775 times, typed by 547 distinct senders.** In one channel it accounts for **460 of 1,000 messages: 46 percent of everything said there.** Across the corpus, messages beginning with `!` are **5.6 percent** of all messages.
+
+`!play` is not speech. It is a command issued to a bot, usually to queue a song or enter a queue. Nobody is addressing another person, nothing is being communicated between humans, and the message exists to make software do something.
+
+Chapter 12's unit of analysis was the message, and every one of those 460 is a message. A frequency table treats them as communicative acts. A qualitative reading says that nearly half of that channel's chat is not conversation at all, and that the room's apparent liveliness is substantially a queue.
+
+Notice what this does to earlier findings rather than merely adding to them. Any measure of message length, question rate or interaction computed over that channel includes 46 percent commands. That is not an error in Chapter 12's arithmetic; it is a limit on what the arithmetic meant, and it took a close reading to find. This is the most useful thing qualitative work does for quantitative work, and it is why serious projects run both.
+
+## Units, when meaning spans messages
+
+Chapter 12 had a clean unit: one message, one row. Qualitative reading of the same material runs into a problem that the clean unit concealed.
+
+Meaning in chat is frequently not contained in a message. A joke is set up by one person, extended by a second, and landed by a third, and no one of the three messages carries the thing you would want to quote. A correction is a reply to something four lines above it. A wall of the same emote from thirty accounts is, considered message by message, thirty identical one-word messages, and considered as a unit it is a single collective act with a shape: it starts, it peaks, it stops.
+
+So the unit has to be chosen for the question rather than inherited from the file.
+
+**The message** is right when the phenomenon is a property of individual utterances, such as whether people address the streamer by name.
+
+**The exchange** is right when the phenomenon is interactional, such as how corrections are delivered. Chapter 17 made the same argument for focus groups, and the same reasoning applies: if the thing you care about happens between people, a unit that cannot contain two people will not hold it.
+
+**The episode** is right when the phenomenon is collective, such as how a room responds to a notable moment. Its boundaries are a judgment, and the judgment gets stated.
+
+Whatever you choose, the rule from Chapter 16 holds and is harder here: say how you divided the material before you say what you found in it. Two analysts who segment a chat log differently are not disagreeing about interpretation, they are reading different texts.
+
+
+## Doing it
+
+A workable procedure, which is Elo and Kyngäs's three phases with the loop made explicit.
+
+**Select the material.** Purposive rather than random: choose texts because they can show you the phenomenon. State what you selected and why, and how much you left out. If you are reading a subset of a larger corpus, say how the subset was drawn.
+
+**Immerse.** Read it all, more than once, before coding anything. Chapter 12's structured listening and Chapter 18's field notes are both versions of this, and the purpose is the same: to stop your first impression from becoming your framework.
+
+**Open code.** Work through the material attaching short labels to segments, staying close to the material's own language. Resist tidying too early. The first pass should produce more categories than you will keep.
+
+**Group and regroup.** Collapse categories that overlap, split ones doing two jobs, and name them in terms the material would recognize. This is where most of the thinking happens, and it is iterative rather than a single sorting.
+
+**Return to the material.** Test each category against the text again, and specifically against passages that do not fit. Chapter 18's negative case discipline applies exactly.
+
+**Write with evidence.** Quote enough that the reader can see what you saw.
+
+Two practical cautions. Keep a record of how categories changed and why, because you will be asked and because your own account of the analysis is part of its credibility. And keep the material's own words in your category names for as long as you can: a category called "policing emote use" says more than one called "norm enforcement", and the second can always be derived from the first.
+
+## A reading, worked
+
+To show the procedure rather than describe it, here is the `!play` finding assembled the way it actually came together.
+
+**First pass, open codes close to the material.** Reading a stretch of one channel's chat, several labels suggested themselves: *typed the same three characters*, *no reply from anyone*, *no one reacts*, *appears in bursts*, *same sender repeats it later*.
+
+**Grouping.** Those collapse into two categories that are doing different work. One is about **form**: the message is identical across senders and carries no variation. The other is about **uptake**: nothing in the surrounding text responds to it, which is unusual, because most chat messages that get no reply are at least adjacent to something they respond to.
+
+**Naming from the material.** The second category is the more interesting and the harder to name. "Ignored" is wrong, because it implies someone declined to respond. What is actually happening is that the message was never addressed to anyone present. A name closer to the material is *addressed elsewhere*.
+
+**Testing against the corpus.** If the category is real, it should extend beyond this one string. It does: the same form and the same absence of uptake hold for `!uptime`, `!followage`, `!points` and the rest, which together are 5.6 percent of the corpus.
+
+**The claim, and its limit.** A meaningful share of what a frequency table counts as chat is not addressed to any person in the room. In one channel it is 46 percent. The limit is that this reading came from close attention to a few channels, and the 5.6 percent figure is a count rather than a reading: it tells you how often the form occurs and not what it meant in each case, some of which will be playful, some social, some purely functional.
+
+Notice that the finding needed both halves. The close reading produced the category, and the count established that the category was not an artifact of the passage that suggested it. Neither would have been sufficient.
+
+
+## Warrant
+
+If two coders agreeing is not the test, what is? Four things a reader can check.
+
+**Enough evidence to disagree with.** Quote at length. A claim illustrated by one carefully chosen line is not supported by it. If a reader cannot see the material well enough to reach a different reading, they cannot evaluate yours either.
+
+**Negative cases addressed.** Say where the pattern does not hold and what you made of that. An analysis with no exceptions has usually stopped looking.
+
+**The reading traced to the material.** A reader should be able to follow how you got from what is on the page to what you claim it means. An interpretation that arrives fully formed from theory is a directed analysis that did not check itself.
+
+**Your position stated.** Chapter 18's reflexivity applies. Whether you are a member of this community changes what you can see and what you assume, and both belong in the write-up.
+
+Some studies add a second reader, not to compute agreement but to challenge the reading, and some take the analysis back to participants. Both are useful. Neither converts an interpretation into a measurement, and a qualitative content analysis that reports a kappa has usually misunderstood what it was doing.
+
+## What it can claim
+
+It can claim that a body of material carries a particular meaning, works in a particular way, or organizes a topic along particular lines, and that the evidence presented supports that reading.
+
+It cannot claim a rate. Reading fifty messages closely does not tell you what proportion of the corpus is like them, and that is what Chapter 12 is for. When you want both, run both and say which claim rests on which, because the failure mode is a paper that reads closely, counts loosely, and reports the two as though they were one finding.
+
+## Looking ahead
+
+Chapter 20 narrows the focus further. Discourse and conversation analysis take not the meaning of the text but its mechanics: how turns are taken, how a sequence is built, how participants do things to each other with language. The chat log that this chapter read for what it means is, in the next chapter, read for how it works.
+
+## References
+
+Elo, S., & Kyngäs, H. (2008). The qualitative content analysis process. *Journal of Advanced Nursing*, *62*(1), 107-115. https://doi.org/10.1111/j.1365-2648.2007.04569.x
+
+Hsieh, H.-F., & Shannon, S. E. (2005). Three approaches to qualitative content analysis. *Qualitative Health Research*, *15*(9), 1277-1288. https://doi.org/10.1177/1049732305276687
+
+Krippendorff, K. (2018). *Content analysis: An introduction to its methodology* (4th ed.). SAGE Publications.
