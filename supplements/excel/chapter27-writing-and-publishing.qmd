@@ -1,0 +1,99 @@
+---
+title: "Excel Supplement, Chapter 27: Writing and Publishing Research"
+---
+
+Like Chapter 22's, this supplement computes almost nothing. Writing is not a spreadsheet task.
+
+What a spreadsheet is good at is the administration around the writing, which is where studies actually go wrong: a figure whose numbers no longer match the table, a reviewer point nobody answered, a submission history nobody can reconstruct. Four sheets, none of them clever, each replacing a thing people otherwise keep in their head and then lose.
+
+## Sheet one: the reporting checklist
+
+One row per item your write-up must contain, with `section`, `item`, `done`, `where`.
+
+The value is not the ticking. It is that the list is built from this book's chapters rather than from a general sense of what a paper has, so the gaps are specific.
+
+At minimum:
+
+| Section | Item |
+|---|---|
+| Methods | population, sampling frame, and how the sample was drawn (Ch 11) |
+| Methods | achieved n, and the response or inclusion rate |
+| Methods | every measure, with its wording and its level (Ch 9) |
+| Methods | reliability evidence for each measure (Ch 10) |
+| Methods | for coded data, the codebook and the intercoder agreement (Ch 12) |
+| Methods | for qualitative data, how the material was segmented and coded, and by whom (Ch 21) |
+| Methods | ethics approval or exemption, and consent procedure (Ch 3) |
+| Methods | every exclusion, with its rule and its count |
+| Results | descriptives before tests: n, mean, median, sd per group (Ch 24) |
+| Results | test statistic, degrees of freedom, exact p, and effect size (Ch 25) |
+| Results | for qualitative findings, extracts long enough to disagree with (Ch 21) |
+| Results | negative or disconfirming cases |
+| Discussion | limitations, named as specifics rather than as a genre |
+| Discussion | what the study cannot claim, given its design |
+| Everywhere | figures with axis labels, readable colors and alt text (Ch 24) |
+
+Add a `who` column if there is more than one author, and the checklist becomes the division of labor as well.
+
+Use **Data Validation** on `done`, with a list of `yes`, `no` and `n/a`. Chapter 21's supplement explains why a free-text status column decays into four spellings of the same word.
+
+Then one formula, which is the only one that matters:
+
+```
+=COUNTIFS($C:$C,"no")
+```
+
+That is the number of things standing between the draft and being submittable, visible without reading anything.
+
+## Sheet two: the figure and table inventory
+
+One row per figure and table: `id`, `caption`, `what_it_shows`, `source_of_numbers`, `alt_text`, `in_draft`.
+
+Two columns earn their keep.
+
+**`source_of_numbers`** names the sheet, cell range or script that produced each value in the figure. When a reviewer asks where 33.70 came from, or when you rebuild the analysis and a number shifts, this column is the difference between a five-minute check and an afternoon. Chapter 24's supplement asks for a `decisions` sheet for the same reason: a spreadsheet keeps no history of itself, so you have to keep it.
+
+**`alt_text`** is written here rather than at submission. Chapter 24 makes the accessibility case; the practical case is that alt text written under deadline, for a figure you made six weeks ago, is bad alt text. Write it while you still remember what the figure is for. It describes what the figure *shows*, not what it *is*: not "a bar chart of message counts by hour" but "message volume peaks at 13:00 with 2,201 messages and bottoms out at 03:00 with 833".
+
+## Sheet three: venue fit
+
+Before writing, not after. One row per candidate venue, with `venue`, `scope_fit`, `word_limit`, `publishes_qualitative`, `open_access_fee`, `typical_time_to_first_decision`, `notes`, `rank`.
+
+Fill it from the journal's own aims and scope page and from three recent articles, which Chapter 27 says tells you more than any ranking. The `notes` column is where you record what those three articles had in common.
+
+`publishes_qualitative` is a column rather than an assumption because a great many journals say they welcome all methods and publish almost none. Counting the method of those three recent articles takes ten minutes and occasionally saves four months.
+
+A `rank` column forces the decision. The point of the sheet is to choose one venue and write to its length and its conventions, rather than writing a generic paper and then looking for somewhere it fits.
+
+## Sheet four: the submission and revision log
+
+One row per event: `date`, `venue`, `action`, `outcome`, `notes`.
+
+Record submissions, decisions, and the date you sent a revision. Over a few years this is the only reliable record of where a paper has been, and it is needed more often than it sounds: for annual reviews, for coauthors joining late, and for not resubmitting to a journal that already rejected it.
+
+When a decision arrives, the response to reviewers gets its own sheet: `reviewer`, `point`, `our_response`, `change_made`, `page`.
+
+**Split every reviewer comment into its own row, one point per row.** Reviewers write paragraphs containing three requests, and the second one is the one that gets missed. Splitting them is the single most useful thing in this supplement, and then:
+
+```
+=COUNTIF($D:$D,"")
+```
+
+counts the points with no change recorded, which is your list of things to either do or argue with. Chapter 27 says answer every point; this is how you know you did.
+
+Write the response letter directly from the sheet, in order, numbered to match. A reviewer reading a letter that addresses their points in their order, saying what changed and where, is a reviewer disposed to recommend acceptance.
+
+## One thing to compute
+
+If the venue has a word limit, track it. Put the current word count of each section in a small block and total it:
+
+```
+=SUM(B2:B6)
+```
+
+against the limit in another cell, with `=B8-B7` as the overage. Chapter 27 says choose the venue before writing, and the reason shows up here: cutting 2,000 words from a finished paper is a rewrite, while writing to 8,000 from the start is just writing.
+
+## What this will not do for you
+
+It will not write anything, will not tell you whether the argument holds, and will not tell you whether the paper is any good.
+
+What it does is make sure that the paper you submit contains what you meant it to contain, that every number in it can be traced to where it came from, and that no reviewer point went unanswered. Those three things are unglamorous and they are the ones that come back.

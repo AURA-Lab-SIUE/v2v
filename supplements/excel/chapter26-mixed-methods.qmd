@@ -1,0 +1,104 @@
+---
+title: "Excel Supplement, Chapter 26: Mixed Methods"
+---
+
+Two things here. First, the joint display, which is the artifact Chapter 26 says a mixed methods study must produce and which a spreadsheet is unusually well suited to. Second, a worked integration on this book's own corpus, where a qualitative finding is turned into a number and that number moves the study's headline result.
+
+The second is the more convincing argument for mixed methods than anything in the chapter, because it can be checked.
+
+## Part one: the joint display
+
+A joint display is one table. Four columns, one row per finding.
+
+| Column | Holds |
+|---|---|
+| `finding` | the thing the study concluded, in a sentence |
+| `quantitative` | the number, with its n and its precision |
+| `qualitative` | the evidence, with an extract or a category name |
+| `meta_inference` | what the two together yield that neither yields alone |
+
+**The fourth column is the study's contribution.** Chapter 26 puts this bluntly and it bears repeating in a supplement people will use as a template: a display without it is a layout. If you cannot fill it, either the strands are not integrated on that row, or the row belongs in the results of one strand rather than in the display.
+
+A fifth column, `fit`, is worth adding: `confirmation`, `expansion` or `discordance`. It takes one word per row and it makes the shape of the study visible at a glance. Chapter 26 warns that a convergent design without a plan for disagreement is in trouble; a display with no `discordance` rows in it is usually a study that stopped looking rather than one that agreed with itself.
+
+### Making it readable
+
+Joint displays fail visually more than they fail analytically. Three settings fix most of it.
+
+**Wrap text and set row heights manually.** **Home**, **Wrap Text**, then drag the row borders. Autofit will not do this well with a long quotation in one cell and a short number in another.
+
+**Top-align everything.** Select all, **Home**, **Align Top**. Centered text in a tall row is unreadable next to a one-line number.
+
+**Never merge cells.** Merged cells look tidy, and they break sorting, filtering, and every formula that references the column. If a finding has two extracts, give it two rows and repeat the finding, or put both extracts in one cell with a line break using **Alt+Enter**.
+
+Set the column widths so the qualitative column is roughly twice the quantitative one, because that is the ratio of the material. Then set the print area to one page wide, because a joint display that spills across a page break stops functioning as a display.
+
+## Part two: the integration, as a number
+
+Chapter 26's worked example is the `!play` finding. Chapter 19 read one channel's chat closely and concluded that a large share of it is not talk at all but commands addressed to a bot. That is a qualitative claim about what a message *is*.
+
+Here is what it does to the quantitative result.
+
+Build two columns on the analysis-ready table from Chapter 24's supplement. Message length, which you already have, and a flag:
+
+```
+=IF(LEFT(C2,1)="!","command","talk")
+```
+
+Then compute the study's central comparison twice: once over everything, and once over talk only.
+
+| Group | mean, all messages | mean, talk only |
+|---|---|---|
+| gaming | 28.49 | 29.87 |
+| non-gaming | 33.70 | 34.13 |
+| **gap** | **5.22** | **4.26** |
+
+Those are `AVERAGEIFS` with one condition and then two:
+
+```
+=AVERAGEIFS($D$2:$D$35268,$B$2:$B$35268,"gaming")
+=AVERAGEIFS($D$2:$D$35268,$B$2:$B$35268,"gaming",$E$2:$E$35268,"talk")
+```
+
+**The gap the whole study is about shrinks from 5.22 characters to 4.26, a reduction of 18 percent, on a decision about what counts as a message.**
+
+Nothing was miscalculated. Chapter 25's t-test was correct arithmetic on a correctly built table. What changed is a definition that the quantitative strand had no way to interrogate, because from inside the numbers `!play` is a six-character message like any other.
+
+### One channel, to see the size of it
+
+The effect concentrates where the commands do. The channel `dev1` sends 1,000 messages, **480 of which begin with an exclamation mark.**
+
+| | all messages | talk only |
+|---|---|---|
+| mean length | 15.27 | 24.53 |
+
+```
+=COUNTIFS($A$2:$A$35268,"dev1",$E$2:$E$35268,"command")
+=AVERAGEIFS($D$2:$D$35268,$A$2:$A$35268,"dev1",$E$2:$E$35268,"talk")
+```
+
+**The mean message length in that channel goes up by 60 percent when the bot traffic is set aside.** Reported as 15.27, the channel looks like a room of people typing single emotes. It is a room where nearly half the traffic is a queue.
+
+### Filling in the display
+
+That is one row of a joint display, and it is worth writing out to see the shape:
+
+| Finding | Quantitative | Qualitative | Meta-inference | Fit |
+|---|---|---|---|---|
+| Message-level measures overstate how much talk is happening | gap of 5.22 characters, *t*(3768.7) = -4.95, *p* < .001, *d* = -0.13, n = 34,766 | `!play` and other `!` commands are addressed to software, not to people; 480 of 1,000 messages in `dev1` | excluding commands cuts the gap to 4.26, so roughly a fifth of the headline effect was an artifact of counting machine traffic as speech | discordance |
+
+That row could not have been produced by either strand. The count alone cannot see that a message is a command; the reading alone cannot say that it matters to the study's conclusion by 18 percent.
+
+## A caution about the arithmetic
+
+Two things this exercise does not establish, and a supplement that let you think otherwise would be doing harm.
+
+**It does not show the corrected number is the right one.** Excluding commands is itself a judgment. A study of how a channel's chat *functions* might reasonably keep them, since queueing a song is part of what that room is for. What the exercise shows is that the choice matters and therefore has to be made explicitly and reported, not that one answer is correct.
+
+**It does not fix the test.** The p-value on the reduced data is still computed as though 33,000 messages were independent observations, and Chapter 7 says they are not. Correcting a definition does not correct a design.
+
+## What Excel will not do for you
+
+It will not notice that a message is addressed to a bot. That came from Chapter 19's reading, which came from someone sitting with the material, and there is no formula for it.
+
+What the spreadsheet did was turn that reading into two `AVERAGEIFS` and a subtraction, which is what made it an integration rather than an observation. The qualitative strand supplied the question. The quantitative strand answered how much it was worth. **That exchange, in both directions, is the whole of mixed methods, and it fit in one table.**

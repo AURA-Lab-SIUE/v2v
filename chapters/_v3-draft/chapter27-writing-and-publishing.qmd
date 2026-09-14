@@ -1,0 +1,94 @@
+---
+title: "Chapter 27: Writing and Publishing Research"
+---
+
+A study that nobody can read is not research yet. It is work that was done.
+
+This chapter is about the form the work takes when it leaves your hands: the report, the materials that travel with it, the names on it, and the process it goes through before anyone else believes it.
+
+This last chapter gives the work a form. It assembles every piece into one report, makes that report reproducible, and gathers it with the study's other documents into something another researcher can check. The chapter's title names the goal. By the time the study has been built the right way, producing the finished, public report is close to a single action: one click.
+
+## The shape of a report: IMRaD
+
+A document that rebuilds itself still needs a structure, and empirical research has a standard one, settled enough to have an acronym: **IMRaD**, for Introduction, Methods, Results, and Discussion. Four sections, in that fixed order, and the order is itself a small argument, carrying the reader from why the study was done to what it found to what that means.
+
+The **Introduction** states the question and why it is worth asking. For the chat study this is the work of the prospectus from Chapter 6: the question of whether gaming and non-gaming Twitch chat differ in message length, and the uses-and-gratifications lens that framed talk on a stream as behavior an audience chooses for its own reasons.
+
+The **Methods** section says exactly what was done, in enough detail that another researcher could repeat it. This is the home of the codebook from Chapter 12, the sampling procedure from Chapter 11 and the inter-coder reliability check from Chapter 10, and the wrangling steps from Chapter 11. Methods is the section that earns the reader's trust, and it is the section a reproducible document supports best, because the code that did the work is right there to be read.
+
+The **Results** section reports what was found, plainly and without interpretation. The three figures from Chapter 24 and the t-test from Chapter 25 belong here. Results states the facts: the distributions, the group means, the test statistic with its degrees of freedom, its p-value, and its effect size. It does not yet say what they mean.
+
+The **Discussion** says what the results mean. This is where the interpretation from Chapter 25 belongs: that the difference between the two kinds of channel is statistically real but negligible in size, that gaming and non-gaming chat are better thought of as alike than as different in message length, and what that answer implies for the uses-and-gratifications question raised in the Introduction. Discussion is also where an honest study states its limits.
+
+Two things belong in the Discussion that student papers routinely omit.
+
+**Limitations, stated as specifics.** "This study has limitations" is not a limitation. This study's are nameable: the messages are not independent observations, so the reported precision is optimistic by roughly a factor of ten; one channel's chat is 46 percent bot commands, which the message-level measures could not distinguish from talk; the corpus dates from 2018 and its vocabulary has moved on. A reader trusts a paper that finds its own problems more than one that does not appear to have looked.
+
+**What would come next.** Not a gesture at "future research" but the actual next study: what you would collect, and what it would settle.
+
+## A report is not only for a qualitative or quantitative study
+
+IMRaD fits an experiment perfectly and fits an ethnography badly, and forcing the second into the first is a common way to make good qualitative work read as thin.
+
+Qualitative reports keep the same obligations and rearrange them. Methods becomes a fuller account of setting, access, participants, and the researcher's own position, because those determine what could be seen. Results and Discussion are frequently interleaved rather than separated, since an extract and its interpretation belong together and splitting them makes both unreadable. Sections are often named for themes rather than numbered.
+
+What does not change is the traceability. Whatever the shape, a reader must be able to see how you got from material to claim. Chapter 21's list of what to report is the qualitative equivalent of the Methods section, and it is not shorter.
+
+Mixed methods reports need a decision about sequence: both strands in full and then the integration, or organized by finding with both strands inside each. Chapter 26's joint display goes wherever the integration is, and the paper should be legible to a reader who is expert in only one of the two halves.
+
+## Authorship
+
+Authorship is a professional and ethical matter, not a courtesy, and the norms are specific.
+
+An author is someone who made a substantial intellectual contribution to the work and can take public responsibility for it. Collecting the data is not automatically authorship; neither is funding the project, chairing the department, or supervising in general terms. Conversely, a student who designed and ran a study is an author of it, and commonly the first one.
+
+**Order carries meaning and the meaning varies by field.** In much of communication, first author is the principal contributor and last is the senior or supervising author, with the middle ordered by contribution. Some fields alphabetize. Some journals now publish a contributor statement naming who did what, which is the clearest solution and worth proposing.
+
+**Agree the order in writing, early, and revisit it when the work changes.** Disputes are common, they are unpleasant, and nearly all of them come from a conversation nobody had at the start. If you are a student working with a supervisor, ask the question directly; it is a normal question and being uncomfortable asking it is not a reason to leave it open.
+
+## Preregistration and open materials
+
+Chapter 25 warned against deciding the analysis after seeing the data. **Preregistration** is the structural fix: you deposit the hypotheses, the design and the analysis plan in a timestamped public record before collecting, so that the distinction between what you predicted and what you noticed is preserved.
+
+> "Preregistration distinguishes analyses and outcomes that result from predictions from those that result from postdictions."
+>
+> Nosek et al. (2018, p. 2600)
+:::
+
+It is not a cage. You may depart from the plan; you report that you did and why, and the reader can weigh it. And the exploratory half of a study remains entirely legitimate, labeled as exploratory.
+
+Alongside it, **open materials**: the data where ethics and licences allow, the analysis code, the codebook, the instrument. Chapter 3's obligations govern what can be shared. Human-subjects data usually cannot be posted as collected; a de-identified version, or a synthetic one, plus the full instrument and code, is normally both possible and sufficient for a reader to check the analysis.
+
+The standard to aim at is that someone else, given your materials, would arrive at your numbers. That is a higher bar than most published work in communication currently meets, and it is the direction the field is moving.
+
+## Getting it published
+
+**Choose the venue before you write.** Journals differ in length, in what they consider a contribution, and in whether they publish qualitative work at all. Reading the aims and scope, plus three recent articles, tells you more about fit than any ranking does.
+
+**The review process.** An editor screens for fit and may desk-reject, which is fast and not a judgment on quality. Surviving that, the paper goes to two or three peer reviewers, and the usual outcome is revise and resubmit, often with a response that reads as brutal. A rejection with substantive reviews is more valuable than a desk rejection, because it comes with a free and detailed critique.
+
+**Responding to reviewers.** Answer every point, in a numbered letter, saying what you changed and where. Where you disagree, say so with a reason rather than complying against your judgment; reviewers are frequently wrong and are usually reasonable when answered directly. The tone to aim for is a colleague's, not a defendant's.
+
+**Conferences first.** For most student work the sensible route is a conference paper, which gets the work read and criticized quickly, and then a journal version. Communication's associations run division-based review with published deadlines, and a divisional paper is a realistic target for good coursework.
+
+**Predatory venues.** A journal that solicits you by flattering email, promises review in days, charges a fee to publish, and is not in the databases your library indexes is not a journal. Publishing there costs money and does damage that is hard to undo. When unsure, ask a librarian, who will know in about a minute.
+
+## The reflection
+
+One short piece remains, and the portfolio is not complete without it: a one-paragraph **reflection**. It is not part of IMRaD and it is not a result. It is the researcher's own brief, candid account of what the study taught them and what a second attempt would do differently.
+
+A good reflection is specific. It names what turned out harder than expected, where a coding rule proved ambiguous in practice, what the dataset could not answer because of how it was collected, what a future version of the study would change. It resists the two easy failures, the bland report that everything went well and the anxious confession that everything went wrong. A reflection is not an apology. It is evidence of judgment: a researcher who can say precisely where their study is weak is a researcher who genuinely understands it. It is kept to a paragraph on purpose. One honest paragraph is worth more than a page of hedging.
+
+## Looking ahead
+
+This is the last chapter, and looking ahead now means looking past the book.
+
+The chat study is finished. A question became a design. A design became data. Data became figures and a test. The whole of it became something another person can read, check, and extend. The dataset along the way happened to be Twitch chat, but nothing in the path depended on that. The sequence is the same for any dataset a reader will ever meet: a question, a theory, a codebook, a sample, a reliability check, a clean dataset, an honest figure, a careful test, and a reproducible report.
+
+That sequence is what the book's title has been describing all along. **Vibes** are where a study starts, a hunch, an interesting feeling that some corner of the world works a particular way. **Variables** are what discipline turns the vibe into, something defined precisely enough to measure, and measured carefully enough to test. The distance between the two is the whole of research methods, and a reader who has now walked it once, from a vague curiosity about Twitch chat to a published finding about it, can walk it again with a dataset of their own. The tools will keep changing. The path from vibes to variables does not.
+
+## References
+
+Knuth, D. E. (1984). Literate programming. *The Computer Journal*, *27*(2), 97-111. https://doi.org/10.1093/comjnl/27.2.97
+
+Nosek, B. A., Ebersole, C. R., DeHaven, A. C., & Mellor, D. T. (2018). The preregistration revolution. *Proceedings of the National Academy of Sciences*, *115*(11), 2600-2606. https://doi.org/10.1073/pnas.1708274114

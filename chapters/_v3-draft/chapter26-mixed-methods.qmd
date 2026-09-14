@@ -1,0 +1,107 @@
+---
+title: "Chapter 26: Mixed Methods"
+---
+
+This book has spent two halves arguing that quantitative and qualitative research answer different questions and are answerable to different standards. This chapter is about doing both in one study, which is harder than doing either and much harder than most papers claiming it appear to realize.
+
+The hard part is not running two methods. It is **integration**: making the two sets of findings speak to each other, so the study concludes something neither half could have concluded alone. A paper that reports a survey and then reports some interviews has not done mixed methods. It has done two studies and printed them consecutively.
+
+## What makes it mixed
+
+Fetters, Curry and Creswell (2013) locate integration at three levels, and a design that cannot say where its integration happens does not have any.
+
+**At the design level**, the two strands are related from the start: one is built to feed the other, or both are built to converge on one question.
+
+**At the methods level**, the strands touch the data. Results from one strand are used to build the instrument for the other, to select the cases for it, or to explain its results.
+
+**At the interpretation and reporting level**, the findings are brought together in one place, compared, and read jointly. This is where the joint display lives, and it is the minimum: a study that integrates nowhere else must at least integrate here.
+
+## The core designs
+
+Three arrangements cover most of what gets published, and Morse's (1991) notation is a compact way to name them. Capitals mark the strand carrying the main weight, a plus sign means the strands run at the same time, and an arrow means one follows the other.
+
+**Convergent** (QUAN + QUAL). Both strands run concurrently on the same question, and the findings are compared at the end. Use it when you want two independent angles on one phenomenon. The thing to plan for is disagreement: decide in advance what you will do when the numbers and the interviews point different ways, because "we found both" is not a finding.
+
+**Explanatory sequential** (QUAN → qual). Quantitative first, then qualitative to explain it. This is the most common design and the most natural: you find a pattern, and you go and ask people about it. Its defining feature is that the quantitative results choose the qualitative sample, which is a genuine integration at the methods level rather than a coincidence of timing.
+
+**Exploratory sequential** (QUAL → quan). Qualitative first, to find out what the constructs are and how people talk about them, then quantitative to measure them at scale. Use it in a setting nobody has described yet, or when the existing instruments were built somewhere else and may not mean the same thing here. Chapter 9's warning about borrowed measures is the argument for this design.
+
+A fourth, **embedded**, has a small strand of one kind inside a study that is mostly the other, typically qualitative work inside a trial to find out why the intervention worked or did not.
+
+## What you are mixing for
+
+Greene, Caracelli and Graham (1989) set out five purposes, and naming yours prevents the commonest failure, which is mixing because it looks thorough.
+
+**Triangulation** seeks convergence on the same finding from methods with different weaknesses.
+
+**Complementarity** uses one method to elaborate or clarify results from the other, which is different from triangulation because the two are not measuring the same thing.
+
+**Development** uses the results of one method to build the other: the instrument, the sample, the coding scheme.
+
+**Initiation** actively looks for contradiction, because the paradox is where the new question comes from. This is the most interesting purpose and the least often claimed, since it requires admitting that your two halves disagreed.
+
+**Expansion** widens the study's scope, with each method handling the part it is suited to.
+
+Write yours into the proposal. A purpose chosen afterwards is a rationalization.
+
+## Worked, on this book's own corpus
+
+The clearest example of integration in this book was not labeled as mixed methods when it happened, which is the point.
+
+**The quantitative strand.** Chapters 12 and 25 counted and tested. Messages average 28.49 characters on gaming channels and 33.70 on non-gaming ones, a real difference and a negligible one, computed over 34,766 messages.
+
+**The qualitative strand.** Chapter 19 read the same material closely and found that `!play` accounts for **460 of 1,000 messages in one channel**, and that messages beginning with an exclamation mark are **5.6 percent** of the whole corpus. These are commands issued to software. Nobody is addressing a person.
+
+**The integration.** That reading does not add a finding alongside the quantitative one. It changes what the quantitative one meant. Any per-message measure computed over that channel includes 46 percent of messages that are not communication between people, so "mean message length" there is partly a measure of how often people queued a song. The arithmetic was correct throughout and its interpretation was too broad, and nothing in the numbers could have revealed that.
+
+In Greene's vocabulary this is **initiation**: the qualitative strand found a problem the quantitative strand could not see in itself. In Morse's it is QUAN + QUAL, since both ran on the same corpus.
+
+Notice also what the quantitative strand did for the qualitative one. The close reading of one passage suggested the category; the count established that it was not an artifact of the passage that suggested it. **Each strand is checking a specific weakness of the other**, and that is what integration looks like when it is real.
+
+Two more pairings in this book work the same way. Chapter 23's participation figures establish that 68.4 percent of senders posted exactly once, and say nothing about why; Chapter 20's finding that only 11.1 percent of addressed messages get an adjacent reply offers a mechanism, and interviews would be needed to confirm it. Chapter 7's clustering problem is a statistical fact whose consequences for what a "typical participant" is are a question for Chapter 18's fieldwork.
+
+## Joint displays
+
+A **joint display** is a table or figure that puts the two strands side by side so a reader can see the integration rather than take it on trust. It is the most useful single artifact in mixed methods, and building one is a good test of whether you have integrated anything: if the rows have nothing to say to each other, you have not.
+
+The usual shape is one row per finding or theme, with a column for the quantitative result, a column for the qualitative evidence, and, crucially, **a column saying what the pairing yields**. That third column is the study's contribution, and a display without it is a layout rather than an analysis.
+
+The supplement to this chapter builds one from the pairings above.
+
+## The paradigm objection
+
+The standard objection is that the two halves rest on incompatible assumptions. Chapter 2's paradigms are not decorative: post-positivist work assumes a reality that can be approximated by measurement, and interpretive work holds that meaning is constructed and context-bound. Combining them, the argument goes, is incoherent.
+
+The usual answer is **pragmatism**: what justifies a method is whether it answers the question, and questions can have parts that need different tools. That is a real position rather than a dodge, and it is the one most mixed methods work adopts.
+
+It is worth knowing that the objection is not silly. A study that treats interview accounts as imperfect measurements of a fact the survey measured better has not combined paradigms, it has subordinated one to the other, and the qualitative half will read as a set of quotes decorating a result. Keep each strand answerable to its own standard: the quantitative half to Chapter 10's reliability and validity, the qualitative half to Chapter 21's credibility and transferability. The integration is then between two pieces of work that are each defensible, which is the only kind of integration worth having.
+
+## Where these studies go wrong
+
+**Two studies in one document.** No integration anywhere. Diagnosable by removing either half and seeing whether the conclusions change; if they do not, it was not mixed.
+
+**One strand carrying the other.** A serious quantitative study with six interviews used as illustration, or a serious qualitative study with a token questionnaire. Unequal depth is legitimate when it is deliberate and the notation says so; it is a defect when the smaller strand is asked to support claims its size cannot bear.
+
+**Sequential in name only.** Two strands that ran in parallel, written up as though one informed the other. If the interview guide was written before the survey results existed, the design was convergent, and saying otherwise is a claim about the study's history that is not true.
+
+**No plan for disagreement.** Convergent designs produce discordant findings regularly, and that is a result. Report it, examine whether the two strands were measuring the same thing, and consider that the discordance may be the most informative thing you found.
+
+**Feasibility.** A mixed methods study is two studies. It needs the sample for one, the access for the other, the analytic skills for both, and roughly twice the time. For a semester project, an explanatory sequential design with a modest qualitative follow-up is realistic; a full convergent design usually is not.
+
+## What to report
+
+The design, named, with its notation and its purpose in Greene's terms. Both strands described to the standard their own chapters require, since a mixed methods paper does not get to describe either half more thinly. Where integration occurred, at which of the three levels. A joint display. And what the integration produced that neither strand had.
+
+If you cannot fill that last item in a sentence, the study is not finished.
+
+## Looking ahead
+
+Chapter 27 is the last, and it is about the form all of this eventually takes. A study that is designed, conducted, analyzed and integrated is still not research until somebody else can read it, check it, and build on it. That chapter is about the report, the materials that travel with it, and the business of publishing.
+
+## References
+
+Fetters, M. D., Curry, L. A., & Creswell, J. W. (2013). Achieving integration in mixed methods designs: Principles and practices. *Health Services Research*, *48*(6pt2), 2134-2156. https://doi.org/10.1111/1475-6773.12117
+
+Greene, J. C., Caracelli, V. J., & Graham, W. F. (1989). Toward a conceptual framework for mixed-method evaluation designs. *Educational Evaluation and Policy Analysis*, *11*(3), 255-274. https://doi.org/10.3102/01623737011003255
+
+Morse, J. M. (1991). Approaches to qualitative-quantitative methodological triangulation. *Nursing Research*, *40*(2), 120-123. https://doi.org/10.1097/00006199-199103000-00014

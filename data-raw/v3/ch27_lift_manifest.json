@@ -1,0 +1,54 @@
+{
+  "source": "chapters/chapter14.qmd",
+  "output": "chapters/_v3-draft/chapter27-writing-and-publishing.qmd",
+  "lifted": [
+    {
+      "anchor": "This last chapter gives the work a form.",
+      "repaired": true
+    },
+    {
+      "anchor": "A document that rebuilds itself still needs a structure",
+      "repaired": false
+    },
+    {
+      "anchor": "The **Introduction** states the question and why it is worth asking.",
+      "repaired": false
+    },
+    {
+      "anchor": "The **Methods** section says exactly what was done",
+      "repaired": true
+    },
+    {
+      "anchor": "The **Results** section reports what was found",
+      "repaired": true
+    },
+    {
+      "anchor": "The **Discussion** says what the results mean.",
+      "repaired": true
+    },
+    {
+      "anchor": "> \"Preregistration distinguishes analyses and outcomes",
+      "repaired": false
+    },
+    {
+      "anchor": "One short piece remains, and the portfolio is not complete without it",
+      "repaired": false
+    },
+    {
+      "anchor": "A good reflection is specific.",
+      "repaired": false
+    },
+    {
+      "anchor": "This is the last chapter, and looking ahead now means looking past the book.",
+      "repaired": false
+    },
+    {
+      "anchor": "The chat study is finished.",
+      "repaired": true
+    },
+    {
+      "anchor": "That sequence is what the book's title has been describing all along.",
+      "repaired": false
+    }
+  ]
+}
