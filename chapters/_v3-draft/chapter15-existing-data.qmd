@@ -42,17 +42,29 @@ Documentation is written by people and is frequently wrong in small ways. **Chec
 
 Here is that check run on this book's own corpus, which ships with unusually good documentation.
 
-The package documents 35,267 messages across 50 channels, sampled from a 1.6 GB database dump of Twitch chat captured in November 2018, with the random seed recorded, eight named anchor channels, and the remaining 42 drawn as a stratified random sample. It states that channel names had their IRC `#` prefix stripped so the table joins cleanly, and that timestamps are Unix epoch in milliseconds rather than seconds.
+The package documents 35,267 messages across 50 channels, sampled from a 1.6 GB database dump of Twitch chat captured in November 2018, with the random seed recorded, eight named anchor channels, and the remaining 42 drawn as a stratified random sample by chat-volume decile. It states that channel names had their IRC `#` prefix stripped so the table joins cleanly, that timestamps are Unix epoch in milliseconds rather than seconds, and that **each channel contributes at most 1,000 messages**, with smaller channels contributing everything they have.
 
-That is more than most datasets tell you, and the audit still finds things.
+That is more than most datasets tell you. The audit confirms the counts and still finds three things worth acting on.
 
-**The row and channel counts hold.** 35,267 messages, 50 channels, all eight anchors present. There are no duplicate identifiers and no empty messages.
+**The row and channel counts hold.** 35,267 messages, 50 channels, all eight anchors present, and no duplicate identifiers.
 
-**One documented figure is wrong.** The documentation says messages run up to 509 characters. The longest message in the file is **501**, and exactly one message exceeds 500. Trivial in itself, and the point is not the eight characters: it is that a stated property of the data was not true, you found it in one formula, and anything else in that documentation is now something you check rather than something you assume.
+**Four messages have no text at all.** They are missing values, and because the file is a CSV, they arrive as the two bare characters `NA`. A tool that knows the convention reads them as missing; a spreadsheet reads them as a two-character message. Four rows in 35,267 changes almost nothing here, and it is the shape of a problem that is not always small: a CSV cannot distinguish a missing value from the text that spells it, and `NA`, `NULL`, `N/A`, `-99` and an empty cell all arrive as something.
 
-**And one undocumented property matters a great deal.** Count the messages per channel and the distribution is strange: **31 of the 50 channels have exactly 1,000 messages**, including all eight anchors, and **no channel has more than 1,000**. Nine channels have fewer than a hundred, and the smallest has one.
+**One documented figure describes a different dataset.** The help page says messages run up to 509 characters. The longest message in this file is **501**, and exactly one exceeds 500.
 
-A distribution does not pile up on a round number by accident, and a hard ceiling with nothing above it is not a coincidence either. **The sample was capped at 1,000 messages per channel**, and that is not stated anywhere in the documentation. You can only learn it by looking.
+The 509 is not an invention. It is the maximum of the full 21,964,296-message population the sample was drawn from, and it is correct about that population. It is quoted in the help page for a 35,267-row sample, where a reader will take it as a property of the file in front of them.
+
+That is worth more than a simple error would be. **A documented property can be true of the population and false of your extract**, and nothing marks which one a given number refers to. Every figure in a data dictionary carries an implied scope, and the scope is usually not stated.
+
+**And one documented property has a consequence the documentation does not draw out.** Count the messages per channel: **31 of the 50 have exactly 1,000**, including all eight anchors, **none has more than 1,000**, nine have fewer than a hundred, and the smallest has one.
+
+That is the cap, exactly as documented, and the audit confirms it. Confirmation is a perfectly good result: you now know the sentence in the help page is true of the file in front of you, which you did not know before.
+
+But read the sentence again. *Each channel contributes up to 1,000 messages.* It says what was done. It does not say what follows, and what follows is the most important fact about this corpus.
+
+**Documentation tells you what was done. Working out what it means for your question is your job, and nobody else's.** The next section does that work, and it is the reason the audit was worth running even though the documentation turned out to be accurate.
+
+One note on where that sentence lives, because it is easy to miss and the drafting of this chapter missed it twice. The cap is in the help page's details section, below the table of column definitions. A reader who opens the help page to find out what the columns mean, which is the usual reason for opening it, stops before reaching it and concludes the cap is undocumented. **Read the whole document, not just the part that answers the question you arrived with.**
 
 ## Why that cap matters
 

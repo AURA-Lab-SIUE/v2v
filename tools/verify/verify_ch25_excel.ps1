@@ -59,7 +59,7 @@ try {
     # reproduces the reference figures exactly; .NET string Length does not,
     # because it counts surrogate pairs twice.
     $d.Range("E1").Value2 = "length"
-    $d.Range("E2:E$last").Formula = "=LEN(B2)"
+    $d.Range("E2:E$last").Formula = "=IF(B2=""NA"","""",LEN(B2))"
 
     $LAB = "d!`$A`$2:`$A`$$last"
     $LEN = "d!`$E`$2:`$E`$$last"
@@ -138,7 +138,7 @@ try {
     $xl.CalculateFullRebuild()
 
     $expect = @(
-        @("B8",  "Welch t",       -4.945,  3),
+        @("B8",  "Welch t",       -4.942,  3),
         @("B9",  "Welch df",      3768.7,  1),
         @("B12", "pooled sd",     41.22,   2),
         @("B13", "Cohen d",       -0.13,   2),

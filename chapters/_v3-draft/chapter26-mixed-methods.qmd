@@ -48,7 +48,7 @@ Write yours into the proposal. A purpose chosen afterwards is a rationalization.
 
 The clearest example of integration in this book was not labeled as mixed methods when it happened, which is the point.
 
-**The quantitative strand.** Chapters 12 and 25 counted and tested. Messages average 28.49 characters on gaming channels and 33.70 on non-gaming ones, a real difference and a negligible one, computed over 34,766 messages.
+**The quantitative strand.** Chapters 12 and 25 counted and tested. Messages average 28.49 characters on gaming channels and 33.70 on non-gaming ones, a real difference and a negligible one, computed over the 34,762 of them that carry a length.
 
 **The qualitative strand.** Chapter 19 read the same material closely and found that `!play` accounts for **460 of 1,000 messages in one channel**, and that messages beginning with an exclamation mark are **5.6 percent** of the whole corpus. These are commands issued to software. Nobody is addressing a person.
 

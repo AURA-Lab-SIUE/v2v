@@ -4,7 +4,7 @@ title: "Excel Supplement, Chapter 25: Inference and Effect"
 
 Excel will run every test in Chapter 25, and it will run two of them badly if you use the obvious button. This supplement builds each test from its own arithmetic instead, which takes four formulas rather than one and means you can see what the test is doing.
 
-It starts from the table Chapter 24's supplement built: one row per message, with a `length` column and a `label` column reading `gaming`, `nongaming` or `unmatched`. The 501 unmatched messages sit out everything below, leaving **34,766**.
+It starts from the table Chapter 24's supplement built: one row per message, with a `length` column and a `label` column reading `gaming`, `nongaming` or `unmatched`. The 501 unmatched messages sit out everything below, leaving **34,766** classified messages, **34,762** of which carry a length. Chapter 24's supplement explains the four that do not: they are missing, and the CSV spells that `NA`. Counts of messages below use 34,766; anything computed from message length uses 34,762.
 
 ## A note on the Analysis ToolPak
 
@@ -22,7 +22,7 @@ You need six numbers first. With `label` in column A and `length` in column E:
 
 | | Formula | gaming | non-gaming |
 |---|---|---|---|
-| n | `=COUNTIF($A$2:$A$34767,"gaming")` | 31,309 | 3,457 |
+| n | `=COUNTIFS($A$2:$A$34767,"gaming",$E$2:$E$34767,">=0")` | 31,305 | 3,457 |
 | mean | `=AVERAGEIFS($E$2:$E$34767,$A$2:$A$34767,"gaming")` | 28.49 | 33.70 |
 | sd | `=STDEV.S(IF($A$2:$A$34767="gaming",$E$2:$E$34767))` | 38.47 | 60.68 |
 
@@ -32,7 +32,7 @@ Call those `n1, m1, s1` and `n2, m2, s2`. Welch's t, which does not assume the g
 =(m1-m2)/SQRT(s1^2/n1+s2^2/n2)
 ```
 
-giving **-4.945**. And its degrees of freedom, the Welch-Satterthwaite formula, which looks worse than it is:
+giving **-4.942**. And its degrees of freedom, the Welch-Satterthwaite formula, which looks worse than it is:
 
 ```
 =(s1^2/n1+s2^2/n2)^2/((s1^2/n1)^2/(n1-1)+(s2^2/n2)^2/(n2-1))
@@ -47,7 +47,7 @@ For the p-value, `T.TEST` does the whole thing in one step:
         IF($A$2:$A$34767="nongaming",$E$2:$E$34767),2,3)
 ```
 
-returning **7.95E-07**, which you report as *p* < .001.
+returning **8.08E-07**, which you report as *p* < .001.
 
 **The two arguments at the end are the whole test and both are easy to get wrong.** The `2` asks for a two-tailed test, which is what you want unless you predicted the direction in advance and said so in your hypothesis. The `3` asks for Welch's unequal-variance version; a `2` there would run the pooled test that assumes the spreads match, and Chapter 24 showed these spreads differ by a factor of about 1.6. Excel will run whichever you ask for and will not comment.
 
@@ -98,6 +98,8 @@ A different question from the same table: are bot commands distributed evenly be
 | gaming | 1,916 | 29,393 | 31,309 |
 | non-gaming | 61 | 3,396 | 3,457 |
 | total | 1,977 | 32,789 | 34,766 |
+
+Those are counts of messages rather than of lengths, so all 34,766 classified messages appear here, including the four with no text.
 
 The expected count for each cell, if the two variables were unrelated, is its row total times its column total over the grand total:
 
@@ -158,12 +160,12 @@ Eta squared says the game category accounts for about two percent of the variati
 
 Every test above needs the same four things in the write-up: the test statistic, its degrees of freedom, the p-value, and an effect size.
 
-> Gaming channels produced shorter chat messages on average than non-gaming channels (28.49 vs. 33.70 characters), Welch's *t*(3768.7) = -4.95, *p* < .001, Cohen's *d* = -0.13.
+> Gaming channels produced shorter chat messages on average than non-gaming channels (28.49 vs. 33.70 characters), Welch's *t*(3768.7) = -4.94, *p* < .001, Cohen's *d* = -0.13.
 
 Three of those four came from formulas you wrote rather than from a function, which is the argument for doing it this way. A workbook that reports only what `T.TEST` returns has one number out of four, and it is the number Chapter 25 spends its length warning you about.
 
 ## What Excel will not do for you
 
-It will not tell you that your observations are not independent, which for this corpus they emphatically are not: Chapter 7 puts the naive standard error at 0.036 against a clustered 0.355. Every p-value above is computed as though each of the 34,766 messages were an independent draw, and they are messages from 16,866 senders in 50 channels. The arithmetic is right and the assumption underneath it is wrong, and no cell in the workbook knows that.
+It will not tell you that your observations are not independent, which for this corpus they emphatically are not: Chapter 7 puts the naive standard error at 0.036 against a clustered 0.355. Every p-value above is computed as though each of the 34,762 messages were an independent draw, and they are messages from 16,866 senders in 50 channels. The arithmetic is right and the assumption underneath it is wrong, and no cell in the workbook knows that.
 
-It will not stop you running the test twenty times and reporting the one that worked. It will not tell you that a significant result on 34,766 observations is a statement about your sample size. And it will not decide whether a five-character difference matters to anyone, which is the only question the reader actually has.
+It will not stop you running the test twenty times and reporting the one that worked. It will not tell you that a significant result on 34,762 observations is a statement about your sample size. And it will not decide whether a five-character difference matters to anyone, which is the only question the reader actually has.

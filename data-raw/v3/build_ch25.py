@@ -11,9 +11,11 @@ What the consolidation changes:
    in Chapter 11 and is now built in 24.
 2. Two sentences referred to the old title, "Making the call". The v4 title is
    Inference and Effect, so they are rewritten to say what they meant.
-3. The regression output reported t = -7.08. Recomputed from the corpus it is
-   **-7.06**, and the old chapter's own printed Estimate and Std. Error give
-   -7.05, so -7.08 was wrong in the third digit. Corrected here.
+3. Figures are corrected upstream in chapter13.qmd rather than repaired here,
+   because they were wrong in the 3rd edition too. Four messages are true NA,
+   so R drops them from every na.rm summary, t.test and lm; the published t
+   (-4.95), n (34,766), coefficient (-5.22), regression t (-7.08) and
+   intercept t (48.16) were all computed as though they carried a length.
 4. Every "run this function" passage drops to the tool supplement; the results
    themselves stay, because the results are the lesson.
 """
@@ -87,7 +89,7 @@ add("""Every tool produces the same numbers here in a slightly different layout.
 ```
 Welch Two Sample t-test
 
-t = -4.95, df = 3768.7, p-value = 7.9e-07
+t = -4.94, df = 3768.7, p-value = 8.1e-07
 
 mean in group gaming      28.49
 mean in group non-gaming  33.70
@@ -158,12 +160,35 @@ add("""Fit the original two-group question as a **linear model** of message leng
 
 ```
               Estimate  Std. Error  t value  Pr(>|t|)
-(Intercept)     33.70       0.70      48.16   < .001
-is_gamingTRUE   -5.22       0.74      -7.06   < .001
+(Intercept)     33.70       0.70      48.08   < .001
+is_gamingTRUE   -5.21       0.74      -7.06   < .001
 ```""")
 
-add(para("Read the two numbers.", ("-7.08", "-7.06")))
+add(para("Read the two numbers."))
 add(para("That the regression reproduces the t-test is not a coincidence."))
+
+add("""## How much the finding depends on one decision
+
+A test tells you whether a gap is larger than sampling noise. It cannot tell you whether the gap survives a different but equally defensible definition of the groups being compared. Here it does not, and that turns out to matter more than the test.
+
+`is_gaming` was built as a property of the **channel**: each channel's modal category across the week, applied to every message that channel sent. The same data supports a second operationalization. Label each **message** by the category the channel was actually streaming when it was sent, read from the nearest earlier stream snapshot.
+
+| How the label is defined | gaming | non-gaming | gap |
+|---|---|---|---|
+| the channel's modal category | 28.49 (n = 31,305) | 33.70 (n = 3,457) | +5.21 |
+| the category on screen at the time | 29.11 (n = 30,707) | 28.13 (n = 4,044) | -0.98 |
+
+Under the second definition the gap reverses direction, falls to about one character, and is no longer statistically significant: Welch's *t*(4993.6) = 1.34, *p* = .18.
+
+Neither calculation is wrong, and they are not in competition. They answer different questions, and the distance between them is concentrated in one fact worth seeing plainly: **the non-gaming group is five channels.** `bobross`, `hitch`, `xqcow`, `tjsmith` and `darksydephil`, three of them at the corpus's 1,000-message cap, 3,457 messages between them. `xqcow` alone is 29 percent of the group, and that channel is filed under Just Chatting for most of the week while spending a good deal of it playing games. Under the channel-level label every one of its messages is non-gaming. Under the message-level label most of them are not.
+
+Two things follow, and both belong in the write-up.
+
+The **unit of analysis** problem is doing real work here. The label varies across 48 channels, five of which are non-gaming, while the test is computed over 34,762 messages. The p-value answers "could 34,762 independent draws have produced this gap by chance". The question that matters is "could five channels", and the answer to that one is much less comfortable.
+
+And the **finding has to be stated at the level it was actually measured**. Not "gaming chat is shorter", but "chat on the five predominantly non-gaming channels in this sample is longer on average, by an amount too small to matter, and the difference does not survive relabelling messages by what was on screen at the time".
+
+That is a duller sentence, and it is the one the data supports.""")
 
 add("## What this chapter cannot do for you")
 

@@ -49,9 +49,9 @@ Then compute the study's central comparison twice: once over everything, and onc
 
 | Group | mean, all messages | mean, talk only |
 |---|---|---|
-| gaming | 28.49 | 29.87 |
+| gaming | 28.49 | 29.88 |
 | non-gaming | 33.70 | 34.13 |
-| **gap** | **5.22** | **4.26** |
+| **gap** | **5.21** | **4.25** |
 
 Those are `AVERAGEIFS` with one condition and then two:
 
@@ -60,7 +60,7 @@ Those are `AVERAGEIFS` with one condition and then two:
 =AVERAGEIFS($D$2:$D$35268,$B$2:$B$35268,"gaming",$E$2:$E$35268,"talk")
 ```
 
-**The gap the whole study is about shrinks from 5.22 characters to 4.26, a reduction of 18 percent, on a decision about what counts as a message.**
+**The gap the whole study is about shrinks from 5.21 characters to 4.25, a reduction of 18 percent, on a decision about what counts as a message.**
 
 Nothing was miscalculated. Chapter 25's t-test was correct arithmetic on a correctly built table. What changed is a definition that the quantitative strand had no way to interrogate, because from inside the numbers `!play` is a six-character message like any other.
 
@@ -85,7 +85,7 @@ That is one row of a joint display, and it is worth writing out to see the shape
 
 | Finding | Quantitative | Qualitative | Meta-inference | Fit |
 |---|---|---|---|---|
-| Message-level measures overstate how much talk is happening | gap of 5.22 characters, *t*(3768.7) = -4.95, *p* < .001, *d* = -0.13, n = 34,766 | `!play` and other `!` commands are addressed to software, not to people; 480 of 1,000 messages in `dev1` | excluding commands cuts the gap to 4.26, so roughly a fifth of the headline effect was an artifact of counting machine traffic as speech | discordance |
+| Message-level measures overstate how much talk is happening | gap of 5.21 characters, *t*(3768.7) = -4.94, *p* < .001, *d* = -0.13, n = 34,762 | `!play` and other `!` commands are addressed to software, not to people; 480 of 1,000 messages in `dev1` | excluding commands cuts the gap to 4.25, so roughly a fifth of the headline effect was an artifact of counting machine traffic as speech | discordance |
 
 That row could not have been produced by either strand. The count alone cannot see that a message is a command; the reading alone cannot say that it matters to the study's conclusion by 18 percent.
 

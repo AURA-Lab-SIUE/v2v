@@ -4,7 +4,7 @@ title: "Excel Supplement, Chapter 15: Existing Data"
 
 Chapter 15 says that the first task with a dataset somebody else made is not analysis but working out what the file can support. This supplement is that task, done as a checklist, on the corpus this book uses throughout.
 
-It takes about twenty minutes. Run it on every dataset you did not collect yourself, before you write a single research question against it, because two of the things it finds here change how earlier chapters should be read.
+It takes about twenty minutes. Run it on every dataset you did not collect yourself, before you write a single research question against it. Two of the things it finds here change how earlier chapters should be read, and neither of them is a defect in the data.
 
 ## Import, and the first thing to record
 
@@ -26,7 +26,7 @@ The field people skip is **obtained on**, and it is the one that matters when th
 
 ## The audit
 
-Nine checks. Each is one formula, and each answers a question you would otherwise be assuming.
+Each is one formula, and each answers a question you would otherwise be assuming.
 
 **How many rows, really?**
 
@@ -50,7 +50,17 @@ Nine checks. Each is one formula, and each answers a question you would otherwis
 =COUNTBLANK($D$2:$D$35268)
 ```
 
-**0**. Do this for every column. A column that is 30 percent blank is a column you cannot use as you planned, and it is better to learn that now than after building an analysis on it.
+**0**, and that answer is misleading, which is the point of running it.
+
+Four messages in this corpus are genuinely missing. R writes a missing value into a CSV as the two bare characters `NA`, so the cells are not blank, they contain text, and `COUNTBLANK` is right that nothing is empty. Count them properly:
+
+```
+=COUNTIF($D$2:$D$35268,"NA")
+```
+
+which returns **4**. Before trusting either number, check that no real message is the word `NA`; here none is, so the count is clean.
+
+Do both for every column. A column that is 30 percent missing is a column you cannot use as you planned, and it is better to learn that now than after building an analysis on it.
 
 **How many channels?** Copy the channel column, **Paste Special, Values**, **Remove Duplicates**: **50**, as documented.
 
@@ -72,7 +82,7 @@ All eight are present. **All eight return exactly 1,000**, which is the first hi
 
 ## Where the documentation is wrong
 
-The package says messages run **up to 509 characters**.
+The package help page says messages run **up to 509 characters**.
 
 ```
 =MAX($G$2:$G$35268)
@@ -86,9 +96,11 @@ returns **501**. And:
 
 returns **1**, while the same formula at `>509` returns **0**.
 
-Eight characters is nothing. What it tells you is worth a great deal: **a stated property of this dataset was not true, and you found it in one cell.** Everything else in that documentation has now moved from assumed to checkable, which is the correct state for documentation to be in.
+Eight characters is nothing, and the reason for the gap is worth a great deal. The 509 is the longest message in the **full 21.9-million-message population** this sample was drawn from. It is correct about that population and it is printed in the help page for your 35,267-row extract.
 
-## Where the documentation is silent
+**A documented figure can be true of the population and false of your file**, and nothing in the help page marks which it means. That is not a typo you can correct once; it is a question to ask of every number in a data dictionary.
+
+## Where the documentation is right, and still not enough
 
 This is the check that repays the twenty minutes.
 
@@ -109,7 +121,11 @@ Then look at the distribution rather than the individual numbers:
 
 **Thirty-one of fifty channels sit on exactly 1,000, and nothing is above it.**
 
-Real counts do not do that. A hard ceiling with 31 channels resting on it and none above is a cap, applied when the sample was drawn, and it appears nowhere in the documentation.
+Real counts do not do that. A hard ceiling with 31 channels resting on it and none above is a cap, applied when the sample was drawn.
+
+The help page says so: *each channel contributes up to 1,000 messages to the sample*. So this check confirms the documentation rather than contradicting it, which is the outcome you should expect most of the time and should still run the check to establish.
+
+Two lessons survive the confirmation. **That sentence is in the details section, below the column definitions**, and a reader who opens the help page to find out what the columns mean will never reach it. And the sentence says what was done without saying what it implies, which is that the corpus is balanced across channels rather than proportional to chat volume. Chapter 15 works through what that costs.
 
 Sort the channel counts descending and look at the column, or chart them as a bar chart. The flat plateau followed by a cliff is visible instantly, and it is the reason this check is "look at the distribution" rather than "compute a statistic". **A summary statistic of the channel sizes would have hidden it completely**: the mean is unremarkable and the standard deviation tells you nothing about a ceiling.
 
@@ -137,6 +153,6 @@ Number seven is the whole method. **Documentation is a claim about the data, and
 
 ## What Excel will not do for you
 
-It will not tell you why the cap is there, whether the 42 non-anchor channels really were drawn as documented, or what was in the 1.6 GB dump that did not make it into these 35,267 rows. Those questions go to whoever made the file, and "we asked and could not find out" is a legitimate and reportable answer.
+It will not tell you whether the 42 non-anchor channels really were drawn as documented, or what was in the 1.6 GB dump that did not make it into these 35,267 rows. Those questions go to whoever made the file, and "we asked and could not find out" is a legitimate and reportable answer.
 
 It will also not tell you whether the data fits your question, which is the judgment this whole chapter is about. What it does is make sure that when you make that judgment, you are making it about the file you actually have rather than the one the documentation describes.

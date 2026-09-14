@@ -145,7 +145,7 @@ It matters because of what the summary numbers say. The descriptive statistics f
 msglen %>%
   group_by(is_gaming) %>%
   summarise(
-    n      = n(),
+    n      = sum(!is.na(message_length)),
     mean   = mean(message_length, na.rm = TRUE),
     median = median(message_length, na.rm = TRUE),
     sd     = sd(message_length, na.rm = TRUE),
@@ -157,7 +157,9 @@ msglen %>%
 | is_gaming | n      | mean  | median | sd    |
 | --------- | ------ | ----- | ------ | ----- |
 | FALSE     | 3,457  | 33.70 | 16     | 60.68 |
-| TRUE      | 31,309 | 28.49 | 17     | 38.47 |
+| TRUE      | 31,305 | 28.49 | 17     | 38.47 |
+
+The gaming row counts 31,305 rather than the 31,309 messages that came from gaming channels, because four messages in the corpus have no text at all and therefore no length. Counting rows where the statistics skip four of them would make the `n` column describe a different set of messages from the columns beside it.
 
 Read the `mean` column and a story jumps out: non-gaming messages, the `FALSE` row, average 33.70 characters against 28.49 for gaming messages. Non-gaming chat looks meaningfully longer. Now read the `median` column, the length of the exactly-middle message in each group, and the story collapses: 16 characters for non-gaming, 17 for gaming, all but identical, and pointing the other way. The typical message is the same length in both kinds of channel.
 

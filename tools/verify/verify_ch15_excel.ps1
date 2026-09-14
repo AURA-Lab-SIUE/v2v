@@ -49,6 +49,7 @@ try {
         @("rows",                "=COUNTA(chat!`$A`$2:`$A`$$last)",                          35267),
         @("distinct ids",        "=SUMPRODUCT(1/COUNTIF(chat!`$A`$2:`$A`$$last,chat!`$A`$2:`$A`$$last))", 35267),
         @("blank messages",      "=COUNTBLANK(chat!`$D`$2:`$D`$$last)",                      0),
+        @("missing (text NA)",   "=COUNTIF(chat!`$D`$2:`$D`$$last,""NA"")",                  4),
         @("channels",            "=COUNTA(chat!`$J`$2:`$J`$$cLast)",                         50),
         @("anchors present",     "",                                                          8),
         @("max length",          "=MAX(chat!`$G`$2:`$G`$$last)",                             501),
@@ -69,7 +70,10 @@ try {
         $o.Cells($i + 1, 6).Value2 = $ANCHORS[$i]
         $o.Cells($i + 1, 7).Formula = "=COUNTIF(chat!`$B`$2:`$B`$$last,`$F$($i+1))"
     }
-    $o.Range("B5").Formula = "=COUNTIF(G1:G8,"">0"")"
+    # write the anchors-present total into whichever row that check occupies,
+    # so inserting a check above it cannot silently overwrite a different row
+    $apRow = 1 + [array]::IndexOf(($spec | ForEach-Object { $_[0] }), "anchors present")
+    $o.Cells($apRow, 2).Formula = "=COUNTIF(G1:G8,"">0"")"
     $o.Range("A14").Value2 = "first message"
     $o.Range("B14").Formula = "=MIN(chat!`$H`$2:`$H`$$last)"
     $o.Range("A15").Value2 = "last message"

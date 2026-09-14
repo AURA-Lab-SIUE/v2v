@@ -97,7 +97,7 @@ try {
     $chat.Range("G2:G$cLast").Formula = '=ROUNDDOWN(E2/1000,0)/86400+DATE(1970,1,1)'
     $chat.Range("G2:G$cLast").NumberFormat = "yyyy-mm-dd hh:mm:ss"
     $chat.Range("H1").Value2 = "message_length"
-    $chat.Range("H2:H$cLast").Formula = '=LEN(D2)'
+    $chat.Range("H2:H$cLast").Formula = '=IF(D2="NA","",LEN(D2))'   # 4 messages are missing; CSV spells that NA
     $chat.Range("I1").Value2 = "label"
     $chat.Range("I2:I$cLast").Formula = "=IFERROR(INDEX(streams!`$O`$2:`$O`$$chLast,MATCH(`$B2,streams!`$L`$2:`$L`$$chLast,0)),`"unmatched`")"
 
@@ -115,6 +115,7 @@ try {
     $o.Name = "out"
     $rows = @(
         @("gaming n",        "=COUNTIF(chat!$R,""gaming"")",               "31309"),
+        @("gaming n_len",    "=COUNTIFS(chat!$R,""gaming"",chat!$L,"">=0"")", "31305"),
         @("nongaming n",     "=COUNTIF(chat!$R,""nongaming"")",            "3457"),
         @("unmatched n",     "=COUNTIF(chat!$R,""unmatched"")",            "501"),
         @("gaming mean",     "=AVERAGEIFS(chat!$L,chat!$R,""gaming"")",    "28.49"),

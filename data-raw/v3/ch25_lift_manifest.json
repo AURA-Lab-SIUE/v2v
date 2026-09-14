@@ -132,7 +132,7 @@
     },
     {
       "anchor": "Read the two numbers.",
-      "repaired": true
+      "repaired": false
     },
     {
       "anchor": "That the regression reproduces the t-test is not a coincidence.",

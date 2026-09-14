@@ -76,12 +76,12 @@ Three numbers describe a single numeric variable, and you need all three.
 
 **The mean** is the arithmetic average, and it uses every value. **The median** is the value of the middle observation when they are sorted, and it does not care how extreme the extremes are. **The standard deviation** summarizes how far values typically sit from the mean.
 
-Here they are for the study's central variable, message length, split by the label built above:
+Here they are for the study's central variable, message length, split by the label built above. The gaming row counts 31,305 rather than 31,309 because four messages in the corpus have no text at all, so they have no length and sit out every statistic in the row:
 
 | Group | n | mean | median | sd |
 |---|---|---|---|---|
 | non-gaming | 3,457 | 33.70 | 16 | 60.68 |
-| gaming | 31,309 | 28.49 | 17 | 38.47 |
+| gaming | 31,305 | 28.49 | 17 | 38.47 |
 
 Read the `mean` column and a story jumps out. Read the `median` column and it collapses.
 
