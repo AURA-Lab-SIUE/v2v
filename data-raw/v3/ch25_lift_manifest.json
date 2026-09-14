@@ -1,0 +1,142 @@
+{
+  "source": "chapters/chapter13.qmd",
+  "output": "chapters/_v3-draft/chapter25-inference-and-effect.qmd",
+  "lifted": [
+    {
+      "anchor": "ended on a number and a doubt",
+      "repaired": true
+    },
+    {
+      "anchor": "The doubt is not idle.",
+      "repaired": false
+    },
+    {
+      "anchor": "Settling that doubt is the job of **inferential statistics**",
+      "repaired": true
+    },
+    {
+      "anchor": "Start with what the question really is.",
+      "repaired": false
+    },
+    {
+      "anchor": "So the honest question is not",
+      "repaired": false
+    },
+    {
+      "anchor": "The test does not start from the difference you suspect is real",
+      "repaired": false
+    },
+    {
+      "anchor": "The logic is the logic of a skeptic.",
+      "repaired": false
+    },
+    {
+      "anchor": "There is not one hypothesis test.",
+      "repaired": true
+    },
+    {
+      "anchor": "The chat study's question pairs one continuous variable with one categorical split.",
+      "repaired": false
+    },
+    {
+      "anchor": "The test is named in the first line as a **Welch** two-sample t-test",
+      "repaired": true
+    },
+    {
+      "anchor": "The rest of the output is the result, and it has three parts worth reading slowly.",
+      "repaired": false
+    },
+    {
+      "anchor": "The **p-value** reported here is",
+      "repaired": false
+    },
+    {
+      "anchor": "It means this: if gaming and non-gaming chat truly had",
+      "repaired": false
+    },
+    {
+      "anchor": "That convention deserves a note of its own.",
+      "repaired": false
+    },
+    {
+      "anchor": "What matters more is being precise about what the p-value does not say.",
+      "repaired": false
+    },
+    {
+      "anchor": "For that, the p-value has to hand the question to a different number",
+      "repaired": false
+    },
+    {
+      "anchor": "A p-value answers \"is there a difference.\"",
+      "repaired": false
+    },
+    {
+      "anchor": "To read that number, it needs a yardstick",
+      "repaired": false
+    },
+    {
+      "anchor": "This is worth dwelling on, because it sounds like a contradiction",
+      "repaired": false
+    },
+    {
+      "anchor": "That leaves one question: how did a negligible difference come back",
+      "repaired": false
+    },
+    {
+      "anchor": "The two facts, a real gap and a negligible one",
+      "repaired": true
+    },
+    {
+      "anchor": "The intervals are so short they nearly vanish behind the points",
+      "repaired": false
+    },
+    {
+      "anchor": "Putting the two numbers together is the call the chapter is named for",
+      "repaired": true
+    },
+    {
+      "anchor": "The finding is this.",
+      "repaired": false
+    },
+    {
+      "anchor": "This is the difference between **statistical significance** and **practical significance**",
+      "repaired": false
+    },
+    {
+      "anchor": "In practice that means a result is written up with the full set of numbers",
+      "repaired": false
+    },
+    {
+      "anchor": "> Gaming channels produced shorter chat messages on average",
+      "repaired": false
+    },
+    {
+      "anchor": "And then, because a string of statistics is not an interpretation",
+      "repaired": false
+    },
+    {
+      "anchor": "The t-test settled a question with exactly two sides",
+      "repaired": true
+    },
+    {
+      "anchor": "The logic is the t-test's logic, widened.",
+      "repaired": false
+    },
+    {
+      "anchor": "And, exactly as with the t-test, significance is not size.",
+      "repaired": false
+    },
+    {
+      "anchor": "The t-test and ANOVA both compare group means.",
+      "repaired": false
+    },
+    {
+      "anchor": "Read the two numbers.",
+      "repaired": true
+    },
+    {
+      "anchor": "That the regression reproduces the t-test is not a coincidence.",
+      "repaired": false
+    }
+  ]
+}

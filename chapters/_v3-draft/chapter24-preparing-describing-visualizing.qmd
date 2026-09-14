@@ -1,0 +1,160 @@
+---
+title: "Chapter 24: Preparing, Describing, and Visualizing Data"
+---
+
+The chat table you collected cannot answer your research question. Not yet. The study asks whether chat behaves differently on gaming and non-gaming channels, and it operationalizes that through message length. But look at the table. There is no column for message length. There is no column saying whether a message came from a gaming channel or a non-gaming one. The timestamps are unreadable runs of digits. And the information that would settle the gaming question is not even in the chat table; it sits in a separate stream table that the chat table has no link to.
+
+This is the ordinary situation at this stage of a study, and closing the gap is the work of this chapter. **Data wrangling** is the process of turning the data you collected into the data you can analyze: reshaping it, cleaning it, deriving the variables your codebook named, and joining separate tables into one. It is unglamorous, it is rarely mentioned in the published paper, and it is most of the work. A wrangling chapter looks like a sequence of small technical steps. What it is actually doing is building the table that every later result depends on.
+
+Part VI is where a project stops being a design and becomes a result. This chapter covers the three things that happen to a dataset before anything is tested: getting it into shape, describing what is in it, and looking at it. Chapter 25 does the testing.
+
+The order matters and it is routinely inverted. A great deal of bad analysis comes from running a test on a table nobody described and nobody looked at.
+
+## The operations
+
+Whatever tool you use, data preparation is built from a small number of operations, and they are the same operations in a spreadsheet, in R, in Python and in SPSS. Learning them as operations rather than as commands is what makes the next tool easy.
+
+**Filtering** keeps the rows that meet a condition and drops the rest. **Selecting** keeps or drops columns. **Deriving** adds a new column computed from the ones already there, which is how a variable your codebook named but your data lacks comes into existence. **Sorting** reorders rows by a column's values. **Grouping and summarizing** collapses many rows into one per group, which is how you get a per-channel or per-condition figure out of a table of individual observations.
+
+**Joining** brings columns from one table onto another by matching on a shared key. It is the one operation that is genuinely harder than it looks, and it gets its own section below.
+
+The reason these verbs combine so well is a shared design: each one takes a table and returns a table. That is what lets them be strung into a sequence, the output of one operation flowing in as the input of the next. A wrangling pipeline is just verbs chained this way, each step a small readable transformation, the whole chain carrying the data from raw to ready. The rest of this chapter is four such transformations.
+
+Every one of those steps is a decision, and the decisions are methodology rather than housekeeping. Which cases you excluded, how you treated missing values, where you drew a category boundary: each will be asked about, and each should be recorded where it can be found. In a script that record is a comment. In a spreadsheet it is a documentation sheet, because a spreadsheet otherwise keeps no history of what you did to it. The supplement to this chapter is mostly about that problem.
+
+## Deriving the variables the study needs
+
+Three variables in this book's running study do not exist in the raw data and have to be built.
+
+**A readable time.** The raw `date` column is a run of very large numbers, and Chapter 9 classified it as interval data with a catch: the number is not a date in any form a person can read. What it holds is a count of milliseconds elapsed since midnight on the first of January, 1970, a reference moment called the **Unix epoch** that nearly every computer uses to keep time. Counting from it turns any instant into a single integer, which is precise and entirely unreadable.
+
+Converting it back is the most error-prone small step in this chapter, and the reason is a factor of a thousand. Most date functions expect a count of **seconds**, and this column holds **milliseconds**. Hand the raw number to a function expecting seconds and every message lands tens of thousands of years in the future, which at least announces itself. The quieter failure is a tool that silently succeeds on a value it should have rejected.
+
+The first message in the corpus carries the timestamp `1542578127023`, which is the evening of the 18th of November, 2018. If your conversion gives you a date in the year 50,000, you forgot to divide.
+
+**Message length.** The character count of each message, which the codebook named and the file does not contain. It is a ratio variable in the Chapter 9 sense: a true zero, equal intervals, a count you can average.
+
+The first three messages in the corpus run 23, 441 and 8 characters: a row of punctuation, a block of copy-pasted emotes, and a single word. All three are ordinary Twitch chat, and the distance between them is the raw material of the study.
+
+**A gaming label.** This is the one the research question turns on, and it takes real work, so it gets its own section.
+
+## Joining, and the label that needed it
+
+The third transformation is the one the central research question turns on. Every message needs a label: did it come from a gaming channel or a non-gaming one? That label does not exist in the chat table, and building it takes more work than the last two, because the information lives in the other table.
+
+Gaming or non-gaming is best understood as a property of the channel, fixed by what the channel mostly streams. Bob Ross's channel streams painting; it is a non-gaming channel, and every message in it is a non-gaming message. So the label is built in three steps: find what each channel mostly streams, decide whether that counts as gaming, and attach the decision to every message from that channel.
+
+The first step reaches into the stream table. Each channel appears there many times, once per snapshot, each snapshot carrying the `game` it was streaming. The channel's dominant category is the **modal** category, the one that appears most often:
+
+The second step is a judgment, and it should be visible rather than buried. Twitch sorts streams into categories, and some of those categories are not games: painting under Art, unstructured talk under Just Chatting, and others. Listing them explicitly states the rule the study is using:
+
+The list the study used names fourteen Twitch categories as non-gaming: Art, ASMR, Beauty & Body Art, Creative, Food & Drink, IRL, Just Chatting, Makers & Crafting, Music, Music & Performing Arts, Science & Technology, Sports & Fitness, Talk Shows & Podcasts, and Travel & Outdoors. Any channel whose dominant category is not on that list is treated as gaming.
+
+Write the list out, in the paper or its appendix. A reader who disagrees with one entry can then see exactly what it would change, and "we classified channels as gaming or non-gaming" gives them nothing to disagree with.
+
+The third step is the **join**: attach that one-row-per-channel lookup to every message, matching on the channel name. A join that keeps every row of the message table and adds the matching label is the one you want here, because losing messages to a failed match is the thing you are trying to avoid.
+
+A join is only as good as the match between its keys, and that is worth a word of warning. Twitch's chat protocol writes channel names with a leading "#", so the same channel can appear as `#bobross` in one source and `bobross` in another. Join two tables whose keys disagree like that and every row fails to match, silently. The `v2v` fixture has already normalized this, the "#" stripped before the data ever reached you, but raw Twitch data would need that cleaning step first. When a join returns nothing, mismatched keys are the first thing to check.
+
+Inspect the derived column immediately, before doing anything else with it. Counting the messages in each category gives 3,457 non-gaming, 31,309 gaming, and **501 with no label at all**.
+
+That last group is the part worth understanding. Two channels in the corpus streamed without ever having a category recorded, so they have no dominant category, so the join found nothing to attach. The result is correct rather than broken: the data genuinely does not say whether those 501 messages came from gaming channels, and an honest missing value records that the study cannot classify them. They sit out the comparison rather than being guessed into one side of it.
+
+A tool that had quietly dropped those rows, or quietly assigned them to the larger group, would have produced a tidier table and a worse study.
+
+## The analysis-ready table
+
+This is what wrangling was for. The table is now **tidy**, in the precise sense the term carries in data science (Wickham, 2014): each row is one observation, a single chat message; each column is one variable; and everything the study needs sits in this one place. The unreadable integers have become timestamps. Message length and gaming status, named in the codebook and absent from the raw data, are now columns. The chat and stream tables, once disconnected, are joined.
+
+None of this was analysis. Not a single result has been computed. But every result that follows, every figure in this chapter and every test in Chapter 25, will be computed from this table, which is why the care spent building it is not optional. A wrangling mistake does not announce itself. It travels quietly into every chart and every statistic downstream. The reward for getting this chapter right is that nothing later has to be unwound.
+
+## Describing before testing
+
+With a tidy table you can finally say what is in it, and the temptation is to say it with one number per group and move on.
+
+Three numbers describe a single numeric variable, and you need all three.
+
+**The mean** is the arithmetic average, and it uses every value. **The median** is the value of the middle observation when they are sorted, and it does not care how extreme the extremes are. **The standard deviation** summarizes how far values typically sit from the mean.
+
+Here they are for the study's central variable, message length, split by the label built above:
+
+| Group | n | mean | median | sd |
+|---|---|---|---|---|
+| non-gaming | 3,457 | 33.70 | 16 | 60.68 |
+| gaming | 31,309 | 28.49 | 17 | 38.47 |
+
+Read the `mean` column and a story jumps out. Read the `median` column and it collapses.
+
+Read the `mean` column and a story jumps out: non-gaming messages, the `FALSE` row, average 33.70 characters against 28.49 for gaming messages. Non-gaming chat looks meaningfully longer. Now read the `median` column, the length of the exactly-middle message in each group, and the story collapses: 16 characters for non-gaming, 17 for gaming, all but identical, and pointing the other way. The typical message is the same length in both kinds of channel.
+
+Note the standard deviations too, because they are the loudest signal in the table and the easiest to skip. Non-gaming messages vary far more than gaming ones, 60.68 against 38.47, and a standard deviation nearly twice a group's own mean is a warning that the mean is describing a shape it does not fit.
+
+Chapter 23's supplement made the same point with the same corpus from a different angle: the mean participant posted 2.09 messages and the median posted one. **Whenever a mean and a median disagree, the distribution is telling you something, and the way to hear it is to look.**
+
+## Looking at it
+
+A figure is the instrument that makes the pattern visible. It takes a column of numbers too long to hold in the mind and turns it into a shape the eye can read at a glance: a line that rises, a bar that towers over its neighbors, a distribution that leans hard to one side. This section builds three such figures from the analysis table. Each one answers a question the study has been carrying since its prospectus, and each one is a different kind of chart, chosen to fit a different kind of question.
+
+A figure does not merely display data. A well-made figure carries an argument: it shows a reader what the analyst found and why it matters. Visualization is part of the analysis rather than decoration applied after it.
+
+### The grammar
+
+Three parts do most of the work. The first is the **data**, the table being shown. The second is a set of **aesthetic mappings**, which say how columns of that table correspond to visual properties of the plot: this column to the horizontal position, that column to the vertical position, a third to color. The third is a **geometry**, the kind of mark used to draw the data, a line or a bar or a point. Choose the data, map the columns to aesthetics, pick a geometry, and a plot is specified.
+
+Named that way, the choice of chart stops being a menu of pictures and becomes a question with an answer: what is being mapped to position, and what geometry suits the kind of variable doing the mapping? Three questions from the running study, three answers.
+
+### A line for change over time
+
+The first question is about viewership. Across the collection week, how did the audience for these fifty channels move, and how was it split across the games being played?
+
+When the horizontal axis is time and the vertical axis is a quantity that rises and falls, the natural geometry is the **line chart**. A line connects one moment to the next, and the eye reads the climb and the drop as a single continuous motion. That is what makes a line right for change over time and wrong for unordered categories: it implies that the points are in sequence and that the space between them is real.
+
+The figure has an obvious headline: the line that dominates it is "Other", the catch-all holding every game outside the top five, which spikes far above any named category.
+
+That fact can be read two ways and a careful analyst holds both. One reading is substantive, that viewership here is spread across a long tail of smaller games rather than concentrated in the big ones. The other is an artifact of the analyst's own choice, since "Other" is large precisely because the top five was set at five. A category you created is not a finding about the world, and a figure whose headline is your own binning decision needs that said out loud.
+
+### A bar for counts
+
+The second question is about timing. The chat data spans a little under six days; across the hours of the day, when are the channels busiest?
+
+Hour of day is not a continuous sweep the way a date is. It is a set of twenty-four discrete categories, and the thing being measured for each is a simple count of messages. For counts across discrete categories, the natural geometry is the **bar chart**: one bar per category, its height the count, the bars sitting side by side so the eye can compare them.
+
+The figure shows a clear daily pulse. Chat is busiest through the UTC midday and afternoon, peaking at 13:00 with 2,201 messages, and quietest in the small hours, bottoming out at 03:00 with 833, a swing of well over two to one between the loudest hour and the quietest. The shape is not mysterious. Twitch's audience in 2018 was concentrated in the Americas and Europe, and the UTC midday and afternoon are the waking, screen-facing hours across that span, while 03:00 UTC is the middle of the night for most of it. The point worth taking is less the particular peak than what the bar chart does: it takes twenty-four numbers and makes a rhythm visible in one glance, which is exactly the job a bar chart is for.
+
+### A histogram for shape
+
+The third question is the study's central one. The chat study set out to compare gaming and non-gaming channels through message length. So: how long is a chat message, and does the answer depend on the kind of channel?
+
+This question is not about a total or a trend. It is about a **distribution**, the shape of how a single variable's values spread out, where they cluster and where they thin. The geometry for a distribution is the **histogram**. A histogram slices the range of a numeric variable into equal intervals, called **bins**, and draws a bar for each showing how many values fall inside it. The result is a picture of the variable's shape.
+
+Two choices shape a histogram and both have to be disclosed. **Bin width** sets how wide each bar is: wider bins smooth the shape, narrower bins roughen it, and the number is a judgment you make and report. **Capping the axis** hides the far tail so the bulk of the data is visible, and it is legitimate only if you say what it hid. Here the display caps at 120 characters, which puts 1,047 messages, three percent of the corpus, out of view, stretched thinly all the way out to 501 characters.
+
+A cap that removes three percent to make the other ninety-seven legible is a good trade. A cap that removes a third of the data is a different figure entirely.
+
+The figure shows, first, a shape both groups share. Each distribution is heavily **right-skewed**: a tall stack of very short messages at the left, then a long thin tail trailing off to the right. Twitch chat is mostly brief, a word or an emote, with a minority of longer messages stretching the range. This is the most important thing the histogram reveals, and it is invisible in any single summary number.
+
+The histogram explains how both things can be true at once. The mean is sensitive to a long tail in a way the median is not: a relatively small number of very long messages pulls an average upward while leaving the middle value untouched. The non-gaming group has the heavier tail, which its much larger standard deviation, 60.68 against 38.47, records directly. So the gap in means is real arithmetic, but it is the work of the tail, not of the typical message. Lean only on the mean and you would report that non-gaming chat is longer. The picture, and the median beside it, show that the everyday message is the same and the difference lives in the extremes.
+
+This is what it means to treat descriptive statistics as a visual setup rather than a verdict. A mean is one number standing in for thousands, and which thousands it stands in for is something only the distribution can show. It also leaves a precise question for the next chapter. There is a gap of about five characters between the two means. Is that gap a real difference between gaming and non-gaming channels, or the kind of wobble that any two samples would show? A figure can frame that question. It cannot answer it.
+
+## Figures other people can read
+
+Three figures are built. Before they are finished, they have to be made readable, and not only by the analyst who made them.
+
+The first duty is **color**. The viewer-count figure tells its categories apart by color, and the histogram tells its two groups apart by color, and roughly one in twelve men has a form of **color-vision deficiency** that makes some color pairs, red against green most notoriously, hard or impossible to distinguish. A figure whose meaning rests on color alone is a figure that some readers cannot read. There are two defenses, and good practice uses both. Choose a colorblind-safe palette, a set of colors picked to stay distinct across the common kinds of color blindness. And do not let color carry the message by itself: separate the lines by more than hue, or split groups into their own panels, so the figure still works in grayscale.
+
+The second duty is the **alt text**, a short written description of the figure attached to it in the document's source. A reader using a screen reader cannot see the figure at all; the alt text is what they get instead, and a figure with none is, to them, simply missing. Good alt text is not the caption repeated. It states what kind of chart the figure is, what is on each axis, and what the figure shows, the takeaway, in a sentence or two. Each figure in this chapter carries one. In a Quarto document the alt text is written into the figure's `fig-alt` attribute, and writing it is not an afterthought. Being forced to say in one sentence what a figure shows is a good test of whether the figure shows anything at all.
+
+A figure that is honest about its choices, legible without color, and described for readers who cannot see it is a figure that does its job for everyone. That is the standard a publication-quality figure is held to, and the three built here are meant to meet it.
+
+## Looking ahead
+
+The histogram left a precise question on the table. The means of the two groups differ by about five characters, and the distributions behind those means are skewed, overlapping, and built from very different numbers of messages. Whether that five-character gap is a real difference or only sampling noise is not something the eye can settle. Chapter 13 takes it up. It is the inference chapter, where the study moves from describing what the sample looks like to testing what the difference is likely to mean.
+
+Chapter 25 answers it. It is the chapter where a difference you can see becomes a difference you can defend, and where the size of that difference finally gets reported alongside the question of whether it is real.
+
+## References
+
+Wickham, H. (2014). Tidy data. *Journal of Statistical Software*, *59*(10), 1-23. https://doi.org/10.18637/jss.v059.i10
+
+Wilkinson, L. (2005). *The grammar of graphics* (2nd ed.). Springer. https://doi.org/10.1007/0-387-28695-0

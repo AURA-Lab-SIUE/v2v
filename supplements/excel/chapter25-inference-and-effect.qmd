@@ -1,0 +1,169 @@
+---
+title: "Excel Supplement, Chapter 25: Inference and Effect"
+---
+
+Excel will run every test in Chapter 25, and it will run two of them badly if you use the obvious button. This supplement builds each test from its own arithmetic instead, which takes four formulas rather than one and means you can see what the test is doing.
+
+It starts from the table Chapter 24's supplement built: one row per message, with a `length` column and a `label` column reading `gaming`, `nongaming` or `unmatched`. The 501 unmatched messages sit out everything below, leaving **34,766**.
+
+## A note on the Analysis ToolPak
+
+**File**, **Options**, **Add-ins**, **Excel Add-ins**, **Go**, tick **Analysis ToolPak** gives you a **Data Analysis** button with t-tests, ANOVA and regression in it.
+
+Use it to check your work, not to do it. Two reasons, and the second is the serious one.
+
+Its output is a static block of values. Change a single data point and the block does not update, because it was pasted rather than calculated, and nothing tells you it is stale. Every formula in this supplement recalculates.
+
+And it needs each group in its own contiguous column, so you have to split the data physically before you can test it. That means the test is run on a copy, and a copy is a thing that can silently fall out of step with the table you later describe.
+
+## The two-sample t-test
+
+You need six numbers first. With `label` in column A and `length` in column E:
+
+| | Formula | gaming | non-gaming |
+|---|---|---|---|
+| n | `=COUNTIF($A$2:$A$34767,"gaming")` | 31,309 | 3,457 |
+| mean | `=AVERAGEIFS($E$2:$E$34767,$A$2:$A$34767,"gaming")` | 28.49 | 33.70 |
+| sd | `=STDEV.S(IF($A$2:$A$34767="gaming",$E$2:$E$34767))` | 38.47 | 60.68 |
+
+Call those `n1, m1, s1` and `n2, m2, s2`. Welch's t, which does not assume the groups share a spread, is:
+
+```
+=(m1-m2)/SQRT(s1^2/n1+s2^2/n2)
+```
+
+giving **-4.945**. And its degrees of freedom, the Welch-Satterthwaite formula, which looks worse than it is:
+
+```
+=(s1^2/n1+s2^2/n2)^2/((s1^2/n1)^2/(n1-1)+(s2^2/n2)^2/(n2-1))
+```
+
+giving **3768.7**. That is not a whole number and is not supposed to be: Welch's correction buys robustness by spending degrees of freedom, and the price is fractional.
+
+For the p-value, `T.TEST` does the whole thing in one step:
+
+```
+=T.TEST(IF($A$2:$A$34767="gaming",$E$2:$E$34767),
+        IF($A$2:$A$34767="nongaming",$E$2:$E$34767),2,3)
+```
+
+returning **7.95E-07**, which you report as *p* < .001.
+
+**The two arguments at the end are the whole test and both are easy to get wrong.** The `2` asks for a two-tailed test, which is what you want unless you predicted the direction in advance and said so in your hypothesis. The `3` asks for Welch's unequal-variance version; a `2` there would run the pooled test that assumes the spreads match, and Chapter 24 showed these spreads differ by a factor of about 1.6. Excel will run whichever you ask for and will not comment.
+
+Compute the t and df by hand anyway. `T.TEST` returns a p-value and nothing else, and a p-value with no test statistic and no degrees of freedom cannot be reported in APA style or checked by anyone.
+
+## Effect size, which Excel does not have
+
+There is no `COHEN.D`. Build it.
+
+The pooled standard deviation:
+
+```
+=SQRT(((n1-1)*s1^2+(n2-1)*s2^2)/(n1+n2-2))
+```
+
+which is **41.22**. Then:
+
+```
+=(m1-m2)/pooled_sd
+```
+
+which is **-0.13**.
+
+Against Cohen's benchmarks of 0.2, 0.5 and 0.8, that is below even the small one. The difference is real and negligible, which is the pair of facts Chapter 25 is built around, and Excel gave up neither of them without being asked.
+
+Note which standard deviation goes where. The **test** used each group's own spread, because they differ. The **effect size** uses the pooled spread, because d expresses the gap in units of a common yardstick. Mixing them up gives you a number that is not d and that nobody can interpret.
+
+## Confidence intervals
+
+A ninety-five percent interval around each mean is the mean plus or minus about 1.96 standard errors, and a standard error is the standard deviation divided by the square root of n:
+
+```
+=1.96*s1/SQRT(n1)
+```
+
+That half-width is **0.43** characters for the gaming group and **2.02** for the non-gaming group.
+
+Plot the two means with those intervals as error bars, on an axis starting at zero. Chapter 25 explains what you see: the intervals clear each other, which is the significant difference, and the two points sit almost on top of each other far up the axis, which is the negligible effect. **One picture carries both facts, and neither number does alone.**
+
+The non-gaming interval is nearly five times wider than the gaming one, from a group an order of magnitude smaller and more variable. Precision is not shared out evenly, and an interval is the honest way to show it.
+
+## Chi-square, for two categorical variables
+
+A different question from the same table: are bot commands distributed evenly between gaming and non-gaming channels? Add a column flagging messages that begin with an exclamation mark, then cross-tabulate with `COUNTIFS`:
+
+| | command | not | total |
+|---|---|---|---|
+| gaming | 1,916 | 29,393 | 31,309 |
+| non-gaming | 61 | 3,396 | 3,457 |
+| total | 1,977 | 32,789 | 34,766 |
+
+The expected count for each cell, if the two variables were unrelated, is its row total times its column total over the grand total:
+
+```
+=$F2*D$4/$F$4
+```
+
+Written with those exact anchors it fills the whole expected table from one cell, which is Chapter 21's mixed-anchoring move again. Expected counts run 1,780.4 and 29,528.6 on the top row, 196.6 and 3,260.4 on the bottom.
+
+Chi-square is then the sum of squared differences over expected:
+
+```
+=SUMPRODUCT((D2:E3-D6:E7)^2/D6:E7)
+```
+
+giving **110.10** on 1 degree of freedom.
+
+**Now the trap in Excel's own function.** `CHISQ.TEST(actual, expected)` returns a p-value, here 9.3E-26, and it takes the expected counts as an argument, so it cannot check whether you computed them correctly. Feed it a wrong expected table and it returns a confident p-value for a test you did not run. Compute the statistic yourself and use the function as the check.
+
+`CHISQ.TEST` also gives you no effect size. For a two-by-two table Cramér's V is:
+
+```
+=SQRT(chi2/N)
+```
+
+which is **0.0563**.
+
+And there it is a third time. A chi-square of 110 with p around 10^-26 is about as significant as results get, and an association of 0.06 is almost nothing. **The p-value is measuring the sample size as much as the effect**, which is exactly the lesson the t-test taught, arriving here from a completely different test.
+
+## One-way ANOVA
+
+Restrict to the four largest game categories and the same four-number pattern per group does the whole job. With `COUNTIF`, `AVERAGEIFS`, and `VAR.S(IF(...))`:
+
+| Category | n | mean | |
+|---|---|---|---|
+| League of Legends | 4,000 | 22.63 | |
+| Fortnite | 4,000 | 33.23 | |
+| Hearthstone | 3,004 | 36.82 | |
+| Just Chatting | 2,429 | 39.03 | |
+
+Then, with those four columns as `n`, `mean` and `var`:
+
+```
+grand mean  =SUMPRODUCT(n,mean)/SUM(n)
+SSB         =SUMPRODUCT(n,(mean-grand)^2)
+SSW         =SUMPRODUCT(n-1,var)
+F           =(SSB/3)/(SSW/(SUM(n)-4))
+eta squared =SSB/(SSB+SSW)
+```
+
+giving **F = 92.26** on 3 and 13,429 degrees of freedom, and **eta squared = 0.0202**.
+
+The grand mean is a **weighted** average, which is why it is a `SUMPRODUCT` and not an `AVERAGE` of the four means. Those groups run from 2,429 to 4,000 messages, and averaging the averages would quietly give the small group the same vote as the large one. Chapter 12's supplement introduced the weighted sum; here is where getting it wrong changes an F.
+
+Eta squared says the game category accounts for about two percent of the variation in message length. The categories really do differ, and knowing which game is being played tells you almost nothing about how long a message will be.
+
+## Reporting it
+
+Every test above needs the same four things in the write-up: the test statistic, its degrees of freedom, the p-value, and an effect size.
+
+> Gaming channels produced shorter chat messages on average than non-gaming channels (28.49 vs. 33.70 characters), Welch's *t*(3768.7) = -4.95, *p* < .001, Cohen's *d* = -0.13.
+
+Three of those four came from formulas you wrote rather than from a function, which is the argument for doing it this way. A workbook that reports only what `T.TEST` returns has one number out of four, and it is the number Chapter 25 spends its length warning you about.
+
+## What Excel will not do for you
+
+It will not tell you that your observations are not independent, which for this corpus they emphatically are not: Chapter 7 puts the naive standard error at 0.036 against a clustered 0.355. Every p-value above is computed as though each of the 34,766 messages were an independent draw, and they are messages from 16,866 senders in 50 channels. The arithmetic is right and the assumption underneath it is wrong, and no cell in the workbook knows that.
+
+It will not stop you running the test twenty times and reporting the one that worked. It will not tell you that a significant result on 34,766 observations is a statement about your sample size. And it will not decide whether a five-character difference matters to anyone, which is the only question the reader actually has.
