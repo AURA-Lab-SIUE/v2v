@@ -175,9 +175,32 @@ back at chapter 3. Twenty recordings, and they cannot be made until the prose
 stops moving.
 
 **Length.** New chapters average about 2,690 words against 3,780 for the
-carried-over ones. Chapter 2 is no longer the outlier it was. The short ones now
-are ch26 (1,772), ch27 (1,867), ch09 (1,913), ch23 (2,001) and ch22 (2,022).
-Chapter 27 closing a 27-chapter book in 1,867 words is the one I would look at.
+carried-over ones. Chapters 2, 26 and 27 are no longer outliers: 2 went from 1,755
+to 2,458 when the replication-crisis material came back into it, 26 from 1,772 to
+2,948 and 27 from 1,867 to 2,891.
+
+**Chapter 26** gained a section on sampling, which it had named as an integration
+point and never explained: the two strands sample on opposite logics, and in an
+explanatory sequential design the quantitative results choosing the qualitative
+cases *is* the integration. It also now contains a joint display rather than a
+promise of one in the supplement, built on the three pairings the chapter already
+names, with each row labelled by its fit. And it gained a section on what a reader
+should check, since the chapter said what a bad mixed methods study looks like and
+not what to verify in a good one.
+
+**Chapter 27** was missing the section its own opening promised. It says the report
+is "close to a single action: one click" and cited Knuth (1984) in its reference
+list, and both belonged to a passage lost when the 3rd edition's Chapter 14 was
+folded in. That passage is lifted back, with its repairs declared. It also gained a
+section on the title and abstract, which are the only part of a paper most people
+read and which the chapter did not mention, and one on where materials are actually
+deposited, since the open-materials section said what to share and not where or how
+to make it citable. Three errors fixed along the way: the Methods paragraph
+attributed the codebook and the sampling procedure to the wrong chapters, the
+clustering penalty was still "a factor of ten" against the current 8.16, and the
+bot-command figure was still 46 percent against 45.
+
+The short ones now are ch09 (1,913), ch23 (2,001) and ch22 (2,022).
 
 **The kappa example in ch10 is a thought experiment that does not need to be.**
 It says "Imagine the codebook included a loosely worded variable", and its

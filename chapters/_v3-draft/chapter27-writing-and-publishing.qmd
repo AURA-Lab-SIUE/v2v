@@ -8,13 +8,42 @@ This chapter is about the form the work takes when it leaves your hands: the rep
 
 This last chapter gives the work a form. It assembles every piece into one report, makes that report reproducible, and gathers it with the study's other documents into something another researcher can check. The chapter's title names the goal. By the time the study has been built the right way, producing the finished, public report is close to a single action: one click.
 
+## A report that rebuilds itself
+
+Begin with the report, and with the ordinary way of writing one. Run the analysis in R. Copy the numbers into a word processor. Take screenshots of the figures and paste them in. Write the prose around them. This works, and it is quietly fragile. The instant the analysis changes, and analyses always change, a coding rule corrected, a few hundred messages added, every pasted number and every pasted figure is silently out of date, and nothing in the document says so. The write-up and the analysis drift apart, and only luck reveals it.
+
+The alternative is to stop copying and put the analysis inside the document. A **Quarto document**, saved with a `.qmd` extension, is a plain-text file that interleaves ordinary prose with **code chunks**, blocks of live R code. When the document is rendered, Quarto runs every chunk, captures what it produces, the tables, the figures, the test statistics, and places that output into the finished document where the chunk sat. Numbers can also be computed inline, mid-sentence:
+
+```{verbatim lang="markdown"}
+The analysis dataset held `r nrow(analysis)` coded messages, of which
+`r sum(!is.na(analysis$is_gaming))` carried a gaming-status label.
+```
+
+In the rendered report those backtick expressions become the actual counts. Nothing is typed by hand, so nothing can fall out of date. A figure works the same way. The histogram from Chapter 24 is not pasted in; it is produced by a chunk that lives in the report:
+
+`````{verbatim lang="markdown"}
+````markdown
+```{r}
+#| label: fig-msglen
+#| echo: false
+#| fig-cap: "Message length by channel type."
+
+ggplot(msglen, aes(message_length, fill = is_gaming)) +
+  geom_histogram(binwidth = 5) +
+  v2v::theme_v2v()
+```
+````
+`````
+
+This is **reproducible publication**, and it has two payoffs that matter. The report cannot drift from the analysis, because the report is the analysis: re-render it and every number updates itself. And the report can be checked, because anyone holding the source and the data can render it and get exactly the same results, which is the standard a scientific claim is supposed to meet (Peng, 2011). The idea is older than Quarto, older than R. Donald Knuth named it **literate programming** (Knuth, 1984): the conviction that runnable code and the prose explaining it belong together in one document rather than apart in two. Quarto is a modern descendant of that idea, and the "one click" this chapter opened with is its render button. One action, and the document rebuilds itself from source.
+
 ## The shape of a report: IMRaD
 
 A document that rebuilds itself still needs a structure, and empirical research has a standard one, settled enough to have an acronym: **IMRaD**, for Introduction, Methods, Results, and Discussion. Four sections, in that fixed order, and the order is itself a small argument, carrying the reader from why the study was done to what it found to what that means.
 
 The **Introduction** states the question and why it is worth asking. For the chat study this is the work of the prospectus from Chapter 6: the question of whether gaming and non-gaming Twitch chat differ in message length, and the uses-and-gratifications lens that framed talk on a stream as behavior an audience chooses for its own reasons.
 
-The **Methods** section says exactly what was done, in enough detail that another researcher could repeat it. This is the home of the codebook from Chapter 12, the sampling procedure from Chapter 11 and the inter-coder reliability check from Chapter 10, and the wrangling steps from Chapter 11. Methods is the section that earns the reader's trust, and it is the section a reproducible document supports best, because the code that did the work is right there to be read.
+The **Methods** section says exactly what was done, in enough detail that another researcher could repeat it. This is the home of the codebook from Chapter 8, the reliability check from Chapter 10, the content-analysis procedure from Chapter 12, and the wrangling steps from Chapter 11. Methods is the section that earns the reader's trust, and it is the section a reproducible document supports best, because the code that did the work is right there to be read.
 
 The **Results** section reports what was found, plainly and without interpretation. The three figures from Chapter 24 and the t-test from Chapter 25 belong here. Results states the facts: the distributions, the group means, the test statistic with its degrees of freedom, its p-value, and its effect size. It does not yet say what they mean.
 
@@ -22,7 +51,7 @@ The **Discussion** says what the results mean. This is where the interpretation 
 
 Two things belong in the Discussion that student papers routinely omit.
 
-**Limitations, stated as specifics.** "This study has limitations" is not a limitation. This study's are nameable: the messages are not independent observations, so the reported precision is optimistic by roughly a factor of ten; one channel's chat is 46 percent bot commands, which the message-level measures could not distinguish from talk; the corpus dates from 2018 and its vocabulary has moved on. A reader trusts a paper that finds its own problems more than one that does not appear to have looked.
+**Limitations, stated as specifics.** "This study has limitations" is not a limitation. This study's are nameable: the messages are not independent observations, so the reported precision is optimistic by roughly a factor of eight; one channel's chat is 45 percent bot commands, which the message-level measures could not distinguish from talk; the corpus dates from 2018 and its vocabulary has moved on. A reader trusts a paper that finds its own problems more than one that does not appear to have looked.
 
 **What would come next.** Not a gesture at "future research" but the actual next study: what you would collect, and what it would settle.
 
@@ -35,6 +64,18 @@ Qualitative reports keep the same obligations and rearrange them. Methods become
 What does not change is the traceability. Whatever the shape, a reader must be able to see how you got from material to claim. Chapter 21's list of what to report is the qualitative equivalent of the Methods section, and it is not shorter.
 
 Mixed methods reports need a decision about sequence: both strands in full and then the integration, or organized by finding with both strands inside each. Chapter 26's joint display goes wherever the integration is, and the paper should be legible to a reader who is expert in only one of the two halves.
+
+## The two hundred words almost everyone reads
+
+Most people who encounter your study will read the title and the abstract and nothing else. That is not a failure of attention on their part. It is how anyone surveying a literature works, and it means the two hundred words at the front do more work than any other part of the paper.
+
+**The title should say what was studied and, where possible, what was found.** "Chat participation on Twitch" names a topic. "Message length does not distinguish gaming from non-gaming Twitch chat once channels are the unit of analysis" names a finding, and a reader deciding whether to open it now has what they need. Titles that end in a question mark usually mean the answer did not fit, which is a signal worth noticing in your own drafts.
+
+**The abstract is IMRaD in miniature, in that order, with no citations and no suspense.** One or two sentences on the problem and the question. One or two on the design, the data and the analysis, with the actual sample size. Two or three on the findings, with the numbers, not "results are discussed". One on what it means and what it does not.
+
+The commonest fault in a student abstract is that it describes the paper instead of reporting the study: "this paper examines", "findings are presented", "implications are considered". None of those sentences tells a reader anything. Replace each with what was actually examined, found and implied. A useful test is to read the abstract to someone who has not seen the paper and ask them what the study found. If they cannot say, it is not finished.
+
+Write it last, and then check it against the Results section line by line, because an abstract drafted early and never revisited is one of the easier ways to publish a number that appears nowhere else in the paper.
 
 ## Authorship
 
@@ -59,6 +100,18 @@ It is not a cage. You may depart from the plan; you report that you did and why,
 Alongside it, **open materials**: the data where ethics and licences allow, the analysis code, the codebook, the instrument. Chapter 3's obligations govern what can be shared. Human-subjects data usually cannot be posted as collected; a de-identified version, or a synthetic one, plus the full instrument and code, is normally both possible and sufficient for a reader to check the analysis.
 
 The standard to aim at is that someone else, given your materials, would arrive at your numbers. That is a higher bar than most published work in communication currently meets, and it is the direction the field is moving.
+
+## Where the materials actually live
+
+Saying the data and code are "available on request" is, in practice, the same as saying they are not available. Requests go to email addresses that expire, to people who change institutions, and to hard drives that fail. Deposit instead.
+
+**A repository, with a persistent identifier.** A general-purpose archive such as the Open Science Framework or Zenodo will mint a DOI for a deposit, which is what makes it citable and what keeps the link working after your university changes its web platform. A GitHub repository is an excellent place to *develop* the analysis and a poor place to *archive* it, because anyone with access can rewrite its history; the usual arrangement is to develop on GitHub and archive a release of it, which Zenodo will do automatically.
+
+**Deposit at submission, not at acceptance.** Reviewers who can run the analysis review it better, and a link that already exists is one less thing to produce under deadline eight months later.
+
+**Say in the paper what is deposited and what is not, and why.** "All data and analysis code are available at [DOI]" is a claim a reader can check. If the raw data cannot be shared because your consent form did not cover it, say that; it is a legitimate reason and Chapter 3 governs when it applies. What is not legitimate is silence, which reads to an informed reader as a decision you did not want to explain.
+
+A README in the deposit that says what each file is, what order the scripts run in, and what software versions produced the result costs twenty minutes and is the difference between materials that can be used and materials that merely exist.
 
 ## Getting it published
 
@@ -89,5 +142,7 @@ That sequence is what the book's title has been describing all along. **Vibes** 
 ## References
 
 Knuth, D. E. (1984). Literate programming. *The Computer Journal*, *27*(2), 97-111. https://doi.org/10.1093/comjnl/27.2.97
+
+Peng, R. D. (2011). Reproducible research in computational science. *Science*, *334*(6060), 1226-1227. https://doi.org/10.1126/science.1213847
 
 Nosek, B. A., Ebersole, C. R., DeHaven, A. C., & Mellor, D. T. (2018). The preregistration revolution. *Proceedings of the National Academy of Sciences*, *115*(11), 2600-2606. https://doi.org/10.1073/pnas.1708274114
