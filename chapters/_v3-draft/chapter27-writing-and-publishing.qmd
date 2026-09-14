@@ -43,7 +43,7 @@ A document that rebuilds itself still needs a structure, and empirical research 
 
 The **Introduction** states the question and why it is worth asking. For the chat study this is the work of the prospectus from Chapter 6: the question of whether gaming and non-gaming Twitch chat differ in message length, and the uses-and-gratifications lens that framed talk on a stream as behavior an audience chooses for its own reasons.
 
-The **Methods** section says exactly what was done, in enough detail that another researcher could repeat it. This is the home of the codebook from Chapter 8, the reliability check from Chapter 10, the content-analysis procedure from Chapter 12, and the wrangling steps from Chapter 11. Methods is the section that earns the reader's trust, and it is the section a reproducible document supports best, because the code that did the work is right there to be read.
+The **Methods** section says exactly what was done, in enough detail that another researcher could repeat it. This is the home of the codebook from Chapter 8, the reliability check from Chapter 10, the sampling design from Chapter 11, the content-analysis procedure from Chapter 12, and the wrangling steps from Chapter 24. Methods is the section that earns the reader's trust, and it is the section a reproducible document supports best, because the code that did the work is right there to be read.
 
 The **Results** section reports what was found, plainly and without interpretation. The three figures from Chapter 24 and the t-test from Chapter 25 belong here. Results states the facts: the distributions, the group means, the test statistic with its degrees of freedom, its p-value, and its effect size. It does not yet say what they mean.
 

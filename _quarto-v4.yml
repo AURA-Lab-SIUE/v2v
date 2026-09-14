@@ -42,7 +42,7 @@ book:
         - chapters/_v3-draft/chapter08-from-vibes-to-variables.qmd
         - chapters/_v3-draft/chapter09-measurement-scales-items.qmd
         - chapters/_v3-draft/chapter10-reliability-and-validity.qmd
-        - chapters/_v3-draft/chapter11-wrangling-the-data.qmd
+        - chapters/_v3-draft/chapter11-sampling.qmd
         - chapters/_v3-draft/chapter12-quantitative-content-analysis.qmd
         - chapters/_v3-draft/chapter13-survey-research.qmd
         - chapters/_v3-draft/chapter14-experimental-design.qmd

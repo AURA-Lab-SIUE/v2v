@@ -1,0 +1,154 @@
+---
+title: "Chapter 11: Sampling"
+---
+
+Chapter 10 left you with an instrument that two coders can apply consistently. This chapter is about what you point it at.
+
+Almost no study examines everything. You examine some of it and then say something about the rest, and sampling is the name for the reasoning that licenses the second half of that sentence. Get it wrong and every later step inherits the error, because no analysis can recover a group the sample never contained.
+
+## Population, frame, and sample
+
+Three things have to be distinguished, and studies go wrong in the gap between the second and the third far more often than in the gap between the first and the second.
+
+The **population** is the full set of cases your conclusions are meant to be about. Not the cases you can reach. The ones you mean.
+
+The **sampling frame** is the list you actually draw from. For a phone survey it is the number list; for a content analysis it is the archive you have access to; for this book's corpus it is the 1,690 Twitch channels that appear in both the chat log and the stream log during the collection week.
+
+The **sample** is what you draw from the frame.
+
+The frame is where the interesting failures live, because it is easy to forget that it is not the population. A study of American adults conducted by telephone has a frame of people with telephones who answer unknown numbers, and the gap between that and American adults is not a rounding error. This book's frame excludes any channel that streamed without chatting or chatted without streaming, and it excludes everyone who watched without typing, which is most of the audience. Chapter 15 returns to this as **coverage error**, and Chapter 13 meets it again in surveys.
+
+Write your frame down in the methods section as a separate sentence from your population. If the two are the same sentence, you have not thought about it yet.
+
+## Census and sample
+
+Coding every case in the population is a **census**, and it is the right move whenever the population is small enough to handle whole.
+
+This book's stream table is a census. All 90,245 snapshots for the 228 channels ship in their entirety, because the snapshot count is small enough to keep. The chat table is not: 21,964,296 messages is far past what anyone codes by hand, and that is the ordinary condition of content analysis.
+
+The point of a sample is to make the work finite without making the conclusions worthless. Whether it succeeds depends entirely on how it was drawn. Fifteen hundred messages can support a sound study or a misleading one.
+
+## Probability and non-probability sampling
+
+Two families, answering two different questions. Neither is the degenerate case of the other, and a great deal of confusion in methods courses comes from teaching the first as the standard and the second as what you settle for.
+
+In **probability sampling** every case in the frame has a known, non-zero chance of selection. That known chance is what licenses inference: it is the thing that lets you attach a margin of error to an estimate and say something about the population you did not examine. Simple random, systematic, stratified and cluster sampling are the standard designs.
+
+In **non-probability sampling** the chance of selection is unknown. Convenience sampling takes what is reachable. Purposive sampling selects cases because of what they can show you. Snowball sampling recruits through participants' own networks, which is often the only way to reach a population that is not listed anywhere. Quota sampling fills predetermined cells by whatever route works.
+
+The distinction that matters is not rigour. It is what the sample is for. A probability sample is drawn to **represent**, so it is judged on whether the population is faithfully reflected in it. A purposive sample is drawn to **inform**, so it is judged on whether the cases chosen can answer the question. Asking a purposive sample to be representative is asking it to do a job it was not built for, and Chapter 16 makes the positive case for choosing cases deliberately rather than randomly.
+
+Two rules hold across both families. Say which one you used, and never report a margin of error on a non-probability sample, because the arithmetic that produces one assumes a known selection probability that does not exist.
+
+## Why a simple random sample is not enough here
+
+Simple random sampling gives every message in the frame an equal chance of selection. It is unbiased in the precise sense that the researcher's preferences play no part, and for many populations that is all you need.
+
+For Twitch chat it is not, and the reason is the shape of the data.
+
+Chat volume is not spread evenly across channels. In the full population the busiest channel logged more than a million messages during the collection week, the median channel around 1,440, and the quietest one. A distribution shaped like that is **right-skewed**: a few enormous values and a long tail of small ones. Draw messages at random from it and almost all of them come from the handful of giant channels, because that is where almost all the messages are. Most of Twitch would barely appear.
+
+The same problem runs along a second dimension, and this one would have been fatal. Non-gaming channels are **6.8 percent of the joinable population**. A simple random draw of messages would be overwhelmingly gaming chat, and a study whose central comparison is gaming against non-gaming would have plenty of one side and almost nothing of the other.
+
+This is the trap of simple random sampling on skewed data. The sample is unbiased and unrepresentative of the thing you care about at the same time, because it faithfully reproduces the population's imbalance at a smaller size, when what the comparison needs is enough of both groups to compare.
+
+## Stratified sampling
+
+The fix is to stop drawing from one undifferentiated pool. In **stratified sampling** you divide the frame into subgroups called **strata** and draw from each separately, so every stratum is guaranteed a place in whatever proportion you choose rather than whatever proportion the population hands you.
+
+Strata have to be chosen to matter for the question. For this study the stratifying variable is the channel, because gaming status is a property of the channel, and stratifying by channel therefore rescues the comparison by construction rather than by luck.
+
+There are two versions, and the difference is consequential.
+
+**Proportionate** stratification draws from each stratum in proportion to its size in the population. It preserves the population's mix, and on a rare group it preserves the rarity: 6.8 percent of a draw of 50 channels is three.
+
+**Disproportionate** stratification deliberately over-draws the rare stratum, so both groups are large enough to compare. The price is that the sample no longer reflects the population's composition and cannot be used to estimate it.
+
+This book's corpus is disproportionate on purpose, and the reason is worth following because it is the closest thing this book has to a cautionary tale about itself.
+
+## What happened to this book's own sample
+
+The third edition drew 50 channels with volume as the only stratifying variable. Non-gaming status was not a stratum, so the draw returned it at its population rate: three non-gaming channels, plus two that were in the anchor set, giving **five non-gaming channels and 3,457 messages**. Every finding the book reported about gaming against non-gaming chat rested on those five.
+
+Re-drawing that sample under other defensible designs moved the headline gap **from +14.25 characters to -1.16, sign included**. The finding was not a finding. It was an artifact of which five channels happened to be drawn.
+
+The current corpus fixes it by taking the rare stratum whole. All **113 non-gaming channels** in the frame are in the corpus, which is a census of that stratum rather than a sample of it, and **113 gaming channels** are matched against them: the 45 already present, plus 68 drawn stratified by chat-volume decile. Two further channels have no recorded category, which is why the total is 228.
+
+The gap is now +2.43 characters and it holds under relabelling, which Chapter 25 checks. It is also much smaller, and both of those are what a sample that is not straining to represent a group of five will do.
+
+What the design costs is exact, and Chapter 23 spends it carefully. This corpus cannot estimate what share of Twitch is gaming, how common any category is, or what a typical channel looks like. It compares the two groups to each other. Any claim of the first kind is a claim about the sampling design and not about Twitch.
+
+## Sampling within the sample: the cap
+
+Each channel in the corpus contributes `min(1000, available)` messages. 137 of the 228 channels sit at exactly 1,000 and the other 91 contributed everything they had.
+
+A cap is itself a stratified draw, and it has a consequence that runs opposite to the intuitive one.
+
+Capping does not trim a channel's heaviest posters off the top. It takes a random subsample of that channel's messages, and a random subsample of one person's heavy output looks like several people's light output. The cap therefore manufactures one-time senders:
+
+| | Singleton-sender rate |
+|---|---|
+| The 137 capped channels | 63.9 percent |
+| The 91 uncapped channels | 43.1 percent |
+
+Chapter 23 reports that 62.2 percent of senders in this corpus posted exactly once. That figure is substantially a property of the cap, and the honest version of that analysis restricts itself to the 91 uncapped channels or reports the number as a fact about the sample.
+
+This generalizes past this corpus. Any time you take a fixed number of units per group, you have changed the distribution of everything measured at a finer grain than the group.
+
+## How many
+
+Sample size is decided by the precision you need, and the calculation belongs in the design rather than after the data arrive.
+
+For a study testing a hypothesis, the number comes from a **power analysis**: the smallest effect you would care about, the significance threshold, and the probability of detecting the effect if it is there. Chapter 6's prospectus is where that number gets committed to, and Chapter 25 is where you find out whether it was enough. Running the calculation afterwards, on the effect you happened to observe, tells you nothing you did not already know.
+
+For a descriptive study estimating a proportion, the number comes from the margin of error you are willing to report, and the relationship is unkind: halving the margin of error costs four times the sample.
+
+For qualitative work neither calculation applies, and Chapter 16 sets out what replaces them.
+
+Two things surprise people. Population size barely matters once the population is large, so a national survey and a city survey need similar samples for similar precision. And a large sample fixes noise, not bias: a badly framed sample of 50,000 is worse than a well-framed sample of 500, because it delivers a precise answer to the wrong question with no warning that it has done so.
+
+## Drawing it
+
+With the logic settled the draw is one call. `v2v::sample_messages()` takes the data, the variable to stratify by, and how many to draw from each stratum.
+
+```r
+set.seed(409)
+
+coding_sample <- v2v::sample_messages(chat, by = channel, n = 30)
+```
+
+`by = channel` makes each channel a stratum and `n = 30` asks for thirty messages from each. Across 228 channels that aims at roughly 6,800 messages, which is more than anyone codes by hand, so a real study would stratify by channel within a smaller set of channels, or lower `n`, and say which.
+
+`set.seed()` is not optional. Drawing a sample is random, so running it twice gives two different samples, and the seed fixes R's random number generator so the draw comes out identically every time. Without one your sample is unreproducible, and an unreproducible sample undoes everything *The Open Workspace* argued for: anyone rerunning your analysis, including you in six months, works with different messages and cannot check your results. The specific number is arbitrary. That it is set and recorded is not.
+
+One rule governs uneven strata. If you ask for thirty messages from a channel that only ever produced nine, take the nine. A stratum contributes its full weight, or if it is too small, its full self. In this corpus 91 of the 228 channels are in exactly that position.
+
+::: {.graduate-extension}
+**Purposive sampling does not fix inadequate power.** A common misconception is that purposive sampling, selecting the "most relevant" units, compensates for a small *n*. It does not. Purposive sampling improves construct validity and has no effect on statistical power. The two concerns address different inferential problems, and conflating them produces a study that is internally coherent and statistically indefensible.
+
+**Where your prospectus meets your data.** Your Chapter 6 power analysis specified a minimum *n* at a chosen effect size and power level. This is where that number meets what your dataset can supply. If the analysis requires 128 coded units and your collection window yields 10,000, stratified sampling solves it. If the window yields 80, you face a real constraint and must either change the design, through a longer window, more platforms, or a revised question targeting a larger expected effect, or state the limitation. For your own study, put the minimum *n* from Chapter 6 beside the maximum *n* available, and if they conflict, document the conflict and propose one modification that resolves it. Lakens (2022) is blunt about what honesty requires when the data fall short:
+
+> "Do not try to spin a story where it looks like a study was highly informative when it was not. Instead, transparently evaluate how informative the study was given effect sizes that were of interest, and make sure that the conclusions follow from the data."
+>
+> Lakens (2022, p. 11)
+:::
+
+## What to report
+
+A reader cannot evaluate a sample they cannot see. Four sentences, and most published methods sections are missing at least two.
+
+The population, and the frame, stated separately.
+
+The design, named: simple random, stratified with the strata identified, purposive with the selection criteria, and so on.
+
+The size, and how it was decided.
+
+What the design excludes, and in which direction. Not "limitations exist" but the specific thing: which cases could not be drawn, and whether that makes the estimate high or low.
+
+## Looking ahead
+
+Chapter 12 is quantitative content analysis, the design this book teaches end to end, and it is where the codebook from Chapter 8, the reliability check from Chapter 10 and the sample from this chapter finally meet the data.
+
+## References
+
+Lakens, D. (2022). Sample size justification. *Collabra: Psychology*, *8*(1), 33267. https://doi.org/10.1525/collabra.33267

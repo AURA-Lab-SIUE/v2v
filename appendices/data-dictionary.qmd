@@ -55,10 +55,10 @@ Both routes return the same rows. The data objects are the plain fixtures; the l
 | Column | R class | Range or values | Notes |
 |---|---|---|---|
 | `id` | integer | 316 to 21,963,579 | Surrogate key from the source database. The range spans the full 22-million-row dump because the sample is drawn from it, so `id` is an identifier and not a row number |
-| `channel` | character | 228 distinct | **In the raw dump this is prefixed with `#`** (IRC convention). The shipped fixture has the prefix stripped so `channel` joins cleanly to `twitch_streams_sample`. Chapter 11 uses the mismatch as a worked example of a join that fails silently |
+| `channel` | character | 228 distinct | **In the raw dump this is prefixed with `#`** (IRC convention). The shipped fixture has the prefix stripped so `channel` joins cleanly to `twitch_streams_sample`. Chapter 24 uses the mismatch as a worked example of a join that fails silently |
 | `sender` | character | 61,320 distinct | Pseudonymous Twitch username, public on the IRC feed, chosen by the user |
 | `message` | character | 1 to 500 characters | UTF-8. Includes Twitch emote tokens (`LULW`, `OMEGALUL`, `monkaS`, `Pog`, `Kappa`) as first-class lexical items, and messages in Cyrillic, Hangul, Thai, Greek and CJK scripts as well as Latin ones |
-| `date` | integer (bigint) | 1542578131126 to 1543083655336 | **Unix epoch in milliseconds**, not seconds. Convert with `as.POSIXct(date / 1000, origin = "1970-01-01", tz = "UTC")`. Chapter 11's headline conversion |
+| `date` | integer (bigint) | 1542578131126 to 1543083655336 | **Unix epoch in milliseconds**, not seconds. Convert with `as.POSIXct(date / 1000, origin = "1970-01-01", tz = "UTC")`. Chapter 24's headline conversion |
 
 **No message in the file is empty.** Five messages consist of the two characters `NA`, four from `asmongold` and one from `dyrus`; whether those are missing values or messages that say *North America* is not settled by anything in the file, and Chapter 15 makes the case that the ambiguity is the lesson.
 

@@ -128,7 +128,7 @@ The data license a range of research questions:
 - Does the language viewers use to address a streamer change in moments when the audience is climbing versus when it is falling?
 - What does a "regular" of a Twitch channel look like in the data, and how often do the same usernames appear across multiple streams?
 
-A caveat the data itself enforces: five days and twenty hours is not a long time. Questions about how audiences evolve over months or years cannot be answered here. Questions about what was happening on Twitch during that specific window, and what the chat looked like inside it, are well supported. Working within the limits of your data is itself a methodological skill, and Chapter 11 returns to it directly.
+A caveat the data itself enforces: five days and twenty hours is not a long time. Questions about how audiences evolve over months or years cannot be answered here. Questions about what was happening on Twitch during that specific window, and what the chat looked like inside it, are well supported. Working within the limits of your data is itself a methodological skill, and Chapter 15 returns to it directly.
 
 The book is organized around the research process itself, divided into six parts that mirror the narrative arc this chapter has been describing.
 
