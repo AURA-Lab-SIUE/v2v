@@ -2,7 +2,7 @@
 title: "Chapter 25: Inference and Effect"
 ---
 
-Chapter 24 ended on a number and a doubt. The number was a gap: across the sample, gaming channels averaged 28.49 characters per chat message and non-gaming channels 33.70, a difference of a little over five characters. The doubt was whether that gap means anything.
+Chapter 24 ended on a number and a doubt. The number was a gap: across the sample, gaming channels averaged 29.54 characters per chat message and non-gaming channels 31.96, a difference of a little under two and a half characters. The doubt was whether that gap means anything.
 
 The doubt is not idle. A sample almost always shows some gap. Split any group of people in two at random, measure their heights, and the two averages will differ a little, not because the halves are truly different but because no two samples come out identically. The five-character gap between gaming and non-gaming chat could be a real difference between the two kinds of channel. It could also be the ordinary wobble that any two samples produce. Looking at the histogram cannot tell the two apart, because both possibilities produce a gap.
 
@@ -10,7 +10,7 @@ Settling that doubt is the job of **inferential statistics**, and it is the work
 
 ## What a test actually asks
 
-Start with what the question really is. The study did not measure those 34,762 messages because anyone cares about those particular messages. It measured them to learn something about gaming and non-gaming chat in general, the broad populations the sample stands in for. The sample is a means; the population is the point. And a sample, however carefully drawn, is not the population. It is a partial view, and partial views are noisy.
+Start with what the question really is. The study did not measure those 156,579 messages because anyone cares about those particular messages. It measured them to learn something about gaming and non-gaming chat in general, the broad populations the sample stands in for. The sample is a means; the population is the point. And a sample, however carefully drawn, is not the population. It is a partial view, and partial views are noisy.
 
 So the honest question is not "is there a gap in the sample," because there plainly is. It is "is the gap in the sample large enough that chance alone is an unconvincing explanation for it." That is the question a **hypothesis test** answers, and it answers it through a move that feels backward the first time.
 
@@ -43,15 +43,15 @@ Every tool produces the same numbers here in a slightly different layout. What f
 ```
 Welch Two Sample t-test
 
-t = -4.94, df = 3768.7, p-value = 8.1e-07
+t = -10.09, df = 145227, p-value < 2.2e-16
 
-mean in group gaming      28.49
-mean in group non-gaming  33.70
+mean in group gaming      29.54
+mean in group non-gaming  31.96
 ```
 
-The test is named in the first line as a **Welch** two-sample t-test, and the choice of the Welch version is deliberate. The ordinary t-test assumes the two groups have the same spread, and Chapter 24 showed plainly that they do not: the non-gaming standard deviation, 60.68, is far larger than the gaming standard deviation of 38.47. Welch's t-test drops that assumption, which is why it is the safer default whenever two groups might vary by different amounts.
+The test is named in the first line as a **Welch** two-sample t-test, and the choice of the Welch version is deliberate. The ordinary t-test assumes the two groups have the same spread, and Chapter 24 showed plainly that they do not: the non-gaming standard deviation, 54.51, is markedly larger than the gaming standard deviation of 39.69. Welch's t-test drops that assumption, which is why it is the safer default whenever two groups might vary by different amounts.
 
-The rest of the output is the result, and it has three parts worth reading slowly. The `t` value, -4.94, measures the gap between the means in units of its own uncertainty: roughly, how many widths of sampling noise separate the two averages. A value near zero would mean the gap is small compared to the noise; a value of about five means it is large compared to the noise. The sign is only direction, negative because gaming, the first group, sits below non-gaming. The `df`, or degrees of freedom, is a number the test uses to turn `t` into a probability; Welch's test computes it from the two groups' sizes and spreads, which is why it is not a round number. And the `p-value` is the answer to the question the whole test was built to ask.
+The rest of the output is the result, and it has three parts worth reading slowly. The `t` value, -10.09, measures the gap between the means in units of its own uncertainty: roughly, how many widths of sampling noise separate the two averages. A value near zero would mean the gap is small compared to the noise; a value of about ten means it is large compared to the noise. The sign is only direction, negative because gaming, the first group, sits below non-gaming. The `df`, or degrees of freedom, is a number the test uses to turn `t` into a probability; Welch's test computes it from the two groups' sizes and spreads, which is why it is not a round number. And the `p-value` is the answer to the question the whole test was built to ask.
 
 ## Reading the p-value
 
@@ -71,13 +71,13 @@ What matters more is being precise about what the p-value does not say. It is no
 
 For that, the p-value has to hand the question to a different number: an **effect size**.
 
-A p-value answers "is there a difference." An effect size answers "how much of one." The effect size for a gap between two means is **Cohen's d**, and it works by expressing the gap not in raw characters but in units of how much the data naturally vary. The output reports a Cohen's d of -0.13.
+A p-value answers "is there a difference." An effect size answers "how much of one." The effect size for a gap between two means is **Cohen's d**, and it works by expressing the gap not in raw characters but in units of how much the data naturally vary. The output reports a Cohen's d of -0.05.
 
-To read that number, it needs a yardstick, and the standard one comes from Jacob Cohen (1988), who proposed rough benchmarks: a d around 0.2 is a small effect, around 0.5 a medium one, and around 0.8 a large one. A d of 0.13, smaller than even the "small" benchmark, falls into the range usually called negligible. The difference between gaming and non-gaming message length is real, in the sense that the test ruled out chance, and it is also trivially small.
+To read that number, it needs a yardstick, and the standard one comes from Jacob Cohen (1988), who proposed rough benchmarks: a d around 0.2 is a small effect, around 0.5 a medium one, and around 0.8 a large one. A d of 0.05, a quarter of even the "small" benchmark, falls into the range usually called negligible. The difference between gaming and non-gaming message length is real, in the sense that the test ruled out chance, and it is also trivially small.
 
-This is worth dwelling on, because it sounds like a contradiction and is not. The raw gap is about five characters, roughly fifteen percent of the non-gaming average, and fifteen percent does not sound negligible. But Cohen's d measures the gap against the spread of the data, and message lengths vary enormously, with standard deviations of thirty-eight and sixty-one characters. A five-character difference set against that much variation is a ripple. The percentage sounds substantial; the effect size, which is the honest comparison, is not.
+This is worth dwelling on, because it sounds like a contradiction and is not. The raw gap is about two and a half characters, roughly eight percent of the non-gaming average. But Cohen's d measures the gap against the spread of the data, and message lengths vary enormously, with standard deviations of forty and fifty-five characters. A two-character difference set against that much variation is a ripple. The percentage sounds substantial; the effect size, which is the honest comparison, is not.
 
-That leaves one question: how did a negligible difference come back statistically significant at all? The answer is the sample size. The test ran on 34,762 messages, and with a sample that large, a hypothesis test can detect a difference far too small to care about. This is the rule to carry forward: a large enough sample will make almost any difference, however tiny, statistically significant. Significance and size are different questions, and big samples pull them apart.
+That leaves one question: how did a negligible difference come back statistically significant at all? The answer is the sample size. The test ran on 156,579 messages, and with a sample that large, a hypothesis test can detect a difference far too small to care about. This is the rule to carry forward: a large enough sample will make almost any difference, however tiny, statistically significant. Significance and size are different questions, and big samples pull them apart.
 
 ## Seeing the difference
 
@@ -95,32 +95,32 @@ This is the difference between **statistical significance** and **practical sign
 
 In practice that means a result is written up with the full set of numbers, in the compact form journals expect:
 
-> Gaming channels produced shorter chat messages on average than non-gaming channels (28.49 vs. 33.70 characters), Welch's _t_(3768.7) = -4.94, _p_ < .001, Cohen's _d_ = -0.13.
+> Gaming channels produced shorter chat messages on average than non-gaming channels (29.54 vs. 31.96 characters), Welch's _t_(145227) = -10.09, _p_ < .001, Cohen's _d_ = -0.05.
 
 And then, because a string of statistics is not an interpretation, it is written up a second time in a sentence a non-statistician can read: gaming and non-gaming channels do differ in how long their chat messages run, but the difference is so small that for most purposes the two are better thought of as alike than as different. That sentence is the call. It reports the real difference, refuses to inflate it, and tells the reader what the study actually found.
 
 ## More than two groups: ANOVA
 
-The t-test settled a question with exactly two sides: gaming versus non-gaming. Many questions have more. Suppose the study asked not whether gaming and non-gaming chat differ, but whether chat length differs across the specific games being played. Keep each channel's game category, the modal category built in Chapter 24, alongside `is_gaming`, restrict the data to its four largest categories, and four means appear rather than two:
+The t-test settled a question with exactly two sides: gaming versus non-gaming. Many questions have more. Suppose the study asked not whether gaming and non-gaming chat differ, but whether chat length differs across the specific games being played. Keep each channel's game category, the modal category built in Chapter 24, alongside `is_gaming`, restrict the data to the four largest categories that are games, and four means appear rather than two:
 
 | Game category | n | mean length |
 |---|---|---|
-| Fortnite | 4,000 | 33.23 |
-| Hearthstone | 3,004 | 36.82 |
-| Just Chatting | 2,429 | 39.03 |
-| League of Legends | 4,000 | 22.63 |
+| Fortnite | 8,829 | 29.69 |
+| Pokemon: Let's Go | 7,315 | 31.36 |
+| Hearthstone | 6,242 | 29.97 |
+| League of Legends | 6,077 | 26.09 |
 
 A t-test cannot settle this, because a t-test compares two means and there are four. Comparing them two at a time takes six separate tests, each carrying its own chance of a false positive, and those chances pile up. The test built for the whole comparison at once is the **analysis of variance**, or **ANOVA**, and it asks a single question of all the groups together: is any of these means different enough from the rest that chance is an unconvincing explanation?
 
 ```
            Df    Sum Sq  Mean Sq  F value   Pr(>F)
-game        3    547281   182427    92.26   < 2e-16
-Residuals 13429 26552407    1977
+game        3     97428    32476    22.40   1.8e-14
+Residuals 28459  41260011    1450
 ```
 
-The logic is the t-test's logic, widened. Where the t-test produced a `t`, ANOVA produces an **F**, and F compares two kinds of variation: the variation *between* the group means against the variation *within* the groups. If the four categories truly shared a mean, the spread between them would be no larger than the ordinary noise inside each, and F would sit near one. Here F is 92.26, far above one, and the p-value is minuscule: the categories do not all share a mean. League of Legends chat, at 22.63 characters, runs visibly shorter than Just Chatting at 39.03.
+The logic is the t-test's logic, widened. Where the t-test produced a `t`, ANOVA produces an **F**, and F compares two kinds of variation: the variation *between* the group means against the variation *within* the groups. If the four categories truly shared a mean, the spread between them would be no larger than the ordinary noise inside each, and F would sit near one. Here F is 22.40, far above one, and the p-value is minuscule: the categories do not all share a mean. League of Legends chat, at 26.09 characters, runs visibly shorter than Pokemon at 31.36.
 
-And, exactly as with the t-test, significance is not size. The effect size for ANOVA is **eta-squared** (η²), the share of the total variation in message length that the game category accounts for. Here it is 0.02: category explains about two percent of the variation in how long messages run. The categories differ, the difference is real, and it is small, the same honest pair of facts the t-test forced.
+And, exactly as with the t-test, significance is not size. The effect size for ANOVA is **eta-squared** (η²), the share of the total variation in message length that the game category accounts for. Here it is 0.002: category explains about two tenths of one percent of the variation in how long messages run. The categories differ, the difference is real, and it is small, the same honest pair of facts the t-test forced.
 
 ## From difference to model: regression
 
@@ -130,36 +130,45 @@ Fit the original two-group question as a **linear model** of message length on g
 
 ```
               Estimate  Std. Error  t value  Pr(>|t|)
-(Intercept)     33.70       0.70      48.08   < .001
-is_gamingTRUE   -5.21       0.74      -7.06   < .001
+(Intercept)     31.96       0.17     188.50   < .001
+is_gamingTRUE   -2.43       0.24     -10.04   < .001
 ```
 
-Read the two numbers. The intercept, 33.70, is the mean message length of the reference group, non-gaming channels. The coefficient on `is_gamingTRUE`, -5.21, is exactly the gap the t-test found: gaming channels average 5.21 characters fewer. The regression has re-derived the t-test's result and cast it in a new form, a baseline plus an adjustment. (Its `t` of -7.06 differs a little from the Welch test's -4.94 because a plain regression pools the two groups' spread rather than letting them differ; the coefficient, the difference itself, is identical.)
+Read the two numbers. The intercept, 31.96, is the mean message length of the reference group, non-gaming channels. The coefficient on `is_gamingTRUE`, -2.43, is exactly the gap the t-test found: gaming channels average 2.43 characters fewer. The regression has re-derived the t-test's result and cast it in a new form, a baseline plus an adjustment. (Its `t` of -10.04 differs a little from the Welch test's -10.09 because a plain regression pools the two groups' spread rather than letting them differ; the coefficient, the difference itself, is identical.)
 
-That the regression reproduces the t-test is not a coincidence. A t-test is a regression with a single two-level predictor; an ANOVA is a regression with a single many-level predictor. All three belong to one framework, the **general linear model**, and once a study is written as a regression it can grow in ways a t-test cannot: a second predictor added, a continuous predictor rather than a categorical one, several influences weighed at once. This chapter's study needs only the two-group comparison, so the t-test is enough. But regression is where inference stops being a menu of separate tests and becomes one extensible way of modeling how one thing depends on another. Its effect size here tells the same story a third time: the model's R², the share of variance it explains, is about 0.001, so gaming status accounts for almost none of the variation in message length.
+That the regression reproduces the t-test is not a coincidence. A t-test is a regression with a single two-level predictor; an ANOVA is a regression with a single many-level predictor. All three belong to one framework, the **general linear model**, and once a study is written as a regression it can grow in ways a t-test cannot: a second predictor added, a continuous predictor rather than a categorical one, several influences weighed at once. This chapter's study needs only the two-group comparison, so the t-test is enough. But regression is where inference stops being a menu of separate tests and becomes one extensible way of modeling how one thing depends on another. Its effect size here tells the same story a third time: the model's R², the share of variance it explains, is about 0.0006, so gaming status accounts for almost none of the variation in message length.
 
 ## How much the finding depends on one decision
 
-A test tells you whether a gap is larger than sampling noise. It cannot tell you whether the gap survives a different but equally defensible definition of the groups being compared. Here it does not, and that turns out to matter more than the test.
+A test tells you whether a gap is larger than sampling noise. It cannot tell you whether the gap survives a different but equally defensible definition of the groups, or whether it survives being analyzed at the level the groups actually vary. Those are two separate checks, and this study passes the first and fails the second.
 
-`is_gaming` was built as a property of the **channel**: each channel's modal category across the week, applied to every message that channel sent. The same data supports a second operationalization. Label each **message** by the category the channel was actually streaming when it was sent, read from the nearest earlier stream snapshot.
+**The first check: a different label.** `is_gaming` was built as a property of the **channel**, the modal category across the week applied to every message that channel sent. The same data supports labelling each **message** by the category on screen when it was sent, read from the nearest earlier stream snapshot.
 
-| How the label is defined | gaming | non-gaming | gap |
+| How the label is defined | non-gaming | gaming | gap |
 |---|---|---|---|
-| the channel's modal category | 28.49 (n = 31,305) | 33.70 (n = 3,457) | +5.21 |
-| the category on screen at the time | 29.11 (n = 30,707) | 28.13 (n = 4,044) | -0.98 |
+| the channel's modal category | 31.96 (n = 79,413) | 29.54 (n = 77,166) | +2.43 |
+| the category on screen at the time | 31.86 (n = 73,263) | 29.80 (n = 83,228) | +2.06 |
 
-Under the second definition the gap reverses direction, falls to about one character, and is no longer statistically significant: Welch's *t*(4993.6) = 1.34, *p* = .18.
+Those agree. Same direction, similar size, and the second is significant on its own terms, Welch's *t*(135624) = -8.36. The choice of label is not driving the result.
 
-Neither calculation is wrong, and they are not in competition. They answer different questions, and the distance between them is concentrated in one fact worth seeing plainly: **the non-gaming group is five channels.** `bobross`, `hitch`, `xqcow`, `tjsmith` and `darksydephil`, three of them at the corpus's 1,000-message cap, 3,457 messages between them. `xqcow` alone is 29 percent of the group, and that channel is filed under Just Chatting for most of the week while spending a good deal of it playing games. Under the channel-level label every one of its messages is non-gaming. Under the message-level label most of them are not.
+**The second check: the right unit.** Here the finding does not survive, and the reason is Chapter 7's.
 
-Two things follow, and both belong in the write-up.
+The label is a property of a channel. It varies across the 226 classified channels, not across the 156,579 messages. Every message from `bobross` carries the same label, so those messages are not 1,000 independent pieces of evidence about non-gaming chat; they are closer to one. Computing the test over messages answers "could 156,579 independent draws have produced this gap", and nothing in the study drew 156,579 independent anything.
 
-The **unit of analysis** problem is doing real work here. The label varies across 48 channels, five of which are non-gaming, while the test is computed over 34,762 messages. The p-value answers "could 34,762 independent draws have produced this gap by chance". The question that matters is "could five channels", and the answer to that one is much less comfortable.
+Do it properly. Take each channel's mean message length as one observation and compare the channels:
 
-And the **finding has to be stated at the level it was actually measured**. Not "gaming chat is shorter", but "chat on the five predominantly non-gaming channels in this sample is longer on average, by an amount too small to matter, and the difference does not survive relabelling messages by what was on screen at the time".
+| | channels | mean of channel means | sd |
+|---|---|---|---|
+| non-gaming | 106 | 32.74 | 16.0 |
+| gaming | 95 | 31.02 | 11.5 |
 
-That is a duller sentence, and it is the one the data supports.
+Welch's *t*(190.2) = 0.88, *p* = .38. The difference is not statistically significant.
+
+Read those two results together, because they are the same data. At the message level, *p* < .0000000000000002. At the channel level, *p* = .38. Nothing changed except the unit, and the unit is not a matter of taste: the label varies across channels, so channels are what the test has to count.
+
+**What to report, then.** Not "gaming chat is shorter". The honest sentence is that messages on predominantly non-gaming channels run about two and a half characters longer on average, that the difference is negligible in size, *d* = 0.05, and that it is not statistically significant once the analysis respects the fact that the comparison is between 226 channels rather than between 156,579 messages.
+
+That is a duller finding, and it is the one the data supports. It is also the most useful thing this chapter can show you: a hypothesis test computed on the wrong unit will hand you a p-value with fifteen zeroes in it for an effect that is not there.
 
 ## What this chapter cannot do for you
 
@@ -167,7 +176,7 @@ Three limits, each of which has ended a paper in peer review.
 
 **A test cannot repair a design.** Chapter 14 is where causal claims are earned, and no p-value computed on observational data converts a difference into a cause. Gaming channels have shorter messages; nothing here says the game caused it, and channel size, audience, and moderation all differ alongside it.
 
-**A test cannot rescue a violated assumption.** The independence problem stated above does not go away because the output printed a number. Chapter 7 gives the naive standard error for these data as 0.036 against a clustered 0.355, a factor of roughly ten, which is the sort of gap that turns a confident finding into a shrug.
+**A test cannot rescue a violated assumption.** The independence problem stated above does not go away because the output printed a number. Chapter 7 gives the naive standard error for these data as 0.0184 against a clustered 0.1502, a factor of roughly eight, which is the sort of gap that turns a confident finding into a shrug.
 
 **A test cannot choose your threshold after the fact.** Deciding what counts as significant once you have seen the p-value, running several tests and reporting the one that worked, or splitting the sample until a difference appears, are all versions of the same error. Fix the analysis before you run it, and report what you ran, including what failed.
 

@@ -42,21 +42,21 @@ Documentation is written by people and is frequently wrong in small ways. **Chec
 
 Here is that check run on this book's own corpus, which ships with unusually good documentation.
 
-The package documents 35,267 messages across 50 channels, sampled from a 1.6 GB database dump of Twitch chat captured in November 2018, with the random seed recorded, eight named anchor channels, and the remaining 42 drawn as a stratified random sample by chat-volume decile. It states that channel names had their IRC `#` prefix stripped so the table joins cleanly, that timestamps are Unix epoch in milliseconds rather than seconds, and that **each channel contributes at most 1,000 messages**, with smaller channels contributing everything they have.
+The package documents 157,080 messages across 50 channels, sampled from a 1.6 GB database dump of Twitch chat captured in November 2018, with the random seed recorded, eight named anchor channels, and the remaining 42 drawn as a stratified random sample by chat-volume decile. It states that channel names had their IRC `#` prefix stripped so the table joins cleanly, that timestamps are Unix epoch in milliseconds rather than seconds, and that **each channel contributes at most 1,000 messages**, with smaller channels contributing everything they have.
 
 That is more than most datasets tell you. The audit confirms the counts and still finds three things worth acting on.
 
-**The row and channel counts hold.** 35,267 messages, 50 channels, all eight anchors present, and no duplicate identifiers.
+**The row and channel counts hold.** 157,080 messages, 50 channels, all eight anchors present, and no duplicate identifiers.
 
-**Four messages have no text at all.** They are missing values, and because the file is a CSV, they arrive as the two bare characters `NA`. A tool that knows the convention reads them as missing; a spreadsheet reads them as a two-character message. Four rows in 35,267 changes almost nothing here, and it is the shape of a problem that is not always small: a CSV cannot distinguish a missing value from the text that spells it, and `NA`, `NULL`, `N/A`, `-99` and an empty cell all arrive as something.
+**Four messages have no text at all.** They are missing values, and because the file is a CSV, they arrive as the two bare characters `NA`. A tool that knows the convention reads them as missing; a spreadsheet reads them as a two-character message. Four rows in 157,080 changes almost nothing here, and it is the shape of a problem that is not always small: a CSV cannot distinguish a missing value from the text that spells it, and `NA`, `NULL`, `N/A`, `-99` and an empty cell all arrive as something.
 
-**One documented figure describes a different dataset.** The help page says messages run up to 509 characters. The longest message in this file is **501**, and exactly one exceeds 500.
+**One documented figure describes a different dataset.** The help page says messages run up to 509 characters. The longest message in this file is **500**, and none exceeds it.
 
-The 509 is not an invention. It is the maximum of the full 21,964,296-message population the sample was drawn from, and it is correct about that population. It is quoted in the help page for a 35,267-row sample, where a reader will take it as a property of the file in front of them.
+The 509 is not an invention. It is the maximum of the full 21,964,296-message population the sample was drawn from, and it is correct about that population. It is quoted in the help page for a 157,080-row sample, where a reader will take it as a property of the file in front of them.
 
 That is worth more than a simple error would be. **A documented property can be true of the population and false of your extract**, and nothing marks which one a given number refers to. Every figure in a data dictionary carries an implied scope, and the scope is usually not stated.
 
-**And one documented property has a consequence the documentation does not draw out.** Count the messages per channel: **31 of the 50 have exactly 1,000**, including all eight anchors, **none has more than 1,000**, nine have fewer than a hundred, and the smallest has one.
+**And one documented property has a consequence the documentation does not draw out.** Count the messages per channel: **137 of the 228 have exactly 1,000**, including all eight anchors, **none has more than 1,000**, forty-one have fewer than a hundred, and the smallest has one.
 
 That is the cap, exactly as documented, and the audit confirms it. Confirmation is a perfectly good result: you now know the sentence in the help page is true of the file in front of you, which you did not know before.
 
@@ -72,9 +72,9 @@ It changes the meaning of several figures in this book, and the honest thing is 
 
 A cap means the file is **not proportional to real chat volume**. On Twitch, the largest channels produce orders of magnitude more messages than the smallest. In this file they produce the same 1,000. So any figure computed across channels describes the sample's design as much as the platform.
 
-Chapter 23 reported that 68.4 percent of senders posted exactly once, with a Gini coefficient of 0.449, and read that as a structural fact about who gets to speak. The underlying inequality is real and the specific numbers are partly an artifact: capping the busiest channels truncates exactly the heaviest posters, which almost certainly makes the measured concentration **lower** than the platform's. The finding survives; its precision does not.
+Chapter 23 reported that 62.2 percent of senders posted exactly once, with a Gini coefficient of 0.514, and read that as a structural fact about who gets to speak. The underlying inequality is real and the specific numbers are partly an artifact: capping the busiest channels truncates exactly the heaviest posters, which almost certainly makes the measured concentration **lower** than the platform's. The finding survives; its precision does not.
 
-Chapter 25's comparison of gaming against non-gaming channels is affected differently. Because the cap applies within channels, it does not bias the comparison of message lengths much, but it does mean the 31,309 and 3,457 message counts reflect how many channels of each type were sampled rather than how much of Twitch is gaming.
+Chapter 25's comparison of gaming against non-gaming channels is affected differently. Because the cap applies within channels, it does not bias the comparison of message lengths much, but it does mean the 77,166 and 79,413 message counts reflect how many channels of each type were sampled rather than how much of Twitch is gaming.
 
 None of this makes the corpus bad. It makes it a **teaching corpus**, built to be balanced across channels rather than representative of volume, which is a sensible design for a textbook and a poor one for estimating platform-level quantities. The failure would have been to use it for the second without noticing.
 

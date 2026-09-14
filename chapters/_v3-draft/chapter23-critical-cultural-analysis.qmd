@@ -52,13 +52,13 @@ Now the corpus, and a question this tradition asks that the book's data can answ
 
 Critical work is often accused of preferring assertion to evidence. That criticism is sometimes deserved and it is not inherent, because some structural claims are measurable. "Who has a voice in this space" is one of them.
 
-Across the 35,267 messages in the sample, there are **16,866 distinct senders**, and the distribution of speech among them is not close to even.
+Across the 157,080 messages in the sample, there are **61,320 distinct senders**, and the distribution of speech among them is not close to even.
 
-- **68.4 percent of senders posted exactly once.** The median participant contributed one message and was never heard from again.
-- The most active **1 percent** of senders produced **16.1 percent** of all messages.
-- The most active **10 percent** produced **43.4 percent**.
-- The least active half of all senders, more than eight thousand people, produced **23.9 percent** between them.
-- The Gini coefficient of the distribution is **0.449**.
+- **62.2 percent of senders posted exactly once.** The median participant contributed one message and was never heard from again.
+- The most active **1 percent** of senders produced **16.6 percent** of all messages.
+- The most active **10 percent** produced **47.4 percent**.
+- The least active half of all senders, more than thirty thousand people, produced **19.5 percent** between them.
+- The Gini coefficient of the distribution is **0.514**.
 
 Chapter 7 reported the same underlying fact as a statistical problem: messages are not independent, and treating them as though they were understates standard errors. This chapter reads it as a finding about the space rather than a nuisance in the model, and that difference in what a number is *for* is the clearest illustration of the paradigms in this book.
 

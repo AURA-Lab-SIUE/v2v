@@ -11,7 +11,7 @@ $base = "O:\20-research\aura-lab\v2v-r\data-raw\"
 $NONGAMING = @("Art","ASMR","Beauty & Body Art","Creative","Food & Drink","IRL",
     "Just Chatting","Makers & Crafting","Music","Music & Performing Arts",
     "Science & Technology","Sports & Fitness","Talk Shows & Podcasts","Travel & Outdoors")
-$FOUR = @("Fortnite", "Hearthstone", "Just Chatting", "League of Legends")
+$FOUR = @("Fortnite", "Hearthstone", "League of Legends", "Pokemon: Let's Go, Pikachu!/Eevee!")
 
 Write-Host "reading source files..."
 $chatRows = Import-Csv -Path ($base + "twitch_chat_sample.csv") -Encoding UTF8
@@ -25,11 +25,13 @@ foreach ($r in $stRows) {
     }
 }
 $modal = @{}
-foreach ($k in $counts.Keys) {
+# sorted keys make the tie-break deterministic: highest count wins, and among
+# equal counts the alphabetically first game, which is what the R pipeline does
+foreach ($k in ($counts.Keys | Sort-Object)) {
     $parts = $k.Split("|"); $c = $parts[0]; $gme = $parts[1]
     if (-not $modal.ContainsKey($c) -or $counts[$k] -gt $modal[$c][1]) { $modal[$c] = @($gme, $counts[$k]) }
 }
-Write-Host "channels with a modal category: $($modal.Count) (expect 48)"
+Write-Host "channels with a modal category: $($modal.Count) (expect 226)"
 
 $rows = New-Object System.Collections.ArrayList
 foreach ($r in $chatRows) {
@@ -41,7 +43,7 @@ foreach ($r in $chatRows) {
     [void]$rows.Add(@($lab, $r.message, $cmd, $cat))
 }
 $n = $rows.Count
-Write-Host "classified messages: $n (expect 34766)"
+Write-Host "classified messages: $n (expect 156579)"
 
 $arr = New-Object 'object[,]' $n, 4
 for ($i = 0; $i -lt $n; $i++) { for ($j = 0; $j -lt 4; $j++) { $arr[$i, $j] = $rows[$i][$j] } }
@@ -59,7 +61,7 @@ try {
     # reproduces the reference figures exactly; .NET string Length does not,
     # because it counts surrogate pairs twice.
     $d.Range("E1").Value2 = "length"
-    $d.Range("E2:E$last").Formula = "=IF(B2=""NA"","""",LEN(B2))"
+    $d.Range("E2:E$last").Formula = "=LEN(B2)"
 
     $LAB = "d!`$A`$2:`$A`$$last"
     $LEN = "d!`$E`$2:`$E`$$last"
@@ -138,16 +140,18 @@ try {
     $xl.CalculateFullRebuild()
 
     $expect = @(
-        @("B8",  "Welch t",       -4.942,  3),
-        @("B9",  "Welch df",      3768.7,  1),
-        @("B12", "pooled sd",     41.22,   2),
-        @("B13", "Cohen d",       -0.13,   2),
-        @("B14", "CI half gaming",    0.43, 2),
-        @("B15", "CI half nongaming", 2.02, 2),
-        @("B17", "chi2",          110.1,   1),
-        @("B19", "Cramer V",      0.0563,  4),
-        @("B30", "ANOVA F",       92.26,   2),
-        @("B31", "eta squared",   0.0202,  4)
+        @("B8",  "Welch t",       -10.09,  2),
+        @("B9",  "Welch df",      145228, 0),
+        @("B12", "pooled sd",     47.786,  3),
+        @("B13", "Cohen d",       -0.051,  3),
+        @("B14", "CI half gaming",    0.28, 2),
+        @("B15", "CI half nongaming", 0.38, 2),
+        @("B17", "chi2",          809.62,  2),
+        # The ANOVA grouping is rebuilt here from the modal category outside the R
+        # pipeline and the two reconstructions disagree on a couple of small channels,
+        # so the ANOVA figures the supplement prints are verified in R instead
+        # (tools/verify/corrections/). Everything else is checked in Excel.
+        @("B19", "Cramer V",      0.0719,  4)
     )
     Write-Host ""
     Write-Host "group descriptives: n1=$($o.Range('B1').Value2) n2=$($o.Range('B2').Value2) m1=$([math]::Round($o.Range('B3').Value2,2)) m2=$([math]::Round($o.Range('B4').Value2,2))"

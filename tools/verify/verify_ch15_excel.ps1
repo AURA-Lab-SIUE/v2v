@@ -29,6 +29,13 @@ try {
     $d.Range("A2").Resize($n, 5).Value2 = $arr
     $last = $n + 1
 
+    # distinct ids the feasible way: Remove Duplicates, not a quadratic SUMPRODUCT
+    $d.Range("A2:A$last").Copy() | Out-Null
+    $d.Range("M2").PasteSpecial(-4163) | Out-Null
+    $xl.CutCopyMode = 0
+    $d.Range("M1").Value2 = "id_unique"
+    $d.Range("M1:M$last").RemoveDuplicates(1, 1) | Out-Null
+
     $d.Range("G1").Value2 = "length"
     $d.Range("G2:G$last").Formula = "=LEN(D2)"
     $d.Range("H1").Value2 = "ts"
@@ -46,18 +53,18 @@ try {
 
     $o = $wb.Worksheets.Add(); $o.Name = "audit"
     $spec = @(
-        @("rows",                "=COUNTA(chat!`$A`$2:`$A`$$last)",                          35267),
-        @("distinct ids",        "=SUMPRODUCT(1/COUNTIF(chat!`$A`$2:`$A`$$last,chat!`$A`$2:`$A`$$last))", 35267),
-        @("blank messages",      "=COUNTBLANK(chat!`$D`$2:`$D`$$last)",                      0),
-        @("missing (text NA)",   "=COUNTIF(chat!`$D`$2:`$D`$$last,""NA"")",                  4),
-        @("channels",            "=COUNTA(chat!`$J`$2:`$J`$$cLast)",                         50),
+        @("rows",                "=COUNTA(chat!`$A`$2:`$A`$$last)",                          157080),
+        @("distinct ids",        "=COUNTA(chat!`$M`$2:`$M`$$last)",                          157080),
+        @("blank messages",      "=COUNTBLANK(chat!`$D`$2:`$D`$$last)",                      2),
+        @("missing (text NA)",   "=COUNTIF(chat!`$D`$2:`$D`$$last,""NA"")",                  8),
+        @("channels",            "=COUNTA(chat!`$J`$2:`$J`$$cLast)",                         228),
         @("anchors present",     "",                                                          8),
-        @("max length",          "=MAX(chat!`$G`$2:`$G`$$last)",                             501),
-        @("messages over 500",   "=COUNTIF(chat!`$G`$2:`$G`$$last,"">500"")",                1),
+        @("max length",          "=MAX(chat!`$G`$2:`$G`$$last)",                             500),
+        @("messages over 500",   "=COUNTIF(chat!`$G`$2:`$G`$$last,"">500"")",                0),
         @("messages over 509",   "=COUNTIF(chat!`$G`$2:`$G`$$last,"">509"")",                0),
-        @("channels at exactly 1000", "=COUNTIF(chat!`$K`$2:`$K`$$cLast,1000)",              31),
+        @("channels at exactly 1000", "=COUNTIF(chat!`$K`$2:`$K`$$cLast,1000)",              137),
         @("channels over 1000",  "=COUNTIF(chat!`$K`$2:`$K`$$cLast,"">1000"")",              0),
-        @("channels under 100",  "=COUNTIF(chat!`$K`$2:`$K`$$cLast,""<100"")",               9),
+        @("channels under 100",  "=COUNTIF(chat!`$K`$2:`$K`$$cLast,""<100"")",               41),
         @("smallest channel",    "=MIN(chat!`$K`$2:`$K`$$cLast)",                            1)
     )
     for ($i = 0; $i -lt $spec.Count; $i++) {

@@ -50,9 +50,9 @@ One row per figure and table: `id`, `caption`, `what_it_shows`, `source_of_numbe
 
 Two columns earn their keep.
 
-**`source_of_numbers`** names the sheet, cell range or script that produced each value in the figure. When a reviewer asks where 33.70 came from, or when you rebuild the analysis and a number shifts, this column is the difference between a five-minute check and an afternoon. Chapter 24's supplement asks for a `decisions` sheet for the same reason: a spreadsheet keeps no history of itself, so you have to keep it.
+**`source_of_numbers`** names the sheet, cell range or script that produced each value in the figure. When a reviewer asks where 31.96 came from, or when you rebuild the analysis and a number shifts, this column is the difference between a five-minute check and an afternoon. Chapter 24's supplement asks for a `decisions` sheet for the same reason: a spreadsheet keeps no history of itself, so you have to keep it.
 
-**`alt_text`** is written here rather than at submission. Chapter 24 makes the accessibility case; the practical case is that alt text written under deadline, for a figure you made six weeks ago, is bad alt text. Write it while you still remember what the figure is for. It describes what the figure *shows*, not what it *is*: not "a bar chart of message counts by hour" but "message volume peaks at 13:00 with 2,201 messages and bottoms out at 03:00 with 833".
+**`alt_text`** is written here rather than at submission. Chapter 24 makes the accessibility case; the practical case is that alt text written under deadline, for a figure you made six weeks ago, is bad alt text. Write it while you still remember what the figure is for. It describes what the figure *shows*, not what it *is*: not "a bar chart of message counts by hour" but "message volume peaks at 22:00 with 10,967 messages and bottoms out at 14:00 with 4,173".
 
 ## Sheet three: venue fit
 

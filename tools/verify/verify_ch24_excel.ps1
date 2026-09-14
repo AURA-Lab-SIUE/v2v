@@ -18,7 +18,7 @@ $NONGAMING = @("Art","ASMR","Beauty & Body Art","Creative","Food & Drink","IRL",
 Write-Host "reading source files..."
 $chatRows = Import-Csv -Path $chatCsv -Encoding UTF8
 $stRows   = Import-Csv -Path $streamsCsv -Encoding UTF8
-Write-Host "chat records: $($chatRows.Count) (expect 35267)   stream records: $($stRows.Count) (expect 32276)"
+Write-Host "chat records: $($chatRows.Count) (expect 157080)   stream records: $($stRows.Count) (expect 90245)"
 
 $nc = $chatRows.Count
 $chatArr = New-Object 'object[,]' $nc, 5
@@ -64,7 +64,7 @@ try {
     $st.Range("F1").Value2 = "pair"
     $st.Range("F1:F$sLast").RemoveDuplicates(1, 1) | Out-Null
     $pLast = $st.Cells($st.Rows.Count, 6).End(-4162).Row
-    Write-Host "unique channel|game pairs (one row is blank): $($pLast - 1) (expect 104)"
+    Write-Host "unique channel|game pairs (one row is blank): $($pLast - 1) (expect 382)"
 
     $st.Range("G1").Value2 = "n"
     $st.Range("G2:G$pLast").Formula = "=COUNTIF(`$D`$2:`$D`$$sLast,`$F2)"
@@ -81,7 +81,7 @@ try {
     $st.Range("L1").Value2 = "channel"
     $st.Range("L1:L$pLast").RemoveDuplicates(1, 1) | Out-Null
     $chLast = $st.Cells($st.Rows.Count, 12).End(-4162).Row
-    Write-Host "channel list rows (one blank): $($chLast - 1) (expect 49)"
+    Write-Host "channel list rows (one blank): $($chLast - 1) (expect 227)"
 
     $st.Range("M1").Value2 = "top_n"
     $st.Range("M2:M$chLast").Formula = "=IF(`$L2=`"`",`"`",MAXIFS(`$G`$2:`$G`$$pLast,`$H`$2:`$H`$$pLast,`$L2))"
@@ -97,7 +97,7 @@ try {
     $chat.Range("G2:G$cLast").Formula = '=ROUNDDOWN(E2/1000,0)/86400+DATE(1970,1,1)'
     $chat.Range("G2:G$cLast").NumberFormat = "yyyy-mm-dd hh:mm:ss"
     $chat.Range("H1").Value2 = "message_length"
-    $chat.Range("H2:H$cLast").Formula = '=IF(D2="NA","",LEN(D2))'   # 4 messages are missing; CSV spells that NA
+    $chat.Range("H2:H$cLast").Formula = '=LEN(D2)'
     $chat.Range("I1").Value2 = "label"
     $chat.Range("I2:I$cLast").Formula = "=IFERROR(INDEX(streams!`$O`$2:`$O`$$chLast,MATCH(`$B2,streams!`$L`$2:`$L`$$chLast,0)),`"unmatched`")"
 
@@ -105,8 +105,8 @@ try {
 
     Write-Host ""
     Write-Host "message column: text cells = $($xl.WorksheetFunction.CountA($chat.Range("D2:D$cLast")))"
-    Write-Host "first timestamp: $($chat.Range('G2').Text)   (expect 2018-11-18 21:55:27)"
-    Write-Host "first three lengths: $($chat.Range('H2').Value2), $($chat.Range('H3').Value2), $($chat.Range('H4').Value2)  (expect 23, 441, 8)"
+    Write-Host "first timestamp: $($chat.Range('G2').Text)   (expect 2018-11-18 21:55:31)"
+    Write-Host "first three lengths: $($chat.Range('H2').Value2), $($chat.Range('H3').Value2), $($chat.Range('H4').Value2)  (expect 18, 11, 18)"
 
     $R = "`$I`$2:`$I`$$cLast"
     $L = "`$H`$2:`$H`$$cLast"
@@ -114,16 +114,15 @@ try {
     $o = $wb.Worksheets.Add()
     $o.Name = "out"
     $rows = @(
-        @("gaming n",        "=COUNTIF(chat!$R,""gaming"")",               "31309"),
-        @("gaming n_len",    "=COUNTIFS(chat!$R,""gaming"",chat!$L,"">=0"")", "31305"),
-        @("nongaming n",     "=COUNTIF(chat!$R,""nongaming"")",            "3457"),
+        @("gaming n",        "=COUNTIF(chat!$R,""gaming"")",               "77166"),
+        @("nongaming n",     "=COUNTIF(chat!$R,""nongaming"")",            "79413"),
         @("unmatched n",     "=COUNTIF(chat!$R,""unmatched"")",            "501"),
-        @("gaming mean",     "=AVERAGEIFS(chat!$L,chat!$R,""gaming"")",    "28.49"),
-        @("nongaming mean",  "=AVERAGEIFS(chat!$L,chat!$R,""nongaming"")", "33.7"),
-        @("len > 120",       "=COUNTIF(chat!$L,"">120"")",                 "1047"),
-        @("max length",      "=MAX(chat!$L)",                              "501"),
-        @("peak hour 13",    "=SUMPRODUCT(--(HOUR(chat!$G)=13))",          "2201"),
-        @("quiet hour 03",   "=SUMPRODUCT(--(HOUR(chat!$G)=3))",           "833")
+        @("gaming mean",     "=AVERAGEIFS(chat!$L,chat!$R,""gaming"")",    "29.54"),
+        @("nongaming mean",  "=AVERAGEIFS(chat!$L,chat!$R,""nongaming"")", "31.96"),
+        @("len > 120",       "=COUNTIF(chat!$L,"">120"")",                 "5699"),
+        @("max length",      "=MAX(chat!$L)",                              "500"),
+        @("peak hour 22",    "=SUMPRODUCT(--(HOUR(chat!$G)=22))",          "10967"),
+        @("quiet hour 14",   "=SUMPRODUCT(--(HOUR(chat!$G)=14))",          "4173")
     )
     for ($i = 0; $i -lt $rows.Count; $i++) {
         $o.Cells($i + 1, 1).Value2 = $rows[$i][0]
@@ -131,10 +130,10 @@ try {
         $o.Cells($i + 1, 4).Value2 = $rows[$i][2]
     }
     $arr = @(
-        @("gaming median",   "=MEDIAN(IF(chat!$R=""gaming"",chat!$L))",     "17"),
+        @("gaming median",   "=MEDIAN(IF(chat!$R=""gaming"",chat!$L))",     "18"),
         @("nongaming median","=MEDIAN(IF(chat!$R=""nongaming"",chat!$L))",  "16"),
-        @("gaming sd",       "=STDEV.S(IF(chat!$R=""gaming"",chat!$L))",    "38.47"),
-        @("nongaming sd",    "=STDEV.S(IF(chat!$R=""nongaming"",chat!$L))", "60.68")
+        @("gaming sd",       "=STDEV.S(IF(chat!$R=""gaming"",chat!$L))",    "39.69"),
+        @("nongaming sd",    "=STDEV.S(IF(chat!$R=""nongaming"",chat!$L))", "54.51")
     )
     for ($i = 0; $i -lt $arr.Count; $i++) {
         $r = $rows.Count + $i + 1

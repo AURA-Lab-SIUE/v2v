@@ -31,43 +31,65 @@ Each is one formula, and each answers a question you would otherwise be assuming
 **How many rows, really?**
 
 ```
-=COUNTA($A$2:$A$35268)
+=COUNTA($A$2:$A$157081)
 ```
 
-**35,267**, which matches the documentation.
+**157,080**, which matches the documentation.
 
-**Are the identifiers unique?**
+**Are the identifiers unique?** The tempting formula is a classic:
 
 ```
-=SUMPRODUCT(1/COUNTIF($A$2:$A$35268,$A$2:$A$35268))
+=SUMPRODUCT(1/COUNTIF($A$2:$A$157081,$A$2:$A$157081))
 ```
 
-**35,267**, so no duplicates. That formula counts distinct values by giving each row a weight of one over the number of times its value appears, so a value appearing three times contributes three thirds. It is slow on large ranges and worth knowing, because duplicated rows are among the most common defects in a file that has been through an export.
+**Do not run it on this file.** It counts distinct values by giving each row a weight of one over the number of times its value appears, which means Excel compares every row against every other row. At the 35,000 rows this fixture used to hold that was slow. At 157,080 it is about twenty-five billion comparisons, and Excel will appear to hang.
+
+This is worth meeting once, because it is the shape of a problem you will hit again: **a formula whose cost grows with the square of the rows is fine on a sample and impossible on a corpus.** The fix is not a faster machine, it is a different method.
+
+Copy column A, **Paste Special, Values** into a spare column, **Remove Duplicates**, and count what is left:
+
+```
+=COUNTA($M$2:$M$157081)
+```
+
+**157,080**, the same as the row count, so no duplicates. That runs instantly because Remove Duplicates sorts once rather than comparing every pair.
 
 **Any empty values?**
 
 ```
-=COUNTBLANK($D$2:$D$35268)
+=COUNTBLANK($D$2:$D$157081)
 ```
 
-**0**, and that answer is misleading, which is the point of running it.
+**2**, and both halves of that number are a surprise worth having.
 
-Four messages in this corpus are genuinely missing. R writes a missing value into a CSV as the two bare characters `NA`, so the cells are not blank, they contain text, and `COUNTBLANK` is right that nothing is empty. Count them properly:
+There are no empty messages in this file. Not one. But Excel reports two blank cells, and it is right: **two messages in the corpus consist of a single apostrophe.** Excel treats a leading apostrophe as a marker meaning "store what follows as text", so it swallows the character and stores nothing. Two real messages disappear, silently, on import.
+
+Nothing warns you, the cells look empty because they are empty, and `COUNTBLANK` will tell you your data has missing values when what it has is a character Excel refuses to keep. If a blank count ever disagrees with the file you imported, look at the raw text before believing the spreadsheet.
+
+Then the sentinels. R writes a missing value into a CSV as the bare characters `NA`, so it is worth counting them:
 
 ```
-=COUNTIF($D$2:$D$35268,"NA")
+=COUNTIF($D$2:$D$157081,"NA")
 ```
 
-which returns **4**. Before trusting either number, check that no real message is the word `NA`; here none is, so the count is clean.
+which returns **8**. That number is also not what it looks like. Chapter 19's supplement explains why `COUNTIF` is case-insensitive; here that means the count includes every message reading `na` as well as every one reading `NA`. The file holds **5** of the first and **3** of the second, and all eight are real messages that somebody typed. In this corpus `NA` is not a missing-value marker at all: it is how people write North America.
 
-Do both for every column. A column that is 30 percent missing is a column you cannot use as you planned, and it is better to learn that now than after building an analysis on it.
+To count only the exact, case-sensitive string, use the tool Chapter 19 reached for:
 
-**How many channels?** Copy the channel column, **Paste Special, Values**, **Remove Duplicates**: **50**, as documented.
+```
+=SUMPRODUCT(--EXACT($D$2:$D$157081,"NA"))
+```
+
+which returns **5**. Neither number is a missing value. **Before treating a sentinel as missing data, check whether it is a word in the language your participants are speaking.**
+
+Do both counts for every column. A column that is 30 percent missing is a column you cannot use as you planned, and it is better to learn that now than after building an analysis on it.
+
+**How many channels?** Copy the channel column, **Paste Special, Values**, **Remove Duplicates**: **228**, as documented.
 
 **Are the documented anchor channels actually there?** One `COUNTIF` each, against the eight names the documentation lists:
 
 ```
-=COUNTIF($B$2:$B$35268,"bobross")
+=COUNTIF($B$2:$B$157081,"bobross")
 ```
 
 All eight are present. **All eight return exactly 1,000**, which is the first hint of something the documentation does not mention.
@@ -75,7 +97,7 @@ All eight are present. **All eight return exactly 1,000**, which is the first hi
 **What is the real time span?** Convert the timestamps as Chapter 24's supplement does, then:
 
 ```
-=MIN($H$2:$H$35268)   =MAX($H$2:$H$35268)
+=MIN($H$2:$H$157081)   =MAX($H$2:$H$157081)
 ```
 
 **2018-11-18 21:55** to **2018-11-24 18:20**: five days and twenty hours. Not "November 2018", which is what you would have written in your methods section from the documentation alone. A six-day window is a very different object from a month, and it constrains what you can say about anything that varies weekly.
@@ -85,18 +107,18 @@ All eight are present. **All eight return exactly 1,000**, which is the first hi
 The package help page says messages run **up to 509 characters**.
 
 ```
-=MAX($G$2:$G$35268)
+=MAX($G$2:$G$157081)
 ```
 
-returns **501**. And:
+returns **500**. And:
 
 ```
-=COUNTIF($G$2:$G$35268,">500")
+=COUNTIF($G$2:$G$157081,">500")
 ```
 
-returns **1**, while the same formula at `>509` returns **0**.
+returns **0**, and so does the same formula at `>509`.
 
-Eight characters is nothing, and the reason for the gap is worth a great deal. The 509 is the longest message in the **full 21.9-million-message population** this sample was drawn from. It is correct about that population and it is printed in the help page for your 35,267-row extract.
+Nine characters is nothing, and the reason for the gap is worth a great deal. The 509 is the longest message in the **full 21.9-million-message population** this sample was drawn from. It is correct about that population and it is printed in the help page for your 157,080-row extract.
 
 **A documented figure can be true of the population and false of your file**, and nothing in the help page marks which it means. That is not a typo you can correct once; it is a question to ask of every number in a data dictionary.
 
@@ -104,24 +126,24 @@ Eight characters is nothing, and the reason for the gap is worth a great deal. T
 
 This is the check that repays the twenty minutes.
 
-Build the per-channel counts. Take your 50-row channel list and put beside it:
+Build the per-channel counts. Take your 228-row channel list and put beside it:
 
 ```
-=COUNTIF($B$2:$B$35268,$J2)
+=COUNTIF($B$2:$B$157081,$J2)
 ```
 
 Then look at the distribution rather than the individual numbers:
 
 | Check | Formula | Result |
 |---|---|---|
-| channels at exactly 1,000 | `=COUNTIF($K$2:$K$51,1000)` | 31 |
-| channels above 1,000 | `=COUNTIF($K$2:$K$51,">1000")` | 0 |
-| channels below 100 | `=COUNTIF($K$2:$K$51,"<100")` | 9 |
-| smallest channel | `=MIN($K$2:$K$51)` | 1 |
+| channels at exactly 1,000 | `=COUNTIF($K$2:$K$229,1000)` | 137 |
+| channels above 1,000 | `=COUNTIF($K$2:$K$229,">1000")` | 0 |
+| channels below 100 | `=COUNTIF($K$2:$K$229,"<100")` | 41 |
+| smallest channel | `=MIN($K$2:$K$229)` | 1 |
 
-**Thirty-one of fifty channels sit on exactly 1,000, and nothing is above it.**
+**One hundred and thirty-seven of 228 channels sit on exactly 1,000, and nothing is above it.**
 
-Real counts do not do that. A hard ceiling with 31 channels resting on it and none above is a cap, applied when the sample was drawn.
+Real counts do not do that. A hard ceiling with 137 channels resting on it and none above is a cap, applied when the sample was drawn.
 
 The help page says so: *each channel contributes up to 1,000 messages to the sample*. So this check confirms the documentation rather than contradicting it, which is the outcome you should expect most of the time and should still run the check to establish.
 
@@ -153,6 +175,6 @@ Number seven is the whole method. **Documentation is a claim about the data, and
 
 ## What Excel will not do for you
 
-It will not tell you whether the 42 non-anchor channels really were drawn as documented, or what was in the 1.6 GB dump that did not make it into these 35,267 rows. Those questions go to whoever made the file, and "we asked and could not find out" is a legitimate and reportable answer.
+It will not tell you whether the 42 non-anchor channels really were drawn as documented, or what was in the 1.6 GB dump that did not make it into these 157,080 rows. Those questions go to whoever made the file, and "we asked and could not find out" is a legitimate and reportable answer.
 
 It will also not tell you whether the data fits your question, which is the judgment this whole chapter is about. What it does is make sure that when you make that judgment, you are making it about the file you actually have rather than the one the documentation describes.

@@ -111,7 +111,7 @@ The third step is the **join**: attach that one-row-per-channel lookup to every 
 
 add(para(src11, "A join is only as good as the match between its keys"))
 
-add("""Inspect the derived column immediately, before doing anything else with it. Counting the messages in each category gives 3,457 non-gaming, 31,309 gaming, and **501 with no label at all**.
+add("""Inspect the derived column immediately, before doing anything else with it. Counting the messages in each category gives 79,413 non-gaming, 77,166 gaming, and **501 with no label at all**.
 
 That last group is the part worth understanding. Two channels in the corpus streamed without ever having a category recorded, so they have no dominant category, so the join found nothing to attach. The result is correct rather than broken: the data genuinely does not say whether those 501 messages came from gaming channels, and an honest missing value records that the study cannot classify them. They sit out the comparison rather than being guessed into one side of it.
 
@@ -135,20 +135,20 @@ Three numbers describe a single numeric variable, and you need all three.
 
 **The mean** is the arithmetic average, and it uses every value. **The median** is the value of the middle observation when they are sorted, and it does not care how extreme the extremes are. **The standard deviation** summarizes how far values typically sit from the mean.
 
-Here they are for the study's central variable, message length, split by the label built above. The gaming row counts 31,305 rather than 31,309 because four messages in the corpus have no text at all, so they have no length and sit out every statistic in the row:
+Here they are for the study's central variable, message length, split by the label built above:
 
 | Group | n | mean | median | sd |
 |---|---|---|---|---|
-| non-gaming | 3,457 | 33.70 | 16 | 60.68 |
-| gaming | 31,305 | 28.49 | 17 | 38.47 |
+| non-gaming | 79,413 | 31.96 | 16 | 54.51 |
+| gaming | 77,166 | 29.54 | 18 | 39.69 |
 
 Read the `mean` column and a story jumps out. Read the `median` column and it collapses.""")
 
 add(para(src12, "Read the `mean` column and a story jumps out"))
 
-add("""Note the standard deviations too, because they are the loudest signal in the table and the easiest to skip. Non-gaming messages vary far more than gaming ones, 60.68 against 38.47, and a standard deviation nearly twice a group's own mean is a warning that the mean is describing a shape it does not fit.
+add("""Note the standard deviations too, because they are the loudest signal in the table and the easiest to skip. Non-gaming messages vary more than gaming ones, 54.51 against 39.69, and a standard deviation well over a group's own mean is a warning that the mean is describing a shape it does not fit.
 
-Chapter 23's supplement made the same point with the same corpus from a different angle: the mean participant posted 2.09 messages and the median posted one. **Whenever a mean and a median disagree, the distribution is telling you something, and the way to hear it is to look.**""")
+Chapter 23's supplement made the same point with the same corpus from a different angle: the mean participant posted 2.56 messages and the median posted one. **Whenever a mean and a median disagree, the distribution is telling you something, and the way to hear it is to look.**""")
 
 # ---------------------------------------------------------------- visualizing
 add("## Looking at it")
@@ -184,7 +184,7 @@ add("### A histogram for shape")
 add(para(src12, "The third question is the study's central one"))
 add(para(src12, "This question is not about a total or a trend. It is about a **distribution**"))
 
-add("""Two choices shape a histogram and both have to be disclosed. **Bin width** sets how wide each bar is: wider bins smooth the shape, narrower bins roughen it, and the number is a judgment you make and report. **Capping the axis** hides the far tail so the bulk of the data is visible, and it is legitimate only if you say what it hid. Here the display caps at 120 characters, which puts 1,047 messages, three percent of the corpus, out of view, stretched thinly all the way out to 501 characters.
+add("""Two choices shape a histogram and both have to be disclosed. **Bin width** sets how wide each bar is: wider bins smooth the shape, narrower bins roughen it, and the number is a judgment you make and report. **Capping the axis** hides the far tail so the bulk of the data is visible, and it is legitimate only if you say what it hid. Here the display caps at 120 characters, which puts 5,699 messages, under four percent of the corpus, out of view, stretched thinly all the way out to 500 characters.
 
 A cap that removes three percent to make the other ninety-seven legible is a good trade. A cap that removes a third of the data is a different figure entirely.""")
 

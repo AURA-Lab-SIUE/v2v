@@ -14,24 +14,24 @@ write.csv(twitch_chat_sample, "twitch_chat_sample.csv", row.names = FALSE)
 write.csv(twitch_streams_sample, "twitch_streams_sample.csv", row.names = FALSE)
 ```
 
-The chat file has 35,267 messages with `id`, `channel`, `sender`, `message`, `date`. The streams file has 32,276 snapshots with `id`, `channel`, `title`, `game`, `viewers`, `date`. The gaming label the study needs is in neither: it has to be built from the second and attached to the first.
+The chat file has 157,080 messages with `id`, `channel`, `sender`, `message`, `date`. The streams file has 90,245 snapshots with `id`, `channel`, `title`, `game`, `viewers`, `date`. The gaming label the study needs is in neither: it has to be built from the second and attached to the first.
 
 ## Trap one: the import retypes your data
 
 Import both through **Data**, **From Text/CSV**, **65001: Unicode (UTF-8)**. Then, before clicking Load, open **Transform Data** and set the **message** column's type to **Text**.
 
-That last step is not housekeeping. Left to decide for itself, Excel looks at each message and converts the ones that look like something else. In this corpus that is **212 messages read as numbers and 5 read as formula errors**, out of 35,267. Seventeen hundredths of one percent.
+That last step is not housekeeping. Left to decide for itself, Excel looks at each message and converts the ones that look like something else. In this corpus **1,377 messages look like numbers** and **11,307, seven percent of the file, begin with `=`, `+`, `-` or `@`**, which Excel treats as the start of a formula.
 
 Here is what those 217 cells do to the chapter's results:
 
-| Figure | message typed as Text | left to Excel |
-|---|---|---|
-| non-gaming mean length | 33.70 | 34.03 |
-| non-gaming sd | 60.68 | 61.64 |
-| messages over 120 characters | 1,047 | 1,164 |
-| gaming mean length | 28.49 | `#NAME?` |
+| Figure | message typed as Text |
+|---|---|
+| non-gaming mean length | 31.96 |
+| non-gaming sd | 54.51 |
+| messages over 120 characters | 5,699 |
+| gaming mean length | 29.54 |
 
-The last row is the merciful case: five poisoned cells make every calculation over the gaming group return an error, so you find out. The first three are the dangerous ones. A mean of 34.03 is perfectly plausible, it appears with no warning, and it is wrong.
+Those are the figures when the column is typed as Text. Leave Excel to decide and it converts a message like `20-1` into a date and `+1` into a formula, and every statistic in the table moves by an amount nobody can predict from the outside. Some of those cells error loudly, which is the merciful case. The rest come back plausible and wrong.
 
 Chapter 19's supplement met the same problem from the emoji side. The rule that covers both: **import text as text, every time, and never by double-clicking the file.**
 
@@ -51,9 +51,9 @@ Drop the `ROUNDDOWN` and the formula still works, still produces sensible dates,
 
 An Excel date is a floating-point number of days, so a millisecond is about one part in ninety million of the value being stored, and the last digits do not survive. **Nineteen messages in this corpus fall within one second of an hour boundary**, and some of them land on the wrong side of it: a message stamped 02:59:59.728 comes back as 03:00:00.
 
-Counting messages per hour, that turns 2,201 messages in the 13:00 hour into 2,202, and 833 in the 03:00 hour into 834. Truncating to whole seconds first, which is what `ROUNDDOWN(E2/1000,0)` does, keeps every message in the hour it happened in.
+Counting messages per hour, that moves a handful of messages out of the hour they happened in and into the next one. Truncating to whole seconds first, which is what `ROUNDDOWN(E2/1000,0)` does, keeps every message in the hour it happened in.
 
-Two messages out of 35,267 is not a crisis. It is a demonstration that a conversion can be right to the eye and wrong in the fourth digit, which is the sort of thing that ends up in a table.
+Two messages out of 157,080 is not a crisis. It is a demonstration that a conversion can be right to the eye and wrong in the fourth digit, which is the sort of thing that ends up in a table.
 
 ## Deriving message length
 
@@ -67,7 +67,7 @@ The first three come back 23, 441 and 8. If you skipped the Text step above, som
 
 The `IF` is not decoration. **Four messages in this corpus have no text at all**, and R writes a missing value into a CSV as the two bare characters `NA`. Excel has no way to know that is not a message, so `LEN` returns **2** and four missing messages quietly become four two-character ones.
 
-Four rows in 35,267 move the mean by less than a hundredth of a character, so nothing in the descriptives below changes. They move the third digit of Chapter 25's test statistics, and they change an `n` you would report. The general point is the one worth keeping: **a CSV cannot distinguish a missing value from the text that spells it**, and every tool guesses differently. Check what your file uses for missing before you compute anything over it, because `NA`, `N/A`, `NULL`, `-99` and an empty cell all arrive as something, and only one of them is nothing.
+Four rows in 157,080 move the mean by less than a hundredth of a character, so nothing in the descriptives below changes. They move the third digit of Chapter 25's test statistics, and they change an `n` you would report. The general point is the one worth keeping: **a CSV cannot distinguish a missing value from the text that spells it**, and every tool guesses differently. Check what your file uses for missing before you compute anything over it, because `NA`, `N/A`, `NULL`, `-99` and an empty cell all arrive as something, and only one of them is nothing.
 
 ## Building the gaming label
 
@@ -81,7 +81,7 @@ Excel has no direct "count of the pairs of two columns", so build the pair yours
 =IF(OR($D2="",$D2="NA"),"",$B2&"|"&$D2)
 ```
 
-Copy that column, **Paste Special, Values** into a spare column, and **Remove Duplicates**. You get **102 distinct channel-and-game pairs**, plus one blank row for the snapshots with no category.
+Copy that column, **Paste Special, Values** into a spare column, and **Remove Duplicates**. You get **381 distinct channel-and-game pairs**, plus one blank row for the snapshots with no category.
 
 Then count each pair, and split it back apart:
 
@@ -95,17 +95,17 @@ The pipe character is doing real work: it has to be something that cannot appear
 
 ### Trap three: 102 pairs, or 103?
 
-R and Python find **103** pairs here. Excel finds **102**, and neither is a bug.
+R and Python find **386** pairs here. Excel finds **381**, and neither is a bug.
 
-The channel `xqcow` streamed under two categories written as `Minecraft` (121 snapshots) and `minecraft` (14). `COUNTIF` and **Remove Duplicates** are both case-insensitive, so Excel treats them as one category with 135 snapshots. A case-sensitive tool treats them as two.
+Five pairs in this corpus differ only in the case of the game name, `Minecraft` against `minecraft` among them. `COUNTIF` and **Remove Duplicates** are both case-insensitive, so Excel folds each pair into one category. A case-sensitive tool keeps them apart.
 
-In this instance it does not change the outcome, because `xqcow`'s top category is `Just Chatting` with 571 snapshots either way. But notice how close that was to mattering: if the split category had been the channel's largest, the two tools would have disagreed about how an entire channel was classified, and the disagreement would have appeared nowhere except in a label.
+In this instance it changes no channel's modal category, because none of the five split categories was its channel's largest. But notice how close that was to mattering: had one been, the two tools would have disagreed about how an entire channel was classified, and the disagreement would have appeared nowhere except in a label.
 
 Chapter 19's supplement had to leave `COUNTIF` behind for `EXACT` and `FIND` for exactly this reason. Here the honest move is to decide, before counting, whether `Minecraft` and `minecraft` are one category. They obviously are, so Excel's answer is the one you want and you should say in the write-up that categories were matched case-insensitively.
 
 ### Picking the modal category
 
-One row per channel: copy the channel column, **Remove Duplicates** again, and you have **48 channels with a recorded category**.
+One row per channel: copy the channel column, **Remove Duplicates** again, and you have **226 channels with a recorded category**.
 
 The highest count for each is `MAXIFS`:
 
@@ -139,7 +139,7 @@ Back on the chat sheet:
 =IFERROR(INDEX(streams!$S$2:$S$50,MATCH($B2,streams!$P$2:$P$50,0)),"unmatched")
 ```
 
-Counting the result gives **31,309 gaming, 3,457 non-gaming, and 501 unmatched.**
+Counting the result gives **77,166 gaming, 79,413 non-gaming, and 501 unmatched.**
 
 ### Trap four: what your IFERROR says
 
@@ -153,31 +153,29 @@ Returning a visible label that is neither group is the only option that preserve
 
 | Statistic | Formula | gaming | non-gaming |
 |---|---|---|---|
-| n | `=COUNTIFS($I$2:$I$35268,"gaming",$H$2:$H$35268,">=0")` | 31,305 | 3,457 |
-| mean | `=AVERAGEIFS($H$2:$H$35268,$I$2:$I$35268,"gaming")` | 28.49 | 33.70 |
-| median | see below | 17 | 16 |
-| sd | see below | 38.47 | 60.68 |
+| n | `=COUNTIF($I$2:$I$157081,"gaming")` | 77,166 | 79,413 |
+| mean | `=AVERAGEIFS($H$2:$H$157081,$I$2:$I$157081,"gaming")` | 29.54 | 31.96 |
+| median | see below | 18 | 16 |
+| sd | see below | 39.69 | 54.51 |
 
 Excel has `AVERAGEIFS` and `COUNTIFS` but **no `MEDIANIFS` and no `STDEVIFS`**, which is a real gap and the reason the last two rows need a different form:
 
 ```
-=MEDIAN(IF($I$2:$I$35268="gaming",$H$2:$H$35268))
-=STDEV.S(IF($I$2:$I$35268="gaming",$H$2:$H$35268))
+=MEDIAN(IF($I$2:$I$157081="gaming",$H$2:$H$157081))
+=STDEV.S(IF($I$2:$I$157081="gaming",$H$2:$H$157081))
 ```
 
 In current Excel these work as typed. In older versions they must be entered with **Ctrl+Shift+Enter**, which wraps them in braces and marks them as array formulas; without it they return a wrong answer rather than an error.
 
-The gaming `n` is 31,305 rather than the 31,309 messages that came from gaming channels, because of the four with no text. `COUNTIFS` with a second condition of `">=0"` counts only the rows that actually have a length, so the `n` describes the same messages as the mean beside it.
-
-Now read the table, which is the point of building it. The means differ by five characters and the medians differ by one, in the opposite direction. Chapter 24 explains what that means; the spreadsheet's contribution is that it took four formulas to see it, and that a workbook reporting only `AVERAGEIFS` would have reported the wrong story with complete confidence.
+Now read the table, which is the point of building it. The means differ by two and a half characters and the medians differ by two, in the opposite direction. Chapter 24 explains what that means; the spreadsheet's contribution is that it took four formulas to see it, and that a workbook reporting only `AVERAGEIFS` would have reported the wrong story with complete confidence.
 
 ## The histogram
 
 Select the message-length column and insert a **Histogram** chart, or build one with `FREQUENCY` over bins you choose.
 
-Two settings have to be chosen and reported. **Bin width**: five characters is a reasonable start here. **The axis cap**: set the horizontal axis maximum to 120. That hides **1,047 messages, three percent of the corpus**, which run out as far as 501 characters.
+Two settings have to be chosen and reported. **Bin width**: five characters is a reasonable start here. **The axis cap**: set the horizontal axis maximum to 120. That hides **5,699 messages, under four percent of the corpus**, which run out as far as 500 characters.
 
-Check that number before you cap, with `=COUNTIF($H$2:$H$35268,">120")`, and put it in the figure caption. A cap that hides three percent to make the other ninety-seven legible is a good trade that you disclosed. A cap you did not measure is a figure you cannot defend.
+Check that number before you cap, with `=COUNTIF($H$2:$H$157081,">120")`, and put it in the figure caption. A cap that hides three percent to make the other ninety-seven legible is a good trade that you disclosed. A cap you did not measure is a figure you cannot defend.
 
 ## The sheet that makes this reproducible
 
@@ -189,6 +187,6 @@ That sheet is your methods section. Writing it while you work takes a minute a d
 
 ## What Excel will not do for you
 
-It will not tell you that a mean of 34.03 came from 212 retyped messages, that two hours of the day are off by one, or that two categories differing only in case were merged. Every one of those returned a number that looked exactly like the right answer.
+It will not tell you that a mean shifted because 1,377 messages were retyped, that two hours of the day are off by one, or that five categories differing only in case were merged. Every one of those returned a number that looked exactly like the right answer.
 
 The check that catches them is not a feature. It is the habit of reproducing a figure a second way, on a case you can verify by hand, before you believe it, which is the same habit Chapter 25 will ask for when the numbers stop being descriptions and start being evidence.

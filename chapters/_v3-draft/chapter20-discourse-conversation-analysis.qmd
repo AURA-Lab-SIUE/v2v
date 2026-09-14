@@ -68,12 +68,12 @@ Herring (1999) named the consequence **interactional coherence**: in computer-me
 
 That is measurable here. Taking every message in the corpus that addresses another participant by name and looking for the addressee's next message:
 
-- Only **11.1 percent** of addressed messages are followed *immediately* by the person addressed.
-- The median number of messages intervening is **11**.
-- Just **36 percent** see the addressee speak within five messages.
-- In **35 percent** of cases the addressee does not speak again within the next two hundred messages at all.
+- Only **6.5 percent** of addressed messages are followed *immediately* by the person addressed.
+- The median number of messages intervening is **16**.
+- Just **22 percent** see the addressee speak within five messages.
+- In **20 percent** of cases the addressee does not speak again in the channel at all.
 
-Read those against the machinery. In spoken conversation, a question makes an answer conditionally relevant *in the next turn*, and its absence there is meaningful. In this room the next turn belongs to whoever typed fastest, and the addressee's reply, when it comes, arrives with a median of eleven other messages stacked in front of it.
+Read those against the machinery. In spoken conversation, a question makes an answer conditionally relevant *in the next turn*, and its absence there is meaningful. In this room the next turn belongs to whoever typed fastest, and the addressee's reply, when it comes, arrives with a median of sixteen other messages stacked in front of it.
 
 So participants adapt. The at-mention itself is a repair device: it exists because adjacency cannot be relied on to show who is talking to whom. Quoting the prior message serves the same purpose. What in speech is done by sequential position has to be done here by explicit address, and the community invented the tools to do it.
 

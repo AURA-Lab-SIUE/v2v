@@ -112,12 +112,12 @@ add("## A worked reliability check")
 
 add(para("ch10", "To see what a failed check looks like, and why codebooks fail it"))
 add(para("ch10", "Imagine the codebook included a loosely worded variable."))
-add(para("ch10", "The two coders agreed on 74 of the 100 messages"))
-add(para("ch10", "By the Landis and Koch labels, 0.236 is fair agreement."))
+add(para("ch10", "The two coders agreed on 80 of the 100 messages"))
+add(para("ch10", "By the Landis and Koch labels, 0.015 is slight agreement"))
 
 add("## When reliability fails")
 
-add(para("ch10", "A kappa of 0.236 is not a result to report."))
+add(para("ch10", "A kappa of 0.015 is not a result to report."))
 add(para("ch10", "The fix begins with diagnosis."))
 add(para("ch10", "Then the codebook, now revised, is piloted again."))
 add(para("ch10", "This is why Chapter 9 finalized only the codebook's status",

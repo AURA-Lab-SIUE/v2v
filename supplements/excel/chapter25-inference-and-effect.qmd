@@ -4,7 +4,7 @@ title: "Excel Supplement, Chapter 25: Inference and Effect"
 
 Excel will run every test in Chapter 25, and it will run two of them badly if you use the obvious button. This supplement builds each test from its own arithmetic instead, which takes four formulas rather than one and means you can see what the test is doing.
 
-It starts from the table Chapter 24's supplement built: one row per message, with a `length` column and a `label` column reading `gaming`, `nongaming` or `unmatched`. The 501 unmatched messages sit out everything below, leaving **34,766** classified messages, **34,762** of which carry a length. Chapter 24's supplement explains the four that do not: they are missing, and the CSV spells that `NA`. Counts of messages below use 34,766; anything computed from message length uses 34,762.
+It starts from the table Chapter 24's supplement built: one row per message, with a `length` column and a `label` column reading `gaming`, `nongaming` or `unmatched`. The 501 unmatched messages sit out everything below, leaving **156,579** classified messages.
 
 ## A note on the Analysis ToolPak
 
@@ -22,9 +22,9 @@ You need six numbers first. With `label` in column A and `length` in column E:
 
 | | Formula | gaming | non-gaming |
 |---|---|---|---|
-| n | `=COUNTIFS($A$2:$A$34767,"gaming",$E$2:$E$34767,">=0")` | 31,305 | 3,457 |
-| mean | `=AVERAGEIFS($E$2:$E$34767,$A$2:$A$34767,"gaming")` | 28.49 | 33.70 |
-| sd | `=STDEV.S(IF($A$2:$A$34767="gaming",$E$2:$E$34767))` | 38.47 | 60.68 |
+| n | `=COUNTIF($A$2:$A$156580,"gaming")` | 77,166 | 79,413 |
+| mean | `=AVERAGEIFS($E$2:$E$156580,$A$2:$A$156580,"gaming")` | 29.54 | 31.96 |
+| sd | `=STDEV.S(IF($A$2:$A$156580="gaming",$E$2:$E$156580))` | 39.69 | 54.51 |
 
 Call those `n1, m1, s1` and `n2, m2, s2`. Welch's t, which does not assume the groups share a spread, is:
 
@@ -32,22 +32,22 @@ Call those `n1, m1, s1` and `n2, m2, s2`. Welch's t, which does not assume the g
 =(m1-m2)/SQRT(s1^2/n1+s2^2/n2)
 ```
 
-giving **-4.942**. And its degrees of freedom, the Welch-Satterthwaite formula, which looks worse than it is:
+giving **-10.088**. And its degrees of freedom, the Welch-Satterthwaite formula, which looks worse than it is:
 
 ```
 =(s1^2/n1+s2^2/n2)^2/((s1^2/n1)^2/(n1-1)+(s2^2/n2)^2/(n2-1))
 ```
 
-giving **3768.7**. That is not a whole number and is not supposed to be: Welch's correction buys robustness by spending degrees of freedom, and the price is fractional.
+giving **145,227**. That is not a whole number and is not supposed to be: Welch's correction buys robustness by spending degrees of freedom, and the price is fractional.
 
 For the p-value, `T.TEST` does the whole thing in one step:
 
 ```
-=T.TEST(IF($A$2:$A$34767="gaming",$E$2:$E$34767),
-        IF($A$2:$A$34767="nongaming",$E$2:$E$34767),2,3)
+=T.TEST(IF($A$2:$A$156580="gaming",$E$2:$E$156580),
+        IF($A$2:$A$156580="nongaming",$E$2:$E$156580),2,3)
 ```
 
-returning **8.08E-07**, which you report as *p* < .001.
+returning **6.39E-24**, which you report as *p* < .001.
 
 **The two arguments at the end are the whole test and both are easy to get wrong.** The `2` asks for a two-tailed test, which is what you want unless you predicted the direction in advance and said so in your hypothesis. The `3` asks for Welch's unequal-variance version; a `2` there would run the pooled test that assumes the spreads match, and Chapter 24 showed these spreads differ by a factor of about 1.6. Excel will run whichever you ask for and will not comment.
 
@@ -63,15 +63,15 @@ The pooled standard deviation:
 =SQRT(((n1-1)*s1^2+(n2-1)*s2^2)/(n1+n2-2))
 ```
 
-which is **41.22**. Then:
+which is **47.79**. Then:
 
 ```
 =(m1-m2)/pooled_sd
 ```
 
-which is **-0.13**.
+which is **-0.05**.
 
-Against Cohen's benchmarks of 0.2, 0.5 and 0.8, that is below even the small one. The difference is real and negligible, which is the pair of facts Chapter 25 is built around, and Excel gave up neither of them without being asked.
+Against Cohen's benchmarks of 0.2, 0.5 and 0.8, that is a quarter of even the small one. The difference is real and negligible, which is the pair of facts Chapter 25 is built around, and Excel gave up neither of them without being asked.
 
 Note which standard deviation goes where. The **test** used each group's own spread, because they differ. The **effect size** uses the pooled spread, because d expresses the gap in units of a common yardstick. Mixing them up gives you a number that is not d and that nobody can interpret.
 
@@ -83,11 +83,11 @@ A ninety-five percent interval around each mean is the mean plus or minus about 
 =1.96*s1/SQRT(n1)
 ```
 
-That half-width is **0.43** characters for the gaming group and **2.02** for the non-gaming group.
+That half-width is **0.28** characters for the gaming group and **0.38** for the non-gaming group.
 
 Plot the two means with those intervals as error bars, on an axis starting at zero. Chapter 25 explains what you see: the intervals clear each other, which is the significant difference, and the two points sit almost on top of each other far up the axis, which is the negligible effect. **One picture carries both facts, and neither number does alone.**
 
-The non-gaming interval is nearly five times wider than the gaming one, from a group an order of magnitude smaller and more variable. Precision is not shared out evenly, and an interval is the honest way to show it.
+The non-gaming interval is a third wider than the gaming one, from a group that is no larger but considerably more variable. Precision is not shared out evenly, and an interval is the honest way to show it.
 
 ## Chi-square, for two categorical variables
 
@@ -95,11 +95,11 @@ A different question from the same table: are bot commands distributed evenly be
 
 | | command | not | total |
 |---|---|---|---|
-| gaming | 1,916 | 29,393 | 31,309 |
-| non-gaming | 61 | 3,396 | 3,457 |
-| total | 1,977 | 32,789 | 34,766 |
+| gaming | 3,762 | 73,404 | 77,166 |
+| non-gaming | 1,764 | 77,649 | 79,413 |
+| total | 5,526 | 151,053 | 156,579 |
 
-Those are counts of messages rather than of lengths, so all 34,766 classified messages appear here, including the four with no text.
+Those are counts of messages rather than of lengths, so all 156,579 classified messages appear here, including the four with no text.
 
 The expected count for each cell, if the two variables were unrelated, is its row total times its column total over the grand total:
 
@@ -107,7 +107,7 @@ The expected count for each cell, if the two variables were unrelated, is its ro
 =$F2*D$4/$F$4
 ```
 
-Written with those exact anchors it fills the whole expected table from one cell, which is Chapter 21's mixed-anchoring move again. Expected counts run 1,780.4 and 29,528.6 on the top row, 196.6 and 3,260.4 on the bottom.
+Written with those exact anchors it fills the whole expected table from one cell, which is Chapter 21's mixed-anchoring move again. Expected counts run 2,723.4 and 74,442.6 on the top row, 2,802.6 and 76,610.4 on the bottom.
 
 Chi-square is then the sum of squared differences over expected:
 
@@ -115,9 +115,9 @@ Chi-square is then the sum of squared differences over expected:
 =SUMPRODUCT((D2:E3-D6:E7)^2/D6:E7)
 ```
 
-giving **110.10** on 1 degree of freedom.
+giving **809.62** on 1 degree of freedom.
 
-**Now the trap in Excel's own function.** `CHISQ.TEST(actual, expected)` returns a p-value, here 9.3E-26, and it takes the expected counts as an argument, so it cannot check whether you computed them correctly. Feed it a wrong expected table and it returns a confident p-value for a test you did not run. Compute the statistic yourself and use the function as the check.
+**Now the trap in Excel's own function.** `CHISQ.TEST(actual, expected)` returns a p-value, here 4.4E-178, and it takes the expected counts as an argument, so it cannot check whether you computed them correctly. Feed it a wrong expected table and it returns a confident p-value for a test you did not run. Compute the statistic yourself and use the function as the check.
 
 `CHISQ.TEST` also gives you no effect size. For a two-by-two table Cramér's V is:
 
@@ -125,9 +125,9 @@ giving **110.10** on 1 degree of freedom.
 =SQRT(chi2/N)
 ```
 
-which is **0.0563**.
+which is **0.0719**.
 
-And there it is a third time. A chi-square of 110 with p around 10^-26 is about as significant as results get, and an association of 0.06 is almost nothing. **The p-value is measuring the sample size as much as the effect**, which is exactly the lesson the t-test taught, arriving here from a completely different test.
+And there it is a third time. A chi-square of 810 with p around 10^-178 is about as significant as results get, and an association of 0.07 is almost nothing. **The p-value is measuring the sample size as much as the effect**, which is exactly the lesson the t-test taught, arriving here from a completely different test.
 
 ## One-way ANOVA
 
@@ -135,10 +135,10 @@ Restrict to the four largest game categories and the same four-number pattern pe
 
 | Category | n | mean | |
 |---|---|---|---|
-| League of Legends | 4,000 | 22.63 | |
-| Fortnite | 4,000 | 33.23 | |
-| Hearthstone | 3,004 | 36.82 | |
-| Just Chatting | 2,429 | 39.03 | |
+| League of Legends | 6,077 | 26.09 | |
+| Fortnite | 8,829 | 29.69 | |
+| Hearthstone | 6,242 | 29.97 | |
+| Pokemon: Let's Go | 7,315 | 31.36 | |
 
 Then, with those four columns as `n`, `mean` and `var`:
 
@@ -150,22 +150,22 @@ F           =(SSB/3)/(SSW/(SUM(n)-4))
 eta squared =SSB/(SSB+SSW)
 ```
 
-giving **F = 92.26** on 3 and 13,429 degrees of freedom, and **eta squared = 0.0202**.
+giving **F = 22.40** on 3 and 28,459 degrees of freedom, and **eta squared = 0.0024**.
 
-The grand mean is a **weighted** average, which is why it is a `SUMPRODUCT` and not an `AVERAGE` of the four means. Those groups run from 2,429 to 4,000 messages, and averaging the averages would quietly give the small group the same vote as the large one. Chapter 12's supplement introduced the weighted sum; here is where getting it wrong changes an F.
+The grand mean is a **weighted** average, which is why it is a `SUMPRODUCT` and not an `AVERAGE` of the four means. Those groups run from 6,077 to 8,829 messages, and averaging the averages would quietly give the small group the same vote as the large one. Chapter 12's supplement introduced the weighted sum; here is where getting it wrong changes an F.
 
-Eta squared says the game category accounts for about two percent of the variation in message length. The categories really do differ, and knowing which game is being played tells you almost nothing about how long a message will be.
+Eta squared says the game category accounts for about two tenths of one percent of the variation in message length. The categories really do differ, and knowing which game is being played tells you almost nothing about how long a message will be.
 
 ## Reporting it
 
 Every test above needs the same four things in the write-up: the test statistic, its degrees of freedom, the p-value, and an effect size.
 
-> Gaming channels produced shorter chat messages on average than non-gaming channels (28.49 vs. 33.70 characters), Welch's *t*(3768.7) = -4.94, *p* < .001, Cohen's *d* = -0.13.
+> Gaming channels produced shorter chat messages on average than non-gaming channels (29.54 vs. 31.96 characters), Welch's *t*(145227) = -10.09, *p* < .001, Cohen's *d* = -0.05.
 
 Three of those four came from formulas you wrote rather than from a function, which is the argument for doing it this way. A workbook that reports only what `T.TEST` returns has one number out of four, and it is the number Chapter 25 spends its length warning you about.
 
 ## What Excel will not do for you
 
-It will not tell you that your observations are not independent, which for this corpus they emphatically are not: Chapter 7 puts the naive standard error at 0.036 against a clustered 0.355. Every p-value above is computed as though each of the 34,762 messages were an independent draw, and they are messages from 16,866 senders in 50 channels. The arithmetic is right and the assumption underneath it is wrong, and no cell in the workbook knows that.
+It will not tell you that your observations are not independent, which for this corpus they emphatically are not: Chapter 7 puts the naive standard error at 0.0184 against a clustered 0.1502. Every p-value above is computed as though each of the 156,579 messages were an independent draw, and they are messages from 61,320 senders in 226 channels. The arithmetic is right and the assumption underneath it is wrong, and no cell in the workbook knows that.
 
-It will not stop you running the test twenty times and reporting the one that worked. It will not tell you that a significant result on 34,762 observations is a statement about your sample size. And it will not decide whether a five-character difference matters to anyone, which is the only question the reader actually has.
+It will not stop you running the test twenty times and reporting the one that worked. It will not tell you that a significant result on 156,579 observations is a statement about your sample size. And it will not decide whether a five-character difference matters to anyone, which is the only question the reader actually has.

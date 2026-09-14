@@ -1,103 +1,382 @@
 case_order,channel,category
-1,animeilluminati,Dragon Ball FighterZ
-1,animeilluminati,Soulcalibur VI
-1,animeilluminati,Tekken 7
-2,asmongold,World of Warcraft
-3,avew1004,Hearthstone
-4,bobross,Art
-5,bustaj,Hearthstone
-6,chapo,Fortnite
-6,chapo,Smite
-7,chemicaldragoon,Fortnite
-7,chemicaldragoon,Just Chatting
-7,chemicaldragoon,MapleStory 2
-8,clintstevens,"Pokemon: Let's Go, Pikachu!/Eevee!"
-9,crayator,Fortnite
-10,cuppcaake,Overwatch
-11,dakotaz,Fortnite
-12,dantastic_tv,Super Mario Maker
-13,danteh,Overwatch
-14,darksydephil,Talk Shows & Podcasts
-15,dev1,Counter-Strike: Global Offensive
-15,dev1,Marbles On Stream
-15,dev1,marble
-16,disguisedtoast,Dungeons & Dragons
-16,disguisedtoast,Just Chatting
-16,disguisedtoast,"Pokemon: Let's Go, Pikachu!/Eevee!"
-17,forsen,Artifact
-17,forsen,Granny
-17,forsen,Just Chatting
-17,forsen,Protocol
-17,forsen,The Elder Scrolls V: Skyrim
-18,giantwaffle,Farming Simulator 19
-18,giantwaffle,Golf It!
-18,giantwaffle,Hand Simulator
-18,giantwaffle,Just Chatting
-18,giantwaffle,Magic: The Gathering
-18,giantwaffle,Path of Exile
-18,giantwaffle,Rise to Ruins
-18,giantwaffle,Rocket League
-18,giantwaffle,Tricky Towers
-19,gripex90,League of Legends
-20,hieggroll,Hearthstone
-21,hitch,Just Chatting
-22,iam_chappie,Call of Duty: Black Ops 4
-23,jbishere,Marbles On Stream
-24,kalashnikovmediatv,Counter-Strike: Global Offensive
-25,leonblack,Heroes of the Storm
-25,leonblack,Just Chatting
-26,lillypain,Hearthstone
-27,loltyler1,League of Legends
-28,megam0gwai,Artifact
-29,missing_talent,Hearthstone
-29,missing_talent,Rocket League
-30,naparoo,Hearthstone
-31,nflredzone_1,Madden NFL 19
-32,otherjesus,Hearthstone
-33,perrkz,League of Legends
-34,phenomengames,Hearthstone
-35,rallied,Call of Duty: Black Ops 4
-36,rdulive,Hearthstone
-36,rdulive,Magic: The Gathering
-37,rifftrax,Always On
-38,rod_johnston,Hearthstone
-39,seucreysonreborn,Dota 2
-40,skiddlerrs,Just Chatting
-40,skiddlerrs,Old School RuneScape
-41,sodapoppin,Depth
-41,sodapoppin,For Honor
-41,sodapoppin,Gang Beasts
-41,sodapoppin,Hand Simulator
-41,sodapoppin,Haxball
-41,sodapoppin,Just Chatting
-41,sodapoppin,Killing Floor 2
-41,sodapoppin,Marble It Up!
-41,sodapoppin,Mount Your Friends
-41,sodapoppin,Town of Salem
-41,sodapoppin,Ultimate Chicken Horse
-41,sodapoppin,Warcraft III: The Frozen Throne
-41,sodapoppin,Witch It
-41,sodapoppin,Worms Reloaded
-42,superliga,League of Legends
-43,thedgd,Hearthstone
-44,thedissrapper,Fortnite
-45,tjsmith,Just Chatting
-46,uberhaxornova,Hitman 2
-46,uberhaxornova,Just Chatting
-46,uberhaxornova,Marble It Up!
-46,uberhaxornova,Marbles On Stream
-46,uberhaxornova,Marvel's Spider-Man
-46,uberhaxornova,Tetris Effect
-46,uberhaxornova,Thief Simulator
-47,xqcow,Golf With Your Friends
-47,xqcow,Hand Simulator
-47,xqcow,Just Chatting
-47,xqcow,Minecraft
-47,xqcow,Mount Your Friends
-47,xqcow,Portal 2
-47,xqcow,Rust
-47,xqcow,Town of Salem
-47,xqcow,Welcome to the Game II
-47,xqcow,Witch It
-47,xqcow,Worms Reloaded
-48,zeppelinsoul,G-Force
+1,ahrileth,Just Chatting
+2,alinity,Just Chatting
+2,alinity,"Pokemon: Let's Go, Pikachu!/Eevee!"
+2,alinity,Red Dead Redemption 2
+3,allkeyshop_tv,Just Chatting
+4,amouranth,ASMR
+4,amouranth,Just Chatting
+4,amouranth,Just Dance 2019
+4,amouranth,"Pokemon: Let's Go, Pikachu!/Eevee!"
+4,amouranth,Sports & Fitness
+5,angelskimi,Just Chatting
+5,angelskimi,League of Legends
+6,animeilluminati,Dragon Ball FighterZ
+6,animeilluminati,Soulcalibur VI
+6,animeilluminati,Tekken 7
+7,annemunition,Just Chatting
+7,annemunition,Tom Clancy's Rainbow Six: Siege
+8,aragostv,Hearthstone
+9,asmongold,World of Warcraft
+10,assistmedoom,Darksiders
+11,atlantis_mitr0,Fortnite
+12,attach,Call of Duty: Black Ops 4
+13,avew1004,Hearthstone
+14,ayytrae,Just Chatting
+15,beaulo,Tom Clancy's Rainbow Six: Siege
+16,beemes,Just Chatting
+17,bengineering,"Pokemon: Let's Go, Pikachu!/Eevee!"
+18,bobross,Art
+19,boogie2988,Just Chatting
+19,boogie2988,"Pokemon: Let's Go, Pikachu!/Eevee!"
+20,braintm,Slay the Spire
+21,bruisedbygod,Eternal
+22,btssmash,Super Smash Bros. Melee
+23,bungie,Destiny 2
+24,bustaj,Hearthstone
+25,casino_johni,Casino
+26,casinohotkey,Casino
+27,ceecee_lia,Hearthstone
+28,chapo,Fortnite
+28,chapo,Smite
+29,chefbrandonallen,Food & Drink
+30,chemicaldragoon,Fortnite
+30,chemicaldragoon,Just Chatting
+30,chemicaldragoon,MapleStory 2
+31,cjayride,Just Chatting
+32,clintstevens,"Pokemon: Let's Go, Pikachu!/Eevee!"
+33,comedyrussell,Just Chatting
+34,copykat_,ASMR
+35,corobizar,League of Legends
+36,crayator,Fortnite
+37,creelagerstrom36,Casino
+38,criticalrole,Talk Shows & Podcasts
+39,cuppcaake,Overwatch
+40,dakotaz,Fortnite
+41,danicarockwood,Just Chatting
+42,dantastic_tv,Super Mario Maker
+43,danteh,Overwatch
+44,darksydephil,Talk Shows & Podcasts
+45,davidchau,Fortnite
+46,dclara1,Battlefield V
+47,denissnidertv,Just Chatting
+48,destiny,Call of Duty: Black Ops 4
+48,destiny,Frostpunk
+48,destiny,Just Chatting
+48,destiny,Minecraft
+48,destiny,Talk Shows & Podcasts
+49,dev1,Counter-Strike: Global Offensive
+49,dev1,Marbles On Stream
+49,dev1,marble
+50,disguisedtoast,Dungeons & Dragons
+50,disguisedtoast,Just Chatting
+50,disguisedtoast,"Pokemon: Let's Go, Pikachu!/Eevee!"
+51,dkane,Travel & Outdoors
+52,domingo,Just Chatting
+53,donutoperator,Just Chatting
+54,draskyl,Dota 2
+55,drdave_pt,Fortnite
+56,dutchsinseofficial,Science & Technology
+57,dyrus,Heroes of Hammerwatch
+57,dyrus,Just Chatting
+57,dyrus,League of Legends
+57,dyrus,Tekken 7
+57,dyrus,Thief Simulator
+57,dyrus,Town of Salem
+57,dyrus,Warcraft III: The Frozen Throne
+58,edisonparklive,Just Chatting
+59,educatedeartw,Just Chatting
+60,eevisu,Just Chatting
+61,ericbangi,Hearthstone
+62,erobb221,Just Chatting
+63,esfandtv,Grand Theft Auto V
+63,esfandtv,Just Chatting
+63,esfandtv,World of Warcraft
+64,esportsarena,Fortnite
+65,fatboyslim1993,Just Chatting
+66,fedmyster,Just Chatting
+67,firstinspires,Science & Technology
+68,food,Food & Drink
+69,forgiving,Overwatch
+70,forsen,Artifact
+70,forsen,Granny
+70,forsen,Just Chatting
+70,forsen,Protocol
+70,forsen,The Elder Scrolls V: Skyrim
+71,frankkaster,Just Chatting
+71,frankkaster,Travel & Outdoors
+72,fuslie,Just Chatting
+72,fuslie,"Pokemon: Let's Go, Pikachu!/Eevee!"
+73,futwiz_jamie,FIFA 19
+74,gameattackteam,Just Chatting
+75,geekandsundry,"Pokemon: Let's Go, Pikachu!/Eevee!"
+75,geekandsundry,Super Mario Party
+75,geekandsundry,Talk Shows & Podcasts
+76,geisha,Just Chatting
+77,generalelost,Food & Drink
+78,gennabain,Talk Shows & Podcasts
+79,giantwaffle,Farming Simulator 19
+79,giantwaffle,Golf It!
+79,giantwaffle,Hand Simulator
+79,giantwaffle,Just Chatting
+79,giantwaffle,Magic: The Gathering
+79,giantwaffle,Path of Exile
+79,giantwaffle,Rise to Ruins
+79,giantwaffle,Rocket League
+79,giantwaffle,Tricky Towers
+80,goespor,League of Legends
+81,grimmmz,Battlefield V
+81,grimmmz,"Pokemon: Let's Go, Pikachu!/Eevee!"
+82,gripex90,League of Legends
+83,guijenpaygrip93,Casino
+84,halieatisuto,Just Chatting
+85,heroesoffitness,Food & Drink
+86,hieggroll,Hearthstone
+87,hitch,Just Chatting
+88,hurracain,Heroes of the Storm
+88,hurracain,League of Legends
+89,hyperrpg,Just Chatting
+89,hyperrpg,Magic the Gathering
+89,hyperrpg,Magic: The Gathering
+90,hyubsama,Just Chatting
+91,iam_chappie,Call of Duty: Black Ops 4
+92,igumdrop,Just Chatting
+93,indiefoxx,Just Chatting
+94,j9superfast,Counter-Strike: Global Offensive
+94,j9superfast,PLAYERUNKNOWN'S BATTLEGROUNDS
+95,jacksepticeye,Fortnight
+95,jacksepticeye,Fortnite
+95,jacksepticeye,Talk Shows & Podcasts
+95,jacksepticeye,The Jackbox Party Pack 5
+96,jae_benny,Food & Drink
+97,jahrein,Bio Inc. Redemption
+97,jahrein,Hitman 2
+97,jahrein,Just Chatting
+97,jahrein,Kerbal Space Program
+97,jahrein,company of heroes
+97,jahrein,do not feed the monkeys
+98,jakenbakelive,Just Chatting
+99,jamesturneryt,The Sims 4
+100,jbishere,Marbles On Stream
+101,jiali,Hearthstone
+101,jiali,osu!
+102,kalashnikovmediatv,Counter-Strike: Global Offensive
+103,kandyland,Just Chatting
+104,kendinemuzisyen,Grand Theft Auto V
+104,kendinemuzisyen,Just Chatting
+105,kingoflightninggaming,Just Chatting
+106,kitboga,Just Chatting
+106,kitboga,Thief Simulator
+107,knut,Just Chatting
+108,l2redmoon22,Lineage II
+109,l2redmoon29,Lineage II
+110,last_grey_wolf,Dota 2
+110,last_grey_wolf,"Pokemon: Let's Go, Pikachu!/Eevee!"
+111,leclumsyfox,Just Chatting
+112,legendarylea,Fortnite
+112,legendarylea,Just Chatting
+113,lemonagogo,Just Chatting
+114,leonblack,Heroes of the Storm
+114,leonblack,Just Chatting
+115,lillypain,Hearthstone
+116,lilypichu,Art
+116,lilypichu,Dungeons & Dragons
+116,lilypichu,Just Chatting
+117,lindsan,Just Chatting
+118,linustheafro,League of Legends
+119,livekiss,Music
+120,livewithevan,Just Chatting
+121,lo7drain,League of Legends
+122,loltyler1,League of Legends
+123,lordbakington,Food & Drink
+124,lotsofbunnies,Just Chatting
+125,lulaboo,Food & Drink
+126,lutano_hots,Heroes of the Storm
+127,luxxbunny,Just Chatting
+127,luxxbunny,League of Legends
+127,luxxbunny,Magic: The Gathering
+127,luxxbunny,"Pokemon: Let's Go, Pikachu!/Eevee!"
+127,luxxbunny,Warframe
+128,mako_,Just Chatting
+129,markiplier,Hand Simulator
+129,markiplier,Just Chatting
+129,markiplier,Ring Of Elysium
+129,markiplier,Talk Shows & Podcasts
+129,markiplier,The Jackbox Party Pack 5
+129,markiplier,Uno
+130,maryjleeee,ASMR
+131,mega64podcast,Talk Shows & Podcasts
+132,megam0gwai,Artifact
+133,mertgunhan,Music & Performing Arts
+134,mira,Fortnite
+134,mira,Just Chatting
+135,missing_talent,Hearthstone
+135,missing_talent,Rocket League
+136,mizkif,Call of Duty: Black Ops 4
+136,mizkif,Depth
+136,mizkif,Just Chatting
+136,mizkif,Town of Salem
+137,ms_tricky,Just Chatting
+137,ms_tricky,Sports & Fitness
+138,mtggoldfish,Magic: The Gathering
+139,muyskerm,Hand Simulator
+139,muyskerm,Just Chatting
+139,muyskerm,Ring Of Elysium
+140,mym_alkapone,Just Chatting
+140,mym_alkapone,Minecraft
+141,mythrilassassin,Just Chatting
+142,naparoo,Hearthstone
+143,necrony85,Hearthstone
+144,nflredzone_1,Madden NFL 19
+145,nicebeaver28,Just Chatting
+146,nymn,American Truck Simulator
+146,nymn,Dying Light
+146,nymn,Euro Truck Simulator 2
+146,nymn,Farming Simulator 19
+146,nymn,Just Chatting
+146,nymn,The Witcher 3: Wild Hunt
+147,oh_bother,Makers & Crafting
+148,old_guardian,Hearthstone
+149,otherjesus,Hearthstone
+150,paigeybun,Just Chatting
+151,paresz,League of Legends
+152,paymoneywubby,Just Chatting
+153,pcgamer,Talk Shows & Podcasts
+154,perrkz,League of Legends
+155,peterhchau,Tom Clancy's Rainbow Six: Siege
+156,phenomengames,Hearthstone
+157,pinedaregine,Music & Performing Arts
+158,planetside2,PlanetSide 2
+159,playhearthstone,Hearthstone
+160,playrescue,Just Chatting
+160,playrescue,Travel & Outdoors
+161,pokelawls,Barony
+161,pokelawls,BeamNG.Drive
+161,pokelawls,Black Desert Online
+161,pokelawls,Golf It!
+161,pokelawls,Haxball
+161,pokelawls,Heroes of Hammerwatch
+161,pokelawls,Just Chatting
+161,pokelawls,Lost Ark Online
+161,pokelawls,My Summer Car
+161,pokelawls,Overwatch
+161,pokelawls,Slay the Spire
+161,pokelawls,Town of Salem
+161,pokelawls,Warcraft III: The Frozen Throne
+161,pokelawls,Witch It
+161,pokelawls,vrchat
+162,popedave,"Pokemon: Let's Go, Pikachu!/Eevee!"
+163,projared,"Pokemon: Let's Go, Pikachu!/Eevee!"
+164,purplevanderr,Hearthstone
+165,rajjpatel,Just Chatting
+166,rallied,Call of Duty: Black Ops 4
+167,rdulive,Hearthstone
+167,rdulive,Magic: The Gathering
+168,reckful,Just Chatting
+168,reckful,League of Legends
+168,reckful,Magic: The Gathering
+168,reckful,World of Warcraft
+169,richwcampbell,World of Warcraft
+170,rifftrax,Always On
+171,rod_johnston,Hearthstone
+172,rubius,Just Chatting
+173,rubsarb,Pangya: Fantasy Golf
+173,rubsarb,Talk Shows & Podcasts
+173,rubsarb,The Escapists 2
+174,saddummy,Just Chatting
+175,seanic,Just Chatting
+176,seriousgaming,Just Chatting
+177,seucreysonreborn,Dota 2
+178,sezzadactyl,Art
+179,shoutfactorytv,Always On
+179,shoutfactorytv,Mystery Science Theater 3000
+180,simply_jxn,Art
+181,skiddlerrs,Just Chatting
+181,skiddlerrs,Old School RuneScape
+182,sleightlymusical,Just Chatting
+183,sn4ker,Hearthstone
+184,sodapoppin,Depth
+184,sodapoppin,For Honor
+184,sodapoppin,Gang Beasts
+184,sodapoppin,Hand Simulator
+184,sodapoppin,Haxball
+184,sodapoppin,Just Chatting
+184,sodapoppin,Killing Floor 2
+184,sodapoppin,Marble It Up!
+184,sodapoppin,Mount Your Friends
+184,sodapoppin,Town of Salem
+184,sodapoppin,Ultimate Chicken Horse
+184,sodapoppin,Warcraft III: The Frozen Throne
+184,sodapoppin,Witch It
+184,sodapoppin,Worms Reloaded
+185,spaceapegames,Talk Shows & Podcasts
+186,spaceman1774,Super Mario 64
+187,stallion83,Halo: The Master Chief Collection
+188,staysafetv,Just Chatting
+188,staysafetv,World of Warcraft
+189,superliga,League of Legends
+190,tashnarr,Makers & Crafting
+191,tastybeardtv,Black Desert Online
+191,tastybeardtv,Dota 2
+191,tastybeardtv,Just Chatting
+192,teawithmandy,Just Chatting
+192,teawithmandy,League of Legends
+193,theblindliquor,Just Chatting
+194,thebubbaarmy,IRL
+194,thebubbaarmy,Talk Shows & Podcasts
+195,thecheshirekat,League of Legends
+196,thedeluxe4,Call of Duty: Black Ops 4
+197,thedezmond_,Fortnite
+198,thedgd,Hearthstone
+199,thedissrapper,Fortnite
+200,thehousehold,Talk Shows & Podcasts
+201,therealshookon3,Music & Performing Arts
+202,thesushidragon,Just Chatting
+203,tifamela,Just Chatting
+204,tjsmith,Just Chatting
+205,trainwreckstv,Call of Duty: Black Ops 4
+205,trainwreckstv,Just Chatting
+205,trainwreckstv,Minecraft
+206,trausi,Rust
+207,trillebartom,World of Warcraft
+208,trynet123,Gwent: The Witcher Card Game
+208,trynet123,Just Chatting
+209,tsm_theoddone,Marble It Up!
+209,tsm_theoddone,"Pokemon: Let's Go, Pikachu!/Eevee!"
+209,tsm_theoddone,Slay the Spire
+210,tunfiltered,IRL
+211,twitchpresents,Always On
+212,uberhaxornova,Hitman 2
+212,uberhaxornova,Just Chatting
+212,uberhaxornova,Marble It Up!
+212,uberhaxornova,Marbles On Stream
+212,uberhaxornova,Marvel's Spider-Man
+212,uberhaxornova,Tetris Effect
+212,uberhaxornova,Thief Simulator
+213,uebermarginal,Just Chatting
+213,uebermarginal,The Witcher 3: Wild Hunt
+214,uthenera,Just Chatting
+215,wismichu,Talk Shows & Podcasts
+216,xari,Just Chatting
+217,xdannyxbrownx,Just Chatting
+218,xminibergerx,St Jude PLAY LIVE
+219,xqcow,Golf With Your Friends
+219,xqcow,Hand Simulator
+219,xqcow,Just Chatting
+219,xqcow,Minecraft
+219,xqcow,Mount Your Friends
+219,xqcow,Portal 2
+219,xqcow,Rust
+219,xqcow,Town of Salem
+219,xqcow,Welcome to the Game II
+219,xqcow,Witch It
+219,xqcow,Worms Reloaded
+220,yanni_,Fortnite
+221,zanoxvii,FIFA 19
+222,zeppelinsoul,G-Force
+223,zeusidiouss,Farming Simulator 19
+223,zeusidiouss,Just Chatting
+224,zfg1,The Legend of Zelda: Ocarina of Time
+225,zilioner,Retro
+226,zwengtube,Just Chatting
+226,zwengtube,League of Legends

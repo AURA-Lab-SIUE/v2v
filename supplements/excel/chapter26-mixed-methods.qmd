@@ -49,35 +49,35 @@ Then compute the study's central comparison twice: once over everything, and onc
 
 | Group | mean, all messages | mean, talk only |
 |---|---|---|
-| gaming | 28.49 | 29.88 |
-| non-gaming | 33.70 | 34.13 |
-| **gap** | **5.21** | **4.25** |
+| gaming | 29.54 | 30.65 |
+| non-gaming | 31.96 | 32.49 |
+| **gap** | **2.43** | **1.84** |
 
 Those are `AVERAGEIFS` with one condition and then two:
 
 ```
-=AVERAGEIFS($D$2:$D$35268,$B$2:$B$35268,"gaming")
-=AVERAGEIFS($D$2:$D$35268,$B$2:$B$35268,"gaming",$E$2:$E$35268,"talk")
+=AVERAGEIFS($D$2:$D$157081,$B$2:$B$157081,"gaming")
+=AVERAGEIFS($D$2:$D$157081,$B$2:$B$157081,"gaming",$E$2:$E$157081,"talk")
 ```
 
-**The gap the whole study is about shrinks from 5.21 characters to 4.25, a reduction of 18 percent, on a decision about what counts as a message.**
+**The gap the whole study is about shrinks from 2.43 characters to 1.84, a reduction of 24 percent, on a decision about what counts as a message.**
 
 Nothing was miscalculated. Chapter 25's t-test was correct arithmetic on a correctly built table. What changed is a definition that the quantitative strand had no way to interrogate, because from inside the numbers `!play` is a six-character message like any other.
 
 ### One channel, to see the size of it
 
-The effect concentrates where the commands do. The channel `dev1` sends 1,000 messages, **480 of which begin with an exclamation mark.**
+The effect concentrates where the commands do. The channel `dev1` sends 1,000 messages, **473 of which begin with an exclamation mark.**
 
 | | all messages | talk only |
 |---|---|---|
-| mean length | 15.27 | 24.53 |
+| mean length | 15.93 | 25.58 |
 
 ```
-=COUNTIFS($A$2:$A$35268,"dev1",$E$2:$E$35268,"command")
-=AVERAGEIFS($D$2:$D$35268,$A$2:$A$35268,"dev1",$E$2:$E$35268,"talk")
+=COUNTIFS($A$2:$A$157081,"dev1",$E$2:$E$157081,"command")
+=AVERAGEIFS($D$2:$D$157081,$A$2:$A$157081,"dev1",$E$2:$E$157081,"talk")
 ```
 
-**The mean message length in that channel goes up by 60 percent when the bot traffic is set aside.** Reported as 15.27, the channel looks like a room of people typing single emotes. It is a room where nearly half the traffic is a queue.
+**The mean message length in that channel goes up by 61 percent when the bot traffic is set aside.** Reported as 15.93, the channel looks like a room of people typing single emotes. It is a room where nearly half the traffic is a queue.
 
 ### Filling in the display
 
@@ -85,7 +85,7 @@ That is one row of a joint display, and it is worth writing out to see the shape
 
 | Finding | Quantitative | Qualitative | Meta-inference | Fit |
 |---|---|---|---|---|
-| Message-level measures overstate how much talk is happening | gap of 5.21 characters, *t*(3768.7) = -4.94, *p* < .001, *d* = -0.13, n = 34,762 | `!play` and other `!` commands are addressed to software, not to people; 480 of 1,000 messages in `dev1` | excluding commands cuts the gap to 4.25, so roughly a fifth of the headline effect was an artifact of counting machine traffic as speech | discordance |
+| Message-level measures overstate how much talk is happening | gap of 2.43 characters, *t*(145227) = -10.09, *p* < .001, *d* = -0.05, n = 156,579 | `!play` and other `!` commands are addressed to software, not to people; 473 of 1,000 messages in `dev1` | excluding commands cuts the gap to 1.84, so roughly a quarter of the headline effect was an artifact of counting machine traffic as speech | discordance |
 
 That row could not have been produced by either strand. The count alone cannot see that a message is a command; the reading alone cannot say that it matters to the study's conclusion by 18 percent.
 

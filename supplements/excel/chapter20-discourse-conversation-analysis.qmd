@@ -54,31 +54,31 @@ Fill both down. Now the summary:
 | Label | Formula | Result |
 |---|---|---|
 | turns | `=COUNT(A2:A1001)` | 1,000 |
-| messages addressing someone | `=COUNTIF(C2:C1001,"?*")` | 174 |
-| addressee never returns | `=COUNTIF(F2:F1001,"none")` | 57 |
-| gaps measured | `=COUNT(G2:G1001)` | 117 |
-| median gap, turns | `=MEDIAN(G2:G1001)` | 35 |
-| mean gap, turns | `=AVERAGE(G2:G1001)` | 111.7 |
-| longest gap | `=MAX(G2:G1001)` | 481 |
+| messages addressing someone | `=COUNTIF(C2:C1001,"?*")` | 89 |
+| addressee never returns | `=COUNTIF(F2:F1001,"none")` | 16 |
+| gaps measured | `=COUNT(G2:G1001)` | 73 |
+| median gap, turns | `=MEDIAN(G2:G1001)` | 11 |
+| mean gap, turns | `=AVERAGE(G2:G1001)` | 53.9 |
+| longest gap | `=MAX(G2:G1001)` | 444 |
 | reply is the very next turn | `=COUNTIF(G2:G1001,1)` | 9 |
-| reply within five turns | `=COUNTIF(G2:G1001,"<=5")` | 27 |
-| median seconds to reply | `=MEDIAN(H2:H1001)` | 954 |
+| reply within five turns | `=COUNTIF(G2:G1001,"<=5")` | 23 |
+| median seconds to reply | `=MEDIAN(H2:H1001)` | 225 |
 
 Note `"?*"` for counting addressed messages: it means at least one character, which counts non-blank text cells and is safer here than `"<>"`.
 
 ## Reading it
 
-Of 174 messages that address a named participant, **57 (33 percent) are aimed at someone who never types again** in the next thousand turns. Of the 117 that do get a later turn from the addressee, **9 arrive in the very next turn: 7.7 percent.** The median wait is **35 turns and about sixteen minutes.**
+Of 89 messages that address a named participant, **16 (18 percent) are aimed at someone who never types again** in the next thousand turns. Of the 73 that do get a later turn from the addressee, **9 arrive in the very next turn: 12.3 percent.** The median wait is **11 turns and about four minutes.**
 
-Set that against the machinery in Chapter 20. In speech, a first pair part makes a second conditionally relevant in the *next* turn, and its absence there is itself meaningful. In this room the next turn belongs to whoever typed fastest, and the median reply arrives with thirty-five other messages stacked in front of it.
+Set that against the machinery in Chapter 20. In speech, a first pair part makes a second conditionally relevant in the *next* turn, and its absence there is itself meaningful. In this room the next turn belongs to whoever typed fastest, and the median reply arrives with eleven other messages stacked in front of it.
 
-Compare the mean and the median too. The mean gap is **111.7** turns against a median of **35**, and the longest is **481**. That right skew is the signature of a distribution where most replies are slow and a few are enormously slow, and it is why reporting a mean alone would misdescribe the room.
+Compare the mean and the median too. The mean gap is **53.9** turns against a median of **11**, and the longest is **444**. That right skew is the signature of a distribution where most replies are slow and a few are enormously slow, and it is why reporting a mean alone would misdescribe the room.
 
 ## Why this channel is worse than the book's figure
 
-Chapter 20 quotes 11.1 percent for next-turn replies across the whole corpus, and this channel gives 7.7 percent. The difference is the point rather than a discrepancy.
+Chapter 20 quotes 6.5 percent for next-turn replies across the whole corpus, and this channel gives 12.3 percent. The difference is the point rather than a discrepancy.
 
-This channel has **440 distinct senders in 1,000 messages**. A room where almost every message comes from a different person offers less chance that any two consecutive turns belong to the same conversation. A smaller channel, where thirty regulars produce most of the traffic, behaves much more like speech.
+This channel has **456 distinct senders in 1,000 messages**. A room where almost every message comes from a different person offers less chance that any two consecutive turns belong to the same conversation. A smaller channel, where thirty regulars produce most of the traffic, behaves much more like speech.
 
 So the coherence problem scales with the size of the room, and a study that measured it in one channel and reported it as a property of "Twitch chat" would be generalizing from a single room. Run this on several channels of different sizes before claiming anything general. The file ships one channel because the exercise is about the technique; the finding needs more.
 
@@ -86,7 +86,7 @@ So the coherence problem scales with the size of the room, and a study that meas
 
 Chapter 20 is explicit that these numbers are not the analysis, and the supplement ends by agreeing.
 
-What the numbers do is tell you which resources you may rely on when you sit down to read sequences. In a room where 7.7 percent of replies are adjacent, you cannot use position to establish that one message responds to another, so the at-mention and the quotation become your evidence, and a claim resting on two messages merely being consecutive is not supported. That is a genuine finding about method, arrived at before any interpretation.
+What the numbers do is tell you which resources you may rely on when you sit down to read sequences. In a room where 12.3 percent of replies are adjacent, you cannot use position to establish that one message responds to another, so the at-mention and the quotation become your evidence, and a claim resting on two messages merely being consecutive is not supported. That is a genuine finding about method, arrived at before any interpretation.
 
 They also tell you where to look. The 9 adjacent replies and the handful of long gaps are both worth reading closely, because the first shows what the room does when adjacency survives and the second shows how people reconnect after it has plainly failed.
 

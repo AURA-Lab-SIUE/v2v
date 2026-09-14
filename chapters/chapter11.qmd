@@ -73,9 +73,9 @@ chat %>% select(date, timestamp) %>% head(3)
 # A tibble: 3 × 2
            date timestamp
           <dbl> <dttm>
-1 1542578127023 2018-11-18 21:55:27
-2 1542578135562 2018-11-18 21:55:35
-3 1542578143610 2018-11-18 21:55:43
+1 1542578131126 2018-11-18 21:55:31
+2 1542578145882 2018-11-18 21:55:45
+3 1542578146198 2018-11-18 21:55:46
 ```
 
 The same instant, now legible: the evening of the 18th of November, 2018. The column type has changed too, from `<dbl>`, an ordinary number, to `<dttm>`, a date-time. That new type is what makes the column useful. From a real date-time you can pull the hour of day, the day of week, the calendar date, none of which can be read off the raw integer. Chapter 12 will use exactly that to chart how chat volume rises and falls across the hours of the day.
@@ -97,14 +97,14 @@ chat %>% select(message, message_length) %>% head(3)
 # A tibble: 3 × 2
   message                                 message_length
   <chr>                                             <int>
-1 "???????????????????????"                           23
-2 "TriEasy Clap TriEasy Clap TriEasy Cla…"            441
-3 "cmonBruh"                                            8
+1 "Aypierre Président"                                18
+2 "SOLITO 20-1"                                       11
+3 "ESNAF KARISI KEMAL"                                18
 ```
 
-`message_length` is a ratio variable, in the Chapter 8 sense: a true zero, equal intervals, a count you can average and compare. The three values above also preview something. A single-word message of eight characters, a row of punctuation at twenty-three, and a block of copy-pasted text at 441 are all real Twitch chat, and the distance between them is large. That spread is the raw material of the study, and Chapter 12 will look hard at its shape.
+`message_length` is a ratio variable, in the Chapter 8 sense: a true zero, equal intervals, a count you can average and compare. The three values above also preview something. Two of these messages are not in English, and the corpus runs from four-character emote names to blocks of copy-pasted text 500 characters long. That spread is the raw material of the study, and Chapter 12 will look hard at its shape.
 
-![](../images/fig11-1-rawlen-uncapped.png){fig-alt="A histogram of all 35,263 message lengths with nothing capped, on a square-root count axis. The distribution peaks below 20 characters and falls away steeply; a dashed line at 120 characters marks where Chapter 12 will cap its axis. Only 1,047 messages, three percent, lie beyond that line, stretched thinly all the way out to 501 characters, which is why the cap costs almost nothing."}
+![](../images/fig11-1-rawlen-uncapped.png){fig-alt="A histogram of all 157,080 message lengths with nothing capped, on a square-root count axis. The distribution peaks below 20 characters and falls away steeply; a dashed line at 120 characters marks where Chapter 12 will cap its axis. Only 5,699 messages, under four percent, lie beyond that line, stretched thinly all the way out to 500 characters, which is why the cap costs almost nothing."}
 
 ## Labeling gaming and non-gaming
 
@@ -161,8 +161,8 @@ chat %>% count(is_gaming)
 # A tibble: 3 × 2
   is_gaming     n
   <lgl>     <int>
-1 FALSE      3457
-2 TRUE      31309
+1 FALSE     79413
+2 TRUE      77166
 3 NA          501
 ```
 
@@ -184,16 +184,16 @@ chat <- v2v::twitch_chat() %>%
 A final `glimpse()` shows what the table has become:
 
 ```
-Rows: 35,267
+Rows: 157,080
 Columns: 8
-$ id             <int> 89, 551, 1033, 2094, 2803, …
-$ channel        <chr> "sodapoppin", "xqcow", "forsen", "sodapoppin", "xqcow…
-$ sender         <chr> "madzee", "prometheanow", "spectre155", "itsjer", "la…
-$ message        <chr> "???????????????????????", "TriEasy Clap TriEasy Cla…
-$ date           <dbl> 1542578127023, 1542578135562, 1542578143610, 1542578…
-$ timestamp      <dttm> 2018-11-18 21:55:27, 2018-11-18 21:55:35, 2018-11-18…
-$ message_length <int> 23, 441, 8, 12, 206, …
-$ is_gaming      <lgl> TRUE, FALSE, TRUE, TRUE, FALSE, …
+$ id             <int> 316, 1146, 1160, 1288, 1546, …
+$ channel        <chr> "domingo", "zanoxvii", "kendinemuzisyen", "xqcow", "kend…
+$ sender         <chr> "sparybo", "gabrielecaruso17", "ccckomunistzccc", "aspec…
+$ message        <chr> "Aypierre Président", "SOLITO 20-1", "ESNAF KARISI KEM…
+$ date           <dbl> 1542578131126, 1542578145882, 1542578146198, 1542578…
+$ timestamp      <dttm> 2018-11-18 21:55:31, 2018-11-18 21:55:45, 2018-11-18…
+$ message_length <int> 18, 11, 18, 4, 7, …
+$ is_gaming      <lgl> FALSE, TRUE, FALSE, FALSE, FALSE, …
 ```
 
 This is what wrangling was for. The table is now **tidy**, in the precise sense the term carries in data science (Wickham, 2014): each row is one observation, a single chat message; each column is one variable; and everything the study needs sits in this one place. The unreadable integers have become timestamps. Message length and gaming status, named in the codebook and absent from the raw data, are now columns. The chat and stream tables, once disconnected, are joined.
