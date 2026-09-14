@@ -1,0 +1,153 @@
+---
+title: "Excel Supplement, Chapter 16: Qualitative Interviewing"
+---
+
+An interview study has no statistics in it, which does not mean it has no spreadsheet work. It has quite a lot, and doing it badly is how interview projects fall apart: consent forms that cannot be matched to recordings, a guide that never asked about one of the research questions, and a saturation claim with nothing behind it.
+
+This supplement builds three things: a participant tracker, a coverage matrix that checks your guide against your research questions, and the saturation procedure Chapter 16 insists on.
+
+## Part 1: The participant tracker
+
+One row per participant, one column per thing you will otherwise forget.
+
+On a blank sheet, put these headers in row 1: `id`, `pseudonym`, `recruited`, `consent_on_file`, `interview_date`, `mode`, `minutes`, `recording_file`, `transcribed`, `notes`.
+
+Two columns deserve care.
+
+**`id` is not their name.** Assign `P01`, `P02` and so on, and keep the one file that maps ids to real identities separately, with access limited to whoever needs it. Every other file in the project uses the id. This is what lets you share a transcript with a second coder without sharing an identity.
+
+**Constrain the status columns.** Select the `consent_on_file` column, then **Data** ribbon, **Data Validation**, set **Allow** to **List**, and type `yes,no` into **Source**. Do the same for `mode` with `in person,video,voice,text` and for `transcribed` with `not started,in progress,done`.
+
+The reason is Chapter 12's lesson arriving in a new place. A column typed freely will contain `yes`, `Yes`, `y` and a trailing space, and every formula that counts it will quietly return a number that is too small. Validation makes the wrong value impossible to enter rather than findable afterward.
+
+Now the counts that tell you where the project is:
+
+| Cell | Label | Formula |
+|---|---|---|
+| L1 | recruited | `=COUNTA(A2:A200)-COUNTBLANK(A2:A200)` |
+| L2 | consented | `=COUNTIF(D2:D200,"yes")` |
+| L3 | interviewed | `=COUNT(E2:E200)` |
+| L4 | transcribed | `=COUNTIF(I2:I200,"done")` |
+| L5 | total minutes | `=SUM(G2:G200)` |
+| L6 | mean minutes | `=AVERAGEIF(G2:G200,">0")` |
+
+`L3` uses `COUNT` rather than `COUNTA` because dates are numbers: `COUNT` sees a real date and ignores an empty cell or a stray note.
+
+**One row must never be true:** an interview date present with `consent_on_file` reading anything but `yes`. Put this somewhere visible:
+
+```
+=COUNTIFS(E2:E200,">0",D2:D200,"<>yes")
+```
+
+If it ever returns anything other than zero, stop and fix it before you do anything else.
+
+## Part 2: Does your guide actually cover your questions?
+
+A guide drifts. You write it around three research questions, revise it four times, and the version you take into the field has stopped asking about the second one. Nobody notices until analysis.
+
+Lay out a coverage matrix. Column A holds each guide question. Row 1 holds your research questions, `RQ1`, `RQ2`, `RQ3`. In the body, mark an `x` where a guide question speaks to a research question.
+
+Then count down each column:
+
+```
+=COUNTIF(B2:B40,"x")
+```
+
+Any research question with a zero is one your study cannot answer. Any research question with eight is one you are over-asking at the expense of the others. Fix it before the first interview, because the alternative is discovering it after the twelfth.
+
+Keep the matrix. It goes into a methods appendix almost unchanged, and reviewers like it, because it is evidence that the instrument was designed rather than assembled.
+
+## Part 3: Saturation, with a procedure behind it
+
+Chapter 16 argues that "saturation was reached" means nothing on its own, and that what a reader needs is the number and the rule. Here is the rule, and it is simple enough to run in a spreadsheet.
+
+Order your cases. After each one, count the categories you have seen that you had not seen before. Plot the running total. When new categories stop arriving, you have evidence. When they do not stop, you have that too, and saying so is better than claiming otherwise.
+
+**A note on the data.** Interview transcripts do not exist for this book, and inventing them would have you practice on something no human said. So this section runs the procedure on real data with the identical structure: `accumulation.csv` holds 102 rows, one per channel-and-category pair, with 48 channels standing in as cases and the stream categories standing in as the categories you would be discovering. The Excel technique is exactly what you would run over a set of interviews.
+
+Import it the usual way: **Data**, **From Text/CSV**, **65001: Unicode (UTF-8)**, **Load**. You should have 103 rows and three columns: `case_order`, `channel`, `category`.
+
+### Flagging first appearances
+
+This is the one clever formula in the supplement. In **D1** type `first_appearance`, and in **D2**:
+
+```
+=IF(COUNTIFS($C$2:C2,C2)=1,1,0)
+```
+
+Fill it down to row 103.
+
+Look closely at the range: `$C$2:C2`. The start is locked and the end is not, so as the formula moves down the row the range *expands*. In row 2 it looks at one cell; in row 50 it looks at rows 2 through 50. The question it asks is therefore "counting only what has appeared at or above this row, is this the first time?" The answer is 1 exactly once per category, at its first appearance, and 0 every time after.
+
+Sum the column and you have the number of distinct categories:
+
+```
+=SUM(D2:D103)
+```
+
+It returns **59**.
+
+### The curve
+
+On a new sheet, put `case` in A1, `new` in B1 and `cumulative` in C1. Fill A2:A49 with 1 through 48. Then in **B2**:
+
+```
+=SUMIFS(accumulation!$D$2:$D$103,accumulation!$A$2:$A$103,A2)
+```
+
+and in **C2**:
+
+```
+=SUM($B$2:B2)
+```
+
+Fill both down to row 49. `C2` uses the same expanding-range trick, this time to make a running total.
+
+You should see the first cases arriving like this:
+
+| case | new | cumulative |
+|---|---|---|
+| 1 | 3 | 3 |
+| 2 | 1 | 4 |
+| 3 | 1 | 5 |
+| 4 | 1 | 6 |
+| 5 | 0 | 6 |
+| 6 | 2 | 8 |
+
+and the final cumulative value, in C49, is **59**.
+
+Select A1:C49 and insert a line chart of the cumulative column. That picture is the thing a methods section should contain when it uses the word saturation.
+
+### Reading it honestly
+
+Now the decision rule. How many new categories arrived in the last ten cases?
+
+```
+=SUM(B40:B49)
+```
+
+It returns **24**. Of 59 categories, 24 arrived in the final ten cases, and the halfway point had seen only 33.
+
+**This curve has not flattened.** That is the correct reading and it is the useful one. If these were interviews, the honest sentence would be that the study had not reached saturation at 48 cases, and the honest next step would be more cases or a narrower question. What you must not write is "saturation was reached", because the evidence on the screen says it was not.
+
+Two things this exercise teaches beyond the arithmetic.
+
+**The curve depends on the order of your cases.** Sort the same data differently and the shape changes, even though the final total cannot. So fix the order in advance, ordinarily the order in which you collected the cases, and say in your methods that you did. An order chosen after seeing the results is a curve you drew rather than found.
+
+**Heterogeneous cases saturate slowly, or never.** These 48 channels have little in common, so each one brings something new. A study whose participants are more alike will flatten sooner, and that is a fact about your sampling rather than about your diligence. It is the same tension Chapter 16 raised between maximum variation sampling and saturation: the sampling strategy that makes a finding most credible is the one that makes saturation hardest to reach.
+
+## A trap worth knowing about
+
+While preparing this supplement, Excel and a case-sensitive tool disagreed about the number of categories: 59 against 60.
+
+The cause was in the raw data, which carries both `minecraft` and `Minecraft` as category strings. They are one category recorded two ways. **Excel's `COUNTIFS` is case-insensitive**, so it merged them without comment and returned 59. The case-sensitive count returned 60.
+
+Excel happened to give the substantively right answer here, and that is exactly why it is worth flagging. You cannot rely on a tool's incidental behavior to clean your data, and a project that moves between Excel and anything else will get two different counts with no warning from either. The data shipped with this supplement has been normalized to one spelling, and the normalization is recorded in the script that built it.
+
+Normalize deliberately before you count. `=LOWER(TRIM(C2))` in a helper column, then work from the helper column, is the thirty-second version of that discipline.
+
+## What Excel will not do for you
+
+Excel will not code your transcripts. It can hold codes once you have assigned them, which is Chapter 21's subject, and it is a poor place to do the reading and thinking that produces them.
+
+It also has no notion of a participant's confidentiality. Nothing in the workbook stops you typing a real name into the pseudonym column, and nothing warns you when you email the file. The separation of the identity file from everything else is a discipline you maintain, not a feature you switch on.
