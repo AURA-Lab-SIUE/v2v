@@ -1,0 +1,123 @@
+---
+title: "Chapter 15: Existing Data"
+---
+
+Every method in Part III collects something. This chapter is about the studies where somebody else already did.
+
+That covers more research than students expect, and increasingly so. Platforms log everything. Governments and archives publish. Large survey programs release their data for anyone to use. A great deal of good communication research now begins not with a collection instrument but with a file, and the skills it demands are different from the ones in the last three chapters: less about designing a measurement, more about working out what a measurement somebody else designed can honestly be asked.
+
+This book's own corpus is an example, which makes this chapter unusually concrete. It is also where the corpus gets audited, and where it turns out to have a property that changes how several earlier chapters should be read.
+
+## Three families
+
+**Secondary analysis** uses data that was collected for research, by someone else, and released for reuse. Large survey programs are the standard case. The data is documented, weighted, and built to be analyzed, and the questions were fixed by somebody else years ago.
+
+**Archival and documentary research** uses records that were never created for research at all: organizational files, court and regulatory records, newspaper archives, broadcast transcripts, policy documents. These are the raw material of media history and of most institutional analysis.
+
+**Trace data** is the digital residue of people doing things: platform logs, edit histories, clickstreams, public posts. It is enormous, it is fine-grained, and it was produced by a system built for other purposes entirely.
+
+The three raise the same central problem in different accents, so it is worth stating once.
+
+## Fitness for purpose
+
+**The data was made to answer a question that was not yours.** Everything difficult follows from that sentence.
+
+A survey program asked its questions in its wording, in its year, of its population. A platform logged the events its engineers found useful to log. An organization kept the records it was required to keep, or wanted to keep. In each case the categories, the timing, the inclusions and the omissions all encode somebody else's purposes, and you inherit every one of them.
+
+So the first task in any study of existing data is not analysis. It is establishing what the data can support, which takes four questions.
+
+**What does each variable actually record?** Not what it is named. A field called `active_users` means whatever the engineer who wrote it decided, and the definition may have changed in 2019 without the name changing.
+
+**Who and what is in it, and who and what is missing?** Chapter 11's frame problem arrives here in a harder form, because you cannot fix the frame, only describe it.
+
+**How was it produced?** Collected, sampled, filtered, deduplicated, capped. Every step shapes what the file can show.
+
+**Has it changed?** Datasets get revised, backfilled and re-released. Record the version and the date you obtained it.
+
+If the documentation cannot answer a question, that is a finding about your study's limits, not a gap to be filled with an assumption.
+
+## Auditing the documentation
+
+Documentation is written by people and is frequently wrong in small ways. **Check it against the data before you trust it**, which takes about twenty minutes and occasionally rewrites a study.
+
+Here is that check run on this book's own corpus, which ships with unusually good documentation.
+
+The package documents 35,267 messages across 50 channels, sampled from a 1.6 GB database dump of Twitch chat captured in November 2018, with the random seed recorded, eight named anchor channels, and the remaining 42 drawn as a stratified random sample. It states that channel names had their IRC `#` prefix stripped so the table joins cleanly, and that timestamps are Unix epoch in milliseconds rather than seconds.
+
+That is more than most datasets tell you, and the audit still finds things.
+
+**The row and channel counts hold.** 35,267 messages, 50 channels, all eight anchors present. There are no duplicate identifiers and no empty messages.
+
+**One documented figure is wrong.** The documentation says messages run up to 509 characters. The longest message in the file is **501**, and exactly one message exceeds 500. Trivial in itself, and the point is not the eight characters: it is that a stated property of the data was not true, you found it in one formula, and anything else in that documentation is now something you check rather than something you assume.
+
+**And one undocumented property matters a great deal.** Count the messages per channel and the distribution is strange: **31 of the 50 channels have exactly 1,000 messages**, including all eight anchors, and **no channel has more than 1,000**. Nine channels have fewer than a hundred, and the smallest has one.
+
+A distribution does not pile up on a round number by accident, and a hard ceiling with nothing above it is not a coincidence either. **The sample was capped at 1,000 messages per channel**, and that is not stated anywhere in the documentation. You can only learn it by looking.
+
+## Why that cap matters
+
+It changes the meaning of several figures in this book, and the honest thing is to say so where the reader will see it.
+
+A cap means the file is **not proportional to real chat volume**. On Twitch, the largest channels produce orders of magnitude more messages than the smallest. In this file they produce the same 1,000. So any figure computed across channels describes the sample's design as much as the platform.
+
+Chapter 23 reported that 68.4 percent of senders posted exactly once, with a Gini coefficient of 0.449, and read that as a structural fact about who gets to speak. The underlying inequality is real and the specific numbers are partly an artifact: capping the busiest channels truncates exactly the heaviest posters, which almost certainly makes the measured concentration **lower** than the platform's. The finding survives; its precision does not.
+
+Chapter 25's comparison of gaming against non-gaming channels is affected differently. Because the cap applies within channels, it does not bias the comparison of message lengths much, but it does mean the 31,309 and 3,457 message counts reflect how many channels of each type were sampled rather than how much of Twitch is gaming.
+
+None of this makes the corpus bad. It makes it a **teaching corpus**, built to be balanced across channels rather than representative of volume, which is a sensible design for a textbook and a poor one for estimating platform-level quantities. The failure would have been to use it for the second without noticing.
+
+That is the whole lesson of this chapter, arrived at from the inside: the constraint was not in the data or the documentation, it was in the match between the file and the question.
+
+## Longitudinal designs
+
+Existing data is often the only practical route to studying change over time, and three designs are routinely confused.
+
+**Trend studies** ask the same questions of a fresh sample from the same population at each wave. They show whether the population changed. They cannot show whether any individual did, because it is different people each time.
+
+**Cohort studies** follow a defined group, people born in a period, or students entering in a given year, sampling from it at each wave. They separate change with age from change in the times.
+
+**Panel studies** measure the same individuals repeatedly. Only a panel can establish that individuals changed, and only a panel supports the temporal ordering Chapter 7 requires for a causal claim.
+
+The difference is not a technicality. A trend study showing that average trust in news fell over ten years is compatible with nobody's trust changing at all, if the composition of the population shifted. Only a panel rules that out.
+
+Panels have their own problem: **attrition**. People drop out, and they do not drop out at random. If the least engaged participants leave first, the remaining panel becomes progressively more engaged and every trend is biased toward whatever engagement does. Report the retention rate per wave, compare the leavers with the stayers on what you measured at baseline, and treat a panel with heavy unexamined attrition as a much weaker design than it appears.
+
+## Archival selection
+
+Archives carry a bias that has nothing to do with sampling: **what survived is not what existed.**
+
+Records were kept because someone had a reason to keep them, and destroyed, lost or never created for reasons equally non-random. Institutional archives over-represent the institution's own view of itself. Newspaper archives over-represent what was published, which over-represents what editors thought publishable. Digital archives over-represent whatever was easy to crawl, and platform data over-represents accounts that were never deleted or banned.
+
+The discipline is to ask, explicitly and in writing, what would be missing from this archive if your hypothesis were true, and whether you would be able to tell.
+
+## Ethics
+
+Chapter 3's obligations do not lapse because the data already exists.
+
+**Existing consent may not cover you.** People who agreed to a study in 2014 consented to that study. Secondary use is often permitted and is sometimes covered by a data use agreement, which is a document to read rather than assume.
+
+**Public does not mean consented.** Chapter 18 makes this point about observation and it is sharper here, because scale changes the act. A person posting in a chat room expected to be read by the room, not aggregated into a dataset of millions and analyzed. Legal permission and ethical obligation are different questions and the first does not settle the second.
+
+**Terms of service govern collection and sometimes reuse.** Read them. They are not the whole of research ethics, and they are not nothing.
+
+**Re-identification is the live risk.** A dataset with names removed is not anonymous if it contains enough else: a location, a timestamp, a distinctive phrase. This book's corpus keeps usernames, which are public on the IRC feed, and Chapters 18 and 20 nonetheless replace them with letters whenever a message is quoted, because quoting an individual and counting them are different acts.
+
+**Your institution still has a view.** Many secondary analyses qualify for exemption, and exemption is a determination the board makes, not one you make for yourself.
+
+## What it can and cannot claim
+
+It can claim anything the data supports, at a scale and over a span that primary collection usually cannot reach, and at a cost that makes serious work possible for a student.
+
+It cannot claim a construct the data does not contain. The strongest temptation in this whole area is to treat an available variable as a proxy for the interesting one: message volume for engagement, follows for influence, sentiment scores for feeling. Sometimes those proxies are defensible, and the defense is an argument with evidence, made in the paper, not an assumption made in silence.
+
+And it cannot establish that a measure means the same thing across the whole span. Platforms change their logging, survey programs reword items, archives change what they keep. A trend that begins exactly where the instrument changed is a fact about the instrument.
+
+## Looking ahead
+
+Part III ends here, and with it the quantitative methods half of the book.
+
+Part IV turns to methods that produce meaning rather than counts, and it starts with the most direct of them. Chapter 16 is on qualitative interviewing: how to get a person to tell you something true, at length, in their own words, and what you may and may not conclude from what they said.
+
+## References
+
+Wickham, H. (2014). Tidy data. *Journal of Statistical Software*, *59*(10), 1-23. https://doi.org/10.18637/jss.v059.i10

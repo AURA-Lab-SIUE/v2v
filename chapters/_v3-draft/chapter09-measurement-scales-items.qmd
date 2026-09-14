@@ -1,0 +1,91 @@
+---
+title: "Chapter 9: Measurement, Scales, and Items"
+---
+
+Chapter 8 closed the gap between a concept and something you can observe. This chapter is about what you are left holding once you have.
+
+A measure has a structure. It sits at a level that governs what arithmetic is legitimate on it, it is either handed to you or built by you, and it consists of one indicator or of several combined. Those three facts decide, before any data is collected, what the study will be able to conclude. Getting them wrong is not recoverable later, which is why they come before sampling rather than after.
+
+## Levels of measurement
+
+Once a variable is operationalized, it has a **level of measurement**, and that level determines what you are later allowed to do with it. The four levels are easy to remember as **NOIR**: nominal, ordinal, interval, ratio.
+
+The `stream_log` table is a convenient place to see all four, because its columns happen to span the range. Its columns are channel, title, game, viewers and date.
+
+A **nominal** variable sorts cases into categories that have no inherent order. The `game` column is nominal: Fortnite, Just Chatting, Art, Hearthstone are categories, and no arithmetic relates them. Fortnite is not greater than Art. The `channel` column is nominal too, and so, in its raw form, is `title`: a stream title is a string, and one string is not ranked above another. With a nominal variable you can count how often each category appears and identify the most common one, but you cannot average it. The average of Fortnite and Art is not a category.
+
+An **ordinal** variable sorts cases into categories that do have an order, but where the distance between ranks is not constant. If you took stream titles and binned them by length into short, medium, and long, length-bin would be ordinal: long outranks short, but the gap from short to medium is not guaranteed to equal the gap from medium to long. With an ordinal variable you can rank cases and find the median, but the mean is not strictly meaningful.
+
+An **interval** variable has equal, constant distances between values, but its zero point is arbitrary rather than meaning "none." The `date` column is the example, and it carries a caveat worth stating now because Chapter 24 will spend real effort on it. The dataset stores `date` as a bigint count of milliseconds since midnight on January 1, 1970. Once converted to a timestamp, it is interval-level: the distance from one minute to the next is constant across the whole column, but the zero point, 1970, does not mean "no time." It is a convention. You can meaningfully subtract two timestamps to get a duration. You cannot meaningfully say one timestamp is "twice" another.
+
+A **ratio** variable has equal intervals and a true zero that genuinely means "none." The `viewers` column is ratio: zero viewers means no one is watching, and because that zero is real, a stream with 28,000 viewers genuinely has twice the audience of one with 14,000. Ratio variables permit the full range of arithmetic. Most counts are ratio-level: viewers, message length in characters, number of messages.
+
+Notice what happened with stream title. As a raw string it is nominal. Measured as a character count it is ratio, because a title can have zero characters and a true zero exists. Binned into short, medium, and long it is ordinal. One column, three possible levels, depending entirely on how you operationalize it. Level of measurement is not a property the data hands you. It is a property of the decision you make.
+
+Levels matter because they govern the statistics available to you later. A nominal variable can be tested for association with a chi-square test. A ratio variable can be averaged, correlated, and entered into the kind of test Chapter 25 runs. If you operationalize an interesting variable at the nominal level when it could have been ratio, you have quietly narrowed what your study can conclude before you have coded a single case.
+
+One warning about the hierarchy. You can always move **down** it, binning a ratio variable into ordinal categories, and you can never move up. Message length in characters can become short, medium and long at any point; once collected as short, medium and long it can never become characters again.
+
+So collect at the highest level the phenomenon allows, and bin later if you want to. Asking a survey respondent for their exact age rather than an age band costs nothing and preserves every option; the reverse decision is permanent and is made by people who were thinking about the table rather than the analysis.
+
+## Where variables come from
+
+Some variables arrive in the dataset ready-made. `viewers` is already a number in a column. `game` is already a category. For variables like these, the operationalization work is mostly classification: decide the level of measurement, decide whether you will use the column raw or transform it, and move on. There is no coding to do, because the platform already did it.
+
+Other variables do not exist until you build them. Message target is not a column in `chat_log`. Nothing in the dataset records whether a message was aimed at the streamer or the room. That variable exists only after a human coder reads each message and assigns a value, and a coder can only do that consistently if you have given them a precise, written set of instructions. For variables like these, the operationalization work is most of the work, and the instructions have a name. They are a codebook.
+
+There is a third case this book's corpus makes unavoidable: variables that are **derived** rather than coded. Message length is not in the file and requires no human judgment either; it is computed. Chapter 24 builds three of them.
+
+The distinction matters for reliability. A coded variable needs two coders to agree, because a human is making a judgment. A derived variable needs its definition checked, because a machine is applying a rule perfectly and the only question is whether the rule was right. Chapter 24's supplement shows a derived variable going wrong in exactly that way: the rule was applied flawlessly to text the tool had silently retyped.
+
+## Single items and composite measures
+
+Some concepts are adequately captured by one observation. Age, message length, whether a message contains an at-mention: one indicator, and asking for a second would be strange.
+
+Most interesting concepts are not like that. Parasocial attachment, perceived community, media trust, willingness to self-censor: no single question captures them, and any single question you pick will capture something narrower alongside a good deal of noise. These need a **composite measure**, several indicators combined into one score.
+
+The reason is worth stating properly, because it is not a convention. Every indicator carries some of the concept and some error peculiar to itself. Combine several and the concept accumulates while the idiosyncratic errors partly cancel, so a composite is both a broader and a more stable measure of the construct than any of its parts. That is also why Chapter 10 can compute a reliability coefficient for a composite and cannot compute one for a single item.
+
+Two kinds of composite are often confused, and the difference changes what you may do with the score.
+
+**A scale** treats the indicators as *effects* of an underlying construct. Someone's level of parasocial attachment causes their answers to all the items, which is why the items should correlate with one another, and why an item that does not correlate with the others is evidence that it is not measuring the same thing. Internal consistency is meaningful here, and Chapter 10 is where it is computed.
+
+**An index** combines indicators that are *causes* or components of the thing, and they have no reason to correlate. A measure of platform activity built from hours watched, messages sent, subscriptions held and clips created is an index: a person can be high on any one and low on the others, and the components do not need to hang together because the construct is their sum rather than their common cause.
+
+Computing an internal-consistency coefficient for an index is a category error, and it is a common one. A low alpha on an index is not a defect to be fixed by deleting items; it is what an index looks like. Ask which kind you have built before you report a coefficient for it.
+
+## Common response structures
+
+Three structures cover most composite measures in communication research. Chapter 13 covers how to word the items and lay them out; what matters here is what each structure produces.
+
+**Likert-type items** present a statement and ask for agreement on an ordered set of options. Strictly the responses are ordinal, since there is no guarantee that the distance from "disagree" to "neutral" equals the distance from "neutral" to "agree". In practice, summed or averaged across several items, they are analyzed as interval, and that is a defensible convention rather than a theorem. Where it matters, say what you did.
+
+**Semantic differential items** anchor a scale between opposed adjectives, warm and cold, honest and dishonest, and ask the respondent to place the object between them. They work well for evaluations of a person or a thing and badly for behaviors.
+
+**Behavioral frequency items** ask how often something was done. They are ratio-level if answered as a count, and ordinal if answered in bands, and Chapter 13 explains at length why the answers are less accurate than they look.
+
+A practical note on number of options. Too few loses variation you cannot recover, and too many invites distinctions people cannot actually make. Five to seven points is the usual working range. And decide deliberately whether to include a midpoint: including one lets people sit in the middle, which is sometimes an honest answer and sometimes an escape from thinking.
+
+## Borrowed measures
+
+Most constructs you care about have been measured before, and using an established measure is usually right. It has known properties, it makes your results comparable, and the reviewers will not argue about it.
+
+Three conditions before you do.
+
+**Find the original.** Scales get copied from paper to paper, shedding items and changing wording. Cite and use the source, not a secondary reproduction of it.
+
+**Check what it was validated on.** A measure developed on undergraduates in 1994 has evidence about undergraduates in 1994. It may transfer; that is an assumption, and if your population differs meaningfully the assumption belongs in the limitations.
+
+**Do not quietly edit it.** Dropping items, rewording them for your context, or changing the response options produces a different instrument whose established properties no longer apply. Adapting is legitimate and common; reporting the adaptation, and re-establishing reliability on your own data, is the price.
+
+Chapter 26's exploratory sequential design exists largely for the case where no borrowed measure fits: qualitative work first, to find out what the construct is and how people talk about it, then measurement built from that.
+
+## Looking ahead
+
+A measure with the right level, the right structure and the right provenance can still be worthless, because none of those properties says whether it is consistent or whether it captures what it claims to.
+
+Chapter 10 is about those two questions, reliability and validity, and about the statistics that answer the first of them.
+
+## References
+
+Wickham, H. (2014). Tidy data. *Journal of Statistical Software*, *59*(10), 1-23. https://doi.org/10.18637/jss.v059.i10

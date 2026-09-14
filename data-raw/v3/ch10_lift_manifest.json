@@ -1,0 +1,119 @@
+{
+  "sources": {
+    "ch08": "chapters/chapter08.qmd",
+    "ch10": "chapters/chapter10.qmd"
+  },
+  "output": "chapters/_v3-draft/chapter10-reliability-and-validity.qmd",
+  "lifted": [
+    {
+      "anchor": "An operational definition can be perfectly precise and still be bad measurement.",
+      "repaired": false,
+      "source": "ch08"
+    },
+    {
+      "anchor": "**Reliability** is consistency.",
+      "repaired": true,
+      "source": "ch08"
+    },
+    {
+      "anchor": "**Validity** is accuracy.",
+      "repaired": false,
+      "source": "ch08"
+    },
+    {
+      "anchor": "One principle ties the two together",
+      "repaired": false,
+      "source": "ch08"
+    },
+    {
+      "anchor": "A pilot test is a trial run of the codebook before the real coding begins.",
+      "repaired": false,
+      "source": "ch10"
+    },
+    {
+      "anchor": "That word, independently, carries the whole logic.",
+      "repaired": false,
+      "source": "ch10"
+    },
+    {
+      "anchor": "The obvious way to turn the pilot into a number is to count how often the two coders matched.",
+      "repaired": false,
+      "source": "ch10"
+    },
+    {
+      "anchor": "It is also misleading, and seeing why is the key idea of the chapter.",
+      "repaired": false,
+      "source": "ch10"
+    },
+    {
+      "anchor": "Cohen's 1960 paper that introduced the standard fix made the point with a sharp example.",
+      "repaired": false,
+      "source": "ch10"
+    },
+    {
+      "anchor": "Raw agreement cannot tell that empty agreement apart from the real kind.",
+      "repaired": false,
+      "source": "ch10"
+    },
+    {
+      "anchor": "What you need is a measure that starts from the agreement actually observed",
+      "repaired": false,
+      "source": "ch10"
+    },
+    {
+      "anchor": "**Cohen's kappa** is the first, introduced in the 1960 paper just mentioned",
+      "repaired": false,
+      "source": "ch10"
+    },
+    {
+      "anchor": "When the coders do no better than chance, the numerator is zero",
+      "repaired": false,
+      "source": "ch10"
+    },
+    {
+      "anchor": "Either way the result is a number between roughly zero and one",
+      "repaired": false,
+      "source": "ch10"
+    },
+    {
+      "anchor": "To see what a failed check looks like, and why codebooks fail it",
+      "repaired": false,
+      "source": "ch10"
+    },
+    {
+      "anchor": "Imagine the codebook included a loosely worded variable.",
+      "repaired": false,
+      "source": "ch10"
+    },
+    {
+      "anchor": "The two coders agreed on 74 of the 100 messages",
+      "repaired": false,
+      "source": "ch10"
+    },
+    {
+      "anchor": "By the Landis and Koch labels, 0.236 is fair agreement.",
+      "repaired": false,
+      "source": "ch10"
+    },
+    {
+      "anchor": "A kappa of 0.236 is not a result to report.",
+      "repaired": false,
+      "source": "ch10"
+    },
+    {
+      "anchor": "The fix begins with diagnosis.",
+      "repaired": false,
+      "source": "ch10"
+    },
+    {
+      "anchor": "Then the codebook, now revised, is piloted again.",
+      "repaired": false,
+      "source": "ch10"
+    },
+    {
+      "anchor": "This is why Chapter 9 finalized only the codebook's status",
+      "repaired": true,
+      "source": "ch10"
+    }
+  ]
+}

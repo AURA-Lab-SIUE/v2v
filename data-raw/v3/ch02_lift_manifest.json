@@ -1,0 +1,22 @@
+{
+  "source": "chapters/chapter05.qmd",
+  "output": "chapters/_v3-draft/chapter02-three-paradigms.qmd",
+  "lifted": [
+    {
+      "anchor": "The way researchers use theory depends on their broader philosophical commitments",
+      "repaired": true
+    },
+    {
+      "anchor": "The **social scientific paradigm** assumes there is an objective reality",
+      "repaired": false
+    },
+    {
+      "anchor": "The **interpretive paradigm** assumes reality is socially constructed",
+      "repaired": false
+    },
+    {
+      "anchor": "The **critical and cultural paradigm** assumes that power structures shape what counts as knowledge",
+      "repaired": false
+    }
+  ]
+}

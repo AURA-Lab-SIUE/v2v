@@ -1,0 +1,95 @@
+---
+title: "Chapter 2: Three Paradigms"
+---
+
+Chapter 1 said that research is a disciplined way of answering a question. This chapter says that researchers disagree, deeply and in good faith, about what an answer is.
+
+That disagreement is not a defect to be resolved before work can start. It is the reason this book has a quantitative half and a qualitative half that do not simply take turns, and it is why a reader who arrives at Chapter 18 expecting the standards of Chapter 14 will conclude that the ethnographers are being careless. They are not. They are answering to something else.
+
+Get this chapter now and the rest of the book stops looking like a list of techniques.
+
+The way researchers use theory depends on their broader philosophical commitments, what is called a **paradigm**. Three major paradigms dominate communication research. They differ over what exists to be studied, what would count as knowing it, and what the researcher's relationship to it should be, and each treats theory differently as a consequence.
+
+Three questions separate them, and it is worth naming the questions before the answers.
+
+**What is there to be known?** Is there a social world that exists independently of how we describe it, or is the world partly made by the descriptions?
+
+**What would count as knowing it?** Measurement that another researcher could repeat, or an interpretation that a reader finds convincing and well evidenced?
+
+**What is the researcher for?** To describe the world accurately while staying out of it, or to be visibly part of what is produced, or to change the thing being studied?
+
+Each paradigm answers all three, and the answers hang together. That is what makes them paradigms rather than preferences.
+
+## The social scientific paradigm
+
+The **social scientific paradigm** assumes there is an objective reality that can be observed, measured, and understood through systematic testing. Its approach to theory is deductive: start with theory, derive specific predictions, collect data to test those predictions. Its typical question is "does X cause Y?" A researcher might start with cultivation theory (Gerbner & Gross, 1976), which proposes that heavy media exposure cultivates perceptions consistent with media portrayals, hypothesize that heavy viewers of a particular kind of stream develop particular perceptions, and design a study to test that prediction. If the data support the hypothesis, confidence in the theory strengthens. If not, the theory or the hypothesis needs refinement. This cycle, from theory to hypothesis to data to conclusion to refinement, is how social science progresses.
+
+What follows from those commitments runs all the way down. Concepts must be operationalized before they can be studied, because a concept that cannot be measured cannot be tested. Measures must be reliable, because an inconsistent instrument cannot approximate anything. Samples must be drawn so that they license a claim beyond themselves. The researcher's own views are a source of error to be controlled.
+
+Chapters 7 through 15 and Part VI work inside this paradigm. Its characteristic failure is measuring something adjacent to what you care about and reporting it as though it were the thing itself, which is why Chapters 9 and 10 exist.
+
+## The interpretive paradigm
+
+The **interpretive paradigm** assumes reality is socially constructed and that meaning emerges through interaction and interpretation. Its approach to theory is inductive: start with detailed observations, identify patterns, build theory from the data. Its typical question is "what does X mean to the people who experience it?" A researcher might immerse themselves in a stream community, analyze how members talk, notice that they engage in shared interpretive labor, and propose a theory that the community builds identity through collaborative sense-making. The theory is the end point, grounded in the data, emerging from the bottom up. Methods common to this paradigm include grounded theory, thematic analysis (Braun & Clarke, 2006), and narrative analysis.
+
+Its commitments run down just as far, and in the opposite direction. Categories should emerge from the material rather than being fixed in advance, because imposing them prejudges what you are trying to find. Two researchers agreeing is not the standard, since the reading depends on judgment that a second reader is not meant to reproduce mechanically. What replaces it is evidence: showing enough material that a reader can evaluate the reading, and saying where it does not hold. The researcher's position is not error to be controlled but a condition of the work, to be stated so a reader can weigh it.
+
+Part IV works inside this paradigm. Its characteristic failure is an interpretation that arrived before the material and was never tested against it.
+
+## The critical and cultural paradigm
+
+The **critical and cultural paradigm** assumes that power structures shape what counts as knowledge, and that research should critique and challenge inequity. Its approach to theory is to use it as an explicit tool for revealing hidden power dynamics. Its typical question is "whose interests does X serve, and whose voices does it silence?" A researcher studying livestreaming might examine who gets to be a successful streamer, connect the visibility of certain creators to the platform's design and economic structure, and argue that what looks like neutral popularity is shaped by forces that advantage some creators over others. The critical lens transforms description into argument. Other critical lenses include the political economy of media and discourse analysis.
+
+Its distinguishing commitment is the third question. Critical work holds that no research is free of a standpoint, and that work which does not examine its own is not neutral but unexamined. It therefore declines the ambition of describing without judging, and takes the ordinary and unremarkable as its object, on the grounds that assumptions do their most effective work when nobody notices them.
+
+Part V works inside this paradigm. Its characteristic failure is a framework that predicts its own findings, so that the analysis could not have come out any other way.
+
+## How far down it goes
+
+It is tempting to treat a paradigm as a preference about method: quantitative people count, qualitative people read. That understates it, and the understatement causes real confusion when students read across the halves of this book.
+
+Take one question, and watch what each paradigm turns it into.
+
+*Are livestream communities welcoming to newcomers?*
+
+The **social scientific** version operationalizes welcoming, perhaps as the proportion of first-time posters who receive a reply within some window, measures it across many channels, and asks what predicts variation. Its answer is a number with an interval around it, and it can say how confident you should be that the number generalizes.
+
+The **interpretive** version asks what welcome means to the people in the room, and finds that it is not one thing: being replied to, being ignored in a way that signals you have passed as a regular, being corrected gently rather than mocked. Its answer is an account of how membership is recognized and conferred, and it cannot tell you how common any of it is.
+
+The **critical** version asks who the room is welcoming *to*, what a newcomer has to already know to be legible as one, and whose comfort the norms protect. Its answer is an argument about whose interests the arrangement serves.
+
+**None of those is a worse version of the others.** The first cannot tell you what welcome means, the second cannot tell you how common it is, and the third is not trying to do either. And notice that the same data, this book's corpus, could feed all three, which is exactly what Chapters 19 through 25 do to it.
+
+## Can they be combined?
+
+The strong position is **incommensurability**: the paradigms rest on contradictory assumptions about what exists, so combining them is incoherent rather than merely difficult. You cannot hold that message length measures an underlying reality and that the reality is constituted by how participants talk about it.
+
+The usual working answer is **pragmatism**: what justifies a method is whether it answers the question, and a question can have parts that need different tools. Most mixed methods research adopts it, and Chapter 26 sets out what it requires.
+
+It is worth knowing the objection has force. The failure it predicts is real and common: a study that treats interview accounts as imperfect measurements of something the survey measured better has not combined paradigms, it has subordinated one, and the qualitative half will read as quotes decorating a result. The defense is to keep each strand answerable to its own standard, and Chapter 26 is specific about how.
+
+For now, one practical instruction. **You do not have to pick a paradigm for life.** You have to know which one a given study is working in, because that determines what the study must do to be any good, and a reader who cannot tell will apply the wrong test to half of what they read.
+
+## Locating yourself, and the study
+
+Three questions to ask of your own project, and of everything you read.
+
+**What kind of answer would satisfy the question?** A rate, a meaning, or a critique. This usually settles the paradigm before any method is chosen, and Chapter 7 makes the same argument about design.
+
+**What would count as being wrong?** In social scientific work, a hypothesis fails a test. In interpretive work, the material resists the reading and the negative cases will not fit. In critical work, the argument does not hold up against the text or the material conditions. A study with no answer to this question is not yet a study.
+
+**Where does the researcher stand?** Outside, controlling for their own influence; inside, accounting for it; or committed, and saying so.
+
+Read the answers in published papers, not just in method sections. A paper that reports a kappa on interpretive codes, or one that generalizes from six interviews to a population, has usually mixed up which game it is playing, and knowing that is most of what this chapter is for.
+
+## Looking ahead
+
+Chapter 3 is on research ethics, which every paradigm shares and which none of them relaxes. Whatever you think knowledge is, the people you study are owed the same things.
+
+After that, Chapter 4 on reading the literature, Chapter 5 on theory, and Chapter 6 on turning all of it into a question you can actually answer.
+
+## References
+
+Braun, V., & Clarke, V. (2006). Using thematic analysis in psychology. *Qualitative Research in Psychology*, *3*(2), 77-101. https://doi.org/10.1191/1478088706qp063oa
+
+Gerbner, G., & Gross, L. (1976). Living with television: The violence profile. *Journal of Communication*, *26*(2), 172-199. https://doi.org/10.1111/j.1460-2466.1976.tb01397.x

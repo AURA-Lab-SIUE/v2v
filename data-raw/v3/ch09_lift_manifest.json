@@ -1,0 +1,46 @@
+{
+  "source": "chapters/chapter08.qmd",
+  "output": "chapters/_v3-draft/chapter09-measurement-scales-items.qmd",
+  "lifted": [
+    {
+      "anchor": "Once a variable is operationalized, it has a **level of measurement**",
+      "repaired": false
+    },
+    {
+      "anchor": "is a convenient place to see all four",
+      "repaired": true
+    },
+    {
+      "anchor": "A **nominal** variable sorts cases into categories that have no inherent order.",
+      "repaired": false
+    },
+    {
+      "anchor": "An **ordinal** variable sorts cases into categories that do have an order",
+      "repaired": false
+    },
+    {
+      "anchor": "An **interval** variable has equal, constant distances between values",
+      "repaired": true
+    },
+    {
+      "anchor": "A **ratio** variable has equal intervals and a true zero",
+      "repaired": false
+    },
+    {
+      "anchor": "Notice what happened with stream title.",
+      "repaired": false
+    },
+    {
+      "anchor": "Levels matter because they govern the statistics available to you later.",
+      "repaired": true
+    },
+    {
+      "anchor": "Some variables arrive in the dataset ready-made.",
+      "repaired": false
+    },
+    {
+      "anchor": "Other variables do not exist until you build them.",
+      "repaired": false
+    }
+  ]
+}

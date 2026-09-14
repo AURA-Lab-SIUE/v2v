@@ -1,0 +1,142 @@
+---
+title: "Excel Supplement, Chapter 15: Existing Data"
+---
+
+Chapter 15 says that the first task with a dataset somebody else made is not analysis but working out what the file can support. This supplement is that task, done as a checklist, on the corpus this book uses throughout.
+
+It takes about twenty minutes. Run it on every dataset you did not collect yourself, before you write a single research question against it, because two of the things it finds here change how earlier chapters should be read.
+
+## Import, and the first thing to record
+
+Import through **Data**, **From Text/CSV**, **65001: Unicode (UTF-8)**, with the **message** column set to **Text**. Chapter 24's supplement explains what happens otherwise, and the consequence is the first entry in your audit: **the file you analyzed is not the file you downloaded unless you controlled the import.**
+
+Open a sheet called `provenance` and fill it in now, while you still know the answers:
+
+| Field | For this corpus |
+|---|---|
+| source | `twitch_chat_sample` from the `v2v` package |
+| obtained on | the date you downloaded it |
+| version | the package version |
+| original collection | Twitch IRC capture, November 2018 |
+| documented sampling | 8 named anchor channels plus 42 stratified random, seed recorded |
+| known transformations | IRC `#` prefix stripped from channel names |
+| license or terms | as stated by the package |
+
+The field people skip is **obtained on**, and it is the one that matters when the data is revised and your numbers no longer reproduce.
+
+## The audit
+
+Nine checks. Each is one formula, and each answers a question you would otherwise be assuming.
+
+**How many rows, really?**
+
+```
+=COUNTA($A$2:$A$35268)
+```
+
+**35,267**, which matches the documentation.
+
+**Are the identifiers unique?**
+
+```
+=SUMPRODUCT(1/COUNTIF($A$2:$A$35268,$A$2:$A$35268))
+```
+
+**35,267**, so no duplicates. That formula counts distinct values by giving each row a weight of one over the number of times its value appears, so a value appearing three times contributes three thirds. It is slow on large ranges and worth knowing, because duplicated rows are among the most common defects in a file that has been through an export.
+
+**Any empty values?**
+
+```
+=COUNTBLANK($D$2:$D$35268)
+```
+
+**0**. Do this for every column. A column that is 30 percent blank is a column you cannot use as you planned, and it is better to learn that now than after building an analysis on it.
+
+**How many channels?** Copy the channel column, **Paste Special, Values**, **Remove Duplicates**: **50**, as documented.
+
+**Are the documented anchor channels actually there?** One `COUNTIF` each, against the eight names the documentation lists:
+
+```
+=COUNTIF($B$2:$B$35268,"bobross")
+```
+
+All eight are present. **All eight return exactly 1,000**, which is the first hint of something the documentation does not mention.
+
+**What is the real time span?** Convert the timestamps as Chapter 24's supplement does, then:
+
+```
+=MIN($H$2:$H$35268)   =MAX($H$2:$H$35268)
+```
+
+**2018-11-18 21:55** to **2018-11-24 18:20**: five days and twenty hours. Not "November 2018", which is what you would have written in your methods section from the documentation alone. A six-day window is a very different object from a month, and it constrains what you can say about anything that varies weekly.
+
+## Where the documentation is wrong
+
+The package says messages run **up to 509 characters**.
+
+```
+=MAX($G$2:$G$35268)
+```
+
+returns **501**. And:
+
+```
+=COUNTIF($G$2:$G$35268,">500")
+```
+
+returns **1**, while the same formula at `>509` returns **0**.
+
+Eight characters is nothing. What it tells you is worth a great deal: **a stated property of this dataset was not true, and you found it in one cell.** Everything else in that documentation has now moved from assumed to checkable, which is the correct state for documentation to be in.
+
+## Where the documentation is silent
+
+This is the check that repays the twenty minutes.
+
+Build the per-channel counts. Take your 50-row channel list and put beside it:
+
+```
+=COUNTIF($B$2:$B$35268,$J2)
+```
+
+Then look at the distribution rather than the individual numbers:
+
+| Check | Formula | Result |
+|---|---|---|
+| channels at exactly 1,000 | `=COUNTIF($K$2:$K$51,1000)` | 31 |
+| channels above 1,000 | `=COUNTIF($K$2:$K$51,">1000")` | 0 |
+| channels below 100 | `=COUNTIF($K$2:$K$51,"<100")` | 9 |
+| smallest channel | `=MIN($K$2:$K$51)` | 1 |
+
+**Thirty-one of fifty channels sit on exactly 1,000, and nothing is above it.**
+
+Real counts do not do that. A hard ceiling with 31 channels resting on it and none above is a cap, applied when the sample was drawn, and it appears nowhere in the documentation.
+
+Sort the channel counts descending and look at the column, or chart them as a bar chart. The flat plateau followed by a cliff is visible instantly, and it is the reason this check is "look at the distribution" rather than "compute a statistic". **A summary statistic of the channel sizes would have hidden it completely**: the mean is unremarkable and the standard deviation tells you nothing about a ceiling.
+
+## What to do with what you found
+
+Write both findings into your limitations, and then work out what they change.
+
+The cap means the corpus is balanced across channels rather than proportional to chat volume. Chapter 15 works through the consequence for Chapter 23's inequality figures and Chapter 25's group sizes. The short version: any quantity computed across channels is partly describing the sampling design.
+
+Then make the check repeatable. Put the whole audit on one sheet with the formulas live, so that when the package updates, or when you get a fresh extract, you re-run it by replacing the data rather than by remembering what you checked. Chapter 24's supplement asks for a `decisions` sheet for the same reason, and the two belong in the same workbook.
+
+## The checks worth running on any dataset
+
+Generalized from the above, for a file you did not make:
+
+1. Row count against the documentation.
+2. Distinct count of the identifier, against the row count.
+3. Blank count for every column.
+4. Distinct count for every categorical column, and eyeball the list for case variants and near-duplicates. Chapter 24's supplement found `Minecraft` and `minecraft` in this very corpus.
+5. Minimum and maximum for every numeric and date column, against what the documentation claims and against what is possible.
+6. The distribution of records per group, looking for round numbers, ceilings and floors.
+7. Every documented property that can be expressed as a formula, actually expressed as one.
+
+Number seven is the whole method. **Documentation is a claim about the data, and a claim you can check in a spreadsheet is a claim you should check in a spreadsheet.**
+
+## What Excel will not do for you
+
+It will not tell you why the cap is there, whether the 42 non-anchor channels really were drawn as documented, or what was in the 1.6 GB dump that did not make it into these 35,267 rows. Those questions go to whoever made the file, and "we asked and could not find out" is a legitimate and reportable answer.
+
+It will also not tell you whether the data fits your question, which is the judgment this whole chapter is about. What it does is make sure that when you make that judgment, you are making it about the file you actually have rather than the one the documentation describes.

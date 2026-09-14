@@ -26,13 +26,18 @@ def paragraph(src, anchor):
 
 def check(manifest_path):
     m = json.loads(pathlib.Path(manifest_path).read_text(encoding="utf-8"))
-    src = (ROOT / m["source"]).read_text(encoding="utf-8")
+    # a builder may lift from one source ("source") or several ("sources", with
+    # each lifted item naming which one it came from)
+    if "sources" in m:
+        srcs = {k: (ROOT / v).read_text(encoding="utf-8") for k, v in m["sources"].items()}
+    else:
+        srcs = {None: (ROOT / m["source"]).read_text(encoding="utf-8")}
     new = (ROOT / m["output"]).read_text(encoding="utf-8")
 
     identical, repaired, drift = 0, [], []
     for item in m["lifted"]:
         anchor, is_rep = item["anchor"], item["repaired"]
-        p = paragraph(src, anchor)
+        p = paragraph(srcs[item.get("source")], anchor)
         if p in new:
             identical += 1
             if is_rep:
@@ -42,7 +47,7 @@ def check(manifest_path):
         else:
             drift.append((anchor, "NOT FOUND and no repair was declared"))
 
-    print("%s -> %s" % (m["source"], m["output"]))
+    print("%s -> %s" % (m.get("source") or ", ".join(m["sources"].values()), m["output"]))
     print("  paragraphs lifted byte-identical  : %d" % identical)
     print("  paragraphs changed by declared repair: %d" % len(repaired))
     for a in repaired:

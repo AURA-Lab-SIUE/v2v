@@ -1,0 +1,117 @@
+---
+title: "Chapter 10: Reliability and Validity"
+---
+
+An operational definition can be perfectly precise and still be bad measurement. Two criteria tell you whether your measurement is any good: reliability and validity.
+
+These are the two questions every measure has to answer, and a study that cannot answer them has not established that it measured anything. They are worth a chapter rather than a section, because the concepts are easy and the practice is not.
+
+## Reliability
+
+**Reliability** is consistency. A measure is reliable if it produces the same result under the same conditions. A bathroom scale that reads 150, then 162, then 147 as you step on and off without changing is unreliable, and its readings are worthless regardless of your actual weight. For content analysis, the form of reliability that matters most is **inter-coder reliability**: if two trained coders apply your codebook to the same messages independently, do they agree? If they do not, the codebook is not yet measuring anything stable, and no amount of analysis downstream will repair that. Inter-coder reliability is quantified with statistics, Cohen's kappa and Krippendorff's alpha among them, that correct for the agreement two coders would reach by chance alone. The rest of this chapter covers those statistics and how to act on them. A codebook's job is to make independent coders agree.
+
+Inter-coder agreement is one of three forms, and which one applies depends on what your measure is.
+
+**Inter-coder or inter-rater reliability** applies when humans classify material: content analysis, observational coding, any variable that exists because a person read something and made a judgment. It is the form the rest of this chapter works through.
+
+**Internal consistency** applies when several items are combined into a scale, in Chapter 9's sense of indicators caused by a common construct. It asks whether the items behave as though they are measuring one thing, and it is reported as **Cronbach's alpha** or, increasingly, McDonald's omega. Conventionally alpha above about .70 is considered adequate and above .80 good, with the same caution that attaches to every threshold in this book.
+
+Two things about alpha are routinely misunderstood. It rises as you add items, so a long scale of mediocre items can post a high alpha, and a very high alpha, above about .95, usually means the items are near-paraphrases rather than that the measure is excellent. And, as Chapter 9 says, it does not apply to an index at all, because the components of an index have no reason to correlate.
+
+**Test-retest reliability** applies when a measure should be stable over time: administer it twice to the same people and correlate the results. It is only interpretable when the underlying thing genuinely is stable, which makes it right for a personality trait and wrong for a mood.
+
+## Validity
+
+**Validity** is accuracy. A measure is valid if it captures the thing it claims to capture. Validity and reliability are independent. A scale calibrated ten pounds light is perfectly reliable, it reads the same every time, and perfectly invalid, it is wrong every time. The reverse can also happen: a measure can be accurate on average but so inconsistent that any single reading is unusable. Validity has several forms worth knowing by name. **Face validity** asks whether the measure looks, on inspection, like it assesses the intended concept. **Content validity** asks whether it covers all of the concept and not just a convenient slice. **Construct validity**, the most demanding, asks whether the measure behaves the way theory says it should, relating to other variables as predicted.
+
+A fourth form completes the set. **Criterion validity** asks whether the measure predicts or matches an external standard: concurrently, against something measured at the same time, or predictively, against a future outcome. It is the strongest evidence when a criterion exists, and for most communication constructs one does not, which is why construct validity carries the weight.
+
+Two threats are worth naming because they are specific and common.
+
+**Social desirability** is the tendency to answer as one ought rather than as one does, and it attacks validity without touching reliability: people are consistently flattering about themselves. Chapter 13 returns to this with the gap between reported and actual behavior.
+
+**Construct underrepresentation** is measuring a narrow slice and naming it after the whole thing. A measure of community built entirely from posting frequency captures one aspect and calls it the concept, so the study's conclusions will be about posting while its abstract is about belonging.
+
+One principle ties the two together and is worth holding onto: reliability is necessary but not sufficient for validity. A measure that is inconsistent cannot be accurately capturing anything, so unreliability rules validity out. But a measure can be perfectly consistent and still measure the wrong thing. You need both, and you get reliability first, because a codebook is the instrument that produces it.
+
+## The pilot test
+
+A pilot test is a trial run of the codebook before the real coding begins. A subset of the sample, a hundred messages is a reasonable size, is coded not by one person but by two, working from the same codebook. Then their codes are compared. The question the comparison answers is the one that decides whether the codebook is an instrument or just a document: when two people apply these rules independently, do they produce the same classifications?
+
+That word, independently, carries the whole logic. The two coders must work in genuine isolation, no conferring, no comparing notes, no checking each other as they go. The reason is not suspicion. It is that the pilot is measuring the codebook, not the coders. If the two of them discuss a hard message and agree on how to code it, their later agreement on similar messages measures their memory of that conversation, not the clarity of the codebook. Only independent coding tests what the study actually needs to know, which is whether the written rules are clear enough to carry a classification on their own, without their author standing beside the coder to interpret them.
+
+## Why raw agreement is not enough
+
+The obvious way to turn the pilot into a number is to count how often the two coders matched. If they agreed on the code for 74 of the 100 pilot messages, that is 74 percent agreement, and 74 percent sounds respectable.
+
+It is also misleading, and seeing why is the key idea of the chapter. Some agreement between two coders happens for no good reason at all. It happens by luck.
+
+Cohen's 1960 paper that introduced the standard fix made the point with a sharp example. Imagine two clinicians independently sorting patients into two categories, and suppose each one, rather than examining anyone, simply assigns the categories blindly at the rates the categories happen to occur. The two of them, coordinating on nothing, would still agree a large share of the time, purely because there are only so many categories to land on. Agreement produced that way is worth nothing. It reflects the number of categories and how often each is used, not the soundness of any judgment.
+
+Raw agreement cannot tell that empty agreement apart from the real kind. It counts every match the same, the ones that reflect a clear shared rule and the ones that are coincidence. When the categories are few, or one category is far more common than the others, the coincidental matches pile up fast, and raw agreement drifts upward on their strength. A figure of 74 percent might reflect a genuinely clear codebook. It might also be mostly luck. The number alone does not say.
+
+What you need is a measure that starts from the agreement actually observed, estimates how much agreement chance alone would have produced, and credits the codebook only with the difference. That is what a reliability statistic does.
+
+## Cohen's kappa and Krippendorff's alpha
+
+**Cohen's kappa** is the first, introduced in the 1960 paper just mentioned (Cohen, 1960). It is built for the common case: two coders, applying a nominal codebook. Its logic is exactly the correction described above. Conceptually, kappa is the observed agreement minus the agreement expected by chance, divided by the room for improvement that chance left on the table:
+
+When the coders do no better than chance, the numerator is zero and kappa is zero, whatever the raw agreement looked like. When they agree perfectly, kappa is one. A codebook is credited only for the agreement it produced beyond luck.
+
+**Krippendorff's alpha** is the second and the more general instrument (Krippendorff, 2018). Where kappa assumes exactly two coders and nominal categories, alpha accommodates any number of coders, handles ordinal, interval and ratio data, and tolerates missing values. For anything beyond the simplest two-coder nominal case it is the safer choice, and it is increasingly expected in content analysis.
+
+Note that this alpha and Chapter 9's Cronbach's alpha share a name and nothing else. One measures agreement among coders; the other measures consistency among items. Reporting the wrong one is a small error that tells a reviewer a lot.
+
+Either way the result is a number between roughly zero and one, and a number needs a standard to be read against. The most cited one comes from Landis and Koch (1977), who attached descriptive labels to ranges of agreement: values around 0.0 to 0.2 they called slight, 0.2 to 0.4 fair, 0.4 to 0.6 moderate, 0.6 to 0.8 substantial, and above 0.8 almost perfect. Those labels are a vocabulary, not a law, and published content analysis tends to apply a stricter working rule: a reliability coefficient below about 0.70 is generally treated as too low to proceed on, with 0.80 a more comfortable floor. The exact threshold is a judgment call that depends on the stakes of the study. The principle is not: a codebook that cannot clear a defensible threshold is not ready to be used.
+
+One caution on thresholds. Landis and Koch's labels were proposed for a different literature and have hardened into a rule they were never meant to be. The working expectation in published content analysis is at least .70, with .80 preferred, and the harder point is that an acceptable coefficient on a trivial variable proves very little. Reporting agreement per variable rather than one figure for the whole codebook is the honest practice, because the variable that matters is usually the one that agrees worst.
+
+## A worked reliability check
+
+To see what a failed check looks like, and why codebooks fail it, consider a deliberately stark example.
+
+Imagine the codebook included a loosely worded variable. It asked coders to flag the pilot's "high-energy" messages, the pure expressive reactions, but it never pinned down what that meant in operational terms. Two conscientious coders, each trying to apply the instruction, each settle on a concrete rule of their own. Coder A decides a high-energy message is one carrying a Twitch emote, a token like LULW or OMEGALUL, and flags messages on that basis. Coder B decides a high-energy message is one that shouts, and flags every message containing a word in all capitals. Both rules are reasonable readings of "high-energy." Both coders believe they are coding the same variable.
+
+The two coders agreed on 74 of the 100 messages, the same 74 percent that looked respectable a few pages ago. But chance alone, given how often each coder flagged a message, would have produced agreement on about two-thirds of them. Run that through the formula, observed agreement of 0.74 against expected agreement of about 0.66, and the result is roughly 0.24. The function reports it as 0.236.
+
+By the Landis and Koch labels, 0.236 is fair agreement. By any working threshold for publishable content analysis, it is a failure, far below 0.70. And the diagnosis is exact. The raw agreement of 74 percent was almost all coincidence. Emote-bearing messages and all-caps messages overlap a fair amount in Twitch chat, enough that two coders keying on those different features would land on the same answer often, without ever coding the same concept. The loose codebook let two careful people measure two different things while believing they measured one. That is what kappa exposed and raw agreement concealed.
+
+## When reliability fails
+
+A kappa of 0.236 is not a result to report. It is an instruction, and the instruction is to stop and fix the codebook before any real coding happens.
+
+The fix begins with diagnosis. The two coders, who until now have worked in isolation, finally meet and go through the messages they classified differently, one by one. The disagreements are the data. They show precisely where the codebook ran out of guidance: a category whose boundary is fuzzy, a kind of message the rules never anticipated, a term that two readers can take two ways. In the worked example the diagnosis is plain, because the variable was never operationally defined at all. The repair is to define it: state in the codebook exactly what counts as a high-energy message, with the kind of explicit decision rules Chapter 8 built for the message-target variable, so that two coders are no longer free to invent their own.
+
+Then the codebook, now revised, is piloted again. New coders or the same coders, a fresh subset of messages, another independent coding, another reliability coefficient. The cycle, pilot, diagnose, revise, repeat, continues until the coefficient clears the threshold. Only then does full coding of the sample begin.
+
+This is why Chapter 12 finalizes only the codebook's status and not its content. A codebook is a living instrument right up until a pilot test certifies it, and a pilot test has the standing to send it back for revision however many times that takes. The discipline is to treat a low reliability coefficient as useful news rather than an obstacle. It has told you, before you invested weeks in coding, that the instrument was not yet sound. That is the pilot test working exactly as intended.
+
+One rule governs the whole cycle, and breaking it is the most common integrity failure in content analysis. **The coefficient you report must come from a fresh sample coded after the last revision.** Revising the codebook to fix the disagreements and then recomputing agreement on the same messages measures how well you patched those messages, not whether the instrument works. Chapter 8's protocol separates the training set from the reliability sample for exactly this reason.
+
+And report the whole procedure: how many units, drawn how, coded by whom, which statistic, per variable, and how many revision rounds it took. A kappa with no procedure behind it is a number a reader has no way to evaluate.
+
+## Reliability in qualitative work
+
+Everything above belongs to the social scientific paradigm from Chapter 2, and it does not transfer to Part IV. That is not a lowering of standards but a different kind of claim: where an interpretive reading depends on judgment a second coder is not meant to reproduce mechanically, agreement measures the wrong thing.
+
+Chapter 21 sets out what replaces it, Lincoln and Guba's credibility, transferability, dependability and confirmability, and Chapter 19 makes the specific point that a qualitative content analysis reporting a kappa has usually misunderstood what it was doing.
+
+The dividing line is not the material but the claim. Coding this book's corpus for whether a message contains an at-mention is a manifest judgment that two people should agree on, and a kappa is exactly right. Coding the same messages for whether they are welcoming is not.
+
+## Looking ahead
+
+You have a measure, and evidence that it is consistent and that it captures what it claims to. What you do not have is anything to apply it to.
+
+Chapter 11 is about sampling: which cases to study, how to choose them, and what the choice licenses you to say about everyone you did not study.
+
+## References
+
+Cohen, J. (1960). A coefficient of agreement for nominal scales. *Educational and Psychological Measurement*, *20*(1), 37-46. https://doi.org/10.1177/001316446002000104
+
+Hayes, A. F., & Krippendorff, K. (2007). Answering the call for a standard reliability measure for coding data. *Communication Methods and Measures*, *1*(1), 77-89. https://doi.org/10.1080/19312450709336664
+
+Krippendorff, K. (2018). *Content analysis: An introduction to its methodology* (4th ed.). SAGE Publications.
+
+Landis, J. R., & Koch, G. G. (1977). The measurement of observer agreement for categorical data. *Biometrics*, *33*(1), 159-174. https://doi.org/10.2307/2529310
+
+Lombard, M., Snyder-Duch, J., & Bracken, C. C. (2002). Content analysis in mass communication: Assessment and reporting of intercoder reliability. *Human Communication Research*, *28*(4), 587-604. https://doi.org/10.1111/j.1468-2958.2002.tb00826.x
