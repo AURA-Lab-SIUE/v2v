@@ -31,7 +31,7 @@ Both forms return tibble-compatible data frames. The loader functions accept opt
 | `id` | integer | primary key | Surrogate identifier from the source database |
 | `channel` | character | 50 distinct values | **In the raw dump, prefixed with `#`** (IRC convention). The shipped fixture has the prefix stripped so `channel` joins cleanly to `twitch_streams_sample`. Recovering the IRC representation is a Chapter 11 exercise |
 | `sender` | character | tens of thousands distinct | Pseudonymous Twitch username; public on the IRC feed; chosen by the user |
-| `message` | character | 1 to 509 chars | UTF-8; includes Twitch emote tokens (`LULW`, `OMEGALUL`, `KEKW`, `Pog`, `Kappa`, etc.) as first-class lexical items |
+| `message` | character | 1 to 509 chars | UTF-8; includes Twitch emote tokens (`LULW`, `OMEGALUL`, `monkaS`, `Pog`, `Kappa`, etc.) as first-class lexical items |
 | `date` | integer (bigint) | 1542578125327 to 1543083667610 | **Unix epoch in milliseconds**, not seconds. Convert with `as.POSIXct(date / 1000, origin = "1970-01-01", tz = "UTC")`. This is the headline Chapter 11 conversion lesson |
 
 Approximately 35,000 rows total. Per-channel sample size is `min(1000, available)`: most channels contribute the full 1,000 messages, but 19 of the 50 contribute fewer because they had fewer than 1,000 messages during the collection window. This per-channel imbalance is itself part of the population structure students should see.
