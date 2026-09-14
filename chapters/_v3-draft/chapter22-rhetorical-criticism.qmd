@@ -14,7 +14,7 @@ That makes this the least familiar chapter in the book for anyone who arrived th
 
 Three features follow, and each will feel wrong at first.
 
-**The sample is one.** A criticism takes a single artifact, or a small purposive set, and stays with it. Chapter 11's logic does not apply and is not being flouted: the goal is not to estimate anything about a population, so representativeness is not the standard the work is answerable to.
+**The sample is one.** A criticism takes a single artifact, or a small purposive set, and stays with it. Chapter 7's logic about cases and populations does not apply here, and is not being flouted: the goal is not to estimate anything about a population, so representativeness is not the standard the work is answerable to.
 
 **The critic is present in the analysis.** There is no pretense of a neutral instrument. The critic selects the artifact, brings a perspective to it, and argues. Chapter 18 asked for reflexivity as a safeguard; here the critic's judgment is not a source of error to be managed but the faculty doing the work.
 
@@ -34,23 +34,35 @@ Before any lens, establish the situation. Bitzer (1968) argued that rhetoric is 
 
 Getting the situation wrong dooms everything after it, because you will be evaluating a text against an audience it was never addressing. This is the most common failure in student criticism, and it is the cheapest one to avoid.
 
-## Three lenses
+## Why there is more than one lens
+
+A reader arriving from Part III will want to know why a method offers four vocabularies and lets you pick. The answer is historical, and knowing it is what keeps the choice from feeling arbitrary.
+
+For the first half of the twentieth century there was essentially one approach. A criticism reconstructed a speech's occasion, sorted its persuasive work into Aristotle's categories, and assessed whether it achieved its aim with its immediate audience. It was rigorous, it was teachable, and it produced a great deal of competent work on a narrow range of objects: single speeches, by public men, on formal occasions.
+
+Black's (1978) critique, first published in 1965, is the hinge. His argument was not that the approach was wrong but that it was one method being mistaken for the whole enterprise, and that its assumptions quietly decided the findings in advance. It assumed the significant unit was a single speech, so campaigns, movements and bodies of work were invisible. It assumed the relevant audience was the one in the room, so a text's longer effect on how a public could think was out of scope. And it assumed effect could be read off the text, which is the boundary this chapter's last section polices.
+
+What followed was not a replacement but a proliferation, and the lenses below are a small selection from it. That is why the method asks you to justify your choice: the vocabulary you bring determines what you are able to notice, so choosing one is already an analytic decision and belongs in the write-up rather than in the background.
+
+It is also why "I applied rhetorical criticism" is not a methods section. Which lens, on what artifact, and why that pairing, is.
+
+## Four lenses
 
 A lens is a vocabulary that makes certain features of a text visible. You choose one because it fits the artifact, not because it is the one you know.
 
 ### The classical appeals
 
-Aristotle's three modes of persuasion are still the most economical starting vocabulary. **Ethos** is the appeal from the speaker's character and standing. **Pathos** is the appeal to the audience's emotions and dispositions. **Logos** is the appeal through reasoning and evidence.
+Aristotle's three modes of persuasion (2007) are still the most economical starting vocabulary. **Ethos** is the appeal from the speaker's character and standing. **Pathos** is the appeal to the audience's emotions and dispositions. **Logos** is the appeal through reasoning and evidence.
 
 Their value is not in labeling a passage as one of the three, which is where most first attempts stop and why they produce nothing. The value is in asking how the appeals are **constructed**, and what each costs. A speaker who builds ethos by emphasizing their long history in a community has thereby made that history relevant, which is useful right up to the moment someone raises a part of it they would rather not discuss.
 
 ### The pentad
 
-Burke offers a vocabulary for how a text characterizes an event. Any account of an action can be described by five terms: the **act** (what happened), the **scene** (its setting and circumstances), the **agent** (who did it), the **agency** (by what means), and the **purpose** (to what end).
+Burke (1969a) offers a vocabulary for how a text characterizes an event. Any account of an action can be described by five terms: the **act** (what happened), the **scene** (its setting and circumstances), the **agent** (who did it), the **agency** (by what means), and the **purpose** (to what end).
 
 The analytic move is not to fill in the five slots. It is to notice which term the text makes dominant, because the dominant term does the persuasive work. A text that explains an outcome through scene presents it as a product of circumstances that nobody chose. A text that explains the same outcome through agent presents it as somebody's doing. Those are different arguments about responsibility, and neither announces itself.
 
-Burke's other central idea, **identification**, is that persuasion works by making the audience feel joined to the speaker: we share an interest, a grievance, an enemy. Where you see a speaker constructing a "we", ask who has been placed outside it, because a "we" is always made by exclusion.
+Burke's other central idea, **identification** (1969b), is that persuasion works by making the audience feel joined to the speaker: we share an interest, a grievance, an enemy. Where you see a speaker constructing a "we", ask who has been placed outside it, because a "we" is always made by exclusion.
 
 ### The narrative paradigm
 
@@ -96,6 +108,28 @@ Any of those will support the analysis in this chapter. The chat responding to t
 
 **Argue, and judge.** A criticism that stops at description has stopped early. Say what the text accomplishes, at whose expense, and what it makes harder to say next.
 
+## The shape of the write-up
+
+Chapter 27 gives IMRaD and says plainly that it fits an ethnography badly. It fits a criticism worse: there is no Results section, because the analysis and the finding are the same paragraphs.
+
+What a criticism has instead is the shape of an argument.
+
+**An opening that states the claim.** Not "this essay examines the rhetoric of X" but what you concluded about how X works. A criticism that withholds its thesis for suspense reads as though the critic found it late, and the reader spends the essay guessing what to attend to.
+
+**The artifact and why it.** What the text is, where you got it, when, and what makes it worth a reader's time. This is the section that carries Chapter 2's traceability obligation, and it is short.
+
+**The situation.** Exigence, audience, constraints, with the historical work visible. A reader who disagrees with your reading often disagrees here first, and putting it early lets them see where the disagreement starts.
+
+**The lens, named and justified.** One paragraph. Why this vocabulary suits this artifact.
+
+**The analysis, organized by the argument rather than by the text.** This is the section students most often get wrong, by walking through the artifact chronologically and commenting as they go. The result is a summary with observations attached. Organize instead by the claims you are making, and bring in whatever part of the text supports each, in whatever order the argument needs.
+
+**The inconvenient material, on purpose.** A subsection or a sustained passage dealing with what resists your reading. Burying it is worse than useless, because a reader who finds it themselves stops trusting the rest.
+
+**The judgment, and what follows.** What the text accomplishes, at whose expense, and what it makes harder to say next.
+
+Length is usually the surprise: a criticism of a ten-minute video routinely runs six to eight thousand words, because the evidence is quotation and quotation takes room. If your draft is short, the usual cause is that you have described the text rather than argued about it.
+
 ## What makes one good
 
 Since there is no reliability coefficient, four things carry the weight.
@@ -122,10 +156,14 @@ Chapter 23 keeps the close reading and adds a commitment. Critical and cultural 
 
 ## References
 
+Aristotle. (2007). *On rhetoric: A theory of civic discourse* (G. A. Kennedy, Trans.; 2nd ed.). Oxford University Press.
+
 Bitzer, L. F. (1968). The rhetorical situation. *Philosophy & Rhetoric*, *1*(1), 1-14.
 
-Black, E. (1978). *Rhetorical criticism: A study in method*. University of Wisconsin Press.
+Black, E. (1978). *Rhetorical criticism: A study in method*. University of Wisconsin Press. (Original work published 1965)
 
-Burke, K. (1969). *A rhetoric of motives*. University of California Press. (Original work published 1950)
+Burke, K. (1969a). *A grammar of motives*. University of California Press. (Original work published 1945)
+
+Burke, K. (1969b). *A rhetoric of motives*. University of California Press. (Original work published 1950)
 
 Fisher, W. R. (1984). Narration as a human communication paradigm: The case of public moral argument. *Communication Monographs*, *51*(1), 1-22. https://doi.org/10.1080/03637758409390180
