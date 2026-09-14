@@ -53,7 +53,6 @@ Chapter 25 warned against deciding the analysis after seeing the data. **Preregi
 > "Preregistration distinguishes analyses and outcomes that result from predictions from those that result from postdictions."
 >
 > Nosek et al. (2018, p. 2600)
-:::
 
 It is not a cage. You may depart from the plan; you report that you did and why, and the reader can weigh it. And the exploratory half of a study remains entirely legitimate, labeled as exploratory.
 

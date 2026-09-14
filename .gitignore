@@ -3,3 +3,6 @@
 *.html
 
 **/*.quarto_ipynb
+
+# the 4th-edition read-through build (tools/render-v4.sh); large, and regenerable
+/_preview-v4/

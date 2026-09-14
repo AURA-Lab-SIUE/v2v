@@ -1,0 +1,89 @@
+# The 4th edition's table of contents: 7 chapters carried over from the 3rd
+# edition plus the 20 rewritten drafts in chapters/_v3-draft/, then all 17 Excel
+# supplements and the appendix.
+#
+# This file is NOT a Quarto profile and NOT a usable project config on its own.
+# tools/render-v4.sh splices the chapters block below into a copy of
+# _quarto.yml and renders that, because a Quarto profile would APPEND this list
+# to the 3rd edition's rather than replace it. See the script for the detail.
+#
+# THE PART STRUCTURE IS NOT A GUESS. It is read off the drafts themselves, which
+# state it in their own prose and would contradict any other arrangement:
+#   ch02  "Chapters 7 through 15 and Part VI" are social scientific;
+#         "Part IV" is interpretive; "Part V" is critical
+#   ch15  "Every method in Part III collects something" /
+#         "Part III ends here, and with it the quantitative methods half"
+#   ch16  "Part IV is the qualitative half of the book"
+#   ch21  "Part IV ends here. Chapter 22 opens Part V"
+#   ch23  "Part V ends here ... Part VI returns to data"
+#   ch24  "Part VI is where a project stops being a design and becomes a result"
+# An earlier version of this file split Part III at chapter 11 and put the
+# qualitative chapters in Part V. It rendered, and it was wrong, and the only
+# thing that caught it was reading chapter 2's own cross-references.
+#
+# Keep this list as the single authoritative statement of the v4 running order.
+
+book:
+  chapters:
+    - index.qmd
+    - part: "Part I: Foundation"
+      chapters:
+        - chapters/chapter01.qmd
+        - chapters/_v3-draft/chapter02-three-paradigms.qmd
+        - chapters/chapter03.qmd
+    - part: "Part II: Planning"
+      chapters:
+        - chapters/chapter04.qmd
+        - chapters/chapter05.qmd
+        - chapters/chapter06.qmd
+    - part: "Part III: Quantitative Methods"
+      chapters:
+        - chapters/_v3-draft/chapter07-research-design.qmd
+        - chapters/chapter08.qmd
+        - chapters/_v3-draft/chapter09-measurement-scales-items.qmd
+        - chapters/_v3-draft/chapter10-reliability-and-validity.qmd
+        - chapters/chapter11.qmd
+        - chapters/_v3-draft/chapter12-quantitative-content-analysis.qmd
+        - chapters/_v3-draft/chapter13-survey-research.qmd
+        - chapters/_v3-draft/chapter14-experimental-design.qmd
+        - chapters/_v3-draft/chapter15-existing-data.qmd
+    - part: "Part IV: Qualitative Methods"
+      chapters:
+        - chapters/_v3-draft/chapter16-qualitative-interviewing.qmd
+        - chapters/_v3-draft/chapter17-focus-groups.qmd
+        - chapters/_v3-draft/chapter18-ethnography.qmd
+        - chapters/_v3-draft/chapter19-qualitative-content-analysis.qmd
+        - chapters/_v3-draft/chapter20-discourse-conversation-analysis.qmd
+        - chapters/_v3-draft/chapter21-qualitative-data-analysis.qmd
+    - part: "Part V: Rhetorical and Critical Analysis"
+      chapters:
+        - chapters/_v3-draft/chapter22-rhetorical-criticism.qmd
+        - chapters/_v3-draft/chapter23-critical-cultural-analysis.qmd
+    - part: "Part VI: Analysis and Publication"
+      chapters:
+        - chapters/_v3-draft/chapter24-preparing-describing-visualizing.qmd
+        - chapters/_v3-draft/chapter25-inference-and-effect.qmd
+        - chapters/_v3-draft/chapter26-mixed-methods.qmd
+        - chapters/_v3-draft/chapter27-writing-and-publishing.qmd
+    - part: "Excel Supplements"
+      chapters:
+        - supplements/excel/chapter07-research-design.qmd
+        - supplements/excel/chapter12-quantitative-content-analysis.qmd
+        - supplements/excel/chapter13-survey-research.qmd
+        - supplements/excel/chapter14-experimental-design.qmd
+        - supplements/excel/chapter15-existing-data.qmd
+        - supplements/excel/chapter16-qualitative-interviewing.qmd
+        - supplements/excel/chapter17-focus-groups.qmd
+        - supplements/excel/chapter18-ethnography.qmd
+        - supplements/excel/chapter19-qualitative-content-analysis.qmd
+        - supplements/excel/chapter20-discourse-conversation-analysis.qmd
+        - supplements/excel/chapter21-qualitative-data-analysis.qmd
+        - supplements/excel/chapter22-rhetorical-criticism.qmd
+        - supplements/excel/chapter23-critical-cultural-analysis.qmd
+        - supplements/excel/chapter24-preparing-describing-visualizing.qmd
+        - supplements/excel/chapter25-inference-and-effect.qmd
+        - supplements/excel/chapter26-mixed-methods.qmd
+        - supplements/excel/chapter27-writing-and-publishing.qmd
+    - part: "Appendices"
+      chapters:
+        - appendices/data-dictionary.qmd
