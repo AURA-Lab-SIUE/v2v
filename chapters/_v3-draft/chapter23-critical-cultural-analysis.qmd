@@ -1,0 +1,117 @@
+---
+title: "Chapter 23: Critical and Cultural Analysis"
+---
+
+Chapter 22 read a text closely and judged how it worked on its audience. This chapter keeps the close reading and adds a commitment: that the point of the analysis is to expose how communication sustains unequal arrangements of power, and that describing the world accurately is not the same as leaving it alone.
+
+Chapter 2 introduced three paradigms and this is the third. Social scientific work asks what is the case. Interpretive work asks what it means to the people living it. Critical work asks whose interests the arrangement serves, and it does not treat that question as a departure from scholarship.
+
+That commitment is the thing students find hardest to accept, and the objection is worth answering directly rather than managing. It is not that critical work abandons evidence. It is that it rejects the claim that any research is free of a standpoint, and holds that work which does not examine its own is not neutral but merely unexamined.
+
+## Ideology, hegemony, and why the ordinary matters
+
+**Ideology**, in this tradition, is not a set of political opinions people hold. It is the stock of assumptions that makes a particular social arrangement appear natural, inevitable, or simply the way things are. Ideology does its most effective work when it is invisible, which is why the object of analysis is so often something nobody thought worth examining.
+
+Gramsci's **hegemony** explains why. Gramsci (1971) argued that durable power does not rest mainly on force but on consent: the arrangements that benefit some groups more than others come to be accepted by almost everyone, including those they disadvantage, as common sense. Hegemony is never finished. It is continually remade, it absorbs challenges by accommodating them, and that is why culture is a site of struggle rather than a mirror of a settled order.
+
+The methodological consequence is the one to hold on to. **If ideology works by appearing ordinary, then the ordinary is where you look.** Not the extreme case, not the scandal, but the routine, the conventional, the thing so unremarkable that describing it feels like a waste of a page.
+
+## Encoding and decoding
+
+Hall's (1980) encoding and decoding model is the hinge between textual analysis and audiences, and it corrects a failure both halves of this book can fall into.
+
+A text is **encoded** with a preferred meaning: producers build it within their own frameworks, purposes and constraints, and it carries a reading it invites. But meaning is not delivered. Audiences **decode** it within their own frameworks, and Hall named three positions they can take.
+
+The **dominant** reading accepts the preferred meaning on its own terms. The **negotiated** reading accepts the broad framework while resisting it in particulars, which is where most people actually live. The **oppositional** reading understands the preferred meaning perfectly well and rejects it, reading the text against itself.
+
+Two things follow for method.
+
+A textual analysis alone cannot tell you how a text was received. Chapter 22 made the same point about rhetorical criticism, and here it has a name: assuming the preferred reading is the received reading is the error the model exists to prevent.
+
+And audience resistance is real without being sufficient. Demonstrating that viewers produced oppositional readings does not show that the arrangement producing the text has changed. Hegemony accommodates a great deal of resistance.
+
+## The traditions
+
+Critical and cultural analysis is a family, and its members disagree productively.
+
+**Political economy** examines ownership, funding and market structure, and asks how the conditions of production shape what gets made. Applied to this book's domain, it asks who owns the platform, how creators are paid, what the recommendation system optimizes, and what kinds of work become unviable under those conditions.
+
+**Cultural studies** works on texts and lived practice, and takes popular culture seriously as a site where meaning is contested rather than merely consumed.
+
+**Feminist analysis** examines how gender is constructed and sustained. Mulvey's (1975) account of the gaze is the canonical instance: her argument was that mainstream cinema is built around a viewing position coded as male, with women positioned as the object of that look, and that the effect is a property of how films are made rather than of who is watching.
+
+**Critical race analysis** examines how race is constructed and how racial hierarchy is maintained in representation and institutions. hooks (1992) insisted that representation is a material matter rather than a symbolic one, and that who controls the image is a question about power.
+
+**Intersectionality**, from Crenshaw (1991), holds that systems of domination interlock rather than stack. Her argument was concrete and methodological: frameworks built to address racism assumed men, frameworks built to address sexism assumed white women, and Black women fell through both. The lesson generalizes to research design. A study that examines one axis at a time produces findings that do not describe the people who sit at more than one.
+
+**Performance studies**, which this chapter absorbs, treats culture as something enacted rather than only encoded in texts. Conquergood (2002) argued against the assumption that knowledge worth having is knowledge written down, and for taking embodied, performed and tacit ways of knowing seriously as evidence. In this domain the argument is immediate: streaming is performance, live and co-produced with an audience, and an analysis that only reads the transcript has thrown away the part the audience came for.
+
+## Who gets to speak
+
+Now the corpus, and a question this tradition asks that the book's data can answer directly.
+
+Critical work is often accused of preferring assertion to evidence. That criticism is sometimes deserved and it is not inherent, because some structural claims are measurable. "Who has a voice in this space" is one of them.
+
+Across the 35,267 messages in the sample, there are **16,866 distinct senders**, and the distribution of speech among them is not close to even.
+
+- **68.4 percent of senders posted exactly once.** The median participant contributed one message and was never heard from again.
+- The most active **1 percent** of senders produced **16.1 percent** of all messages.
+- The most active **10 percent** produced **43.4 percent**.
+- The least active half of all senders, more than eight thousand people, produced **23.9 percent** between them.
+- The Gini coefficient of the distribution is **0.449**.
+
+Chapter 7 reported the same underlying fact as a statistical problem: messages are not independent, and treating them as though they were understates standard errors. This chapter reads it as a finding about the space rather than a nuisance in the model, and that difference in what a number is *for* is the clearest illustration of the paradigms in this book.
+
+Here is what the numbers do and do not establish, because the boundary is where critical work is won or lost.
+
+**They establish a structure.** Participation is concentrated, the typical participant is functionally silent, and a small group accounts for a large share of everything said. That is not an impression.
+
+**They do not establish domination.** A skewed distribution is compatible with several accounts. It may be that a few enthusiasts simply talk more, which is true of most voluntary settings and is not a grievance. It may be that speaking is costly for some people and not others, which Chapter 20's finding gives some purchase on: in a fast room, a message that gets no uptake is the normal outcome, and the people most likely to stop trying are the ones with the least standing to begin with. It may be that the platform's design rewards volume.
+
+**Choosing among those accounts requires an argument and more evidence.** Who the concentrated speakers are, what happens to newcomers who are ignored, and whether the pattern differs across channels with different norms and different moderation are all answerable questions, and Chapters 16 and 18 are how you answer them.
+
+A critical analysis that reported the Gini coefficient and concluded that the platform silences the marginalized would have skipped the argument and would deserve the objection. One that establishes the structure, then shows through close reading and interviews how the structure is produced and who bears it, has done the work.
+
+## Doing it
+
+**Choose an object where ideology is likely to be invisible.** The community guidelines nobody reads, the onboarding flow, the default settings, the moderation policy, the categories a platform sorts creators into. The scandal is usually the worse choice, because everyone is already arguing about it and its assumptions are on the surface.
+
+**Situate it materially.** Who made it, under what commercial pressure, answerable to whom. A textual reading that ignores the conditions of production is doing half the work and usually the easier half.
+
+**Read closely, and quote.** The standard from Chapters 19 and 22 does not relax here. If anything it tightens, because a reader who is skeptical of the framework will test the reading against the evidence you show, and you should want them to.
+
+**Attend to absence.** What is not represented, who is not addressed, what question the text forecloses. Absence is the hardest evidence to handle well, because anything can be said to be missing. The discipline is to show that the absence is patterned and consequential rather than merely notable.
+
+**State your position.** Chapter 18's reflexivity, with the additional expectation that you name the commitment you are working from. This tradition regards concealing it as the problem, not disclosing it.
+
+**Say what follows.** Critical work is supposed to answer the "so what" in terms of consequences for people. Do it explicitly rather than leaving it implied.
+
+## The two failure modes
+
+**Finding what you brought.** Chapter 19 raised this about directed content analysis and it is sharper here, because the framework predicts what you will find before you look. If a critical analysis could not have come out any other way, it is an application rather than an inquiry. The defense is the same as everywhere else in Part IV: quote enough that a reader can disagree, and take the passages that do not fit seriously.
+
+**Claiming effects you did not measure.** Showing that a text is built around an ideological assumption does not show that anyone absorbed it. Hall's model is the correction, and it cuts both ways: audiences negotiate and resist, and a strong claim about what a text does *to people* needs the people.
+
+## What it can claim
+
+It can claim that a text, a practice or an arrangement carries particular assumptions, that those assumptions serve some interests over others, and that the arrangement has consequences worth naming. With the right evidence it can claim that a structure exists, as the participation figures above do.
+
+It cannot claim, from textual evidence alone, what audiences took away, what producers intended, or that a change would follow from exposure. Those are questions for other chapters, and the strongest critical work in communication is usually the work that went and got them.
+
+## Looking ahead
+
+Part V ends here, and with it the interpretive and critical half of the book. Part VI returns to data, and to the practical business of getting a dataset into a state where it can be described and then tested. Chapter 24 is about preparing, describing and visualizing data, which is where most of the time in any quantitative project is actually spent, and where the corpus figures quoted throughout this book were produced.
+
+## References
+
+Conquergood, D. (2002). Performance studies: Interventions and radical research. *TDR/The Drama Review*, *46*(2), 145-156. https://doi.org/10.1162/105420402320980550
+
+Crenshaw, K. (1991). Mapping the margins: Intersectionality, identity politics, and violence against women of color. *Stanford Law Review*, *43*(6), 1241-1299. https://doi.org/10.2307/1229039
+
+Gramsci, A. (1971). *Selections from the prison notebooks* (Q. Hoare & G. Nowell-Smith, Eds. & Trans.). International Publishers.
+
+Hall, S. (1980). Encoding/decoding. In S. Hall, D. Hobson, A. Lowe, & P. Willis (Eds.), *Culture, media, language* (pp. 128-138). Hutchinson.
+
+hooks, b. (1992). *Black looks: Race and representation*. South End Press.
+
+Mulvey, L. (1975). Visual pleasure and narrative cinema. *Screen*, *16*(3), 6-18. https://doi.org/10.1093/screen/16.3.6

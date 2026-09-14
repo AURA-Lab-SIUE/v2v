@@ -1,0 +1,131 @@
+---
+title: "Chapter 22: Rhetorical Criticism"
+---
+
+Everything in Part IV, however interpretive, was still analysis in a recognizable social-science shape. You gathered material, you reduced it in some disciplined way, and you reported what the reduction showed.
+
+This chapter does something else. Rhetorical criticism reads a single text closely and renders a judgment about how it works on an audience, and the judgment is the finding. There is no sample, no coding, and nothing to aggregate. The critic's argument is the product, and it is evaluated the way an argument is evaluated: by whether the evidence supports it and whether it teaches you something you could not see before.
+
+That makes this the least familiar chapter in the book for anyone who arrived through the quantitative half. It is also the oldest tradition in it by about two thousand four hundred years.
+
+## What criticism is
+
+**Rhetoric**, in the sense this chapter uses, is the study of how symbols are used to influence. **Rhetorical criticism** is the close analysis of a particular instance of that use, aimed at explaining how it attempts to move an audience and at judging how well, and at what cost, it does so.
+
+Three features follow, and each will feel wrong at first.
+
+**The sample is one.** A criticism takes a single artifact, or a small purposive set, and stays with it. Chapter 11's logic does not apply and is not being flouted: the goal is not to estimate anything about a population, so representativeness is not the standard the work is answerable to.
+
+**The critic is present in the analysis.** There is no pretense of a neutral instrument. The critic selects the artifact, brings a perspective to it, and argues. Chapter 18 asked for reflexivity as a safeguard; here the critic's judgment is not a source of error to be managed but the faculty doing the work.
+
+**The output is an argument, not a result.** You will not report a number, a theme count, or a category structure. You will make a claim about what the text does, support it from the text, and accept that a reader may reasonably read it differently.
+
+Black (1978) put the methodological point plainly: criticism is not a procedure that different critics run to the same output, and asking it to be one misunderstands what it is for.
+
+## The rhetorical situation
+
+Before any lens, establish the situation. Bitzer (1968) argued that rhetoric is called into being by circumstances, and named three components that are still the most useful opening move in a criticism.
+
+**Exigence** is the problem or urgency the discourse responds to: something is wrong, or unresolved, or newly at stake, and it is the kind of thing that words might change. Not every problem is a rhetorical exigence. A hurricane is not; what a governor says about the response to one is.
+
+**Audience** is not everyone who encounters the text. It is the people capable of being influenced and of acting as agents of change. A platform's policy announcement has an audience of users, and a different one of regulators, and identifying which the text is actually built for is often the whole analysis.
+
+**Constraints** are the things that limit what can be said: the speaker's prior commitments, the beliefs and interests of the audience, the conventions of the occasion, the legal exposure. A text is shaped as much by what it cannot say as by what it does.
+
+Getting the situation wrong dooms everything after it, because you will be evaluating a text against an audience it was never addressing. This is the most common failure in student criticism, and it is the cheapest one to avoid.
+
+## Three lenses
+
+A lens is a vocabulary that makes certain features of a text visible. You choose one because it fits the artifact, not because it is the one you know.
+
+### The classical appeals
+
+Aristotle's three modes of persuasion are still the most economical starting vocabulary. **Ethos** is the appeal from the speaker's character and standing. **Pathos** is the appeal to the audience's emotions and dispositions. **Logos** is the appeal through reasoning and evidence.
+
+Their value is not in labeling a passage as one of the three, which is where most first attempts stop and why they produce nothing. The value is in asking how the appeals are **constructed**, and what each costs. A speaker who builds ethos by emphasizing their long history in a community has thereby made that history relevant, which is useful right up to the moment someone raises a part of it they would rather not discuss.
+
+### The pentad
+
+Burke offers a vocabulary for how a text characterizes an event. Any account of an action can be described by five terms: the **act** (what happened), the **scene** (its setting and circumstances), the **agent** (who did it), the **agency** (by what means), and the **purpose** (to what end).
+
+The analytic move is not to fill in the five slots. It is to notice which term the text makes dominant, because the dominant term does the persuasive work. A text that explains an outcome through scene presents it as a product of circumstances that nobody chose. A text that explains the same outcome through agent presents it as somebody's doing. Those are different arguments about responsibility, and neither announces itself.
+
+Burke's other central idea, **identification**, is that persuasion works by making the audience feel joined to the speaker: we share an interest, a grievance, an enemy. Where you see a speaker constructing a "we", ask who has been placed outside it, because a "we" is always made by exclusion.
+
+### The narrative paradigm
+
+Fisher (1984) argued that people do not primarily evaluate arguments by formal logic but as stories, judged on two criteria. **Narrative coherence** asks whether the story hangs together: whether the events follow, whether the characters act consistently. **Narrative fidelity** asks whether it rings true against the audience's own experience.
+
+This lens is worth reaching for when a text is not making an argument in any formal sense and yet is plainly working on people. It is also the lens that best explains why a well-evidenced account can lose to a poorly evidenced one that feels more like how things go.
+
+### Genre
+
+Some texts are heard against the expectations of a recognized type: the apology, the eulogy, the concession, the announcement of new rules. Genre criticism asks what the type demands and reads the individual text against those demands.
+
+The payoff comes from departures. An apology that never names what was done, or that apologizes for how people felt rather than for an act, is doing something specific, and you can only see it because the genre led you to expect otherwise.
+
+## What the object is, and is not
+
+A word about this book's corpus, because the honest answer matters more than a forced application.
+
+**The chat log is the wrong kind of object for this chapter.** Rhetorical criticism needs a text that was composed: something with an author, an occasion, and a design on an audience. Twelve thousand people typing three words each is not composed by anyone. It has no exigence, no rhetor, and no argument, and a criticism of it would be an analysis of something the critic assembled rather than of something a speaker made.
+
+That is not a limitation of the corpus. It is a statement about what this method takes as data, and recognizing when your material is the wrong shape for a method is worth more than a clever workaround.
+
+The domain is full of proper objects, and every one of them is composed, situated and addressed to somebody:
+
+- A streamer's apology video after a controversy.
+- A platform's announcement of a policy change, and the community guidelines document it revises.
+- A moderator's pinned statement explaining a ban.
+- A company's response to a harassment campaign.
+- A creator's fundraising appeal.
+
+Any of those will support the analysis in this chapter. The chat responding to them is evidence about reception, which is Chapter 23's concern and not this one's.
+
+## Doing it
+
+**Select an artifact, and say why.** The justification is not representativeness. It is significance: the text mattered, or it is exemplary of something, or it failed in an instructive way. Say which.
+
+**Fix the text.** Get a stable, citable version, and note what you are working from and when you retrieved it. A policy page is revised silently. A video is edited or removed. A criticism of a text nobody can now consult is not checkable, and Chapter 2's traceability discipline applies here exactly as it does to a dataset.
+
+**Reconstruct the situation.** Exigence, audience, constraints, before any interpretation. Do the historical work: what preceded it, what the speaker had said before, what the audience already believed.
+
+**Choose a lens because the artifact invites it.** If the text is defending a decision, the pentad will pay. If it is a story about a community, the narrative paradigm will. Do not run all four; a criticism that applies every vocabulary in the chapter produces four shallow readings and no argument.
+
+**Analyze, and quote.** Your evidence is the text. Quote enough that a reader can see what you are reading, and quote the parts that complicate your reading, not only the ones that confirm it.
+
+**Argue, and judge.** A criticism that stops at description has stopped early. Say what the text accomplishes, at whose expense, and what it makes harder to say next.
+
+## What makes one good
+
+Since there is no reliability coefficient, four things carry the weight.
+
+**It is supported by the text.** Every claim traces to something quotable. An interpretation that floats free of the artifact is an opinion about the world that happens to mention a text.
+
+**It survives the inconvenient passages.** The strongest sign of a serious criticism is that it deals with the parts that resist it. The strongest sign of a weak one is that the artifact appears only through quotations that agree with the thesis.
+
+**It illuminates.** A criticism has to leave the reader seeing something they would not have seen alone. Correctly identifying that a speech contains pathos is not a finding.
+
+**It is fair to the artifact.** Reading a text in the least charitable way available is easy and proves nothing. The interesting criticism explains how a text works on people who are not fools.
+
+## What it can claim
+
+It can claim that a text works in a particular way, that it constructs its audience or its subject in a particular way, that it succeeds or fails against the demands of its situation, and that these things matter.
+
+It cannot claim that audiences were in fact persuaded. This is the boundary students cross most often and the easiest one to police. A rhetorical criticism analyzes the text's design on an audience, and the actual effect on actual people is an empirical question that requires Chapter 14's experiment, Chapter 13's survey, or Chapter 16's interviews. If you want to know what viewers made of a streamer's apology, reading the apology will not tell you, and the chat under it is not a sample of anything.
+
+It also cannot claim that the speaker intended what you found. Texts do things their authors did not plan, and the analysis is of the text.
+
+## Looking ahead
+
+Chapter 23 keeps the close reading and adds a commitment. Critical and cultural analysis asks not only how a text works but whose interests it serves, and treats the ordinary and unremarkable as the place ideology does most of its work. It also brings the corpus back, because a question about who gets to speak is one this book's data can actually answer.
+
+## References
+
+Bitzer, L. F. (1968). The rhetorical situation. *Philosophy & Rhetoric*, *1*(1), 1-14.
+
+Black, E. (1978). *Rhetorical criticism: A study in method*. University of Wisconsin Press.
+
+Burke, K. (1969). *A rhetoric of motives*. University of California Press. (Original work published 1950)
+
+Fisher, W. R. (1984). Narration as a human communication paradigm: The case of public moral argument. *Communication Monographs*, *51*(1), 1-22. https://doi.org/10.1080/03637758409390180

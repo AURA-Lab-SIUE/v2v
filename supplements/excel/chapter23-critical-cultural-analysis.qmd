@@ -1,0 +1,126 @@
+---
+title: "Excel Supplement, Chapter 23: Critical and Cultural Analysis"
+---
+
+Chapter 23 makes a structural claim on measured evidence: participation in this corpus is concentrated, and the typical participant speaks once and is not heard from again. This supplement builds that claim from the raw file, and it introduces the tool the rest of Part VI depends on.
+
+It also draws the line the chapter insists on. The distribution is a fact about the room. What that fact means is an argument, and a spreadsheet has no part in making it.
+
+## The data
+
+Export the corpus from the package:
+
+```r
+library(v2v)
+write.csv(twitch_chat_sample, "twitch_chat_sample.csv", row.names = FALSE)
+```
+
+Import through **Data**, **From Text/CSV**, **65001: Unicode (UTF-8)**. You should have 35,268 rows, including the header, with `id`, `channel`, `sender`, `message` and `date`. Chapter 19's supplement explains at length why the default double-click import will corrupt this file; the same applies here.
+
+## Why not COUNTIF
+
+Chapter 21's supplement counted across fifty sources with `COUNTIF` and it was instant. The obvious move here is the same one: list the distinct senders, then count each.
+
+Do not do it. There are **16,866** distinct senders and 35,267 messages, so that approach asks Excel for roughly six hundred million comparisons, and the workbook will hang or crawl for every subsequent edit because it recalculates the whole column each time.
+
+This is the point at which a spreadsheet needs its own tool for the job.
+
+## The PivotTable
+
+Select any cell in the data, then **Insert**, **PivotTable**, and place it on a new worksheet.
+
+In the field list, drag **sender** into **Rows**, and drag **id** into **Values**.
+
+Then fix what Excel just did. `id` is a number, so Excel summed it, and **Sum of id** is the total of a column of arbitrary identifiers: a large, confident, completely meaningless figure. Click it, choose **Value Field Settings**, and change **Sum** to **Count**.
+
+**Check the grand total before trusting anything downstream.** It must read **35,267**, one per message. If it does not, the value field is still summing something, or the range missed rows.
+
+You now have 16,866 rows, each a sender and a message count. This is the same operation the next chapter does under the name of a frequency distribution, and it is worth recognizing here so it is familiar there.
+
+## Getting it into a form you can compute on
+
+A PivotTable resists formulas written across it, because clicking near one produces `GETPIVOTDATA` rather than a cell reference. So take a copy of the values.
+
+Select the pivot's two columns, **Copy**, then **Paste Special**, **Values** onto a blank sheet at **A1**. You should have 16,866 rows, sender in A and count in B, and no grand total row: if you copied it, delete it now, or every share below will be exactly half what it should be.
+
+Then **Data**, **Sort**, on column B, **Largest to Smallest**.
+
+## The description
+
+| Label | Formula | Result |
+|---|---|---|
+| senders | `=COUNT(B:B)` | 16,866 |
+| messages | `=SUM(B:B)` | 35,267 |
+| posted exactly once | `=COUNTIF(B:B,1)` | 11,544 |
+| share who posted once | `=COUNTIF(B:B,1)/COUNT(B:B)` | 68.4% |
+| most active sender | `=MAX(B:B)` | 365 |
+| median sender | `=MEDIAN(B:B)` | 1 |
+| mean sender | `=AVERAGE(B:B)` | 2.09 |
+
+**Stop on the last two rows.** The mean participant posted 2.09 messages and the median participant posted one. Chapter 24 will say this in general terms; here is the concrete case. A sentence beginning "the average viewer posted about two messages" describes nobody in this dataset, because the distribution has a floor at one and a long tail to 365, and the mean is being dragged by the tail.
+
+Every time you are tempted to characterize a typical participant, check the median first.
+
+## Concentration
+
+Because the counts are sorted descending, the share held by the most active senders is a `SUM` over the top of the column. For the top 1 percent, which is the first 169 rows:
+
+```
+=SUM(B1:B169)/SUM(B:B)
+```
+
+| Group | Senders | Share of all messages |
+|---|---|---|
+| top 1% | 169 | 16.1% |
+| top 5% | 843 | 32.7% |
+| top 10% | 1,687 | 43.4% |
+| top 25% | 4,216 | 61.0% |
+| top 50% | 8,433 | 76.1% |
+
+And the other half of the room, the 8,433 least active senders:
+
+```
+=SUM(B8434:B16866)/SUM(B:B)
+```
+
+which is **23.9 percent**.
+
+Ten percent of the participants produced more than four in every ten messages. The quieter half of the participants, more than eight thousand people, produced under a quarter between them.
+
+## One number for the whole shape
+
+The **Gini coefficient** summarizes how unequally a quantity is distributed, from 0 if everyone contributed identically to 1 if one person contributed everything. It comes from economics, where it describes income, and it applies unchanged to any quantity divided among people.
+
+With the counts sorted descending in **B1:B16866**:
+
+```
+=SUMPRODUCT((16866+1-2*ROW(B1:B16866))*B1:B16866)/(16866*SUM(B1:B16866))
+```
+
+which returns **0.449**.
+
+Read the formula rather than pasting it. `ROW(B1:B16866)` produces the sequence 1, 2, 3 and so on, and `SUMPRODUCT` multiplies each count by a weight that depends on its rank, so a message from a highly ranked sender counts differently from one at the bottom. It is Chapter 12's weighted sum in a different costume.
+
+**Two things will break it.** The formula assumes the data starts at row 1, because it uses `ROW` directly as the rank. If your counts start at row 2, every rank is off by one, and you need `ROW(B2:B16867)-1`. And it assumes a descending sort, which is why the sort was a step rather than a suggestion. Neither mistake produces an error: both produce a plausible number between 0 and 1.
+
+Verify it against a case you know. Put ten 1s in a spare column and run the same formula: a perfectly equal distribution returns 0. That check takes twenty seconds and it catches both errors.
+
+## The picture
+
+A **Lorenz curve** shows the whole distribution rather than one summary of it.
+
+In **C1** put `=ROW()/16866` and in **D1** put `=SUM($B$1:B1)/SUM($B:$B)`, then fill both down. C is the cumulative share of senders and D the cumulative share of messages, with the most active first. Note the mixed anchoring in D, `$B$1:B1`, which is what makes the range expand as it fills; Chapter 21's supplement made the same move.
+
+Select C and D and insert a **Scatter with Smooth Lines**. Add a straight line from the origin to (1,1) as a second series, which is what perfect equality would look like. The gap between the curve and that line is the inequality, and the Gini coefficient is a measure of that gap.
+
+Label the axes. Chapter 24 will insist on this and it is worth starting now: a reader cannot interpret "cumulative share" without being told of what.
+
+## Where the spreadsheet stops
+
+Everything above is description, and Chapter 23 is explicit that description is not the critical claim.
+
+The numbers establish that participation is concentrated and that most participants speak once. They are entirely silent on why, and the candidate explanations have different politics. A few enthusiasts talking more is what happens in nearly every voluntary setting, and is not a grievance. Speaking being costly for some people and not others is a different matter, and Chapter 20's finding that most messages get no uptake gives that explanation some traction. Platform design rewarding volume is a third.
+
+Nothing in this workbook chooses among them. Choosing requires the argument, and the argument requires evidence this file does not contain: who the concentrated speakers are, what happens to newcomers who are ignored, whether the pattern differs where moderation differs. Chapters 16 and 18 are how you get it.
+
+A critical analysis that reported a Gini coefficient and concluded that the platform silences the marginalized would have skipped that step, and the objection critical work most often faces would, in that case, be correct.

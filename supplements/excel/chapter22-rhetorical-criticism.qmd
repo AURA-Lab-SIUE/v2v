@@ -1,0 +1,79 @@
+---
+title: "Excel Supplement, Chapter 22: Rhetorical Criticism"
+---
+
+This supplement computes nothing, and saying so at the top is the honest way to start.
+
+Chapter 22 is the one chapter in this book with no quantities in it. A criticism is an argument about a single text, its evidence is quotation, and there is no sample, no distribution and no statistic to report. A spreadsheet that produced a number here would be producing a number about nothing.
+
+What a spreadsheet is genuinely good at is the part of criticism that most often fails: keeping track of evidence. A criticism lives or dies on whether every claim traces back to something quotable, and the usual failure is not dishonesty but drift, where a reading that started from the text gradually detaches from it over three weeks of writing. This workbook makes drift visible.
+
+If you would rather do this in a notebook, do it in a notebook. The structure is the point, not the tool.
+
+## Sheet one: the artifact
+
+One row per text, even when there is only one. Columns:
+
+`artifact_id`, `title`, `speaker`, `date_published`, `medium`, `url_or_source`, `date_retrieved`, `archived_copy`, `why_selected`
+
+Two of those carry more weight than they look.
+
+**`date_retrieved` and `archived_copy`.** Chapter 2 asked for traceability in a data project, and a criticism needs it more, not less, because your data is a webpage that can change under you. Policy pages are revised silently. Videos are edited, made private, or removed entirely when a controversy passes. A criticism of a text nobody can consult is not checkable by anyone, including you in six months.
+
+So save a copy the day you select the artifact. A file, a full-page capture, a transcript you made yourself, and for a public page a link from a web archive. Put the path in `archived_copy`. This costs two minutes and it is the single highest-value habit in this chapter.
+
+**`why_selected`.** Chapter 22 is explicit that the justification is significance rather than representativeness. Write the sentence now, while you still remember what drew you, and write it as a reason rather than as a description. "It was widely discussed" is a description. "It is the rare case where a platform explained a moderation decision in detail, which lets you see the reasoning that is normally hidden" is a reason.
+
+## Sheet two: the situation
+
+One row per artifact, with four columns: `exigence`, `audience`, `constraints`, `evidence_for_situation`.
+
+The fourth is the one people skip and the one that matters. Bitzer's situation is a reconstruction rather than a given, and you are making claims about it: that this was the urgency, that these were the people who could act. Those claims need support like any others. What preceded the text, what the speaker had said before, who responded and how.
+
+Keep the audience field honest. A text usually has more than one audience, and the interesting question is which one it is built for. If you find yourself writing "the general public", you have not done this step.
+
+## Sheet three: the evidence log
+
+This is the working sheet, one row per piece of textual evidence:
+
+`claim_id`, `quotation`, `location`, `lens`, `what_it_shows`, `cuts_against`
+
+`location` is whatever lets a reader find the passage: a timestamp, a paragraph number, a section heading, a page. Be precise enough that someone else could check you.
+
+`lens` records which vocabulary you were using when the passage struck you: appeals, pentad, narrative, genre. Chapter 22 warns against running every lens over one artifact, and this column will tell you whether you did. If it holds four values evenly, you have four shallow readings rather than one argument.
+
+`cuts_against` is a yes or no, and it is the most important column in the workbook. Log the passages that resist your reading in the same place as the ones that support it, at the moment you notice them. The alternative, which is what happens without a column for it, is that inconvenient passages get noticed, mentally filed as something to deal with later, and quietly forgotten.
+
+## Sheet four: the claims, and two checks
+
+One row per claim you intend to make, with `claim_id` and `claim`. Then two formulas, and they are the only formulas in this supplement.
+
+**How much evidence stands behind each claim?** With claim ids in column A and the evidence log on a sheet named `evidence`:
+
+```
+=COUNTIF(evidence!$A:$A,$A2)
+```
+
+**And how much of it cuts against?**
+
+```
+=COUNTIFS(evidence!$A:$A,$A2,evidence!$F:$F,"yes")
+```
+
+Neither number is a finding and neither goes in your paper. They are a diagnostic you run on yourself, in the same spirit as Chapter 21's cross-source check.
+
+Read them this way. A claim with one supporting quotation is a claim resting on one quotation, which Chapter 22 says is not support. A claim with fifteen and none against has usually not been tested, and the honest question is whether you went looking. And a claim with more against than for is the most valuable row in the sheet, because it is either a claim you should drop or the beginning of a better one.
+
+Sort by the second column before you write. The rows with a zero in it are where your argument is weakest, and you would rather find that now than in a reviewer's comments.
+
+## Using it while you write
+
+Keep the evidence sheet open in the draft. Every time you assert something about the artifact, put its `claim_id` in the margin of your draft or in a comment. When you finish, every paragraph making a claim should point at a row, and every row should have been used or consciously set aside.
+
+What you will find, the first time, is two or three assertions with no row at all. Those are the sentences that came from your sense of the text rather than from the text, and they are exactly what Chapter 22 means by an interpretation that floats free. Sometimes the fix is to find the evidence, which was there all along. Sometimes the fix is to delete the sentence.
+
+## What this will not do for you
+
+It will not tell you whether your reading is any good. It cannot judge whether you have identified the situation correctly, whether the lens fits, or whether the criticism illuminates anything, and those are the whole of the work.
+
+What it does is make it impossible to lose track of what you actually saw in the text, which is the difference between a criticism and an essay about a topic the text happens to be on.
