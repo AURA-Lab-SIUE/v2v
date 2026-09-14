@@ -119,7 +119,7 @@ Either way the result is a number between roughly zero and one, and a number nee
 
 To see what a failed check looks like, and why codebooks fail it, consider a deliberately stark example.
 
-Imagine the codebook included a loosely worded variable. It asked coders to flag the pilot's "high-energy" messages, the pure expressive reactions, but it never pinned down what that meant in operational terms. Two conscientious coders, each trying to apply the instruction, each settle on a concrete rule of their own. Coder A decides a high-energy message is one carrying a Twitch emote, a token like LULW or KEKW, and flags messages on that basis. Coder B decides a high-energy message is one that shouts, and flags every message containing a word in all capitals. Both rules are reasonable readings of "high-energy." Both coders believe they are coding the same variable.
+Imagine the codebook included a loosely worded variable. It asked coders to flag the pilot's "high-energy" messages, the pure expressive reactions, but it never pinned down what that meant in operational terms. Two conscientious coders, each trying to apply the instruction, each settle on a concrete rule of their own. Coder A decides a high-energy message is one carrying a Twitch emote, a token like LULW or OMEGALUL, and flags messages on that basis. Coder B decides a high-energy message is one that shouts, and flags every message containing a word in all capitals. Both rules are reasonable readings of "high-energy." Both coders believe they are coding the same variable.
 
 They code the first hundred messages of the sample independently, and their codes go into `v2v::reliability()`:
 
