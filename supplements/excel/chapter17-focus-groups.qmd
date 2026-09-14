@@ -1,0 +1,116 @@
+---
+title: "Excel Supplement, Chapter 17: Focus Groups"
+---
+
+Chapter 17 makes a claim that sounds like philosophy and is actually testable: in a focus group the data is what participants say **to each other**, and a session where everyone takes turns answering the moderator has produced parallel interviews instead.
+
+You can check which one you ran. The instrument is a **who-addresses-whom matrix**, and Excel builds one in about ten minutes.
+
+## The data, and what it stands in for
+
+Focus group transcripts do not exist for this book, and inventing one would have you analyze a conversation nobody had. So this supplement runs the real procedure on real group talk with the same structure: one Twitch channel's chat, where a message beginning with an at-mention is a turn addressed to a named other participant. The channel host stands in for the moderator.
+
+Two files, both produced by `build_interaction.py` and committed beside it.
+
+`participants.csv` has one row per participant with a turn count. `interaction.csv` has one row per directed pair: `speaker`, `addressee`, `messages`.
+
+Participants are pseudonymized as `HOST` and `P1` through `P7`. That is not decoration. It is the discipline Chapter 16's supplement taught arriving in the analysis: the working file carries ids, never identities, and a matrix you might paste into a paper should never have carried a real name in the first place.
+
+Import both the usual way: **Data**, **From Text/CSV**, **65001: Unicode (UTF-8)**, **Load**. The edge file has 17 rows, one header and 16 directed pairs.
+
+## Building the matrix
+
+A matrix is a grid where the row is who spoke and the column is who they addressed. Put the eight names down column A starting at A2, and the same eight across row 1 starting at B1, in the same order both ways.
+
+Then one formula in **B2**:
+
+```
+=SUMIFS(interaction!$C$2:$C$17,interaction!$A$2:$A$17,$A2,interaction!$B$2:$B$17,B$1)
+```
+
+Select B2, copy, and paste across to I2 and down to row 9, so the whole 8 by 8 block is filled.
+
+The dollar signs are the entire trick and they are worth reading slowly. `$A2` locks the **column** and frees the row, so every cell in a row asks about that row's speaker. `B$1` locks the **row** and frees the column, so every cell in a column asks about that column's addressee. Pasting the one formula across a grid therefore produces a different question in every cell. Get these backwards and every cell asks the same thing, which is a mistake that produces a filled, plausible, entirely wrong table.
+
+The diagonal will be zero. Nobody in this data addresses themselves.
+
+## Out-degree, in-degree, and what they mean
+
+Add row and column totals. In **K2**, the number of messages this participant directed at others:
+
+```
+=SUM(B2:I2)
+```
+
+filled down to K9. And in **B11**, the number aimed at this participant:
+
+```
+=SUM(B2:B9)
+```
+
+filled across to I11.
+
+Those two numbers have names worth knowing. **Out-degree** is how much someone addressed others. **In-degree** is how much others addressed them. The pattern across the pair is the diagnosis:
+
+| participant | addressed others | was addressed |
+|---|---|---|
+| HOST | 0 | 32 |
+| P1 | 24 | 9 |
+| P2 | 30 | 2 |
+| P3 | 9 | 8 |
+| P4 | 3 | 14 |
+| P5 | 4 | 1 |
+| P6 | 1 | 3 |
+| P7 | 3 | 5 |
+
+Total directed messages, in **B13**:
+
+```
+=SUM(B2:I9)
+```
+
+returns **74**.
+
+## The diagnostic
+
+Now the number the chapter was really asking for. What share of all addressing was aimed at the moderator?
+
+```
+=B11/B13
+```
+
+returns **0.432**.
+
+Read the table with Chapter 17 in hand. The HOST has an out-degree of **zero** and an in-degree of **32**: never addresses anyone by name, and absorbs **43 percent** of everything directed at anybody. That is the signature of a hub. Conversation flows to the center and does not cross.
+
+If a focus group transcript produced this table, the session failed. You would have run eight interviews simultaneously, and Kitzinger's argument says the thing you came for never happened.
+
+Here, the same table is unremarkable, because a livestream is supposed to work this way. The audience is there for the host and addressing the host is the point. **The measure is the same and the verdict is opposite, because the verdict depends on what the format was supposed to do.** A statistic does not interpret itself, which is worth meeting in a small, checkable case before you meet it in a large one.
+
+And notice the other 57 percent. P1 and P2 have out-degrees of 24 and 30 against in-degrees of 9 and 2, so they are talking to people other than the host and mostly not being answered. Real participant-to-participant conversation is happening underneath the hub pattern. A matrix shows you both at once, which prose summaries of a transcript rarely do.
+
+## What to do with a bad table
+
+Three readings, and they call for different fixes.
+
+**A hub**, as above: high in-degree on the moderator, low traffic between participants. The moderator asked and answered instead of redirecting. Chapter 17's redirection moves are the repair, and they have to happen in the room, not in the analysis.
+
+**A dominator**: one participant with high out-degree and high in-degree while several sit near zero. The session measured that person's influence. Report their share rather than hiding it.
+
+**A silent row**: a participant whose row and column are both near zero. They attended and did not participate, and averaging them into "the group said" is a claim about someone who said nothing.
+
+For any of these, the matrix belongs in your methods section. A reader who can see that one voice carried 40 percent of the traffic can weight your quotations accordingly, which is a better outcome than a reader who trusts them equally.
+
+## Turn counts, and why they are not enough
+
+`participants.csv` has a turn count per participant. It is tempting to use it as the participation measure and it is the weaker one.
+
+Put the two side by side and the reason shows. The HOST took **8 turns** in this data, fewer than almost everyone, and sits at the center of the interaction anyway. Counting turns would have ranked the host near the bottom of the session. Counting who addresses whom puts them where they belong.
+
+Turns measure how much someone talked. The matrix measures what the talk was doing. Chapter 17's argument is that a focus group is about the second, and this is what that difference looks like in cells.
+
+## What Excel will not do for you
+
+Excel will not attribute your transcript. Every number here depended on already knowing who spoke and who they addressed, which in this data was carried by the at-mention and in a real session has to come from name tents, a note-taker, and careful transcription. If the transcript reads "Participant:" throughout, none of this is recoverable and the method's advantage is gone before the analysis starts.
+
+Excel also draws a poor network diagram. The matrix is the analysis and it is complete on its own; if you want the diagram for a presentation, a tool built for networks will do it better, and nothing in your finding depends on having one.
