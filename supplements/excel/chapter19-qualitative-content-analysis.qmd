@@ -1,0 +1,146 @@
+---
+title: "Excel Supplement, Chapter 19: Qualitative Content and Textual Analysis"
+---
+
+Chapter 19 calls this **summative** content analysis, after Hsieh and Shannon: count the content, then interpret what the distribution means. The counting is the entry point rather than the finding.
+
+This supplement does the counting for the chapter's two readings, the emote family and the bot commands. It takes longer than it should, because three separate Excel behaviors will each hand you a confident, plausible, wrong number first. Meeting them here on data you can check is cheaper than meeting them in a study.
+
+## Getting the data in, and why it matters more here
+
+Every other supplement in this book uses a derived file. This one needs the raw message text, so export it yourself from the package:
+
+```r
+library(v2v)
+write.csv(twitch_chat_sample, "twitch_chat_sample.csv", row.names = FALSE)
+```
+
+Then import it **only** through **Data**, then **From Text/CSV**, with **File Origin** set to **65001: Unicode (UTF-8)**, and click **Load**. You should land on 35,268 rows with columns `id`, `channel`, `sender`, `message`, `date`.
+
+Do not open the file by double-clicking it. Two things go wrong and neither announces itself.
+
+**Encoding.** This corpus contains Cyrillic, accented Latin and emoji. Opened through the default path they arrive as question marks or as the wrong characters entirely, and a message like `-жрец LUL` stops matching a search for `LUL` because the text around it was mangled. That single row is the difference between one of the counts below reading 1,428 and reading 1,427, which is exactly the size of error nobody notices.
+
+**Formulas.** Excel treats a cell beginning with `=`, `+` or `-` as a formula. In this corpus **2,763 messages, 7.8 percent, begin with `=`, `+`, `-` or `@`**, and on a plain import **five of them evaluate to `#NAME?`**. Five bad cells out of 35,267 sounds harmless. It is not: `COUNTIF` ignores them and keeps working, while every `SUM` and `SUMPRODUCT` over the column returns `#VALUE!` and tells you nothing about why. The Power Query path imports the column as text and does not evaluate it.
+
+If you ever inherit a workbook rather than importing it yourself, check for this first:
+
+```
+=SUMPRODUCT(--ISERROR(D2:D35268))
+```
+
+## Trap one: a substring is not a token
+
+Start with the simplest question. How many messages contain `LUL`?
+
+```
+=COUNTIF(D2:D35268,"*LUL*")
+```
+
+returns **2,314**. That number is wrong for the chapter's purpose, and it is wrong in a direction that destroys the argument.
+
+`LULW` contains the letters `LUL`. So does `OMEGALUL`. The chapter's claim is that these are three *graded* tokens, ordinary amusement through to derision, and a count that swallows the stronger two into the weakest has erased the grading it was meant to measure.
+
+What you want is the whole token: `LUL` standing alone, bounded by spaces. Excel has no word-boundary search, so you build one by padding. In **F1** type `padded`, and in **F2**:
+
+```
+=IFERROR(" "&D2&" ","")
+```
+
+filled down. Every message now has a guaranteed space on each side, so a search for `" LUL "` can only match the standalone token. The `IFERROR` is there for the five poisoned cells.
+
+## Trap two: COUNTIF cannot see case
+
+Now count the padded column:
+
+```
+=COUNTIF(F2:F35268,"* LUL *")
+```
+
+and you get a number that is still too high, because **`COUNTIF` is case-insensitive**. It counts `lul` and `Lul` along with `LUL`.
+
+On Twitch those are different things. `LUL` is an emote and renders as an image; `lul` is three letters that render as three letters. Treating them as the same token merges a platform-specific sign with ordinary typing, which is precisely the distinction Chapter 19 is about.
+
+There is no case-sensitive option on `COUNTIF`. You need a different function: **`FIND` is case-sensitive, `SEARCH` is not.**
+
+```
+=SUMPRODUCT(--ISNUMBER(FIND(" LUL ",F2:F35268)))
+```
+
+Read it inside out. `FIND` returns a position number when it finds the text and an error when it does not. `ISNUMBER` turns that into TRUE or FALSE. The double minus coerces TRUE to 1 and FALSE to 0. `SUMPRODUCT` adds them up.
+
+This returns **1,428**, and it is the number the chapter uses.
+
+## The emote family
+
+Run the same formula for each token, changing only the text inside `FIND`:
+
+| Token | Case-sensitive whole-token count |
+|---|---|
+| `LUL` | 1,428 |
+| `LULW` | 389 |
+| `OMEGALUL` | 277 |
+| `4Head` | 150 |
+| `Pog` | 610 |
+| `PogChamp` | 273 |
+
+Two things are worth noticing before interpreting any of it.
+
+The naive count for `LUL` was **2,314** and the careful one is **1,428**. The gap, 886 messages, is almost entirely `LULW` and `OMEGALUL` being counted as their own weaker relative.
+
+`Pog` has the same problem in a different shape: a naive substring count returns 1,327 against 610 as a token, because `PogChamp` and its variants contain it.
+
+Now interpret, which is the summative part. The family is not flat. `LUL` outnumbers `LULW` by nearly four to one and `OMEGALUL` by more than five to one. If the grading is real, that distribution is what you would expect: ordinary amusement is common and the emphatic forms are reserved. The counting does not prove the grading, which came from knowing the setting, but it is consistent with it and it tells you how much of the corpus each grade accounts for.
+
+And a token can be absent. Searching for `KEKW` returns zero, which is not a coding error but a date: it spread in 2019, after this collection.
+
+## The bot commands
+
+The second reading needs two different counts.
+
+**How many messages are commands?** Commands begin with an exclamation mark, and `COUNTIF` can match a prefix with a wildcard:
+
+```
+=COUNTIF(D2:D35268,"!*")
+```
+
+returns **1,980**, which is 5.6 percent of the corpus.
+
+**How many are `!play` exactly?** Here case matters again, so build a helper column. In **G2**:
+
+```
+=IFERROR(--EXACT(TRIM(D2),"!play"),0)
+```
+
+filled down, then `=SUM(G2:G35268)` returns **775**.
+
+`EXACT` is the case-sensitive comparison. `TRIM` removes stray spaces. The `IFERROR` handles the poisoned cells. For comparison, the case-insensitive version:
+
+```
+=COUNTIF(D2:D35268,"!play")
+```
+
+returns **780**. The five-message gap is people typing `!Play` or `!PLAY`, which is a small thing that happens to matter if you are counting exactly.
+
+**Where are they?** The helper column makes this easy:
+
+| Label | Formula | Result |
+|---|---|---|
+| messages in `dev1` | `=COUNTIF(B2:B35268,"dev1")` | 1,000 |
+| `!play` in `dev1` | `=SUMIFS(G2:G35268,B2:B35268,"dev1")` | 460 |
+
+**Forty-six percent of that channel's messages are a single command issued to a bot.**
+
+## What the counts are for
+
+That 46 percent is where the summative approach earns its name. The number is not the finding. The finding is what it means, and it takes the reading in Chapter 19 to say it: those 460 messages are not addressed to any person in the room. They are a queue. A frequency table that treats them as communicative acts has counted a vending machine as a conversation.
+
+And it reaches backwards. Any measure computed over that channel, message length, question rate, how often people address each other, includes 46 percent commands. Chapter 12's arithmetic was correct and its meaning was narrower than it looked.
+
+That is the whole argument for running both halves, and you can see it in two cells.
+
+## What Excel will not do for you
+
+Excel counts tokens you already know to look for. It cannot tell you that `LULW` is stronger than `LUL`, that `!play` is addressed to software, or that `KEKW` is missing because of a date rather than a community. Every one of those came from knowing the setting, which is Chapter 12's immersion and Chapter 18's fieldwork.
+
+What the spreadsheet contributes is the check: it told you the grading shows up in the distribution, that commands are 5.6 percent of everything rather than a curiosity, and that in one channel they are nearly half. A reading without those numbers is an impression, and the numbers without the reading are a table nobody can interpret.
