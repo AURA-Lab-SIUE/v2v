@@ -86,9 +86,9 @@ Run the same formula for each token, changing only the text inside `FIND`:
 
 Two things are worth noticing before interpreting any of it.
 
-The naive count for `LUL` was **2,314** and the careful one is **1,428**. The gap, 886 messages, is almost entirely `LULW` and `OMEGALUL` being counted as their own weaker relative.
+The naive count for `LUL` was **2,314** and the careful one is **1,428**. The gap is 886 messages. Three quarters of it is `LULW` and `OMEGALUL` being counted as their own weaker relative; most of the rest is the lowercase `lul` that `COUNTIF` cannot see, and a remainder where `LUL` is run together with adjacent punctuation.
 
-`Pog` has the same problem in a different shape: a naive substring count returns 1,327 against 610 as a token, because `PogChamp` and its variants contain it.
+`Pog` has the same problem in a worse shape: a naive substring count returns 1,327 against 610 as a token. `PogChamp` accounts for 273 of the difference and `PogU` for another 126; most of what is left is case, since `COUNTIF` counts `pog` too.
 
 Now interpret, which is the summative part. The family is not flat. `LUL` outnumbers `LULW` by nearly four to one and `OMEGALUL` by more than five to one. If the grading is real, that distribution is what you would expect: ordinary amusement is common and the emphatic forms are reserved. The counting does not prove the grading, which came from knowing the setting, but it is consistent with it and it tells you how much of the corpus each grade accounts for.
 

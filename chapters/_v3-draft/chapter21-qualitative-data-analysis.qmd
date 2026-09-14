@@ -1,0 +1,135 @@
+---
+title: "Chapter 21: Qualitative Data Analysis"
+---
+
+Every method in Part IV has been pointing here. Interviews produce transcripts, focus groups produce transcripts with more people in them, ethnography produces field notes, and textual analysis produces marked-up documents. All of it arrives as language, and none of it is a finding yet.
+
+This chapter is about the step that turns language into findings. It is called coding, it is the least glamorous part of qualitative research, and it is where the work is either done or faked.
+
+## What coding is
+
+**Coding** is attaching a label to a segment of data that captures what that segment is about, so the labels can be gathered, compared and built into an account.
+
+Two things it is not.
+
+It is not Chapter 12's coding. There you applied a fixed scheme to count how often a category occurred, and success was two people agreeing. Here the labels are the analysis: they emerge, they change, and their value is in what they let you see rather than in how consistently they can be applied.
+
+And it is not summarizing. A code that says "talks about the community" gives you a topic and nothing else. A code that says "distinguishes real regulars from lurkers" tells you what the speaker is *doing*, and only the second kind builds toward a finding.
+
+## Thematic analysis
+
+**Thematic analysis** identifies patterns of meaning across a dataset. Braun and Clarke (2006) set out six phases that are worth following literally the first few times, because each one is a place people skip.
+
+**One: familiarize yourself.** Read everything, more than once, before coding. Chapter 12 called it immersion and Chapter 18 built fieldwork on it; here it stops you from coding the first transcript in terms you will have abandoned by the fourth.
+
+**Two: generate initial codes.** Work through systematically, coding anything that seems relevant, and code the same segment more than once when it is doing more than one thing. Expect far more codes than you will keep.
+
+**Three: search for themes.** Group codes into candidate themes. A theme is not a topic that came up; it is a pattern that says something about the question. "Moderation" is a topic. "Moderation is described as protecting the streamer rather than the viewers" is a theme.
+
+**Four: review themes.** Test each against the coded extracts and then against the whole dataset. Some collapse, some split, and some turn out to be one participant's preoccupation rather than a pattern. The section after next is about how to catch that last case.
+
+**Five: define and name.** Write a short statement of what each theme is and what it is not. If you cannot say what falls outside it, it is not defined yet.
+
+**Six: write up.** The write-up is analysis rather than reporting: extracts are evidence in an argument, not illustrations hung on a conclusion that was reached without them.
+
+The phases are iterative. Braun and Clarke are explicit that you move back and forth between them, and a study that went through them once in order has probably not reviewed anything.
+
+## Grounded theory
+
+**Grounded theory**, from Glaser and Strauss (1967), is the more demanding relative. Its goal is not themes but a theory: an explanatory account developed from the data rather than imported into it.
+
+Three commitments distinguish it.
+
+**Constant comparison.** Every new segment is compared with segments already coded, and with the categories that are emerging. The comparison is the engine, because it forces you to say why this instance belongs with that one, which is how a category acquires properties instead of remaining a label.
+
+**Theoretical sampling.** You do not fix the sample in advance. You collect, analyze, and then decide who to approach next *based on what the analysis needs*. If a category is thin, you go looking for cases that would develop it. This inverts Chapter 11's logic completely, and it is why a grounded theory study cannot honestly state its sample size in a proposal.
+
+**Coding in cycles.** Open coding stays close to the data, often using participants' own words. Later cycles group those into categories and work out the relationships among them, until one category is developed enough to organize the rest.
+
+Charmaz (2014) reframed all of this. Where the original presented theory as emerging from the data if the researcher stayed out of the way, Charmaz's constructivist version holds that the researcher is always part of what gets produced, and that the obligation is to account for that rather than to claim neutrality. This is the version most communication research now uses, and it is consistent with the reflexivity Chapters 16 and 18 asked for.
+
+## Choosing between them
+
+Use **thematic analysis** when you want to describe patterns of meaning well. It is flexible, it does not commit you to a theoretical framework, and it is the right choice for most student projects and for a great deal of published work.
+
+Use **grounded theory** when you want to explain a process and can control your own sampling as the analysis develops. It is a heavier commitment, and it is frequently claimed by studies that did none of its distinctive work.
+
+That last point is worth being blunt about. A study that coded interviews, grouped the codes and reported categories has done thematic analysis. Calling it grounded theory because the codes came from the data misrepresents the method: without constant comparison and theoretical sampling, the label is decoration. Name what you actually did.
+
+## Mechanics
+
+**First cycle** coding attaches labels to segments. Several kinds are useful and can be mixed. **In vivo** codes use the participant's exact words, and are valuable for keeping their language rather than substituting yours. **Descriptive** codes name a topic. **Process** codes use gerunds, "defending the streamer", "testing a newcomer", and they are the ones that most reliably grow into themes, because a gerund forces you to name an action instead of a subject.
+
+**Second cycle** coding works on the codes rather than on the data: grouping them, collapsing the ones that overlap, and arranging what survives into a structure.
+
+**Memos** run alongside both. A memo is where you write, dated and tentatively, what you think a code is doing and how it relates to the others. Chapter 18 introduced them for fieldwork; here they are the bridge between coding and writing, and a study with no memos usually has a gap between its codes and its conclusions that nobody, including its author, can reconstruct afterwards.
+
+**Keep the segment with the code.** Whatever tool you use, you must be able to get from a code back to every passage that carries it. That retrieval is the difference between a claim and an assertion.
+
+## Is it a theme, or is it one person?
+
+Phase four asks you to test a candidate theme against the whole dataset, and the question underneath it is simple: does this pattern run across your sources, or does it come from one or two of them?
+
+That question has an answer you can compute, and the corpus shows what the two outcomes look like. Chapter 12's coded messages carry two manifest codes across fifty channels, and the codes behave in opposite ways.
+
+The code `directed`, for a message aimed at a named participant, appears in **42 of the 50 channels**, and in **all 41** of the channels with at least a hundred messages. No single channel supplies more than **5.8 percent** of it. Whatever it is measuring is a property of the setting rather than of any one room.
+
+The code `nongame`, for talk not about the game being played, appears in **13 of 50 channels**. Three channels supply **62 percent** of it, and four channels consist of nothing else.
+
+Both codes are perfectly real, and both were applied the same way. But a claim of the form "chat talks about things other than the game" would be describing four painting and talk-show streams that happen to be in the sample, while a claim about directed address would be describing the corpus. The frequencies alone cannot tell these apart: `nongame` occurs 4,044 times, which is a large number, and largeness is exactly what makes it convincing when it should not be.
+
+So the test is not how often a code occurs but **how many sources it occurs in, and how concentrated it is in the largest of them**. Spread across sources, it is a candidate theme. Concentrated in one or two, it is a finding about those participants, which may well be worth reporting as long as you report it as that.
+
+This is a mechanical check standing in for an interpretive judgment, and it does not replace the judgment. A pattern in two interviews out of twelve can matter enormously if those two are the only participants who experienced the thing you are studying. What the check does is stop you from mistaking a loud minority for a dataset, which is the most common way a thematic analysis goes wrong. The Excel supplement builds the matrix the check runs on.
+
+## Trustworthiness
+
+Chapter 10's reliability and validity do not transfer here, and the reason is not that qualitative work has lower standards but that its claims are different in kind. Lincoln and Guba (1985) proposed four criteria that have become the working vocabulary.
+
+**Credibility** asks whether the account is a defensible reading of the data. It is supported by prolonged engagement, by triangulating across sources or methods, by actively seeking out cases that do not fit, and sometimes by taking the analysis back to the participants.
+
+**Transferability** replaces generalizability. You do not claim the finding holds elsewhere; you describe the setting thickly enough that a reader can judge where else it might. Providing the detail is your obligation, and the judgment is the reader's.
+
+**Dependability** asks whether the process was systematic and traceable. An audit trail of decisions, including how the codes changed and why, is the evidence.
+
+**Confirmability** asks whether the findings are grounded in the data rather than in the researcher's preferences, which is what reflexivity and the search for negative cases are for.
+
+A word on agreement statistics. A second coder is useful here, not to produce a coefficient but to challenge your readings, and Campbell and colleagues (2013) show that even when agreement genuinely is wanted on interview material, the coders must first agree on how the transcript is divided, or they are not coding the same things at all. If you report a kappa on interpretive codes, be ready to say what it was supposed to demonstrate.
+
+## What to report
+
+Enough that a reader can follow the analysis rather than take it on trust.
+
+State how much data you had and how it was produced. Say which approach you used, and name it accurately. Describe how the coding proceeded, how many cycles it took, and who did it. Show the final structure of themes or categories. Quote at length, with enough context that the reader can see what you saw. Name the cases that did not fit and say what you made of them. State your own position in relation to the setting.
+
+What not to report: a count of how many participants mentioned each theme, presented as though it measured something. Chapter 17 explained why for focus groups and it holds generally. Frequency in qualitative data tells you what people happened to say to you, not what is common. The cross-source check above is not an exception to this. It is a diagnostic you run on yourself during phase four, and it belongs in your account of the process rather than in the results as a finding.
+
+## A pass, in practice
+
+Concretely, on interview transcripts about why long-term viewers stop participating.
+
+Read all twelve before coding any. Then code the first three openly, generating perhaps sixty codes, many of them overlapping: *noticing the room got faster*, *not recognizing names any more*, *feeling like posting costs something*, *describing regulars as a group they used to belong to*.
+
+Compare across the three. Several of those codes are saying one thing in different words, and a candidate category appears: participation became effortful in a way it had not been before. Write a memo saying so, and saying what would contradict it.
+
+Code the remaining nine with that category available but not imposed, watching for what it does not cover. Two transcripts describe leaving after a specific incident rather than a gradual drift, and the category does not explain them. That is the negative case, and it is the most useful thing in the dataset: either the account needs a second pathway or the category needs narrowing.
+
+Check the spread. The effortfulness codes appear in nine of the twelve transcripts, which is a pattern. Two of the sixty codes appear in one transcript each and nowhere else, and one of them is vivid enough that it had already started to feel like a theme. It is not one, and noticing that is cheaper now than after it has been written up.
+
+Review the themes against everything, define them, and only then write, going back to the transcripts for the extracts that show a reader what the category actually looks like in someone's own words.
+
+## Looking ahead
+
+Part IV ends here. Chapter 22 opens Part V and changes the question again: rhetorical criticism neither codes nor counts, but reads a text closely to evaluate how it attempts to persuade, and it answers to a different tradition of argument than anything in this half of the book.
+
+## References
+
+Braun, V., & Clarke, V. (2006). Using thematic analysis in psychology. *Qualitative Research in Psychology*, *3*(2), 77-101. https://doi.org/10.1191/1478088706qp063oa
+
+Campbell, J. L., Quincy, C., Osserman, J., & Pedersen, O. K. (2013). Coding in-depth semistructured interviews: Problems of unitization and intercoder reliability and agreement. *Sociological Methods & Research*, *42*(3), 294-320. https://doi.org/10.1177/0049124113500475
+
+Charmaz, K. (2014). *Constructing grounded theory* (2nd ed.). SAGE Publications.
+
+Glaser, B. G., & Strauss, A. L. (1967). *The discovery of grounded theory: Strategies for qualitative research*. Aldine.
+
+Lincoln, Y. S., & Guba, E. G. (1985). *Naturalistic inquiry*. SAGE Publications.
