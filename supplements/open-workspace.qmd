@@ -1,0 +1,142 @@
+---
+title: "Supplement: The Open Workspace"
+---
+
+Chapter 2 argues that an analysis nobody can retrace is an analysis nobody can check, and that the fix is to work in tools that leave a plain-text record of every move. This supplement is the other half of that argument: what to install, in what order, and what the data looks like when you first open it.
+
+It is a supplement rather than a chapter because it dates faster than anything else in the book. Installers change, menus move, a version number goes up. The reasoning in Chapter 2 will outlive all of it. Work through this once at the start of the course and then come back to it only when something breaks.
+
+The click-by-click instructions, with screenshots for Windows and macOS, live on the V2V Hub. What follows is the map.
+
+## A small ecology of tools
+
+Four pieces of infrastructure cover the work in this book. Each is free, open-source or available at no cost to students, and runs on all major operating systems.
+
+**VSCode** is the editor. Made by Microsoft, free, and the dominant code editor in industry today. It is where you will write everything: prose, code, configuration files, notes. You can open multiple files in tabs, run code in a terminal, see your Git history, and edit Quarto documents with live previews of the rendered output. It is where most working data analysts already are, which means the muscle memory you build here transfers directly into professional contexts.
+
+**R** is the language. R is the statistical computing language that dominates social science research, and especially mass communication, sociology, political science, and quantitative education research. Python is the other major option. Both are excellent. R is taught here because its packages for the things this book teaches (content analysis, inter-coder reliability, regression, visualization) are deeper and more mature than Python's, and because R's publishing integration with Quarto is tighter. The skills you build in R will transfer to Python if you ever need them; the reverse is also true.
+
+**Quarto** is the publishing system. Quarto, developed by the team at Posit, takes a single source document (a `.qmd` file) and produces a finished output: an HTML web page, a PDF, a Word document, a slide deck, a book. The source document mixes prose with executable code. When Quarto renders the file, the code runs and the results appear in place. This is what makes a research report reproducible at the document level. The numbers in your discussion section, the tables in your results, the charts in your figures: all come from code that runs every time the document is rendered. Chapter 27 returns to this as the shape a finished study takes.
+
+**Git and GitHub** are the version control system. Git tracks every change to every file in a project. GitHub is one of several services that hosts Git repositories on the web. Together they give you a permanent audit trail of your research work, the ability to roll back to any previous state, and a public-by-default platform for sharing your project with collaborators and the world. Students get the GitHub Student Developer Pack, which includes paid features at no cost. The V2V Hub walks you through claiming it.
+
+Each tool is independently useful. The point of using them together is that the combination produces a research workflow where every move you make is documented, every output is reproducible, and every change is recoverable. This is not the standard workflow in most undergraduate methods courses. It is the standard workflow in research-active labs and in industry data science teams, and getting it into your hands now is one of the most durable skills this book can give you.
+
+::: {.graduate-extension}
+**The audit trail begins at setup.** It is tempting to read the setup steps as mere tool choices: install R, create a GitHub repo, connect it. Each is better understood as a *methodological commitment*. Configuring the workspace is the first act of the study, and the decisions made here are what determine whether the analysis can be reconstructed months later.
+:::
+
+## Installing the stack
+
+Install in this order:
+
+1. **R.** Visit the Comprehensive R Archive Network (CRAN) at cran.r-project.org and download R for your operating system. Run the installer with default settings. R has no graphical interface of its own to speak of; you install it as a backend that other tools will call.
+
+2. **VSCode.** Visit code.visualstudio.com and download VSCode for your operating system. Run the installer. On first launch, VSCode will offer to sync settings with a Microsoft or GitHub account. You can decline and set up the account later.
+
+3. **The R extension for VSCode.** Open VSCode, click the extensions icon in the left sidebar, search for "R," and install the extension by REditorSupport. This is what connects VSCode to the R installation from step 1.
+
+4. **Quarto.** Visit quarto.org and download Quarto for your operating system. Install with defaults.
+
+5. **The Quarto extension for VSCode.** Back in VSCode's extensions panel, search for "Quarto" and install the extension. You now have live preview and syntax support for `.qmd` files.
+
+6. **Git.** Visit git-scm.com and download Git for your operating system. The default installer options are fine. On macOS, Git is also available through the Xcode command-line tools, which VSCode will offer to install for you the first time you try a Git operation.
+
+7. **A GitHub account.** Visit github.com and create an account if you do not already have one. Use a professional username; you will eventually link work to it that potential employers will see. Verify the email you sign up with. The Student Developer Pack is claimed at education.github.com/pack, and the V2V Hub has the walkthrough.
+
+8. **The `v2v` package.** The Hub has the install command for the current package version. The package ships the Twitch dataset fixtures and a small set of helper functions used throughout the rest of the book.
+
+When everything is installed, open VSCode and create a new file named `setup-check.qmd`. Give it a title in the YAML front matter at the top:
+
+```yaml
+---
+title: "Setup check"
+---
+```
+
+Then add an R code chunk that calls the v2v setup validator:
+
+```{{r}}
+library(v2v)
+v2v::setup()
+```
+
+Click Quarto's Preview button, or run `quarto preview setup-check.qmd` in the terminal. The `v2v::setup()` function checks that R, Quarto, Git, and the v2v package are all present at acceptable versions. It prints "V2V setup complete" when everything is in place and a diagnostic message when something is missing. If you see anything other than the success message, the Hub's [Installing the v2v package](https://aura-lab.siue.edu/v2v-hub/resources/install-v2v.html) guide addresses the common failure modes.
+
+If `library(v2v)` itself fails, the package is not installed yet. It is not on CRAN, so `install.packages("v2v")` will not find it. Install it from GitHub, noting that the repository is named `v2v-r` while the package it provides is named `v2v`:
+
+```r
+install.packages("remotes")
+remotes::install_github("AURA-Lab-SIUE/v2v-r")
+```
+
+::: {.graduate-extension}
+**Git as epistemological infrastructure.** Every `git commit` is a time-stamped record of your analysis at a specific moment. Your entire analytical history is reproducible: another researcher can check out any commit and see exactly what your code did at that point. This is not a convenience feature. It is a standard of evidence. Wilson et al. (2017) place change-tracking at the center of reproducible practice:
+
+> "Keeping track of changes that you or your collaborators make to data and software is a critical part of research. Being able to reference or retrieve a specific version of the entire project aids in reproducibility for you leading up to publication, when responding to reviewer comments, and when providing supporting information for reviewers, editors, and readers."
+>
+> Wilson et al. (2017, p. 12)
+
+Graduate work in V2V treats `git log` as a portion of the methods section. The first commit, before any analysis code is written, should include your data, your codebook, and a `README` that describes the study. For your own study, run `git log --oneline` on a project you completed before learning version control, and ask what a reviewer would want to see that you can no longer reconstruct.
+:::
+
+## First contact with the data
+
+The Twitch dataset is the recurring example from Chapter 1 onward. This is the moment you actually look at some of it. The table below shows the first ten rows of `stream_log`, the table that tracks who was streaming what game to how many people at each snapshot moment during the collection window.
+
+| channel     | title                                                                  | game           | viewers | date           |
+|-------------|------------------------------------------------------------------------|----------------|--------:|---------------:|
+| sodapoppin  | `Hello truckers\n44835158804929_2115841973`                            | Marble It Up!  |  27,934 | 1542578200214 |
+| xqcow       | RANK 1 GAMER ~ NO PLAN (help me)                                       | Just Chatting  |  19,381 | 1542578200240 |
+| forsen      | @forsen, The prince of miracoli ! Giving away artifact keys all day!   | Artifact       |  15,300 | 1542578200273 |
+| giantwaffle | No Smoking in Chat \| @GiantWaffle                                     | Rocket League  |   4,697 | 1542578200423 |
+| sodapoppin  | `Hello truckers\n44835158804929_2115841973`                            | Marble It Up!  |  28,076 | 1542578261145 |
+| xqcow       | RANK 1 GAMER ~ NO PLAN (help me)                                       | Just Chatting  |  19,231 | 1542578261186 |
+| forsen      | @forsen, The prince of miracoli ! Giving away artifact keys all day!   | Artifact       |  15,180 | 1542578261211 |
+| giantwaffle | No Smoking in Chat \| @GiantWaffle                                     | Rocket League  |   4,700 | 1542578261409 |
+| sodapoppin  | `Hello truckers\n44835158804929_2115841973`                            | Marble It Up!  |  28,203 | 1542578322302 |
+| xqcow       | RANK 1 GAMER ~ NO PLAN (help me)                                       | Just Chatting  |  19,231 | 1542578322337 |
+
+Take a moment to look at it before reading on. Resist the temptation to do anything with it. Just notice.
+
+A few things should jump out.
+
+**The data moves.** This is a time series, not a snapshot. Four channels appear repeatedly across the ten rows. Sodapoppin shows up three times. Sodapoppin's viewer count climbs across those three appearances, from 27,934 to 28,076 to 28,203. That is 269 viewers gained in 122 seconds, which is the kind of texture this dataset captures: an audience expanding in close to real time. xQc lost 150 viewers between the first and second snapshot and then held steady. Forsen lost 120. Giantwaffle gained 3. Each of these numbers is a real moment in a stream's life, the moment a clip went viral or a host raid arrived or a viewer's bandwidth dropped. A great many of the most interesting research questions in this book come from interrogating exactly that.
+
+**The timestamps look like nonsense.** The date column is a thirteen-digit integer that does not visibly resemble a date. The first row shows 1542578200214. The second, taken twenty-six milliseconds later, shows 1542578200240. The difference between the first sodapoppin snapshot and the second is 60,931, which is roughly one minute. This is the storage format used in most production databases, called **Unix epoch time**: the number of milliseconds since midnight on January 1, 1970. It is unreadable as a calendar date, and that is one of the technical problems Chapter 11 will solve. For now, all you need to know is that the dates are in there, and getting them into human-readable form is a wrangling step, not a research question.
+
+**There is a hidden newline in one of the titles.** Sodapoppin's stream title appears in the table as `Hello truckers\n44835158804929_2115841973`. The `\n` is the conventional way to write a newline character in plain text. In the actual dataset, that position contains a real line break: the streamer's software, at some point, inserted a literal newline into the title field and the data preserved it. Real-world data is messy in exactly this way. Fields contain characters they were not designed for, software pipelines produce artifacts that nobody intended, and a researcher's first job is to look at the data and notice what is actually there. A stray newline in a single title is harmless. The habit of noticing things like that is not.
+
+**Titles are themselves data.** xQc's title says "RANK 1 GAMER ~ NO PLAN (help me)," which is a joke. Forsen is giving away keys for a card game called Artifact. Giantwaffle's title performs etiquette ("No Smoking in Chat"). These are content analysis opportunities sitting in a column you might otherwise treat as boring metadata. Chapter 12 returns to title content.
+
+Look at the table once more, with these observations in mind. This is what the data looks like before any analysis has been done. You are starting from here.
+
+The appendix carries the full data dictionary: every column in both tables, its type, and what it means.
+
+## The v2v package
+
+The `v2v` package, installed in step 8 of the install sequence, is the course companion. It ships three things.
+
+The first is two **dataset fixtures.** `twitch_chat_sample` holds 157,080 chat messages from the 228-channel working corpus, capped at 1,000 messages per channel. `twitch_streams_sample` is the full set of stream snapshots for those same 228 channels, 90,245 rows. Once the package is loaded with `library(v2v)`, either fixture loads with `data(twitch_chat_sample, package = "v2v")` or `data(twitch_streams_sample, package = "v2v")`. The full population of 1,690 joinable channels is documented in the package vignette; you will only need the 228-channel subset for course work. Chapter 15 reads the package's own documentation critically, which is a better introduction to the fixtures than this paragraph is.
+
+The second is a small set of **helper functions** that wrap common course operations: loading the data, generating codebook skeletons, computing inter-coder reliability metrics, producing diagnostic plots. The helpers are not magic. They exist so that the conceptual move of an exercise is not buried under fifty lines of setup code. You can always do the same work without the helpers; the helpers just let you focus on the methodology while you are learning it.
+
+The third is the **setup validator** you ran a few pages ago: `v2v::setup()`. Run it again any time you suspect an installation issue or have updated R or Quarto and want to confirm the stack still works.
+
+The full documentation for the package is available with `?v2v` in R or at the package website, which is linked from the V2V Hub. Treat the documentation as reference material rather than required reading.
+
+::: {.graduate-extension}
+**The renv.lock as a methods citation.** The `renv.lock` file records the exact version of every R package your analysis depends on. When you publish a white paper, the `renv.lock` is the citation for your computational environment. Without it, a reader attempting replication may get different results because a package updated between your run and theirs. Wilson et al. (2017), whose "good enough" practices this aside builds on, extend the backup discipline to the software a project sits on:
+
+> "Back up (almost) everything created by a human being as soon as it is created. This includes scripts and programs of all kinds, software packages that your project depends on, and documentation."
+>
+> Wilson et al. (2017, p. 12)
+
+Run `renv::init()` before your first line of analysis code and commit the resulting lock file before you collect your first data point. For your own study, weigh the practical cost of skipping `renv::init()` in a project you intend to publish, in the terms Wilson et al. use to separate "good enough" practices from "best" ones.
+:::
+
+## References
+
+::: {.graduate-extension}
+Wilson, G., Bryan, J., Cranston, K., Kitzes, J., Nederbragt, L., & Teal, T. K. (2017). Good enough practices in scientific computing. *PLOS Computational Biology*, *13*(6), e1005510. https://doi.org/10.1371/journal.pcbi.1005510
+:::

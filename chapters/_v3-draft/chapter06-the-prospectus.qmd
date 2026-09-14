@@ -1,0 +1,219 @@
+---
+title: "Chapter 6: The Prospectus"
+---
+
+::: {.chapter-audio .content-visible unless-format="epub"}
+[Listen in Dr. Leith's voice]{.audio-label}
+
+```{=html}
+<audio class="v2v-audio v2v-audio-ug" controls preload="none"><source src="../../audio/ch06-ug.mp3" type="audio/mpeg">Your browser does not support audio.</audio>
+<audio class="v2v-audio v2v-audio-grad" controls preload="none"><source src="../../audio/ch06-grad.mp3" type="audio/mpeg">Your browser does not support audio.</audio>
+```
+
+:::
+
+
+There is a particular kind of paralysis that strikes partway through a research project. You have read thirty articles. You have notes scattered across several documents. You have identified a few interesting theories and several possible research questions. You can see connections everywhere, and the project feels simultaneously too small, just one study, and too large, impossible to finish.
+
+The problem is not a lack of ideas. It is a lack of focus. The difficult choices that turn a cloud of possibilities into a concrete plan have not been made yet.
+
+A **research prospectus** forces those choices. It is a short document, roughly one page, that states what you are studying, why it matters, and how you will do it. By the end of this chapter you will be able to write one. The prospectus is not busywork. It is a diagnostic. If you cannot articulate your project clearly on a single page, you do not yet understand it well enough to begin. And the single hardest element to get right, the element the rest of the prospectus is built around, is the research question.
+
+## The research question
+
+The hardest part of research is not analyzing data or writing the final report. It is asking the right question. Most students can learn to run a statistical test or code content systematically with practice. What is harder is the intellectual work that precedes analysis: formulating a question that is specific enough to answer, broad enough to matter, and grounded enough in existing knowledge to avoid reinventing the wheel.
+
+Consider two questions. Question A: "How does livestreaming affect people?" Question B: "Does the rate of chat messages per viewer differ between gaming and non-gaming streams?" Question A is a career-spanning research program disguised as a single question. It is so broad that it is essentially unanswerable within any realistic scope. Question B is researchable. It specifies what will be measured, what will be compared, and what evidence would answer it. You can design a study around it, and you can know when you are done. The craft of research question formulation is the craft of getting from A to B.
+
+A strong research question meets five criteria.
+
+**It is specific.** Weak questions use vague language that could mean different things to different people. "How does social media influence politics?" leaves "influence," "social media," and "politics" all undefined. A stronger version names the platform, specifies the outcome, and bounds the population.
+
+**It is measurable.** Some questions use concepts that resist **operationalization**, the translation of an abstract idea into a concrete, observable variable. "Do authentic streamers build better communities?" cannot be studied until "authentic" and "better" are operationalized into something you can actually observe and record.
+
+**It is answerable within your constraints.** Some questions are sound in principle but impossible given your resources, timeline, or skills. A study requiring decades of data, or interviews with hundreds of participants, is not a semester project no matter how good the question.
+
+**It is not already definitively answered.** Your literature review from Chapter 4 should reveal whether your question is genuinely open. If a relationship has been tested dozens of times with consistent results, asking it again without a new angle, a new population, a new moderator, contributes little.
+
+**It matters.** The question should have intellectual or practical significance: it should contribute to theory, resolve a contradiction, or have applied value. "Do streams that start on Tuesdays draw more viewers than streams that start on Thursdays?" might be answerable, but even a clear answer would be trivia rather than insight.
+
+A template helps produce questions that meet these criteria: some combination of *does there exist*, plus a *specific variable or concept*, plus a *relationship, pattern, or difference*, plus a *bounded population or context*, plus, where relevant, the *confounds being accounted for*. "Is there a relationship between stream category and chat message rate among channels in the Twitch working corpus?" is built from exactly those parts.
+
+## Narrowing: scope creep and the funnel
+
+The greatest threat to student research is the Everything Study. It announces itself in phrases like "I want to study the effect of social media on society" or "I am going to analyze streaming platforms." These are not research projects. They are career-spanning programs that would occupy teams of scholars for decades.
+
+**Scope creep** happens when you try to answer too many questions at once, invoke multiple theories that pull in different directions, attempt to analyze data too large or complex for the timeline, or keep adding one more thing to the study. The solution is relentless narrowing: drilling down until the project fits the constraints of time, resources, and skill you actually have.
+
+Narrowing is a process, and it looks like a funnel:
+
+- Iteration 1: "I am interested in Twitch chat." Too broad. What aspect? Which streams?
+- Iteration 2: "I want to study how viewers participate in chat." Better, but still vast.
+- Iteration 3: "I want to analyze whether chat participation differs across kinds of streams." Getting there. Which kinds? Measured how?
+- Iteration 4: "I want to examine whether chat message volume differs between gaming and non-gaming streams." Much clearer.
+- Iteration 5: "I will draw a stratified sample of chat messages from the 50-channel Twitch working corpus, code each message as directed at the streamer or broadcast to the room, and test whether the proportion of directed messages differs between gaming and non-gaming streams, framing chat as a site of social gratification."
+
+Each iteration sacrifices breadth for depth. By the fifth version, the project can be completed in a semester. It will not answer everything about Twitch chat, but it will answer something rigorously. The hard part is accepting that narrowing is not weakness. It is discipline. And the logic is domain-general: a study of news framing or health campaigns or organizational communication runs through the same funnel, swapping the topic while keeping the narrowing logic intact.
+
+Certain narrowing mistakes recur often enough to name. The **impossible comparison** asks a question confounded by self-selection: "are people who watch Twitch lonelier than people who do not?" compares groups that differ in many ways besides the one being studied. The **circular question** is tautological: "do popular streamers attract large audiences because people want to watch them?" defines its terms in a loop. The **false binary** forces a choice the data does not require: "is it the streamer or the game that matters?" assumes you must pick one, when the better question asks how much each contributes and whether they interact.
+
+## From concepts to operational definitions
+
+Theory gives you abstract concepts. Research requires concrete variables. The bridge is operationalization, and it usually involves a choice among imperfect options.
+
+Consider **parasocial relationship**, the one-sided emotional bond between a viewer and a media figure (Horton & Wohl, 1956). It is not directly observable. You could operationalize it three ways. A self-report scale asks viewers to rate agreement with statements like "I feel like this streamer understands me"; it captures subjective experience directly but is subject to social desirability bias. Behavioral indicators count observable actions like donations, subscription length, or hours watched; behavioral data can be more reliable than self-report, but a behavior does not always reflect the bond you think it does. Language analysis codes viewer-created content, like chat messages, for parasocial markers: expressions of intimacy, emotional disclosure, direct address to the streamer. It uses naturalistic data and reveals how viewers actually talk, but it is labor-intensive and misses viewers who feel strongly without posting.
+
+Consider **chat sentiment**, the emotional valence of chat content. Automated sentiment analysis scores messages with software: fast and replicable, but blind to sarcasm, irony, and the heavily coded vocabulary of Twitch emotes. Human coding trains coders to categorize sentiment holistically: it captures context and nuance, but it is labor-intensive and requires inter-coder reliability testing. Dimensional coding scores several dimensions at once, such as valence and arousal: it captures emotional complexity better, but it demands a more careful codebook.
+
+In each case there is no single right answer. You choose the operationalization that fits your research question, your data access, and your resources, and you defend why the proxy you chose is valid. That logic is identical for any abstract construct, whether it is media trust, political polarization, or brand loyalty.
+
+## Question types: goals, questions, and hypotheses
+
+Not all research asks the same kind of question, and the goal shapes every later decision.
+
+**Exploratory research** asks "what is going on here?" It investigates a new or poorly understood phenomenon and generates hypotheses rather than testing them. It is often qualitative and inductive, and its output is patterns, themes, and preliminary frameworks. **Descriptive research** asks "what does the landscape look like?" It documents the characteristics of a population or phenomenon, often quantitatively, and its output is frequencies, distributions, and prevalence estimates. **Explanatory research** asks "why does this happen?" It tests relationships and mechanisms, it is hypothesis-driven and deductive, and its output is support or disconfirmation of predictions. Research on a topic often moves through these stages in order, from exploratory to descriptive to explanatory, and you do not need to do all three, but you should know which one you are attempting.
+
+The goal determines whether you pose a research question or a hypothesis. A **research question** is interrogative and open-ended. Use one when you are exploring or describing, when theory does not make a clear prediction, or when the literature is too contradictory to predict confidently. A **hypothesis** is a declarative statement predicting a relationship. Use one when theory makes a specific prediction, when previous research suggests a likely outcome, or when you are testing a causal claim.
+
+Behind every hypothesis sits a **null hypothesis**, which predicts no relationship or no difference. The null is the skeptical default position, and it is what statistical tests actually evaluate. If the data are sufficiently inconsistent with the null, you reject it in favor of your alternative hypothesis. This is the same logic Chapter 1 introduced as the sacred flaw: the question is not whether you can tell a story with your data, but whether the data could have come from a world where your effect does not exist.
+
+## Topic, theory, and data
+
+A viable research project requires alignment across three elements: the topic, the theory, and the data. If any one is mismatched with the others, the study collapses.
+
+The topic is what you are studying, and it must be bounded by population, time, medium, or context. "Livestreaming" is not a topic. "Chat participation in the 50-channel Twitch working corpus" is. The theory is the explanatory framework that guides interpretation, and it must predict patterns you can actually observe in your data. The data source is the evidence you will analyze, and it must be accessible within your timeline, sufficient to detect the patterns you are looking for, and appropriate to the question.
+
+Misalignment is easiest to see in an example. Suppose the topic is parasocial relationships between viewers and streamers, the theory is the political economy of media, which explains structural forces like corporate consolidation and platform incentives, and the data is a content analysis of chat messages. The theory and the data are not in conversation. Political economy explains industry structure; chat messages are individual expression. The theory cannot explain the patterns the data would show. Now realign: keep the topic, but switch the theory to parasocial interaction (Horton & Wohl, 1956), which is about one-sided emotional bonds, and the pieces fit. The theory predicts that viewers expressing stronger bonds will behave differently in chat, the data captures that expression, and topic, theory, and data are finally talking to each other.
+
+## Writing the prospectus
+
+The prospectus is a contract with yourself and your instructor. It commits you to a specific, focused project and demonstrates that you have thought through its feasibility. It has six components: a descriptive title that hints at the key variables; one to three focused research questions or hypotheses, not five and not ten; a two-to-three-sentence theoretical framework that names the theory and explains how it relates to the question; a two-to-three-sentence statement of the gap in the literature, citing a few key sources; a three-to-four-sentence method overview covering the data, the coding or measurement, and the number of cases; and a one-to-two-sentence statement of the expected contribution.
+
+Assembled, a model prospectus for this course might read like this:
+
+> **Title.** Directed and broadcast chat in gaming and non-gaming streams: A content analysis of the Twitch working corpus.
+>
+> **Research question.** Does the proportion of chat messages directed at the streamer differ between streams in gaming categories and streams in non-gaming categories, among the 50 channels in the Twitch working corpus?
+>
+> **Theoretical framework.** Uses and gratifications theory (Katz, Blumler, & Gurevitch, 1973) holds that audiences actively select media to satisfy specific needs, including social ones. If a substantial part of livestream viewing is socially motivated, the form of that participation, whether viewers address the streamer directly or talk to other viewers in the room, is one observable trace of the gratification being sought, and stream type may shape which form predominates.
+>
+> **Gap in the literature.** Research on livestreaming viewer motivation is dominated by self-report surveys (Sjöblom & Hamari, 2017; Hilvert-Bruce et al., 2018), which capture what viewers say motivates them rather than what they do. Whether the behavioral traces in a chat log corroborate the survey findings, and specifically whether directed and broadcast forms of participation vary with stream type, is largely unexamined.
+>
+> **Method.** This study will draw a stratified sample of 1,500 chat messages from the 50-channel Twitch working corpus shipped with the course, balanced across gaming and non-gaming streams. Each message is the unit of analysis. Messages will be coded into three mutually exclusive categories: directed at the streamer, broadcast to the room, or unclassifiable. The codebook will be tested for intercoder reliability against a second coder on a 10 percent subsample, using Krippendorff's alpha as the reliability metric. The proportion of directed messages will then be compared between the two stream-type groups.
+>
+> **Expected contribution.** The study tests whether a finding established in survey research, that livestream viewing is more socially motivated than content motivated, leaves a visible trace in coded chat behavior, contributing to uses-and-gratifications scholarship on livestreaming.
+
+That is roughly two hundred and fifty words. It fits on one page, every sentence carries weight, and every component of the method (the sample, the unit of analysis, the coding scheme, the reliability check, the comparison) is named.
+
+::: {.graduate-extension}
+A graduate prospectus commits to a specific sample size backed by a quantitative justification, and that justification is the a priori power analysis. The number of cases named in the method section is not asserted but defended.
+:::
+
+A different theory points the same student to a different prospectus. Here is the same dataset framed through parasocial interaction:
+
+> **Title.** Markers of parasocial bond in viewer chat: A content analysis of large-audience and small-audience streams in the Twitch working corpus.
+>
+> **Research question.** Do chat messages on streams with smaller audiences show a higher rate of parasocial language than chat messages on streams with larger audiences?
+>
+> **Theoretical framework.** Parasocial interaction theory (Horton & Wohl, 1956) proposes that audiences develop one-sided emotional bonds with media figures that feel intimate despite the absence of reciprocity. Hilvert-Bruce and colleagues (2018) found that viewers of smaller channels reported being more socially motivated than viewers of larger ones, which predicts that observable parasocial markers should appear more frequently in the chat of smaller streams.
+>
+> **Gap in the literature.** Parasocial interaction has been studied primarily through self-report scales completed by audience members (Hilvert-Bruce et al., 2018). Whether parasocial markers are visible in the unprompted language audiences produce in real time, and whether they vary with stream audience size, has not been examined in a chat-log corpus.
+>
+> **Method.** This study will draw a stratified sample of 1,000 chat messages from the 50-channel working corpus, split between channels in the top quartile of average viewer count and channels in the bottom quartile. Each message is the unit of analysis. Three parasocial markers will be coded as present or absent in each message: direct second-person address to the streamer, expressions of familiarity (use of the streamer's first name or known nicknames), and emotional disclosure. Intercoder reliability will be tested on a 10 percent subsample using Krippendorff's alpha. The rate of each marker will be compared between the two audience-size groups.
+>
+> **Expected contribution.** The study extends parasocial-interaction research from self-report measures to behavioral trace data, testing whether Hilvert-Bruce and colleagues' (2018) finding about smaller-audience viewers leaves a measurable trace in coded chat behavior.
+
+Two prospectuses, same dataset, different theory, different unit-of-analysis choices in the codebook, different comparison structure. Neither is "more correct." Each is a defensible plan, and each demonstrates the same underlying discipline: a question, a lens, a gap, a method that can be executed in a semester, a contribution scoped to what the study can deliver.
+
+If both prospectuses feel within reach, read the method paragraphs once more before you commit. The first codes one variable. The second codes three. Three variables means three codebook decisions to defend, three reliability checks to run, and three results to write up, which is the better study to read and the heavier semester to execute. Pick the one your curiosity actually points to, and then check that you also picked the workload you can carry. The point of the prospectus is to make that trade-off visible to you before week 7 rather than after week 11.
+
+### A note before you write yours
+
+The prospectus is pre-statistics work. You do not yet need to know which test you will run, what your p-value will be, or what R code will execute the comparison. Chapters 10 through 13 cover the analysis side. What the prospectus asks you to commit to is the structure of the study: a research question, a theory, a unit of analysis, a coding scheme, and the structure of the comparison you will make. The phrase "will be compared" in the method paragraph is genuinely all you need at this stage. The hard work in the prospectus is conceptual, not computational. If the stats half of the course is what you are dreading, the prospectus is not where that dread should land yet.
+
+Certain prospectus problems recur. Multiple unrelated questions are really several separate studies; pick one. A theory-data mismatch pairs a framework with evidence it cannot explain. Vague methods ("I will look at some streams and see what emerges") cannot be evaluated for feasibility. And the Everything Study returns here in prospectus form, promising to analyze all of Twitch across all of its history.
+
+It is easier to see those problems in a draft than in a list. A common first attempt looks something like this:
+
+> **Title.** Twitch and Society.
+>
+> **Research question.** How does Twitch chat affect viewers' sense of community, and what is the role of parasocial relationships and social identity in shaping their behavior across different streams and genres? Also, are streamers becoming more popular over time?
+>
+> **Theoretical framework.** I will use parasocial interaction theory, social identity theory, and the political economy of media to understand how Twitch shapes its audience.
+>
+> **Method.** I will look at some chat logs and see what patterns emerge.
+>
+> **Expected contribution.** This will contribute to our understanding of streaming.
+
+Every recurring problem is present. The title names no variables. The research question is actually three or four questions stacked on top of each other. The framework piles up three theories that pull in different directions and that cannot all be operationalized on the same data. The method is vague. The contribution is generic. A reader cannot tell what the study is, what it would measure, or how to know when it is done.
+
+The same student, after one narrowing pass, might revise to this:
+
+> **Title.** Direct-address language in gaming and non-gaming Twitch streams: A content analysis of the working corpus.
+>
+> **Research question.** Does the rate of chat messages that directly address the streamer differ between gaming-category and non-gaming-category streams in the Twitch working corpus?
+>
+> **Theoretical framework.** Uses and gratifications theory (Katz, Blumler, & Gurevitch, 1973) holds that audiences select media to satisfy specific needs, including the need for social interaction. If a stream's category shapes whether the social experience on offer centers on the streamer or on the group of fellow viewers, direct address to the streamer is one observable trace of which gratification audiences are pursuing.
+>
+> **Gap in the literature.** Uses and gratifications research on livestreaming has relied primarily on self-report (Sjöblom & Hamari, 2017; Hilvert-Bruce et al., 2018), capturing what viewers say they want from the medium rather than what behavior the medium elicits. Whether direct-address rates in real-time chat vary systematically with stream type, as a behavioral test of the gratification proposition, has not been examined.
+>
+> **Method.** A stratified sample of 1,000 chat messages from the 50-channel working corpus will be drawn, balanced across gaming and non-gaming streams. Each message is the unit of analysis and will be coded as direct-address or not, with intercoder reliability tested on a 10 percent subsample using Krippendorff's alpha. The rate of direct-address messages will be compared between the two categories.
+>
+> **Expected contribution.** The study tests one observable prediction of uses-and-gratifications theory in behavioral chat data, complementing the self-report tradition with a directly observed alternative.
+
+The revised version picks a single question, a single theory that the data can speak to, a method that can actually be executed in a semester, and a contribution scoped to what the study can deliver. The weak version was not lazy. It was trying to do too much. Narrowing is the move that converts ambition into a defensible plan.
+
+Before finalizing, run the prospectus through a feasibility test. Can you access the data? For this course, yes: the working corpus ships with the `v2v` package. Can you analyze it in the time available? Fifty channels is manageable; the full population of 1,690 is not, for one person in a semester. Does your method match your question? Content analysis answers questions about what is in the content; it does not directly answer questions about why viewers feel what they feel. And have you controlled scope creep? If you keep adding variables, populations, or time periods, narrow until it hurts a little, then narrow a bit more.
+
+## The prospectus as pre-registration
+
+The prospectus serves a function that extends well beyond this course. In professional research, a practice called **pre-registration** involves publicly committing to your hypotheses, methods, and analysis plan before collecting or analyzing data. Services like the Open Science Framework let researchers timestamp these commitments, which makes it possible to verify that a study was designed before its results were known.
+
+Why this matters connects directly to Chapter 2. Simmons, Nelson, and Simonsohn (2011) demonstrated that researchers who do not commit to an analysis plan in advance can, consciously or not, adjust their hypotheses, variables, and analytical decisions until a result reaches significance. Their paper is the source of the term Chapter 2 introduced: researcher degrees of freedom. Pre-registration closes those degrees of freedom by making the plan inspectable. If the final paper reports different hypotheses than the pre-registration, that discrepancy is visible, and it raises questions worth raising.
+
+Your prospectus functions as an informal pre-registration. It documents what you planned to study and how you planned to study it, before you began coding and analyzing. When you are later tempted to add variables, chase an unexpected finding, or quietly reframe the study after seeing the data, the prospectus is the record of what you originally set out to do.
+
+::: {.graduate-extension}
+Statistical power is the probability that your study will detect an effect of a given size, assuming that effect is real. A study with 50% power has a coin-flip chance of detecting the effect even if it exists. The conventional minimum threshold is 80% power. Below that threshold, a significant result is less credible, because underpowered studies have inflated false-positive rates and overestimated effect sizes. That 80% figure is a convention rather than a derived optimum, and Lakens cautions against treating the number as settled:
+
+> "the default recommendation to aim for 80% power lacks a solid justification."
+>
+> Lakens (2022, p. 6) Lakens (2022) treats justification by resource constraints as a last resort: for your own study, ask whether it is ethically defensible to run a design you know is underpowered, and under what conditions.
+:::
+
+::: {.graduate-extension}
+Once you have an effect size estimate from the literature (Chapter 4) and a significance level (*α* = .05), the `pwr` package computes the required *n*:
+
+```r
+library(pwr)
+# Two-group t-test, medium effect (d = 0.5), 80% power
+pwr.t.test(d = 0.5, sig.level = 0.05, power = 0.80, type = "two.sample")
+```
+
+This output, *n* = 64 per group, becomes the sampling plan justification in your prospectus. If you cannot feasibly collect that many observations, the research question must be revised, the design changed for greater power, or the limitation explicitly justified in writing. For your own prospectus, run this analysis with the effect size you extracted in Chapter 4 and report the required *n* at both 80% and 90% power, noting how the ten-point increase changes what you would need to collect.
+:::
+
+## Looking ahead
+
+Chapter 7 begins Part III, where planning becomes practice. It is on research design: the plan that connects the question you just wrote to evidence that could actually answer it, and the four decisions every design has to make about cases, measures, timing and comparison.
+
+Before Chapter 8 asks you to operationalize anything, work through the *Structured Listening* supplement. You cannot code a medium you have not watched, and the field notes it produces are what Chapter 8 turns into a codebook.
+
+## References
+
+Hilvert-Bruce, Z., Neill, J. T., Sjöblom, M., & Hamari, J. (2018). Social motivations of live-streaming viewer engagement on Twitch. *Computers in Human Behavior*, *84*, 58-67. https://doi.org/10.1016/j.chb.2018.02.013
+
+Horton, D., & Wohl, R. R. (1956). Mass communication and para-social interaction: Observations on intimacy at a distance. *Psychiatry*, *19*(3), 215-229. https://doi.org/10.1080/00332747.1956.11023049
+
+Katz, E., Blumler, J. G., & Gurevitch, M. (1973). Uses and gratifications research. *Public Opinion Quarterly*, *37*(4), 509-523. https://doi.org/10.1086/268109
+
+Simmons, J. P., Nelson, L. D., & Simonsohn, U. (2011). False-positive psychology: Undisclosed flexibility in data collection and analysis allows presenting anything as significant. *Psychological Science*, *22*(11), 1359-1366. https://doi.org/10.1177/0956797611417632
+
+Sjöblom, M., & Hamari, J. (2017). Why do people watch others play video games? An empirical study on the motivations of Twitch users. *Computers in Human Behavior*, *75*, 985-996. https://doi.org/10.1016/j.chb.2016.10.019
+
+::: {.graduate-extension}
+### Graduate readings
+
+Lakens, D. (2022). Sample size justification. *Collabra: Psychology*, *8*(1), 33267. https://doi.org/10.1525/collabra.33267
+:::
+

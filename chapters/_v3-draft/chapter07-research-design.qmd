@@ -115,7 +115,7 @@ At some point the design stops being a set of intentions and becomes a paragraph
 Six things belong in it, and a design that cannot supply all six is not finished.
 
 1. **The question or hypothesis**, restated in the form the design will actually test.
-2. **The cases**, named as a unit and a population: not "Twitch chat" but "chat messages posted in the 50 sampled channels between 18 and 24 November 2018."
+2. **The cases**, named as a unit and a population: not "Twitch chat" but "chat messages posted in the 228 sampled channels between 18 and 24 November 2018."
 3. **How cases were selected**, which is Chapter 11's subject, and how many.
 4. **The measures**, each tied to the concept it stands for, which is Chapter 8's and Chapter 9's.
 5. **The comparison**, stated plainly. Against what, and why that is the right against-what.

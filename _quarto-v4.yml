@@ -28,21 +28,21 @@ book:
     - index.qmd
     - part: "Part I: Foundation"
       chapters:
-        - chapters/chapter01.qmd
+        - chapters/_v3-draft/chapter01-the-science-of-storytelling.qmd
         - chapters/_v3-draft/chapter02-three-paradigms.qmd
-        - chapters/chapter03.qmd
+        - chapters/_v3-draft/chapter03-knowing-and-knowing-well.qmd
     - part: "Part II: Planning"
       chapters:
-        - chapters/chapter04.qmd
-        - chapters/chapter05.qmd
-        - chapters/chapter06.qmd
+        - chapters/_v3-draft/chapter04-intelligence-gathering.qmd
+        - chapters/_v3-draft/chapter05-theory-as-a-lens.qmd
+        - chapters/_v3-draft/chapter06-the-prospectus.qmd
     - part: "Part III: Quantitative Methods"
       chapters:
         - chapters/_v3-draft/chapter07-research-design.qmd
-        - chapters/chapter08.qmd
+        - chapters/_v3-draft/chapter08-from-vibes-to-variables.qmd
         - chapters/_v3-draft/chapter09-measurement-scales-items.qmd
         - chapters/_v3-draft/chapter10-reliability-and-validity.qmd
-        - chapters/chapter11.qmd
+        - chapters/_v3-draft/chapter11-wrangling-the-data.qmd
         - chapters/_v3-draft/chapter12-quantitative-content-analysis.qmd
         - chapters/_v3-draft/chapter13-survey-research.qmd
         - chapters/_v3-draft/chapter14-experimental-design.qmd
@@ -65,6 +65,10 @@ book:
         - chapters/_v3-draft/chapter25-inference-and-effect.qmd
         - chapters/_v3-draft/chapter26-mixed-methods.qmd
         - chapters/_v3-draft/chapter27-writing-and-publishing.qmd
+    - part: "Practice Supplements"
+      chapters:
+        - supplements/open-workspace.qmd
+        - supplements/structured-listening.qmd
     - part: "Excel Supplements"
       chapters:
         - supplements/excel/chapter07-research-design.qmd

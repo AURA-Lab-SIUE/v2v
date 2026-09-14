@@ -1,0 +1,193 @@
+---
+title: "Chapter 3: Knowing and Knowing Well"
+---
+
+::: {.chapter-audio .content-visible unless-format="epub"}
+[Listen in Dr. Leith's voice]{.audio-label}
+
+```{=html}
+<audio class="v2v-audio v2v-audio-ug" controls preload="none"><source src="../../audio/ch03-ug.mp3" type="audio/mpeg">Your browser does not support audio.</audio>
+<audio class="v2v-audio v2v-audio-grad" controls preload="none"><source src="../../audio/ch03-grad.mp3" type="audio/mpeg">Your browser does not support audio.</audio>
+```
+
+:::
+
+
+In June 2014, researchers at Facebook and Cornell University published a study in the *Proceedings of the National Academy of Sciences* that became one of the most debated experiments in the history of social science. For one week in January 2012, Facebook had manipulated the News Feeds of nearly 700,000 users without their knowledge. Some users saw fewer positive posts from friends; others saw fewer negative posts. The researchers then measured whether the manipulation affected what users themselves posted. It did. Users exposed to fewer positive posts produced slightly more negative content, and vice versa. The study, led by Adam Kramer, Jamie Guillory, and Jeffrey Hancock, offered evidence of "massive-scale emotional contagion through social networks" (Kramer, Guillory, & Hancock, 2014).
+
+The finding was interesting. The reaction was explosive.
+
+Critics pointed out that nearly 700,000 people had been enrolled in a psychological experiment without informed consent. No one had been told their emotional environment was being manipulated. No one had the opportunity to decline. Facebook argued that its terms of service, which users agree to upon creating an account, authorized the use of data for "internal operations, including troubleshooting, data analysis, testing, and research." The researchers argued that the manipulation was minor, the effect size was tiny, and the study produced valuable scientific knowledge.
+
+The scientific community was divided. Some defended the study as comparable to A/B testing that tech companies perform routinely. Others argued that emotional manipulation, however slight, crosses a line that terms-of-service agreements cannot legitimize. PNAS, the journal that published the study, took the unusual step of appending an "editorial expression of concern" to the article, acknowledging questions about the consent process.
+
+The Facebook study crystallized every major tension in modern research ethics: the boundary between research and product development, the adequacy of passive consent, the obligations of researchers to participants who do not know they are participants, and the question of whether "minimal risk" justifies bypassing standard protections. The case does not have a clean answer. Reasonable people disagree about whether the study was ethical. What is not debatable is that the questions it raised matter, and that every researcher must develop a framework for navigating them.
+
+## Why ethics is not a formality
+
+Students sometimes approach research ethics as a bureaucratic requirement: a form to fill out, a training module to complete, a hurdle between them and the "real" work of data collection. This is understandable. Ethics review can feel procedural, especially when a study involves publicly available chat messages rather than vulnerable human populations.
+
+But ethics is not a procedure. It is a disposition. It shapes how you think about your relationship to the people whose data, content, or behavior you study. It governs how honestly you report what you find. And it reflects the fact that the history of research includes episodes of genuine harm, episodes serious enough to justify every protection that now exists.
+
+::: {.graduate-extension}
+**Paradigmatic positioning.** Every study operates from a paradigm, a set of assumptions about the nature of knowledge and how it is acquired. Post-positivist communication researchers assume an objective social reality that is incompletely knowable, that measurement error is irreducible but manageable, and that statistical inference allows probabilistic claims about that reality. If that description fits your study, the four methodological commitments (power, pre-registration, reliability, and an audit trail) are not optional; they are logical entailments of the paradigm. If you are working from an interpretive or critical paradigm, V2V's quantitative tools occupy a different role in your methodology, and different obligations apply. Where would you locate your current research question on the ontology–epistemology axis Crotty (1998) describes, and what methodological implications follow from that location?
+:::
+
+## How we got here
+
+Modern research ethics regulations exist because researchers harmed people. Not hypothetically. Not in edge cases. Systematically and with institutional support. Understanding this history matters not to assign guilt to the current generation, but to appreciate why the protections exist and what they are designed to prevent.
+
+### The Tuskegee syphilis study (1932 to 1972)
+
+For forty years, the United States Public Health Service studied the progression of untreated syphilis in 399 Black men in Macon County, Alabama. The men were told they were receiving free treatment for "bad blood." They were not. Even after penicillin became the standard treatment for syphilis in the 1940s, the researchers withheld it. Twenty-eight men died directly of syphilis, 100 died of related complications, 40 wives were infected, and 19 children were born with congenital syphilis.
+
+The study was not conducted by rogue scientists. It was funded by the federal government, staffed by credentialed researchers, and published in peer-reviewed journals for decades without significant objection from the scientific community. Its exposure in 1972, by Associated Press journalist Jean Heller, led directly to the regulatory framework the United States uses today.
+
+### The Milgram obedience experiments (1961)
+
+Stanley Milgram's experiments at Yale examined whether ordinary people would administer what they believed were painful electric shocks to a stranger simply because an authority figure instructed them to do so. Most did. The experiments produced foundational insights about authority and obedience, but they did so by subjecting participants to extreme psychological distress. Participants believed they were causing real harm to another person. Many exhibited signs of acute anxiety, and some experienced lasting psychological effects.
+
+The ethical question was not whether the findings were important. They were. The question was whether the knowledge justified the deception and distress inflicted on participants.
+
+### Humphreys and the tearoom trade (1970)
+
+Sociologist Laud Humphreys studied anonymous sexual encounters between men in public restrooms. He recorded participants' license plate numbers without their knowledge, traced their home addresses through police records, and later visited their homes in disguise to conduct "health surveys," gathering personal information the men had no idea was connected to the restroom observations.
+
+Humphreys argued that his research revealed important truths about a hidden population. Critics argued that he violated his subjects' privacy in ways that could have destroyed their lives, marriages, and careers if the data had been exposed.
+
+### The common thread
+
+Each case involved researchers who believed their work served a greater good. Each involved participants who were harmed, deceived, or exploited. And each contributed to the recognition that good intentions are not sufficient protection. Researchers need external accountability, formal principles, and institutional oversight.
+
+## The Belmont Report
+
+In 1979, the National Commission for the Protection of Human Subjects of Biomedical and Behavioral Research published *The Belmont Report*, which established three foundational principles for ethical research (National Commission, 1979). These principles now govern virtually all research involving human subjects in the United States.
+
+### Respect for persons
+
+People must be treated as autonomous agents capable of making their own decisions. This means **informed consent**: participants must understand what the research involves, what risks it carries, and that they can withdraw at any time without penalty. It also means **protection of vulnerable populations**. People with diminished autonomy (children, prisoners, individuals with cognitive impairments) require additional protections because their ability to provide truly voluntary consent is compromised.
+
+Applied to communication research, if you survey listeners about their emotional responses to a podcast, participants must know they are in a study, understand what they will be asked to do, and be free to stop at any time. If you analyze public social media posts, the question becomes more complex. Did users "consent" to being studied when they posted publicly? The chapter returns to that question shortly.
+
+### Beneficence
+
+Researchers must maximize benefits and minimize harms. This involves two obligations. The first is **do no harm**: the research should not cause physical, psychological, social, or economic injury to participants. The second is **maximize the ratio of benefits to risks**: the knowledge gained must justify any risks imposed on participants.
+
+Applied to communication research, most content analysis carries minimal risk because the analyst is interacting with texts, not people. Survey and experimental research can involve psychological discomfort (exposing participants to upsetting media content), social risk (collecting sensitive information that could embarrass participants if leaked), or economic risk (taking participants' time without adequate compensation).
+
+### Justice
+
+The benefits and burdens of research must be distributed fairly. No group should bear a disproportionate share of research risks while another group receives the benefits.
+
+The Tuskegee study violated justice because it imposed all the risks on a vulnerable, marginalized population while the benefits, in the form of medical knowledge, accrued to the broader society. In communication research, justice concerns arise when studies about marginalized communities are designed and conducted without input from those communities, or when research on "deviant" media behavior targets specific demographic groups while treating majority behavior as the unmarked norm.
+
+## Institutional review
+
+The Belmont Report's principles are operationalized through **Institutional Review Boards** (IRBs), committees at universities and research institutions that review proposed studies for ethical compliance before data collection begins.
+
+IRBs evaluate whether a study minimizes risks to participants, ensures risks are reasonable relative to anticipated benefits, selects participants equitably, obtains and documents informed consent, monitors data collection for safety, and protects participant privacy and confidentiality.
+
+Not all studies require the same level of scrutiny. Federal regulation distinguishes three tiers.
+
+**Exempt review** applies to research that poses minimal risk and falls into specific categories defined by federal regulation. Most content analysis of publicly available materials (newspaper articles, song lyrics, television broadcasts, public social media posts) qualifies for exempt status because no human subjects are directly involved.
+
+**Expedited review** applies to research that involves no more than minimal risk but does not qualify for full exemption. Many surveys and interview studies fall here, particularly those that collect non-sensitive data from adult participants.
+
+**Full board review** applies to research involving more than minimal risk, vulnerable populations, or deception. Experimental studies that manipulate participants' emotional states, research with children or prisoners, and studies involving sensitive topics (substance use, sexual behavior, criminal activity) typically require full review.
+
+The IRB makes the tier determination, not the researcher. Researchers submit; the board decides. Submitting a proposal you suspect should be exempt does not waste anyone's time, because the determination is the board's to make.
+
+## Walking the Twitch dataset through the framework
+
+The Twitch corpus used in this book is a clean case for ethics review. The cleanness is itself instructive. It shows what a low-friction dataset looks like, and it sets up the contrast cases that show what makes other datasets high-friction.
+
+The Twitch chat log was collected from the public IRC interface that Twitch maintains for chat data. The stream log was collected from the public Twitch API. Both interfaces are public by default; any internet user can connect and read the same data without authentication. The dataset contains no IP addresses, no email addresses, no Twitch internal user IDs, no payment or subscription information, and no whisper (private message) content. Sender usernames are present, but they are **pseudonymous**: a Twitch username is a chosen handle, not a legal name, and many viewers use names that do not connect to their offline identity.
+
+Walking this through the Belmont principles:
+
+- **Respect for persons.** Participants were not enrolled in a study and did not give informed consent. They posted publicly to a platform whose terms of service describe chat as a public broadcast. The argument for ethical use rests on the public-broadcast nature of the data, not on consent. The Association of Internet Researchers (AoIR) has long argued that "public" does not automatically mean "fair game for research" (Markham & Buchanan, 2012), and the researcher's obligation is to handle the data in ways that respect the implicit expectations of a public chat. In practice, this means not aggregating data in ways that would re-identify individual users, not republishing entire chat logs verbatim, and not amplifying messages whose senders might have a stronger expectation of obscurity than of broadcast.
+- **Beneficence.** The risk to senders is minimal because they are pseudonymous, the data are already public, and no analytical move in this book aggregates toward offline identity. The benefit, in the form of scholarship on platform behavior, is reasonable.
+- **Justice.** The dataset is not targeting a marginalized population. It samples broadly across Twitch channels, including non-gaming categories. No group is bearing disproportionate research burden.
+
+Most IRBs classify a study using this kind of data as **exempt** because no human subjects are directly involved. Three published manuscripts have used adjacent slices of this collection under exempt-by-design determinations.
+
+The cleanness is the point. Now consider three contrast cases that change the determination.
+
+**Same research question, but on Twitch whispers.** A whisper is a private message between two users. Even with technical access to whisper logs, the senders had a reasonable expectation of privacy. An IRB would almost certainly require expedited or full review, depending on the sensitivity of the content. The shift from public chat to private message changes the data's ethical status entirely.
+
+**Same research question, but on a private Discord server with the same sender population.** A private Discord is a closed group with controlled membership. Senders have a stronger expectation of privacy than they do on a public Twitch chat. Most IRBs would require expedited or full review for research on private Discord communication, even when the senders are the same people who chat publicly on Twitch.
+
+**Same research question, but on an internal moderation log that included platform-side flags on individual users.** Now the data includes platform-internal classifications about people. The risk of harm to identified individuals jumps significantly. Full board review is likely.
+
+The narrow slice of "publicly broadcast chat on a platform whose terms describe it as public, with no platform-internal flags attached" is what makes the dataset for this course exempt-by-design. Most data you encounter in your career will not be that narrow.
+
+## Informed consent in practice
+
+The principle of respect for persons is operationalized primarily through informed consent, the process by which participants voluntarily agree to participate in research after being told what the study involves.
+
+Valid informed consent requires that participants receive a description of the research and their role in it; a description of risks and benefits, including any foreseeable discomfort; a statement that participation is voluntary and that withdrawal carries no penalty; contact information for the researcher and the IRB; and an explanation of how data will be stored and confidentiality protected.
+
+Consent gets complicated in three recurring ways. **Deception**, where some studies require that participants not know the true purpose of the research, is sometimes justified but always paired with mandatory **debriefing**: researchers must explain the true purpose after participation and give participants the option to withdraw their data. **Passive consent**, like the Facebook study's reliance on terms-of-service agreement, is generally considered insufficient for research purposes; ethicists prefer **active consent**, which requires an affirmative act (signing a form, clicking an explicit agreement to participate in research, verbally confirming participation). **Secondary data analysis**, where you analyze data someone else collected, raises questions about whether the original consent covered your specific use; it is generally acceptable when the data are de-identified, but it is one of the places where contemporary research ethics is still actively evolving.
+
+## Ethics in specific methods
+
+Each major research method carries its own ethical profile.
+
+**Content analysis of published media** is among the lowest-risk research methods. The analyst is interacting with texts, not with people. Ethical considerations still apply, particularly around how you categorize and interpret content (a content analysis that codes hip-hop lyrics as "violent" without accounting for genre conventions can reinforce harmful stereotypes), cherry-picking examples that confirm a hypothesis while ignoring contradictory cases, and copyright concerns when reproducing extensive content in a final report.
+
+**Survey research** involves direct interaction with participants, which raises the ethical stakes. Voluntary participation must be genuine; offering course credit is acceptable only if an alternative assignment of equal value is available. Sensitive questions about substance use, sexual behavior, mental health, or illegal activity require careful handling. Data must be stored securely and de-identified.
+
+**Experimental research** that manipulates participants' experiences carries the highest ethical burden. Manipulation effects must be considered carefully: if you expose participants to distressing media content, you must consider whether the exposure could cause lasting harm. Deception requires debriefing. Control group ethics, particularly in interventional research, can raise fairness questions when a potentially beneficial treatment is withheld from one group.
+
+**Digital and social media research** occupies an evolving ethical landscape. The "public" problem (data is publicly accessible but the poster may not have anticipated being studied) is the central issue. Aggregation risk (combining individually harmless data points to create identifiable profiles) compounds it. Platform terms of service may prohibit scraping even of public data, which raises legal questions alongside ethical ones. And vulnerable populations online (minors, people in crisis, members of stigmatized groups) may be especially harmed by research exposure, even when their posts are public.
+
+## Ethical writing and reporting
+
+Ethics does not end when data collection is over. How you analyze and report findings carries its own ethical obligations.
+
+**Fabrication** is inventing data that do not exist. **Falsification** is manipulating data or results to change the outcome. Both are forms of scientific fraud, and both are career-ending if discovered. They are also more common than the research community likes to admit; surveys of researchers consistently find that a small but meaningful percentage acknowledge engaging in questionable practices (Babbie, 2021).
+
+**Selective reporting** is a subtler form of dishonesty: running many analyses but reporting only those that produced significant results, or testing multiple hypotheses but presenting only the ones that worked. This practice, sometimes called the file drawer problem, distorts the literature by creating a publication record that systematically overstates the strength of effects. Chapter 2's discussion of researcher degrees of freedom returns here. Selective reporting is the active version of the passive friction the Open Science Collaboration documented in 2015.
+
+**HARKing**, an acronym for Hypothesizing After the Results are Known, occurs when researchers examine their data, identify patterns, and then write the paper as though they had predicted those patterns all along. This transforms exploratory analysis (which is legitimate) into confirmatory analysis (which requires pre-specification). A "prediction" that was actually a post-hoc observation carries none of the epistemic weight of a genuine a priori hypothesis.
+
+::: {.graduate-extension}
+**Why pre-registration is a paradigmatic commitment.** Pre-registration is often framed as a statistical technique to control false-positive rates. That framing is accurate but incomplete. At the paradigmatic level, pre-registration embodies the hypothetico-deductive model: you derive predictions from theory *before* examining data, then submit those predictions to empirical test. This is the canonical post-positivist epistemological move. Nosek and colleagues (2018) define the commitment in precisely these terms:
+
+> "Preregistration of an analysis plan is committing to analytic steps without advance knowledge of the research outcomes."
+>
+> Nosek et al. (2018, p. 2601)
+
+The OSF pre-registration form operationalizes that commitment: it requires you to state theory-derived hypotheses, specify measures, and describe the analysis before any data is collected or examined. Is pre-registration compatible with grounded theory or thematic analysis? Make the case for or against, using epistemological rather than practical reasoning.
+:::
+
+Even without outright fabrication, researchers face constant temptation to overstate their findings. "Our results suggest" becomes "our results demonstrate." A small effect size gets buried while a large p-value gets highlighted. Limitations are mentioned but minimized. The discussion section tells a cleaner story than the data support.
+
+**Honest interpretation** means stating what you found, acknowledging what you did not find, and being transparent about the boundaries of your claims. It means writing a limitations section that genuinely grapples with weaknesses rather than performing humility while defending every decision. It means distinguishing between what the data show and what you wish they showed. This is harder than it sounds. It is the core ethical obligation of every researcher.
+
+::: {.graduate-extension}
+**Epistemological humility and its constraints.** Claiming that reality is incompletely knowable does not license sloppy measurement. It licenses *uncertainty quantification*: confidence intervals, power statistics, effect size estimates with precision reported. The four methodological commitments are the methods-level expression of epistemological humility.
+:::
+
+## Looking ahead
+
+Chapter 4 opens Part II of the book, where the work shifts from foundations to design. The first move is a literature review: identifying what is already known about a topic and where the gaps in the field are. Literature review is the rising action of a research story. Before you confront your research question, you find out what others have already tried.
+
+## References
+
+Babbie, E. R. (2021). *The practice of social research* (15th ed.). Cengage Learning.
+
+Kramer, A. D. I., Guillory, J. E., & Hancock, J. T. (2014). Experimental evidence of massive-scale emotional contagion through social networks. *Proceedings of the National Academy of Sciences*, *111*(24), 8788-8790. https://doi.org/10.1073/pnas.1320040111
+
+Markham, A., & Buchanan, E. (2012). *Ethical decision-making and internet research: Recommendations from the AoIR Ethics Working Committee (Version 2.0)*. Association of Internet Researchers.
+
+National Commission for the Protection of Human Subjects of Biomedical and Behavioral Research. (1979). *The Belmont Report: Ethical principles and guidelines for the protection of human subjects of research*. U.S. Department of Health, Education, and Welfare.
+
+::: {.graduate-extension}
+### Graduate readings
+
+Crotty, M. (1998). *The foundations of social research: Meaning and perspective in the research process*. SAGE Publications.
+
+Nosek, B. A., Ebersole, C. R., DeHaven, A. C., & Mellor, D. T. (2018). The preregistration revolution. *Proceedings of the National Academy of Sciences*, *115*(11), 2600-2606. https://doi.org/10.1073/pnas.1708274114
+:::
+

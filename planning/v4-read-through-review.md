@@ -1,20 +1,21 @@
-# 4th edition: read-through review
+# 4th edition: read-through review and its resolutions
 
-**2026-09-14.** Against the full 27-chapter draft as rendered by `tools/render-v4.sh`,
-plus all 17 Excel supplements. Read the book at `_preview-v4/index.html`; it is
-gitignored and regenerable, and the build cannot touch `docs/`.
+**Reviewed 2026-09-14; resolved the same day.** Against the full 27-chapter draft
+as rendered by `tools/render-v4.sh`, plus the two practice supplements and the
+17 Excel supplements. Read the book at `_preview-v4/index.html`; it is gitignored
+and regenerable, and the build cannot touch `docs/`.
 
-The prose is in good shape. Every substantive problem below is structural: things
-the draft inherited from being assembled out of a 14-chapter book, not things
-wrong with the new writing.
+The prose is in good shape. Every substantive problem was structural: things the
+draft inherited from being assembled out of a 14-chapter book, not things wrong
+with the new writing.
 
 ---
 
-## 1. The part structure was only ever stated inside the chapters
+## The part structure, now written down
 
 There was no table of contents for the 4th edition anywhere in the repo. The
-chapters state their own structure in prose, consistently, and it is now written
-down in `_quarto-v4.yml`:
+chapters state their own structure in prose, consistently, and `_quarto-v4.yml`
+now records it with the citation for every boundary.
 
 | Part | Chapters |
 |---|---|
@@ -24,156 +25,150 @@ down in `_quarto-v4.yml`:
 | IV: Qualitative Methods | 16 to 21 |
 | V: Rhetorical and Critical Analysis | 22, 23 |
 | VI: Analysis and Publication | 24 to 27 |
+| Practice Supplements | The Open Workspace, Structured Listening |
+| Excel Supplements | 17, for chapter 7 and chapters 12 to 27 |
 
 My first attempt split Part III at chapter 11 and put the qualitative chapters in
 Part V. It rendered cleanly and it was wrong. What caught it was chapter 2 saying
 "Part IV works inside this paradigm" about interpretive work, and chapter 15
 saying "Part III ends here, and with it the quantitative methods half."
 
-**Worth deciding:** whether Part V should exist at two chapters. Chapters 22 and 23
-are the only ones in it, and 23 already slips and calls its own surroundings Part
-IV (now corrected). Folding them into Part IV and renaming it would give five
-parts of 3, 3, 9, 8, 4.
+**Still open:** whether Part V should exist at two chapters. Folding 22 and 23
+into Part IV would give five parts of 3, 3, 9, 8, 4.
 
-## 2. The 3rd edition's Chapter 2 is gone and nothing replaced it
+## RESOLVED: the 3rd edition's Chapter 2 and Chapter 7
 
-The old Chapter 2, "The Open Workspace", covered the tooling, version control,
-reproducibility, researcher degrees of freedom, and the reader's first contact
-with the dataset. The 4th edition's Chapter 2 is "Three Paradigms", which is a
-better chapter and covers none of that.
+Two chapters the 4th edition dropped were carrying material the rest of the book
+depends on. Both are now **practice supplements**, which is where hands-on
+material belongs: installers, menus and version numbers date faster than
+anything else in the book, and the reasoning around them does not date at all.
 
-Nothing else in the 27 covers it either. Searching every draft chapter for
-RStudio, version control or reproducibility returns one file, chapter 27, and
-only in the sense of open materials at publication time.
+**`supplements/open-workspace.qmd`**, lifted from v3's "The Open Workspace":
+the tool ecology, the install sequence, first contact with the ten rows of
+`stream_log`, and the `v2v` package. Its fixture description is updated to the
+228-channel corpus.
 
-Four chapters still point at the chapter that is no longer there:
+**`supplements/structured-listening.qmd`**, lifted from v3's "Structured
+listening": immersion, the three modes of attention, field notes, the edge-case
+log, and knowing when to stop. Chapter 8 depends on the field notes it produces,
+so it has to be worked through before operationalizing anything. Chapter 18 is
+where observation is treated as a *method*; this is the practice.
 
-- **ch01** "Chapter 2 turns to the technical infrastructure that makes research reproducible"
-- **ch01** "Chapter 2 also brings you face to face with the dataset for the first time"
-- **ch03** "Chapter 2's discussion of researcher degrees of freedom returns here"
-- **ch06** "the researcher degrees of freedom Chapter 2 introduced"
-- **ch08** "Chapter 2: channel, title, game, viewers, date"
+Both lifts declare their repairs in `tools/verify/corrections/v4_wire.py` rather
+than making them by hand.
 
-So researcher degrees of freedom is used by three chapters and introduced by
-none, and the dataset is never formally introduced. This is the one gap I would
-fix before showing the draft to anybody outside.
+**What stayed in the book.** The conceptual half of old Chapter 2 was not
+supplemental and could not go: the Open Science Collaboration replication study,
+the replication crisis, researcher degrees of freedom, the point-and-click
+problem and code-as-documentation. That is now a section of Chapter 2, "When the
+answers did not hold up", placed after the social scientific paradigm because it
+is that paradigm accounting for its own failure. It has the side effect of making
+chapter 3's and chapter 6's existing references to "Chapter 2's discussion of
+researcher degrees of freedom" correct again without touching them, and it takes
+chapter 2 from 1,755 words to 2,458.
 
-**Options:** restore the workspace material as a new chapter (which makes it a
-28-chapter book), fold the reproducibility half into chapter 1 and the dataset
-introduction into chapter 8, or write a short Part I chapter that does both.
-I did not choose, because it changes the shape of the book.
+## RESOLVED: the seven carried-over chapters
 
-## 3. The seven carried-over chapters still talk to the 3rd edition
+**They have moved.** Editing them for the 4th edition made them wrong for the
+3rd, and they were still sitting in `chapters/`, which is what the live book
+renders from on main. A merge would have silently broken the published edition.
+All seven now live in `chapters/_v3-draft/` alongside the other twenty, with their
+relative paths deepened a level, and `chapters/*.qmd` is byte-identical to what main
+publishes. The two editions can no longer corrupt each other.
 
-Chapters 1, 3, 4, 5, 6, 8 and 11 are carried over unchanged, and their
+Chapters 1, 3, 4, 5, 6, 8 and 11 were carried over unchanged, and their
 cross-references were written when chapters 2, 7, 9, 10, 12, 13 and 14 held
-completely different content. Roughly 25 references are now wrong. The worst:
+completely different content. All of them now point at the right place. Chapters
+4 and 5 turned out to need nothing; every reference in them was to chapters 3 to
+6, which did not move.
 
-**ch01's roadmap section** describes the old structure outright: "Part III:
-Operationalization (Chapters 7 to 9)", "Part IV: Execution (Chapters 10 to 12)",
-"Part V: Inference and publication (Chapters 13 to 14)". All three are wrong, and
-it is the passage a reader hits first.
+- **ch01's roadmap** described a five-part, fourteen-chapter book. Rewritten for
+  the six parts above, with a paragraph on what the supplements are for.
+- **ch01's looking-ahead** promised that Chapter 2 would install the tools.
+  Rewritten to promise the paradigms and point at the workspace supplement.
+- **ch01** "Chapter 5 explores these paradigms in more depth" is now Chapter 2.
+- **ch06's looking-ahead** promised structured listening from Chapter 7 and now
+  describes research design, then sends the reader to the supplement.
+- **ch08** pointed four times at Chapter 7's field notes and observation log, at
+  Chapter 2 for the data preview, and at Chapter 13 for inferential tests. Now:
+  the supplements, and Chapter 25.
+- **ch08's looking-ahead** promised that Chapter 9 was first contact with R. It
+  is Measurement, Scales and Items, and the passage now says what 9 and 10
+  actually do.
+- **ch11** pointed five times at Chapter 12 for visualizing and once at Chapter
+  13 for tests. Those are Chapters 24 and 25. Its looking-ahead now hands off to
+  Chapter 12 for content analysis and forward to Chapter 24 for the figures.
+- **ch07 (draft)** still described "the 50 sampled channels".
 
-**ch11** points five times at "Chapter 12" for visualizing and charting, and at
-"every test in Chapter 13". In the 4th edition those are chapter 24 and chapter
-25; chapter 12 is Quantitative Content Analysis and chapter 13 is Survey
-Research.
+## DEFERRED to Fall 2027: the graduate layer
 
-**ch08** points at "Chapter 7's observation log" and "the structured listening in
-Chapter 7" (now Research Design), "Chapter 9 is first contact with the data inside
-R" (now Measurement, Scales and Items), and "Chapter 10 covers those statistics"
-(now Reliability and Validity).
+18 of the 20 new chapters have no `graduate-extension` blocks, against 3 to 5 per
+chapter throughout the 3rd edition. Only chapter 12 (4 blocks) and chapter 14 (1)
+have any, so with the graduate toggle on, most of the 4th edition is currently
+identical to the undergraduate version.
 
-**ch06** "Chapter 7 begins Part III" is right about the part and wrong about the
-content: it promises structured listening and delivers research design.
+**Owner decision, 2026-09-14: not before Spring, and the graduate course does not
+run again until Fall 2027.** So this does not gate anything, and the time is
+better spent on a question that was never actually asked: what, in the
+literature and in practice, distinguishes a graduate methods textbook from an
+undergraduate one? The 3rd edition's four pillars (a priori power, preregistration,
+two-coder reliability, audit trail) were a reasonable guess. The 4th edition's
+graduate layer should be built on something better than a guess, and there is a
+year to do the reading.
 
-These are mechanical to fix once the chapter 2 question above is settled, because
-several of them want to point at whatever replaces it. I left them alone for that
-reason rather than because they are hard.
+The existing blocks in the seven carried-over chapters and the two practice
+supplements are untouched and still work.
 
-## 4. Two features present in every old chapter and absent from every new one
+## Fixed while reading
 
-**Chapter audio.** All 7 carried-over chapters carry a `chapter-audio` block. None
-of the 20 new ones do. A reader moving from chapter 1 to chapter 2 loses the
-audio and gets it back at chapter 3.
-
-**Graduate extensions.** The 3rd edition averages 3 to 5 `graduate-extension`
-blocks per chapter, and the read-time graduate toggle in `_quarto.yml` is built
-around them. Of the 20 new chapters, 18 have none. Only chapter 12 (4 blocks) and
-chapter 14 (1) have any. With the toggle on, most of the 4th edition is
-indistinguishable from the undergraduate version.
-
-That is 18 chapters times 3 or 4 blocks. It is the largest remaining piece of
-writing in the project, and it is worth scoping deliberately rather than
-discovering late.
-
-## 5. Length is uneven in a way a reader will feel
-
-Carried-over chapters average about 3,780 words. New chapters average about
-2,690. The gap is visible where they sit next to each other:
-
-| | words |
-|---|---|
-| ch01 (carried) | 4,303 |
-| **ch02 (new)** | **1,755** |
-| ch03 (carried) | 3,597 |
-
-Chapter 2 is doing foundational work at 40 percent of the length of the chapters
-on either side of it. Also short: ch26 (1,772), ch27 (1,867), ch09 (1,913),
-ch23 (2,001), ch22 (2,022).
-
-Chapter 27 closing a 27-chapter book in 1,867 words is the one I would look at
-after chapter 2. Neither is padding work; both have obvious material they stop
-short of.
-
-## 6. Things I fixed while reading
-
-- **ch19** claimed "6.3 percent contain no alphabetic characters at all." The rule
-  behind it was `[A-Za-z]`, and 5,957 of those 9,944 messages are Cyrillic,
+- **ch19** claimed "6.3 percent contain no alphabetic characters at all." The
+  rule behind it was `[A-Za-z]`, and 5,957 of those 9,944 messages are Cyrillic,
   Hangul, Thai and Greek. They have letters. Under a rule that counts any
   alphabet the figure is 2.5 percent. Rewritten to give both numbers and make the
   gap the lesson, since it is chapter 9's validity problem inside one regular
   expression.
 - **ch20** still carried the old fixture's adjacency figures (6.5 percent
   immediate, median 16, 22 percent within five, 20 percent never). Correct
-  figures from the regenerated `adjacency.csv` are 10, 11, 26 and 18 percent, on
-  89 addressed messages. The chapter also described the measurement as covering
-  "every message in the corpus"; it is a thousand consecutive turns from one
-  channel, and now says so.
-- **ch26** quoted ch20's stale 6.5 percent. Updated.
+  figures are 10, 11, 26 and 18 percent, on 89 addressed messages. The chapter
+  also described the measurement as covering "every message in the corpus"; it is
+  a thousand consecutive turns from one channel, and now says so.
+- **ch26** quoted ch20's stale 6.5 percent.
 - **ch23** called its own surroundings Part IV. It is Part V.
 - **ch27** had an orphan `:::` closing a fenced div that was never opened, which
   Quarto warned about on every render.
 - **ch12** linked an image as `../images/`, which from `chapters/_v3-draft/`
-  resolves to a directory that does not exist. Now `../../images/`.
+  resolves to a directory that does not exist.
 - Chapters 12, 15 and 24 still said "fifty channels".
 
-## 7. Smaller notes
+## Still open
+
+**Chapter audio.** All 7 carried-over chapters carry a `chapter-audio` block and
+none of the 20 new ones do, so a reader loses the audio at chapter 2 and gets it
+back at chapter 3. Twenty recordings, and they cannot be made until the prose
+stops moving.
+
+**Length.** New chapters average about 2,690 words against 3,780 for the
+carried-over ones. Chapter 2 is no longer the outlier it was. The short ones now
+are ch26 (1,772), ch27 (1,867), ch09 (1,913), ch23 (2,001) and ch22 (2,022).
+Chapter 27 closing a 27-chapter book in 1,867 words is the one I would look at.
 
 **The kappa example in ch10 is a thought experiment that does not need to be.**
 It says "Imagine the codebook included a loosely worded variable", and its
 numbers (80 percent observed, 0.797 expected, kappa 0.015) are correct. The old
 chapter 10 wired the same example to a real fixture,
-`data-raw/v3/build_reliability.py` and `pilot_coding.csv`, so a reader can run it.
-The v4 chapter dropped the wiring and kept the numbers. Reconnecting it is a
-paragraph, and it is the difference between a worked example and an assertion.
+`data-raw/v3/build_reliability.py` and `pilot_coding.csv`, so a reader can run
+it. The v4 chapter dropped the wiring and kept the numbers. Reconnecting it is a
+paragraph.
 
-**Supplement coverage.** 17 supplements for 27 chapters: 7, then 12 through 27.
-Chapters 1 to 6, 8, 9, 10 and 11 have none. Most of those do not need one;
-chapters 9 and 10 plausibly do, since measurement and reliability are exactly
-where a spreadsheet earns its place, and chapter 10's pilot-coding fixture already
-exists.
+**No sampling chapter.** v3 had one, "The sample". In v4 sampling appears inside
+chapter 13 for surveys and chapter 15 for the fixture's own stratified design,
+and nowhere as a topic. The structured-listening supplement's reference to
+"statistical sampling in Chapter 13" is the best available target rather than a
+good one. Worth deciding whether Part III wants a sampling chapter.
 
-**Nothing to report on em dashes.** Zero across all 20 draft chapters and all 17
+**Supplement coverage.** Chapters 1 to 6 and 8 to 11 have no Excel supplement.
+Most do not need one; 9 and 10 plausibly do, and chapter 10's pilot-coding
+fixture already exists.
+
+**Nothing to report on em dashes.** Zero across all draft chapters and all
 supplements.
-
----
-
-## What I would do next, in order
-
-1. Decide the Chapter 2 question in section 2. It gates section 3.
-2. Fix the ~25 cross-references in the seven carried-over chapters, ch01's
-   roadmap first.
-3. Scope the graduate extensions for 18 chapters.
-4. Extend chapter 2 and chapter 27.
-5. Reconnect ch10's kappa example to its fixture.
