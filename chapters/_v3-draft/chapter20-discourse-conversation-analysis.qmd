@@ -1,0 +1,152 @@
+---
+title: "Chapter 20: Discourse and Conversation Analysis"
+---
+
+Chapter 19 read the chat log for what it means. This chapter reads it for how it works.
+
+That is a narrower question and a stranger one. Instead of asking what a message is about, you ask what it is *doing*: what it responds to, what it makes relevant next, how participants show each other they have understood, and what happens when they have not. The material is the same log. The unit of attention moves from the message to the sequence.
+
+Two traditions do this, they are frequently confused, and they ask different questions.
+
+## Two traditions
+
+**Conversation analysis** studies the machinery of interaction. It asks how people take turns, how sequences are built, and how trouble gets repaired, and it insists that the evidence for any claim is what the participants themselves demonstrably oriented to. It is radically empirical and deliberately uninterested in what anyone intended.
+
+**Discourse analysis** is a family rather than a method, and studies how language constructs the things it appears merely to describe. It asks what a way of speaking makes thinkable, who it positions where, and what it accomplishes socially. Critical variants add a question about power: whose interests a discourse serves, and what it naturalizes.
+
+The practical difference is where the evidence lives. A conversation analyst points at the next turn and says the participant treated it this way, so the analysis is not the analyst's imposition. A discourse analyst points at patterns across a body of talk and argues for what they do. Both are rigorous; they are answerable to different things.
+
+## The machinery, briefly
+
+Four concepts carry most of conversation analysis, and they are worth having even if you never run a CA study, because they describe what any interaction is doing.
+
+**Turn-taking.** Sacks, Schegloff and Jefferson (1974) showed that conversation is organized by a system for allocating turns: one speaker at a time, with transitions managed at predictable points, either by the current speaker selecting the next or by a speaker self-selecting. The system explains why overlaps are brief and why silences of even a second feel like something.
+
+**Adjacency pairs.** Some turns come in twos: question and answer, greeting and greeting, invitation and acceptance or refusal. The first part makes the second **conditionally relevant**, which means its absence is not nothing. If you ask a question and get silence, the silence is heard as a refusal to answer rather than as an empty interval.
+
+**Preference.** The two possible second parts are not equals. Acceptances come quickly and plainly; refusals arrive late, hedged, and with an account attached. That asymmetry is structural rather than psychological, and its presence tells you how a participant is treating the turn.
+
+**Repair.** When something goes wrong, participants fix it, and Schegloff, Jefferson and Sacks (1977) showed the fixing is ordered: speakers strongly prefer to correct themselves, and others, when they do correct, soften it. Repair is where a community's norms become visible, because trouble forces participants to make explicit what is usually assumed.
+
+## The transcript is the analysis
+
+Conversation analysis is the reason Chapter 16 warned that transcription is an analytic act rather than a clerical one.
+
+CA uses a notation, developed by Gail Jefferson, that records what a clean transcript throws away: the length of pauses in tenths of a second, overlapping speech and exactly where it begins, audible breathing, stretched sounds, rising and falling intonation, volume, speed. A CA transcript is hard to read and it has to be, because the phenomena are in the timing.
+
+The consequence is uncomfortable and worth stating plainly. **If you did not transcribe for it, you cannot analyze it.** A study that decides after the fact to examine how refusals are delayed, working from transcripts that removed the pauses, has no data. Decide what you are attending to before you transcribe, and if you are unsure, transcribe more than you think you need.
+
+## Notation
+
+A CA transcript records things ordinary writing omits. You do not need the full system to read published work, but you need enough to follow it.
+
+| Symbol | Means |
+|---|---|
+| `(0.5)` | a silence, in tenths of a second |
+| `(.)` | a micropause, under two tenths |
+| `[` | where overlapping speech begins |
+| `=` | latching, no gap at all between turns |
+| `wor::d` | a stretched sound, one colon per beat |
+| `word` (underlined) | stress |
+| `WORD` | markedly louder |
+| `>word<` | speeded up |
+| `.hh` / `hh` | audible in-breath / out-breath |
+| `wor-` | a cut-off |
+| `(word)` | the transcriber is unsure |
+| `((laughs))` | the transcriber's description, not speech |
+
+Text chat needs almost none of this and needs other things instead. There is no intonation to record and no overlap to mark, but there is a timestamp, and the interval between messages does the work that pause length does in speech. A chat transcript for analysis should carry the timestamp on every line, the sender, and the message exactly as typed, including the capitalization and the missing punctuation, because those are the resources participants actually have.
+
+
+## What happens when there is no floor
+
+Now the corpus, and the reason livestream chat is a genuinely interesting object rather than an awkward one.
+
+The turn-taking system described above assumes a floor: one speaker at a time, a shared auditory channel, and the physical impossibility of two people being heard at once. Text chat has none of that. Everyone can type simultaneously, nobody is interrupted, messages arrive in the order the server receives them, and the order on screen may not be the order of production.
+
+Herring (1999) named the consequence **interactional coherence**: in computer-mediated communication, the relationship between a message and the one it responds to is systematically weakened, because turns are not adjacent and the sequencing that carries meaning in speech is disrupted.
+
+That is measurable here. Taking every message in the corpus that addresses another participant by name and looking for the addressee's next message:
+
+- Only **11.1 percent** of addressed messages are followed *immediately* by the person addressed.
+- The median number of messages intervening is **11**.
+- Just **36 percent** see the addressee speak within five messages.
+- In **35 percent** of cases the addressee does not speak again within the next two hundred messages at all.
+
+Read those against the machinery. In spoken conversation, a question makes an answer conditionally relevant *in the next turn*, and its absence there is meaningful. In this room the next turn belongs to whoever typed fastest, and the addressee's reply, when it comes, arrives with a median of eleven other messages stacked in front of it.
+
+So participants adapt. The at-mention itself is a repair device: it exists because adjacency cannot be relied on to show who is talking to whom. Quoting the prior message serves the same purpose. What in speech is done by sequential position has to be done here by explicit address, and the community invented the tools to do it.
+
+That last observation is the kind of claim this method supports, and notice how it is grounded. It is not that people feel disconnected. It is that the structure of the medium removes a resource that speech provides, and the participants' own practices show them compensating for its absence.
+
+## A sequence, split
+
+Here is what the numbers look like as an actual exchange. This is four consecutive messages from one channel in the corpus, with the viewers' usernames replaced by letters, following the practice Chapter 18 sets out.
+
+```
+A:  @D skilled bruiser Nasus > AP nasus though
+B:  its +12 guys
+C:  nobody cares
+D:  @A, not on these aram rules dude
+```
+
+Read it as a sequence. A addresses D directly and makes a claim about how a game character should be built. That is a first pair part: it makes a response from D conditionally relevant. D does respond, and disagrees, which is the second pair part.
+
+Between them sit two messages from other participants, neither of which has anything to do with the exchange. B is talking about something else. C is commenting on the room.
+
+In speech this would be close to unintelligible. Two unrelated utterances between a question and its answer would be heard as an interruption, and the answer, arriving after them, would ordinarily be prefaced with something that reconnected it. Here it needs no preface, because D does the reconnecting with `@A` instead.
+
+Three things are visible in four lines.
+
+**The at-mention is doing sequential work.** It appears in both turns, and in each case it says which prior message this one attaches to. That is the job position does in conversation, handed to an explicit device because position is unreliable.
+
+**Preference structure survives.** D's turn is a disagreement, and it arrives hedged and accounted for: not a flat contradiction but a scope limitation, "not on these aram rules", with a reason attached and a softener at the end. That is the shape a dispreferred second part takes in speech too. The medium changed the sequencing and did not change this.
+
+**C's message is not noise.** "nobody cares" is a comment on the exchange rather than a contribution to it, and it is doing something: policing the room's tolerance for this kind of argument. A coding scheme that classified messages as on-topic or off-topic would file it as off-topic and lose what it was doing.
+
+One extract cannot establish any of this. It shows what a collection would be built from: you would gather every split adjacency pair you could find, and ask across all of them how participants manage the gap.
+
+
+## Discourse analysis, and what it adds
+
+Conversation analysis will not tell you what a community takes for granted. For that you need the other tradition, and three variants are worth naming.
+
+**Discursive psychology** treats talk about mental states as social action rather than as a window into cognition. When a viewer writes that they were "just joking", the analytic question is not whether they were, but what that formulation accomplishes: it retroactively reclassifies an utterance and puts the burden on anyone who objects.
+
+**Critical discourse analysis** asks how language reproduces power. Applied here, it would ask what a channel's vocabulary makes sayable, whose behavior gets named as a problem, and how moderation decisions are described when they are described at all.
+
+**Foucauldian discourse analysis** works at a larger scale, asking what a whole way of speaking makes possible: what counts as a "real" fan, what a "toxic" chat is taken to be, and where those categories came from.
+
+The risk shared across all three is the one Chapter 19 raised about directed analysis. If you arrive knowing that power is at work, you will find it, and the finding will be your framework rather than the material's. The defense is the same: quote enough, address the cases that do not fit, and show the reader how you got from the text to the claim.
+
+## Doing it
+
+**Collect naturally occurring data.** Both traditions insist on interaction that would have happened anyway. An interview about how people argue is not data about how people argue.
+
+**Work with a small amount, closely.** A CA study may spend a paper on ninety seconds. Chapter 19's warning applies in reverse here: the temptation is breadth, and breadth is what destroys this kind of work.
+
+**Build a collection.** Find one phenomenon, then gather every instance of it you can. The analysis is the comparison across instances, not the interpretation of the best one.
+
+**Let the participants show you.** In CA this is the discipline: your evidence that a turn was heard as a complaint is that the next speaker treated it as one. When the next turn is eleven messages away, as it is here, say what you are relying on instead.
+
+**Present the data in the paper.** Both traditions reproduce extended extracts, because the reader is expected to check the reading against the material rather than take it on trust.
+
+## What each can claim
+
+Conversation analysis can claim that a practice exists, is recurrent, and is oriented to by participants, and it makes those claims about interaction in general rather than about this group's attitudes. It cannot tell you what anyone thought, how common the practice is in a population, or what caused it.
+
+Discourse analysis can claim that a body of talk constructs its object in a particular way and that this has consequences worth naming. It cannot claim that the speakers intended it, that audiences received it that way, or that the pattern holds outside the material examined.
+
+Neither counts. The numbers above are not a conversation analysis; they are a description of the medium that tells you which analytic resources are available in it. The analysis is what you do afterward, with the sequences themselves in front of you.
+
+## Looking ahead
+
+Chapter 21 is the chapter every method in Part IV has been pointing at. Interviews, focus groups, field notes and texts all arrive as language, and all of them have to be turned into findings by coding. It covers thematic analysis, grounded theory and the coding process itself, and it is where the qualitative half of the book finally cashes out.
+
+## References
+
+Herring, S. C. (1999). Interactional coherence in CMC. *Journal of Computer-Mediated Communication*, *4*(4). https://doi.org/10.1111/j.1083-6101.1999.tb00106.x
+
+Sacks, H., Schegloff, E. A., & Jefferson, G. (1974). A simplest systematics for the organization of turn-taking for conversation. *Language*, *50*(4), 696-735. https://doi.org/10.2307/412243
+
+Schegloff, E. A., Jefferson, G., & Sacks, H. (1977). The preference for self-correction in the organization of repair in conversation. *Language*, *53*(2), 361-382. https://doi.org/10.2307/413107
