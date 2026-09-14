@@ -1,0 +1,166 @@
+---
+title: "Chapter 18: Ethnography and Participant Observation"
+---
+
+Chapter 12 had you watch streams for hours before writing a codebook. You took field notes, logged edge cases, and stopped when new sessions stopped surprising you. That was observation in the service of something else: it existed to make a coding scheme trustworthy, and once the codebook was written the watching was over.
+
+This chapter does the same activity for a different reason. In ethnography the watching is not preparation for the study. It is the study.
+
+That single change of purpose changes everything downstream: how long you stay, whether you participate, what counts as data, what you may claim, and what you owe the people you are watching. If you have read Chapter 12 you already have the practical skills. What you need now is the different set of commitments that turn them into a method.
+
+## What changes when observation is the method
+
+A codebook wants the world sorted into categories that hold still. Ethnography wants to understand a setting the way its members understand it, which means the categories are what you are trying to discover rather than what you arrive with.
+
+Two terms carry this distinction. An **emic** account describes a setting in the terms its participants use and would recognize. An **etic** account describes it in the analyst's terms, from outside. Ethnography works from the emic toward the etic: you learn the local vocabulary first, and only then say what it amounts to in the language of your field.
+
+The product is what Geertz (1973) called **thick description**, which Chapter 12 borrowed and this chapter uses in full. A thin description says a viewer typed an emote after a play. A thick description knows that this particular emote, in this channel, at this moment, is how regulars mark a play as embarrassing rather than impressive, that newcomers use it wrongly and get corrected, and that the correction is friendly here and is not friendly two channels over. The difference is not detail for its own sake. It is the difference between recording behavior and understanding action.
+
+This also settles what ethnography is for. It is the method for questions about **how a setting works from the inside**: what its norms are, how newcomers are socialized, what its members treat as obvious, how conflict gets handled, what the local words mean. It is the wrong method for questions about prevalence, comparison across many sites, or anything you intend to state as a rate.
+
+## Where you stand
+
+You are somewhere between watching and joining, and the position is a design decision rather than an accident. Gold (1958) named four roles, and they still describe the choice.
+
+The **complete observer** watches without participating and without being known as a researcher. On a livestream this is lurking: you are in the audience, invisible, affecting nothing. You see the setting undisturbed and you never learn what anything feels like from inside.
+
+The **observer-as-participant** is known as a researcher and participates minimally. You post occasionally, you are visible, people know why you are there.
+
+The **participant-as-observer** is a real member of the setting who is also, openly, studying it. You chat, you are recognized, you have a history in the channel, and people know you are writing about it. For a study of a community you already belong to, this is often the honest description of your position.
+
+The **complete participant** is a full member whose research purpose is concealed. It buys the most natural access and carries the heaviest ethical weight, and Chapter 3's standards apply with force.
+
+Two things about the continuum. First, your position is not fixed: many projects begin as observation and move toward participation as the researcher is drawn in. Second, each step toward participation trades **naturalism for understanding**. The lurker sees a setting unchanged by them and understands it least; the full member understands it best and has changed it, at minimum by being one more person in it. Neither end is correct, and where you stood belongs in the write-up.
+
+## The field, when the field has no place
+
+Classical ethnography goes somewhere. Online, there is nowhere to go, and the question of what your **field site** even is has to be answered explicitly.
+
+A channel is not a site in any simple sense. A streaming community lives across the stream, the chat, a Discord server, a subreddit, clip compilations on other platforms, and the streamer's other accounts. Kozinets (2010) makes the point that an online community is constituted by its interaction rather than by its location, so the site is defined by where the members are doing the thing you care about, not by a single address.
+
+That produces some practical decisions.
+
+**Bound the site deliberately.** Name which spaces you observed and which you did not. A study of a channel's chat that never opened its Discord should say so, because the members did not observe that boundary.
+
+**Time is part of the site.** A channel at peak hours and the same channel on a quiet weekday afternoon have different populations and different norms. Observation concentrated in one window is a study of that window.
+
+**Persistence changes the work.** Most online settings keep a record. You can re-read an exchange you half-noticed, which no field ethnographer could ever do, and that is a real advantage. It also tempts you to substitute the archive for presence, and an archive does not tell you what the room felt like while it was happening.
+
+**Lurking is not neutral.** It is the least intrusive position and the least informative one, and in a setting where everyone can see the viewer count, you are present in the data even when you are silent.
+
+## Getting in
+
+Access is a process rather than an event.
+
+**Gatekeepers** control entry to most settings, and online that is usually a streamer or a moderator team. Their permission gets you in, and it also associates you with them, which shapes what members will say to you about them.
+
+**Disclosure** has to be decided and then maintained. Overt research is the default and the easier ethical position: you say who you are and what you are doing, in the channel and in your profile. The cost is reactivity, since people behave differently when they know they are studied. The cost is usually smaller than beginners fear and shrinks as familiarity grows.
+
+**Covert research** conceals the purpose, and the argument for it is that some settings cannot be studied any other way. It requires a case that no less intrusive method would work, minimal risk to participants, and institutional review. Being a lurker in a public stream is not automatically covert research, and a study that recruits nobody, discloses nothing and quotes identifiable people is doing covert work whatever it calls itself.
+
+**The first weeks are data.** What confuses you before you acclimate is the closest you will get to seeing the setting as an outsider, and it is unrecoverable once you belong. Write it down immediately, even when it feels like ignorance rather than observation. Especially then.
+
+## Field notes, extended
+
+Chapter 12 introduced four kinds of note: observational, methodological, theoretical, comparative. Those carry over unchanged. Ethnography adds a workflow, and Emerson, Fretz and Shaw (2011) describe it as a progression rather than a single act.
+
+**Jottings** are written during observation: fragments, quotes, the time, a word you did not recognize. They are for you and they are nearly useless to anyone else.
+
+**Expanded notes** are written the same day, from the jottings, in full sentences, while memory can still fill the gaps. This is where most of the work lives, and the standard advice is that an hour of observation takes an hour of writing. The rule that actually matters is that expanded notes are written **before you sleep**. Notes written the following morning are reconstructions.
+
+**Memos** are analytic rather than descriptive. They are where you write what you think is going on, tentatively, dated, so that later you can see how your interpretation changed and what made it change. Chapter 21 turns memos into codes; the discipline of writing them starts here.
+
+Keep description and interpretation visibly separate inside the notes. "Three regulars corrected a newcomer's use of the emote within a minute, and the correction used a laughing emote" is description. "The channel polices emote use but performs the policing as friendly" is interpretation. Both belong. Confusing them is how a field note stops being evidence.
+
+## How long is long enough
+
+The honest answer is longer than you want, and the useful answer has a procedure attached, which is the same argument Chapter 16 made about saturation.
+
+Three signals together, not any one alone.
+
+**New sessions stop surprising you.** The same test Chapter 12 used, with a higher bar: not that you have seen the behaviors before, but that you can predict how the setting will handle something before it handles it.
+
+**You can pass as competent.** You know the local words, you know which jokes are old, and you know who to ask. Being able to anticipate a member's reaction is a better indicator than any count of hours.
+
+**Your memos stop changing.** Look back across the weekly memos. If your account of what is going on has been stable for several weeks, and stable because nothing challenged it rather than because you stopped looking, that is evidence.
+
+And one counter-signal that should keep you in the field: **you have not yet seen the setting under stress**. Communities reveal their norms when something goes wrong, and a study that observed only ordinary weeks has described the calm and inferred the rest.
+
+Whatever you conclude, report the span, the number of sessions, the hours, and the spread across times of day. "Four months, roughly fifty sessions, deliberately spread across peak and off-peak" tells a reader what they need. "Prolonged engagement" tells them nothing.
+
+## From notes to findings
+
+Chapter 21 covers coding in general, and two moves are specific to ethnographic material.
+
+**Read across notes, not down them.** A single session's notes are a narrative, and the temptation is to write up the most interesting session. The analysis happens when you gather every instance of a thing across four months and ask what they have in common, which is why the notes need dates and consistent labels from the first day.
+
+**Hunt the negative case.** When you think you have found a pattern, go looking specifically for the times it did not hold. A newcomer who was corrected harshly in a channel you have characterized as friendly is either a reason to qualify the claim or a clue about a condition you had not noticed, and either outcome improves the account. A pattern that has never been tested against the exceptions is an impression.
+
+This is the ethnographic version of the discipline Chapter 12 built into coding. There the protection against seeing what you expected was a codebook and a second coder. Here it is dated notes, systematic re-reading, and a deliberate search for the cases that would embarrass you.
+
+
+## Reflexivity, and going native
+
+Chapter 16 introduced reflexivity for interviews. In ethnography it is more demanding, because you are in the setting long enough to be changed by it.
+
+**Going native** is the traditional name for losing the analytic position: you come to share the members' perspective so completely that nothing about the setting looks remarkable any more. The symptom is that you stop writing notes because nothing seems worth noting.
+
+The opposite failure is less discussed and just as damaging: staying so far outside that you never learn what anything means, and produce a catalogue of behaviors with confident interpretations attached from the literature rather than from the setting.
+
+The working position is uncomfortable on purpose. Lindlof and Taylor (2011) treat the researcher's position as data, and the practical version is a running record of what you brought: what you already believed, what surprised you, what you found irritating and why, and how your standing in the setting changed. A study by a long-time member of a community is not disqualified by that membership. It is obliged to say so and to reason about what it made visible and invisible.
+
+## Ethics where everything is public
+
+The hard problem in online ethnography is that "publicly accessible" and "consented to be studied" are entirely different things, and the first is easy to mistake for the second.
+
+Chapter 3 covers the framework, including the AoIR guidance the field works from. Three points are specific to this method.
+
+**Public does not mean published.** Someone typing in a chat of two hundred people has a reasonable expectation about the audience that a quotation in a journal article violates, even though they said it in public and you have broken no rule by reading it.
+
+**Identifiability survives pseudonyms.** A verbatim quotation is searchable. Changing a username to `P3` does not help if the sentence can be pasted into a search box and traced back. Where quoting a distinctive line would expose someone, paraphrase and say that you paraphrased.
+
+**Harm scales with the setting's expectations, not its access controls.** The same message in a large public channel, a small private Discord and a support-oriented community carries different risk, and the right treatment differs in each. A blanket rule that public data is fair game does not survive contact with the third case.
+
+None of this forbids the work. It means the defensible study makes deliberate decisions about quotation, pseudonymity and which spaces it treats as observable, and writes those decisions down where a reader can evaluate them.
+
+## What ethnography can claim
+
+Ethnography does not claim that a pattern occurs at a rate, that it generalizes to other settings, or that one thing caused another.
+
+It claims to offer a defensible account of how a particular setting works, grounded in sustained firsthand engagement, presented with enough evidence that a reader can judge the interpretation against the material. The standard is not replication. It is whether a reader who has seen your notes, your quotations and your account of your own position finds the account credible and could recognize the setting from it.
+
+That is a weaker claim than a chi-square and a more useful one for questions about meaning. It is also why the write-up quotes at length and describes at length: the evidence and the argument are the same text, and a summary that keeps only the conclusions has thrown away the grounds for believing them.
+
+## A design, built
+
+Chapters 16 and 17 each asked the same question a different way. Here it is again: why do long-term viewers stop participating in a channel they still watch?
+
+*Site.* One mid-sized channel, bounded explicitly: the stream and its chat, plus the community Discord, excluding the subreddit, and the exclusion stated.
+
+*Role.* Participant-as-observer. Disclosed in the profile and to the moderator team, posting as an ordinary viewer, not concealing the research and not performing it either.
+
+*Duration and rhythm.* Four months, three sessions a week, deliberately spread across peak and off-peak hours so the study is not an account of Saturday evenings.
+
+*Notes.* Jottings during, expanded notes the same night, a memo each week on what seems to be going on.
+
+*What to watch for.* Who talks and who stops. What happens when a regular goes quiet. How newcomers are received, and by whom. What the channel's own words are for people who lurk.
+
+*Ethics.* No quotation of anything a member could not have expected to be repeated, paraphrase for anything distinctive, and a standing willingness to remove material if asked.
+
+What this design cannot do is tell you how common disengagement is. What it can do is tell you what disengaging looks like from inside a community, which is the thing Chapter 13's survey measured without being able to describe.
+
+## Looking ahead
+
+Chapter 19 turns from the setting to its texts. Qualitative content and textual analysis takes the material a community produces, the messages, the clips, the posts, and reads it closely for meaning rather than counting it, which is the qualitative counterpart to the method Chapter 12 taught.
+
+## References
+
+Emerson, R. M., Fretz, R. I., & Shaw, L. L. (2011). *Writing ethnographic fieldnotes* (2nd ed.). University of Chicago Press.
+
+Geertz, C. (1973). *The interpretation of cultures: Selected essays*. Basic Books.
+
+Gold, R. L. (1958). Roles in sociological field observations. *Social Forces*, *36*(3), 217-223. https://doi.org/10.2307/2573808
+
+Kozinets, R. V. (2010). *Netnography: Doing ethnographic research online*. SAGE Publications.
+
+Lindlof, T. R., & Taylor, B. C. (2011). *Qualitative communication research methods* (3rd ed.). SAGE Publications.
