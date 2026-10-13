@@ -2,7 +2,8 @@
 title: "Chapter 8: From vibes to variables"
 ---
 
-::: {.chapter-audio .content-visible unless-format="epub"}
+:::: {.content-visible unless-format="epub"}
+::: {.chapter-audio}
 [Listen in Dr. Leith's voice]{.audio-label}
 
 ```{=html}
@@ -11,6 +12,7 @@ title: "Chapter 8: From vibes to variables"
 ```
 
 :::
+::::
 
 
 Somewhere in the field-notes document you built in Chapter 7 is an entry like this one: "Chat in the art stream felt calmer and more conversational than chat in the gaming stream. People talked to each other, not just to the streamer." That sentence is a real observation. You earned it by watching. It is also, as written, useless to a coder.
@@ -63,13 +65,13 @@ A **nominal** variable sorts cases into categories that have no inherent order. 
 
 An **ordinal** variable sorts cases into categories that do have an order, but where the distance between ranks is not constant. If you took stream titles and binned them by length into short, medium, and long, length-bin would be ordinal: long outranks short, but the gap from short to medium is not guaranteed to equal the gap from medium to long. With an ordinal variable you can rank cases and find the median, but the mean is not strictly meaningful.
 
-An **interval** variable has equal, constant distances between values, but its zero point is arbitrary rather than meaning "none." The `date` column is the example, and it carries a caveat worth stating now because Chapter 11 will spend real effort on it. The dataset stores `date` as a bigint count of milliseconds since midnight on January 1, 1970. Once converted to a timestamp, it is interval-level: the distance from one minute to the next is constant across the whole column, but the zero point, 1970, does not mean "no time." It is a convention. You can meaningfully subtract two timestamps to get a duration. You cannot meaningfully say one timestamp is "twice" another.
+An **interval** variable has equal, constant distances between values, but its zero point is arbitrary rather than meaning "none." The `date` column is the example, and it carries a caveat worth stating now because Chapter 11 will spend real effort on it. The dataset stores `date` as a bigint count of milliseconds since midnight on January 1, 1970. Once converted to a timestamp, it is interval-level: the distance from one minute to the next is constant across the whole column, but the zero point, 1970, does not mean "no time." It is a convention. You can meaningfully subtract two timestamps to get a duration. You cannot meaningfully say one timestamp is "twice" another, so no message is "twice as late" as another. The stored number looks like a count, so be precise about which variable you mean. The posting date and time of a message is interval. An elapsed time, such as the hours since the stream started, is ratio: zero hours means the stream has only just begun, and three hours genuinely is twice an hour and a half. The duration you get by subtracting two timestamps is ratio for the same reason.
 
 A **ratio** variable has equal intervals and a true zero that genuinely means "none." The `viewers` column is ratio: zero viewers means no one is watching, and because that zero is real, a stream with 28,000 viewers genuinely has twice the audience of one with 14,000. Ratio variables permit the full range of arithmetic. Most counts are ratio-level: viewers, message length in characters, number of messages.
 
 Notice what happened with stream title. As a raw string it is nominal. Measured as a character count it is ratio, because a title can have zero characters and a true zero exists. Binned into short, medium, and long it is ordinal. One column, three possible levels, depending entirely on how you operationalize it. Level of measurement is not a property the data hands you. It is a property of the decision you make.
 
-![](../images/fig08-1-levels-of-measurement.png){fig-alt="Four panels measure stream titles at different levels. Nominal: five example titles each used exactly once, because all 152 titles in the fixture are unique, so counting categories reveals nothing. Ordinal: titles binned by length into 22 short, 71 medium, and 59 long, with the medium bin holding the median. Ratio: a histogram of title length in characters with a mean of 54, where a true zero makes every statistic available. Interval: daily chat-message counts across the week, standing in for the timestamp, which has equal spacing but an arbitrary zero; a raw string can never be measured at the interval level."}
+![](../images/fig08-1-levels-of-measurement.png){fig-alt="Four panels measure stream titles at different levels. Nominal: five example titles each used exactly once, because all 152 titles in the fixture are unique, so counting categories reveals nothing. Ordinal: titles binned by length into 22 short, 71 medium, and 59 long, with the medium bin holding the median. Ratio: a histogram of title length in characters with a mean of 54, where a true zero makes every statistic available. Interval: chat messages per day across the week, where the interval variable is the date on the horizontal axis, which has equal spacing but an arbitrary zero; the bar heights are counts, which are ratio. A raw string can never be measured at the interval level."}
 
 Levels matter because they govern the statistics available to you later. A nominal variable can be tested for association with a chi-square test. A ratio variable can be averaged, correlated, and entered into the kind of test Chapter 13 runs. If you operationalize an interesting variable at the nominal level when it could have been ratio, you have quietly narrowed what your study can conclude before you have coded a single case.
 
@@ -93,7 +95,7 @@ An operational definition can be perfectly precise and still be bad measurement.
 
 One principle ties the two together and is worth holding onto: reliability is necessary but not sufficient for validity. A measure that is inconsistent cannot be accurately capturing anything, so unreliability rules validity out. But a measure can be perfectly consistent and still measure the wrong thing. You need both, and you get reliability first, because a codebook is the instrument that produces it.
 
-![](../images/fig08-2-reliability-validity.png){fig-alt="Four target diagrams, each with a cross at the bullseye standing for the concept being measured and dots standing for repeated measurements. Reliable and valid: dots cluster tightly on the bullseye. Reliable but not valid: dots cluster just as tightly but well off-centre, consistent and consistently wrong. Valid on average but not reliable: dots scatter widely around the centre, right on average and unusable one at a time. Neither: dots scatter widely and off-centre. A schematic illustration, not data."}
+![](../images/fig08-2-reliability-validity.png){fig-alt="Four target diagrams, each with a cross at the bullseye standing for the concept being measured and dots standing for repeated measurements. Reliable and valid: dots cluster tightly on the bullseye. Reliable but not valid: dots cluster just as tightly but well off-center, consistent and consistently wrong. Valid on average but not reliable: dots scatter widely around the center, right on average and unusable one at a time. Neither: dots scatter widely and off-center. A schematic illustration, not data."}
 
 ::: {.graduate-extension}
 **The formal intercoder reliability protocol.** Your codebook is the operational heart of the study, but a codebook that works for one coder is not necessarily a reliable instrument: it is not finished until a second coder has applied it to a sample of your data and the agreement has been measured and reported. A complete V2V reliability protocol has four steps. *First*, the second coder receives the codebook (no walk-through, no hints) and codes a training set of 20–30 units independently. *Second*, the two coders compare their coding and discuss every disagreement; no new production data is coded at this stage. *Third*, the codebook is revised to add decision rules for all identified disagreements. *Fourth*, the second coder codes a fresh reliability sample, separate from the training set, independently, and the agreement on this fresh sample is the κ that gets reported. Lombard et al. (2002) recommend reporting more than one reliability statistic; for your own design, decide which statistic you would report alongside κ, and why. Hayes and Krippendorff (2007) state the standard this protocol exists to meet in a single line:

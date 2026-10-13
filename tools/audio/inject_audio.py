@@ -4,7 +4,11 @@ CRLF/LF tolerant, idempotent. Run AFTER quote edits + audio render."""
 import re, pathlib
 CH = pathlib.Path("/Volumes/One Touch/20-research/aura-lab/v2v-book/chapters")
 
-BLOCK_TMPL = '''::: {{.chapter-audio}}
+# The visibility div wraps the styled div. Quarto unwraps a .content-visible div
+# in HTML, so classes on that same div never reach the page and the CSS that
+# hides the off-view player stops matching (both players showed, 2026-10-13).
+BLOCK_TMPL = ''':::: {{.content-visible unless-format="epub"}}
+::: {{.chapter-audio}}
 [Listen in Dr. Leith's voice]{{.audio-label}}
 
 ```{{=html}}
@@ -13,6 +17,7 @@ BLOCK_TMPL = '''::: {{.chapter-audio}}
 ```
 
 :::
+::::
 '''
 
 done, skip = [], []

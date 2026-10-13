@@ -2,7 +2,8 @@
 title: "Chapter 5: Theory as a Lens"
 ---
 
-::: {.chapter-audio .content-visible unless-format="epub"}
+:::: {.content-visible unless-format="epub"}
+::: {.chapter-audio}
 [Listen in Dr. Leith's voice]{.audio-label}
 
 ```{=html}
@@ -11,6 +12,7 @@ title: "Chapter 5: Theory as a Lens"
 ```
 
 :::
+::::
 
 
 Chapter 4 ended on a finding. Across a body of survey research, livestream viewing looks more socially motivated than content motivated. People watch, the studies suggest, for the chat as much as for the game. Take that finding as settled for a moment. It still does not explain itself. Why would the social experience matter more than the content on the screen? What is actually happening when a viewer chooses a stream and stays?

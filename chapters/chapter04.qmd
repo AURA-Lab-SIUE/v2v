@@ -2,7 +2,8 @@
 title: "Chapter 4: Intelligence Gathering"
 ---
 
-::: {.chapter-audio .content-visible unless-format="epub"}
+:::: {.content-visible unless-format="epub"}
+::: {.chapter-audio}
 [Listen in Dr. Leith's voice]{.audio-label}
 
 ```{=html}
@@ -11,6 +12,7 @@ title: "Chapter 4: Intelligence Gathering"
 ```
 
 :::
+::::
 
 
 There is a moment in every research project when you realize the literature is deeper than you thought. You find an article that seems directly relevant to your question. It cites twelve other articles. You track down three of those, and each cites fifteen more. Within an hour you have accumulated thirty sources you should probably read, and the prospect of making sense of them all feels paralyzing.

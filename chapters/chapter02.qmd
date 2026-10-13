@@ -2,7 +2,8 @@
 title: "Chapter 2: The Open Workspace"
 ---
 
-::: {.chapter-audio .content-visible unless-format="epub"}
+:::: {.content-visible unless-format="epub"}
+::: {.chapter-audio}
 [Listen in Dr. Leith's voice]{.audio-label}
 
 ```{=html}
@@ -11,6 +12,7 @@ title: "Chapter 2: The Open Workspace"
 ```
 
 :::
+::::
 
 
 The Excel error in Chapter 1 was one study. In 2015 the Open Science Collaboration, a group of 270 researchers from around the world, set out to redo 100 published psychology studies. They followed the original methods as closely as the published papers described, recruited similar participants, and ran the same analyses. The results, published in *Science*, became one of the most cited findings in the social sciences of the decade. Only 36 percent of the original results replicated at conventional thresholds of statistical significance, and among the studies that did replicate, the effect sizes were on average about half the magnitude originally reported (Open Science Collaboration, 2015).

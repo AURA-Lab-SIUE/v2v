@@ -252,7 +252,8 @@ titles are unique: it tells you nothing", n_unique, n_titles),
   pD <- ggplot(per_day, aes(day, n)) +
     geom_col(fill = blue, colour = "grey20", linewidth = 0.2) +
     labs(title = "Interval: the timestamp",
-         subtitle = "Equal spacing; zero (1970) is arbitrary",
+         subtitle = "The date axis: equal spacing,
+arbitrary zero (1970)",
          x = "Date (UTC)", y = "Chat messages") +
     theme_v2v()
 

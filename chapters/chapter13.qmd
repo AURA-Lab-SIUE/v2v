@@ -2,7 +2,8 @@
 title: "Chapter 13: Making the call"
 ---
 
-::: {.chapter-audio .content-visible unless-format="epub"}
+:::: {.content-visible unless-format="epub"}
+::: {.chapter-audio}
 [Listen in Dr. Leith's voice]{.audio-label}
 
 ```{=html}
@@ -11,6 +12,7 @@ title: "Chapter 13: Making the call"
 ```
 
 :::
+::::
 
 
 Chapter 12 ended on a number and a doubt. The number was a gap: across the sample, gaming channels averaged 28.49 characters per chat message and non-gaming channels 33.70, a difference of a little over five characters. The doubt was whether that gap means anything.
