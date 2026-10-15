@@ -113,6 +113,74 @@ Mass communication students are skilled storytellers. You know how to find a com
 
 The tension is productive. Anecdotes generate hypotheses. Data test them. Data identify patterns. Anecdotes explain why those patterns matter. A complete research report uses quantitative findings to establish that the pattern is real and qualitative examples to illustrate what the pattern looks like in practice. The mistake is treating one as a substitute for the other. A moving interview with a Twitch viewer does not prove that a million others had the same experience. A statistically significant finding without human context risks being true and unpersuasive. The best social science holds both in tension.
 
+## Where content analysis sits among the methods
+
+This book teaches one method in depth. Before it does, you should be able to see the others, because a method is a choice, and a choice you cannot name is not one you made. Four methods do most of the work in communication research alongside content analysis: survey research, experiments, qualitative interviewing, and ethnography. Each answers a different kind of question, each has a ceiling on what it can claim, and each records a different kind of case. This section gives you a page on each. By the end of it you should be able to name the method that fits a question, say what that method cannot reach, and defend content analysis as the right choice for your own study rather than the assigned one.
+
+One idea runs through all five. Every method fixes a **unit of analysis**, the thing that becomes one row in the data file. A survey's row is a person. An experiment's row is a participant in a condition. An interview's row is a conversation. An ethnography's row is a session in the field. Content analysis's row is a piece of content: a message, a post, an ad, a reply. Which row you need follows from the claim you want to make, and most of the trouble in choosing a method is really trouble over which row the claim is about.
+
+### Survey research
+
+A survey asks a sample of people the same questions in the same way, so that their answers can be compared and, under the sampling conditions Chapter 10 describes, generalized to the population they came from. The word carrying the weight is *self-report*. A survey is the method that asks a person to look inward and tell you what is there.
+
+That is what it answers. Attitudes, beliefs, motivations, and perceptions, plus reported behavior and the facts about a respondent that let you sort people into groups. Whether a viewer feels part of a community, whether a subscriber feels obliged to keep paying, what viewers think a streamer owes them. None of that is recoverable from a chat log, and every bit of it is answerable by asking. The livestream motivation research you will meet in Chapter 4 is survey research for exactly this reason.
+
+What it cannot reach is behavior as it happened. People misremember, round, and answer toward what they think is acceptable. LaPiere (1934) traveled the United States with a young Chinese couple and was refused service at one establishment of 251. Months later, more than nine in ten of the same establishments answered a letter saying they would not accept Chinese guests. What people say and what people do are two different measurements, and a survey collects the first. If a fact is directly observable, asking about it is usually the worse method.
+
+Against content analysis, the difference is the row. A survey's row is a respondent, and the data are what that person said to a researcher who asked. Content analysis's row is a message, and the data are what the person said to the room, unprompted, before any researcher arrived. The chat corpus is complete and silent on motive. A survey is partial and speaks to motive directly. They answer adjacent questions, and where a study has both, the interesting finding is usually the gap between them.
+
+### Experiments
+
+Every other method in this section watches. An experiment reaches in. The researcher changes something on purpose, holds everything else as constant as possible, and assigns participants to conditions by chance. Those three requirements, manipulation, control, and random assignment, are what buy the claim nothing else can buy: that one thing caused another (Shadish, Cook, & Campbell, 2002).
+
+Random assignment is the engine. If participants land in a condition by coin flip, every pre-existing difference between them, including the hundreds you never thought to measure, has the same chance of landing on either side. On average the groups start equivalent on everything, so a difference afterward belongs to the manipulation. Does a streamer addressing viewers by name change how they talk to each other? Recruit participants, assign them at random to a twenty-minute segment where the streamer names chatters or one where the streamer speaks to the room, and measure what they type. That design answers the causal question.
+
+What it cannot reach is the world as it is. The control that makes an experiment interpretable is what makes it artificial. A participant watching an assigned stream in a lab, knowing they are in a study, is not doing the thing you care about, which is watching a streamer they chose, for hours, because they wanted to. And many of the interesting variables in communication cannot be assigned at all. You cannot randomly assign someone to be harassed, to moderate a channel, or to have watched a streamer for six years.
+
+Against content analysis, the difference is who created the variation. In an experiment the researcher made the two conditions differ in one respect and nothing else. In content analysis the world made the gaming streams and the non-gaming streams, and they differ in a hundred respects at once. Content analysis can show that directed messages are more common in one kind of stream. It cannot say the stream type caused it, because nobody assigned the streams. That is why Chapter 6's feasibility test asks whether the method matches the question: coding shows what appears together, and only assignment shows what made what.
+
+### Qualitative interviewing
+
+An interview is a conversation with a purpose, conducted to understand a participant's experience in their own terms. A survey imposes your categories and asks people to sort themselves into them. An interview asks people to describe something in their own words, so that your categories can turn out to be wrong. Weiss (1994) calls the job learning from strangers: you are there because the participant knows something you do not, and the interview has failed if your understanding survives it untouched.
+
+That is what it answers. What something means to people, how a process unfolded from the inside, why a decision was made, and what words a community uses for its own experience. Suppose a viewer stopped posting in a channel she had watched for three years and cannot quite say why. A survey cannot follow that answer. An interviewer asks a second question, then a third, and lets the answers decide where to go next. The instrument is the interviewer, which is why two interviewers never produce the same interview, and why the researcher's own position belongs in the write-up.
+
+What it cannot reach is how often. Ten interviews cannot tell you what proportion of viewers do anything, and a study that reports "most participants said" as though ten people were a sample has made a quantitative claim on qualitative evidence. Interviews trade breadth for depth on purpose. Focus groups, which gather six to eight people and treat what they say to each other as the data, make the same trade in a room that can disagree with itself.
+
+Against content analysis, the difference is who prompted the words. An interview's row is a transcript the researcher helped produce, with consent, by asking. Content analysis's row is a message nobody asked for. The chat corpus records what people typed in public, not what they would say to someone who asked, and no amount of processing turns the first into the second. If your question needs the person's account, you need the person.
+
+### Ethnography and participant observation
+
+Chapter 7 will have you watch streams for hours before you write a codebook, taking field notes and logging edge cases until new sessions stop surprising you. That is observation in the service of something else. In ethnography the watching is the study itself rather than preparation for one.
+
+That is what it answers. How a setting works from the inside: what its norms are, how newcomers are socialized, what members treat as obvious, how conflict is handled, and what the local words mean. The product is what Geertz (1973) called **thick description**. A thin description says a viewer typed an emote after a play. A thick description knows that this emote, in this channel, is how regulars mark a play as embarrassing rather than impressive, that newcomers use it wrongly and get corrected, and that the correction is friendly here and is not friendly two channels over. Online, the field has no address. A streaming community lives across the stream, its chat, a Discord server, a subreddit, and clips on other platforms, so the ethnographer has to say which spaces were observed and which were not (Kozinets, 2010).
+
+What it cannot reach is prevalence. Ethnography does not claim that a pattern occurs at a rate, that it generalizes to other settings, or that one thing caused another. It claims a defensible account of one setting, grounded in months of presence and presented with enough evidence that a reader could recognize the setting from it. Four months in one mid-sized channel can tell you what disengaging looks like from inside a community. It cannot tell you how common disengagement is.
+
+Against content analysis, the difference is presence. An ethnographer's row is a session they were part of, and their own position in the setting, lurker or regular, is part of the data. Content analysis works on the record after the fact and treats the analyst's position as something to minimize with a codebook and a reliability check. Both methods read the same chat, one as a member and the other as a coder.
+
+### Content analysis, and the two ways to do it
+
+Content analysis makes replicable and valid inferences from texts to the contexts of their use (Krippendorff, 2018). Its row is a piece of content, and its question is what is in the content, asked at a scale too large to eyeball. It is the only method here that needs no participants, which is why most content analysis of public material is exempt from review, as Chapter 3 explains, and why a whole study can be run on a corpus that already exists.
+
+It comes in two forms, and this course teaches both. **Quantitative content analysis** fixes the categories first, applies them the same way to every unit, and reports how often each occurs. Chapters 8 through 13 build it. **Qualitative content analysis** reads a body of material to say what it means in context, with the categories drawn from the material rather than fixed in advance. Chapter 7 teaches it, and Chapter 9 carries it into the qualitative memo you write beside your codebook. The two share the method's definition and divide its labor. Counting establishes what is in the material. Saying what it meant requires the context, which is not in the frequency table.
+
+What content analysis cannot reach is the person. It records what people made, not what they felt, intended, or would say if asked. Every claim about an internal state, a motive, or an effect on an audience belongs to one of the four methods above.
+
+### Why content analysis for your question
+
+Here is the move this section exists to teach, and your prospectus is graded on it. Students in a methods course tend to pick content analysis because the course assigns it. The better reason is that it fits the question, and you should be able to say so in two sentences.
+
+Run the test first. Could you answer your question by examining something people already made? If the answer depends on what someone feels, thinks, remembers, or plans, the question belongs to a survey or an interview, and the fix is to move it to something they wrote or made. If the answer needs the word *because*, the question belongs to an experiment, and the fix is to ask what appears alongside what. If the answer is an account of how one community works from the inside, the question belongs to ethnography, and the fix is to ask what its members produce rather than how it feels to be among them.
+
+Then make the positive case. Take the question from the top of this chapter: does chat differ between gaming and non-gaming streams? A survey could ask viewers whether they talk differently, and it would collect what they believe about themselves. An interview could ask a few of them what the difference feels like. An experiment could assign viewers to one kind of stream, and it would learn how assigned viewers behave in a lab. Content analysis reads the messages viewers actually typed, in the streams they actually chose, and compares them. For a question about what is in the chat, that is the method native to the data, and it needs no participant who cannot be recontacted. That paragraph is the justification. Write its equivalent for your own question. If you cannot, the question is not yet a content analysis question.
+
+Chapter 5 returns to the same four methods from the other side, where the theory you pick tends to call for one of them. Chapter 6 builds the test into the prospectus.
+
+::: {.graduate-extension}
+**The unit is the claim.** At the graduate level, method choice is a claim about the unit of analysis, and reviewers test that claim first. The same corpus can yield three different average message lengths depending on whether you average across messages, across senders, or across channels, and none of the three is a mistake. They answer three different questions. The error is concluding something about individuals from data about groups, the **ecological fallacy** Robinson (1950) named, or the reverse. For your own study, state the unit your claim is about and the unit your rows are, and if the two differ, say how you will move between them.
+:::
+
 ## What this book teaches
 
 The course gives you a chance to do original research on a real dataset. The dataset is a single week of Twitch chat and stream snapshots collected between November 18 and November 24, 2018. The raw corpus contains 21,964,296 chat messages from 1,695 channels, plus 590,876 snapshots of who was streaming what game to how many people.
@@ -138,7 +206,7 @@ The book is organized around the research process itself, divided into five part
 
 **Part II: Planning (Chapters 4 to 6)** is where you design the study. Literature review, theoretical framework, research questions, and a project prospectus that maps what you will study, why it matters, and how you will proceed.
 
-**Part III: Operationalization (Chapters 7 to 9)** is where you turn vague constructs into measurable variables. Sustained observation of the data, the move from qualitative noticing to quantitative coding, the construction of a codebook, and a first hands-on session with R. The book teaches content analysis end to end because depth in one method serves you better than shallow coverage of four, but it does not pretend the other major social-science methods (surveys, experiments, qualitative interviews and focus groups) do not exist. Chapter 5 introduces them as a coherent set when it discusses how theory selection shapes method choice. Chapter 9 stays focused on the first-R-contact work that the rest of the lab depends on. The V2V Hub holds the deeper hands-on material for any of these methods you want to pursue.
+**Part III: Operationalization (Chapters 7 to 9)** is where you turn vague constructs into measurable variables. Sustained observation of the data, the move from qualitative noticing to quantitative coding, the construction of a codebook, and a first hands-on session with R. The book teaches content analysis end to end because depth in one method serves you better than shallow coverage of five, and the section above on where content analysis sits is what keeps the other four in view. Chapter 5 returns to them when it discusses how theory selection shapes method choice. Chapter 9 stays focused on the first-R-contact work that the rest of the lab depends on.
 
 **Part IV: Execution (Chapters 10 to 12)** is the work itself. Sampling, inter-coder reliability, data wrangling, descriptive statistics, visualization. The chapters where you spend the most time in the IDE.
 
@@ -182,13 +250,25 @@ Barrett, L. F. (2017a). *How emotions are made: The secret life of the brain*. H
 
 Barrett, L. F. (2017b). The theory of constructed emotion: An active inference account of interoception and categorization. *Social Cognitive and Affective Neuroscience*, *12*(1), 1-23. https://doi.org/10.1093/scan/nsw154
 
+Geertz, C. (1973). *The interpretation of cultures: Selected essays*. Basic Books.
+
 Herndon, T., Ash, M., & Pollin, R. (2014). Does high public debt consistently stifle economic growth? A critique of Reinhart and Rogoff. *Cambridge Journal of Economics*, *38*(2), 257-279. https://doi.org/10.1093/cje/bet075
 
 Katz, E., Blumler, J. G., & Gurevitch, M. (1973). Uses and gratifications research. *Public Opinion Quarterly*, *37*(4), 509-523. https://doi.org/10.1086/268109
 
+Kozinets, R. V. (2010). *Netnography: Doing ethnographic research online*. SAGE Publications.
+
+Krippendorff, K. (2018). *Content analysis: An introduction to its methodology* (4th ed.). SAGE Publications.
+
+LaPiere, R. T. (1934). Attitudes vs. actions. *Social Forces*, *13*(2), 230-237. https://doi.org/10.2307/2570339
+
 Reinhart, C. M., & Rogoff, K. S. (2010). Growth in a time of debt. *American Economic Review*, *100*(2), 573-578. https://doi.org/10.1257/aer.100.2.573
 
+Shadish, W. R., Cook, T. D., & Campbell, D. T. (2002). *Experimental and quasi-experimental designs for generalized causal inference*. Houghton Mifflin.
+
 Storr, W. (2019). *The science of storytelling: Why stories make us human, and how to tell them better*. William Collins.
+
+Weiss, R. S. (1994). *Learning from strangers: The art and method of qualitative interview studies*. Free Press.
 
 ::: {.graduate-extension}
 ### Graduate readings
@@ -196,5 +276,7 @@ Storr, W. (2019). *The science of storytelling: Why stories make us human, and h
 Gelman, A., & Loken, E. (2013). *The garden of forking paths: Why multiple comparisons can be a problem, even when there is no "fishing expedition" or "p-hacking" and the research hypothesis was posited ahead of time*. Department of Statistics, Columbia University.
 
 Munafo, M. R., Nosek, B. A., Bishop, D. V. M., Button, K. S., Chambers, C. D., Percie du Sert, N., Simonsohn, U., Wagenmakers, E.-J., Ware, J. J., & Ioannidis, J. P. A. (2017). A manifesto for reproducible science. *Nature Human Behaviour*, *1*, 0021. https://doi.org/10.1038/s41562-016-0021
+
+Robinson, W. S. (1950). Ecological correlations and the behavior of individuals. *American Sociological Review*, *15*(3), 351-357. https://doi.org/10.2307/2087176
 :::
 
