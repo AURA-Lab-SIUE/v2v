@@ -33,20 +33,23 @@ v2v::new_portfolio("twitch-portfolio")
 
 Note the `v2v::` in front of the function name. It is not decoration. It tells R, and tells you, that `new_portfolio()` comes from the `v2v` package specifically, the set of tools this book ships. Every `v2v::` call in the chapters ahead carries that prefix for the same reason: so that the package never becomes a hidden assumption, and you always know which tools are the book's and which are R's own.
 
-Running `new_portfolio()` creates a folder with a structure like this:
+Running `new_portfolio()` creates a folder with this structure:
 
 ```
 twitch-portfolio/
 ├── twitch-portfolio.Rproj
 ├── _quarto.yml
-├── README.md
-├── codebook.qmd
-├── analysis.qmd
+├── index.qmd
+├── journals/
+├── codebook/
 ├── data/
-└── .Rprofile
+│   ├── raw/
+│   └── derived/
+├── figures/
+└── report/
 ```
 
-You did not have to decide where files go, what to name them, or how to wire them together. That is the point. Where to put things is a real source of friction for someone opening a data project for the first time, and an hour lost to it is an hour not spent on the study. The scaffold removes the decision.
+The codebook lives in `codebook/`, the weekly journals in `journals/`, exported figures in `figures/`, and the report that Chapter 14 assembles in `report/`. The `data/` folder is split on purpose: `data/raw/` holds data exactly as it was collected and is ignored by Git, and `data/derived/` holds the tables your code builds from it. You did not have to decide where files go, what to name them, or how to wire them together. That is the point. Where to put things is a real source of friction for someone opening a data project for the first time, and an hour lost to it is an hour not spent on the study. The scaffold removes the decision.
 
 One more call confirms the workspace is sound:
 
@@ -58,11 +61,19 @@ v2v::setup()
 
 ## The rulebook becomes a document
 
-Look again at the scaffold. One of the files is `codebook.qmd`.
+Look again at the scaffold. One of the folders is `codebook/`.
 
-In Chapter 8 you drafted a codebook on paper: a unit of analysis, three operationalized variables, a set of decision rules. That draft was an argument about how the study would measure things. Now it becomes a document in the workspace, the project's **rulebook**, the reference every later step answers to. Move the Chapter 8 draft into `codebook.qmd`, give it a version line and a date, and render it the way Chapter 2 had you render a one-page Quarto document. Rendering a codebook is not busywork. A codebook that renders cleanly is a codebook with no broken structure, and a rendered codebook is one a second coder can actually read.
+In Chapter 8 you drafted a codebook on paper: a study overview, a unit of analysis, three operationalized variables, a set of decision rules, and a coder note. That draft was an argument about how the study would measure things. Now it becomes a document in the workspace, the project's **rulebook**, the reference every later step answers to. Move the Chapter 8 draft into `codebook/codebook.qmd`, give it a version line and a date, and render it the way Chapter 2 had you render a one-page Quarto document. Rendering a codebook is not busywork. A codebook that renders cleanly is a codebook with no broken structure, and a rendered codebook is one a second coder, or you in six weeks, can actually read.
 
-Calling this "finalizing" the codebook is slightly optimistic, and it is worth being honest about that. Chapter 10 will pilot the codebook, two coders applying it to the same messages, and piloting routinely sends you back to edit a category or sharpen a rule. What Chapter 9 finalizes is not the content of the rulebook but its status: it stops being a sketch in your notes and becomes the official instrument of the project, versioned, rendered, and ready to be tested. A draft you can revise is exactly what you want walking into a pilot.
+Calling this "finalizing" the codebook is slightly optimistic, and it is worth being honest about that. Chapter 10 will pilot the codebook, applying it to the same messages twice, by two coders or by you after a gap, and piloting routinely sends you back to edit a category or sharpen a rule. What Chapter 9 finalizes is not the content of the rulebook but its status: it stops being a sketch in your notes and becomes the official instrument of the project, versioned, rendered, and ready to be tested. A draft you can revise is exactly what you want walking into a pilot.
+
+## The memo beside the rulebook
+
+The codebook is one of two documents that come out of Chapter 7's watching. The other is the **qualitative memo**: a few hundred words, written from your field notes, that report the patterns you saw while immersed in your material. It is a short qualitative content analysis in the sense Chapter 7 gave the term, and it is the seed of the qualitative study your final report will carry. It sits beside the codebook in `codebook/` because the two documents explain each other: the memo says what you saw, and the codebook says how you decided to measure it.
+
+The memo makes five moves, in order. First, say what you watched or read, for how long, and across what range, so a reader knows what the patterns are patterns of. Second, name the patterns. Each one is a sentence about what the material does, tied to a dated entry in your notes: "Chat on the art stream slowed to a conversation whenever the streamer stopped talking (notes, October 2)." Third, for every category in the codebook, point to the pattern it came from. This is the move that matters most, and it runs in both directions: a pattern with no category behind it is a finding you chose not to measure, which is fine if you say so, and a category with no pattern behind it came from your assumptions rather than from the material, which is a category to cut or to go back and watch for. Fourth, name what did not fit: the messages, posts, or scenes that resisted every category, and what you did about them. Fifth, say what the watching changed in your question, if anything did.
+
+A memo written this way is short, specific, and traceable, and a reader can check it against the notes. A memo that describes the topic in general, or summarizes the plan, has skipped the one thing the memo exists to record: what you saw.
 
 ## First contact with the data
 
@@ -81,7 +92,9 @@ Notice that the data arrives through a function call, not as a file you opened o
 
 It is worth being clear about what "everything" means here. This is not the entire 2018 collection. The full dump runs to tens of millions of rows and well over a gigabyte, too much to ship inside a package or to open comfortably on a laptop. What `v2v` ships, and what you just loaded, is a working sample drawn from the fifty-channel corpus Chapter 1 described: a subset large enough to be real and small enough to be fast. Every example in the chapters ahead runs against this sample.
 
-A word about what happens when this does not work. Sooner or later a line of R you type will return an error instead of a result: a misspelled function name, a package not loaded, a stray bracket. This is normal. It happens to everyone who writes code, and it is not a sign that you are unsuited to the work. The V2V Hub keeps a common-errors cheat sheet for exactly these moments, listing the errors a new R user meets most often and what each one is telling you. From this chapter forward, when a line breaks, that cheat sheet is the first place to look. An error is information, not a verdict.
+A word about what happens when this does not work. Sooner or later a line of R you type will return an error instead of a result: a misspelled function name, a package not loaded, a stray bracket. This is normal. It happens to everyone who writes code, and it is not a sign that you are unsuited to the work. The `v2v` package carries a common-errors help page for exactly these moments, `?v2v::common_errors`, listing the errors a new R user meets most often and what each one is telling you. From this chapter forward, when a line breaks, that page is the first place to look. An error is information, not a verdict.
+
+One short piece of writing belongs at first contact, whatever the data. Write down where the data came from: the source, the date range it covers, and anything that was left out and why. For the shipped corpus that is three sentences: the chat came from Twitch's public chat interface and the stream snapshots from Twitch's public API, both collected across six days in November 2018, and the working sample holds fifty channels drawn across the platform's volume distribution rather than all 1,690. For your own data it is the same three sentences about your own source. Your final report's methods section will need them, and they are far easier to write now than to reconstruct in December.
 
 ::: {.graduate-extension}
 **Data provenance as a methodological disclosure.** First contact is a moment of exploration (load, inspect, describe), but it rests on a prior step: documenting the *provenance* of the data before the first line of analysis code runs. When you publish a study, you are making a claim about specific data collected under specific conditions at a specific time. "I collected Twitch chat data" is not a methods section. "I collected 14 days of Twitch chat from the top 10 most-viewed streams in the *Just Chatting* category, using Twitch API v2, between 2024-01-15 and 2024-01-28, saving raw JSON responses to `data/raw/` before any processing" is. The difference matters because replication requires exact knowledge of what was done. Munafo and colleagues describe what goes missing when a study is discoverable but its methods are not legible:
@@ -195,7 +208,7 @@ One genuine wrinkle is worth carrying forward. Among the first messages is one a
 
 ## Looking ahead
 
-You have a workspace, a rulebook installed in it, and the data loaded and inspected. Chapter 10 puts the rulebook to the test. It draws a sample of chat messages, the specific messages your study will actually code, and asks the question every content analysis has to answer before its results mean anything: when two coders apply the codebook independently, do they agree? Sampling and inter-coder reliability are the subject, and the codebook you finalized here is what goes on trial.
+You have a workspace, a rulebook and a memo installed in it, and the data loaded and inspected. Chapter 10 puts the rulebook to the test. It draws a sample of chat messages, the specific messages your study will actually code, and asks the question every content analysis has to answer before its results mean anything: when the codebook is applied to the same messages twice, by two coders or by one coder after a gap, do the codes agree? Sampling and reliability are the subject, and the codebook you finalized here is what goes on trial.
 
 ## References
 

@@ -38,6 +38,33 @@ ggplot(data, aes(x = ..., y = ...)) +
 
 The three figures that follow are three settings of the same grammar.
 
+## Counting before plotting
+
+Before any figure, the study says what is in the table in numbers, because a figure summarizes a distribution and a reader needs to know what was summarized. Two kinds of summary cover most variables, and which one applies is the level of measurement from Chapter 8.
+
+A categorical variable is summarized by a **frequency table**: each category and how many cases fall in it. Both chapters so far have used `count()` for this, and `v2v::pretty_table()` formats the result for a report. Every table carries a label that says which variable it shows, because a column of numbers under `n` tells a reader nothing on its own.
+
+```r
+library(tidyverse)
+
+analysis <- read_rds("data/derived/twitch_analysis.RDS")
+streams  <- v2v::twitch_streams()
+
+analysis %>%
+  count(is_gaming, name = "messages") %>%
+  v2v::pretty_table()
+```
+
+| is_gaming | messages |
+| --------- | -------- |
+| FALSE     | 3,457    |
+| TRUE      | 31,309   |
+| NA        | 501      |
+
+The table says three things at a glance: most of the sample is gaming chat, the non-gaming group is about a tenth of it, and 501 messages have no label at all, the two channels Chapter 11 could not classify. The imbalance matters for every comparison that follows.
+
+A continuous variable is summarized by three numbers. The **mean** is the average: the sum of the values divided by how many there are. The **median** is the middle value when the values are sorted, so half the cases sit below it and half above. The **standard deviation** measures spread: roughly, how far a typical value sits from the mean, in the variable's own units. A standard deviation of 38 characters says that message lengths typically land a few dozen characters away from the average. Report all three for every continuous variable, and whenever the mean and the median disagree by much, say so, because the gap between them is the first sign that a distribution is lopsided. The histogram section below shows what that gap looks like and why it happens.
+
 ## A line for change over time
 
 The first question is about viewership. Across the collection week, how did the audience for these fifty channels move, and how was it split across the games being played?
@@ -47,8 +74,6 @@ When the horizontal axis is time and the vertical axis is a quantity that rises 
 The data needs shaping first, the kind of dplyr work Chapter 11 covered. The stream snapshots are grouped into six-hour buckets, the long tail of games is collapsed so that only the five most common categories keep their names and the rest become "Other," and the viewer counts are summed within each bucket:
 
 ```r
-library(tidyverse)
-
 viewers_over_time <- streams %>%
   filter(!is.na(game)) %>%
   mutate(
@@ -57,7 +82,7 @@ viewers_over_time <- streams %>%
     category  = fct_lump_n(game, n = 5)
   ) %>%
   group_by(six_hour, category) %>%
-  summarise(total_viewers = sum(viewers), .groups = "drop")
+  summarize(total_viewers = sum(viewers), .groups = "drop")
 ```
 
 With the data in shape, the figure itself is short. The aesthetic mappings send the time bucket to the x-axis, the summed viewers to the y-axis, and the game category to color, so each category gets its own line:
@@ -71,11 +96,19 @@ ggplot(viewers_over_time, aes(x = six_hour, y = total_viewers, color = category)
     y = "Total viewers in bucket",
     color = "Category"
   ) +
-  v2v::scale_colour_v2v() +
+  v2v::scale_color_v2v() +
   v2v::theme_v2v()
 ```
 
 The last line is worth a note. `v2v::theme_v2v()` applies a single consistent visual theme, the fonts, spacing, and gridlines of a publication-ready figure, in one call. Every figure in this chapter ends with it, so the three look like members of one set rather than three unrelated charts.
+
+A figure that exists only in the plot pane is not yet part of the study. Save it to a file from the code that made it, so that the file is rebuilt whenever the figure changes and never falls out of date:
+
+```r
+ggsave("figures/fig-viewers-by-game.png", width = 8, height = 5, dpi = 300)
+```
+
+`ggsave()` writes the most recent plot to the path given, at the size and resolution stated. The `figures/` folder is where the portfolio scaffold put it. A figure saved by hand, through a menu or a screenshot, is a figure that will silently stay old the next time the data changes.
 
 ![Total concurrent viewers across the focal fifty channels, summed within six-hour UTC buckets and split by game category, over the November 2018 collection week.](../images/fig12-1-viewers-by-game.png){fig-alt="A line chart with one line per game category across November 18 to 24, 2018. The Other category towers over the rest, spiking above 20 million viewers several times, while Art, Fortnite, Hearthstone, Just Chatting, and Pokemon stay low near the axis."}
 
@@ -108,7 +141,7 @@ ggplot(chat_by_hour, aes(x = hour, y = messages)) +
 
 ![Total chat messages in the sample by hour of day in UTC, across the collection window.](../images/fig12-2-chat-by-hour.png){fig-alt="A bar chart of message counts for each of the 24 hours of the day in UTC. Bars are tallest around 13:00, 16:00, and 17:00, reaching roughly 2,200 messages, and shortest around 03:00, near 830 messages."}
 
-The figure shows a clear daily pulse. Chat is busiest through the UTC midday and afternoon, peaking at 13:00 with 2,201 messages, and quietest in the small hours, bottoming out at 03:00 with 833, a swing of well over two to one between the loudest hour and the quietest. The shape is not mysterious. Twitch's audience in 2018 was concentrated in the Americas and Europe, and the UTC midday and afternoon are the waking, screen-facing hours across that span, while 03:00 UTC is the middle of the night for most of it. The point worth taking is less the particular peak than what the bar chart does: it takes twenty-four numbers and makes a rhythm visible in one glance, which is exactly the job a bar chart is for.
+The figure shows a clear daily pulse. Chat is busiest through the UTC midday and afternoon, peaking at 13:00 with 2,201 messages, and quietest in the small hours, bottoming out at 03:00 with 833, a swing of well over two to one between the loudest hour and the quietest. The shape is not mysterious. Twitch's audience in 2018 was concentrated in the Americas and Europe, and the UTC midday and afternoon are the waking, screen-facing hours across that span, while 03:00 UTC is the middle of the night for most of it. One choice shapes this figure and is disclosed in its axis label: the hours are in UTC, not in any viewer's local time, so the peak at 13:00 is morning in Chicago and evening in Berlin. The point worth taking is less the particular peak than what the bar chart does: it takes twenty-four numbers and makes a rhythm visible in one glance, which is exactly the job a bar chart is for.
 
 ## A histogram for shape
 
@@ -146,7 +179,7 @@ It matters because of what the summary numbers say. The descriptive statistics f
 ```r
 msglen %>%
   group_by(is_gaming) %>%
-  summarise(
+  summarize(
     n      = sum(!is.na(message_length)),
     mean   = mean(message_length, na.rm = TRUE),
     median = median(message_length, na.rm = TRUE),
@@ -179,15 +212,42 @@ This is what it means to treat descriptive statistics as a visual setup rather t
 Lakens (2013) argues that routine effect size reporting would improve meta-analyses in communication research; for your own work, ask what practical barriers stand in the way of adopting the convention in a field where effect sizes are rarely reported in standard write-ups.
 :::
 
-## Figures other people can read
+## A cross-tabulation
 
-Three figures are built. Before they are finished, they have to be made readable, and not only by the analyst who made them.
+The histogram compared a continuous variable across two groups. The other comparison a study usually needs is between two categorical variables, and the table for it is a **cross-tabulation**: one variable down the rows, the other across the columns, and in each cell the count of cases that fall in both. The chat study has such a pair ready to hand. Whether a channel is gaming is one categorical variable. Whether a message contains an at-mention, a `@` addressed to someone, is another, computed from the message text, and it is the manifest half of the message-target variable from Chapter 8. The question is whether the two go together: is addressed chat more or less common on gaming channels?
+
+```r
+mentions <- analysis %>%
+  filter(!is.na(is_gaming), !is.na(message)) %>%
+  mutate(has_mention = str_detect(message, "@"))
+
+mentions %>%
+  count(is_gaming, has_mention, name = "messages") %>%
+  v2v::pretty_table()
+```
+
+| is_gaming | has_mention | messages |
+| --------- | ----------- | -------- |
+| FALSE     | FALSE       | 3,220    |
+| FALSE     | TRUE        | 237      |
+| TRUE      | FALSE       | 28,235   |
+| TRUE      | TRUE        | 3,070    |
+
+Read within each group, because the groups are so different in size that raw counts mislead. On non-gaming channels, 237 of 3,457 messages carry an at-mention, about 7 percent. On gaming channels, 3,070 of 31,305 do, about 10 percent. Addressed messages are a small minority in both kinds of channel, and a little more common in gaming chat. The table is labeled so a reader can tell the rows from the columns, and it reads the same way every cross-tabulation does: the counts say what is there, the percentages within a group make the groups comparable, and whether a three-point gap is more than sampling noise is a question for Chapter 13, where this exact table meets the chi-square test.
+
+What the table does not show is as important as what it does. It says nothing about why addressed chat is rarer on non-gaming channels, and it cannot, because the non-gaming group is five channels and any one of them could be driving the figure. A cross-tabulation describes an association. It never explains one.
+
+Three figures and two tables are built. Before they are finished, they have to be made readable, and not only by the analyst who made them. Every one of them also gets two or three sentences of plain interpretation in the write-up: what it shows, and what it cannot show. The second half is the one students skip. The histogram shows that the typical message is the same length in both kinds of channel; it cannot show whether the five-character gap in means would survive a different sample. Saying both is the habit.
 
 The first duty is **color**. The viewer-count figure tells its categories apart by color, and the histogram tells its two groups apart by color, and roughly one in twelve men has a form of **color-vision deficiency** that makes some color pairs, red against green most notoriously, hard or impossible to distinguish. A figure whose meaning rests on color alone is a figure that some readers cannot read. There are two defenses, and good practice uses both. Choose a colorblind-safe palette, a set of colors picked to stay distinct across the common kinds of color blindness. And do not let color carry the message by itself: separate the lines by more than hue, or split groups into their own panels, so the figure still works in grayscale.
 
 The second duty is the **alt text**, a short written description of the figure attached to it in the document's source. A reader using a screen reader cannot see the figure at all; the alt text is what they get instead, and a figure with none is, to them, simply missing. Good alt text is not the caption repeated. It states what kind of chart the figure is, what is on each axis, and what the figure shows, the takeaway, in a sentence or two. Each figure in this chapter carries one. In a Quarto document the alt text is written into the figure's `fig-alt` attribute, and writing it is not an afterthought. Being forced to say in one sentence what a figure shows is a good test of whether the figure shows anything at all.
 
 A figure that is honest about its choices, legible without color, and described for readers who cannot see it is a figure that does its job for everyone. That is the standard a publication-quality figure is held to, and the three built here are meant to meet it.
+
+::: {.graduate-extension}
+**Diagnostics behind each figure.** A figure is a claim about a distribution, and the diagnostic is whether you are allowed to make it. For every figure that feeds a test, report three things with the check shown. The *shape* of the variable: the histogram above shows message length is heavily right-skewed in both groups, with medians of 16 and 17 against means of 33.70 and 28.49, and skew that strong means the mean is a poor summary of a typical message. The *outliers* and where they sit: 1,047 messages, about 3 percent, lie beyond the 120-character cap, stretched out to 501 characters, and the cap is what keeps them from flattening the figure. And whether the *assumptions of the test you are heading toward* look reasonable: a t-test on these groups assumes similar spread, and the standard deviations of 60.68 and 38.47 say the spread is not similar, which is why Chapter 13 runs the Welch version; it also assumes roughly normal data within groups or a sample large enough not to need it, and with tens of thousands of messages the second condition holds even though the first plainly does not. Show the numbers behind each statement, in the chapter's own tables or a short `summarize()` call, rather than asserting them. A figure with no diagnostic is a picture; a figure with one is evidence.
+:::
 
 ::: {.graduate-extension}
 **Reporting conventions.** For every group comparison in a visualization, report the effect size in the figure caption or a companion table. For group means: Cohen's *d* with a 95% confidence interval. For cross-tabulations: Cramer's *V*. For correlations: *r* and its CI. The `v2v::run_t_test()` and `v2v::run_chi_square()` functions compute all of these automatically and return formatted output ready for the caption. For two figures in your current analysis, report the effect size you would include in the caption; if one effect is small by Cohen's (1988) conventions, consider what that implies for the interpretive claim you planned to make.

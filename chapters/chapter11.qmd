@@ -148,10 +148,10 @@ The third step is the **join**. A join brings columns from one table onto anothe
 
 ```r
 chat <- chat %>%
-  left_join(channel_type, by = "channel")
+  left_join(channel_type, by = "channel")   # join key: channel, the column both tables share
 ```
 
-A join is only as good as the match between its keys, and that is worth a word of warning. Twitch's chat protocol writes channel names with a leading "#", so the same channel can appear as `#bobross` in one source and `bobross` in another. Join two tables whose keys disagree like that and every row fails to match, silently. The `v2v` fixture has already normalized this, the "#" stripped before the data ever reached you, but raw Twitch data would need that cleaning step first. When a join returns nothing, mismatched keys are the first thing to check.
+The comment on that line is not decoration. A join is the step a reader is most likely to question, and a comment naming the key is how the script answers before the question is asked. A join is only as good as the match between its keys, and that is worth a word of warning. Twitch's chat protocol writes channel names with a leading "#", so the same channel can appear as `#bobross` in one source and `bobross` in another. Join two tables whose keys disagree like that and every row fails to match, silently. The `v2v` fixture has already normalized this, the "#" stripped before the data ever reached you, but raw Twitch data would need that cleaning step first. When a join returns nothing, mismatched keys are the first thing to check.
 
 One result of the join deserves attention. Always inspect a column you just derived:
 
@@ -170,20 +170,48 @@ chat %>% count(is_gaming)
 
 Two channels in the corpus streamed without ever having a category recorded: every one of their stream snapshots had a missing `game`. With no categories at all, there is no modal category, so those channels never made it into `channel_type`, and the `left_join()` left their messages with `is_gaming` set to `NA`. That is the correct outcome, not a bug. The data genuinely does not say whether those 501 messages came from gaming channels, and an honest `NA` records that the study cannot classify them. They will sit out the gaming comparison rather than being guessed into one side of it.
 
-## The analysis-ready table
+## Adding the variable you coded by hand
 
-Four transformations, run in sequence, have rebuilt the chat table:
+Three of the study's variables are now columns, and all three were computed. The fourth, message target, cannot be computed. It is the variable the codebook exists for, the one a coder assigns by reading each message, and it reaches R by a different route.
+
+The coding happens outside R, in a spreadsheet with one row per sampled message. Chapter 10 drew the sample with `v2v::sample_messages()`, and the sample carries each message's `id`. Keep that column: it is the key that will carry the codes back onto the table. Code the messages, save the sheet as a CSV in `data/derived/` with two columns, `id` and `message_target`, and read it in:
 
 ```r
-chat <- v2v::twitch_chat() %>%
+codes <- read_csv("data/derived/message_target_codes.csv")
+
+chat <- chat %>%
+  left_join(codes, by = "id")   # join key: id, the message's unique label
+```
+
+Two things are true of the result, and both are correct. Every message you coded now carries its code. Every message you did not code carries `NA` for `message_target`, because the variable exists only where a coder assigned it, and the thousands of messages outside the sample were never coded. A count makes that visible:
+
+```r
+chat %>% count(message_target)
+```
+
+The `NA` row will be by far the largest. That is the shape of a hand-coded variable in a large dataset: a column that is full for the sample and empty everywhere else, and an analysis of that variable runs on the sample alone. The same route carries any hand-coded variable, from any material. Code it in a sheet keyed on the unit's identifier, save it where the script can read it, and join it on the key.
+
+## The analysis-ready table
+
+Four transformations and one join, run in sequence, have rebuilt the chat table:
+
+```r
+analysis <- v2v::twitch_chat() %>%
   mutate(
     timestamp = as.POSIXct(date / 1000, origin = "1970-01-01", tz = "UTC"),
     message_length = str_length(message)
   ) %>%
-  left_join(channel_type, by = "channel")
+  left_join(channel_type, by = "channel") %>%   # join key: channel
+  left_join(codes, by = "id")                   # join key: id
+
+write_rds(analysis, "data/derived/twitch_analysis.RDS")
 ```
 
-A final `glimpse()` shows what the table has become:
+The table now has a name, `analysis`, and the last line saves it. `write_rds()` writes an R object to disk exactly as it is, column types included, so the date-time column is still a date-time when the file is read back. A CSV would lose that, and the next chapter would have to redo the conversion. Chapters 12 and 13 begin by reading this one file with `read_rds()`, which is why the name matters: `twitch_analysis.RDS` is the single handoff from wrangling to analysis.
+
+Everything above happens in the script. Nothing is done by hand in the console and nothing is edited in the spreadsheet after the codes are saved, because a change made by hand is a change the script cannot reproduce. The test is cheap: restart R, run the script from the top, and see whether the same file comes out. If it does not, a step is missing from the script, and finding it now is far cheaper than finding it in December.
+
+A final `glimpse()` shows what the table has become, before the hand-coded column is joined:
 
 ```
 Rows: 35,267
@@ -198,7 +226,7 @@ $ message_length <int> 23, 441, 8, 12, 206, …
 $ is_gaming      <lgl> TRUE, FALSE, TRUE, TRUE, FALSE, …
 ```
 
-This is what wrangling was for. The table is now **tidy**, in the precise sense the term carries in data science (Wickham, 2014): each row is one observation, a single chat message; each column is one variable; and everything the study needs sits in this one place. The unreadable integers have become timestamps. Message length and gaming status, named in the codebook and absent from the raw data, are now columns. The chat and stream tables, once disconnected, are joined.
+This is what wrangling was for. The table is now **tidy**, in the precise sense the term carries in data science (Wickham, 2014): each row is one observation, a single chat message; each column is one variable; and everything the study needs sits in this one place. The unreadable integers have become timestamps. Message length and gaming status, named in the codebook and absent from the raw data, are now columns, and so is the hand-coded message target for the sampled messages. The chat and stream tables, once disconnected, are joined.
 
 None of this was analysis. Not a single result has been computed. But every result that follows, every figure in Chapter 12 and every test in Chapter 13, will be computed from this table, which is why the care spent building it is not optional. A wrangling mistake does not announce itself. It travels quietly into every chart and every statistic downstream. The reward for getting this chapter right is that nothing later has to be unwound.
 

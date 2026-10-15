@@ -37,13 +37,27 @@ There is not one hypothesis test. There are many, and which one applies depends 
 
 The chat study's question pairs one continuous variable with one categorical split. Message length is a ratio variable, an exact count of characters. Gaming status is a nominal variable with two values, gaming and non-gaming. A continuous outcome compared across two groups is the textbook setting for the **t-test**, and that is the test this chapter runs.
 
-A different question would call for a different test. Suppose the study asked instead whether a channel's gaming status is associated with its audience size, pairing `is_gaming` with the `viewer_band` variable built in Chapter 11. Those are two categorical variables, and the test for an association between two categorical variables is the **chi-square test**, available as `v2v::run_chi_square()`. The study does not pursue that question here, but the point generalizes: the variables choose the test. The V2V Hub keeps a test-decision-tree that lays out the full mapping, and consulting it before running anything is the habit to build. A test applied to the wrong kind of data produces a number, and the number is meaningless.
+A different question would call for a different test, and three tests cover almost every question a first study asks. The variables choose the test:
+
+| Your question pairs | The test | What it reports |
+|---|---|---|
+| Two categorical variables (gaming status by whether a message carries an at-mention) | **Chi-square test** of independence, `v2v::run_chi_square()` | Whether the two are associated, and Cramer's V for how strongly |
+| One two-group categorical variable and one continuous variable (gaming status by message length) | **Independent t-test**, `v2v::run_t_test()` | Whether the group means differ, and Cohen's d for by how much |
+| Two continuous variables (a channel's message count by its mean message length) | **Pearson correlation**, `cor.test()` | Whether the two move together, and r for how strongly |
+
+Pick the row that matches your variables, and write one sentence saying why that test and not another: a chi-square on message length would mean binning a count into categories and throwing away most of what was measured, and a t-test on two continuous variables would mean splitting one of them into two groups at an arbitrary line. Naming the test you rejected and why is how a reader knows the choice was made rather than defaulted. A test applied to the wrong kind of data produces a number, and the number is meaningless. This chapter runs the t-test on the study's central question and then shows the other two on questions the same data can answer.
+
+One more thing comes before the code. State the hypothesis in plain words, naming the two variables and the relationship you expect, and state it as an association: "Message length is associated with whether a channel is gaming or non-gaming, with non-gaming messages running longer." Not "gaming makes messages shorter," because nothing in this design can show what makes anything; the study observes two variables and asks whether they go together. A hypothesis written before the code is a commitment. One written after the results is a description of them.
 
 ## Running the test
 
 The test itself is one function call. `v2v::run_t_test()` takes the data, the variable to compare, and the variable that splits it into groups:
 
 ```r
+library(tidyverse)
+
+analysis <- read_rds("data/derived/twitch_analysis.RDS")
+
 v2v::run_t_test(analysis, value = message_length, group = is_gaming)
 ```
 
@@ -103,7 +117,15 @@ This is worth dwelling on, because it sounds like a contradiction and is not. Th
 That leaves one question: how did a negligible difference come back statistically significant at all? The answer is the sample size. The test ran on 34,762 messages, and with a sample that large, a hypothesis test can detect a difference far too small to care about. This is the rule to carry forward: a large enough sample will make almost any difference, however tiny, statistically significant. Significance and size are different questions, and big samples pull them apart.
 
 ::: {.graduate-extension}
-**Power and the strength of a claim.** Sample size cuts the other way too. A significant result from a well-powered study (at least 80%) is stronger evidence than the same result from an underpowered one: underpowered studies that reach significance do so partly through sampling variation, which inflates the effect-size estimate. Report the achieved power of your study alongside the *p*-value. `run_t_test()` returns Cohen's *d* with a confidence interval, which lets a reader judge how precisely the effect is pinned down, independently of the significance test.
+**Power and the strength of a claim.** Sample size cuts the other way too. A significant result from a well-powered study (at least 80%) is stronger evidence than the same result from an underpowered one: underpowered studies that reach significance do so partly through sampling variation, which inflates the effect-size estimate. The report carries two numbers beyond *p*. The first is the confidence interval on the effect: here the 95% interval on the difference in means runs from 3.14 to 7.28 characters, so the gap is pinned down tightly even though it is small. The second is a **sensitivity analysis**: the smallest effect this sample could have detected at 80% power. With 31,305 and 3,457 messages, that is about *d* = 0.05, computed from the two group sizes:
+
+```r
+(qnorm(0.975) + qnorm(0.80)) * sqrt(1 / 31305 + 1 / 3457)
+```
+
+Read it as a statement about what a null result would have meant: had the test come back non-significant, the sample was large enough that any true difference above about a twentieth of a standard deviation would probably have shown, so the null would have been informative. A study of 60 messages could say no such thing, and its null result would mean only that it could not tell. Report the detectable effect for your own design alongside the *p*-value, and say what it means for a null result; a generic "80 percent power" with no link to your sample sizes is not a power statement.
+
+**The assumptions underneath the t-test.** The test assumes independent observations, similar spread in the two groups, and either roughly normal data within each group or a sample large enough that the mean's distribution is normal anyway. Check each with the diagnostic shown. Spread: the standard deviations of 60.68 and 38.47 from Chapter 12's table differ, so the Welch version is used, which drops that assumption. Normality: the histogram shows strong right skew in both groups, which the sample size absorbs for the mean, though not for any claim about individual messages. Independence is the one that fails here and cannot be fixed by a different test: messages from the same channel are not independent of each other, and the section at the end of this chapter is about what that costs. State what you did about each assumption that fails, not only that you checked it.
 :::
 
 ## Seeing the difference
@@ -114,7 +136,7 @@ The two facts, a real gap and a negligible one, are easier to hold together as a
 means_ci <- analysis %>%
   filter(!is.na(is_gaming)) %>%
   group_by(is_gaming) %>%
-  summarise(
+  summarize(
     mean = mean(message_length, na.rm = TRUE),
     se   = sd(message_length, na.rm = TRUE) / sqrt(n()),
     .groups = "drop"
@@ -125,10 +147,10 @@ means_ci <- analysis %>%
     group = if_else(is_gaming, "Gaming", "Non-gaming")
   )
 
-ggplot(means_ci, aes(group, mean, colour = group)) +
+ggplot(means_ci, aes(group, mean, color = group)) +
   geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.14, linewidth = 0.9) +
   geom_point(size = 3.4) +
-  v2v::scale_colour_v2v() +
+  v2v::scale_color_v2v() +
   scale_y_continuous(limits = c(0, NA)) +
   labs(x = NULL, y = "Mean message length (characters)") +
   v2v::theme_v2v() +
@@ -149,13 +171,73 @@ This is the difference between **statistical significance** and **practical sign
 
 In practice that means a result is written up with the full set of numbers, in the compact form journals expect:
 
-> Gaming channels produced shorter chat messages on average than non-gaming channels (28.49 vs. 33.70 characters), Welch's _t_(3768.7) = -4.94, _p_ < .001, Cohen's _d_ = -0.13.
+> Gaming channels produced shorter chat messages on average than non-gaming channels (28.49 vs. 33.70 characters; _n_ = 31,305 and 3,457), Welch's _t_(3768.7) = -4.94, _p_ < .001, Cohen's _d_ = -0.13.
 
-And then, because a string of statistics is not an interpretation, it is written up a second time in a sentence a non-statistician can read: gaming and non-gaming channels do differ in how long their chat messages run, but the difference is so small that for most purposes the two are better thought of as alike than as different. That sentence is the call. It reports the real difference, refuses to inflate it, and tells the reader what the study actually found.
+Four numbers are always in that line: the test statistic, its degrees of freedom, the p-value, and the sample size for each group. The n is the one most often left out, and it is the one that tells a reader how much to trust the rest.
+
+And then, because a string of statistics is not an interpretation, it is written up a second time in a sentence a non-statistician can read: gaming and non-gaming channels do differ in how long their chat messages run, but the difference is so small that for most purposes the two are better thought of as alike than as different. That sentence is the call. It reports the real difference, refuses to inflate it, and tells the reader what the study actually found. One more sentence follows it, saying what the result does not let you claim: it holds for these fifty channels in one week of November 2018, not for Twitch in general, and it says nothing about why the two kinds of chat differ.
 
 ::: {.graduate-extension}
-**The pre-registration disclosure.** A pre-registered study names it in the write-up: "This study's hypotheses, measures, and analysis plan were pre-registered on OSF prior to data collection at [URL]." Anything you ran beyond that plan is labelled exploratory and read with corresponding caution. For your own study, draft the disclosure you would put in the methods section, and list any deviations from the plan and how you would report them.
+**The pre-registration disclosure.** A pre-registered study names it in the write-up: "This study's hypotheses, measures, and analysis plan were pre-registered on OSF prior to data collection at [URL]." Anything you ran beyond that plan is labeled exploratory and read with corresponding caution. For your own study, draft the disclosure you would put in the methods section, and list any deviations from the plan and how you would report them.
 :::
+
+## Two categorical variables: chi-square
+
+Chapter 12 left a cross-tabulation on the table: gaming status against whether a message carries an at-mention, with addressed messages at about 7 percent of non-gaming chat and about 10 percent of gaming chat. Both variables are nominal, so the test is the **chi-square test** of independence. It asks whether the counts in the cells differ from what they would be if the two variables had nothing to do with each other.
+
+```r
+mentions <- analysis %>%
+  filter(!is.na(is_gaming), !is.na(message)) %>%
+  mutate(has_mention = str_detect(message, "@"))
+
+v2v::run_chi_square(mentions, has_mention, is_gaming)
+```
+
+```
+Chi-square test of independence
+has_mention by is_gaming
+
+  N              34762
+  Chi-squared    31.15
+  df             1
+  p-value        < .001
+  Cramer's V     0.03  (negligible)
+
+  The association between has_mention and is_gaming is statistically
+  significant and negligible in size.
+```
+
+The pattern is the same one the t-test produced, and it is worth seeing twice. The p-value is tiny, so the three-point gap is not sampling noise: at-mentions really are a little more common on gaming channels in this sample. The effect size for a chi-square is **Cramer's V**, which runs from zero for no association to one for a perfect one, and 0.03 is as close to zero as a real association gets. Written up: whether a message carries an at-mention is associated with whether its channel is gaming, χ²(1, _N_ = 34,762) = 31.15, _p_ < .001, Cramer's _V_ = 0.03, and the association is negligible. In plain words, addressed chat is a small minority everywhere, and the kind of channel barely moves it.
+
+## Two continuous variables: correlation
+
+The third test pairs two continuous variables and asks whether they move together. The chat study has such a pair at the level of the channel rather than the message: how many messages a channel produced in the week, and how long its messages ran on average. A reasonable hunch is that busier channels produce shorter messages, because a fast chat leaves no time to type. The **Pearson correlation** measures that: its statistic, **r**, runs from -1 for two variables that move in perfect opposition, through zero for no relationship, to +1 for two that rise together, and r is its own effect size.
+
+```r
+per_channel <- analysis %>%
+  filter(!is.na(message)) %>%
+  group_by(channel) %>%
+  summarize(
+    messages    = n(),
+    mean_length = mean(message_length),
+    .groups = "drop"
+  )
+
+cor.test(per_channel$messages, per_channel$mean_length)
+```
+
+```
+Pearson's product-moment correlation
+
+t = -0.9526, df = 48, p-value = 0.3456
+95 percent confidence interval:
+ -0.3994182  0.1477346
+sample estimates:
+       cor
+-0.1362145
+```
+
+The correlation is -0.14, in the direction the hunch expected, and the p-value is .35: with fifty channels, a correlation this weak is well within what sampling noise produces, and the confidence interval runs from -0.40 to +0.15, which includes zero and both signs. Written up: across the fifty channels, message count and mean message length were not detectably associated, _r_(48) = -.14, _p_ = .35, 95% CI [-.40, .15]. This is the test where the sample is small, fifty channels rather than thirty-five thousand messages, and the result shows what that costs: the study cannot tell whether a weak association exists. That is the honest reading, and it is a different kind of statement from the two tests before it. There, big samples made negligible effects significant. Here, a small sample leaves a possibly real effect undetected. The same arithmetic produces both, and neither p-value says how much anything matters.
 
 ## More than two groups: ANOVA
 
@@ -191,7 +273,7 @@ And, exactly as with the t-test, significance is not size. The effect size for A
 
 ## From difference to model: regression
 
-The t-test and ANOVA both compare group means. A third tool asks a subtly different question: not "do the groups differ" but "can one variable predict another." That tool is **linear regression**, and its reach is wide enough to contain the other two.
+The t-test and ANOVA both compare group means. A third tool asks a subtly different question: not "do the groups differ" but "how much does one variable move with another." That tool is **linear regression**, and its reach is wide enough to contain the other two.
 
 Return to the original two-group question, but fit it as a regression, an `lm()`, a linear model of message length on gaming status:
 
@@ -207,7 +289,7 @@ is_gamingTRUE   -5.21       0.74      -7.06   < .001
 
 Read the two numbers. The intercept, 33.70, is the mean message length of the reference group, non-gaming channels. The coefficient on `is_gamingTRUE`, -5.21, is exactly the gap the t-test found: gaming channels average 5.21 characters fewer. The regression has re-derived the t-test's result and cast it in a new form, a baseline plus an adjustment. (Its `t` of -7.06 differs a little from the Welch test's -4.94 because a plain regression pools the two groups' spread rather than letting them differ; the coefficient, the difference itself, is identical.)
 
-That the regression reproduces the t-test is not a coincidence. A t-test is a regression with a single two-level predictor; an ANOVA is a regression with a single many-level predictor. All three belong to one framework, the **general linear model**, and once a study is written as a regression it can grow in ways a t-test cannot: a second predictor added, a continuous predictor rather than a categorical one, several influences weighed at once. This chapter's study needs only the two-group comparison, so the t-test is enough. But regression is where inference stops being a menu of separate tests and becomes one extensible way of modeling how one thing depends on another. Its effect size here tells the same story a third time: the model's R², the share of variance it explains, is about 0.001, so gaming status accounts for almost none of the variation in message length.
+That the regression reproduces the t-test is not a coincidence. A t-test is a regression with a single two-level explanatory variable; an ANOVA is a regression with a single many-level one. All three belong to one framework, the **general linear model**, and once a study is written as a regression it can grow in ways a t-test cannot: a second explanatory variable added, a continuous one rather than a categorical one, several associations weighed at once. This chapter's study needs only the two-group comparison, so the t-test is enough. But regression is where inference stops being a menu of separate tests and becomes one extensible way of modeling how one variable is associated with several others at once. The variables on the right of the formula are called predictors in most software and most textbooks; the word is a convention of the method, and it does not license a claim that one variable predicts or causes another in the world. Its effect size here tells the same story a third time: the model's R², the share of variance it explains, is about 0.001, so gaming status accounts for almost none of the variation in message length.
 
 ::: {.graduate-extension}
 **The assumptions underneath `aov()` and `lm()`.** Running the model and reading the output is the first step; the numbers earn trust only once their assumptions are checked. ANOVA and ordinary regression assume the groups share a common variance (homoscedasticity), and Chapter 12 showed the chat groups plainly do not, which is why the two-group test used Welch's correction, and why `oneway.test()` (Welch's ANOVA) is the safer choice over the pooled `aov()` above. A significant ANOVA says only that *some* pair of means differs, not which; naming the pairs takes post-hoc comparisons (Tukey's HSD, `TukeyHSD()`) that correct for the multiple looks. A regression's credibility rests on its residuals: `plot(model)` draws the diagnostic quartet: residuals-versus-fitted for linearity and equal spread, a Q–Q plot for normal residuals, and leverage for influential points. And whether an added predictor earns its place is a question of model comparison, adjusted R² and AIC or a nested *F*-test, not raw R², which never falls when a predictor is added. For your own design, name the test it calls for, the assumption most at risk in your data, and the diagnostic or robust alternative you would use to handle it.
@@ -215,7 +297,7 @@ That the regression reproduces the t-test is not a coincidence. A t-test is a re
 
 ## How much the finding depends on one decision
 
-A test tells you whether a gap is larger than sampling noise. It cannot tell you whether the gap survives a different but equally defensible definition of the groups being compared. Here it does not, and that turns out to matter more than the test.
+A test tells you whether a gap is larger than sampling noise. It cannot tell you whether the gap survives a different but equally defensible definition of the groups being compared. Checking that is called a **robustness check**, or an alternative-specification check: run the analysis again under the other defensible choice and report whether the finding holds. Here it does not, and that turns out to matter more than the test.
 
 `is_gaming` was built as a property of the **channel**: each channel's modal category across the week, applied to every message that channel sent. The same data supports a second operationalization. Label each **message** by the category the channel was actually streaming when it was sent, read from the nearest earlier stream snapshot.
 

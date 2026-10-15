@@ -15,14 +15,14 @@ title: "Chapter 14: The one-click report"
 ::::
 
 
-The chat study is, in almost every sense, done. Across the chapters since the prospectus it has acquired everything an empirical study needs. It has a question and a theory: do gaming and non-gaming Twitch channels differ in how their audiences talk, and what would a uses-and-gratifications account predict. It has a codebook, tested for reliability. It has a sample, drawn with a defensible procedure. It has a clean dataset, a set of figures, and a tested finding interpreted with care. Every hard part is finished.
+The chat study is, in almost every sense, done. Across the chapters since the prospectus it has acquired everything an empirical study needs. It has a question and a theory: do gaming and non-gaming Twitch channels differ in how their audiences talk, and what would a uses-and-gratifications account lead us to expect. It has a memo of what watching showed, and a codebook tested for reliability. It has a sample, drawn with a defensible procedure. It has a clean dataset, a set of figures, and a tested finding interpreted with care. Every hard part is finished.
 
 And yet the study is not finished, because all of that lives in pieces. The codebook is one document. The wrangling happened in an R script. The figures are a folder of images. The test result scrolled past in a console. A study scattered across a dozen files is not yet something another person can read, check, or build on. It is raw material for a study, not the study itself.
 
 This last chapter gives the work a form. It assembles every piece into one report, makes that report reproducible, gathers it with the study's other documents into a single site, and publishes that site where anyone can find it. The chapter's title names the goal. By the time the study has been built the right way, producing the finished, public report is close to a single action: one click.
 
 ::: {.graduate-extension}
-**Two additional deliverables.** Beyond the reproducible portfolio, the graduate study produces two further deliverables: a *white paper* structured for academic publication and a *conference poster* formatted for a communication research conference.
+**Two additional deliverables.** Beyond the reproducible portfolio, the graduate study produces two further deliverables: a *white paper* written to the evidentiary standard of academic work and addressed to the people with a stake in the question, and a *conference poster* formatted for a communication research conference.
 :::
 
 ## A report that rebuilds itself
@@ -58,51 +58,55 @@ This is **reproducible publication**, and it has two payoffs that matter. The re
 
 A document that rebuilds itself still needs a structure, and empirical research has a standard one, settled enough to have an acronym: **IMRaD**, for Introduction, Methods, Results, and Discussion. Four sections, in that fixed order, and the order is itself a small argument, carrying the reader from why the study was done to what it found to what that means.
 
+The report this book builds is a **white paper**, and the name says who it is for. A white paper is written for invested readers: the people with a stake in the question, who may be the staff of a campaign, the managers of an organization, the fans of a stream, the parents of its viewers, or the members of a community. It is not written for other researchers. So every term is explained where it first appears, every number is followed by what it means in the units of the material, and the finding is stated in words a reader can act on. The evidentiary standard is the same as a journal article's; the audience is not.
+
 ::: {.graduate-extension}
-**The white paper.** The white paper follows IMRaD format (Introduction, Methods, Results, Discussion), uses APA 7th edition throughout, reports effect sizes and power statistics, and includes a pre-registration disclosure statement in the methods section. Its discussion situates the findings within the theoretical literature from Chapter 5. For your own study, convert the key results and discussion into IMRaD structure, and ask what is lost in the move and what must be added to meet white paper standards.
+**The white paper.** The white paper follows IMRaD format (Introduction, Methods, Results, Discussion), uses APA 7th edition throughout with claim-first citations, reports effect sizes and power statistics, and includes a pre-registration disclosure statement in the methods section. It carries three things a shorter report does not: an *executive summary* in front of the abstract, one page that an invested reader can act on without reading further; a *structured literature review* inside the introduction, organized by theme rather than by author, resting on fifteen or more sources; and an explicit *limitations analysis* in the discussion, a section rather than a sentence, that names each limit and what it costs the claim. Its discussion situates the findings within the theoretical literature from Chapter 5, naming your lens and the rival lens it was weighed against. For your own study, convert the key results and discussion into IMRaD structure, and ask what is lost in the move and what must be added to meet white paper standards.
 :::
 
-The **Introduction** states the question and why it is worth asking. For the chat study this is the work of the prospectus from Chapter 6: the question of whether gaming and non-gaming Twitch chat differ in message length, and the uses-and-gratifications lens that framed talk on a stream as behavior an audience chooses for its own reasons.
+The **Introduction** states the question and why it is worth asking, and situates it in the literature you read rather than gesturing at it. For the chat study this is the work of the prospectus from Chapter 6: the question of whether gaming and non-gaming Twitch chat differ in message length, and the uses-and-gratifications lens that framed talk on a stream as behavior an audience chooses for its own reasons. The lens has to do work in the argument, setting up something the study can actually deliver, and the research questions or hypotheses close the section, stated in association form.
 
-The **Methods** section says exactly what was done, in enough detail that another researcher could repeat it. This is the home of the codebook from Chapter 8, the sampling procedure and the inter-coder reliability check from Chapter 10, and the wrangling steps from Chapter 11. Methods is the section that earns the reader's trust, and it is the section a reproducible document supports best, because the code that did the work is right there to be read.
+The **Methods** section says exactly what was done, in enough detail that another researcher could repeat it. This is the home of the unit of analysis and the codebook from Chapter 8; where the data came from, with its date range and what was excluded and why, from Chapter 9; the sampling plan as it was actually executed, from Chapter 10; what was done with the cases that did not sort themselves; the wrangling steps from Chapter 11; and the **reliability report**: the statistic, its value, the procedure that produced it, the threshold applied, and, in a single-coder study, the plain statement that the figure is your own stability and a weaker claim than agreement between two coders. Methods is the section that earns the reader's trust, and it is the section a reproducible document supports best, because the code that did the work is right there to be read.
 
 ::: {.graduate-extension}
-**Methods section requirements.** A graduate methods section includes three elements: (1) a data provenance statement (Chapter 9); (2) an intercoder reliability report, including the κ value, training protocol, and threshold applied (Chapter 8); and (3) the pre-registration disclosure with OSF URL (Chapter 5). Each element is a transparency marker that signals to reviewers that the study meets graduate-level evidentiary standards. The pre-registration disclosure in particular protects a distinction that preregistration exists to make legible:
+**Methods section requirements.** A graduate methods section includes three elements: (1) a data provenance statement (Chapter 9), with the source, the date range, and what was excluded and why; (2) a coder reliability report (Chapter 8), giving the statistic and its value, the procedure that produced it, the threshold applied, and the single-coder limitation named as such; and (3) the pre-registration disclosure with OSF URL (Chapter 5), with every departure from the plan listed. Each element is a transparency marker that signals to reviewers that the study meets graduate-level evidentiary standards. The pre-registration disclosure in particular protects a distinction that preregistration exists to make legible:
 
 > "Preregistration distinguishes analyses and outcomes that result from predictions from those that result from postdictions."
 >
 > Nosek et al. (2018, p. 2600)
 :::
 
-The **Results** section reports what was found, plainly and without interpretation. The three figures from Chapter 12 and the t-test from Chapter 13 belong here. Results states the facts: the distributions, the group means, the test statistic with its degrees of freedom, its p-value, and its effect size. It does not yet say what they mean.
+The **Results** section reports what was found, plainly and without interpretation, and it reports both studies. The qualitative study comes first: the themes from your memo (Chapter 9), at least three, each stated as a pattern in the material and each shown with examples drawn from it, paraphrased or with the sender's name removed. Then the quantitative study: the descriptive statistics for every coded variable, the figures from Chapter 12, and the test from Chapter 13 with its degrees of freedom, its p-value, its effect size, and the sample size. Every figure and table is numbered, captioned, given alt text, and referred to in the text by its number, so a reader is never left to guess which picture a sentence is about. Results states the facts. It does not yet say what they mean.
 
-The **Discussion** says what the results mean. This is where the interpretation from Chapter 13 belongs: that the difference between the two kinds of channel is statistically real but negligible in size, that gaming and non-gaming chat are better thought of as alike than as different in message length, and what that answer implies for the uses-and-gratifications question raised in the Introduction. Discussion is also where an honest study states its limits.
+The **Discussion** says what the results mean. This is where the interpretation from Chapter 13 belongs: that the difference between the two kinds of channel is statistically real but negligible in size, that gaming and non-gaming chat are better thought of as alike than as different in message length, and what that answer implies for the uses-and-gratifications question raised in the Introduction. It answers the question the Introduction asked, keeps statistical significance and practical size separate, and describes the effect size without inflating it. Discussion is also where an honest study states its limits, and in a single-coder study two of them are always present: the single-coder design itself, and the second-coder counterfactual from Chapter 8, which says what double-coding would have added and which finding is most at risk without it.
 
-A short **abstract** summarizing all four sections usually sits in front, and references close the document. The V2V Hub ships an `imrad-template.qmd` with this skeleton already in place. The structure is not bureaucracy. It is a contract with the reader: anyone who has read empirical work knows it holds these parts in this order, and knows exactly where to look for the question, the procedure, the finding, and the meaning.
+A short **abstract** sits in front, one paragraph that carries four things in order: the question, the method, the finding, and what the finding implies. An abstract that skips the finding, which is the common failure, is a description of a plan. References close the document, in one citation style named on the first page and used throughout, with every in-text citation in the list and every entry in the list cited somewhere in the text. Citations lead with the claim and carry the source at the end of the sentence. The portfolio that `v2v::new_portfolio()` scaffolded in Chapter 9 holds the report at `report/index.qmd`, with a methods page beside it, and that is where this skeleton goes. The structure is not bureaucracy. It is a contract with the reader: anyone who has read empirical work knows it holds these parts in this order, and knows exactly where to look for the question, the procedure, the finding, and the meaning.
 
 ## One site, many pages
 
 The report is not the only document the study produced. There is also the codebook, the record of how the sample was drawn, the log of wrangling decisions. In a finished study these are not crushed into one enormous file. They become separate pages of one **site**.
 
-Chapter 9 built the scaffold for this with `v2v::new_portfolio()`, which created a project folder already organized as a Quarto website. The piece that turns a folder of `.qmd` files into a navigable site is a configuration file named `_quarto.yml`. It names the site and lists its pages and the navigation that links them:
+Chapter 9 built the scaffold for this with `v2v::new_portfolio()`, which created a project folder already organized as a Quarto book: a site whose pages are chapters in a fixed order. The piece that turns a folder of `.qmd` files into a navigable site is a configuration file named `_quarto.yml`. The scaffold wrote one for you, and trimmed to its shape it names the site and lists its pages in parts:
 
 ```yaml
 project:
-  type: website
+  type: book
+  output-dir: docs
 
-website:
+book:
   title: "Twitch Chat Study"
-  navbar:
-    left:
-      - text: "Report"
-        href: index.qmd
-      - text: "Codebook"
-        href: codebook.qmd
-      - text: "Figures"
-        href: figures.qmd
+  chapters:
+    - index.qmd
+    - part: "Codebook"
+      chapters:
+        - codebook/codebook.qmd
+    - part: "Report"
+      chapters:
+        - report/index.qmd
+        - report/methods.qmd
 ```
 
-The IMRaD report is one page, the codebook another, a figure gallery another, each its own `.qmd`, all rendered together and linked by a shared navigation bar. Running `quarto render` on the project builds every page at once and writes out a complete website, ready to publish. This is the portfolio synthesis the study has been moving toward since Chapter 9: not a pile of files, but one coherent site that holds the entire study and lets a reader move through it.
+The IMRaD report is one page, the codebook another, each its own `.qmd`, all rendered together and linked by a shared sidebar. Running `quarto render` on the project builds every page at once and writes out a complete website, ready to publish. This is the portfolio synthesis the study has been moving toward since Chapter 9: not a pile of files, but one coherent site that holds the entire study and lets a reader move through it.
 
 ## Going live
 
@@ -126,12 +130,12 @@ Publishing to GitHub Pages ...
 Live at: https://username.github.io/twitch-chat-study/
 ```
 
-Before it publishes anything, the function runs three **pre-flight checks**. It confirms that renv, the tool from Chapter 9 that records the project's exact package versions, is in sync, so the published site was built with the versions the source declares. It confirms there are no uncommitted Git changes, so the site that goes live matches the source that is actually saved. And it confirms that `_quarto.yml` is valid, so the render will not fail partway through. Only when all three pass does it run the publish step itself.
+Before it publishes anything, the function runs three **pre-flight checks**. It confirms that renv, a tool that records the project's exact package versions, is in sync, so the published site was built with the versions the source declares; a project that does not use renv skips this check with a note. It confirms there are no uncommitted Git changes, so the site that goes live matches the source that is actually saved. And it confirms that `_quarto.yml` is present, so the render will not fail at the start. Only when all three pass does it render the project and run the publish step itself.
 
 The checks are not red tape. Each one heads off a specific and demoralizing failure: a site that renders on its author's machine and nowhere else, a published page that does not match the work that was actually done, a deployment that collapses at eleven at night the evening a portfolio is due. The function exists so that the last step of a long study is the calm one. What it produces is a URL. The chat study is now a public, reproducible website, one that anyone can read and anyone can rebuild from its source.
 
 ::: {.graduate-extension}
-**The conference poster.** A standard academic communication conference poster is 36 × 24 inches, landscape orientation, structured as: title/authors/institution; abstract (~100 words); background and hypotheses; condensed methods; key results with one or two `theme_v2v()` figures; discussion and implications; QR code linking to the OSF pre-registration and/or Quarto portfolio. The poster is your 90-second pitch. Design the layout of your own 36 × 24 poster, and decide which single figure from your analysis best communicates your main finding in 30 seconds.
+**The conference poster.** A standard academic communication conference poster is 36 × 24 inches, landscape orientation, structured as: title/authors/institution; abstract (~100 words); background and hypotheses; condensed methods; key results with one or two `theme_v2v()` figures, the finding stated with its effect size; the limitation that matters most; discussion and implications; QR code linking to the OSF pre-registration and/or Quarto portfolio. It is read standing up from three feet away, so it is the study at a glance, not the paper shrunk. The poster is your 90-second pitch. Design the layout of your own 36 × 24 poster, and decide which single figure from your analysis best communicates your main finding in 30 seconds.
 :::
 
 ## The reflection
