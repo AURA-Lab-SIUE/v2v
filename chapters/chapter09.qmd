@@ -40,16 +40,22 @@ twitch-portfolio/
 ├── twitch-portfolio.Rproj
 ├── _quarto.yml
 ├── index.qmd
+├── 01-introduction.qmd
+├── 02-methods.qmd
+├── 03-results.qmd
+├── 04-discussion.qmd
+├── 05-reflection.qmd
+├── references.qmd
+├── references.bib
 ├── journals/
 ├── codebook/
 ├── data/
 │   ├── raw/
 │   └── derived/
-├── figures/
-└── report/
+└── figures/
 ```
 
-The codebook lives in `codebook/`, the weekly journals in `journals/`, exported figures in `figures/`, and the report that Chapter 14 assembles in `report/`. The `data/` folder is split on purpose: `data/raw/` holds data exactly as it was collected and is ignored by Git, and `data/derived/` holds the tables your code builds from it. You did not have to decide where files go, what to name them, or how to wire them together. That is the point. Where to put things is a real source of friction for someone opening a data project for the first time, and an hour lost to it is an hour not spent on the study. The scaffold removes the decision.
+The codebook lives in `codebook/`, the weekly journals in `journals/`, exported figures in `figures/`, and the report that Chapter 14 assembles is already laid out as the numbered files at the root, one per section, each holding a short note on what goes in it. The `data/` folder is split on purpose: `data/raw/` holds data exactly as it was collected and is ignored by Git, and `data/derived/` holds the tables your code builds from it. You did not have to decide where files go, what to name them, or how to wire them together. That is the point. Where to put things is a real source of friction for someone opening a data project for the first time, and an hour lost to it is an hour not spent on the study. The scaffold removes the decision.
 
 One more call confirms the workspace is sound:
 

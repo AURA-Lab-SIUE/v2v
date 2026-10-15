@@ -80,7 +80,7 @@ The **Results** section reports what was found, plainly and without interpretati
 
 The **Discussion** says what the results mean. This is where the interpretation from Chapter 13 belongs: that the difference between the two kinds of channel is statistically real but negligible in size, that gaming and non-gaming chat are better thought of as alike than as different in message length, and what that answer implies for the uses-and-gratifications question raised in the Introduction. It answers the question the Introduction asked, keeps statistical significance and practical size separate, and describes the effect size without inflating it. Discussion is also where an honest study states its limits, and in a single-coder study two of them are always present: the single-coder design itself, and the second-coder counterfactual from Chapter 8, which says what double-coding would have added and which finding is most at risk without it.
 
-A short **abstract** sits in front, one paragraph that carries four things in order: the question, the method, the finding, and what the finding implies. An abstract that skips the finding, which is the common failure, is a description of a plan. References close the document, in one citation style named on the first page and used throughout, with every in-text citation in the list and every entry in the list cited somewhere in the text. Citations lead with the claim and carry the source at the end of the sentence. The portfolio that `v2v::new_portfolio()` scaffolded in Chapter 9 holds the report at `report/index.qmd`, with a methods page beside it, and that is where this skeleton goes. The structure is not bureaucracy. It is a contract with the reader: anyone who has read empirical work knows it holds these parts in this order, and knows exactly where to look for the question, the procedure, the finding, and the meaning.
+A short **abstract** sits in front, one paragraph that carries four things in order: the question, the method, the finding, and what the finding implies. An abstract that skips the finding, which is the common failure, is a description of a plan. References close the document, in one citation style named on the first page and used throughout, with every in-text citation in the list and every entry in the list cited somewhere in the text. Citations lead with the claim and carry the source at the end of the sentence. The portfolio that `v2v::new_portfolio()` scaffolded in Chapter 9 already holds this skeleton: `index.qmd` for the abstract, `01-introduction.qmd` through `04-discussion.qmd` for the four sections, `05-reflection.qmd` for the reflection below, and `references.qmd` with a `references.bib` beside it for the sources. The structure is not bureaucracy. It is a contract with the reader: anyone who has read empirical work knows it holds these parts in this order, and knows exactly where to look for the question, the procedure, the finding, and the meaning.
 
 ## One site, many pages
 
@@ -97,40 +97,45 @@ book:
   title: "Twitch Chat Study"
   chapters:
     - index.qmd
-    - part: "Codebook"
+    - 01-introduction.qmd
+    - 02-methods.qmd
+    - 03-results.qmd
+    - 04-discussion.qmd
+    - 05-reflection.qmd
+    - references.qmd
+    - part: "Appendices"
       chapters:
         - codebook/codebook.qmd
-    - part: "Report"
-      chapters:
-        - report/index.qmd
-        - report/methods.qmd
+        - journals/week-01.qmd
 ```
 
-The IMRaD report is one page, the codebook another, each its own `.qmd`, all rendered together and linked by a shared sidebar. Running `quarto render` on the project builds every page at once and writes out a complete website, ready to publish. This is the portfolio synthesis the study has been moving toward since Chapter 9: not a pile of files, but one coherent site that holds the entire study and lets a reader move through it.
+Each section of the report is one page, the codebook and the journals are appendices, each its own `.qmd`, all rendered together and linked by a shared sidebar. Running `quarto render` on the project builds every page at once and writes out a complete website, ready to publish. This is the portfolio synthesis the study has been moving toward since Chapter 9: not a pile of files, but one coherent site that holds the entire study and lets a reader move through it.
 
 ## Going live
 
 A website sitting in a folder on a laptop is still private. Publishing it means placing it somewhere with a public address, and the standard free option for a Quarto site is **GitHub Pages**, which serves a website directly from a GitHub repository.
 
-Publishing has a checklist, and the checklist is exactly where studies fail in their final week. `v2v::deploy_portfolio()` runs the checklist and then publishes:
+Publishing has a checklist, and the checklist is exactly where studies fail in their final week. `v2v::deploy_portfolio()` is the one route this book uses: it runs the checklist, renders, asks once, and publishes.
 
 ```r
 v2v::deploy_portfolio()
 ```
 
 ```
-Pre-flight checks
-  renv library in sync ......... ok
-  no uncommitted changes ....... ok
-  _quarto.yml valid ............ ok
-
-Rendering 4 pages ... done
-Publishing to GitHub Pages ...
-
-Live at: https://username.github.io/twitch-chat-study/
+── Pre-flight checks ──
+ℹ No renv.lock found - skipping renv check
+✔ no uncommitted changes
+✔ _quarto.yml valid
+───────────────────────
+ℹ Rendering 9 pages
+Publish to GitHub Pages? [y/N] y
+ℹ Publishing to GitHub Pages
+✔ Portfolio live on GitHub Pages.
 ```
 
-Before it publishes anything, the function runs three **pre-flight checks**. It confirms that renv, a tool that records the project's exact package versions, is in sync, so the published site was built with the versions the source declares; a project that does not use renv skips this check with a note. It confirms there are no uncommitted Git changes, so the site that goes live matches the source that is actually saved. And it confirms that `_quarto.yml` is present, so the render will not fail at the start. Only when all three pass does it render the project and run the publish step itself.
+The site's address is the one GitHub assigns to the repository, `https://username.github.io/twitch-portfolio/` for a repository named `twitch-portfolio`; open it in a private browser window to confirm it loads for someone who is not you.
+
+Before it publishes anything, the function runs three **pre-flight checks**. It confirms that renv, a tool that records the project's exact package versions, is in sync, so the published site was built with the versions the source declares; a project that does not use renv skips this check with a note. It confirms there are no uncommitted Git changes, so the site that goes live matches the source that is actually saved. And it confirms that `_quarto.yml` is present, so the render will not fail at the start. Only when all three pass does it render the project, ask you once whether to publish, and run the publish step itself.
 
 The checks are not red tape. Each one heads off a specific and demoralizing failure: a site that renders on its author's machine and nowhere else, a published page that does not match the work that was actually done, a deployment that collapses at eleven at night the evening a portfolio is due. The function exists so that the last step of a long study is the calm one. What it produces is a URL. The chat study is now a public, reproducible website, one that anyone can read and anyone can rebuild from its source.
 
