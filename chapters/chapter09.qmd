@@ -63,7 +63,7 @@ One more call confirms the workspace is sound:
 v2v::setup()
 ```
 
-`setup()` checks that R, the packages this book depends on, and the project's environment are all present and the versions agree. You met it once already, in Chapter 2, as the final step of installing the stack. It returns here as a habit worth keeping: run it when you open a project, and you find out about a missing piece before it interrupts you mid-analysis.
+`setup()` checks that R, Quarto, Git, and the package's own dependencies are present. The AURA Lab R Companion's **Check my setup** checks every package the book's code uses. You met `setup()` once already, in Chapter 2, as the final step of installing the stack. It returns here as a habit worth keeping: run it when you open a project, and you find out about a missing piece before it interrupts you mid-analysis.
 
 ## The rulebook becomes a document
 
@@ -98,7 +98,7 @@ Notice that the data arrives through a function call, not as a file you opened o
 
 It is worth being clear about what "everything" means here. This is not the entire 2018 collection. The full dump runs to tens of millions of rows and well over a gigabyte, too much to ship inside a package or to open comfortably on a laptop. What `v2v` ships, and what you just loaded, is a working sample drawn from the fifty-channel corpus Chapter 1 described: a subset large enough to be real and small enough to be fast. Every example in the chapters ahead runs against this sample.
 
-A word about what happens when this does not work. Sooner or later a line of R you type will return an error instead of a result: a misspelled function name, a package not loaded, a stray bracket. This is normal. It happens to everyone who writes code, and it is not a sign that you are unsuited to the work. The `v2v` package carries a common-errors help page for exactly these moments, `?v2v::common_errors`, listing the errors a new R user meets most often and what each one is telling you. From this chapter forward, when a line breaks, that page is the first place to look. An error is information, not a verdict.
+A word about what happens when this does not work. Sooner or later a line of R you type will return an error instead of a result: a misspelled function name, a package not loaded, a stray bracket. This is normal. It happens to everyone who writes code, and it is not a sign that you are unsuited to the work. The `v2v` package carries a common-errors help page for exactly these moments, `?v2v::common_errors`, listing the errors a new R user meets most often and what each one is telling you. From this chapter forward, when a line breaks, look there, or select the error in VS Code and run **Explain an R error** from the AURA Lab R Companion. An error is information, not a verdict.
 
 One short piece of writing belongs at first contact, whatever the data. Write down where the data came from: the source, the date range it covers, and anything that was left out and why. For the shipped corpus that is three sentences: the chat came from Twitch's public chat interface and the stream snapshots from Twitch's public API, both collected across six days in November 2018, and the working sample holds fifty channels drawn across the platform's volume distribution rather than all 1,690. For your own data it is the same three sentences about your own source. Your final report's methods section will need them, and they are far easier to write now than to reconstruct in December.
 

@@ -212,7 +212,7 @@ The book is organized around the research process itself, divided into five part
 
 **Part V: Inference and publication (Chapters 13 to 14)** is the closing arc. You run inferential tests, interpret what they mean, and publish a portfolio that integrates the whole project into a single reproducible document.
 
-A small note on tooling, taken up properly in Chapter 2. This book teaches the canonical version of each task. The companion V2V Hub teaches the practical version, including how to use AI assistants like GitHub Copilot to do parts of the work faster. The textbook focuses on what the discipline expects you to understand. The Hub focuses on how to execute that understanding in 2026, when an AI assistant is going to be sitting next to your cursor whether or not anyone teaches you what to do with it.
+A small note on tooling, taken up on the V2V Hub. This book teaches the canonical version of each task. The companion V2V Hub teaches the practical version, including how to use AI assistants like GitHub Copilot to do parts of the work faster. The textbook focuses on what the discipline expects you to understand. The Hub focuses on how to execute that understanding in 2026, when an AI assistant is going to be sitting next to your cursor whether or not anyone teaches you what to do with it. The course workspace ships instructions that steer Copilot toward the tidyverse style this book uses, and the AURA Lab R Companion for VS Code adds a setup check and plain-English error explanations.
 
 ## A note on paradigms
 
