@@ -75,7 +75,7 @@ Install in this order:
 
 8. **The `v2v` package.** The Hub has the install command for the current package version. The package ships the Twitch dataset fixtures and a small set of helper functions used throughout the rest of the book.
 
-9. **The AURA Lab R Companion.** In VSCode's Extensions view, search for "AURA Lab R Companion" and install it. It adds a Get Started walkthrough and a **Check my setup** command that finds R, checks the packages this book uses, and installs any that are missing. A setup that already works does not need it.
+9. **The AURA Lab R Companion.** In VSCode's Extensions view, search for "AURA Lab R Companion" and install it. It adds a Get Started walkthrough, a **Check my setup** command that finds R and checks the packages this book uses, and an **Install what is missing** command that installs anything the check flags. A setup that already works does not need it.
 
 When everything is installed, open `00-check-your-setup.qmd`, which ships in the course workspace and on the V2V Hub. It walks through the install in numbered steps, and its check step is an R code chunk that calls the v2v setup validator:
 
@@ -86,7 +86,7 @@ v2v::setup()
 
 Run that chunk with the **Run Cell** link above it. The `v2v::setup()` function checks that R, Quarto, Git, and the v2v package are all present. It prints "Everything the course needs is installed." when everything is in place and a diagnostic message when something is missing. If you see anything other than the success message, the Hub's [Installing the v2v package](https://aura-lab.siue.edu/v2v-hub/resources/install-v2v.html) guide addresses the common failure modes.
 
-If you installed the AURA Lab R Companion, run **Check my setup** from the Command Palette as well. It checks the full list of packages the book's code uses and installs what is missing.
+If you installed the AURA Lab R Companion, run **Check my setup** from the Command Palette as well. It checks the full list of packages the book's code uses; **Install what is missing** installs anything it flags.
 
 If `library(v2v)` itself fails, the package is not installed yet. It is not on CRAN, so `install.packages("v2v")` will not find it. Install it from GitHub, noting that the repository is named `v2v-r` while the package it provides is named `v2v`:
 
@@ -95,7 +95,7 @@ install.packages("remotes")
 remotes::install_github("AURA-Lab-SIUE/v2v-r", upgrade = "never")
 ```
 
-**Check my setup** in the AURA Lab R Companion runs this same install for you.
+**Install what is missing** in the AURA Lab R Companion runs this same install for you.
 
 ::: {.graduate-extension}
 **Git as epistemological infrastructure.** Every `git commit` is a time-stamped record of your analysis at a specific moment. Your entire analytical history is reproducible: another researcher can check out any commit and see exactly what your code did at that point. This is not a convenience feature. It is a standard of evidence. Wilson et al. (2017) place change-tracking at the center of reproducible practice:
@@ -142,13 +142,13 @@ Look at the table once more, with these observations in mind. This is what the d
 
 The `v2v` package, installed in step 8 of the install sequence, is the course companion. It ships three things.
 
-The first is two **dataset fixtures.** `twitch_chat_sample` is a stratified sample of roughly 35,000 chat messages drawn from the 50-channel working corpus. `twitch_streams_sample` is the full set of stream snapshots for those same 50 channels, approximately 32,000 rows. Once the package is loaded with `library(v2v)`, either fixture loads with `data(twitch_chat_sample, package = "v2v")` or `data(twitch_streams_sample, package = "v2v")`. The full population of 1,690 joinable channels is documented in the package vignette; you will only need the 50-channel subset for course work.
+The first is two **dataset fixtures.** `twitch_chat_sample` is a stratified sample of roughly 35,000 chat messages drawn from the 50-channel working corpus. `twitch_streams_sample` is the full set of stream snapshots for those same 50 channels, approximately 32,000 rows. Once the package is loaded with `library(v2v)`, either fixture loads with `data(twitch_chat_sample, package = "v2v")` or `data(twitch_streams_sample, package = "v2v")`. The full population of 1,690 joinable channels is described in the book's Data Dictionary appendix; you will only need the 50-channel subset for course work.
 
 The second is a small set of **helper functions** that wrap common course operations: loading the data, generating codebook skeletons, computing inter-coder reliability metrics, producing diagnostic plots. The helpers are not magic. They exist so that the conceptual move of an exercise is not buried under fifty lines of setup code. You can always do the same work without the helpers; the helpers just let you focus on the methodology while you are learning it.
 
 The third is the **setup validator** you ran a few pages ago: `v2v::setup()`. Run it again any time you suspect an installation issue or have updated R or Quarto and want to confirm the stack still works.
 
-The full documentation for the package is available with `?v2v` in R or at the package website, which is linked from the V2V Hub. Treat the documentation as reference material rather than required reading.
+The full documentation for the package is available with `?v2v` in R or at the package's GitHub repository, which is linked from the V2V Hub. Treat the documentation as reference material rather than required reading.
 
 ::: {.graduate-extension}
 **The renv.lock as a methods citation.** The `renv.lock` file records the exact version of every R package your analysis depends on. When you publish a white paper, the `renv.lock` is the citation for your computational environment. Without it, a reader attempting replication may get different results because a package updated between your run and theirs. Wilson et al. (2017), whose "good enough" practices this aside builds on, extend the backup discipline to the software a project sits on:

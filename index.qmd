@@ -43,7 +43,7 @@ v2v::twitch_chat()    # sampled chat_log
 v2v::twitch_streams() # sampled stream_log
 ```
 
-The 2nd Edition's `unified_music` dataset (Billboard + Spotify + Genius for 1,792 songs) remains available in the v2v R package as a secondary teaching corpus.
+The 2nd Edition used a `unified_music` dataset (Billboard + Spotify + Genius for 1,792 songs); the 3rd Edition replaces it with the Twitch corpus.
 
 ## License
 

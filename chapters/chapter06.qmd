@@ -192,7 +192,7 @@ library(pwr)
 pwr.t.test(d = 0.5, sig.level = 0.05, power = 0.80, type = "two.sample")
 ```
 
-This output, *n* = 64 per group, becomes the sampling plan justification in your prospectus. If you cannot feasibly collect that many observations, the research question must be revised, the design changed for greater power, or the limitation explicitly justified in writing. For your own prospectus, run this analysis with the effect size you extracted in Chapter 4 and report the required *n* at both 80% and 90% power, noting how the ten-point increase changes what you would need to collect.
+This output, *n* = 64 per group, becomes the sampling plan justification in your prospectus. The Test group of the R Companion's **Write R code** includes **Power analysis for your sample size** (MC 501), which writes this call for you. If you cannot feasibly collect that many observations, the research question must be revised, the design changed for greater power, or the limitation explicitly justified in writing. For your own prospectus, run this analysis with the effect size you extracted in Chapter 4 and report the required *n* at both 80% and 90% power, noting how the ten-point increase changes what you would need to collect.
 :::
 
 ## Looking ahead
