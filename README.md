@@ -13,6 +13,18 @@ V2V is an open educational resource that teaches communication and media researc
 
 **Courses:** MC 451 Research Methods in Mass Media (undergraduate); MC 501 Research Methods for Mass Communications (graduate, via *Beyond Vibes*)
 
+## Part of From Vibes to Variables
+
+[From Vibes to Variables (V2V)](https://aura-lab.siue.edu/v2v/) is the AURA Lab's open methods package for teaching media research at Southern Illinois University Edwardsville. Its parts are built to be used together:
+
+- [Textbook](https://aura-lab.siue.edu/v2v/) ([source](https://github.com/AURA-Lab-SIUE/v2v), this repository): the open textbook that carries the arc from research question to published report.
+- [Course hub](https://aura-lab.siue.edu/v2v-hub/) ([source](https://github.com/AURA-Lab-SIUE/v2v-hub)): the course website for MC 451 and MC 501 that sequences the textbook, the labs, and the setup guides.
+- [v2v R package](https://github.com/AURA-Lab-SIUE/v2v-r): the companion package with the Twitch practice corpus and the helpers the textbook introduces chapter by chapter.
+- [Course workspace](https://github.com/AURA-Lab-SIUE/v2v-workspace): the VS Code template students copy for journals, reading notes, and project work.
+- [R Companion](https://github.com/AURA-Lab-SIUE/r-companion): the VS Code extension that checks each student's R setup, installs what is missing, and explains common R errors.
+
+A sibling template, [mc427-codespace](https://github.com/AURA-Lab-SIUE/mc427-codespace), gives MC 427 Social Media Analytics the same VS Code and R toolchain in a GitHub Codespace; the R Companion serves MC 427 as well, and the v2v package is not used there.
+
 ---
 
 ## Table of Contents
@@ -59,8 +71,8 @@ The third edition consolidates the prior *From Vibes to Variables* textbook with
 - **V2V umbrella branding** across the book, course site, R package, and graduate supplement. The textbook is one co-equal component of a methods package, not a textbook with bonuses.
 - **Dual-profile build** producing distinct undergraduate and graduate editions from one source. Render with `quarto render --profile undergrad` or `--profile grad`; outputs land in `docs/undergrad/` and `docs/grad/` respectively. Audience-level profile names keep V2V adoptable as an OER outside SIUE.
 - **Beyond Vibes graduate supplement** (in progress): the MC 501 edition adds power analysis, pre-registration discipline, two-coder reliability planning, and an audit-trail layer on top of the undergraduate foundation, satisfying the SIUE 33 percent cross-listing differential.
-- **`coursepackR` rebrand to `v2v`** (in progress): the R package is being renamed to match the umbrella brand.
-- **Open Methods Hub fold-in to V2V Hub** (in progress): the prior `liaison-program` course site is being consolidated under the V2V Hub identifier.
+- **`coursepackR` rebrand to `v2v`** (complete): the course package is now [`v2v`](https://github.com/AURA-Lab-SIUE/v2v-r); [`coursepackR`](https://github.com/AURA-Lab-SIUE/coursepackR) remains as the 2nd Edition's legacy package and keeps the music corpus.
+- **Open Methods Hub fold-in to V2V Hub** (complete): the course site is now the [V2V Hub](https://aura-lab.siue.edu/v2v-hub/).
 - **Dataset migration (complete)**: chapter examples moved from the music dataset to a Twitch chat and stream-metadata corpus, better serving the MC 451 Research Methods in Mass Media course. The music dataset remains available as a secondary teaching corpus.
 
 The 2nd Edition's 22-chapter content (research ethics, the methods landscape, qualitative methods, survey design, experimental design, the music dataset throughout) is preserved at `chapters/_archive-v2/` as a transitional reference. Pedagogical material from the 2nd Edition's expansion has been re-integrated into the 3rd Edition's 14-chapter structure.
@@ -73,13 +85,13 @@ The 2nd Edition's 22-chapter content (research ethics, the methods landscape, qu
 
 Visit <https://aura-lab.siue.edu/v2v/> for the full HTML book with search, navigation, and interactive code examples.
 
-### Offline via the v2v R package
+### Offline
 
-If you have the [`v2v`](https://github.com/AURA-Lab-SIUE/v2v-r) R package installed, the bundled chapters (3rd Edition drafted + 2nd Edition archive) are available for offline access:
+Clone this repository for the chapter sources, or render the book locally (below). The legacy [`coursepackR`](https://github.com/AURA-Lab-SIUE/coursepackR) package also bundles chapter text for offline reading:
 
 ```r
-# Path to a specific chapter
-system.file("textbook", "chapter01.md", package = "v2v")
+# Path to a specific bundled chapter
+system.file("textbook", "chapter01.md", package = "coursepackR")
 ```
 
 ### PDF
@@ -124,23 +136,13 @@ v2v::twitch_chat()    # sampled chat_log
 v2v::twitch_streams() # sampled stream_log
 ```
 
-The 2nd Edition's `unified_music` dataset (1,792 songs combining Billboard chart performance, Spotify audio features, and Genius metadata) remains available in the package as a secondary teaching corpus:
-
-```r
-data(unified_music)
-```
+The 2nd Edition's `unified_music` dataset (1,792 songs combining Billboard chart performance, Spotify audio features, and Genius metadata) is not in the `v2v` package; it remains available in the legacy [`coursepackR`](https://github.com/AURA-Lab-SIUE/coursepackR) package as a secondary teaching corpus.
 
 See the [Data Dictionary appendix](https://aura-lab.siue.edu/v2v/appendices/data-dictionary.html) for the full variable reference.
 
-## V2V Package Components
+## Beyond Vibes
 
-V2V is a methods package; the book is one of several co-equal components.
-
-| Component | Description | Link |
-|---------|-------------|------|
-| **V2V Hub** | Course site wrapping the book: syllabus, R workbook (with videos), course workspace, setup guides, cheat sheets, datasets, references, instructor materials. Currently hosted under the legacy `liaison-program` identifier; consolidation under the V2V Hub identifier is in progress. | [Visit Site](https://aura-lab.siue.edu/v2v-hub/) \| [GitHub](https://github.com/AURA-Lab-SIUE/v2v-hub) |
-| **`v2v` R package** | R helpers, the `unified_music` dataset, weekly templates, and the planned Twitch corpus. Rebrand from `coursepackR` is in progress. | [Docs](https://github.com/AURA-Lab-SIUE/v2v-r/) \| [GitHub](https://github.com/AURA-Lab-SIUE/v2v-r) |
-| **Beyond Vibes** (in progress) | Graduate supplement; produces a publishable white paper and conference poster. SIUE deployment pairs it with MC 500 in the MC 501 cohort. | Renders from this repository via `quarto render --profile grad`. |
+The graduate supplement *Beyond Vibes* (in progress) renders from this same repository with `quarto render --profile grad`. It adds power analysis, pre-registration discipline, two-coder reliability planning, and an audit trail on top of the undergraduate foundation, and it produces a publishable white paper and conference poster. The SIUE deployment pairs it with MC 500 in the MC 501 cohort. The other V2V components are listed in "Part of From Vibes to Variables" at the top of this README.
 
 ---
 
