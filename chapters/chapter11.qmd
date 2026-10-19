@@ -189,7 +189,7 @@ Two channels in the corpus streamed without ever having a category recorded: eve
 
 Three of the study's variables are now columns, and all three were computed. The fourth, message target, cannot be computed. It is the variable the codebook exists for, the one a coder assigns by reading each message, and it reaches R by a different route.
 
-The coding happens outside R, in a spreadsheet with one row per sampled message. Chapter 10 drew the sample with `v2v::sample_messages()`, and the sample carries each message's `id`. Keep that column: it is the key that will carry the codes back onto the table. Code the messages, save the sheet as a CSV in `data/derived/` with two columns, `id` and `message_target`, and read it in:
+The coding happens outside the script, in a spreadsheet with one row per sampled message, or in the R Companion's data viewer (**AURA: Open the data viewer**), which keeps the codes in a separate file under `data/derived/` and never changes the original. Chapter 10 drew the sample with `v2v::sample_messages()`, and the sample carries each message's `id`. Keep that column: it is the key that will carry the codes back onto the table. Code the messages, save the sheet as a CSV in `data/derived/` with two columns, `id` and `message_target`, and read it in:
 
 ```r
 codes <- read_csv("data/derived/message_target_codes.csv")

@@ -45,13 +45,15 @@ A different question would call for a different test, and three tests cover almo
 | One two-group categorical variable and one continuous variable (gaming status by message length) | **Independent t-test**, `v2v::run_t_test()` | Whether the group means differ, and Cohen's d for by how much |
 | Two continuous variables (a channel's message count by its mean message length) | **Pearson correlation**, `cor.test()` | Whether the two move together, and r for how strongly |
 
+The R Companion's **Check my test choice** checks a test you have already chosen against this table; it does not choose for you.
+
 Pick the row that matches your variables, and write one sentence saying why that test and not another: a chi-square on message length would mean binning a count into categories and throwing away most of what was measured, and a t-test on two continuous variables would mean splitting one of them into two groups at an arbitrary line. Naming the test you rejected and why is how a reader knows the choice was made rather than defaulted. A test applied to the wrong kind of data produces a number, and the number is meaningless. This chapter runs the t-test on the study's central question and then shows the other two on questions the same data can answer.
 
 One more thing comes before the code. State the hypothesis in plain words, naming the two variables and the relationship you expect, and state it as an association: "Message length is associated with whether a channel is gaming or non-gaming, with non-gaming messages running longer." Not "gaming makes messages shorter," because nothing in this design can show what makes anything; the study observes two variables and asks whether they go together. A hypothesis written before the code is a commitment. One written after the results is a description of them.
 
 ## Running the test
 
-The test itself is one function call. `v2v::run_t_test()` takes the data, the variable to compare, and the variable that splits it into groups:
+The test itself is one function call. `v2v::run_t_test()` takes the data, the variable to compare, and the variable that splits it into groups. It wraps two plain calls, `t.test(message_length ~ is_gaming, data = analysis) %>% broom::tidy()` and `effectsize::cohens_d(message_length ~ is_gaming, data = analysis)`, and its printout ends by naming them; the Test group of the R Companion's **Write R code** writes those two calls first and the wrapper after them as a check that prints the same numbers:
 
 ```r
 library(tidyverse)
