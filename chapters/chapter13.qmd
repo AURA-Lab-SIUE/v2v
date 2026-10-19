@@ -56,7 +56,7 @@ The test itself is one function call. `v2v::run_t_test()` takes the data, the va
 ```r
 library(tidyverse)
 
-analysis <- read_rds("data/derived/twitch_analysis.RDS")
+analysis <- read_rds("data/twitch_analysis.RDS")
 
 v2v::run_t_test(analysis, value = message_length, group = is_gaming)
 ```
@@ -241,7 +241,7 @@ The correlation is -0.14, in the direction the hunch expected, and the p-value i
 
 ## More than two groups: ANOVA
 
-The t-test settled a question with exactly two sides: gaming versus non-gaming. Many questions have more. Suppose the study asked not whether gaming and non-gaming chat differ, but whether chat length differs across the specific games being played. Keep each channel's game category, the modal category built in Chapter 11, alongside `is_gaming`, restrict the data to its four largest categories, and four means appear rather than two:
+The t-test settled a question with exactly two sides: gaming versus non-gaming. Many questions have more. Suppose the study asked not whether gaming and non-gaming chat differ, but whether chat length differs across the specific games being played. Keep each channel's `main_game`, the modal category built in Chapter 11, alongside `is_gaming`, restrict the data to its four largest categories, and four means appear rather than two:
 
 ```
 game category       n     mean length
@@ -255,17 +255,19 @@ A t-test cannot settle this, because a t-test compares two means and there are f
 
 ```r
 four_games <- analysis %>%
-  filter(game %in% c("Fortnite", "Hearthstone",
-                     "Just Chatting", "League of Legends"))
+  filter(main_game %in% c("Fortnite", "Hearthstone",
+                          "Just Chatting", "League of Legends"))
 
-summary(aov(message_length ~ game, data = four_games))
+summary(aov(message_length ~ main_game, data = four_games))
 ```
 
 ```
-              Df    Sum Sq  Mean Sq  F value  Pr(>F)
-game           3    547281   182427    92.26  < 2e-16 ***
-Residuals  13429  26552407     1977
+               Df   Sum Sq Mean Sq F value Pr(>F)
+main_game       3   547281  182427   92.26 <2e-16 ***
+Residuals   13429 26552407    1977
 ```
+
+The grouping column is `main_game`, the channel's usual category, not `game`, the category at the moment each message was sent. Grouping by `game` runs without complaint and returns a different F, because it sorts the same messages into the categories by a different rule.
 
 The logic is the t-test's logic, widened. Where the t-test produced a `t`, ANOVA produces an **F**, and F compares two kinds of variation: the variation *between* the group means against the variation *within* the groups. If the four categories truly shared a mean, the spread between them would be no larger than the ordinary noise inside each, and F would sit near one. Here F is 92.26, far above one, and the p-value is minuscule: the categories do not all share a mean. League of Legends chat, at 22.63 characters, runs visibly shorter than Just Chatting at 39.03.
 

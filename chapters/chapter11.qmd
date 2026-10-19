@@ -47,33 +47,28 @@ The reason these verbs combine so well is a shared design: each one takes a data
 
 Start with the timestamps, because Chapter 9 already flagged them. The `date` column is a column of very large numbers, and Chapter 8 classified it as interval data with a catch: the number is not a date in any form a person can read.
 
-What the number actually holds is a count of milliseconds elapsed since midnight on the first of January, 1970. That reference moment is the **Unix epoch**, the zero point nearly all computers use to keep time, and counting from it is how a timestamp becomes a single integer. The integer is precise and entirely unreadable. Turning it back into a date is a conversion, and `mutate()` is the verb for it:
+What the number actually holds is a count of milliseconds elapsed since midnight on the first of January, 1970. That reference moment is the **Unix epoch**, the zero point nearly all computers use to keep time, and counting from it is how a timestamp becomes a single integer. The integer is precise and entirely unreadable. Turning it back into a date is a conversion, `mutate()` is the verb for it, and the course package's `clean_dates()` does the converting. Both tables get the new column, named `ts`, because the join later in this chapter needs it on each side:
 
 ```r
 chat <- chat %>%
-  mutate(timestamp = as.POSIXct(date / 1000, origin = "1970-01-01", tz = "UTC"))
+  mutate(ts = clean_dates(date))
+streams <- streams %>%
+  mutate(ts = clean_dates(date))
 ```
 
-Two parts of that line carry the lesson. `as.POSIXct()` is the function that turns a number into a date-time value, given the origin to count from. And `date / 1000` is the part it is easy to get wrong. `as.POSIXct()` expects a count of seconds, but the `date` column is a count of milliseconds, a thousand times finer. Hand it the raw number and it will place every message tens of thousands of years in the future. Dividing by 1,000 converts milliseconds to seconds first. It is a small arithmetic step and the single most common way this conversion fails.
+`clean_dates()` divides `date` by 1,000, because `date` counts milliseconds and R's date-times count seconds, then turns the result into a date and time. The same step without the course package is `as_datetime(date / 1000)`, from lubridate, which the tidyverse loads, and `clean_dates()` prints that line the first time you call it. The division is the part it is easy to get wrong by hand. A date-time function expects a count of seconds, but the `date` column is a count of milliseconds, a thousand times finer. Hand it the raw number and it will place every message tens of thousands of years in the future. Dividing by 1,000 converts milliseconds to seconds first. It is a small arithmetic step and the single most common way the hand conversion fails.
 
-Because it is the most common failure, the course package ships a wrapper that performs the division and the conversion together, so the mistake cannot happen by accident:
+So `clean_dates()` is the same operation, not a shortcut around it, and it exists to be read. Learn the arithmetic anyway, because the day you meet a millisecond timestamp outside this course there will be no wrapper waiting for it.
 
-```r
-chat <- chat %>%
-  mutate(timestamp = clean_dates(date))
-```
-
-That is the same operation, not a shortcut around it. `clean_dates()` exists to be read: run `body(clean_dates)` and you will find the line above. Use whichever you prefer in your own work, but learn the arithmetic first, because the day you meet a millisecond timestamp outside this course there will be no wrapper waiting for it.
-
-The result is a real date-time. Setting `date` and the new `timestamp` side by side shows the transformation:
+The result is a real date-time. Setting `date` and the new `ts` side by side shows the transformation:
 
 ```r
-chat %>% select(date, timestamp) %>% head(3)
+chat %>% select(date, ts) %>% slice_head(n = 3)
 ```
 
 ```
 # A tibble: 3 × 2
-           date timestamp
+           date ts
           <dbl> <dttm>
 1 1542578127023 2018-11-18 21:55:27
 2 1542578135562 2018-11-18 21:55:35
@@ -92,7 +87,7 @@ chat <- chat %>%
 ```
 
 ```r
-chat %>% select(message, message_length) %>% head(3)
+chat %>% select(message, message_length) %>% slice_head(n = 3)
 ```
 
 ```
@@ -108,9 +103,29 @@ chat %>% select(message, message_length) %>% head(3)
 
 ![](../images/fig11-1-rawlen-uncapped.png){fig-alt="A histogram of all 35,263 message lengths with nothing capped, on a square-root count axis. The distribution peaks below 20 characters and falls away steeply; a dashed line at 120 characters marks where Chapter 12 will cap its axis. Only 1,047 messages, three percent, lie beyond that line, stretched thinly all the way out to 501 characters, which is why the cap costs almost nothing."}
 
+## Matching each message to its stream
+
+The information the central research question turns on lives in the other table, so the third transformation is a join, and it is the one `v2v` wraps. `join_chat_streams()` attaches to each message the stream snapshot taken at or before it, on the same channel: the `game` the channel was streaming at that moment, the `viewers` watching, and `snapshot_ts`, the time of that snapshot.
+
+```r
+chat_streams <- join_chat_streams(chat, streams)
+
+chat_streams %>% count(no_snapshot = is.na(viewers))
+```
+
+```
+# A tibble: 2 × 2
+  no_snapshot     n
+  <lgl>       <int>
+1 FALSE       35256
+2 TRUE           11
+```
+
+Eleven messages arrived before their channel's first snapshot, so they carry `NA` for the stream columns. The same join without the course package is `left_join(chat, streams, by = join_by(channel, closest(ts >= snapshot_ts)))`, and `join_chat_streams()` prints that line the first time you call it. It is a **rolling join**: snapshots come every few minutes and messages every second, so the key is not an exact match but "the nearest earlier snapshot on the same channel." Both tables needed the `ts` column for that, which is why the conversion above ran on `streams` as well as `chat`.
+
 ## Labeling gaming and non-gaming
 
-The third transformation is the one the central research question turns on. Every message needs a label: did it come from a gaming channel or a non-gaming one? That label does not exist in the chat table, and building it takes more work than the last two, because the information lives in the other table.
+Every message also needs a label: did it come from a gaming channel or a non-gaming one? The snapshot's `game` is not that label. A channel that mostly streams games can spend an afternoon in Just Chatting, and the study classifies channels, not moments. Building the channel label takes more work than the last three steps.
 
 Gaming or non-gaming is best understood as a property of the channel, fixed by what the channel mostly streams. Bob Ross's channel streams painting; it is a non-gaming channel, and every message in it is a non-gaming message. So the label is built in three steps: find what each channel mostly streams, decide whether that counts as gaming, and attach the decision to every message from that channel.
 
@@ -139,15 +154,15 @@ nongaming_categories <- c(
 
 channel_type <- channel_type %>%
   mutate(is_gaming = !(game %in% nongaming_categories)) %>%
-  select(channel, is_gaming)
+  select(channel, main_game = game, is_gaming)
 ```
 
-`game %in% nongaming_categories` asks whether a channel's dominant category is on the non-gaming list; the `!` negates it, so `is_gaming` is `TRUE` for every channel whose main category is a game and `FALSE` otherwise. `channel_type` is now a compact lookup table: one row per channel, one column saying gaming or not.
+`game %in% nongaming_categories` asks whether a channel's dominant category is on the non-gaming list; the `!` negates it, so `is_gaming` is `TRUE` for every channel whose main category is a game and `FALSE` otherwise. `select()` also renames the category `main_game`, because `chat_streams` already has a `game` column, the category at each message. `channel_type` is now a compact lookup table: one row per channel, the channel's usual category, and a column saying gaming or not. Chapters 12 and 13 group by `main_game` whenever they mean the channel's category; grouping by `game` instead runs without an error and produces different numbers.
 
-The third step is the **join**. A join brings columns from one table onto another by matching on a shared key, here the channel name. A `left_join()` keeps every row of the chat table and attaches the matching `is_gaming` value to it:
+The third step is the second **join**. A join brings columns from one table onto another by matching on a shared key, here the channel name. A `left_join()` keeps every row of `chat_streams` and attaches the matching `main_game` and `is_gaming` values to it:
 
 ```r
-chat <- chat %>%
+chat_streams <- chat_streams %>%
   left_join(channel_type, by = "channel")   # join key: channel, the column both tables share
 ```
 
@@ -156,7 +171,7 @@ The comment on that line is not decoration. A join is the step a reader is most 
 One result of the join deserves attention. Always inspect a column you just derived:
 
 ```r
-chat %>% count(is_gaming)
+chat_streams %>% count(is_gaming)
 ```
 
 ```
@@ -179,54 +194,64 @@ The coding happens outside R, in a spreadsheet with one row per sampled message.
 ```r
 codes <- read_csv("data/derived/message_target_codes.csv")
 
-chat <- chat %>%
+chat_streams <- chat_streams %>%
   left_join(codes, by = "id")   # join key: id, the message's unique label
 ```
 
 Two things are true of the result, and both are correct. Every message you coded now carries its code. Every message you did not code carries `NA` for `message_target`, because the variable exists only where a coder assigned it, and the thousands of messages outside the sample were never coded. A count makes that visible:
 
 ```r
-chat %>% count(message_target)
+chat_streams %>% count(message_target)
 ```
 
 The `NA` row will be by far the largest. That is the shape of a hand-coded variable in a large dataset: a column that is full for the sample and empty everywhere else, and an analysis of that variable runs on the sample alone. The same route carries any hand-coded variable, from any material. Code it in a sheet keyed on the unit's identifier, save it where the script can read it, and join it on the key.
 
 ## The analysis-ready table
 
-Four transformations and one join, run in sequence, have rebuilt the chat table:
+Two transformations and three joins, run in sequence, have rebuilt the chat table:
 
 ```r
-analysis <- v2v::twitch_chat() %>%
+chat <- twitch_chat() %>%
   mutate(
-    timestamp = as.POSIXct(date / 1000, origin = "1970-01-01", tz = "UTC"),
+    ts = clean_dates(date),
     message_length = str_length(message)
-  ) %>%
-  left_join(channel_type, by = "channel") %>%   # join key: channel
-  left_join(codes, by = "id")                   # join key: id
+  )
+streams <- twitch_streams() %>%
+  mutate(ts = clean_dates(date))
 
-write_rds(analysis, "data/derived/twitch_analysis.RDS")
+analysis <- join_chat_streams(chat, streams) %>%   # join key: channel, nearest earlier snapshot
+  left_join(channel_type, by = "channel") %>%      # join key: channel
+  left_join(codes, by = "id")                      # join key: id
+
+write_rds(analysis, "data/twitch_analysis.RDS")
 ```
 
-The table now has a name, `analysis`, and the last line saves it. `write_rds()` writes an R object to disk exactly as it is, column types included, so the date-time column is still a date-time when the file is read back. A CSV would lose that, and the next chapter would have to redo the conversion. Chapters 12 and 13 begin by reading this one file with `read_rds()`, which is why the name matters: `twitch_analysis.RDS` is the single handoff from wrangling to analysis.
+The table now has a name, `analysis`, and the last line saves it. `write_rds()` writes an R object to disk exactly as it is, column types included, so the date-time column is still a date-time when the file is read back. A CSV would lose that, and the next chapter would have to redo the conversion. Chapters 12 and 13 begin by reading this one file with `read_rds()`, which is why the name matters: `twitch_analysis.RDS` is the single handoff from wrangling to analysis, and it is the file the Data Wrangling assignment asks for.
 
-Everything above happens in the script. Nothing is done by hand in the console and nothing is edited in the spreadsheet after the codes are saved, because a change made by hand is a change the script cannot reproduce. The test is cheap: restart R, run the script from the top, and see whether the same file comes out. If it does not, a step is missing from the script, and finding it now is far cheaper than finding it in December.
+Everything above happens in the script. Nothing is done by hand in the console and nothing is edited in the spreadsheet after the codes are saved, because a change made by hand is a change the script cannot reproduce. A step built with the AURA Lab R Companion's Data menu meets this test, because the menu writes commented code into the script rather than changing the data in place. The test is cheap: restart R, run the script from the top, and see whether the same file comes out. If it does not, a step is missing from the script, and finding it now is far cheaper than finding it in December.
 
 A final `glimpse()` shows what the table has become, before the hand-coded column is joined:
 
 ```
 Rows: 35,267
-Columns: 8
-$ id             <int> 89, 551, 1033, 2094, 2803, …
-$ channel        <chr> "sodapoppin", "xqcow", "forsen", "sodapoppin", "xqcow…
-$ sender         <chr> "madzee", "prometheanow", "spectre155", "itsjer", "la…
-$ message        <chr> "???????????????????????", "TriEasy Clap TriEasy Cla…
-$ date           <dbl> 1542578127023, 1542578135562, 1542578143610, 1542578…
-$ timestamp      <dttm> 2018-11-18 21:55:27, 2018-11-18 21:55:35, 2018-11-18…
-$ message_length <int> 23, 441, 8, 12, 206, …
-$ is_gaming      <lgl> TRUE, FALSE, TRUE, TRUE, FALSE, …
+Columns: 12
+$ id             <int> 21503485, 21505722, 21506809, 21507051, 21507140, 21507…
+$ channel        <chr> "704cb1fgnty", "704cb1fgnty", "704cb1fgnty", "704cb1fgn…
+$ sender         <chr> "cheezehammer", "lacari_myfave_trihard1", "lacari_myfav…
+$ message        <chr> "FBtouchdown", "TriHard", "ANELE", "TriHard", "TriHard …
+$ date           <dbl> 1.543072e+12, 1.543072e+12, 1.543072e+12, 1.543072e+12,…
+$ ts             <dttm> 2018-11-24 15:01:02, 2018-11-24 15:02:26, 2018-11-24 1…
+$ message_length <int> 11, 7, 5, 7, 15, 23, 31, 23, 15, 5, 7, 8, 22, 10, 4, 8,…
+$ snapshot_ts    <dttm> 2018-11-24 15:00:09, 2018-11-24 15:01:23, 2018-11-24 1…
+$ game           <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+$ viewers        <int> 13628, 14902, 16978, 16978, 16978, 16978, 16978, 16978,…
+$ main_game      <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+$ is_gaming      <lgl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
 ```
 
-This is what wrangling was for. The table is now **tidy**, in the precise sense the term carries in data science (Wickham, 2014): each row is one observation, a single chat message; each column is one variable; and everything the study needs sits in this one place. The unreadable integers have become timestamps. Message length and gaming status, named in the codebook and absent from the raw data, are now columns, and so is the hand-coded message target for the sampled messages. The chat and stream tables, once disconnected, are joined.
+`join_chat_streams()` sorts the table by channel and then by time, so the first rows shown belong to `704cb1fgnty`, one of the two channels with no recorded category; that is why `game`, `main_game`, and `is_gaming` print `NA` here, and it is the same 501-message `NA` the count above reported, not a broken join.
+
+This is what wrangling was for. The table is now **tidy**, in the precise sense the term carries in data science (Wickham, 2014): each row is one observation, a single chat message; each column is one variable; and everything the study needs sits in this one place. The unreadable integers have become timestamps. Message length and gaming status, named in the codebook and absent from the raw data, are now columns, and so is the hand-coded message target for the sampled messages. The chat and stream tables, once disconnected, are joined twice: once to the snapshot nearest each message, once to the channel's label.
 
 None of this was analysis. Not a single result has been computed. But every result that follows, every figure in Chapter 12 and every test in Chapter 13, will be computed from this table, which is why the care spent building it is not optional. A wrangling mistake does not announce itself. It travels quietly into every chart and every statistic downstream. The reward for getting this chapter right is that nothing later has to be unwound.
 

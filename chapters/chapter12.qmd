@@ -47,7 +47,7 @@ A categorical variable is summarized by a **frequency table**: each category and
 ```r
 library(tidyverse)
 
-analysis <- read_rds("data/derived/twitch_analysis.RDS")
+analysis <- read_rds("data/twitch_analysis.RDS")
 streams  <- v2v::twitch_streams()
 
 analysis %>%
@@ -77,8 +77,8 @@ The data needs shaping first, the kind of dplyr work Chapter 11 covered. The str
 viewers_over_time <- streams %>%
   filter(!is.na(game)) %>%
   mutate(
-    timestamp = as.POSIXct(date / 1000, origin = "1970-01-01", tz = "UTC"),
-    six_hour  = floor_date(timestamp, "6 hours"),
+    ts        = clean_dates(date),
+    six_hour  = floor_date(ts, "6 hours"),
     category  = fct_lump_n(game, n = 5)
   ) %>%
   group_by(six_hour, category) %>%
@@ -124,7 +124,7 @@ The data is one short pipeline. The hour is pulled out of each message's timesta
 
 ```r
 chat_by_hour <- analysis %>%
-  mutate(hour = hour(timestamp)) %>%
+  mutate(hour = hour(ts)) %>%
   count(hour, name = "messages")
 
 ggplot(chat_by_hour, aes(x = hour, y = messages)) +
