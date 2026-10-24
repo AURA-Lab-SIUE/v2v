@@ -150,6 +150,8 @@ The graduate supplement *Beyond Vibes* (in progress) renders from this same repo
 
 This work is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
 
+Two parts of the repository are not covered by that license. The chapter narration in `audio/` is copyright Alex P. Leith, all rights reserved (see `audio/LICENSE`). The photographs listed in `images/CREDITS.md` remain with their owners. The fonts in `tools/fonts/` are licensed under the SIL Open Font License 1.1 (see `tools/fonts/OFL.txt`).
+
 ## Citation
 
 > Leith, A. P. (2026). *Vibes to Variables: A Methods Package for Students New to Research, Stats, and Code* (3rd ed.). Southern Illinois University Edwardsville. <https://aura-lab.siue.edu/v2v/>
