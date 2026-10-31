@@ -785,3 +785,34 @@ pre code span.at { color: #55611C !important; }
 // ============================================================
 #title-block-header.quarto-title-block.default .quarto-title-meta-heading { opacity: 1; }
 .callout.callout-style-default > div.callout-header { opacity: 1; }
+
+// ============================================================
+// a11y-2026-10-31 text-on-paper floor
+// The house floor is 5:1. Five text colors measured under it on the light
+// theme: the bright mark red $red (4.51:1 on paper, documented as non-text)
+// used as text on the audio label and the Graduate label and heading, and
+// on whole pull-quotes, because Quarto colors blockquotes with Bootstrap's
+// secondary color, which this theme sets to $red (the rule above intends
+// $ink); Bootstrap grey #6c757d (4.53:1) on the
+// chapter-title spans in the breadcrumb and page navigation; and three
+// highlighter tokens on the code surface: strings #20794D (4.60:1),
+// constants #8f5902 (5.00:1), and functions #4758AB (5.53:1 declared, but
+// thin glyphs measured 4.59:1 in rendered pixels). Replacements on $code-bg
+// #F1EDE4: #186640 5.96:1, #7A4C02 6.28:1, #3B4A97 6.88:1.
+// ============================================================
+.chapter-audio .audio-label,
+.graduate-extension::before,
+.graduate-extension > h3 { color: $maroon; }
+
+main blockquote { color: $ink !important; }
+main blockquote p { color: $ink; }
+
+.quarto-title-breadcrumbs .chapter-title,
+.nav-page-text .chapter-title { color: $muted !important; }
+
+code span.st, pre code span.st,
+code span.ss, pre code span.ss,
+code span.vs, pre code span.vs,
+code span.ch, pre code span.ch { color: #186640 !important; }
+code span.cn, pre code span.cn { color: #7A4C02 !important; }
+code span.fu, pre code span.fu { color: #3B4A97 !important; }

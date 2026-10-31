@@ -165,12 +165,15 @@ fig_ch12_2 <- function(d) {
 fig_ch12_3 <- function(d) {
   msglen <- d$analysis %>% filter(!is.na(is_gaming)) %>%
     mutate(length_shown = pmin(message_length, 120))
-  p <- ggplot(msglen, aes(length_shown, fill = is_gaming)) +
+  # Shares, not counts: density * width makes each bar the share of its own group's
+  # messages that fall in that bin, so the small non-gaming group shows.
+  p <- ggplot(msglen, aes(length_shown, y = after_stat(density * width), fill = is_gaming)) +
     geom_histogram(binwidth = 5, position = "identity", alpha = 0.55,
                    colour = "grey20", linewidth = 0.15) +
     scale_fill_v2v() +
     labs(title = "Message length by channel context",
-         x = "Message length (characters, capped at 120)", y = "Messages",
+         x = "Message length (characters, capped at 120)",
+         y = "Share of the group's messages",
          fill = "Gaming channel") +
     theme_v2v()
   save_fig(p, "fig12-3-msglen-by-context.png")
