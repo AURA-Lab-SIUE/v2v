@@ -38,14 +38,26 @@ ggplot(data, aes(x = ..., y = ...)) +
 
 The three figures that follow are three settings of the same grammar.
 
+::: {.callout-note}
+## In the course, the R Companion writes these blocks
+
+The R Companion, the course's extension for VS Code, writes code blocks like this chapter's from a menu: run **AURA: Write R code** and look under **R3 Describe**.
+
+Step by step:
+
+- [MC 451 guide: Describe the Data: Tables and Charts](https://aura-lab.siue.edu/v2v-hub/guides/mc451/09-describing-tables-and-charts.html)
+- [MC 501 guide: Describe the Data: Tables and Charts](https://aura-lab.siue.edu/v2v-hub/guides/mc501/09-describing-tables-and-charts.html)
+:::
+
 ## Counting before plotting
 
 Before any figure, the study says what is in the table in numbers, because a figure summarizes a distribution and a reader needs to know what was summarized. Two kinds of summary cover most variables, and which one applies is the level of measurement from Chapter 8.
 
-A categorical variable is summarized by a **frequency table**: each category and how many cases fall in it. Both chapters so far have used `count()` for this, and `v2v::pretty_table()` formats the result for a report. Every table carries a label that says which variable it shows, because a column of numbers under `n` tells a reader nothing on its own.
+A categorical variable is summarized by a **frequency table**: each category and how many cases fall in it. Both chapters so far have used `count()` for this, and `pretty_table()`, from the course package, v2v, formats the result for a report. Every table carries a label that says which variable it shows, because a column of numbers under `n` tells a reader nothing on its own.
 
 ```r
 library(tidyverse)
+library(v2v)
 
 analysis <- read_rds("data/twitch_analysis.RDS")
 streams  <- v2v::twitch_streams()
@@ -102,9 +114,10 @@ ggplot(viewers_over_time, aes(x = six_hour, y = total_viewers, color = category)
 
 The last line is worth a note. `v2v::theme_v2v()` applies a single consistent visual theme, the fonts, spacing, and gridlines of a publication-ready figure, in one call. Every figure in this chapter ends with it, so the three look like members of one set rather than three unrelated charts.
 
-A figure that exists only on the screen is not yet part of the study (after **Run it**, the Companion opens each saved chart in a VS Code editor tab). Save it to a file from the code that made it, so that the file is rebuilt whenever the figure changes and never falls out of date:
+A figure that exists only on the screen is not yet part of the study. Save it to a file from the code that made it, so that the file is rebuilt whenever the figure changes and never falls out of date. The chart blocks of the R Companion (the **AURA R Companion** icon on VS Code's left edge) do this for you: after you select **Run it** on the notice that appears, the saved chart opens in its own VS Code tab. By hand, it is two lines:
 
 ```r
+dir.create("figures", showWarnings = FALSE)   # make the folder if it is missing
 ggsave("figures/fig-viewers-by-game.png", width = 8, height = 5, dpi = 300)
 ```
 
@@ -241,7 +254,7 @@ Three figures and two tables are built. Before they are finished, they have to b
 
 The first duty is **color**. The viewer-count figure tells its categories apart by color, and the histogram tells its two groups apart by color, and roughly one in twelve men has a form of **color-vision deficiency** that makes some color pairs, red against green most notoriously, hard or impossible to distinguish. A figure whose meaning rests on color alone is a figure that some readers cannot read. There are two defenses, and good practice uses both. Choose a colorblind-safe palette, a set of colors picked to stay distinct across the common kinds of color blindness. And do not let color carry the message by itself: separate the lines by more than hue, or split groups into their own panels, so the figure still works in grayscale.
 
-The second duty is the **alt text**, a short written description of the figure attached to it in the document's source. A reader using a screen reader cannot see the figure at all; the alt text is what they get instead, and a figure with none is, to them, simply missing. Good alt text is not the caption repeated. It states what kind of chart the figure is, what is on each axis, and what the figure shows, the takeaway, in a sentence or two. Each figure in this chapter carries one. In a Quarto document the alt text is written into the figure's `fig-alt` attribute, and writing it is not an afterthought. The Describe group of the R Companion's **Write R code** can write each of this chapter's figures, including **Histogram comparing two groups** and **Line chart over time**, and leaves an `alt =` line marked YOUR TURN inside each chart's `labs()`; the sentence is yours to write. Being forced to say in one sentence what a figure shows is a good test of whether the figure shows anything at all.
+The second duty is the **alt text**, a short written description of the figure attached to it in the document's source. A reader using a screen reader cannot see the figure at all; the alt text is what they get instead, and a figure with none is, to them, simply missing. Good alt text is not the caption repeated. It states what kind of chart the figure is, what is on each axis, and what the figure shows, the takeaway, in a sentence or two. Each figure in this chapter carries one. In a Quarto document the alt text is written into the figure's `fig-alt` attribute, and writing it is not an afterthought. Under **R3 Describe**, the R Companion's **Write R code** writes the line chart (**Line chart over time**) and the histogram (**Histogram comparing two groups**); its **Bar chart** draws the ten most-streamed games instead. Each chart block leaves an `alt =` line marked YOUR TURN inside `labs()` and, in a Quarto file, a `#| fig-alt:` line at the top of the chunk; the sentence in both is yours to write. Being forced to say in one sentence what a figure shows is a good test of whether the figure shows anything at all.
 
 A figure that is honest about its choices, legible without color, and described for readers who cannot see it is a figure that does its job for everyone. That is the standard a publication-quality figure is held to, and the three built here are meant to meet it.
 
