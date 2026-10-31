@@ -33,7 +33,7 @@ The alternative is to stop copying and put the analysis inside the document. A *
 
 ```{verbatim lang="markdown"}
 The analysis dataset held `r nrow(analysis)` coded messages, of which
-`r sum(!is.na(analysis$is_gaming))` carried a gaming-status label.
+`r analysis %>% filter(!is.na(is_gaming)) %>% nrow()` carried a gaming-status label.
 ```
 
 In the rendered report those backtick expressions become the actual counts. Nothing is typed by hand, so nothing can fall out of date. A figure works the same way. The histogram from Chapter 12 is not pasted in; it is produced by a chunk that lives in the report:
@@ -52,7 +52,7 @@ ggplot(msglen, aes(message_length, fill = is_gaming)) +
 ````
 `````
 
-This is **reproducible publication**, and it has two payoffs that matter. The report cannot drift from the analysis, because the report is the analysis: re-render it and every number updates itself. And the report can be checked, because anyone holding the source and the data can render it and get exactly the same results, which is the standard a scientific claim is supposed to meet (Peng, 2011). The idea is older than Quarto, older than R. Donald Knuth named it **literate programming** (Knuth, 1984): the conviction that runnable code and the prose explaining it belong together in one document rather than apart in two. Quarto is a modern descendant of that idea, and the "one click" of this chapter's title is its render button. One action, and the document rebuilds itself from source.
+This is **reproducible publication**, and it has two payoffs that matter. The report cannot drift from the analysis, because the report is the analysis: re-render it and every number updates itself. And the report can be checked, because anyone holding the source and the data can render it and get exactly the same results, which is the standard a scientific claim is supposed to meet (Peng, 2011). The idea is older than Quarto, older than R. Donald Knuth named it **literate programming** (Knuth, 1984): the conviction that runnable code and the prose explaining it belong together in one document rather than apart in two. Quarto is a modern descendant of that idea. Here the "one click" of this chapter's title is **Quarto: Preview** (**Ctrl+Shift+K**, **Cmd+Shift+K** on a Mac), which **renders**: it runs every chunk and builds the finished page. One action, and the document rebuilds itself from source.
 
 ## The shape of a report: IMRaD
 
@@ -69,7 +69,7 @@ The **Introduction** states the question and why it is worth asking, and situate
 The **Methods** section says exactly what was done, in enough detail that another researcher could repeat it. This is the home of the unit of analysis and the codebook from Chapter 8; where the data came from, with its date range and what was excluded and why, from Chapter 9; the sampling plan as it was actually executed, from Chapter 10; what was done with the cases that did not sort themselves; the wrangling steps from Chapter 11; and the **reliability report**: the statistic, its value, the procedure that produced it, the threshold applied, and, in a single-coder study, the plain statement that the figure is your own stability and a weaker claim than agreement between two coders. Methods is the section that earns the reader's trust, and it is the section a reproducible document supports best, because the code that did the work is right there to be read.
 
 ::: {.graduate-extension}
-**Methods section requirements.** A graduate methods section includes three elements: (1) a data provenance statement (Chapter 9), with the source, the date range, and what was excluded and why; (2) a coder reliability report (Chapter 8), giving the statistic and its value, the procedure that produced it, the threshold applied, and the single-coder limitation named as such; and (3) the pre-registration disclosure with OSF URL (Chapter 5), with every departure from the plan listed. Each element is a transparency marker that signals to reviewers that the study meets graduate-level evidentiary standards. The pre-registration disclosure in particular protects a distinction that preregistration exists to make legible:
+**Methods section requirements.** A graduate methods section includes three elements: (1) a data provenance statement (Chapter 9), with the source, the date range, and what was excluded and why; (2) a coder reliability report (Chapter 8), giving the statistic and its value, the procedure that produced it, the threshold applied, and the single-coder limitation named as such; and (3) the pre-registration disclosure, citing the dated pre-registration file in your project repository by path and commit (Chapter 5), with every departure from the plan listed. Each element is a transparency marker that signals to reviewers that the study meets graduate-level evidentiary standards. The pre-registration disclosure in particular protects a distinction that preregistration exists to make legible:
 
 > "Preregistration distinguishes analyses and outcomes that result from predictions from those that result from postdictions."
 >
@@ -80,7 +80,7 @@ The **Results** section reports what was found, plainly and without interpretati
 
 The **Discussion** says what the results mean. This is where the interpretation from Chapter 13 belongs: that the difference between the two kinds of channel is statistically real but negligible in size, that gaming and non-gaming chat are better thought of as alike than as different in message length, and what that answer implies for the uses-and-gratifications question raised in the Introduction. It answers the question the Introduction asked, keeps statistical significance and practical size separate, and describes the effect size without inflating it. Discussion is also where an honest study states its limits, and in a single-coder study two of them are always present: the single-coder design itself, and the second-coder counterfactual from Chapter 8, which says what double-coding would have added and which finding is most at risk without it.
 
-A short **abstract** sits in front, one paragraph that carries four things in order: the question, the method, the finding, and what the finding implies. An abstract that skips the finding, which is the common failure, is a description of a plan. References close the document, in one citation style named on the first page and used throughout, with every in-text citation in the list and every entry in the list cited somewhere in the text. Citations lead with the claim and carry the source at the end of the sentence. The portfolio that `v2v::new_portfolio()` scaffolded in Chapter 9 already holds this skeleton: `index.qmd` for the abstract, `01-introduction.qmd` through `04-discussion.qmd` for the four sections, `05-reflection.qmd` for the reflection below, and `references.qmd` with a `references.bib` beside it for the sources. The structure is not bureaucracy. It is a contract with the reader: anyone who has read empirical work knows it holds these parts in this order, and knows exactly where to look for the question, the procedure, the finding, and the meaning.
+A short **abstract** sits in front, one paragraph that carries four things in order: the question, the method, the finding, and what the finding implies. An abstract that skips the finding, which is the common failure, is a description of a plan. References close the document, in one citation style named on the first page and used throughout, with every in-text citation in the list and every entry in the list cited somewhere in the text. Citations lead with the claim and carry the source at the end of the sentence. The portfolio that `new_portfolio()`, from the course package, v2v, scaffolded in Chapter 9 already holds this skeleton: `index.qmd` for the abstract, `01-introduction.qmd` through `04-discussion.qmd` for the four sections, `05-reflection.qmd` for the reflection below, and `references.qmd` with a `references.bib` beside it for the sources. The structure is not bureaucracy. It is a contract with the reader: anyone who has read empirical work knows it holds these parts in this order, and knows exactly where to look for the question, the procedure, the finding, and the meaning.
 
 ## One site, many pages
 
@@ -109,7 +109,7 @@ book:
         - journals/week-01.qmd
 ```
 
-Each section of the report is one page, the codebook and the journals are appendices, each its own `.qmd`, all rendered together and linked by a shared sidebar. Running `quarto render` on the project builds every page at once and writes out a complete website, ready to publish. This is the portfolio synthesis the study has been moving toward since Chapter 9: not a pile of files, but one coherent site that holds the entire study and lets a reader move through it.
+Each section of the report is one page, the codebook and the journals are appendices, each its own `.qmd`, all rendered together and linked by a shared sidebar. Rendering the project (the course's [Render a Quarto Document guide](https://aura-lab.siue.edu/v2v-hub/guides/mc501/11-render-a-quarto-document.html) gives the clicks) builds every page at once and writes out a complete website, ready to publish. This is the portfolio synthesis the study has been moving toward since Chapter 9: not a pile of files, but one coherent site that holds the entire study and lets a reader move through it.
 
 ## Going live
 
@@ -126,10 +126,11 @@ v2v::deploy_portfolio()
 ℹ No renv.lock found - skipping renv check
 ✔ no uncommitted changes
 ✔ _quarto.yml valid
-───────────────────────
-ℹ Rendering 9 pages
+──────────────────────
+✔ Rendering 9 pages
 Publish to GitHub Pages? [y/N] y
-ℹ Publishing to GitHub Pages
+✔ Publishing to GitHub Pages
+ℹ Published to https://your-username.github.io/your-repository/
 ✔ Portfolio live on GitHub Pages.
 ```
 
@@ -140,7 +141,7 @@ Before it publishes anything, the function runs three **pre-flight checks**. It 
 The checks are not red tape. Each one heads off a specific and demoralizing failure: a site that renders on its author's machine and nowhere else, a published page that does not match the work that was actually done, a deployment that collapses at eleven at night the evening a portfolio is due. The function exists so that the last step of a long study is the calm one. What it produces is a URL. The chat study is now a public, reproducible website, one that anyone can read and anyone can rebuild from its source.
 
 ::: {.graduate-extension}
-**The conference poster.** A standard academic communication conference poster is 36 × 24 inches, landscape orientation, structured as: title/authors/institution; abstract (~100 words); background and hypotheses; condensed methods; key results with one or two `theme_v2v()` figures, the finding stated with its effect size; the limitation that matters most; discussion and implications; QR code linking to the OSF pre-registration and/or Quarto portfolio. It is read standing up from three feet away, so it is the study at a glance, not the paper shrunk. The poster is your 90-second pitch. Design the layout of your own 36 × 24 poster, and decide which single figure from your analysis best communicates your main finding in 30 seconds.
+**The conference poster.** A standard academic communication conference poster is 36 × 24 inches, landscape orientation, structured as: title/authors/institution; abstract (~100 words); background and hypotheses; condensed methods; key results with one or two `theme_v2v()` figures, the finding stated with its effect size; the limitation that matters most; discussion and implications; QR code linking to your published portfolio. It is read standing up from three feet away, so it is the study at a glance, not the paper shrunk. The poster is your 90-second pitch. Design the layout of your own 36 × 24 poster, and decide which single figure from your analysis best communicates your main finding in 30 seconds.
 :::
 
 ## The reflection

@@ -21,7 +21,7 @@ This is the ordinary situation at this stage of a study, and closing the gap is 
 
 ## The verbs of data wrangling
 
-The tidyverse handles wrangling through a small set of functions, each of which does one clear thing to a data frame. They are usually called the **dplyr** verbs, after the package they live in, and five of them carry most of the work.
+The tidyverse handles wrangling through a small set of functions, each of which does one clear thing to a **data frame**, R's name for a table of rows and columns. They are usually called the **dplyr** verbs, after the package they live in, and five of them carry most of the work.
 
 **`filter()`** keeps rows that meet a condition and drops the rest. To look at only Bob Ross's messages:
 
@@ -37,17 +37,28 @@ chat %>% select(channel, sender, message)
 
 **`mutate()`** adds a new column, or changes an existing one, computed from the columns already there. **`arrange()`** reorders the rows by a column's values. And **`group_by()`** together with **`summarize()`** collapses many rows into one per group, which is how you compute a per-channel or per-game figure.
 
-The reason these verbs combine so well is a shared design: each one takes a data frame and returns a data frame. That is what lets the pipe string them into a sequence, the output of one verb flowing in as the input of the next. A wrangling pipeline is just verbs chained this way, each step a small readable transformation, the whole chain carrying the data from raw to ready. The rest of this chapter is four such transformations.
+The reason these verbs combine so well is a shared design: each one takes a data frame and returns a data frame. That is what lets the pipe, `%>%` (read it as "and then"), string them into a sequence, the output of one verb flowing in as the input of the next. A wrangling pipeline is just verbs chained this way, each step a small readable transformation, the whole chain carrying the data from raw to ready. The rest of this chapter is four such transformations.
 
 ::: {.graduate-extension}
 **The wrangling script as a methods section.** A wrangling script is a *documented transformation chain*: a sequence of decisions, each recorded in version-controlled code, that connects raw data to analysis-ready data. Every `mutate()`, `filter()`, and `group_by()` is a methodological decision. You decided which cases to exclude and why. You decided how to handle missing values. You decided how to aggregate timestamp data into time windows. When a reviewer asks "how did you handle cases where the streamer's username appeared in the chat?", the answer is in the wrangling script, but only if the script is version-controlled and decision points are commented. For your own study, identify three wrangling decisions a reviewer might challenge, and for each add a comment stating the decision rule and its justification.
+:::
+
+::: {.callout-note}
+## In the course, the R Companion writes these blocks
+
+The R Companion, the course's extension for VS Code, writes code blocks like this chapter's from a menu: run **AURA: Write R code** and look under **R2 Data**.
+
+Step by step:
+
+- [MC 451 guide: Wrangle the Data with Write R Code](https://aura-lab.siue.edu/v2v-hub/guides/mc451/08-wrangling.html)
+- [MC 501 guide: Wrangle the Data with Write R Code](https://aura-lab.siue.edu/v2v-hub/guides/mc501/08-wrangling.html)
 :::
 
 ## Making the timestamp readable
 
 Start with the timestamps, because Chapter 9 already flagged them. The `date` column is a column of very large numbers, and Chapter 8 classified it as interval data with a catch: the number is not a date in any form a person can read.
 
-What the number actually holds is a count of milliseconds elapsed since midnight on the first of January, 1970. That reference moment is the **Unix epoch**, the zero point nearly all computers use to keep time, and counting from it is how a timestamp becomes a single integer. The integer is precise and entirely unreadable. Turning it back into a date is a conversion, `mutate()` is the verb for it, and the course package's `clean_dates()` does the converting. Both tables get the new column, named `ts`, because the join later in this chapter needs it on each side:
+What the number actually holds is a count of milliseconds elapsed since midnight on the first of January, 1970. That reference moment is the **Unix epoch**, the zero point nearly all computers use to keep time, and counting from it is how a timestamp becomes a single integer. The integer is precise and entirely unreadable. Turning it back into a date is a conversion, `mutate()` is the verb for it, and `clean_dates()`, from the course package, v2v, does the converting. Both tables get the new column, named `ts`, because the join later in this chapter needs it on each side:
 
 ```r
 chat <- chat %>%
@@ -56,14 +67,16 @@ streams <- streams %>%
   mutate(ts = clean_dates(date))
 ```
 
-`clean_dates()` divides `date` by 1,000, because `date` counts milliseconds and R's date-times count seconds, then turns the result into a date and time. The same step without the course package is `as_datetime(date / 1000)`, from lubridate, which the tidyverse loads, and `clean_dates()` prints that line the first time you call it. The division is the part it is easy to get wrong by hand. A date-time function expects a count of seconds, but the `date` column is a count of milliseconds, a thousand times finer. Hand it the raw number and it will place every message tens of thousands of years in the future. Dividing by 1,000 converts milliseconds to seconds first. It is a small arithmetic step and the single most common way the hand conversion fails.
+`clean_dates()` divides `date` by 1,000, because `date` counts milliseconds and R's date-times count seconds, then turns the result into a date and time. The same step without v2v is `as_datetime(date / 1000)`, from lubridate, which the tidyverse loads, and `clean_dates()` prints that line the first time you call it. The division is the part it is easy to get wrong by hand. A date-time function expects a count of seconds, but the `date` column is a count of milliseconds, a thousand times finer. Hand it the raw number and it will place every message tens of thousands of years in the future. Dividing by 1,000 converts milliseconds to seconds first. It is a small arithmetic step and the single most common way the hand conversion fails.
 
 So `clean_dates()` is the same operation, not a shortcut around it, and it exists to be read. Learn the arithmetic anyway, because the day you meet a millisecond timestamp outside this course there will be no wrapper waiting for it.
 
 The result is a real date-time. Setting `date` and the new `ts` side by side shows the transformation:
 
 ```r
-chat %>% select(date, ts) %>% slice_head(n = 3)
+chat %>%
+  select(date, ts) %>%
+  slice_head(n = 3)
 ```
 
 ```
@@ -87,7 +100,9 @@ chat <- chat %>%
 ```
 
 ```r
-chat %>% select(message, message_length) %>% slice_head(n = 3)
+chat %>%
+  select(message, message_length) %>%
+  slice_head(n = 3)
 ```
 
 ```
@@ -121,7 +136,7 @@ chat_streams %>% count(no_snapshot = is.na(viewers))
 2 TRUE           11
 ```
 
-Eleven messages arrived before their channel's first snapshot, so they carry `NA` for the stream columns. The same join without the course package is `left_join(chat, streams, by = join_by(channel, closest(ts >= snapshot_ts)))`, and `join_chat_streams()` prints that line the first time you call it. It is a **rolling join**: snapshots come every few minutes and messages every second, so the key is not an exact match but "the nearest earlier snapshot on the same channel." Both tables needed the `ts` column for that, which is why the conversion above ran on `streams` as well as `chat`.
+Eleven messages arrived before their channel's first snapshot, so they carry `NA` for the stream columns. The same join without v2v is `left_join(chat, streams, by = join_by(channel, closest(ts >= snapshot_ts)))`, and `join_chat_streams()` prints that line the first time you call it. It is a **rolling join**: snapshots come every few minutes and messages every second, so the key is not an exact match but "the nearest earlier snapshot on the same channel." Both tables needed the `ts` column for that, which is why the conversion above ran on `streams` as well as `chat`.
 
 ## Labeling gaming and non-gaming
 
@@ -189,7 +204,7 @@ Two channels in the corpus streamed without ever having a category recorded: eve
 
 Three of the study's variables are now columns, and all three were computed. The fourth, message target, cannot be computed. It is the variable the codebook exists for, the one a coder assigns by reading each message, and it reaches R by a different route.
 
-The coding happens outside the script, in a spreadsheet with one row per sampled message, or in the R Companion's data viewer (**AURA: Open the data viewer**), which keeps the codes in a separate file under `data/derived/` and never changes the original. Chapter 10 drew the sample with `v2v::sample_messages()`, and the sample carries each message's `id`. Keep that column: it is the key that will carry the codes back onto the table. Code the messages, save the sheet as a CSV in `data/derived/` with two columns, `id` and `message_target`, and read it in:
+The coding happens outside the script, in a **coding sheet**: a spreadsheet with one row per sampled message. Chapter 10 drew the sample with `v2v::sample_messages()`, and the sample carries each message's `id`. Keep that column: it is the key that will carry the codes back onto the table. Code the messages, save the sheet as a CSV in `data/derived/` with two columns, `id` and `message_target`, and read it in, as below. The course worksheet runs this same route under its own names: its coding sheet is `data/coding-form.csv`, and its hand-coded variable is `reaction_only`. If you code in the data viewer of the R Companion (the **AURA R Companion** icon on VS Code's left edge; the command is **AURA: Open the data viewer**) instead, it saves your codes in `data/derived/` and never changes the original, and its **Insert rebuild code** button writes the lines that bring them back as `coded_data`.
 
 ```r
 codes <- read_csv("data/derived/message_target_codes.csv")
@@ -228,7 +243,9 @@ write_rds(analysis, "data/twitch_analysis.RDS")
 
 The table now has a name, `analysis`, and the last line saves it. `write_rds()` writes an R object to disk exactly as it is, column types included, so the date-time column is still a date-time when the file is read back. A CSV would lose that, and the next chapter would have to redo the conversion. Chapters 12 and 13 begin by reading this one file with `read_rds()`, which is why the name matters: `twitch_analysis.RDS` is the single handoff from wrangling to analysis, and it is the file the Data Wrangling assignment asks for.
 
-Everything above happens in the script. Nothing is done by hand in the console and nothing is edited in the spreadsheet after the codes are saved, because a change made by hand is a change the script cannot reproduce. A step built with the Data group of the AURA Lab R Companion's **Write R code** meets this test, because the menu writes commented code into the script rather than changing the data in place. The test is cheap: restart R, run the script from the top, and see whether the same file comes out. If it does not, a step is missing from the script, and finding it now is far cheaper than finding it in December.
+The course worksheet adds two more columns before it saves: `viewer_band`, each channel's audience band (small, medium, large), and `channel_type`, the gaming split written as the words "gaming" and "non-gaming". Chapters 12 and 13 use `is_gaming`; the worksheets and the R Companion use `channel_type`, which holds the same split.
+
+Everything above happens in the script. Nothing is done by hand in the console and nothing is edited in the spreadsheet after the codes are saved, because a change made by hand is a change the script cannot reproduce. A step built with **R2 Data** in the R Companion's **Write R code** meets this test, because the menu writes commented code into the script rather than changing the data in place. The test is cheap: render the file (in VS Code, **Quarto: Preview**), which runs every chunk from the top in a fresh R session, and see whether the same file comes out. If it does not, a step is missing from the script, and finding it now is far cheaper than finding it in December.
 
 A final `glimpse()` shows what the table has become, before the hand-coded column is joined:
 
@@ -266,7 +283,7 @@ Wrangling that produces tidy data is wrangling that can be audited: the structur
 :::
 
 ::: {.graduate-extension}
-**Never overwrite raw data.** `data/raw/` is read-only after the first commit. Your wrangling script reads from `data/raw/` and writes to `data/processed/`. This separation means you can reproduce the processed dataset from scratch by re-running the wrangling script against the immutable raw data. Overwriting raw data severs this guarantee. To test the guarantee on your own study, re-run your wrangling script from a fresh R session against the raw data: if it does not produce the same processed dataset without manual intervention, find the undocumented dependency you missed.
+**Never overwrite raw data.** Keep what you collected in `data/raw/` exactly as it arrived. Your wrangling script reads from it and writes new files elsewhere, such as `data/twitch_analysis.RDS` or a file in `data/derived/`, never back into `data/raw/`. The course scaffold keeps `data/raw/` off GitHub, so the copy on your computer is the only one: keep a backup. This separation means you can rebuild the processed dataset from scratch by re-running the script against the unchanged raw data. To test it on your own study, render the script in a fresh session: if it does not produce the same file without your help, find the step it depends on that it does not write down.
 :::
 
 ## Looking ahead
