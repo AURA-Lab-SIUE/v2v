@@ -118,8 +118,10 @@ A website sitting in a folder on a laptop is still private. Publishing it means 
 Publishing has a checklist, and the checklist is exactly where studies fail in their final week. `v2v::deploy_portfolio()` is the one route this book uses: it runs the checklist, renders, asks once, and publishes.
 
 ```r
-v2v::deploy_portfolio()
+v2v::deploy_portfolio("twitch-portfolio")
 ```
+
+The one argument is the project folder, `twitch-portfolio` here. The function checks the folder it is given, so naming it lets the call run from the workspace above the project; inside the project folder itself, `v2v::deploy_portfolio()` with nothing between the parentheses does the same.
 
 ```
 ── Pre-flight checks ──

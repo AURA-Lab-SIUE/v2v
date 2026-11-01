@@ -45,7 +45,7 @@ A different question would call for a different test, and three tests cover almo
 | One two-group categorical variable and one continuous variable (gaming status by message length) | **Independent t-test**, `v2v::run_t_test()` | Whether the group means differ, and Cohen's d for by how much |
 | Two continuous variables (a channel's message count by its mean message length) | **Pearson correlation**, `cor.test()` | Whether the two move together, and r for how strongly |
 
-The R Companion (the **AURA R Companion** icon on VS Code's left edge) has a command, **AURA: Check my test choice**, that checks a test you have already chosen against this table; it does not choose for you.
+The R Companion (the **AURA Lab R Companion** icon on VS Code's left edge) has a command, **AURA: Check my test choice**, that checks a test you have already chosen against this table; it does not choose for you.
 
 Pick the row that matches your variables, and write one sentence saying why that test and not another: a chi-square on message length would mean binning a count into categories and throwing away most of what was measured, and a t-test on two continuous variables would mean splitting one of them into two groups at an arbitrary line. Naming the test you rejected and why is how a reader knows the choice was made rather than defaulted. A test applied to the wrong kind of data produces a number, and the number is meaningless. This chapter runs the t-test on the study's central question and then shows the other two on questions the same data can answer.
 
@@ -214,18 +214,19 @@ v2v::run_chi_square(mentions, has_mention, is_gaming)
 ```
 Chi-square test of independence
 has_mention by is_gaming
-
-  N              34762
-  Chi-squared    31.15
-  df             1
-  p-value        < .001
-  Cramer's V     0.03  (negligible)
-
-  The association between has_mention and is_gaming is statistically
-  significant and negligible in size.
+  N                      34762
+  Chi-squared            31.15
+  df                     1
+  p-value                < .001
+  Cramer's V             0.03  (negligible)
+  Smallest expected count 328.87
+  The association between has_mention and is_gaming is statistically significant and negligible in size.
+  The same test without v2v:
+    chisq.test(xtabs(~ has_mention + is_gaming, data = mentions))
+    effectsize::cramers_v(xtabs(~ has_mention + is_gaming, data = mentions), adjust = FALSE)
 ```
 
-The pattern is the same one the t-test produced, and it is worth seeing twice. The p-value is tiny, so the three-point gap is not sampling noise: at-mentions really are a little more common on gaming channels in this sample. The effect size for a chi-square is **Cramer's V**, which runs from zero for no association to one for a perfect one, and 0.03 is as close to zero as a real association gets. Written up: whether a message carries an at-mention is associated with whether its channel is gaming, χ²(1, _N_ = 34,762) = 31.15, _p_ < .001, Cramer's _V_ = 0.03, and the association is negligible. In plain words, addressed chat is a small minority everywhere, and the kind of channel barely moves it.
+The pattern is the same one the t-test produced, and it is worth seeing twice. The p-value is tiny, so the three-point gap is not sampling noise: at-mentions really are a little more common on gaming channels in this sample. The effect size for a chi-square is **Cramer's V**, which runs from zero for no association to one for a perfect one, and 0.03 is as close to zero as a real association gets. Written up: whether a message carries an at-mention is associated with whether its channel is gaming, χ²(1, _N_ = 34,762) = 31.15, _p_ < .001, Cramer's _V_ = 0.03, and the association is negligible. In plain words, addressed chat is a small minority everywhere, and the kind of channel barely moves it. The printout's smallest expected count, 328.87, is far above the usual floor of 5, so the chi-square's assumption about cell sizes holds here.
 
 ## Two continuous variables: correlation
 

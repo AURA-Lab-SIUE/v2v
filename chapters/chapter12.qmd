@@ -114,7 +114,7 @@ ggplot(viewers_over_time, aes(x = six_hour, y = total_viewers, color = category)
 
 The last line is worth a note. `v2v::theme_v2v()` applies a single consistent visual theme, the fonts, spacing, and gridlines of a publication-ready figure, in one call. Every figure in this chapter ends with it, so the three look like members of one set rather than three unrelated charts.
 
-A figure that exists only on the screen is not yet part of the study. Save it to a file from the code that made it, so that the file is rebuilt whenever the figure changes and never falls out of date. The chart blocks of the R Companion (the **AURA R Companion** icon on VS Code's left edge) do this for you: after you select **Run it** on the notice that appears, the saved chart opens in its own VS Code tab. By hand, it is two lines:
+A figure that exists only on the screen is not yet part of the study. Save it to a file from the code that made it, so that the file is rebuilt whenever the figure changes and never falls out of date. The chart blocks of the R Companion (the **AURA Lab R Companion** icon on VS Code's left edge) do this for you: after you select **Run it** on the notice that appears, the saved chart opens in its own VS Code tab. By hand, it is two lines:
 
 ```r
 dir.create("figures", showWarnings = FALSE)   # make the folder if it is missing
@@ -169,21 +169,22 @@ msglen <- analysis %>%
   filter(!is.na(is_gaming)) %>%
   mutate(length_shown = pmin(message_length, 120))
 
-ggplot(msglen, aes(x = length_shown, fill = is_gaming)) +
+ggplot(msglen, aes(x = length_shown, y = after_stat(density * width),
+                   fill = is_gaming)) +
   geom_histogram(binwidth = 5, position = "identity", alpha = 0.55) +
   labs(
     title = "Message length, gaming versus non-gaming channels",
     x = "Message length (characters, capped at 120)",
-    y = "Messages",
+    y = "Share of the group's messages",
     fill = "Gaming channel"
   ) +
   v2v::scale_fill_v2v() +
   v2v::theme_v2v()
 ```
 
-Two choices in that code shape the figure and both have to be disclosed. The `binwidth = 5` sets each bar to cover five characters; a wider bin smooths the shape and a narrower one roughens it, and the number is a judgment the analyst makes and reports. The `pmin(message_length, 120)` caps the displayed length at 120 characters, so every message longer than that lands in the final bar. Twitch's real message limit is far higher, 500 characters, so that last bar is a genuine pile-up of long messages compressed into one place. Capping keeps the bulk of the distribution legible instead of stretched thin by a few very long outliers, but a cap that is not announced is a quiet distortion. The axis label says "capped at 120" for exactly that reason.
+Three choices in that code shape the figure and all have to be disclosed. The `y = after_stat(density * width)` draws each bar as a share of its own group's messages rather than a count, so the bars of each group add up to 1. Gaming channels carry about nine messages in ten here, so by count the non-gaming shape would barely show. The `binwidth = 5` sets each bar to cover five characters; a wider bin smooths the shape and a narrower one roughens it, and the number is a judgment the analyst makes and reports. The `pmin(message_length, 120)` caps the displayed length at 120 characters, so every message longer than that lands in the final bar. Twitch's real message limit is far higher, 500 characters, so that last bar is a genuine pile-up of long messages compressed into one place. Capping keeps the bulk of the distribution legible instead of stretched thin by a few very long outliers, but a cap that is not announced is a quiet distortion. The axis label says "capped at 120" for exactly that reason.
 
-![Overlaid histograms of message length for gaming and non-gaming channels, bin width five characters, lengths capped at 120.](../images/fig12-3-msglen-by-context.png){fig-alt="Two overlaid histograms of message length. Both are heavily right-skewed, with most messages short, under 20 characters, and a long thin tail toward longer messages. The gaming distribution is far taller because it has many more messages, and a small pile-up bar appears at the 120-character cap."}
+![Overlaid histograms of message length for gaming and non-gaming channels, bin width five characters, lengths capped at 120.](../images/fig12-3-msglen-by-context.png){fig-alt="Two overlaid histograms of message length. Both are heavily right-skewed, with most messages short, under 20 characters, and a long thin tail toward longer messages. Each group is drawn as shares of its own messages, so the two shapes sit at comparable heights: a little over half of each group's messages are under 20 characters. A pile-up bar appears at the 120-character cap, higher for non-gaming channels, about 5 percent of their messages against about 3 percent for gaming."}
 
 The figure shows, first, a shape both groups share. Each distribution is heavily **right-skewed**: a tall stack of very short messages at the left, then a long thin tail trailing off to the right. Twitch chat is mostly brief, a word or an emote, with a minority of longer messages stretching the range. This is the most important thing the histogram reveals, and it is invisible in any single summary number.
 
