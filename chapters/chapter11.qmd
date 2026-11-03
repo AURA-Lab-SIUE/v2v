@@ -125,7 +125,8 @@ The information the central research question turns on lives in the other table,
 ```r
 chat_streams <- join_chat_streams(chat, streams)
 
-chat_streams %>% count(no_snapshot = is.na(viewers))
+chat_streams %>%
+  count(no_snapshot = is.na(viewers))
 ```
 
 ```
@@ -144,41 +145,38 @@ Every message also needs a label: did it come from a gaming channel or a non-gam
 
 Gaming or non-gaming is best understood as a property of the channel, fixed by what the channel mostly streams. Bob Ross's channel streams painting; it is a non-gaming channel, and every message in it is a non-gaming message. So the label is built in three steps: find what each channel mostly streams, decide whether that counts as gaming, and attach the decision to every message from that channel.
 
-The first step reaches into the stream table. Each channel appears there many times, once per snapshot, each snapshot carrying the `game` it was streaming. The channel's dominant category is the **modal** category, the one that appears most often:
+The course package does the first two steps and hands back the result as a table, because both steps need more dplyr than this chapter teaches. `twitch_channels()` returns one row per channel. The two columns this chapter needs are `main_game`, the category the channel streamed most often across the week, and `is_gaming`, whether that category is a game; the other three (`channel_type`, `median_viewers`, and `viewer_band`) are the same split as words and the channel's audience size, which the course worksheet uses.
 
 ```r
-channel_type <- streams %>%
-  filter(!is.na(game)) %>%
-  count(channel, game) %>%
-  group_by(channel) %>%
-  slice_max(n, n = 1, with_ties = FALSE) %>%
-  ungroup()
+channels <- twitch_channels()
+
+channels %>%
+  select(channel, main_game, is_gaming)
 ```
 
-The pipeline reads in order. Drop snapshots with no recorded category. Count how many snapshots each channel logged in each category. Then, within each channel, keep only the single most frequent category. The result is one row per channel, naming what that channel streamed most.
-
-The second step is a judgment, and it should be visible rather than buried. Twitch sorts streams into categories, and some of those categories are not games: painting under Art, unstructured talk under Just Chatting, and others. Listing them explicitly states the rule the study is using:
-
-```r
-nongaming_categories <- c(
-  "Art", "ASMR", "Beauty & Body Art", "Creative", "Food & Drink",
-  "IRL", "Just Chatting", "Makers & Crafting", "Music",
-  "Music & Performing Arts", "Science & Technology",
-  "Sports & Fitness", "Talk Shows & Podcasts", "Travel & Outdoors"
-)
-
-channel_type <- channel_type %>%
-  mutate(is_gaming = !(game %in% nongaming_categories)) %>%
-  select(channel, main_game = game, is_gaming)
+```
+# A tibble: 50 × 3
+  channel         main_game         is_gaming
+  <chr>           <chr>             <lgl>
+1 704cb1fgnty     <NA>              NA
+2 animeilluminati Tekken 7          TRUE
+3 asmongold       World of Warcraft TRUE
+4 avew1004        Hearthstone       TRUE
+5 bobross         Art               FALSE
+# ℹ 45 more rows
 ```
 
-`game %in% nongaming_categories` asks whether a channel's dominant category is on the non-gaming list; the `!` negates it, so `is_gaming` is `TRUE` for every channel whose main category is a game and `FALSE` otherwise. `select()` also renames the category `main_game`, because `chat_streams` already has a `game` column, the category at each message. `channel_type` is now a compact lookup table: one row per channel, the channel's usual category, and a column saying gaming or not. Chapters 12 and 13 group by `main_game` whenever they mean the channel's category; grouping by `game` instead runs without an error and produces different numbers.
+The first row already shows a channel with no category at all; the end of this section returns to it.
+
+Two judgments sit inside that table, and a reader of the study should be able to see both. The first is what "mostly streams" means: here it is the **modal** category, the one that appears in the most snapshots for that channel, with ties broken by taking the first. The second is which categories count as non-gaming. Twitch sorts streams into categories, and some of those categories are not games: painting under Art, unstructured talk under Just Chatting, music, cooking, and a dozen others. The package keeps that list, and `twitch_channels()` prints the dplyr it stands for the first time you call it, so you can read the list and the `slice_max()` step that picks the mode. Chapter 12 returns to what is on it. Whether you write the rule yourself or take it from a package, the rule is a choice, and a methods section names it.
+
+`main_game` is a separate column from `game` because `chat_streams` already has a `game` column, the category at each message. Chapters 12 and 13 group by `main_game` whenever they mean the channel's category; grouping by `game` instead runs without an error and produces different numbers.
 
 The third step is the second **join**. A join brings columns from one table onto another by matching on a shared key, here the channel name. A `left_join()` keeps every row of `chat_streams` and attaches the matching `main_game` and `is_gaming` values to it:
 
 ```r
 chat_streams <- chat_streams %>%
-  left_join(channel_type, by = "channel")   # join key: channel, the column both tables share
+  left_join(channels, by = "channel")   # join key: channel, the column both tables share
 ```
 
 The comment on that line is not decoration. A join is the step a reader is most likely to question, and a comment naming the key is how the script answers before the question is asked. A join is only as good as the match between its keys, and that is worth a word of warning. Twitch's chat protocol writes channel names with a leading "#", so the same channel can appear as `#bobross` in one source and `bobross` in another. Join two tables whose keys disagree like that and every row fails to match, silently. The `v2v` fixture has already normalized this, the "#" stripped before the data ever reached you, but raw Twitch data would need that cleaning step first. When a join returns nothing, mismatched keys are the first thing to check.
@@ -186,7 +184,8 @@ The comment on that line is not decoration. A join is the step a reader is most 
 One result of the join deserves attention. Always inspect a column you just derived:
 
 ```r
-chat_streams %>% count(is_gaming)
+chat_streams %>%
+  count(is_gaming)
 ```
 
 ```
@@ -198,7 +197,7 @@ chat_streams %>% count(is_gaming)
 3 NA          501
 ```
 
-Two channels in the corpus streamed without ever having a category recorded: every one of their stream snapshots had a missing `game`. With no categories at all, there is no modal category, so those channels never made it into `channel_type`, and the `left_join()` left their messages with `is_gaming` set to `NA`. That is the correct outcome, not a bug. The data genuinely does not say whether those 501 messages came from gaming channels, and an honest `NA` records that the study cannot classify them. They will sit out the gaming comparison rather than being guessed into one side of it.
+Two channels in the corpus streamed without ever having a category recorded: every one of their stream snapshots had a missing `game`. With no categories at all, there is no modal category, so their rows in `channels` carry `NA` for `main_game` and `is_gaming`, and the `left_join()` carried that `NA` onto every one of their messages. That is the correct outcome, not a bug. The data genuinely does not say whether those 501 messages came from gaming channels, and an honest `NA` records that the study cannot classify them. They will sit out the gaming comparison rather than being guessed into one side of it.
 
 ## Adding the variable you coded by hand
 
@@ -216,7 +215,8 @@ chat_streams <- chat_streams %>%
 Two things are true of the result, and both are correct. Every message you coded now carries its code. Every message you did not code carries `NA` for `message_target`, because the variable exists only where a coder assigned it, and the thousands of messages outside the sample were never coded. A count makes that visible:
 
 ```r
-chat_streams %>% count(message_target)
+chat_streams %>%
+  count(message_target)
 ```
 
 The `NA` row will be by far the largest. That is the shape of a hand-coded variable in a large dataset: a column that is full for the sample and empty everywhere else, and an analysis of that variable runs on the sample alone. The same route carries any hand-coded variable, from any material. Code it in a sheet keyed on the unit's identifier, save it where the script can read it, and join it on the key.
@@ -235,7 +235,7 @@ streams <- twitch_streams() %>%
   mutate(ts = clean_dates(date))
 
 analysis <- join_chat_streams(chat, streams) %>%   # join key: channel, nearest earlier snapshot
-  left_join(channel_type, by = "channel") %>%      # join key: channel
+  left_join(channels, by = "channel") %>%          # join key: channel
   left_join(codes, by = "id")                      # join key: id
 
 write_rds(analysis, "data/twitch_analysis.RDS")
@@ -243,7 +243,7 @@ write_rds(analysis, "data/twitch_analysis.RDS")
 
 The table now has a name, `analysis`, and the last line saves it. `write_rds()` writes an R object to disk exactly as it is, column types included, so the date-time column is still a date-time when the file is read back. A CSV would lose that, and the next chapter would have to redo the conversion. Chapters 12 and 13 begin by reading this one file with `read_rds()`, which is why the name matters: `twitch_analysis.RDS` is the single handoff from wrangling to analysis, and it is the file the Data Wrangling assignment asks for.
 
-The course worksheet adds two more columns before it saves: `viewer_band`, each channel's audience band (small, medium, large), and `channel_type`, the gaming split written as the words "gaming" and "non-gaming". Chapters 12 and 13 use `is_gaming`; the worksheets and the R Companion use `channel_type`, which holds the same split.
+The join also brought two columns the course worksheet uses: `viewer_band`, each channel's audience band (small, medium, large), and `channel_type`, the gaming split written as the words "gaming" and "non-gaming". Chapters 12 and 13 use `is_gaming`; the worksheets and the R Companion use `channel_type`, which holds the same split.
 
 Everything above happens in the script. Nothing is done by hand in the console and nothing is edited in the spreadsheet after the codes are saved, because a change made by hand is a change the script cannot reproduce. A step built with **R2 Data** in the R Companion's **Write R code** meets this test, because the menu writes commented code into the script rather than changing the data in place. The test is cheap: render the file (in VS Code, **Quarto: Preview**), which runs every chunk from the top in a fresh R session, and see whether the same file comes out. If it does not, a step is missing from the script, and finding it now is far cheaper than finding it in December.
 

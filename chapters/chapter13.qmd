@@ -64,7 +64,7 @@ Step by step:
 
 ## Running the test
 
-The test itself is two plain calls. `t.test()` runs the Welch test and `broom::tidy()` turns its result into a one-row table; `effectsize::cohens_d()` adds the effect size. `run_t_test()`, from the course package, v2v, takes the data, the variable to compare, and the variable that splits it into groups, and prints the same numbers in one labeled block, so it serves as a check. Under **R4 Test**, the R Companion's **Write R code** writes the two plain calls first and the check after them:
+The test itself is one line. `run_t_test()`, from the course package, v2v, takes the data, the variable to compare, and the variable that splits it into groups. It runs the Welch test with `t.test()`, adds the effect size with `effectsize::cohens_d()`, and prints the result in one labeled block, ending with those two plain calls so you can see what it stands for. Under **R4 Test**, the R Companion's **Write R code** writes this same line:
 
 ```r
 library(tidyverse)
@@ -72,15 +72,10 @@ library(v2v)
 
 analysis <- read_rds("data/twitch_analysis.RDS")
 
-t.test(message_length ~ is_gaming, data = analysis) %>%
-  broom::tidy()
-
-effectsize::cohens_d(message_length ~ is_gaming, data = analysis)
-
-run_t_test(analysis, value = message_length, group = is_gaming)   # check: the same numbers
+run_t_test(analysis, value = message_length, group = is_gaming)
 ```
 
-The check prints:
+It prints:
 
 ```
 Welch two-sample t-test
