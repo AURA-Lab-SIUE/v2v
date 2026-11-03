@@ -83,19 +83,16 @@ The first question is about viewership. Across the collection week, how did the 
 
 When the horizontal axis is time and the vertical axis is a quantity that rises and falls, the natural geometry is the **line chart**. A line connects one moment to the next, and the eye reads the climb and the drop as a single continuous motion. That is what makes a line right for change over time and wrong for unordered categories: it implies that the points are in sequence and that the space between them is real.
 
-The data needs shaping first, the kind of dplyr work Chapter 11 covered. The stream snapshots are grouped into six-hour buckets, the long tail of games is collapsed so that only the five most common categories keep their names and the rest become "Other," and the viewer counts are summed within each bucket:
+The data needs shaping first, and the shaping takes three dplyr steps the course has not taught: the stream snapshots are grouped into six-hour buckets, the long tail of games is collapsed so that only the five most common categories keep their names and the rest become "Other," and the viewer counts are summed within each bucket. The course package does that work and returns the table ready to plot, and prints the dplyr it stands for the first time you call it:
 
 ```r
-viewers_over_time <- streams %>%
-  filter(!is.na(game)) %>%
-  mutate(
-    ts        = clean_dates(date),
-    six_hour  = floor_date(ts, "6 hours"),
-    category  = fct_lump_n(game, n = 5)
-  ) %>%
-  group_by(six_hour, category) %>%
-  summarize(total_viewers = sum(viewers), .groups = "drop")
+viewers_over_time <- twitch_viewers_over_time()
+
+viewers_over_time %>%
+  count(category)
 ```
+
+The count shows the six categories a line will be drawn for: the five most common games and "Other."
 
 With the data in shape, the figure itself is short. The aesthetic mappings send the time bucket to the x-axis, the summed viewers to the y-axis, and the game category to color, so each category gets its own line:
 
