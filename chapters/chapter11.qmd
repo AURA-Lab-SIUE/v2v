@@ -145,22 +145,28 @@ Every message also needs a label: did it come from a gaming channel or a non-gam
 
 Gaming or non-gaming is best understood as a property of the channel, fixed by what the channel mostly streams. Bob Ross's channel streams painting; it is a non-gaming channel, and every message in it is a non-gaming message. So the label is built in three steps: find what each channel mostly streams, decide whether that counts as gaming, and attach the decision to every message from that channel.
 
-The course package does the first two steps and hands back the result as a table, because both steps need more dplyr than this chapter teaches. `twitch_channels()` returns one row per channel: `main_game`, the category the channel streamed most often across the week, and `is_gaming`, whether that category is a game.
+The course package does the first two steps and hands back the result as a table, because both steps need more dplyr than this chapter teaches. `twitch_channels()` returns one row per channel. The two columns this chapter needs are `main_game`, the category the channel streamed most often across the week, and `is_gaming`, whether that category is a game; the other three (`channel_type`, `median_viewers`, and `viewer_band`) are the same split as words and the channel's audience size, which the course worksheet uses.
 
 ```r
 channels <- twitch_channels()
 
-channels
+channels %>%
+  select(channel, main_game, is_gaming)
 ```
 
 ```
-# A tibble: 48 × 3
-  channel        main_game        is_gaming
-  <chr>          <chr>            <lgl>
-1 bobross        Creative         FALSE
-2 giantwaffle    Just Chatting    FALSE
-3 ...
+# A tibble: 50 × 3
+  channel         main_game         is_gaming
+  <chr>           <chr>             <lgl>
+1 704cb1fgnty     <NA>              NA
+2 animeilluminati Tekken 7          TRUE
+3 asmongold       World of Warcraft TRUE
+4 avew1004        Hearthstone       TRUE
+5 bobross         Art               FALSE
+# ℹ 45 more rows
 ```
+
+The first row already shows a channel with no category at all; the end of this section returns to it.
 
 Two judgments sit inside that table, and a reader of the study should be able to see both. The first is what "mostly streams" means: here it is the **modal** category, the one that appears in the most snapshots for that channel, with ties broken by taking the first. The second is which categories count as non-gaming. Twitch sorts streams into categories, and some of those categories are not games: painting under Art, unstructured talk under Just Chatting, music, cooking, and a dozen others. The package keeps that list, and `twitch_channels()` prints the dplyr it stands for the first time you call it, so you can read the list and the `slice_max()` step that picks the mode. Chapter 12 returns to what is on it. Whether you write the rule yourself or take it from a package, the rule is a choice, and a methods section names it.
 
@@ -191,7 +197,7 @@ chat_streams %>%
 3 NA          501
 ```
 
-Two channels in the corpus streamed without ever having a category recorded: every one of their stream snapshots had a missing `game`. With no categories at all, there is no modal category, so those channels have no row in `channels`, and the `left_join()` left their messages with `is_gaming` set to `NA`. That is the correct outcome, not a bug. The data genuinely does not say whether those 501 messages came from gaming channels, and an honest `NA` records that the study cannot classify them. They will sit out the gaming comparison rather than being guessed into one side of it.
+Two channels in the corpus streamed without ever having a category recorded: every one of their stream snapshots had a missing `game`. With no categories at all, there is no modal category, so their rows in `channels` carry `NA` for `main_game` and `is_gaming`, and the `left_join()` carried that `NA` onto every one of their messages. That is the correct outcome, not a bug. The data genuinely does not say whether those 501 messages came from gaming channels, and an honest `NA` records that the study cannot classify them. They will sit out the gaming comparison rather than being guessed into one side of it.
 
 ## Adding the variable you coded by hand
 
@@ -229,7 +235,7 @@ streams <- twitch_streams() %>%
   mutate(ts = clean_dates(date))
 
 analysis <- join_chat_streams(chat, streams) %>%   # join key: channel, nearest earlier snapshot
-  left_join(channel_type, by = "channel") %>%      # join key: channel
+  left_join(channels, by = "channel") %>%          # join key: channel
   left_join(codes, by = "id")                      # join key: id
 
 write_rds(analysis, "data/twitch_analysis.RDS")
@@ -237,7 +243,7 @@ write_rds(analysis, "data/twitch_analysis.RDS")
 
 The table now has a name, `analysis`, and the last line saves it. `write_rds()` writes an R object to disk exactly as it is, column types included, so the date-time column is still a date-time when the file is read back. A CSV would lose that, and the next chapter would have to redo the conversion. Chapters 12 and 13 begin by reading this one file with `read_rds()`, which is why the name matters: `twitch_analysis.RDS` is the single handoff from wrangling to analysis, and it is the file the Data Wrangling assignment asks for.
 
-The course worksheet adds two more columns before it saves: `viewer_band`, each channel's audience band (small, medium, large), and `channel_type`, the gaming split written as the words "gaming" and "non-gaming". Chapters 12 and 13 use `is_gaming`; the worksheets and the R Companion use `channel_type`, which holds the same split.
+The join also brought two columns the course worksheet uses: `viewer_band`, each channel's audience band (small, medium, large), and `channel_type`, the gaming split written as the words "gaming" and "non-gaming". Chapters 12 and 13 use `is_gaming`; the worksheets and the R Companion use `channel_type`, which holds the same split.
 
 Everything above happens in the script. Nothing is done by hand in the console and nothing is edited in the spreadsheet after the codes are saved, because a change made by hand is a change the script cannot reproduce. A step built with **R2 Data** in the R Companion's **Write R code** meets this test, because the menu writes commented code into the script rather than changing the data in place. The test is cheap: render the file (in VS Code, **Quarto: Preview**), which runs every chunk from the top in a fresh R session, and see whether the same file comes out. If it does not, a step is missing from the script, and finding it now is far cheaper than finding it in December.
 
