@@ -13,7 +13,10 @@ Rules:
   - Fenced code blocks -> dropped (the prose already carries the concept).
   - Figures -> read from caption (fallback fig-alt), prefixed "Figure.".
   - Callout divs -> read as prose.
-  - Inline: parenthetical citations, markdown emphasis, links, URLs stripped.
+  - The .chapter-audio player block (its "Listen in Dr. Leith's voice" label) and
+    pipe-table rows -> dropped (2026-10-24: both were being narrated).
+  - Inline: parenthetical citations, markdown emphasis (* and _), links, bracketed
+    spans ([text]{.class} -> text), URLs stripped.
 Two tracks from one parse:
   undergrad = [s for s in segments if not s["grad"]]
   grad      = segments (all)
@@ -27,9 +30,11 @@ def clean(t: str) -> str:
     t = t.replace('%>%', 'pipe symbol').replace('|>', 'pipe symbol')
     t = re.sub(r'!\[[^\]]*\]\([^)]*\)\{[^}]*\}', '', t)          # stray inline image
     t = re.sub(r'\[([^\]]+)\]\([^)]+\)', r'\1', t)                # [text](url) -> text
+    t = re.sub(r'\[([^\]]+)\]\{[^}]*\}', r'\1', t)                # [text]{.class} -> text
     t = re.sub(r'\s*\((?:[^()]*?\b(?:19|20)\d{2}[a-z]?)[^()]*\)', '', t)  # (Author, 2017a)
     t = re.sub(r'\*\*([^*]+)\*\*', r'\1', t)                      # bold
-    t = re.sub(r'(?<!\w)\*([^*]+)\*(?!\w)', r'\1', t)             # italic
+    t = re.sub(r'(?<!\w)\*([^*]+)\*', r'\1', t)                   # italic (also *k*th)
+    t = re.sub(r'(?<![\w\\])_([^_\s][^_]*?)_(?!\w)', r'\1', t)    # _italic_ (not snake_case)
     t = re.sub(r'`([^`]+)`', r'\1', t)                           # inline code
     t = re.sub(r'https?://\S+', '', t)                           # bare URL/DOI
     t = re.sub(r'\s+([,.;:!?])', r'\1', t)
@@ -71,6 +76,9 @@ def parse(path: pathlib.Path):
 
     def in_grad():
         return any('graduate-extension' in c for c in div_stack)
+
+    def in_player():
+        return any('chapter-audio' in c for c in div_stack)
 
     def flush():
         if not buf:
@@ -128,7 +136,13 @@ def parse(path: pathlib.Path):
             i += 1
             continue
 
-        if skip_grad_readings:
+        if skip_grad_readings or in_player():
+            i += 1
+            continue
+
+        # pipe table row (header, rule, or body): a table is not read aloud
+        if stripped.startswith('|'):
+            flush()
             i += 1
             continue
 

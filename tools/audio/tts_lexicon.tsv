@@ -1,0 +1,83 @@
+# v2v chapter TTS lexicon (2026-10-24, #ttsrepass). Applied ONLY to the TTS input at render time (render_orator.py), never to
+# the chapters or the narration JSON. Tab-separated: scope<TAB>find<TAB>replace<TAB>why. scope * = every chapter; chNN = that
+# chapter only, and the rule MUST match there (tts_lexicon.py check fails otherwise). find is a literal, case-sensitive string
+# matched on word boundaries. Sources: MC 427 kit tts_lexicon.tsv (phoneme read 2026-10-12) and the owner's 2026-09-20 ear verdicts.
+*	Copilot's	Co pilot's	raw possessive voiced copulet in 7 of 9 MC 427 instances; Co pilot's 9 of 9
+*	Copilot	Co pilot	house respelling (owner 2026-09-20); one-word Copilot is mispronounced, Co-pilot inserts a 0.09 s gap
+*	VSCode's	V S Code's	phonetics spaces VSCode but not its possessive
+*	Part I	Part one	roman numeral
+*	Part II	Part two	roman numeral
+*	Part III	Part three	roman numeral; phonetics lowercases it to iii
+*	Part IV	Part four	roman numeral
+*	Part V	Part five	roman numeral
+ch11	the! negates it	the exclamation mark negates it	the ! operator, its backticks stripped
+ch12	The + is ggplot2's way	The plus sign is ggplot2's way	the + operator
+ch04	stream* finds	stream star finds	the wildcard is spoken
+ch10	every kth case	every k-th case	ordinal letter
+# Past-tense and participle "read": pin the /red/ vowel (MC 427 method, confirmed /rEd/ by phoneme read 2026-10-13).
+ch04	demonstrate you have read enough	demonstrate you have red enough	past participle
+ch04	when you have read enough to claim	when you have red enough to claim	past participle
+ch04	you have already read.	you have already red.	past participle
+ch04	you have read everything	you have red everything	past participle
+ch04	you have read enough to identify	you have red enough to identify	past participle
+ch04	sources you have already read	sources you have already red	past participle
+ch06	You have read thirty articles	You have red thirty articles	past participle
+ch07	cannot be read off the surface	cannot be red off the surface	past participle
+ch09	say what you watched or read	say what you watched or red	past tense
+ch09	is read from the message text	is red from the message text	past participle
+ch10	a standard to be read against	a standard to be red against	past participle
+ch11	it exists to be read	it exists to be red	past participle
+ch11	none of which can be read off	none of which can be red off	past participle
+ch11	when the file is read back	when the file is red back	past participle
+ch12	That fact can be read two ways	That fact can be red two ways	past participle
+ch13	labeled exploratory and read with	labeled exploratory and red with	past participle
+ch13	read from the nearest earlier stream snapshot	red from the nearest earlier stream snapshot	past participle
+ch13	cannot be read as a single	cannot be red as a single	past participle
+ch14	the literature you read rather	the literature you red rather	past tense
+ch14	right there to be read	right there to be red	past participle
+ch14	anyone who has read empirical work	anyone who has red empirical work	past participle
+ch14	It is read standing up	It is red standing up	past participle
+# Verb "uses": owner 2026-09-20, "uses" -> "is using" (plain verb voiced yooses). The noun in "uses and gratifications" is left.
+ch01	A complete research report uses	A complete research report is using	verb
+ch01	what words a community uses	what words a community is using	verb
+ch01	the tidyverse style this book uses	the tidyverse style this book is using	verb
+ch02	checks the packages this book uses	checks the packages this book is using	verb
+ch02	the book's code uses;	the book's code is using;	verb
+ch03	the United States uses today	the United States is using today	verb
+ch04	reference manager this course uses	reference manager this course is using	verb
+ch04	A systematic search uses	A systematic search is using	verb
+ch04	livestream engagement uses uses-and-gratifications	livestream engagement is using uses-and-gratifications	verb
+ch05	Most communication research uses	Most communication research is using	verb
+ch06	It uses naturalistic data	It is using naturalistic data	verb
+ch07	uses it to set initial categories	is using it to set initial categories	verb
+ch07	The Twitch dataset this book uses spans	The Twitch dataset this book is using spans	verb
+ch08	Chapter 10 uses for two coders	Chapter 10 is using for two coders	verb
+ch09	every package the book's code uses	every package the book's code is using	verb
+ch09	R packages this book uses	R packages this book is using	verb
+ch10	which one it uses and why	which one it is using and why	verb
+ch12	good practice uses both	good practice is using both	verb
+ch13	a number the test uses	a number the test is using	verb
+ch14	uses APA 7th edition	is using APA 7th edition	verb
+ch14	the one route this book uses	the one route this book is using	verb
+# Verb "separate": owner 2026-09-20, the verb voiced as the adjective sep-rit; rewrite ("draw a line between"). The adjective is left.
+ch01	is what separates a methodologically literate scholar from a technician	is what draws a line between a methodologically literate scholar and a technician	verb
+ch02	use to separate "good enough" practices from "best" ones	use to draw a line between "good enough" practices and "best" ones	verb
+ch12	separate the lines by more than hue	set the lines apart by more than hue	verb
+ch13	sampling noise separate the two averages	sampling noise lie between the two averages	verb
+# Verb "record": owner 2026-09-20, no respelling produces the ree of the verb; rewrite instead. The noun is left.
+ch01	each records a different kind of case	each captures a different kind of case	verb
+ch01	The chat corpus records what	The chat corpus captures what	verb
+ch01	It records what people made	It captures what people made	verb
+ch02	The renv.lock file records	The renv.lock file writes down	verb
+ch06	observe and record	observe and write down	verb
+ch07	The dataset records that climb	The dataset captures that climb	verb
+ch07	the behaviors the dataset records	the behaviors the dataset captures	verb
+ch07	An observational note records	An observational note captures	verb
+ch07	A methodological note records	A methodological note captures	verb
+ch07	A comparative note records	A comparative note captures	verb
+ch08	Nothing in the dataset records whether	Nothing in the dataset captures whether	verb
+ch10	record the code, move to the next	write down the code, move to the next	verb
+ch10	Record each pass	Write down each pass	verb
+ch11	an honest NA records that	an honest NA captures that	verb
+ch12	38.47, records directly	38.47, captures directly	verb
+ch14	a tool that records the project's	a tool that writes down the project's	verb
