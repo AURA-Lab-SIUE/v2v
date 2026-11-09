@@ -41,8 +41,8 @@ A different question would call for a different test, and three tests cover almo
 
 | Your question pairs | The test | What it reports |
 |---|---|---|
-| Two categorical variables (gaming status by whether a message carries an at-mention) | **Chi-square test** of independence, `v2v::run_chi_square()` | Whether the two are associated, and Cramer's V for how strongly |
-| One two-group categorical variable and one continuous variable (gaming status by message length) | **Independent t-test**, `v2v::run_t_test()` | Whether the group means differ, and Cohen's d for by how much |
+| Two categorical variables (gaming status by whether a message carries an at-mention) | **Chi-square test** of independence, `chisq.test()` | Whether the two are associated, and Cramer's V for how strongly |
+| One two-group categorical variable and one continuous variable (gaming status by message length) | **Independent t-test**, `t.test()` | Whether the group means differ, and Cohen's d for by how much |
 | Two continuous variables (a channel's message count by its mean message length) | **Pearson correlation**, `cor.test()` | Whether the two move together, and r for how strongly |
 
 The R Companion (the **AURA Lab R Companion** icon on VS Code's left edge) has a command, **AURA: Check my test choice**, that checks a test you have already chosen against this table; it does not choose for you.
@@ -64,40 +64,60 @@ Step by step:
 
 ## Running the test
 
-The test itself is one line. `run_t_test()`, from the course package, v2v, takes the data, the variable to compare, and the variable that splits it into groups. It runs the Welch test with `t.test()`, adds the effect size with `effectsize::cohens_d()`, and prints the result in one labeled block, ending with those two plain calls so you can see what it stands for. Under **R4 Test**, the R Companion's **Write R code** writes this same line:
+The test is three short blocks. The first describes each group, because the write-up needs each group's size, mean, and standard deviation, and the test itself does not print them. The second is `t.test()`, R's own t-test, which runs the Welch version by default. The third is `cohens_d()`, from the effectsize package, for the effect size. Under **R4 Test**, the R Companion's **Write R code** writes these same blocks:
 
 ```r
 library(tidyverse)
-library(v2v)
+library(effectsize)
 
 analysis <- read_rds("data/twitch_analysis.RDS")
 
-run_t_test(analysis, value = message_length, group = is_gaming)
+analysis %>%
+  filter(!is.na(is_gaming), !is.na(message_length)) %>%
+  group_by(is_gaming) %>%
+  summarize(n = n(), mean = mean(message_length), sd = sd(message_length))
+
+t.test(message_length ~ is_gaming, data = analysis)
+
+cohens_d(message_length ~ is_gaming, data = analysis)
 ```
 
-It prints:
+The three blocks print:
 
 ```
-Welch two-sample t-test
-message_length by is_gaming
-  FALSE                  n = 3457, mean = 33.70, SD = 60.68
-  TRUE                   n = 31305, mean = 28.49, SD = 38.47
-  Difference             5.21
-  t                      4.94
-  df                     3768.7
-  p-value                < .001
-  Cohen's d              0.13  (negligible)
+# A tibble: 2 × 4
+  is_gaming     n  mean    sd
+  <lgl>     <int> <dbl> <dbl>
+1 FALSE      3457  33.7  60.7
+2 TRUE      31305  28.5  38.5
+
+	Welch Two Sample t-test
+
+data:  message_length by is_gaming
+t = 4.9418, df = 3768.7, p-value = 8.077e-07
+alternative hypothesis: true difference in means between group FALSE and group TRUE is not equal to 0
+95 percent confidence interval:
+ 3.144345 7.280115
+sample estimates:
+mean in group FALSE  mean in group TRUE 
+           33.70234            28.49011 
+
+Cohen's d |       95% CI
+------------------------
+0.13      | [0.09, 0.16]
+
+- Estimated using pooled SD.
 ```
 
-`FALSE` is non-gaming and `TRUE` is gaming. Below these lines it prints a one-sentence reading and the two plain calls it stands for.
+`FALSE` is non-gaming and `TRUE` is gaming. The `t.test()` and `cohens_d()` lines drop the few messages with no text on their own, which is why the summary filters them out first: every number comes from the same 34,762 messages.
 
-The test is named in the first line as a **Welch** two-sample t-test, and the choice of the Welch version is deliberate. The ordinary t-test assumes the two groups have the same spread, and Chapter 12 showed plainly that they do not: the non-gaming standard deviation, 60.68, is far larger than the gaming standard deviation of 38.47. Welch's t-test drops that assumption, which is why it is the safer default whenever two groups might vary by different amounts.
+The test is named in its first line as a **Welch** two-sample t-test, and the choice of the Welch version is deliberate. The ordinary t-test assumes the two groups have the same spread, and Chapter 12 showed plainly that they do not: the non-gaming standard deviation, 60.7, is far larger than the gaming standard deviation of 38.5. Welch's t-test drops that assumption, which is why it is the safer default whenever two groups might vary by different amounts.
 
 The rest of the output is the result, and it has three parts worth reading slowly. The `t` value, 4.94, measures the gap between the means in units of its own uncertainty: roughly, how many widths of sampling noise separate the two averages. A value near zero would mean the gap is small compared to the noise; a value of about five means it is large compared to the noise. The sign is only direction: R sorts `FALSE` (non-gaming) first, so the difference is non-gaming minus gaming and `t` is positive; listed gaming first, as in the write-up below, it is -4.94. The `df`, or degrees of freedom, is a number the test uses to turn `t` into a probability; Welch's test computes it from the two groups' sizes and spreads, which is why it is not a round number. And the `p-value` is the answer to the question the whole test was built to ask.
 
 ## Reading the p-value
 
-The **p-value** reported here is "< .001," and stating exactly what that means takes care, because the p-value is the most misread number in statistics.
+The **p-value** printed here is `8.077e-07`, R's shorthand for 0.0000008, which a write-up reports as "< .001." Stating exactly what that means takes care, because the p-value is the most misread number in statistics.
 
 It means this: if gaming and non-gaming chat truly had the same mean message length, so that the null hypothesis were true, then drawing a sample with a gap at least as large as the observed five characters would happen less than one time in a thousand. The data are, in other words, very surprising under the assumption that nothing is going on. By the convention that researchers apply, a p-value below the threshold of .05 counts as **statistically significant**, and a p-value this small clears that bar easily. Chance alone is an unconvincing explanation for the gap.
 
@@ -119,7 +139,7 @@ Lakens et al. (2018) argue that different research contexts justify different th
 
 For that, the p-value has to hand the question to a different number: an **effect size**.
 
-A p-value answers "is there a difference." An effect size answers "how much of one." The effect size for a gap between two means is **Cohen's d**, and it works by expressing the gap not in raw characters but in units of how much the data naturally vary. The output reports a Cohen's d of 0.13 (-0.13 with gaming listed first).
+A p-value answers "is there a difference." An effect size answers "how much of one." The effect size for a gap between two means is **Cohen's d**, and it works by expressing the gap not in raw characters but in units of how much the data naturally vary. The output reports a Cohen's d of 0.13 (-0.13 with gaming listed first), with a 95% confidence interval from 0.09 to 0.16.
 
 To read that number, it needs a yardstick, and the standard one comes from Jacob Cohen (1988), who proposed rough benchmarks: a d around 0.2 is a small effect, around 0.5 a medium one, and around 0.8 a large one. A d of 0.13, smaller than even the "small" benchmark, falls into the range usually called negligible. The difference between gaming and non-gaming message length is real, in the sense that the test ruled out chance, and it is also trivially small.
 
@@ -138,7 +158,7 @@ That leaves one question: how did a negligible difference come back statisticall
 
 Read it as a statement about what a null result would have meant: had the test come back non-significant, the sample was large enough that any true difference above about a twentieth of a standard deviation would probably have shown, so the null would have been informative. A study of 60 messages could say no such thing, and its null result would mean only that it could not tell. Report the detectable effect for your own design alongside the *p*-value, and say what it means for a null result; a generic "80 percent power" with no link to your sample sizes is not a power statement.
 
-**The assumptions underneath the t-test.** The test assumes independent observations, similar spread in the two groups, and either roughly normal data within each group or a sample large enough that the mean's distribution is normal anyway. Check each with the diagnostic shown. Spread: the standard deviations of 60.68 and 38.47 from Chapter 12's table differ, so the Welch version is used, which drops that assumption. Normality: the histogram shows strong right skew in both groups, which the sample size absorbs for the mean, though not for any claim about individual messages. Independence is the one that fails here and cannot be fixed by a different test: messages from the same channel are not independent of each other, and the section at the end of this chapter is about what that costs. State what you did about each assumption that fails, not only that you checked it.
+**The assumptions underneath the t-test.** The test assumes independent observations, similar spread in the two groups, and either roughly normal data within each group or a sample large enough that the mean's distribution is normal anyway. Check each with the diagnostic shown. Spread: the standard deviations of 60.7 and 38.5 from the summary above differ, so the Welch version is used, which drops that assumption. Normality: the histogram shows strong right skew in both groups, which the sample size absorbs for the mean, though not for any claim about individual messages. Independence is the one that fails here and cannot be fixed by a different test: messages from the same channel are not independent of each other, and the section at the end of this chapter is about what that costs. State what you did about each assumption that fails, not only that you checked it.
 :::
 
 ## Seeing the difference
@@ -198,30 +218,41 @@ And then, because a string of statistics is not an interpretation, it is written
 
 Chapter 12 left a cross-tabulation on the table: gaming status against whether a message carries an at-mention, with addressed messages at about 7 percent of non-gaming chat and about 10 percent of gaming chat. Both variables are nominal, so the test is the **chi-square test** of independence. It asks whether the counts in the cells differ from what they would be if the two variables had nothing to do with each other.
 
+The test starts from a table of counts. `xtabs()` builds it from the two columns, `sum()` of that table is the N the write-up reports, `chisq.test()` runs the test, `cramers_v()` gives the effect size, and the last line prints the counts the table would hold if the two variables were unrelated.
+
 ```r
 mentions <- analysis %>%
   filter(!is.na(is_gaming), !is.na(message)) %>%
   mutate(has_mention = str_detect(message, "@"))
 
-v2v::run_chi_square(mentions, has_mention, is_gaming)
+counts <- xtabs(~ has_mention + is_gaming, data = mentions)
+sum(counts)
+chi <- chisq.test(counts)
+chi
+cramers_v(counts, adjust = FALSE)
+round(chi$expected, 1)
 ```
 
 ```
-Chi-square test of independence
-has_mention by is_gaming
-  N                      34762
-  Chi-squared            31.15
-  df                     1
-  p-value                < .001
-  Cramer's V             0.03  (negligible)
-  Smallest expected count 328.87
-  The association between has_mention and is_gaming is statistically significant and negligible in size.
-  The same test without v2v:
-    chisq.test(xtabs(~ has_mention + is_gaming, data = mentions))
-    effectsize::cramers_v(xtabs(~ has_mention + is_gaming, data = mentions), adjust = FALSE)
+[1] 34762
+
+	Pearson's Chi-squared test with Yates' continuity correction
+
+data:  counts
+X-squared = 31.154, df = 1, p-value = 2.383e-08
+
+Cramer's V |       95% CI
+-------------------------
+0.03       | [0.02, 1.00]
+
+- One-sided CIs: upper bound fixed at [1.00].
+           is_gaming
+has_mention  FALSE    TRUE
+      FALSE 3128.1 28326.9
+      TRUE   328.9  2978.1
 ```
 
-The pattern is the same one the t-test produced, and it is worth seeing twice. The p-value is tiny, so the three-point gap is not sampling noise: at-mentions really are a little more common on gaming channels in this sample. The effect size for a chi-square is **Cramer's V**, which runs from zero for no association to one for a perfect one, and 0.03 is as close to zero as a real association gets. Written up: whether a message carries an at-mention is associated with whether its channel is gaming, χ²(1, _N_ = 34,762) = 31.15, _p_ < .001, Cramer's _V_ = 0.03, and the association is negligible. In plain words, addressed chat is a small minority everywhere, and the kind of channel barely moves it. The printout's smallest expected count, 328.87, is far above the usual floor of 5, so the chi-square's assumption about cell sizes holds here.
+R applies Yates' continuity correction to a two-by-two table on its own, a small adjustment that makes the test slightly more conservative. The pattern is the same one the t-test produced, and it is worth seeing twice. The p-value is tiny, so the three-point gap is not sampling noise: at-mentions really are a little more common on gaming channels in this sample. The effect size for a chi-square is **Cramer's V**, which runs from zero for no association to one for a perfect one, and 0.03 is as close to zero as a real association gets. Written up: whether a message carries an at-mention is associated with whether its channel is gaming, χ²(1, _N_ = 34,762) = 31.15, _p_ < .001, Cramer's _V_ = 0.03, and the association is negligible. In plain words, addressed chat is a small minority everywhere, and the kind of channel barely moves it. The smallest expected count, 328.9, is far above the usual floor of 5, so the chi-square's assumption about cell sizes holds here. The v2v package keeps `run_t_test()` and `run_chi_square()` as deprecated shortcuts for work already written with them; new work uses the calls above.
 
 ## Two continuous variables: correlation
 

@@ -65,15 +65,19 @@ Each method sets what the study can estimate. The random, stratified, and system
 
 ## Drawing the sample
 
-With the logic settled, the draw itself is one function call. `v2v::sample_messages()` takes the chat table and the number of messages to draw from each channel, with each channel treated as a stratum.
+With the logic settled, the draw itself is a short dplyr pipeline. `group_by()` treats each channel as its own stratum, `slice_sample()` draws from each one, and `ungroup()` hands back one plain table.
 
 ```r
-coding_sample <- v2v::sample_messages(chat, n_per_channel = 30, seed = 409)
+set.seed(409)
+coding_sample <- chat %>%
+  group_by(channel) %>%
+  slice_sample(n = 30) %>%
+  ungroup()
 ```
 
-The `n_per_channel = 30` argument asks for thirty messages from each of the fifty channels. The result holds 1,350 messages rather than 1,500, because several of the small channels hold fewer than thirty and contribute all they have. That is a sample large enough to support the study and small enough to code by hand.
+The `n = 30` argument asks for thirty messages from each of the fifty channels, because the table was grouped by channel first. The result holds 1,350 messages rather than 1,500, because several of the small channels hold fewer than thirty and contribute all they have. That is a sample large enough to support the study and small enough to code by hand.
 
-The `seed` argument is not optional, and it is worth being clear about why. Drawing a sample is a random process: run it twice and you get two different samples. A seed fixes the starting point of R's random number generator, so that the "random" draw comes out identically every time the code is run. Without it, your sample is unreproducible, and an unreproducible sample undermines everything Chapter 2 argued for. Anyone who reruns your analysis, including you in six months, would be working with different messages and could not check your results against the originals. The specific number is arbitrary; 409 has no meaning. What matters is that a number is set and recorded in the call, so the draw is frozen. When you draw a sample with any other function, the same thing is done with `set.seed()` on the line before the draw.
+The `set.seed(409)` line is not optional, and it is worth being clear about why. Drawing a sample is a random process: run it twice and you get two different samples. A seed fixes the starting point of R's random number generator, so that the "random" draw comes out identically every time the code is run. Without it, your sample is unreproducible, and an unreproducible sample undermines everything Chapter 2 argued for. Anyone who reruns your analysis, including you in six months, would be working with different messages and could not check your results against the originals. The specific number is arbitrary; 409 has no meaning. What matters is that a number is set and recorded on the line before the draw, so the draw is frozen. The same two steps, `set.seed()` and then the draw, work on any table and any grouping. The v2v package keeps `sample_messages()` as a deprecated shortcut for work already written with it.
 
 `coding_sample` now holds the messages the study will code. The sampling half of the chapter is nearly done. Two questions remain: how many items the study should code, and whether the codebook is ready to code them.
 

@@ -261,7 +261,7 @@ A figure that is honest about its choices, legible without color, and described 
 :::
 
 ::: {.graduate-extension}
-**Reporting conventions.** For every group comparison in a visualization, report the effect size in the figure caption or a companion table. For group means: Cohen's *d* with a 95% confidence interval. For cross-tabulations: Cramer's *V*. For correlations: *r* and its CI. The `v2v::run_t_test()` and `v2v::run_chi_square()` functions compute all of these automatically and return formatted output ready for the caption. For two figures in your current analysis, report the effect size you would include in the caption; if one effect is small by Cohen's (1988) conventions, consider what that implies for the interpretive claim you planned to make.
+**Reporting conventions.** For every group comparison in a visualization, report the effect size in the figure caption or a companion table. For group means: Cohen's *d* with a 95% confidence interval. For cross-tabulations: Cramer's *V*. For correlations: *r* and its CI. `effectsize::cohens_d()`, `effectsize::cramers_v()`, and `cor.test()` compute these, and Chapter 13 shows each call. For two figures in your current analysis, report the effect size you would include in the caption; if one effect is small by Cohen's (1988) conventions, consider what that implies for the interpretive claim you planned to make.
 :::
 
 ## Looking ahead
