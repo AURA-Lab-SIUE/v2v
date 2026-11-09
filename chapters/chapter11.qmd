@@ -58,18 +58,18 @@ Step by step:
 
 Start with the timestamps, because Chapter 9 already flagged them. The `date` column is a column of very large numbers, and Chapter 8 classified it as interval data with a catch: the number is not a date in any form a person can read.
 
-What the number actually holds is a count of milliseconds elapsed since midnight on the first of January, 1970. That reference moment is the **Unix epoch**, the zero point nearly all computers use to keep time, and counting from it is how a timestamp becomes a single integer. The integer is precise and entirely unreadable. Turning it back into a date is a conversion, `mutate()` is the verb for it, and `clean_dates()`, from the course package, v2v, does the converting. Both tables get the new column, named `ts`, because the join later in this chapter needs it on each side:
+What the number actually holds is a count of milliseconds elapsed since midnight on the first of January, 1970. That reference moment is the **Unix epoch**, the zero point nearly all computers use to keep time, and counting from it is how a timestamp becomes a single integer. The integer is precise and entirely unreadable. Turning it back into a date is a conversion, `mutate()` is the verb for it, and `as_datetime()` does the converting. It comes from lubridate, the tidyverse package for dates, which `library(tidyverse)` loads. Both tables get the new column, named `ts`, because the join later in this chapter needs it on each side:
 
 ```r
 chat <- chat %>%
-  mutate(ts = clean_dates(date))
+  mutate(ts = as_datetime(date / 1000))
 streams <- streams %>%
-  mutate(ts = clean_dates(date))
+  mutate(ts = as_datetime(date / 1000))
 ```
 
-`clean_dates()` divides `date` by 1,000, because `date` counts milliseconds and R's date-times count seconds, then turns the result into a date and time. The same step without v2v is `as_datetime(date / 1000)`, from lubridate, which the tidyverse loads, and `clean_dates()` prints that line the first time you call it. The division is the part it is easy to get wrong by hand. A date-time function expects a count of seconds, but the `date` column is a count of milliseconds, a thousand times finer. Hand it the raw number and it will place every message tens of thousands of years in the future. Dividing by 1,000 converts milliseconds to seconds first. It is a small arithmetic step and the single most common way the hand conversion fails.
+`as_datetime()` expects a count of seconds, but the `date` column is a count of milliseconds, a thousand times finer, so the division by 1,000 comes first. Hand it the raw number and it will place every message tens of thousands of years in the future. It is a small arithmetic step and the single most common way the conversion fails.
 
-So `clean_dates()` is the same operation, not a shortcut around it, and it exists to be read. Learn the arithmetic anyway, because the day you meet a millisecond timestamp outside this course there will be no wrapper waiting for it.
+Your own data will carry its dates in some other form, usually as text, and lubridate has a reader for each: `ymd_hms()` reads `2024-03-01 14:22:05`, and `mdy()` reads `3/1/2024`. Each reader is named for the order in which the text writes the year, month, and day. The step is the same `mutate()` with a different reader inside it. The v2v package keeps `clean_dates()` as a deprecated shortcut for work already written with it.
 
 The result is a real date-time. Setting `date` and the new `ts` side by side shows the transformation:
 
@@ -120,10 +120,14 @@ chat %>%
 
 ## Matching each message to its stream
 
-The information the central research question turns on lives in the other table, so the third transformation is a join, and it is the one `v2v` wraps. `join_chat_streams()` attaches to each message the stream snapshot taken at or before it, on the same channel: the `game` the channel was streaming at that moment, the `viewers` watching, and `snapshot_ts`, the time of that snapshot.
+The information the central research question turns on lives in the other table, so the third transformation is a join. It attaches to each message the stream snapshot taken at or before it, on the same channel: the `game` the channel was streaming at that moment, the `viewers` watching, and `snapshot_ts`, the time of that snapshot. Two blocks do it. The first keeps the four stream columns the join needs and renames the snapshot's time to `snapshot_ts`, so the message's own `ts` keeps its name. The second is the join.
 
 ```r
-chat_streams <- join_chat_streams(chat, streams)
+snapshots <- streams %>%
+  select(channel, snapshot_ts = ts, game, viewers)
+
+chat_streams <- chat %>%
+  left_join(snapshots, by = join_by(channel, closest(ts >= snapshot_ts)))
 
 chat_streams %>%
   count(no_snapshot = is.na(viewers))
@@ -137,7 +141,7 @@ chat_streams %>%
 2 TRUE           11
 ```
 
-Eleven messages arrived before their channel's first snapshot, so they carry `NA` for the stream columns. The same join without v2v is `left_join(chat, streams, by = join_by(channel, closest(ts >= snapshot_ts)))`, and `join_chat_streams()` prints that line the first time you call it. It is a **rolling join**: snapshots come every few minutes and messages every second, so the key is not an exact match but "the nearest earlier snapshot on the same channel." Both tables needed the `ts` column for that, which is why the conversion above ran on `streams` as well as `chat`.
+Eleven messages arrived before their channel's first snapshot, so they carry `NA` for the stream columns. `left_join()` keeps every message, and `join_by(channel, closest(ts >= snapshot_ts))` is the key. It is a **rolling join**: snapshots come every few minutes and messages every second, so the key is not an exact match but "the nearest earlier snapshot on the same channel." Both tables needed the `ts` column for that, which is why the conversion above ran on `streams` as well as `chat`. The same two blocks join any pair of tables where one records moments and the other records states, with your own table and column names in place of these. The v2v package keeps `join_chat_streams()` as a deprecated shortcut for work already written with it.
 
 ## Labeling gaming and non-gaming
 
@@ -203,7 +207,15 @@ Two channels in the corpus streamed without ever having a category recorded: eve
 
 Three of the study's variables are now columns, and all three were computed. The fourth, message target, cannot be computed. It is the variable the codebook exists for, the one a coder assigns by reading each message, and it reaches R by a different route.
 
-The coding happens outside the script, in a **coding sheet**: a spreadsheet with one row per sampled message. Chapter 10 drew the sample with `v2v::sample_messages()`, and the sample carries each message's `id`. Keep that column: it is the key that will carry the codes back onto the table. Code the messages, save the sheet as a CSV in `data/derived/` with two columns, `id` and `message_target`, and read it in, as below. The course worksheet runs this same route under its own names: its coding sheet is `data/coding-form.csv`, and its hand-coded variable is `reaction_only`. If you code in the data viewer of the R Companion (the **AURA Lab R Companion** icon on VS Code's left edge; the command is **AURA: Open the data viewer**) instead, it saves your codes in `data/derived/` and never changes the original, and its **Insert rebuild code** button writes the lines that bring them back as `coded_data`.
+The coding happens outside the script, in a **coding sheet**: a spreadsheet with one row per sampled message. Chapter 10 drew the sample with `slice_sample()`, and the sample carries each message's `id`. Keep that column: it is the key that will carry the codes back onto the table. The sheet starts from the sample, keeping the key and what the coder needs to read:
+
+```r
+coding_sample %>%
+  select(id, channel, message) %>%
+  write_csv("data/coding-form.csv")
+```
+
+The coder adds the code column by hand, in a spreadsheet or in the R Companion's data viewer, and never changes the three columns that came from R. Code the messages, save the sheet as a CSV in `data/derived/` with two columns, `id` and `message_target`, and read it in, as below. The course worksheet runs this same route under its own names: its coding sheet is `data/coding-form.csv`, and its hand-coded variable is `reaction_only`. If you code in the data viewer of the R Companion (the **AURA Lab R Companion** icon on VS Code's left edge; the command is **AURA: Open the data viewer**) instead, it saves your codes in `data/derived/` and never changes the original, and its **Insert rebuild code** button writes the lines that bring them back as `coded_data`.
 
 ```r
 codes <- read_csv("data/derived/message_target_codes.csv")
@@ -228,15 +240,17 @@ Two transformations and three joins, run in sequence, have rebuilt the chat tabl
 ```r
 chat <- twitch_chat() %>%
   mutate(
-    ts = clean_dates(date),
+    ts = as_datetime(date / 1000),
     message_length = str_length(message)
   )
-streams <- twitch_streams() %>%
-  mutate(ts = clean_dates(date))
+snapshots <- twitch_streams() %>%
+  mutate(ts = as_datetime(date / 1000)) %>%
+  select(channel, snapshot_ts = ts, game, viewers)
 
-analysis <- join_chat_streams(chat, streams) %>%   # join key: channel, nearest earlier snapshot
-  left_join(channels, by = "channel") %>%          # join key: channel
-  left_join(codes, by = "id")                      # join key: id
+analysis <- chat %>%
+  left_join(snapshots, by = join_by(channel, closest(ts >= snapshot_ts))) %>%  # nearest earlier snapshot
+  left_join(channels, by = "channel") %>%  # join key: channel
+  left_join(codes, by = "id")              # join key: id
 
 write_rds(analysis, "data/twitch_analysis.RDS")
 ```
@@ -251,22 +265,25 @@ A final `glimpse()` shows what the table has become, before the hand-coded colum
 
 ```
 Rows: 35,267
-Columns: 12
-$ id             <int> 21503485, 21505722, 21506809, 21507051, 21507140, 21507…
-$ channel        <chr> "704cb1fgnty", "704cb1fgnty", "704cb1fgnty", "704cb1fgn…
-$ sender         <chr> "cheezehammer", "lacari_myfave_trihard1", "lacari_myfav…
-$ message        <chr> "FBtouchdown", "TriHard", "ANELE", "TriHard", "TriHard …
-$ date           <dbl> 1.543072e+12, 1.543072e+12, 1.543072e+12, 1.543072e+12,…
-$ ts             <dttm> 2018-11-24 15:01:02, 2018-11-24 15:02:26, 2018-11-24 1…
-$ message_length <int> 11, 7, 5, 7, 15, 23, 31, 23, 15, 5, 7, 8, 22, 10, 4, 8,…
-$ snapshot_ts    <dttm> 2018-11-24 15:00:09, 2018-11-24 15:01:23, 2018-11-24 1…
-$ game           <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-$ viewers        <int> 13628, 14902, 16978, 16978, 16978, 16978, 16978, 16978,…
-$ main_game      <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-$ is_gaming      <lgl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+Columns: 15
+$ id             <int> 89, 551, 1033, 2094, 2803, 10406, 16104, 22571, 31555, …
+$ channel        <chr> "sodapoppin", "xqcow", "forsen", "sodapoppin", "xqcow",…
+$ sender         <chr> "madzee", "prometheanow", "spectre155", "itsjer", "lase…
+$ message        <chr> "???????????????????????", "TriEasy Clap TriEasy Clap T…
+$ date           <dbl> 1.542578e+12, 1.542578e+12, 1.542578e+12, 1.542578e+12,…
+$ ts             <dttm> 2018-11-18 21:55:27, 2018-11-18 21:55:35, 2018-11-18 2…
+$ message_length <int> 23, 441, 8, 12, 206, 37, 6, 7, 4, 7, 3, 4, 12, 21, 3, 7…
+$ snapshot_ts    <dttm> NA, NA, NA, NA, NA, 2018-11-18 21:56:40, 2018-11-18 21…
+$ game           <chr> NA, NA, NA, NA, NA, "Artifact", "Marble It Up!", "Rocke…
+$ viewers        <int> NA, NA, NA, NA, NA, 15300, 28076, 4703, 19239, 28550, 2…
+$ main_game      <chr> "Hand Simulator", "Just Chatting", "The Elder Scrolls V…
+$ is_gaming      <lgl> TRUE, FALSE, TRUE, TRUE, FALSE, TRUE, TRUE, TRUE, FALSE…
+$ channel_type   <fct> gaming, non-gaming, gaming, gaming, non-gaming, gaming,…
+$ median_viewers <dbl> 22944, 16176, 10163, 22944, 16176, 10163, 22944, 4867, …
+$ viewer_band    <fct> large, medium, medium, large, medium, medium, large, sm…
 ```
 
-`join_chat_streams()` sorts the table by channel and then by time, so the first rows shown belong to `704cb1fgnty`, one of the two channels with no recorded category; that is why `game`, `main_game`, and `is_gaming` print `NA` here, and it is the same 501-message `NA` the count above reported, not a broken join.
+The rows keep the order of the raw chat table, so the first rows shown are the first messages of the week, from `sodapoppin`, `xqcow`, and `forsen`. Their `snapshot_ts`, `game`, and `viewers` print `NA` because they arrived before their channel's first snapshot: they are among the eleven unmatched messages the count above reported, not a broken join. The last three columns came from `channels` and are the ones the course worksheet uses.
 
 This is what wrangling was for. The table is now **tidy**, in the precise sense the term carries in data science (Wickham, 2014): each row is one observation, a single chat message; each column is one variable; and everything the study needs sits in this one place. The unreadable integers have become timestamps. Message length and gaming status, named in the codebook and absent from the raw data, are now columns, and so is the hand-coded message target for the sampled messages. The chat and stream tables, once disconnected, are joined twice: once to the snapshot nearest each message, once to the channel's label.
 
