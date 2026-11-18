@@ -211,6 +211,23 @@ Read the `mean` column and a story jumps out: non-gaming messages, the `FALSE` r
 
 The histogram explains how both things can be true at once. The mean is sensitive to a long tail in a way the median is not: a relatively small number of very long messages pulls an average upward while leaving the middle value untouched. The non-gaming group has the heavier tail, which its much larger standard deviation, 60.68 against 38.47, records directly. So the gap in means is real arithmetic, but it is the work of the tail, not of the typical message. Lean only on the mean and you would report that non-gaming chat is longer. The picture, and the median beside it, show that the everyday message is the same and the difference lives in the extremes.
 
+::: {.callout-note}
+## Write it up: descriptive statistics
+
+> Messages on non-gaming channels (_n_ = 3,457) averaged 33.70 characters (_SD_ = 60.68, _Mdn_ = 16), and messages on gaming channels (_n_ = 31,305) averaged 28.49 characters (_SD_ = 38.47, _Mdn_ = 17).
+
+| Part | In the model |
+|:--|:--|
+| Group size | _n_ for each group |
+| Center | _M_, the mean, written as "averaged" |
+| Spread | _SD_, the standard deviation |
+| The typical case | _Mdn_, the median, because message length is skewed |
+
+**Plain sentence:** a typical message runs about 16 or 17 characters on either kind of channel; the averages differ because a few very long messages pull the non-gaming average up.
+
+**Common mistake:** reporting the means alone for a skewed variable, which makes the groups look more different than their typical messages are.
+:::
+
 This is what it means to treat descriptive statistics as a visual setup rather than a verdict. A mean is one number standing in for thousands, and which thousands it stands in for is something only the distribution can show. It also leaves a precise question for the next chapter. There is a gap of about five characters between the two means. Is that gap a real difference between gaming and non-gaming channels, or the kind of wobble that any two samples would show? A figure can frame that question. It cannot answer it.
 
 ::: {.graduate-extension}

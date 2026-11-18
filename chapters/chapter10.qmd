@@ -182,6 +182,26 @@ When you are the only coder, the diagnosis works the same way with one differenc
 
 Three records come out of the pilot, and the sampling plan carries all three. The first is the list of edge cases you hit, each with the decision you made and the rule it became. The second is each change the pilot forced in the codebook, shown with the wording before and the wording after, so a reader can see what moved. A pilot that changed nothing was usually too easy; look again at the cases that slowed you down. The third is the figure itself, reported whether or not it cleared the threshold, with what you changed because of it. The pilot also tells you something about the full run: time it, and the time per item tells you how long the full sample will take and whether the plan's size still fits the budget.
 
+::: {.callout-note}
+## Write it up: a reliability check
+
+> Two coders independently coded the same 100 pilot messages for high-energy expression. They agreed on 74% of the messages, Cohen's κ = .24, below the .70 threshold set before the pilot, so the variable was redefined with written decision rules and piloted again on a fresh set of messages.
+
+| Part | In the model |
+|:--|:--|
+| What was checked | 100 pilot messages, one variable, two coders working independently |
+| Raw agreement | 74% |
+| The coefficient | κ = .24 (R printed 0.236; no zero before the point, because kappa cannot exceed 1) |
+| The bar | .70, set before the pilot |
+| What happened next | The rule was rewritten and piloted again |
+
+**Plain sentence:** the first version of the rule did not tell two careful coders the same thing, so it was rewritten before any real coding began.
+
+**Working alone:** call the number a stability figure and name your first and second passes in place of two coders.
+
+**Common mistake:** reporting the 74% alone, which counts lucky matches as agreement.
+:::
+
 This is why Chapter 9 finalized only the codebook's status and not its content. A codebook is a living instrument right up until a pilot test certifies it, and a pilot test has the standing to send it back for revision however many times that takes. The discipline is to treat a low reliability coefficient as useful news rather than an obstacle. It has told you, before you invested weeks in coding, that the instrument was not yet sound. That is the pilot test working exactly as intended.
 
 ## Looking ahead
