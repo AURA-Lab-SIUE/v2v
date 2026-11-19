@@ -202,7 +202,7 @@ The finding is this. Gaming and non-gaming channels do differ in their mean chat
 
 This is the difference between **statistical significance** and **practical significance**, and it is perhaps the single most important habit this book asks for. Statistical significance asks whether an effect is distinguishable from zero. Practical significance asks whether the effect is large enough to matter. They are not the same question, large samples make them diverge, and a finding is only honestly reported when both are on the page.
 
-In practice that means a result is written up with the full set of numbers, in the compact form journals expect:
+In practice that means a result is written up with the full set of numbers, in the compact form journals expect. The models in this chapter follow APA style, one widely used style; a paper may use another, as long as it keeps to that one style throughout:
 
 > Gaming channels produced shorter chat messages on average than non-gaming channels (28.49 vs. 33.70 characters; _n_ = 31,305 and 3,457), Welch's _t_(3768.7) = -4.94, _p_ < .001, Cohen's _d_ = -0.13.
 
