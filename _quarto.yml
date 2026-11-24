@@ -126,6 +126,15 @@ format:
           document.addEventListener('toggle', mark, true);
         })();
         </script>
+        <script>
+        /* design audit 2026-11-23: Quarto's dialog close buttons (.btn-close, an empty button
+           drawn by a background image) have no accessible name (WCAG 4.1.2). */
+        document.addEventListener('DOMContentLoaded', function () {
+          document.querySelectorAll('.btn-close:not([aria-label])').forEach(function (b) {
+            b.setAttribute('aria-label', 'Close');
+          });
+        });
+        </script>
   # Typst, NOT LaTeX. A LaTeX PDF is UNTAGGED - no /StructTreeRoot, no /Alt -
   # so every fig-alt in this book would be silently discarded in the PDF and
   # Ally would score it red no matter how clean the source is. Typst emits a

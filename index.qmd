@@ -2,8 +2,6 @@
 title: "Welcome"
 ---
 
-# Vibes to Variables {.unnumbered}
-
 *Third Edition (V2V)*
 
 This open educational resource teaches communication and media research methods as a complete arc, from the first spark of curiosity through a published, reproducible study. V2V is written for students who have never opened a stats program and have never written a research paper. It meets them where they are and walks them to a defensible study.
