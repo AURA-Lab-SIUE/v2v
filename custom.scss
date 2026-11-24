@@ -83,7 +83,9 @@ main p,
 main ul,
 main ol,
 main dl {
-  max-width: 68ch;
+  // 62ch, not 68ch: in the serif body 68ch set about 77 characters a line at 1440 px, over the
+  // house 65 to 75 (design audit 2026-11-23, rule D04).
+  max-width: 62ch;
 }
 
 main p { margin-bottom: 1.25rem; }
@@ -816,3 +818,20 @@ code span.vs, pre code span.vs,
 code span.ch, pre code span.ch { color: #186640 !important; }
 code span.cn, pre code span.cn { color: #7A4C02 !important; }
 code span.fu, pre code span.fu { color: #3B4A97 !important; }
+
+// ============================================================
+// design audit 2026-11-23 (labor #design-audit)
+// - Phone-width "Report an issue" link (.toc-actions.d-md-none): Quarto paints it #747372, 4.6:1 on
+//   paper, at 11.9 px and 13 px tall. Now $muted (5.2:1), 0.85rem, and a 44 px tap target (D01, C01).
+// - Search box: Quarto's theme removes the focus outline from the autocomplete input, so a keyboard
+//   user could not see where focus was (A02). Same ring as the edition toggle.
+// ============================================================
+.toc-actions.d-md-none a.toc-action {
+  color: $muted !important;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.aa-Input:focus-visible,
+.aa-Form:focus-within { outline: 3px solid $maroon !important; outline-offset: 2px; }
